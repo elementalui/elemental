@@ -1,6 +1,6 @@
 # elemental
 
-React UI Framework
+React & CSS UI Framework.
 
 Docs and examples coming soon.
 
