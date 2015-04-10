@@ -1,0 +1,341 @@
+//
+// Forms
+// ==============================
+
+
+
+
+// Group
+// ------------------------------
+
+.form-group {
+	margin-bottom: @spacing-md;
+}
+
+
+
+
+// Inputs
+// ------------------------------
+
+.form-input {
+	.transition( ~"border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s" );
+	background-color: @input-bg-color;
+	background-image: none;
+	border-radius: @border-radius-base;
+	border: 1px solid @input-border-color;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	color: @text-color;
+	display: block;
+	font-size: @font-size-base;
+	line-height: @component-line-height;
+	height: @component-height;
+	padding: 0 @input-padding-horizontal;
+	width: 100%;
+	-webkit-appearance: none;
+
+
+	// states
+
+	&:hover {
+		border-color: @input-border-color-hover;
+		outline: 0;
+	}
+	&:focus {
+		border-color: @input-border-color-focus;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 1px @body-bg, 0 0 0 3px fade(@input-border-color-focus, 15%);
+		// box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px fade(@input-border-color-focus, 33%);
+		outline: 0;
+	}
+	&.disabled,
+	&[disabled] {
+		background-color: @input-bg-disabled;
+		pointer-events: none;
+	}
+
+	// firefox weirdness
+	&::-moz-focus-inner {
+		border: 0;
+		outline : 0;
+	}
+}
+.form-input-code {
+	font-family: @font-family-monospace;
+}
+
+
+// input sizes
+
+.form-input-lg { font-size: @font-size-lg; }
+.form-input-sm { font-size: @font-size-sm; }
+.form-input-xs {
+	font-size: @font-size-xs;
+	line-height: 1.9;
+	padding-left: .66em;
+	padding-right: .66em;
+}
+
+
+
+
+
+// Labels
+// ------------------------------
+
+.form-label {
+	.transition( color @form-animation-duration );
+	color: @form-label-color;
+	display: inline-block;
+	font-size: @font-size-sm;
+	font-weight: @font-weight-bold;
+	margin-bottom: @spacing-sm;
+}
+
+
+
+
+
+// Input Group
+// ------------------------------
+
+.input-group {
+	.display-flex();
+
+	.form-input {
+		.border-right-radius(0);
+	}
+	.btn {
+		.border-left-radius(0);
+		margin-left: -1px;
+	}
+}
+.input-group-field {
+	.flex-grow(1);
+}
+
+
+
+
+// Help
+// ------------------------------
+
+.form-help {
+	color: @form-help-color;
+	font-size: @font-size-sm;
+	margin-bottom: @spacing-sm;
+	margin-top: @spacing-sm;
+}
+
+
+
+
+// Validation
+// ------------------------------
+
+
+// message
+
+.form-validation {
+	.animation( formValidationMessage @form-animation-duration ease );
+	font-size: @font-size-xs;
+	margin-top: .5em;
+	overflow: hidden;
+
+	.is-invalid & {
+		color: @app-danger;
+	}
+	.is-valid & {
+		color: @app-success;
+	}
+}
+
+@-webkit-keyframes formValidationMessage {
+	from { max-height: 0; opacity: 0; }
+	to   { max-height: @font-size-base; opacity: 1; }
+}
+@keyframes formValidationMessage {
+	from { max-height: 0; opacity: 0; }
+	to   { max-height: @font-size-base; opacity: 1; }
+}
+
+
+// effects on other elements
+
+.form-group.is-invalid {
+	.form-label {
+		color: @app-danger;
+	}
+	.form-input {
+		border-color: @app-danger;
+
+		&:focus {
+			border-color: @app-danger;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 1px @body-bg, 0 0 0 3px fade(@app-danger, 15%);
+		}
+	}
+}
+.form-group.is-valid {
+	.form-label {
+		color: @app-success;
+	}
+	.form-input {
+		border-color: @app-success;
+
+		&:focus {
+			border-color: @app-success;
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 1px @body-bg, 0 0 0 3px fade(@app-success, 15%);
+		}
+	}
+}
+
+
+
+
+// ==============================
+// Field Types
+// ==============================
+
+
+
+
+
+// Checkbox & Radio
+// ------------------------------
+
+.checkbox,
+.radio {
+	margin-bottom: .5em;
+}
+
+.inline-controls {
+	.checkbox,
+	.radio {
+		display: inline-block;
+		margin-right: 1em;
+	}
+}
+
+
+
+
+// Textarea
+// ------------------------------
+
+textarea.form-input {
+	.resizable(vertical);
+	height: auto;
+	line-height: 1.4em;
+	padding: .5em @input-padding-horizontal;
+}
+
+
+
+
+// Select
+// ------------------------------
+
+select.form-input {
+	background-image: data-uri('../images/select-arrows.png');
+	background-position: center right @input-padding-horizontal;
+	background-repeat: no-repeat;
+	background-size: 7px 11px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	height: @component-height;
+
+	&:focus {
+		box-shadow: 0 0 0 1px @body-bg, 0 0 0 3px fade(@input-border-color-focus, 15%);
+	}
+	&.disabled,
+	&[disabled] {
+		background-image: data-uri('../images/select-arrows-disabled.png');
+		color: @gray-light;
+	}
+}
+
+
+
+
+// ==============================
+// Form Types
+// ==============================
+
+
+
+
+
+// Horizontal Form
+// ------------------------------
+
+@media (min-width: @container-width) {
+	.horizontal-form {
+		// Make the wrapper behave like a table
+		.form-group {
+			display: table;
+			table-layout: fixed;
+			min-width: 100%;
+		}
+		
+		// Fix the label width to allow the field to stretch
+		.form-label {
+			display: table-cell;
+			line-height: @component-height;
+			margin-bottom: 0;
+			vertical-align: middle;
+			width: @form-label-width;
+		}
+
+		// Account for missing labels
+		// the wacky syntax on width is so LESS doesn't try to run the calculation itself,
+		// where it will normalize the values assuming both are pixels. this way it's
+		// left to the browser
+		.form-input:first-child {
+			margin-left: @form-label-width;
+			width: calc(~"100%" - @form-label-width);
+
+			& + .form-validation {
+				margin-left: @form-label-width;
+			}
+		}
+	}
+}
+
+
+
+
+
+// Inline Form
+// ------------------------------
+
+@media (min-width: @container-width) {
+	.inline-form {
+		.checkbox,
+		.radio,
+		.form-group {
+			display: inline-block;
+			padding-left: .25em;
+			padding-right: .25em;
+			vertical-align: top;
+
+			&:first-child { padding-left: 0; }
+			&:last-child { padding-right: 0; }
+		}
+		.checkbox,
+		.radio {
+			line-height: 2.4em;
+			margin: 0 @input-padding-horizontal;
+		}
+		.form-label {
+			.sr-only();
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+

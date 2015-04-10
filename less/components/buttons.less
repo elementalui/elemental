@@ -1,0 +1,189 @@
+//
+// Buttons
+// ==============================
+
+
+
+
+// Base styles
+// ------------------------------
+
+.btn {
+	.transition(box-shadow ease-in-out 0.15s);
+	.user-select(none);
+	background: none;
+	border: 1px solid transparent;
+	border-radius: @border-radius-base;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: @btn-font-weight;
+	line-height: @component-line-height;
+	height: @component-height;
+	margin-bottom: 0;
+	overflow: hidden; // contain gradient on IE9
+	padding: 0 @btn-padding-horizontal;
+	text-align: center;
+	touch-action: manipulation;
+	vertical-align: middle;
+	white-space: nowrap;
+	-webkit-appearance: none;
+
+	&:hover,
+	&:focus,
+	&.focus {
+		color: @btn-default-color;
+		text-decoration: none;
+	}
+
+	&:active,
+	&.active {
+		background-image: none;
+		outline: 0;
+	}
+
+	&.disabled,
+	&[disabled] {
+		opacity: .4;
+		pointer-events: none;
+	}
+}
+
+
+
+
+// Button Variants
+// ------------------------------
+
+
+// default styles
+
+.btn-default {
+	.button-default-variant(@btn-default-color; @btn-default-border);
+
+	&.disabled,
+	&[disabled] {
+		background-color: @btn-default-disabled-bg;
+	}
+}
+.btn-default.btn-success {
+	.button-default-variant(@btn-success-color; @btn-success-border);
+}
+.btn-default.btn-warning {
+	.button-default-variant(@btn-warning-color; @btn-warning-border);
+}
+.btn-default.btn-danger {
+	.button-default-variant(@btn-danger-color; @btn-danger-border);
+}
+
+
+// fill styles
+
+.btn-primary {
+	.button-variant(white; @btn-primary-bg);
+}
+.btn-success {
+	.button-variant(white; @btn-success-bg);
+}
+.btn-warning {
+	.button-variant(white; @btn-warning-bg);
+}
+.btn-danger {
+	.button-variant(white; @btn-danger-bg);
+}
+
+
+
+
+// Link buttons
+// -------------------------
+
+// Make a button look and behave like a link
+.btn-link {
+	border-radius: 0;
+	color: @link-color;
+	font-weight: normal;
+
+	&,
+	&:active,
+	&.active,
+	&[disabled],
+	fieldset[disabled] & {
+		.box-shadow(none);
+		background-color: transparent;
+	}
+	&,
+	&:hover,
+	&:focus,
+	&:active {
+		border-color: transparent;
+	}
+	&:hover,
+	&:focus {
+		background-color: transparent;
+		color: @link-hover-color;
+		text-decoration: @link-hover-decoration;
+	}
+}
+
+
+
+
+// Button Sizes
+// ------------------------------
+
+.btn-lg { font-size: @font-size-lg; }
+.btn-sm { font-size: @font-size-sm; }
+.btn-xs {
+	font-size: @font-size-xs;
+	line-height: 1.9;
+	padding-left: .66em;
+	padding-right: .66em;
+}
+
+
+
+
+// Block button
+// ------------------------------
+
+.btn-block {
+	display: block;
+	width: 100%;
+}
+
+
+
+
+// Button Goups
+// ------------------------------
+
+.btn-group {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+
+	> .btn {
+		border-radius: 0;
+		float: left;
+		margin-left: -1px;
+		position: relative;
+
+		&:first-child {
+			.border-left-radius(@border-radius-base);
+			margin-left: 0;
+		}
+		&:last-child {
+			.border-right-radius(@border-radius-base);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+

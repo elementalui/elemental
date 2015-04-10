@@ -1,0 +1,78 @@
+// 
+// Grid
+// ==============================
+
+
+
+
+// Base
+// ------------------------------
+
+.g-row {
+	.display-flex();
+	.flex-wrap(wrap);
+
+	// offset spacing
+	margin-left: -(@app-gutter / 2);
+	margin-right: -(@app-gutter / 2);
+}
+.g-col {
+	.flex-grow(1); // fill available space equally be default
+
+	// provide spacing
+	padding-left: (@app-gutter / 2);
+	padding-right: (@app-gutter / 2);
+}
+
+
+
+
+// Fixed Widths (for irregular columns)
+// ------------------------------
+
+
+// don't fill space
+
+.g-one-whole,
+.g-one-half,
+.g-two-quarters,
+.g-three-sixths,
+.g-one-quarter,
+.g-three-quarters,
+.g-one-third,
+.g-two-sixths,
+.g-two-thirds,
+.g-four-sixths,
+.g-one-fifth,
+.g-two-fifths,
+.g-three-fifths,
+.g-four-fifths,
+.g-one-sixth,
+.g-five-sixths {
+	.flex-grow(0);
+}
+
+
+// set widths
+
+.g-one-whole      { width: 100%; }
+
+.g-one-half,
+.g-two-quarters,
+.g-three-sixths   { width: 50%; }
+
+.g-one-quarter    { width: 25%; }
+.g-three-quarters { width: 75%; }
+
+.g-one-third,
+.g-two-sixths     { width: 33.333%; }
+.g-two-thirds,
+.g-four-sixths    { width: 66.666%; }
+
+.g-one-fifth      { width: 20%; }
+.g-two-fifths     { width: 40%; }
+.g-three-fifths   { width: 60%; }
+.g-four-fifths    { width: 80%; }
+
+.g-one-sixth      { width: 16.666%; }
+.g-five-sixths    { width: 83.333%; }

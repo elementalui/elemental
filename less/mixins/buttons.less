@@ -1,0 +1,53 @@
+// 
+// Button variants
+// ==============================
+
+// Inspired by https://github.com/twbs/bootstrap
+
+.button-variant(@color; @background) {
+	#gradient .vertical(lighten(@background, 4%), darken(@background, 4%));
+	background-color: @background;
+	color: @color;
+
+	&:hover,
+	&:focus,
+	&.focus {
+		#gradient .vertical(lighten(@background, 8%), @background);
+		color: @color;
+		outline: none;
+	}
+	&:focus,
+	&.focus {
+		box-shadow: 0 0 0 1px @body-bg, 0 0 0 3px fade(@background, 25%);
+	}
+	&:active,
+	&.active {
+		background-color: darken(@background, 5%);
+		background-image: none;
+		box-shadow: none;
+	}
+}
+
+.button-default-variant(@color; @border) {
+	background: none;
+	border-color: @border;
+	color: @color;
+
+	&:hover,
+	&:focus {
+		background-color: mix(@border, @body-bg, 8%);
+		background-image: none;
+		border-color: darken(@border, 10%);
+		color: @color;
+		outline: none;
+	}
+	&:focus,
+	&.focus {
+		box-shadow: 0 0 0 1px @body-bg, 0 0 0 3px fade(@border, 15%);
+	}
+	&:active {
+		background-color: fade(@border, 20%);
+		border-color: darken(@border, 20%);
+		box-shadow: none;
+	}
+}

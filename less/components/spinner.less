@@ -1,0 +1,106 @@
+//
+// Spinner
+// ==============================
+
+
+
+
+
+// Base
+// ------------------------------
+
+.spinner {
+	display: inline-block;
+	font-size: @spinner-dot-size;
+	height: @spinner-dot-size;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+}
+
+
+
+
+
+// Dots
+// ------------------------------
+
+.spinner__dot {
+	.animation( pulse 1s infinite ease-in-out );
+	.square(1em);
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: top;
+
+	&:nth-child(2) {
+		.animation-delay( 160ms );
+		margin-left: 1em;
+	}
+	&:nth-child(3) {
+		.animation-delay( 320ms );
+		margin-left: 1em;
+	}
+}
+
+
+// default variant
+
+.spinner--default .spinner__dot {
+	background-color: @spinner-dot-bg;
+}
+
+
+// primary variant
+
+.spinner--primary .spinner__dot {
+	background-color: @app-primary;
+}
+
+
+// inverted variant
+
+.spinner--inverted .spinner__dot {
+	background-color: white;
+}
+
+
+
+
+
+// Animation
+// ------------------------------
+
+@-webkit-keyframes pulse {
+	0%, 80%, 100% { opacity: 0; }
+	40% { opacity: 1; }
+}
+@keyframes pulse {
+	0%, 80%, 100% { opacity: 0; }
+	40% { opacity: 1; }
+}
+
+
+
+
+
+// Inside Buttons
+// ------------------------------
+
+.btn > .spinner {
+	font-size: (@spinner-dot-size / 2);
+	height: (@spinner-dot-size / 2);
+	margin-right: 2em;
+
+	&:only-child {
+		margin-right: 0;
+	}
+}
+
+
+
+
+
+
+
+
+
