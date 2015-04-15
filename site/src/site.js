@@ -15,8 +15,8 @@ var PageNav = React.createClass({
 	render: function() {
 		return (
 			<nav className="primary-nav">
-				<Router.Link to="home" className="primary-nav__brand" title="Home">
-					<img src="./images/react-logo.svg" className="primary-nav__brand-src" />
+				<Router.Link to="home" className="primary-nav__brand special" title="Home">
+					<img src="./images/elemental-logo-paths.svg" className="primary-nav__brand-src" />
 				</Router.Link>
 				{/*<Router.Link to="home">Home</Router.Link>*/}
 				<Router.Link className="primary-nav__item" to="buttons">Buttons</Router.Link>
