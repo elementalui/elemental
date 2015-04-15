@@ -15,6 +15,7 @@
   "dependencies": {
     "blacklist": "^1.1.2",
     "classnames": "^1.2.0",
+    "moment": "~2.10.2",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
