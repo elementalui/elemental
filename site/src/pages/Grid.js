@@ -1,6 +1,8 @@
 var React = require('react');
 
 var Grid = React.createClass({
+	displayName: 'VIEW_Grid',
+
 	render () {
 		return (
 			<div className="page-container">

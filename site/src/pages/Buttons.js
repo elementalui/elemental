@@ -1,7 +1,26 @@
 var React = require('react');
+var Dropdown = require('elemental').Dropdown;
 var Button = require('elemental').Button;
 
+var DROPDOWN_OPTIONS = [
+	{ type: 'item', anchor: 'javascript:;', label: 'Action' },
+	{ type: 'item', anchor: 'javascript:;', label: 'Another action' },
+	{ type: 'item', anchor: 'javascript:;', label: 'Something else here' },
+	{ type: 'divider' },
+	{ type: 'header', label: 'Dropdown header' },
+	{ type: 'item', anchor: 'javascript:;', label: 'Separated link' },
+];
+
 var Buttons = React.createClass({
+	displayName: 'VIEW_Buttons',
+	getInitialState() {
+		return {
+			dropdownOpen: false
+		};
+	},
+	toggleDropdown() {
+		this.setState({ dropdownOpen: !this.state.dropdownOpen });
+	},
 
 	render () {
 		return (
@@ -62,6 +81,9 @@ var Buttons = React.createClass({
 					<Button type="default">Middle</Button>
 					<Button type="default">Right</Button>
 				</div>
+
+				<h2 className="u-margin-top-lg">Dropdown</h2>
+				<Dropdown isOpen={this.state.dropdownOpen} onChange={this.toggleDropdown} items={DROPDOWN_OPTIONS} buttonLabel="Action" buttonClass="btn btn-default" buttonDisclosureArrow />
 			</div>
 		);
 	}

@@ -2,6 +2,7 @@ var React = require('react');
 var Spinner = require('elemental').Spinner;
 
 var Buttons = React.createClass({
+	displayName: 'VIEW_Spinner',
 	render () {
 		return (
 			<div className="page-container">

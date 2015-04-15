@@ -1,6 +1,8 @@
 var React = require('react');
 
 var Home = React.createClass({
+	displayName: 'VIEW_Home',
+	
 	render () {
 		return (
 			<div className="page-container">
