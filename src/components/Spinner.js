@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -16,9 +16,9 @@ module.exports = React.createClass({
 
 		return (
 			<div className={componentClass}>
-				<i className="spinner__dot" />
-				<i className="spinner__dot" />
-				<i className="spinner__dot" />
+				<i className="spinner__dot spinner__dot--first" />
+				<i className="spinner__dot spinner__dot--second" />
+				<i className="spinner__dot spinner__dot--third" />
 			</div>
 		);
 	}

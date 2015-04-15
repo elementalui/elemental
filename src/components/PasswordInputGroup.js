@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react/addons');
 var classNames = require('classnames');
 
 function validatePassword(value) {

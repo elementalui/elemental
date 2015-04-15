@@ -1,5 +1,11 @@
-exports.EmailInputGroup = require('./components/EmailInputGroup');
+exports.Button =             require('./components/Button');
+exports.DatePicker =         require('./components/DatePicker');
+exports.DatePickerCalendar = require('./components/DatePickerCalendar');
+exports.DatePickerHeader =   require('./components/DatePickerHeader');
+exports.Dropdown =           require('./components/Dropdown');
+exports.EmailInputGroup =    require('./components/EmailInputGroup');
+exports.Modal =              require('./components/Modal');
 exports.PasswordInputGroup = require('./components/PasswordInputGroup');
-exports.RadioGroup = require('./components/RadioGroup');
-exports.SelectInputGroup = require('./components/SelectInputGroup');
-exports.Spinner = require('./components/Spinner');
+exports.RadioGroup =         require('./components/RadioGroup');
+exports.SelectInputGroup =   require('./components/SelectInputGroup');
+exports.Spinner =            require('./components/Spinner');
