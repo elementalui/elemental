@@ -9,9 +9,14 @@
 // ------------------------------
 
 
+@react-blue:              #00d8ff; // react blue
+@ios-blue:                #007aff; // ios blue
+@elemental-turquoise:     #31adb8; // elemental turquoise
+
+@app-primary:             @elemental-turquoise;
+
 @app-danger:              #d64242;
 @app-info:                #56cdfc;
-@app-primary:             #00d8ff;
 @app-success:             #52cc5c;
 @app-warning:             #fa9f47;
 
@@ -22,8 +27,9 @@
 @gray-light:              #999;
 @gray-lighter:            #eee;
 
-@body-bg:                 #fff;
+@body-bg:                 #fefefe;
 @text-color:              @gray-dark;
+@heading-color:           @gray-darker;
 
 @link-color:              @app-primary;
 @link-hover-color:        lighten(@link-color, 10%);
@@ -86,7 +92,7 @@
 @form-label-width:            120px;
 @form-help-color:             @form-label-color;
 
-@input-bg-color:              #fff;
+@input-bg-color:              white;
 @input-bg-disabled:           darken(@input-bg-color, 3%);
 
 @input-border-color:          #ccc;
@@ -98,19 +104,30 @@
 
 
 
+// Tables
+// ------------------------------
+
+@table-padding:               .66em;
+
+@table-border:                rgba(0,0,0,0.06);
+@table-sort-arrow-width:      4px;
+
+
+
+
 // Buttons
 // ------------------------------
 
 
 @btn-font-weight:                500;
 
-@btn-padding-horizontal:      1em;
+@btn-padding-horizontal:         1em;
 
 @btn-default-color:              @app-primary;
 @btn-default-border:             mix(@app-primary, @body-bg, 60%);
 @btn-default-disabled-bg:        darken(@body-bg, 4%);
 
-@btn-primary-color:              #fff;
+@btn-primary-color:              white;
 @btn-primary-bg:                 @app-primary;
 @btn-primary-border:             @btn-primary-bg;
 
@@ -131,11 +148,80 @@
 
 
 
+// Dropdowns
+// ------------------------------
+
+@dropdown-bg:                    white;
+@dropdown-divider-bg:            #e5e5e5;
+
+@dropdown-caret-width:           .33em;
+
+@dropdown-link-color:            @text-color;
+@dropdown-link-hover-color:      mix(@link-color, @text-color, 60%);
+@dropdown-link-hover-bg:         mix(@link-color, @dropdown-bg, 10%);
+
+@dropdown-link-active-color:     white;
+@dropdown-link-active-bg:        @app-primary;
+
+@dropdown-link-disabled-color:   @gray-light;
+@dropdown-header-color:          @gray-light;
+
+
+
+
+// Modals
+// ------------------------------
+
+@modal-bg:                    white;
+@modal-backdrop-bg:           rgba(0, 0, 0, 0.5);
+@modal-padding-vertical:      20px;
+@modal-padding-horizontal:    20px;
+
+
+
+
+// Date Picker
+// ------------------------------
+
+@datepicker-bg:                  #fafafa;
+@datepicker-header-bg:           desaturate(@app-primary, 20%);
+@datepicker-footer-bg:           darken(@datepicker-bg, 5%);
+@datepicker-footer-border:       darken(@datepicker-bg, 15%);
+
+@datepicker-selected-day-bg:       @app-primary;
+@datepicker-selected-day-color:    white;
+@datepicker-current-day-bg:      darken(@datepicker-bg, 3%);
+@datepicker-current-day-border:  darken(@datepicker-bg, 15%);
+
+@datepicker-padding:             8px;
+@datepicker-dialog-width:        280px;
+@datepicker-ranges-width:        140px;
+
+@datepicker-title-button-height: 30px;
+@datepicker-title-button-width:  20px;
+
+
+
+
+// Z-Index List
+// ------------------------------
+
+@zindex-dropdown:                100;
+@zindex-dropdown-button:         @zindex-dropdown + 1;
+@zindex-dropdown-backdrop:     @zindex-dropdown - 1;
+@zindex-modal:                   110;
+@zindex-modal-backdrop:        @zindex-modal - 1;
+
+
+
+
 // Misc
 // ------------------------------
 
 @app-gutter:                  20px;
 @border-radius-base:         .33em;
+@border-radius-sm:           .25em;
+@border-radius-lg:            .5em;
 
 @spinner-dot-size:             8px;
 @spinner-dot-bg:               @gray-light;
