@@ -65,13 +65,13 @@
 		background-color: @btn-default-disabled-bg;
 	}
 }
-.btn-default.btn-success {
+.btn-default-success {
 	.button-default-variant(@btn-success-color; @btn-success-border);
 }
-.btn-default.btn-warning {
+.btn-default-warning {
 	.button-default-variant(@btn-warning-color; @btn-warning-border);
 }
-.btn-default.btn-danger {
+.btn-default-danger {
 	.button-default-variant(@btn-danger-color; @btn-danger-border);
 }
 
@@ -122,6 +122,16 @@
 		background-color: transparent;
 		color: @link-hover-color;
 		text-decoration: @link-hover-decoration;
+	}
+}
+.btn-link-cancel {
+	.btn-link();
+	color: @gray-light;
+
+	&:hover,
+	&:focus {
+		color: @app-danger;
+		outline: none;
 	}
 }
 
