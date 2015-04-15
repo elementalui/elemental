@@ -18,11 +18,17 @@ var PageNav = React.createClass({
 				<Router.Link to="home" className="primary-nav__brand" title="Home">
 					<img src="./images/react-logo.svg" className="primary-nav__brand-src" />
 				</Router.Link>
-				<Router.Link className="primary-nav__item" to="home">Home</Router.Link>
+				{/*<Router.Link to="home">Home</Router.Link>*/}
 				<Router.Link className="primary-nav__item" to="buttons">Buttons</Router.Link>
+				<Router.Link className="primary-nav__item" to="tables">Tables</Router.Link>
 				<Router.Link className="primary-nav__item" to="forms">Forms</Router.Link>
 				<Router.Link className="primary-nav__item" to="spinner">Spinner</Router.Link>
+				<Router.Link className="primary-nav__item" to="modal">Modal</Router.Link>
 				<Router.Link className="primary-nav__item" to="grid">Grid</Router.Link>
+				<Router.Link className="primary-nav__item" to="date-picker">Date Picker</Router.Link>
+				<a href="https://github.com/JedWatson/react-express-starter" target="_blank" title="View on GitHub" className="primary-nav__brand right">
+					<img src="./images/github-logo.svg" className="primary-nav__brand-src" />
+				</a>
 			</nav>
 		);
 	}
@@ -50,9 +56,12 @@ var routes = (
 	<Router.Route name="app" path="/" handler={App}>
 		<Router.Route name="home" path="/" handler={require('./pages/Home')} />
 		<Router.Route name="buttons" path="/buttons" handler={require('./pages/Buttons')} />
+		<Router.Route name="tables" path="/tables" handler={require('./pages/Tables')} />
 		<Router.Route name="forms" path="/forms" handler={require('./pages/Forms')} />
 		<Router.Route name="spinner" path="/spinner" handler={require('./pages/Spinner')} />
+		<Router.Route name="modal" path="/modal" handler={require('./pages/Modal')} />
 		<Router.Route name="grid" path="/grid" handler={require('./pages/Grid')} />
+		<Router.Route name="date-picker" path="/date-picker" handler={require('./pages/DatePicker')} />
 		<Router.DefaultRoute handler={require('./pages/Home')} />
 	</Router.Route>
 );
