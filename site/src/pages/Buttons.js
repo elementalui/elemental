@@ -1,4 +1,5 @@
 var React = require('react');
+var Button = require('elemental').Button;
 
 var Buttons = React.createClass({
 
@@ -7,59 +8,59 @@ var Buttons = React.createClass({
 			<div className="page-container">
 				<h1>Buttons</h1>
 				<h2 className="u-margin-top-lg">Standard</h2>
-				<button type="button" className="btn btn-default">Default</button>
+				<Button type="default" className="btn btn-default">Default</Button>
 				<hr />
-				<button type="button" className="btn btn-primary">Primary</button>
+				<Button type="primary" className="btn btn-primary">Primary</Button>
 				<hr />
-				<button type="button" className="btn btn-default" disabled>Disabled</button>
+				<Button type="default" className="btn btn-default" disabled>Disabled</Button>
 				<hr />
-				<button type="button" className="btn btn-link">Link</button>
+				<Button type="link" className="btn btn-link">Link</Button>
 
 				<h2 className="u-margin-top-lg">Large</h2>
-				<button type="button" className="btn btn-lg btn-default">Default</button>
+				<Button type="default" size="lg">Default</Button>
 				<hr />
-				<button type="button" className="btn btn-lg btn-primary">Primary</button>
+				<Button type="primary" size="lg">Primary</Button>
 				<hr />
-				<button type="button" className="btn btn-lg btn-default" disabled>Disabled</button>
+				<Button type="default" size="lg" disabled>Disabled</Button>
 				<hr />
-				<button type="button" className="btn btn-lg btn-link">Link</button>
+				<Button type="link" size="lg">Link</Button>
 
 				<h2 className="u-margin-top-lg">Small</h2>
-				<button type="button" className="btn btn-sm btn-default">Default</button>
+				<Button type="default" size="sm">Default</Button>
 				<hr />
-				<button type="button" className="btn btn-sm btn-primary">Primary</button>
+				<Button type="primary" size="sm">Primary</Button>
 				<hr />
-				<button type="button" className="btn btn-sm btn-default" disabled>Disabled</button>
+				<Button type="default" size="sm" disabled>Disabled</Button>
 				<hr />
-				<button type="button" className="btn btn-sm btn-link">Link</button>
+				<Button type="link" size="sm">Link</Button>
 
 				<h2 className="u-margin-top-lg">Extra Small</h2>
-				<button type="button" className="btn btn-xs btn-default">Default</button>
+				<Button type="default" size="xs">Default</Button>
 				<hr />
-				<button type="button" className="btn btn-xs btn-primary">Primary</button>
+				<Button type="primary" size="xs">Primary</Button>
 				<hr />
-				<button type="button" className="btn btn-xs btn-default" disabled>Disabled</button>
+				<Button type="default" size="xs" disabled>Disabled</Button>
 				<hr />
-				<button type="button" className="btn btn-xs btn-link">Link</button>
+				<Button type="link" size="xs">Link</Button>
 
 				<h2 className="u-margin-top-lg">Colours</h2>
-				<button type="button" className="btn btn-danger">Danger</button>
+				<Button type="danger">Danger</Button>
 				<hr />
-				<button type="button" className="btn btn-default btn-danger">Danger</button>
+				<Button type="default-danger">Danger</Button>
 				<hr />
-				<button type="button" className="btn btn-warning">Warning</button>
+				<Button type="warning">Warning</Button>
 				<hr />
-				<button type="button" className="btn btn-default btn-warning">Warning</button>
+				<Button type="default-warning">Warning</Button>
 				<hr />
-				<button type="button" className="btn btn-success">Success</button>
+				<Button type="success">Success</Button>
 				<hr />
-				<button type="button" className="btn btn-default btn-success">Success</button>
+				<Button type="default-success">Success</Button>
 
 				<h2 className="u-margin-top-lg">Button Groups</h2>
 				<div className="btn-group">
-					<button type="button" className="btn btn-default">Left</button>
-					<button type="button" className="btn btn-default">Middle</button>
-					<button type="button" className="btn btn-default">Right</button>
+					<Button type="default">Left</Button>
+					<Button type="default">Middle</Button>
+					<Button type="default">Right</Button>
 				</div>
 			</div>
 		);
