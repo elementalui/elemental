@@ -1,5 +1,5 @@
 var React = require('react');
-var Spinner = require('../components/Spinner');
+var Spinner = require('elemental').Spinner;
 
 var Buttons = React.createClass({
 	render () {

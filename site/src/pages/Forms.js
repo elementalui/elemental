@@ -1,9 +1,9 @@
 var React = require('react');
 
-var EmailInputGroup = require('../components/EmailInputGroup');
-var PasswordInputGroup = require('../components/PasswordInputGroup');
-var SelectInputGroup = require('../components/SelectInputGroup');
-var RadioGroup = require('../components/RadioGroup');
+var EmailInputGroup = require('elemental').EmailInputGroup;
+var PasswordInputGroup = require('elemental').PasswordInputGroup;
+var SelectInputGroup = require('elemental').SelectInputGroup;
+var RadioGroup = require('elemental').RadioGroup;
 
 var controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
