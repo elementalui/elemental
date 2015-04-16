@@ -81,7 +81,7 @@ var Tables = React.createClass({
 		});
 
 		return (
-			<div className="container">
+			<div className="demo-container container">
 				<h1>Tables</h1>
 				<table className="table">
 					<colgroup>

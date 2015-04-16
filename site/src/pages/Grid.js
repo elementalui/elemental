@@ -5,7 +5,7 @@ var Grid = React.createClass({
 
 	render() {
 		return (
-			<div className="container">
+			<div className="demo-container container">
 				<h1>Grid</h1>
 				<h2 className="u-padding-top-lg">Three equal columns</h2>
 				<div className="col-group">

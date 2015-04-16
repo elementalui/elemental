@@ -5,7 +5,7 @@ var Home = React.createClass({
 	
 	render () {
 		return (
-			<div className="container">
+			<div className="demo-container container">
 				<h1>React + Express Starter Project</h1>
 				<h2 className="u-margin-top-lg">Welcome</h2>
 				<p>This is the React + Express starter project. It includes <a href="https://facebook.github.io/react/" target="_blank">React</a> for the client, <a href="http://expressjs.com/" target="_blank">express</a> for the server, a lightweight CSS framework build with <a href="http://lesscss.org/" target="_blank">LESS</a>, <a href="https://github.com/rackt/react-router" target="_blank">react-router</a> and several UI components to get you started quickly.</p>

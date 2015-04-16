@@ -24,7 +24,7 @@ var Buttons = React.createClass({
 
 	render () {
 		return (
-			<div className="container">
+			<div className="demo-container container">
 				<h1>Buttons</h1>
 				<h2 className="u-margin-top-lg">Standard</h2>
 				<Button type="default" className="btn btn-default">Default</Button>

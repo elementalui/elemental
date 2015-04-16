@@ -5,7 +5,7 @@ var Buttons = React.createClass({
 	displayName: 'VIEW_Spinner',
 	render () {
 		return (
-			<div className="container">
+			<div className="demo-container container">
 				<h1>Spinner</h1>
 				<div className="col-group">
 					<div className="col-4">
