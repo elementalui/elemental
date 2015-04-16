@@ -2,77 +2,335 @@
 // Grid
 // ==============================
 
+/*
+	Based on Fluidable Grid System 1.2.2
+
+	Created by Andri Sigurðsson
+	Site: http://fluidable.com
+	Date: 01.04.2015
+ */
 
 
 
-// Base
+
+
+// Container
 // ------------------------------
 
-.g-row {
-	.display-flex();
-	.flex-wrap(wrap);
-
-	// offset spacing
-	margin-left: -(@app-gutter / 2);
-	margin-right: -(@app-gutter / 2);
-}
-.g-col {
-	.flex-grow(1); // fill available space equally be default
-
-	// provide spacing
-	padding-left: (@app-gutter / 2);
-	padding-right: (@app-gutter / 2);
+.container {
+	.center-block();
+	padding-left: @grid-gutter-width;
+	padding-right: @grid-gutter-width;
 }
 
 
+// Mobile and up
+// ------------------------------
+ 
 
 
-// Fixed Widths (for irregular columns)
+[class*="col-fixed-"] {
+  float: left;
+  width: 100%;
+}
+
+.col-group [class*="col-"] {
+	box-sizing: border-box;
+	min-height: 1px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.col-group [class*="push-"],
+.col-group [class*="pull-"] {
+	position: relative;
+}
+
+// Columns
+
+.columns (@index) when (@index > 0) {
+	.col-xs-@{index} {
+		float: left;
+		padding-right: @grid-gutter-width / 2;
+		padding-left: @grid-gutter-width / 2;
+		width: @grid-column-width * @index;
+	}
+	.columns(@index - 1);
+}
+.columns (0) {}
+.columns (@grid-columns);
+
+
+
+
+// Phone and up
+// ------------------------------
+
+@media (min-width: @screen-xs) {
+
+	.container {
+		max-width: 100%;
+	}
+
+	// Columns
+
+	.columns (@index) when (@index > 0) {
+		.col-@{index} {
+			float: left;
+			padding-left: @grid-gutter-width / 2;
+			padding-right: @grid-gutter-width / 2;
+			width: @grid-column-width * @index;
+		}
+		.columns(@index - 1);
+	}
+	.columns (0) {}
+	.columns (@grid-columns);
+
+
+	// Offset
+
+	.offset (@index) when (@index > -1) {
+		.col-offset-@{index} {
+			margin-left: @grid-column-width * @index;
+		}
+		.offset(@index - 1);
+	}
+	.offset (0) {}
+	.offset (@grid-columns);
+
+
+	// Pull
+
+	.pull (@index) when (@index > -1) {
+		.col-pull-@{index} {
+			right: @grid-column-width * @index;
+		}
+		.pull(@index - 1);
+	}
+	.pull (0) {}
+	.pull (@grid-columns);
+
+
+	// Push
+
+	.push (@index) when (@index > -1) {
+		.col-push-@{index} {
+			left: @grid-column-width * @index;
+		}
+		.push(@index - 1);
+	}
+	.push (0) {}
+	.push (@grid-columns);
+
+
+	// Groups
+
+	.col-group {
+		.clearfix();
+		margin-left: @grid-gutter-width / -2;
+		margin-right: @grid-gutter-width / -2;
+	}
+
+}
+
+
+
+
+// Tablet and up
+// ------------------------------
+
+@media (min-width: @screen-sm) {
+
+	.container {
+		max-width: @screen-sm  - (@grid-gutter-width * 2);
+	}
+
+	// Columns
+
+	.columns (@index) when (@index > 0) {
+		.col-lg-@{index} {
+			float: left;
+			padding-left: @grid-gutter-width / 2;
+			padding-right: @grid-gutter-width / 2;
+			width: @grid-column-width * @index;
+		}
+		.columns(@index - 1);
+	}
+	.columns (0) {}
+	.columns (@grid-columns);
+
+
+	// Offset
+
+	.offset (@index) when (@index > -1) {
+		.col-lg-offset-@{index} {
+			margin-left: @grid-column-width * @index;
+		}
+		.offset(@index - 1);
+	}
+	.offset (0) {}
+	.offset (@grid-columns);
+
+
+	// Pull
+
+	.pull (@index) when (@index > -1) {
+		.col-lg-pull-@{index} {
+			right: @grid-column-width * @index;
+		}
+		.pull(@index - 1);
+	}
+	.pull (0) {}
+	.pull (@grid-columns);
+
+
+	// Push
+
+	.push (@index) when (@index > -1) {
+		.col-lg-push-@{index} {
+			left: @grid-column-width * @index;
+		}
+		.push(@index - 1);
+	}
+	.push (0) {}
+	.push (@grid-columns);
+
+}
+
+
+
+
+// Desktop and up
+// ------------------------------
+
+@media (min-width: @screen-md) {
+
+	.container {
+		max-width: @screen-md  - (@grid-gutter-width * 2);
+	}
+
+	// Columns
+
+	.columns (@index) when (@index > 0) {
+		.col-lg-@{index} {
+			float: left;
+			padding-left: @grid-gutter-width / 2;
+			padding-right: @grid-gutter-width / 2;
+			width: @grid-column-width * @index;
+		}
+		.columns(@index - 1);
+	}
+	.columns (0) {}
+	.columns (@grid-columns);
+
+
+	// Offset
+
+	.offset (@index) when (@index > -1) {
+		.col-lg-offset-@{index} {
+			margin-left: @grid-column-width * @index;
+		}
+		.offset(@index - 1);
+	}
+	.offset (0) {}
+	.offset (@grid-columns);
+
+
+	// Pull
+
+	.pull (@index) when (@index > -1) {
+		.col-lg-pull-@{index} {
+			right: @grid-column-width * @index;
+		}
+		.pull(@index - 1);
+	}
+	.pull (0) {}
+	.pull (@grid-columns);
+
+
+	// Push
+
+	.push (@index) when (@index > -1) {
+		.col-lg-push-@{index} {
+			left: @grid-column-width * @index;
+		}
+		.push(@index - 1);
+	}
+	.push (0) {}
+	.push (@grid-columns);
+
+}
+
+
+
+
+// Large desktop and up
 // ------------------------------
 
 
-// don't fill space
+@media (min-width: @screen-lg) {
 
-.g-one-whole,
-.g-one-half,
-.g-two-quarters,
-.g-three-sixths,
-.g-one-quarter,
-.g-three-quarters,
-.g-one-third,
-.g-two-sixths,
-.g-two-thirds,
-.g-four-sixths,
-.g-one-fifth,
-.g-two-fifths,
-.g-three-fifths,
-.g-four-fifths,
-.g-one-sixth,
-.g-five-sixths {
-	.flex-grow(0);
+	.container {
+		max-width: @screen-lg  - (@grid-gutter-width * 2);
+	}
+
+	// Columns
+
+	.columns (@index) when (@index > 0) {
+		.col-xl-@{index} {
+			float: left;
+			padding-left: @grid-gutter-width / 2;
+			padding-right: @grid-gutter-width / 2;
+			width: @grid-column-width * @index;
+		}
+		.columns(@index - 1);
+	}
+	.columns (0) {}
+	.columns (@grid-columns);
+
+
+	// Offset
+
+	.offset (@index) when (@index > -1) {
+		.col-xl-offset-@{index} {
+			margin-left: @grid-column-width * @index;
+		}
+		.offset(@index - 1);
+	}
+	.offset (0) {}
+	.offset (@grid-columns);
+
+
+	// Pull
+
+	.pull (@index) when (@index > -1) {
+		.col-xl-pull-@{index} {
+			right: @grid-column-width * @index;
+		}
+		.pull(@index - 1);
+	}
+	.pull (0) {}
+	.pull (@grid-columns);
+
+
+	// Push
+
+	.push (@index) when (@index > -1) {
+		.col-xl-push-@{index} {
+			left: @grid-column-width * @index;
+		}
+		.push(@index - 1);
+	}
+	.push (0) {}
+	.push (@grid-columns);
+
 }
 
 
-// set widths
 
-.g-one-whole      { width: 100%; }
 
-.g-one-half,
-.g-two-quarters,
-.g-three-sixths   { width: 50%; }
 
-.g-one-quarter    { width: 25%; }
-.g-three-quarters { width: 75%; }
 
-.g-one-third,
-.g-two-sixths     { width: 33.333%; }
-.g-two-thirds,
-.g-four-sixths    { width: 66.666%; }
 
-.g-one-fifth      { width: 20%; }
-.g-two-fifths     { width: 40%; }
-.g-three-fifths   { width: 60%; }
-.g-four-fifths    { width: 80%; }
 
-.g-one-sixth      { width: 16.666%; }
-.g-five-sixths    { width: 83.333%; }
+
