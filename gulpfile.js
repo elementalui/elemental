@@ -4,7 +4,14 @@ var gulp = require('gulp'),
 var taskConfig = {
 
 	component: {
-		name: 'Elemental'
+		name: 'Elemental',
+		dependencies: [
+			'react',
+			'react/addons',
+			'blacklist',
+			'classnames',
+			'underscore'
+		]
 	},
 
 	example: {
