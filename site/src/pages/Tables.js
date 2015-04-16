@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var classNames = require('classnames');
 var moment = require('moment');
+var _ = require('underscore');
 
 var USERS = require('../data/users');
 
@@ -9,26 +10,65 @@ var Tables = React.createClass({
 
 	getInitialState() {
 		return {
-			allChecked: false
+			allChecked: false,
+			selectedRows: []
 		};
 	},
 
 	toggleAllRows() {
-		this.setState({ allChecked: !this.state.allChecked });
+		// console.log('getCheckboxes', this.getCheckboxes());
+
+		// var totalRows = this.getCheckboxes().length;
+		var rowsToCheck = [];
+		var selectedRows = [];
+
+		for (var i = 0; i < 20; i++) {
+			rowsToCheck.push(i)
+		}
+
+		console.log(rowsToCheck);
+
+		if (!this.state.allChecked) {
+			selectedRows = rowsToCheck;
+		}
+
+		this.setState({
+			selectedRows: selectedRows,
+			allChecked: !this.state.allChecked
+		});
+	},
+
+	handleChange(checkbox) {
+		var newRows = this.state.selectedRows;
+
+		if (_.contains(newRows, checkbox)) {
+			newRows = _.without(newRows, checkbox);
+		} else {
+			newRows.push(checkbox);
+		}
+
+
+		this.setState({
+			selectedRows: newRows
+		});
 	},
 
 	render() {
 		var self = this;
+		console.log(this.state.selectedRows);
 
 		var rows = USERS.map(function(user, i) {
-			var rowClass = classNames({ 'row-selected': false });
-			var userAge = moment().diff(user.dob, 'years');;
+			var userAge = moment().diff(user.dob, 'years');
+			var checked = _.contains(self.state.selectedRows, i);
+			var rowClass = classNames({
+				'row-selected': checked
+			});
 
 			return (
-				<tr className={rowClass}>
+				<tr key={'row-' + i} className={rowClass}>
 					<td>
 						<label className="table-checkbox-label">
-							<input checked={self.state.allChecked} type="checkbox" name="customers" className="table-checkbox" />
+							<input id={'checkbox-' + i} onChange={self.handleChange.bind(this, i)} checked={checked} type="checkbox" name="customers" className="table-checkbox" />
 						</label>
 					</td>
 					<td>
