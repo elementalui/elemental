@@ -5,22 +5,22 @@ var Buttons = React.createClass({
 	displayName: 'VIEW_Spinner',
 	render () {
 		return (
-			<div className="page-container">
+			<div className="container">
 				<h1>Spinner</h1>
-				<div className="g-row">
-					<div className="g-col">
+				<div className="col-group">
+					<div className="col-4">
 						<h2 className="u-padding-top-lg">Standard</h2>
 						<div className="demo-box">
 							<Spinner type="default" />
 						</div>
 					</div>
-					<div className="g-col">
+					<div className="col-4">
 						<h2 className="u-padding-top-lg">Primary</h2>
 						<div className="demo-box">
 							<Spinner type="primary" />
 						</div>
 					</div>
-					<div className="g-col">
+					<div className="col-4">
 						<h2 className="u-padding-top-lg">Inverted</h2>
 						<div className="demo-box demo-box--inverted">
 							<Spinner type="inverted" />

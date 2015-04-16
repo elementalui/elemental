@@ -4,40 +4,6 @@
 
 
 
-
-// Container
-// ------------------------------
-
-.page-container {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: @container-width;
-	padding-left: @app-gutter;
-	padding-right: @app-gutter;
-}
-
-
-
-
-// Page Columns
-// ------------------------------
-
-.page-cols {
-	.display-flex();
-	.flex-direction(column);
-}
-.page-col {}
-.page-col-main {
-	.flex-grow(1);
-}
-@media (min-width: @container-width) {
-	.page-cols {
-		.flex-direction(row);
-	}
-}
-
-
-
 // Page Wrapper
 // ------------------------------
 

@@ -42,7 +42,7 @@ var Forms = React.createClass({
 		}
 
 		return (
-			<div className="page-container">
+			<div className="container">
 				<h1>Forms</h1>
 				<h2 id="section-basic" className="u-padding-top-lg">Basic Example</h2>
 				<form className="u-margin-bottom-lg">

@@ -43,7 +43,7 @@ var App = React.createClass({
 					<Router.RouteHandler/>
 				</div>
 				<div className="page-footer">
-					<div className="page-container">
+					<div className="container">
 						Copyright &copy; 2015 <a href="http://www.thinkmill.com.au" target="_blank">Thinkmill</a> &middot; MIT License
 					</div>
 				</div>

@@ -31,7 +31,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		return (
-			<div className="page-container">
+			<div className="container">
 				<h1>Date Picker</h1>
 				
 				<h2 className="u-margin-top-lg">Day Picker</h2>
