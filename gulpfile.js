@@ -6,10 +6,11 @@ var taskConfig = {
 	component: {
 		name: 'Elemental',
 		dependencies: [
-			'react',
-			'react/addons',
 			'blacklist',
 			'classnames',
+			'moment',
+			'react',
+			'react/addons',
 			'underscore'
 		]
 	},
