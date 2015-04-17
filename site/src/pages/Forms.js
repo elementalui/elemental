@@ -1,5 +1,6 @@
 var React = require('react');
 
+var InputGroup = require('elemental').InputGroup;
 var EmailInputGroup = require('elemental').EmailInputGroup;
 var PasswordInputGroup = require('elemental').PasswordInputGroup;
 var SelectInputGroup = require('elemental').SelectInputGroup;
@@ -11,6 +12,7 @@ var controlOptions = [
 	{ label: 'Strawberry', value: 'strawberry' },
 	{ label: 'Vanilla',    value: 'vanilla' }
 ];
+var COUNTRIES = require('../data/countries');
 
 var Forms = React.createClass({
 	displayName: 'VIEW_Forms',
@@ -40,6 +42,10 @@ var Forms = React.createClass({
 		function updatePassword(e) {
 			self.setState({inputPassword: e.target.value});
 		}
+
+		var countryOptions = COUNTRIES.map(function(country, i) {
+			return { label: country.name, value: country.code }
+		});
 
 		return (
 			<div className="demo-container container">
@@ -219,22 +225,25 @@ var Forms = React.createClass({
 				</form>
 
 				<h2 id="section-complex" className="u-padding-top-lg">Complex Forms</h2>
-				<form className="horizontal-form u-margin-bottom-lg">
-					<div className="field-ui">
-						<div className="form-group">
-							<label className="form-label">Street Address</label>
-							<input type="text" name="location.street1" className="form-input" />
-						</div>
-						<div className="form-group">
-							<label className="form-label">Suburb</label>
-							<input type="text" name="location.suburb" className="form-input" />
-						</div>
-						<div className="form-group">
-							<label className="form-label">State</label>
-							<input type="text" name="location.state" className="form-input" />
-							<label className="form-label">Postcode</label>
-							<input type="text" name="location.postcode" className="form-input" />
-						</div>
+				<form className="u-margin-bottom-lg">
+					<div className="form-groups">
+						<InputGroup type="number" label="Credit Card Number"  placeholder="Card Number" name="credit-card-number" />
+						<InputGroup size="one-quarter" type="text"   label="Expiration"          placeholder="MM/YYYY"     name="credit-card-expiration" />
+						<InputGroup size="one-quarter" type="number" label="Security Code (CCV)" placeholder="123"         name="credit-card-security" />
+					</div>
+					<div className="form-groups">
+						<InputGroup size="one-half" label="First Name" placeholder="First Name" name="first-name" />
+						<InputGroup size="one-half" label="Last Name"  placeholder="Last Name"  name="last-name" />
+					</div>
+					<InputGroup label="Billing Address" placeholder="Address Line 1" name="address-street1" />
+					<InputGroup placeholder="Address Line 2" name="address-street2" />
+					<div className="form-groups">
+						<InputGroup size="two-thirds" placeholder="City"  name="city" />
+						<InputGroup size="one-third"  placeholder="State" name="state" />
+					</div>
+					<div className="form-groups">
+						<InputGroup size="one-third"  placeholder="Post Code"  name="city" />
+						<SelectInputGroup options={countryOptions} firstOption="Country" />
 					</div>
 				</form>
 			</div>

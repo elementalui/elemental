@@ -7,12 +7,14 @@ module.exports = React.createClass({
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
 		prependEmptyOption: React.PropTypes.bool,
+		firstOption: React.PropTypes.string,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.array.isRequired,
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string
+		value: React.PropTypes.string,
+		customClass: React.PropTypes.string
 	},
 	getDefaultProps() {
 		return {
@@ -67,20 +69,12 @@ module.exports = React.createClass({
 	render() {
 		// props
 		var props = _.extend({}, this.props)
-		delete props.alwaysValidate
-		delete props.htmlFor
-		delete props.id
-		delete props.label
-		delete props.onChange
-		delete props.options
-		delete props.required
-		delete props.requiredMessage
-		delete props.value
-
+		var props = _.omit(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'customClass']);
+		
 		// classes
 		var componentClass = classNames('form-group', {
 			'is-invalid': !this.state.isValid
-		}, this.props.className);
+		}, this.props.customClass);
 
 		// validation message
 		var validationMessage;
@@ -100,6 +94,9 @@ module.exports = React.createClass({
 		});
 		if (this.props.prependEmptyOption) {
 			options.unshift( <option key="option-blank" value="">Select...</option> );
+		}
+		if (this.props.firstOption) {
+			options.unshift( <option key="option-blank" value="">{this.props.firstOption}</option> );
 		}
 
 		return (

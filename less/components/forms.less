@@ -5,11 +5,51 @@
 
 
 
-// Group
+// Groups
 // ------------------------------
 
 .form-group {
 	margin-bottom: @spacing-md;
+}
+
+// Make the wrapper behave like a table
+
+@media (min-width: @screen-sm) {
+	.form-groups {
+		display: table;
+		margin-bottom: @spacing-md;
+		table-layout: fixed;
+		min-width: 100%;
+
+		> .form-group {
+			display: table-cell;
+			padding: 0 (@input-padding-horizontal / 2);
+
+			&:first-child { padding-left: 0; }
+			&:last-child { padding-right: 0; }
+
+			// sizes
+			&.one-half,
+			&.two-quarters,
+			&.three-sixths   { width: 50%; }
+
+			&.one-quarter    { width: 25%; }
+			&.three-quarters { width: 75%; }
+
+			&.one-third,
+			&.two-sixths     { width: 33.333%; }
+			&.two-thirds,
+			&.four-sixths    { width: 66.666%; }
+
+			&.one-fifth      { width: 20%; }
+			&.two-fifths     { width: 40%; }
+			&.three-fifths   { width: 60%; }
+			&.four-fifths    { width: 80%; }
+
+			&.one-sixth      { width: 16.666%; }
+			&.five-sixths    { width: 83.333%; }
+		}
+	}
 }
 
 
