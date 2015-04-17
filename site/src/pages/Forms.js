@@ -43,8 +43,34 @@ var Forms = React.createClass({
 			self.setState({inputPassword: e.target.value});
 		}
 
+		// elements
+
 		var countryOptions = COUNTRIES.map(function(country, i) {
 			return { label: country.name, value: country.code }
+		});
+
+		var checkboxes = [1,2,3].map(function(item) {
+			return (
+				<div key={'checkbox-' + item} className="checkbox">
+					<label className="checkbox-label">
+						<input type="checkbox" className="checkbox-input" /> Check me out
+					</label>
+				</div>
+			);
+		});
+
+		var radios = [1,2,3].map(function(item) {
+			return (
+				<div className="radio">
+					<label className="radio-label">
+						<input type="radio" name="supportedControlsRadios" className="radio-input" /> Pick me
+					</label>
+				</div>
+			);
+		});
+
+		var options = [1,2,3,4,5].map(function(item) {
+			return <option value={item}>Option {item}</option>
 		});
 
 		return (
@@ -52,14 +78,8 @@ var Forms = React.createClass({
 				<h1>Forms</h1>
 				<h2 id="section-basic" className="u-padding-top-lg">Basic Example</h2>
 				<form className="u-margin-bottom-lg">
-					<div className="form-group">
-						<label className="form-label" htmlFor="basicFormInputEmail">Email address</label>
-						<input className="form-input" placeholder="Enter email" id="basicFormInputEmail" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="basicFormInputPassword">Password</label>
-						<input className="form-input" placeholder="Password" id="basicFormInputPassword" />
-					</div>
+					<InputGroup type="email" label="Email address"  placeholder="Enter email" name="basic-form-input-email" />
+					<InputGroup type="password" label="Password"  placeholder="Password" name="basic-form-input-password" />
 					<div className="form-group">
 						<label className="checkbox-label">
 							<input type="checkbox" className="checkbox-input" /> Check me out
@@ -71,14 +91,8 @@ var Forms = React.createClass({
 
 				<h2 id="section-horizontal" className="u-padding-top-lg">Horizontal Form</h2>
 				<form className="horizontal-form u-margin-bottom-lg">
-					<div className="form-group">
-						<label className="form-label" htmlFor="horizontalFormInputEmail">Email address</label>
-						<input className="form-input" placeholder="Enter email" id="horizontalFormInputEmail" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="horizontalFormInputPassword">Password</label>
-						<input type="password" className="form-input" placeholder="Password" id="horizontalFormInputPassword" />
-					</div>
+					<InputGroup type="email" label="Email address"  placeholder="Enter email" name="horizontal-form-input-email" />
+					<InputGroup type="password" label="Password"  placeholder="Password" name="horizontal-form-input-password" />
 					<div className="form-group">
 						<div className="form-label" />
 						<button type="button" className="btn btn-default">Submit</button>
@@ -88,14 +102,8 @@ var Forms = React.createClass({
 
 				<h2 id="section-inline" className="u-padding-top-lg">Inline Form</h2>
 				<form className="inline-form u-margin-bottom-lg">
-					<div className="form-group">
-						<label className="form-label" htmlFor="horizontalFormInputEmail">Email address</label>
-						<input className="form-input" placeholder="Enter email" id="horizontalFormInputEmail" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="horizontalFormInputPassword">Password</label>
-						<input type="password" className="form-input" placeholder="Password" id="horizontalFormInputPassword" />
-					</div>
+					<InputGroup type="email" placeholder="Enter email" name="inline-form-input-email" />
+					<InputGroup type="password" placeholder="Password" name="inline-form-input-password" />
 					<div className="checkbox">
 						<label className="checkbox-label">
 							<input type="checkbox" className="checkbox-input" /> Check it
@@ -134,80 +142,31 @@ var Forms = React.createClass({
 				
 				<h2 id="section-controls" className="u-padding-top-lg">Supported Controls</h2>
 				<form className="u-margin-bottom-lg">
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsInput">Input</label>
-						<input className="form-input" placeholder="Input" id="supportedControlsInput" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsInput">Code Input</label>
-						<input className="form-input form-input-code" placeholder="Input" id="supportedControlsInput" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsInputLarge">Large Input</label>
-						<input className="form-input form-input-lg" placeholder="Large" id="supportedControlsInputLarge" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsInputSmall">Small Input</label>
-						<input className="form-input form-input-sm" placeholder="Small" id="supportedControlsInputSmall" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsInputDisabled">Disabled Input</label>
-						<input className="form-input" placeholder="Disabled" id="supportedControlsInputDisabled" disabled />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsTextarea">Textarea</label>
-						<textarea className="form-input" placeholder="Textarea" id="supportedControlsTextarea" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsTextarea">Code Textarea</label>
-						<textarea className="form-input form-input-code" placeholder="Textarea" id="supportedControlsTextarea" />
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsSelect">Select</label>
-						<select className="form-input" id="supportedControlsSelect">
-							{[1,2,3,4,5].map(function(item) { return <option value={item}>Option {item}</option> })}
-						</select>
-					</div>
-					<div className="form-group">
-						<label className="form-label" htmlFor="supportedControlsSelectDisabled">Disabled Select</label>
-						<select className="form-input" id="supportedControlsSelectDisabled" disabled>
-							{[1,2,3,4,5].map(function(item) { return <option value={item}>Option {item}</option> })}
-						</select>
-					</div>
+					<InputGroup label="Input"  placeholder="Input" name="supported-controls-input" />
+					<InputGroup label="Large Input"  placeholder="Large" name="supported-controls-input-lg" inputClass="form-input-lg" />
+					<InputGroup label="Small Input"  placeholder="Small" name="supported-controls-input-sm" inputClass="form-input-sm" />
+					<InputGroup label="Disabled Input"  placeholder="Disabled" name="supported-controls-input-disabled" disabled />
+					<InputGroup label="Textarea"  placeholder="Textarea" name="supported-controls-textarea" multiline />
+					<SelectInputGroup label="Select" options={controlOptions} htmlFor="supported-conrols-select" firstOption="Select" />
+					<SelectInputGroup label="Disabled Select" options={controlOptions} htmlFor="supported-conrols-select-disabled" firstOption="Disabled Select" disabled />
 					<div className="form-group">
 						<div className="form-label">Checkboxes</div>
-						{[1,2,3].map(function(item) { return <div className="checkbox">
-							<label className="checkbox-label">
-								<input type="checkbox" className="checkbox-input" /> Check me out
-							</label>
-						</div> })}
+						{checkboxes}
 					</div>
 					<div className="form-group">
 						<div className="form-label">Radios</div>
-						{[1,2,3].map(function(item) { return <div className="radio">
-							<label className="radio-label">
-								<input type="radio" name="supportedControlsRadios" className="radio-input" /> Pick me
-							</label>
-						</div> })}
+						{radios}
 					</div>
 					<div className="form-group">
 						<div className="form-label">Inline Checkboxes</div>
 						<div className="inline-controls">
-							{[1,2,3].map(function(item) { return <span className="checkbox">
-								<label className="checkbox-label">
-									<input type="checkbox" className="checkbox-input" /> Check me out
-								</label>
-							</span> })}
+							{checkboxes}
 						</div>
 					</div>
 					<div className="form-group">
 						<div className="form-label">Inline Radios</div>
 						<div className="inline-controls">
-							{[1,2,3].map(function(item) { return <span className="radio">
-								<label className="radio-label">
-									<input type="radio" name="supportedControlsInlineRadios" className="radio-input" /> Pick me
-								</label>
-							</span> })}
+							{radios}
 						</div>
 					</div>
 					<div className="form-group">
@@ -228,21 +187,21 @@ var Forms = React.createClass({
 				<form className="u-margin-bottom-lg">
 					<div className="form-groups">
 						<InputGroup type="number" label="Credit Card Number"  placeholder="Card Number" name="credit-card-number" />
-						<InputGroup size="one-quarter" type="text"   label="Expiration"          placeholder="MM/YYYY"     name="credit-card-expiration" />
-						<InputGroup size="one-quarter" type="number" label="Security Code (CCV)" placeholder="123"         name="credit-card-security" />
+						<InputGroup width="one-quarter" type="text"   label="Expiration"          placeholder="MM/YYYY"     name="credit-card-expiration" />
+						<InputGroup width="one-quarter" type="number" label="Security Code (CCV)" placeholder="123"         name="credit-card-security" />
 					</div>
 					<div className="form-groups">
-						<InputGroup size="one-half" label="First Name" placeholder="First Name" name="first-name" />
-						<InputGroup size="one-half" label="Last Name"  placeholder="Last Name"  name="last-name" />
+						<InputGroup width="one-half" label="First Name" placeholder="First Name" name="first-name" />
+						<InputGroup width="one-half" label="Last Name"  placeholder="Last Name"  name="last-name" />
 					</div>
 					<InputGroup label="Billing Address" placeholder="Address Line 1" name="address-street1" />
 					<InputGroup placeholder="Address Line 2" name="address-street2" />
 					<div className="form-groups">
-						<InputGroup size="two-thirds" placeholder="City"  name="city" />
-						<InputGroup size="one-third"  placeholder="State" name="state" />
+						<InputGroup width="two-thirds" placeholder="City"  name="city" />
+						<InputGroup width="one-third"  placeholder="State" name="state" />
 					</div>
 					<div className="form-groups">
-						<InputGroup size="one-third"  placeholder="Post Code"  name="city" />
+						<InputGroup width="one-third"  placeholder="Post Code"  name="city" />
 						<SelectInputGroup options={countryOptions} firstOption="Country" />
 					</div>
 				</form>
