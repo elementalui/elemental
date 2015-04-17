@@ -92,11 +92,8 @@ module.exports = React.createClass({
 		var options = this.props.options.map(function(opt, i) {
 			return ( <option key={'option-' + i} value={opt.value}>{opt.label}</option> );
 		});
-		if (this.props.prependEmptyOption) {
-			options.unshift( <option key="option-blank" value="">Select...</option> );
-		}
-		if (this.props.firstOption) {
-			options.unshift( <option key="option-blank" value="">{this.props.firstOption}</option> );
+		if (this.props.prependEmptyOption || this.props.firstOption) {
+			options.unshift( <option key="option-blank" value="">{this.props.firstOption ? this.props.firstOption : 'Select...'}</option> );
 		}
 
 		return (
