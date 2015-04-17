@@ -7,20 +7,20 @@ var Buttons = React.createClass({
 		return (
 			<div className="demo-container container">
 				<h1>Spinner</h1>
-				<div className="col-group">
-					<div className="col-4">
+				<div className="row">
+					<div className="col-sm-4">
 						<h2 className="u-padding-top-lg">Standard</h2>
 						<div className="demo-box">
 							<Spinner type="default" />
 						</div>
 					</div>
-					<div className="col-4">
+					<div className="col-sm-4">
 						<h2 className="u-padding-top-lg">Primary</h2>
 						<div className="demo-box">
 							<Spinner type="primary" />
 						</div>
 					</div>
-					<div className="col-4">
+					<div className="col-sm-4">
 						<h2 className="u-padding-top-lg">Inverted</h2>
 						<div className="demo-box demo-box--inverted">
 							<Spinner type="inverted" />
