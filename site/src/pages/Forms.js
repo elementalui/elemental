@@ -209,12 +209,33 @@ var Forms = React.createClass({
 						<div className="form-help">A block of help text that may extend beyond one line. Use &lt;span&gt; or &lt;div&gt; to control display.</div>
 					</div>
 				</form>
+				
 				<h2 id="section-validation" className="u-padding-top-lg">Validation</h2>
 				<form className="u-margin-bottom-xl">
 					<RadioGroup label="Radios" value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />
 					<SelectInputGroup   label="Select"   value={this.state.inputSelect}   onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
 					<EmailInputGroup    label="Email"    value={this.state.inputEmail}    onChange={updateEmail}    required />
 					<PasswordInputGroup label="Password" value={this.state.inputPassword} onChange={updatePassword} required />
+				</form>
+
+				<h2 id="section-complex" className="u-padding-top-lg">Complex Forms</h2>
+				<form className="horizontal-form u-margin-bottom-lg">
+					<div className="field-ui">
+						<div className="form-group">
+							<label className="form-label">Street Address</label>
+							<input type="text" name="location.street1" className="form-input" />
+						</div>
+						<div className="form-group">
+							<label className="form-label">Suburb</label>
+							<input type="text" name="location.suburb" className="form-input" />
+						</div>
+						<div className="form-group">
+							<label className="form-label">State</label>
+							<input type="text" name="location.state" className="form-input" />
+							<label className="form-label">Postcode</label>
+							<input type="text" name="location.postcode" className="form-input" />
+						</div>
+					</div>
 				</form>
 			</div>
 		);

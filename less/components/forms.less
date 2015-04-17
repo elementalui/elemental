@@ -270,6 +270,17 @@ select.form-input {
 // Horizontal Form
 // ------------------------------
 
+.horizontal-form {
+
+	// add spacing above the element when it's stacked
+	// no need to remove at higher break-points because it becomes a table cell (which aren't effected by margin)
+	.form-label {
+		&:not(:first-child) {
+			margin-top: @spacing-md;
+		}
+	}
+}
+
 @media (min-width: @screen-sm) {
 	.horizontal-form {
 		// Make the wrapper behave like a table
@@ -286,6 +297,10 @@ select.form-input {
 			margin-bottom: 0;
 			vertical-align: middle;
 			width: @form-label-width;
+
+			&:not(:first-child) {
+				padding-left: @grid-gutter-width;
+			}
 		}
 
 		// Account for missing labels
