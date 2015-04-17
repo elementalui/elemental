@@ -8,17 +8,17 @@
 // Set the container width, and override it for fixed navbars in media queries.
 
 .container {
-  .container-fixed();
+	.container-fixed();
 
-  @media (min-width: @screen-sm-min) {
-    width: @container-sm;
-  }
-  @media (min-width: @screen-md-min) {
-    width: @container-md;
-  }
-  @media (min-width: @screen-lg-min) {
-    width: @container-lg;
-  }
+	@media (min-width: @screen-sm-min) {
+		width: @container-sm;
+	}
+	@media (min-width: @screen-md-min) {
+		width: @container-md;
+	}
+	@media (min-width: @screen-lg-min) {
+		width: @container-lg;
+	}
 }
 
 
@@ -28,7 +28,7 @@
 // width for fluid, full width layouts.
 
 .container-fluid {
-  .container-fixed();
+	.container-fixed();
 }
 
 
@@ -37,7 +37,7 @@
 // Rows contain and clear the floats of your columns.
 
 .row {
-  .make-row();
+	.make-row();
 }
 
 
@@ -62,7 +62,7 @@
 // to tablets.
 
 @media (min-width: @screen-sm-min) {
-  .make-grid(sm);
+	.make-grid(sm);
 }
 
 
@@ -71,7 +71,7 @@
 // Columns, offsets, pushes, and pulls for the desktop device range.
 
 @media (min-width: @screen-md-min) {
-  .make-grid(md);
+	.make-grid(md);
 }
 
 
@@ -80,5 +80,5 @@
 // Columns, offsets, pushes, and pulls for the large desktop device range.
 
 @media (min-width: @screen-lg-min) {
-  .make-grid(lg);
+	.make-grid(lg);
 }
