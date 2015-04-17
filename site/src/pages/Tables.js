@@ -4,6 +4,9 @@ var moment = require('moment');
 var _ = require('underscore');
 
 var USERS = require('../data/users');
+var TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
+
+var Table = require('elemental').Table;
 
 var Tables = React.createClass({
 	displayName: 'VIEW_Tables',
@@ -55,9 +58,26 @@ var Tables = React.createClass({
 
 	render() {
 		var self = this;
-		console.log(this.state.selectedRows);
 
-		var rows = USERS.map(function(user, i) {
+		var tableHeaderCols = TABLE_HEADERS.map(function(thead, i) {
+			var row = !i ? (
+				<th>
+					<label title="Toggle all customers" className="table-checkbox-label">
+						<input type="checkbox" className="table-checkbox" onChange={self.toggleAllRows} />
+					</label>
+				</th>
+			) : (
+				<th>
+					<a href="javascript:;" title="Sort by {thead} (asc)" className="th-sort th-sort--desc">
+						{thead}
+						<span className="th-sort__icon"/ >
+					</a>
+				</th>
+			);
+			return row;
+		});
+
+		var tableRows = USERS.map(function(user, i) {
 			var userAge = moment().diff(user.dob, 'years');
 			var checked = _.contains(self.state.selectedRows, i);
 			var rowClass = classNames({
@@ -79,43 +99,12 @@ var Tables = React.createClass({
 				</tr>
 			);
 		});
+		var tableCols = ['50', '', '120', '120'];
 
 		return (
 			<div className="demo-container container">
 				<h1>Tables</h1>
-				<table className="table">
-					<colgroup>
-						<col width="50" />
-						<col />
-						<col width="120" />
-						<col width="120" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th>
-								<label title="Toggle all customers" className="table-checkbox-label">
-									<input type="checkbox" className="table-checkbox" onChange={this.toggleAllRows} />
-								</label>
-							</th>
-							<th>
-								<a href="javascript:;" title="Sort by User (asc)" className="th-sort th-sort--desc">
-									User
-									<span className="th-sort__icon"/ >
-								</a>
-							</th>
-							<th>
-								<a href="javascript:;" title="Sort by Age (desc)" className="th-sort">
-									Age
-									<span className="th-sort__icon"/ >
-								</a>
-							</th>
-							<th>Gender</th>
-						</tr>
-					</thead>
-					<tbody>
-						{rows}
-					</tbody>
-				</table>
+				<Table cols={tableCols} rows={tableRows} headers={tableHeaderCols} />
 			</div>
 		);
 	}
