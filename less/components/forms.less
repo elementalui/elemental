@@ -393,6 +393,29 @@ select.form-input {
 
 
 
+// File Upload
+// ------------------------------
+
+.file-upload-message {
+	border: 1px solid darken(@body-bg, 20%);
+	background-color: darken(@body-bg, 10%);
+	border-radius: @border-radius-base;
+	color: @gray;
+	display: inline-block;
+	margin-bottom: 1em;
+	padding: .5em 1em;
+
+	&.success {
+		border: 1px solid mix(@app-success, white, 20%);
+		background-color: mix(@app-success, white, 10%);
+		color: @app-success;
+	}
+}
+
+
+
+
+
 
 
 

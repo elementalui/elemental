@@ -1,6 +1,7 @@
 var React = require('react');
 
 var InputGroup = require('elemental').InputGroup;
+var FileInput = require('elemental').FileInput;
 var EmailInputGroup = require('elemental').EmailInputGroup;
 var PasswordInputGroup = require('elemental').PasswordInputGroup;
 var SelectInputGroup = require('elemental').SelectInputGroup;
@@ -61,7 +62,7 @@ var Forms = React.createClass({
 
 		var radios = [1,2,3].map(function(item) {
 			return (
-				<div className="radio">
+				<div key={'radio-' + item} className="radio">
 					<label className="radio-label">
 						<input type="radio" name="supportedControlsRadios" className="radio-input" /> Pick me
 					</label>
@@ -70,7 +71,7 @@ var Forms = React.createClass({
 		});
 
 		var options = [1,2,3,4,5].map(function(item) {
-			return <option value={item}>Option {item}</option>
+			return <option key={'option-' + item} value={item}>Option {item}</option>
 		});
 
 		return (
@@ -203,6 +204,16 @@ var Forms = React.createClass({
 					<div className="form-groups">
 						<InputGroup width="one-third"  placeholder="Post Code"  name="city" />
 						<SelectInputGroup options={countryOptions} firstOption="Country" />
+					</div>
+				</form>
+
+				<h2 id="section-upload" className="u-padding-top-lg">File Upload</h2>
+				<form className="horizontal-form u-margin-bottom-lg">
+					<div className="form-group">
+						<div className="form-label">Image</div>
+						<div className="form-control">
+							<FileInput buttonLabel="Upload Image" />
+						</div>
 					</div>
 				</form>
 			</div>

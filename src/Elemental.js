@@ -4,6 +4,7 @@ exports.DatePickerCalendar = require('./components/DatePickerCalendar');
 exports.DatePickerHeader =   require('./components/DatePickerHeader');
 exports.Dropdown =           require('./components/Dropdown');
 exports.EmailInputGroup =    require('./components/EmailInputGroup');
+exports.FileInput =          require('./components/FileInput');
 exports.InputGroup =         require('./components/InputGroup');
 exports.Modal =              require('./components/Modal');
 exports.PasswordInputGroup = require('./components/PasswordInputGroup');
