@@ -141,18 +141,25 @@
 // ------------------------------
 
 .input-group {
-	.display-flex();
+	display: table;
+	margin-bottom: @spacing-md;
 
 	.form-input {
 		.border-right-radius(0);
+		display: table-cell;
+		position: relative;
+		width: 100%;
 	}
 	.btn {
 		.border-left-radius(0);
 		margin-left: -1px;
 	}
 }
-.input-group-field {
-	.flex-grow(1);
+.input-group-button {
+	display: table-cell;
+	position: relative;
+	vertical-align: middle;
+	width: 1%;
 }
 
 

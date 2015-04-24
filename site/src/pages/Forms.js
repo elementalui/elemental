@@ -1,11 +1,12 @@
 var React = require('react');
 
-var InputGroup = require('elemental').InputGroup;
-var FileInput = require('elemental').FileInput;
+var Button = require('elemental').Button;
 var EmailInputGroup = require('elemental').EmailInputGroup;
+var FileInput = require('elemental').FileInput;
+var InputGroup = require('elemental').InputGroup;
 var PasswordInputGroup = require('elemental').PasswordInputGroup;
-var SelectInputGroup = require('elemental').SelectInputGroup;
 var RadioGroup = require('elemental').RadioGroup;
+var SelectInputGroup = require('elemental').SelectInputGroup;
 
 var controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
@@ -103,8 +104,8 @@ var Forms = React.createClass({
 
 				<h2 id="section-inline" className="u-padding-top-lg">Inline Form</h2>
 				<form className="inline-form u-margin-bottom-lg">
-					<InputGroup type="email" placeholder="Enter email" name="inline-form-input-email" />
-					<InputGroup type="password" placeholder="Password" name="inline-form-input-password" />
+					<InputGroup label="Email" type="email" placeholder="Enter email" name="inline-form-input-email" />
+					<InputGroup label="Password" type="password" placeholder="Password" name="inline-form-input-password" />
 					<div className="checkbox">
 						<label className="checkbox-label">
 							<input type="checkbox" className="checkbox-input" /> Check it
@@ -118,25 +119,17 @@ var Forms = React.createClass({
 
 				<h2 id="section-groups" className="u-padding-top-lg">Input Groups</h2>
 				<form className="u-margin-bottom-lg">
-					<div className="form-group">
-						<div className="input-group">
-							<div className="input-group-control input-group-field">
-								<input type="text" className="form-input" placeholder="Input group field" />
-							</div>
-							<div className="input-group-control input-group-btn">
-								<button className="btn btn-default" type="button">Button</button>
-							</div>
-						</div>
+					<div className="input-group">
+						<input type="text" className="form-input input-group-field" placeholder="Input group field" />
+						<span className="input-group-button">
+							<Button type="default">Button</Button>
+						</span>
 					</div>
-					<div className="form-group">
-						<div className="input-group">
-							<div className="input-group-control input-group-field">
-								<input type="text" className="form-input" placeholder="Input group field" />
-							</div>
-							<div className="input-group-control input-group-btn">
-								<button className="btn btn-primary" type="button">Button</button>
-							</div>
-						</div>
+					<div className="input-group">
+						<input type="text" className="form-input input-group-field" placeholder="Input group field" />
+						<span className="input-group-button">
+							<Button type="primary">Button</Button>
+						</span>
 					</div>
 				</form>
 
