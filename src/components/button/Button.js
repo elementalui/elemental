@@ -3,7 +3,7 @@ var classNames = require('classnames');
 var _ = require('underscore');
 
 module.exports = React.createClass({
-	displayName: 'Button',
+	displayName: 'ElementalButton',
 	propTypes: {
 		onClick: React.PropTypes.func,
 		type: React.PropTypes.string,
@@ -18,9 +18,9 @@ module.exports = React.createClass({
 	render() {
 		// classes
 		var componentClass = classNames(
-			'Button',
-			('Button-' + this.props.type),
-			(this.props.size ? 'Button-' + this.props.size : null),
+			'btn',
+			('btn-' + this.props.type),
+			(this.props.size ? 'btn-' + this.props.size : null),
 			this.props.customClass
 		);
 

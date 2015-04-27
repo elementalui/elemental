@@ -1,5 +1,6 @@
 var React = require('react');
 var Dropdown = require('elemental').Dropdown;
+var Tooltip = require('elemental').Tooltip;
 var Button = require('elemental').Button;
 
 var DROPDOWN_OPTIONS = [
@@ -27,13 +28,13 @@ var Buttons = React.createClass({
 			<div className="demo-container container">
 				<h1>Buttons</h1>
 				<h2 className="u-margin-top-lg">Standard</h2>
-				<Button type="default" className="btn btn-default">Default</Button>
+				<Button type="default">Default</Button>
 				<hr />
-				<Button type="primary" className="btn btn-primary">Primary</Button>
+				<Button type="primary">Primary</Button>
 				<hr />
-				<Button type="default" className="btn btn-default" disabled>Disabled</Button>
+				<Button type="default" disabled>Disabled</Button>
 				<hr />
-				<Button type="link" className="btn btn-link">Link</Button>
+				<Button type="link">Link</Button>
 
 				<h2 className="u-margin-top-lg">Large</h2>
 				<Button type="default" size="lg">Default</Button>
@@ -76,14 +77,14 @@ var Buttons = React.createClass({
 				<Button type="default-success">Success</Button>
 
 				<h2 className="u-margin-top-lg">Button Groups</h2>
-				<div className="btn-group">
+				<div className="Button-group">
 					<Button type="default">Left</Button>
 					<Button type="default">Middle</Button>
 					<Button type="default">Right</Button>
 				</div>
 
 				<h2 className="u-margin-top-lg">Dropdown</h2>
-				<Dropdown isOpen={this.state.dropdownOpen} onChange={this.toggleDropdown} items={DROPDOWN_OPTIONS} buttonLabel="Action" buttonClass="btn btn-default" buttonDisclosureArrow />
+				<Dropdown isOpen={this.state.dropdownOpen} onChange={this.toggleDropdown} items={DROPDOWN_OPTIONS} buttonLabel="Action" buttonClass="Button Button-default" buttonDisclosureArrow />
 			</div>
 		);
 	}

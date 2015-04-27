@@ -492,7 +492,27 @@
 		width: 80px;
 
 		&.primary {
-			.btn-primary();
+			#gradient .vertical(lighten(@app-primary, 4%), darken(@app-primary, 4%));
+			background-color: @app-primary;
+			color: white;
+
+			&:hover,
+			&:focus,
+			&.focus {
+				#gradient .vertical(lighten(@app-primary, 8%), @app-primary);
+				color: white;
+				outline: none;
+			}
+			&:focus,
+			&.focus {
+				box-shadow: 0 0 0 1px @body-bg, 0 0 0 3px fade(@app-primary, 25%);
+			}
+			&:active,
+			&.active {
+				background-color: darken(@app-primary, 5%);
+				background-image: none;
+				box-shadow: none;
+			}
 		}
 	}
 }
