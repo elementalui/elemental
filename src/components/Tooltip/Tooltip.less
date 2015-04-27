@@ -1,0 +1,135 @@
+// 
+// Tooltip
+// ==============================
+
+
+
+
+// Variables
+// ------------------------------
+
+@tooltip-arrow-width: 4px;
+@tooltip-bg-color:    fade(#222, 90%);
+
+
+
+
+// Base
+// ------------------------------
+
+.Tooltip {
+	.animation-duration( 140ms );
+	pointer-events: none;
+	position: absolute;
+}
+.Tooltip-enter {
+	.animation-name( tooltipEnter );
+}
+.Tooltip-leave {
+	.animation-name( tooltipLeave );
+}
+
+
+
+
+// Content
+// ------------------------------
+
+.Tooltip-content {
+	background-color: @tooltip-bg-color;
+	border-radius: .33em;
+	color: white;
+	display: block;
+	font-size: @font-size-xs;
+	font-weight: 500;
+	line-height: 2;
+	padding-left: 1em;
+	padding-right: 1em;
+	text-align: center;
+	white-space: nowrap;
+}
+
+
+
+
+// Arrow
+// ------------------------------
+
+.Tooltip-arrow {
+	.square(0);
+	border:  @tooltip-arrow-width solid transparent;
+	display: inline-block;
+	position: absolute;
+}
+
+
+
+
+// Placement
+// ------------------------------
+
+
+// top
+.Tooltip.top .Tooltip-arrow {
+	border-top-color: @tooltip-bg-color;
+	bottom: -(@tooltip-arrow-width * 2);
+	left: 50%;
+	margin-left: -@tooltip-arrow-width;
+}
+
+// bottom
+.Tooltip.bottom .Tooltip-arrow {
+	border-bottom-color: @tooltip-bg-color;
+	top: -(@tooltip-arrow-width * 2);
+	left: 50%;
+	margin-left: -@tooltip-arrow-width;
+}
+
+// left
+.Tooltip.left .Tooltip-arrow {
+	border-left-color: @tooltip-bg-color;
+	right: -(@tooltip-arrow-width * 2);
+	margin-top: -@tooltip-arrow-width;
+	top: 50%;
+}
+
+// right
+.Tooltip.right .Tooltip-arrow {
+	border-right-color: @tooltip-bg-color;
+	left: -(@tooltip-arrow-width * 2);
+	margin-top: -@tooltip-arrow-width;
+	top: 50%;
+}
+
+
+
+
+// Animation
+// --------------------
+
+@-webkit-keyframes tooltipEnter {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+@keyframes tooltipEnter {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+@-webkit-keyframes tooltipLeave {
+	from { opacity: 1; }
+	to   { opacity: 0; }
+}
+@keyframes tooltipLeave {
+	from { opacity: 1; }
+	to   { opacity: 0; }
+}
+
+
+
+
+
+
+
+
+

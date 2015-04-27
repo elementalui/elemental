@@ -12,3 +12,4 @@ exports.RadioGroup =         require('./components/RadioGroup');
 exports.SelectInputGroup =   require('./components/SelectInputGroup');
 exports.Spinner =            require('./components/Spinner');
 exports.Table =              require('./components/Table');
+exports.Tooltip =            require('./components/Tooltip/Tooltip');
