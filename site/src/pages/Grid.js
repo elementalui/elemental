@@ -7,8 +7,6 @@ var Grid = React.createClass({
 		return (
 			<div className="demo-container container">
 				<h1>Grid</h1>
-				<p>Based on <a href="http://fluidable.com/" target="_blank">Fluidable</a> - a mobile first, responsive grid system. It is lightweight &amp; built using LESS.
-				</p>
 
 				<h2 className="u-padding-top-lg">Three equal columns</h2>
 				<div className="row">
