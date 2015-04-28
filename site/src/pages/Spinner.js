@@ -1,4 +1,5 @@
 var React = require('react');
+var Button = require('elemental').Button;
 var Spinner = require('elemental').Spinner;
 
 var Buttons = React.createClass({
@@ -29,17 +30,17 @@ var Buttons = React.createClass({
 				</div>
 
 				<h2 className="u-padding-top-lg">Use in Buttons</h2>
-				<button type="button" className="btn btn-default u-margin-right-xs" disabled>
+				<Button type="default" customClass="u-margin-right-sm">
 					<Spinner type="primary" />
-				</button>
-				<button type="button" className="btn btn-default u-margin-right-xs" disabled>
+				</Button>
+				<Button type="default" customClass="u-margin-right-sm" disabled>
 					<Spinner type="primary" />
 					Saving
-				</button>
-				<button type="button" className="btn btn-primary u-margin-right-xs" disabled>
+				</Button>
+				<Button type="primary" customClass="u-margin-right-sm" disabled>
 					<Spinner type="inverted" />
 					Saving
-				</button>
+				</Button>
 			</div>
 		);
 	}

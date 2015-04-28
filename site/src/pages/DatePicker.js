@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var moment = require('moment');
 
+var Button = require('elemental').Button;
 var DatePicker = require('elemental').DatePicker;
 var EmailInputGroup = require('elemental').EmailInputGroup;
 var PasswordInputGroup = require('elemental').PasswordInputGroup;
@@ -36,15 +37,15 @@ module.exports = React.createClass({
 				
 				<h2 className="u-margin-top-lg">Day Picker</h2>
 				<p>Pick a single date</p>
-				<button onClick={this.toggleDatePicker} type="button" className="btn btn-default">Launch Date Picker</button>
+				<Button onClick={this.toggleDatePicker} type="default">Launch Date Picker</Button>
 				
 				<h2 className="u-margin-top-lg">Multi Picker</h2>
 				<p>Pick a start and end date</p>
-				<button onClick={this.toggleMultiPicker} type="button" className="btn btn-default">Launch Multi Picker</button>
+				<Button onClick={this.toggleMultiPicker} type="default">Launch Multi Picker</Button>
 				
 				<h2 className="u-margin-top-lg">Multi Picker with Ranges</h2>
 				<p>Pick a start and end date, with the option to use predefined ranges.</p>
-				<button onClick={this.toggleRangePicker} type="button" className="btn btn-default">Launch Range Picker</button>
+				<Button onClick={this.toggleRangePicker} type="default">Launch Range Picker</Button>
 				
 				<DatePicker isOpen={this.state.datePickerIsOpen}  onChange={this.toggleDatePicker} />
 				<DatePicker isOpen={this.state.multiPickerIsOpen} onChange={this.toggleMultiPicker} isMulti />
