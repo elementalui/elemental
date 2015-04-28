@@ -36,8 +36,6 @@ module.exports = React.createClass({
 	},
 
 	render() {
-		console.log(this.state.targetWidth, this.state.targetHeight)
-
 		// classes
 		var componentClass = classNames(
 			'Tooltip-outer',

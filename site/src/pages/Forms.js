@@ -2,11 +2,16 @@ var React = require('react');
 
 var Button = require('elemental').Button;
 var EmailInputGroup = require('elemental').EmailInputGroup;
-var FileInput = require('elemental').FileInput;
-var InputGroup = require('elemental').InputGroup;
 var PasswordInputGroup = require('elemental').PasswordInputGroup;
 var RadioGroup = require('elemental').RadioGroup;
-var SelectInputGroup = require('elemental').SelectInputGroup;
+
+var FormDragAndDrop = require('elemental').FormDragAndDrop;
+var FormFile = require('elemental').FormFile;
+var FormGroup = require('elemental').FormGroup;
+var FormGroupRow = require('elemental').FormGroupRow;
+var FormInput = require('elemental').FormInput;
+var FormLabel = require('elemental').FormLabel;
+var FormSelect = require('elemental').FormSelect;
 
 var controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
@@ -25,6 +30,14 @@ var Forms = React.createClass({
 			'inputPassword': ''
 		};
 	},
+
+	onDrop: function (files) {
+		console.log('Received files: ', files);
+		this.setState({
+			files: files
+		});
+	},
+
 	render () {
 		var self = this;
 
@@ -80,39 +93,50 @@ var Forms = React.createClass({
 				<h1>Forms</h1>
 				<h2 id="section-basic" className="u-padding-top-lg">Basic Example</h2>
 				<form className="u-margin-bottom-lg">
-					<InputGroup type="email" label="Email address"  placeholder="Enter email" name="basic-form-input-email" />
-					<InputGroup type="password" label="Password"  placeholder="Password" name="basic-form-input-password" />
+					<FormGroup label="Email address" htmlFor="basic-form-input-email">
+						<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />
+					</FormGroup>
+					<FormGroup label="Password" htmlFor="basic-form-input-password">
+						<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
+					</FormGroup>
 					<div className="form-group">
 						<label className="checkbox-label">
 							<input type="checkbox" className="checkbox-input" /> Check me out
 						</label>
 					</div>
-					<button type="button" className="btn btn-default">Submit</button>
+					<Button type="default">Submit</Button>
 				</form>
 
 
 				<h2 id="section-horizontal" className="u-padding-top-lg">Horizontal Form</h2>
 				<form className="horizontal-form u-margin-bottom-lg">
-					<InputGroup type="email" label="Email address"  placeholder="Enter email" name="horizontal-form-input-email" />
-					<InputGroup type="password" label="Password"  placeholder="Password" name="horizontal-form-input-password" />
-					<div className="form-group">
-						<div className="form-label" />
-						<button type="button" className="btn btn-default">Submit</button>
-					</div>
+					<FormGroup label="Email address" htmlFor="horizontal-form-input-email">
+						<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />
+					</FormGroup>
+					<FormGroup label="Password" htmlFor="horizontal-form-input-password">
+						<FormInput type="password" placeholder="Password" name="horizontal-form-input-password" />
+					</FormGroup>
+					<FormGroup>
+						<Button type="default" customClass="horizontal-form-submit-button">Submit</Button>
+					</FormGroup>
 				</form>
 
 
 				<h2 id="section-inline" className="u-padding-top-lg">Inline Form</h2>
 				<form className="inline-form u-margin-bottom-lg">
-					<InputGroup label="Email" type="email" placeholder="Enter email" name="inline-form-input-email" />
-					<InputGroup label="Password" type="password" placeholder="Password" name="inline-form-input-password" />
+					<FormGroup label="Email address" htmlFor="inline-form-input-email">
+						<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />
+					</FormGroup>
+					<FormGroup label="Password" htmlFor="inline-form-input-password">
+						<FormInput type="password" placeholder="Password" name="inline-form-input-password" />
+					</FormGroup>
 					<div className="checkbox">
 						<label className="checkbox-label">
 							<input type="checkbox" className="checkbox-input" /> Check it
 						</label>
 					</div>
 					<div className="form-group">
-						<button type="button" className="btn btn-default">Submit</button>
+						<Button type="default">Submit</Button>
 					</div>
 				</form>
 
@@ -136,13 +160,25 @@ var Forms = React.createClass({
 				
 				<h2 id="section-controls" className="u-padding-top-lg">Supported Controls</h2>
 				<form className="u-margin-bottom-lg">
-					<InputGroup label="Input"  placeholder="Input" name="supported-controls-input" />
-					<InputGroup label="Large Input"  placeholder="Large" name="supported-controls-input-lg" inputClass="form-input-lg" />
-					<InputGroup label="Small Input"  placeholder="Small" name="supported-controls-input-sm" inputClass="form-input-sm" />
-					<InputGroup label="Disabled Input"  placeholder="Disabled" name="supported-controls-input-disabled" disabled />
-					<InputGroup label="Textarea"  placeholder="Textarea" name="supported-controls-textarea" multiline />
-					<SelectInputGroup label="Select" options={controlOptions} htmlFor="supported-conrols-select" firstOption="Select" />
-					<SelectInputGroup label="Disabled Select" options={controlOptions} htmlFor="supported-conrols-select-disabled" firstOption="Disabled Select" disabled />
+					<FormGroup label="Input" htmlFor="supported-controls-input">
+						<FormInput placeholder="Input" name="supported-controls-input" />
+					</FormGroup>
+					<FormGroup label="Large Input" htmlFor="supported-controls-input-lg">
+						<FormInput placeholder="Large" name="supported-controls-input-lg" size="lg" />
+					</FormGroup>
+					<FormGroup label="Small Input" htmlFor="supported-controls-input-sm">
+						<FormInput placeholder="Small" name="supported-controls-input-sm" size="sm" />
+					</FormGroup>
+					<FormGroup label="Disabled Input" htmlFor="supported-controls-input-disabled">
+						<FormInput placeholder="Disabled" name="supported-controls-input-disabled" disabled />
+					</FormGroup>
+					<FormGroup label="Textarea" htmlFor="supported-controls-textarea">
+						<FormInput placeholder="Textarea" name="supported-controls-textarea" multiline />
+					</FormGroup>
+					<FormGroup label="Select" htmlFor="supported-controls-select">
+						<FormSelect options={controlOptions} firstOption="Select" />
+					</FormGroup>
+					<FormSelect label="Disabled Select" options={controlOptions} htmlFor="supported-conrols-select-disabled" firstOption="Disabled Select" disabled />
 					<div className="form-group">
 						<div className="form-label">Checkboxes</div>
 						{checkboxes}
@@ -172,41 +208,65 @@ var Forms = React.createClass({
 				<h2 id="section-validation" className="u-padding-top-lg">Validation</h2>
 				<form className="u-margin-bottom-xl">
 					<RadioGroup label="Radios" value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />
-					<SelectInputGroup   label="Select"   value={this.state.inputSelect}   onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
+					<FormSelect   label="Select"   value={this.state.inputSelect}   onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
 					<EmailInputGroup    label="Email"    value={this.state.inputEmail}    onChange={updateEmail}    required />
 					<PasswordInputGroup label="Password" value={this.state.inputPassword} onChange={updatePassword} required />
 				</form>
 
 				<h2 id="section-complex" className="u-padding-top-lg">Complex Forms</h2>
 				<form className="u-margin-bottom-lg">
-					<div className="form-groups">
-						<InputGroup type="number" label="Credit Card Number"  placeholder="Card Number" name="credit-card-number" />
-						<InputGroup width="one-quarter" type="text"   label="Expiration"          placeholder="MM/YYYY"     name="credit-card-expiration" />
-						<InputGroup width="one-quarter" type="number" label="Security Code (CCV)" placeholder="123"         name="credit-card-security" />
-					</div>
-					<div className="form-groups">
-						<InputGroup width="one-half" label="First Name" placeholder="First Name" name="first-name" />
-						<InputGroup width="one-half" label="Last Name"  placeholder="Last Name"  name="last-name" />
-					</div>
-					<InputGroup label="Billing Address" placeholder="Address Line 1" name="address-street1" />
-					<InputGroup placeholder="Address Line 2" name="address-street2" />
-					<div className="form-groups">
-						<InputGroup width="two-thirds" placeholder="City"  name="city" />
-						<InputGroup width="one-third"  placeholder="State" name="state" />
-					</div>
-					<div className="form-groups">
-						<InputGroup width="one-third"  placeholder="Post Code"  name="city" />
-						<SelectInputGroup options={countryOptions} firstOption="Country" />
-					</div>
+					<FormGroupRow>
+						<FormGroup label="Credit Card Number" htmlFor="credit-card-number">
+							<FormInput pattern="[0-9]*" placeholder="Card Number" name="credit-card-number" />
+						</FormGroup>
+						<FormGroup width="one-quarter" label="Expiration" htmlFor="credit-card-expiration">
+							<FormInput placeholder="MM/YYYY" name="credit-card-expiration" />
+						</FormGroup>
+						<FormGroup width="one-quarter" label="Security Code (CCV)" htmlFor="credit-card-security">
+							<FormInput pattern="[0-9]*" placeholder="123" name="credit-card-security" />
+						</FormGroup>
+					</FormGroupRow>
+					<FormGroupRow>
+						<FormGroup width="one-half" label="First Name" htmlFor="first-name">
+							<FormInput placeholder="First Name" name="first-name" />
+						</FormGroup>
+						<FormGroup width="one-half" label="Last Name" htmlFor="last-name">
+							<FormInput placeholder="Last Name" name="last-name" />
+						</FormGroup>
+					</FormGroupRow>
+					<FormGroup label="Billing Address" htmlFor="address-street1">
+						<FormInput placeholder="Address Line 1" name="address-street1" />
+					</FormGroup>
+					<FormGroup>
+						<FormInput placeholder="Address Line 2" name="address-street2" />
+					</FormGroup>
+					<FormGroupRow>
+						<FormGroup width="two-thirds">
+							<FormInput placeholder="City" name="city" />
+						</FormGroup>
+						<FormGroup width="one-third">
+							<FormInput placeholder="State" name="state" />
+						</FormGroup>
+					</FormGroupRow>
+					<FormGroupRow>
+						<FormGroup width="one-third">
+							<FormInput width="one-third" placeholder="Post Code" name="city" />
+						</FormGroup>
+						<FormGroup>
+							<FormSelect options={countryOptions} firstOption="Country" />
+						</FormGroup>
+					</FormGroupRow>
 				</form>
 
 				<h2 id="section-upload" className="u-padding-top-lg">File Upload</h2>
 				<form className="horizontal-form u-margin-bottom-lg">
 					<div className="form-group">
-						<div className="form-label">Image</div>
-						<div className="form-control">
-							<FileInput buttonLabel="Upload Image" />
-						</div>
+						<FormLabel verticalAlign="top">Image</FormLabel>
+						<FormFile buttonLabelInitial="Upload Image" buttonLabelChange="Change Image" accept="image/jpg, image/gif, image/png" />
+					</div>
+					<div className="form-group">
+						<FormLabel verticalAlign="top">Images</FormLabel>
+						<FormDragAndDrop files={this.state.files} onDrop={this.onDrop} />
 					</div>
 				</form>
 			</div>

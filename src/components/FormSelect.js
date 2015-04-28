@@ -3,7 +3,7 @@ var _ = require('underscore');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
-	displayName: 'SelectInputGroup',
+	displayName: 'FormSelect',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
 		prependEmptyOption: React.PropTypes.bool,

@@ -15,7 +15,7 @@
 // Make the wrapper behave like a table
 
 @media (min-width: @screen-sm) {
-	.form-groups {
+	.form-group-row {
 		display: table;
 		margin-bottom: @spacing-md;
 		table-layout: fixed;
@@ -150,7 +150,7 @@
 		position: relative;
 		width: 100%;
 	}
-	.btn {
+	.Button {
 		.border-left-radius(0);
 		margin-left: -1px;
 	}
@@ -363,6 +363,9 @@ select.form-input {
 			}
 		}
 	}
+	.horizontal-form-submit-button {
+		margin-left: @form-label-width;
+	}
 }
 
 
@@ -403,20 +406,58 @@ select.form-input {
 // File Upload
 // ------------------------------
 
-.file-upload-message {
-	border: 1px solid darken(@body-bg, 20%);
-	background-color: darken(@body-bg, 10%);
+
+// basic
+
+.file-upload {
+	overflow: hidden;
+}
+
+.file-upload-image {
 	border-radius: @border-radius-base;
+	border: 1px solid @input-border-color;
+	float: left;
+	margin-right: @grid-gutter-width;
+	padding: 5px;
+	width: 120px;
+}
+.file-upload-image-src {
+	height: auto;
+	max-width: 100%;
+}
+
+.file-upload-message {
+	.text-overflow();
 	color: @gray;
 	display: inline-block;
-	margin-bottom: 1em;
-	padding: .5em 1em;
+	margin-bottom: @spacing-md;
+}
 
-	&.success {
-		border: 1px solid mix(@app-success, white, 20%);
-		background-color: mix(@app-success, white, 10%);
-		color: @app-success;
+
+// dropzone
+.form-dropzone {
+	.transition( border 120ms );
+	border: 2px dashed @input-border-color;
+	border-radius: @border-radius-base;
+	color: darken(@input-border-color, 20%);
+	cursor: pointer;
+	display: inline-block;
+	height: 120px;
+	line-height: 120px;
+	padding: 0 1em;
+	text-align: center;
+
+	&.active {
+		border-color: lighten(@input-border-color-focus, 20%);
+		border-style: solid;
+		color: @input-border-color-focus;
 	}
+}
+.form-dropzone-label {
+	display: inline-block;
+	font-weight: 500;
+	line-height: 1.2;
+	vertical-align: middle;
 }
 
 
