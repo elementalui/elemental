@@ -10,7 +10,8 @@
     "url": "https://github.com/elementalui/elemental.git"
   },
   "scripts": {
-    "start": "gulp dev"
+    "start": "gulp dev",
+    "release": "gulp release"
   },
   "dependencies": {
     "blacklist": "^1.1.2",
