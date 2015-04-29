@@ -3944,7 +3944,7 @@ var Forms = React.createClass({
 					null,
 					React.createElement(
 						Button,
-						{ type: 'default', customClass: 'horizontal-form-submit-button' },
+						{ type: 'default', className: 'horizontal-form-submit-button' },
 						'Submit'
 					)
 				)
@@ -4717,18 +4717,18 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				Button,
-				{ type: 'default', customClass: 'u-margin-right-sm' },
+				{ type: 'default', className: 'u-margin-right-sm' },
 				React.createElement(Spinner, { type: 'primary' })
 			),
 			React.createElement(
 				Button,
-				{ type: 'default', customClass: 'u-margin-right-sm', disabled: true },
+				{ type: 'default', className: 'u-margin-right-sm', disabled: true },
 				React.createElement(Spinner, { type: 'primary' }),
 				'Saving'
 			),
 			React.createElement(
 				Button,
-				{ type: 'primary', customClass: 'u-margin-right-sm', disabled: true },
+				{ type: 'primary', className: 'u-margin-right-sm', disabled: true },
 				React.createElement(Spinner, { type: 'inverted' }),
 				'Saving'
 			)

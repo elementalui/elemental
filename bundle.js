@@ -78,7 +78,7 @@ module.exports = React.createClass({
 		isInstant: React.PropTypes.bool,
 		isHeaderless: React.PropTypes.bool,
 
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -138,7 +138,7 @@ module.exports = React.createClass({
 			'single-picker': !this.props.isMulti,
 			'multi-picker': this.props.isMulti,
 			'range-picker': this.props.showPredefinedRanges
-		}, this.props.customClass);
+		}, this.props.className);
 
 		// build the components
 
@@ -477,7 +477,7 @@ module.exports = React.createClass({
 	propTypes: {
 		items: React.PropTypes.array.isRequired,
 		onChange: React.PropTypes.func,
-		customClass: React.PropTypes.string,
+		className: React.PropTypes.string,
 		buttonClass: React.PropTypes.string,
 		buttonLabel: React.PropTypes.string,
 		buttonDisclosureArrow: React.PropTypes.bool,
@@ -488,7 +488,7 @@ module.exports = React.createClass({
 		var dropdownClass = classNames('dropdown', {
 			'is-open': this.props.isOpen,
 			'align-right': this.props.alignRight
-		}, this.props.customClass);
+		}, this.props.className);
 		var buttonClass = classNames('dropdown-toggle', this.props.buttonClass);
 
 		// elements
@@ -1147,7 +1147,7 @@ module.exports = React.createClass({
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
 		value: React.PropTypes.string,
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -1202,12 +1202,12 @@ module.exports = React.createClass({
 	render: function render() {
 		// props
 		var props = _.extend({}, this.props);
-		var props = _.omit(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'customClass']);
+		var props = _.omit(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className']);
 
 		// classes
 		var componentClass = classNames('form-field', {
 			'is-invalid': !this.state.isValid
-		}, this.props.customClass);
+		}, this.props.className);
 
 		// validation message
 		var validationMessage;
@@ -1600,14 +1600,14 @@ module.exports = React.createClass({
 		cols: React.PropTypes.array,
 		rows: React.PropTypes.array,
 		headers: React.PropTypes.array,
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	render: function render() {
 		// classes
-		var componentClass = classNames('table', this.props.customClass);
+		var componentClass = classNames('table', this.props.className);
 
 		// props
-		var props = _.omit(this.props, ['cols', 'rows', 'headers', 'customClass']);
+		var props = _.omit(this.props, ['cols', 'rows', 'headers', 'className']);
 
 		// cols
 		var tableCols;
@@ -1659,7 +1659,7 @@ module.exports = React.createClass({
 	propTypes: {
 		content: React.PropTypes.string,
 		placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -1688,10 +1688,10 @@ module.exports = React.createClass({
 
 	render: function render() {
 		// classes
-		var componentClass = classNames('Tooltip-outer', this.props.customClass);
+		var componentClass = classNames('Tooltip-outer', this.props.className);
 
 		// props
-		var props = _.omit(this.props, ['content', 'customClass', 'placement', 'target']);
+		var props = _.omit(this.props, ['content', 'className', 'placement', 'target']);
 
 		// style
 		var tooltipStyle = {};
