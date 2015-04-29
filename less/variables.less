@@ -9,11 +9,13 @@
 // ------------------------------
 
 
-@react-blue:              #00d8ff; // react blue
-@ios-blue:                #007aff; // ios blue
-@elemental-turquoise:     #31adb8; // elemental turquoise
+@react-blue:              #00d8ff;
+@ios-blue:                #007aff;
+@keystone-blue:           #348dd9;
+@elemental-turquoise:     #31adb8;
 
 @app-primary:             @elemental-turquoise;
+// @app-primary:             @keystone-blue;
 
 @app-danger:              #d64242;
 @app-info:                #56cdfc;
@@ -125,21 +127,21 @@
 @button-default-border:             mix(@app-primary, @body-bg, 60%);
 @button-default-disabled-bg:        darken(@body-bg, 4%);
 
-@button-primary-color:              white;
+@button-primary-color:              @app-primary;
 @button-primary-bg:                 @app-primary;
-@button-primary-border:             @button-primary-bg;
+@button-primary-border:             mix(@button-primary-bg, @body-bg, 60%);
 
 @button-success-color:              @app-success;
 @button-success-bg:                 @app-success;
-@button-success-border:             mix(@app-success, @body-bg, 60%);
+@button-success-border:             mix(@button-success-bg, @body-bg, 60%);
 
 @button-warning-color:              @app-warning;
 @button-warning-bg:                 @app-warning;
-@button-warning-border:             mix(@app-warning, @body-bg, 60%);
+@button-warning-border:             mix(@button-warning-bg, @body-bg, 60%);
 
 @button-danger-color:               @app-danger;
 @button-danger-bg:                  @app-danger;
-@button-danger-border:              mix(@app-danger, @body-bg, 60%);
+@button-danger-border:              mix(@button-danger-bg, @body-bg, 60%);
 
 @button-link-disabled-color:        @gray-light;
 
@@ -218,9 +220,9 @@
 
 @demo-container-width:        768px;
 
-@border-radius-base:         .33em;
-@border-radius-sm:           .25em;
 @border-radius-lg:            .5em;
+@border-radius-base:          .25em;
+@border-radius-sm:            .125em;
 
 @spinner-dot-size:             8px;
 @spinner-dot-bg:               @gray-light;

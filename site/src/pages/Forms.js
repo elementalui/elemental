@@ -202,6 +202,22 @@ var Forms = React.createClass({
 							<Button type="primary">Button</Button>
 						</span>
 					</div>
+					<div className="input-group">
+						<input type="text" className="form-input input-group-field" placeholder="Input group field" />
+						<span className="input-group-button">
+							<Button type="default">
+								<span className="octicon octicon-pencil" />
+							</Button>
+						</span>
+					</div>
+					<div className="input-group">
+						<input type="text" className="form-input input-group-field" placeholder="Input group field" />
+						<span className="input-group-button">
+							<Button type="primary">
+								<span className="octicon octicon-pencil" />
+							</Button>
+						</span>
+					</div>
 				</form>
 
 				
@@ -303,6 +319,7 @@ var Forms = React.createClass({
 					</FormRow>
 				</form>
 				<h2 id="section-icon" className="u-padding-top-lg">Icons</h2>
+				<p>Elemental uses the wonderful <a href="https://octicons.github.com/" target="_blank">Octicons Suit from GitHub</a></p>
 				<form className="u-margin-bottom-lg">
 					<FormLabel>Alignment</FormLabel>
 					<FormRow>

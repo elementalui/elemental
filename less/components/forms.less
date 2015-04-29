@@ -35,7 +35,7 @@
 	}
 	&:focus {
 		border-color: @input-border-color-focus;
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 1px @body-bg, 0 0 0 3px fade(@input-border-color-focus, 15%);
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@input-border-color-focus, 10%);
 		// box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px fade(@input-border-color-focus, 33%);
 		outline: 0;
 	}
@@ -147,6 +147,10 @@
 		display: table-cell;
 		position: relative;
 		width: 100%;
+
+		&:focus {
+			z-index: 1;
+		}
 	}
 	.Button {
 		.border-left-radius(0);
@@ -217,7 +221,7 @@
 
 		&:focus {
 			border-color: @app-danger;
-			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 1px @body-bg, 0 0 0 3px fade(@app-danger, 15%);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@app-danger, 10%);
 		}
 	}
 }
@@ -230,7 +234,7 @@
 
 		&:focus {
 			border-color: @app-success;
-			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 1px @body-bg, 0 0 0 3px fade(@app-success, 15%);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@app-success, 10%);
 		}
 	}
 }
@@ -292,7 +296,7 @@ select.form-input {
 	height: @component-height;
 
 	&:focus {
-		box-shadow: 0 0 0 1px @body-bg, 0 0 0 3px fade(@input-border-color-focus, 15%);
+		box-shadow: 0 0 0 3px fade(@input-border-color-focus, 10%);
 	}
 	&.disabled,
 	&[disabled] {
@@ -387,17 +391,17 @@ select.form-input {
 
 // colour variations
 
-.form-icon-color--default { fill: @input-border-color; }
-.form-icon-color--danger  { fill: @app-danger; }
-.form-icon-color--primary { fill: @app-primary; }
-.form-icon-color--success { fill: @app-success; }
-.form-icon-color--warning { fill: @app-warning; }
+.form-icon-color--default { color: @input-border-color; }
+.form-icon-color--danger  { color: @app-danger; }
+.form-icon-color--primary { color: @app-primary; }
+.form-icon-color--success { color: @app-success; }
+.form-icon-color--warning { color: @app-warning; }
 
-.form-icon-fill--default { background-color: @input-border-color; fill: @gray; }
-.form-icon-fill--danger  { background-color: @app-danger; fill: white; }
-.form-icon-fill--primary { background-color: @app-primary; fill: white; }
-.form-icon-fill--success { background-color: @app-success; fill: white; }
-.form-icon-fill--warning { background-color: @app-warning; fill: white; }
+.form-icon-fill--default { background-color: @input-border-color; color: @gray; }
+.form-icon-fill--danger  { background-color: @app-danger; color: white; }
+.form-icon-fill--primary { background-color: @app-primary; color: white; }
+.form-icon-fill--success { background-color: @app-success; color: white; }
+.form-icon-fill--warning { background-color: @app-warning; color: white; }
 
 
 
