@@ -164,7 +164,7 @@ var Forms = React.createClass({
 						<FormInput type="password" placeholder="Password" name="horizontal-form-input-password" />
 					</FormField>
 					<FormField>
-						<Button type="default" customClass="horizontal-form-submit-button">Submit</Button>
+						<Button type="default" className="horizontal-form-submit-button">Submit</Button>
 					</FormField>
 				</form>
 

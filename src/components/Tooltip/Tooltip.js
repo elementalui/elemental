@@ -8,7 +8,7 @@ module.exports = React.createClass({
 	propTypes: {
 		content: React.PropTypes.string,
 		placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	getDefaultProps() {
 		return {
@@ -39,11 +39,11 @@ module.exports = React.createClass({
 		// classes
 		var componentClass = classNames(
 			'Tooltip-outer',
-			this.props.customClass
+			this.props.className
 		);
 
 		// props
-		var props = _.omit(this.props, ['content', 'customClass', 'placement', 'target']);
+		var props = _.omit(this.props, ['content', 'className', 'placement', 'target']);
 
 		// style
 		var tooltipStyle = {};

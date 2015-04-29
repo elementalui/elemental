@@ -30,14 +30,14 @@ var Buttons = React.createClass({
 				</div>
 
 				<h2 className="u-padding-top-lg">Use in Buttons</h2>
-				<Button type="default" customClass="u-margin-right-sm">
+				<Button type="default" className="u-margin-right-sm">
 					<Spinner type="primary" />
 				</Button>
-				<Button type="default" customClass="u-margin-right-sm" disabled>
+				<Button type="default" className="u-margin-right-sm" disabled>
 					<Spinner type="primary" />
 					Saving
 				</Button>
-				<Button type="primary" customClass="u-margin-right-sm" disabled>
+				<Button type="primary" className="u-margin-right-sm" disabled>
 					<Spinner type="inverted" />
 					Saving
 				</Button>

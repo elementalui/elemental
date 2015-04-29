@@ -7,7 +7,7 @@ module.exports = React.createClass({
 	propTypes: {
 		items: React.PropTypes.array.isRequired,
 		onChange: React.PropTypes.func,
-		customClass: React.PropTypes.string,
+		className: React.PropTypes.string,
 		buttonClass: React.PropTypes.string,
 		buttonLabel: React.PropTypes.string,
 		buttonDisclosureArrow: React.PropTypes.bool,
@@ -18,7 +18,7 @@ module.exports = React.createClass({
 		var dropdownClass = classNames('dropdown', {
 			'is-open': this.props.isOpen,
 			'align-right': this.props.alignRight
-		}, this.props.customClass);
+		}, this.props.className);
 		var buttonClass = classNames('dropdown-toggle', this.props.buttonClass);
 
 		// elements

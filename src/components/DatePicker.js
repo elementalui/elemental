@@ -26,7 +26,7 @@ module.exports = React.createClass({
 		isInstant: React.PropTypes.bool,
 		isHeaderless: React.PropTypes.bool,
 
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	getDefaultProps() {
 		return {
@@ -77,7 +77,7 @@ module.exports = React.createClass({
 			'single-picker': !this.props.isMulti,
 			'multi-picker': this.props.isMulti,
 			'range-picker': this.props.showPredefinedRanges
-		}, this.props.customClass);
+		}, this.props.className);
 
 		
 		// build the components

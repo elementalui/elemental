@@ -8,17 +8,17 @@ module.exports = React.createClass({
 		cols: React.PropTypes.array,
 		rows: React.PropTypes.array,
 		headers: React.PropTypes.array,
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	render() {
 		// classes
 		var componentClass = classNames(
 			'table',
-			this.props.customClass
+			this.props.className
 		);
 
 		// props
-		var props = _.omit(this.props, ['cols', 'rows', 'headers', 'customClass']);
+		var props = _.omit(this.props, ['cols', 'rows', 'headers', 'className']);
 
 		// cols
 		var tableCols;

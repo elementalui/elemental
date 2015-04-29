@@ -14,7 +14,7 @@ module.exports = React.createClass({
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
 		value: React.PropTypes.string,
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	getDefaultProps() {
 		return {
@@ -69,12 +69,12 @@ module.exports = React.createClass({
 	render() {
 		// props
 		var props = _.extend({}, this.props)
-		var props = _.omit(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'customClass']);
+		var props = _.omit(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className']);
 		
 		// classes
 		var componentClass = classNames('form-field', {
 			'is-invalid': !this.state.isValid
-		}, this.props.customClass);
+		}, this.props.className);
 
 		// validation message
 		var validationMessage;
