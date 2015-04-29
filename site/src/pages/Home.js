@@ -11,7 +11,7 @@ var Home = React.createClass({
 				<h2 className="u-margin-top-lg">A UI Tooklit for React.js Websites and Apps</h2>
 				<p>Currently under development, initially for use in <a href="http://www.keystonejs.com">KeystoneJS</a>.</p>
 				<p>The CSS framework is functionally complete, with some tweaks and browser testing yet to be done.</p>
-				<p>The React components are currently prototypes, and we expect they will be restructured a fair bit before the initial release.</p>
+				<p>The React components are currently prototypes, and we expect they will be restructured a fair bit.</p>
 				<p>Browse the components using the navigation above, and follow us for updates!</p>
 				<p>
 					<Button style={{ marginRight: 10 }} type="primary" href="https://twitter.com/elementalui">Follow @ElementalUI on Twitter</Button>
