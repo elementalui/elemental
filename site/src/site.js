@@ -52,16 +52,18 @@ var App = React.createClass({
 	}
 });
 
+var basepath = (window.location.pathname.slice(0,10) === '/elemental') ? '/elemental' : '';
+
 var routes = (
-	<Router.Route name="app" path="/" handler={App}>
-		<Router.Route name="home" path="/" handler={require('./pages/Home')} />
-		<Router.Route name="buttons" path="/buttons" handler={require('./pages/Buttons')} />
-		<Router.Route name="tables" path="/tables" handler={require('./pages/Tables')} />
-		<Router.Route name="forms" path="/forms" handler={require('./pages/Forms')} />
-		<Router.Route name="spinner" path="/spinner" handler={require('./pages/Spinner')} />
-		<Router.Route name="modal" path="/modal" handler={require('./pages/Modal')} />
-		<Router.Route name="grid" path="/grid" handler={require('./pages/Grid')} />
-		<Router.Route name="date-picker" path="/date-picker" handler={require('./pages/DatePicker')} />
+	<Router.Route name="app" path={basepath + '/'} handler={App}>
+		<Router.Route name="home" path={basepath + '/'} handler={require('./pages/Home')} />
+		<Router.Route name="buttons" path={basepath + '/buttons'} handler={require('./pages/Buttons')} />
+		<Router.Route name="tables" path={basepath + '/tables'} handler={require('./pages/Tables')} />
+		<Router.Route name="forms" path={basepath + '/forms'} handler={require('./pages/Forms')} />
+		<Router.Route name="spinner" path={basepath + '/spinner'} handler={require('./pages/Spinner')} />
+		<Router.Route name="modal" path={basepath + '/modal'} handler={require('./pages/Modal')} />
+		<Router.Route name="grid" path={basepath + '/grid'} handler={require('./pages/Grid')} />
+		<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />
 		<Router.DefaultRoute handler={require('./pages/Home')} />
 	</Router.Route>
 );
