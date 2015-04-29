@@ -1,9 +1,0 @@
-# Logs
-logs
-*.log
-
-# Build
-dist
-
-# Dependencies
-node_modules

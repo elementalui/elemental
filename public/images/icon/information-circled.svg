@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="448px" height="448px" viewBox="0 0 448 448" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>information</title>
-    <g id="Page-1">
-        <g id="information" transform="translate(-1.000000, -1.000000)" fill="#000000">
-            <path d="M449,222 C447.3,98.3 345.7,-0.6 222,1 C98.3,2.6 -0.6,104.3 1,228 C2.7,351.7 104.3,450.6 228,449 C351.7,447.3 450.7,345.7 449,222 L449,222 Z M225,80.9 C242.7,80.9 257,95.2 257,112.9 C257,130.6 242.7,144.9 225,144.9 C207.3,144.9 193,130.6 193,112.9 C193,95.2 207.3,80.9 225,80.9 L225,80.9 Z M269,364 L181,364 L181,353 L203,353 L203,193 L181,193 L181,181 L247,181 L247,353 L269,353 L269,364 L269,364 Z" id="Shape"></path>
-        </g>
-    </g>
-</svg>
