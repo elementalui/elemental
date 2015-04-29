@@ -21,7 +21,7 @@
   "devDependencies": {
     "gulp": "^3.8.11",
     "react": "^0.13.0",
-    "react-component-gulp-tasks": "^0.5.0",
+    "react-component-gulp-tasks": "^0.6.0",
     "react-router": "^0.13.2"
   },
   "peerDependencies": {
