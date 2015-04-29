@@ -5,56 +5,6 @@
 
 
 
-// Groups
-// ------------------------------
-
-.form-group {
-	margin-bottom: @spacing-md;
-}
-
-// Make the wrapper behave like a table
-
-@media (min-width: @screen-sm) {
-	.form-group-row {
-		display: table;
-		margin-bottom: @spacing-md;
-		table-layout: fixed;
-		min-width: 100%;
-
-		> .form-group {
-			display: table-cell;
-			padding: 0 (@input-padding-horizontal / 2);
-
-			&:first-child { padding-left: 0; }
-			&:last-child { padding-right: 0; }
-
-			// sizes
-			&.one-half,
-			&.two-quarters,
-			&.three-sixths   { width: 50%; }
-
-			&.one-quarter    { width: 25%; }
-			&.three-quarters { width: 75%; }
-
-			&.one-third,
-			&.two-sixths     { width: 33.333%; }
-			&.two-thirds,
-			&.four-sixths    { width: 66.666%; }
-
-			&.one-fifth      { width: 20%; }
-			&.two-fifths     { width: 40%; }
-			&.three-fifths   { width: 60%; }
-			&.four-fifths    { width: 80%; }
-
-			&.one-sixth      { width: 16.666%; }
-			&.five-sixths    { width: 83.333%; }
-		}
-	}
-}
-
-
-
-
 // Inputs
 // ------------------------------
 
@@ -136,6 +86,54 @@
 
 
 
+// Groups
+// ------------------------------
+
+.form-field {
+	margin-bottom: @spacing-md;
+}
+
+// Make the wrapper behave like a table
+
+.form-row {
+	&:extend(.clearfix all);
+}
+@media (min-width: @screen-sm) {
+	.form-row {
+		margin: 0 -(@input-padding-horizontal / 2) @spacing-md;
+		min-width: 100%;
+
+		> .form-field {
+			float: left;
+			padding: 0 (@input-padding-horizontal / 2);
+
+			// sizes
+			&.one-half,
+			&.two-quarters,
+			&.three-sixths   { width: 50%; }
+
+			&.one-quarter    { width: 25%; }
+			&.three-quarters { width: 75%; }
+
+			&.one-third,
+			&.two-sixths     { width: 33.333%; }
+			&.two-thirds,
+			&.four-sixths    { width: 66.666%; }
+
+			&.one-fifth      { width: 20%; }
+			&.two-fifths     { width: 40%; }
+			&.three-fifths   { width: 60%; }
+			&.four-fifths    { width: 80%; }
+
+			&.one-sixth      { width: 16.666%; }
+			&.five-sixths    { width: 83.333%; }
+		}
+	}
+}
+
+
+
+
 
 // Input Group
 // ------------------------------
@@ -210,7 +208,7 @@
 
 // effects on other elements
 
-.form-group.is-invalid {
+.form-field.is-invalid {
 	.form-label {
 		color: @app-danger;
 	}
@@ -223,7 +221,7 @@
 		}
 	}
 }
-.form-group.is-valid {
+.form-field.is-valid {
 	.form-label {
 		color: @app-success;
 	}
@@ -306,6 +304,104 @@ select.form-input {
 
 
 
+// Icons
+// ------------------------------
+
+.form-icon-field {
+	position: relative;
+
+	&.left {
+		> .form-input { padding-left: (@input-padding-horizontal * 3); }
+		> .form-icon {
+			.border-left-radius(@border-radius-base);
+			left: 0;
+		}
+		> .spinner {
+			left: 8px;
+		}
+		&.is-fill-icon > .form-input { padding-left: (@input-padding-horizontal * 2) + 1.5; }
+	}
+	&.right {
+		> .form-input { padding-right: (@input-padding-horizontal * 3); }
+		> .form-icon {
+			.border-right-radius(@border-radius-base);
+			right: 0;
+		}
+		> .spinner {
+			right: 8px;
+		}
+		&.is-fill-icon > .form-input { padding-right: (@input-padding-horizontal * 2) + 1.5; }
+	}
+}
+.form-icon {
+	line-height: @component-line-height;
+	height: @component-height;
+	pointer-events: none;
+	padding-left: @input-padding-horizontal;
+	padding-right: @input-padding-horizontal;
+	position: absolute;
+	top: 0;
+	width: (@input-padding-horizontal * 2) + 1;
+}
+.form-icon-src {
+	.square(1em);
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: block;
+	margin-top: -0.5em;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+
+	// a small selection of icons to begin with
+	&.calendar      { background-image: data-uri('../../public/images/icon/calendar.svg'); }
+	&.camera        { background-image: data-uri('../../public/images/icon/camera.svg'); }
+	&.cart          { background-image: data-uri('../../public/images/icon/cart.svg'); }
+	&.close-circled { background-image: data-uri('../../public/images/icon/close-circled.svg'); }
+	&.close         { background-image: data-uri('../../public/images/icon/close.svg'); }
+	&.cog           { background-image: data-uri('../../public/images/icon/cog.svg'); }
+	&.home          { background-image: data-uri('../../public/images/icon/home.svg'); }
+	&.information   { background-image: data-uri('../../public/images/icon/information.svg'); }
+	&.mail          { background-image: data-uri('../../public/images/icon/mail.svg'); }
+	&.menu          { background-image: data-uri('../../public/images/icon/menu.svg'); }
+	&.search        { background-image: data-uri('../../public/images/icon/search.svg'); }
+	&.star-outline  { background-image: data-uri('../../public/images/icon/star-outline.svg'); }
+	&.star          { background-image: data-uri('../../public/images/icon/star.svg'); }
+	&.telephone     { background-image: data-uri('../../public/images/icon/telephone.svg'); }
+	&.time          { background-image: data-uri('../../public/images/icon/time.svg'); }
+	&.user          { background-image: data-uri('../../public/images/icon/user.svg'); }
+	&.users         { background-image: data-uri('../../public/images/icon/users.svg'); }
+	&.warning       { background-image: data-uri('../../public/images/icon/warning.svg'); }
+
+}
+
+// loading spinner
+
+.form-icon-field > .spinner {
+	margin-top: -2px;
+	pointer-events: none;
+	position: absolute;
+	top: 50%;
+}
+
+// colour variations
+
+.form-icon-color--default { fill: @input-border-color; }
+.form-icon-color--danger  { fill: @app-danger; }
+.form-icon-color--primary { fill: @app-primary; }
+.form-icon-color--success { fill: @app-success; }
+.form-icon-color--warning { fill: @app-warning; }
+
+.form-icon-fill--default { background-color: @input-border-color; fill: @gray; }
+.form-icon-fill--danger  { background-color: @app-danger; fill: white; }
+.form-icon-fill--primary { background-color: @app-primary; fill: white; }
+.form-icon-fill--success { background-color: @app-success; fill: white; }
+.form-icon-fill--warning { background-color: @app-warning; fill: white; }
+
+
+
+
 // ==============================
 // Form Types
 // ==============================
@@ -331,7 +427,7 @@ select.form-input {
 @media (min-width: @screen-sm) {
 	.horizontal-form {
 		// Make the wrapper behave like a table
-		.form-group {
+		.form-field {
 			display: table;
 			table-layout: fixed;
 			min-width: 100%;
@@ -379,7 +475,7 @@ select.form-input {
 	.inline-form {
 		.checkbox,
 		.radio,
-		.form-group {
+		.form-field {
 			display: inline-block;
 			padding-left: .25em;
 			padding-right: .25em;
@@ -441,7 +537,6 @@ select.form-input {
 	border-radius: @border-radius-base;
 	color: darken(@input-border-color, 20%);
 	cursor: pointer;
-	display: inline-block;
 	height: 120px;
 	line-height: 120px;
 	padding: 0 1em;

@@ -72,7 +72,7 @@ module.exports = React.createClass({
 		var props = _.omit(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'customClass']);
 		
 		// classes
-		var componentClass = classNames('form-group', {
+		var componentClass = classNames('form-field', {
 			'is-invalid': !this.state.isValid
 		}, this.props.customClass);
 

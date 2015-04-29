@@ -3,10 +3,16 @@ var classNames = require('classnames');
 var _ = require('underscore');
 
 module.exports = React.createClass({
-	displayName: 'FormGroup',
+	displayName: 'FormField',
 	propTypes: {
-		customClass: React.PropTypes.string,
+		className: React.PropTypes.string,
+		disabled: React.PropTypes.bool,
 		label: React.PropTypes.string,
+		multiline: React.PropTypes.bool,
+		onChange: React.PropTypes.func,
+		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
+		type: React.PropTypes.string,
+		value: React.PropTypes.string,
 		width: React.PropTypes.oneOf(['one-half', 'two-quarters', 'three-sixths', 'one-quarter', 'three-quarters', 'one-third', 'two-sixths', 'two-thirds', 'four-sixths', 'one-fifth', 'two-fifths', 'three-fifths', 'four-fifths', 'one-sixth', 'five-sixths'])
 	},
 	getDefaultProps() {
@@ -16,13 +22,13 @@ module.exports = React.createClass({
 	},
 	render() {
 		// classes
-		var componentClass = classNames('form-group',
+		var componentClass = classNames('form-field',
 			this.props.width,
-			this.props.customClass);
+			this.props.className);
 
 		
 		// props
-		var props = _.omit(this.props, ['label', 'width', 'customClass']);
+		var props = _.omit(this.props, ['label', 'width', 'className']);
 
 		
 		// elements

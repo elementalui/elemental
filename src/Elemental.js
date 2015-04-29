@@ -11,8 +11,10 @@ exports.Table =              require('./components/Table');
 
 exports.FormDragAndDrop =    require('./components/FormDragAndDrop');
 exports.FormFile =           require('./components/FormFile');
-exports.FormGroup =          require('./components/FormGroup');
-exports.FormGroupRow =       require('./components/FormGroupRow');
+exports.FormField =          require('./components/FormField');
+exports.FormRow =            require('./components/FormRow');
+exports.FormIcon =           require('./components/FormIcon');
+exports.FormIconField =      require('./components/FormIconField');
 exports.FormInput =          require('./components/FormInput');
 exports.FormLabel =          require('./components/FormLabel');
 exports.FormSelect =         require('./components/FormSelect');

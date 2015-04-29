@@ -76,7 +76,7 @@ module.exports = React.createClass({
 		delete props.value
 
 		// classes
-		var componentClass = classNames('form-group', {
+		var componentClass = classNames('form-field', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 
