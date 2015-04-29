@@ -23,8 +23,9 @@ var taskConfig = {
 		src: 'site/src',
 		dist: 'site/dist',
 		files: [
+			'.gitignore',
 			'index.html',
-			'.gitignore'
+			'images/*'
 		],
 		scripts: [
 			'site.js'
