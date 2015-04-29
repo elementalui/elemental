@@ -4,13 +4,21 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'Spinner',
 	propTypes: {
-		type: React.PropTypes.string,
-		className: React.PropTypes.string
+		className: React.PropTypes.string,
+		size: React.PropTypes.oneOf(['sm', 'md', 'lg']),
+		type: React.PropTypes.oneOf(['default', 'primary', 'inverted'])
+	},
+	getDefaultProps() {
+		return {
+			size: 'md',
+			type: 'default'
+		};
 	},
 	render() {
 		var componentClass = classNames(
 			'spinner',
 			'spinner--' + this.props.type,
+			'spinner--' + this.props.size,
 			this.props.className
 		);
 

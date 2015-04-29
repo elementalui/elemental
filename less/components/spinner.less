@@ -42,40 +42,48 @@
 }
 
 
-// default variant
-
-.spinner--default .spinner__dot {
-	background-color: @spinner-dot-bg;
-}
 
 
-// primary variant
-
-.spinner--primary .spinner__dot {
-	background-color: @app-primary;
-}
-
-
-// inverted variant
-
-.spinner--inverted .spinner__dot {
-	background-color: white;
-}
-
-
-
-
-
-// Animation
+// Types
 // ------------------------------
 
-@-webkit-keyframes pulse {
-	0%, 80%, 100% { opacity: 0; }
-	40% { opacity: 1; }
-}
-@keyframes pulse {
-	0%, 80%, 100% { opacity: 0; }
-	40% { opacity: 1; }
+
+// default
+.spinner--default > .spinner__dot { background-color: @spinner-dot-bg; }
+
+// primary
+.spinner--primary > .spinner__dot { background-color: @app-primary; }
+
+// inverted
+.spinner--inverted > .spinner__dot { background-color: white; }
+
+
+
+
+// Types
+// ------------------------------
+
+
+// default
+.spinner--default > .spinner__dot { background-color: @spinner-dot-bg; }
+
+// primary
+.spinner--primary > .spinner__dot { background-color: @app-primary; }
+
+// inverted
+.spinner--inverted > .spinner__dot { background-color: white; }
+
+
+
+
+// Sizes
+// ------------------------------
+
+
+// small
+.spinner--sm {
+	font-size: (@spinner-dot-size / 2);
+	height: (@spinner-dot-size / 2);
 }
 
 
@@ -86,8 +94,7 @@
 // ------------------------------
 
 .Button > .spinner {
-	font-size: (@spinner-dot-size / 2);
-	height: (@spinner-dot-size / 2);
+	.spinner--sm();
 	margin-right: 2em;
 
 	&:only-child {
