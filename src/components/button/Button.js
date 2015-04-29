@@ -9,7 +9,7 @@ module.exports = React.createClass({
 		type: React.PropTypes.string,
 		size: React.PropTypes.string,
 		href: React.PropTypes.string,
-		customClass: React.PropTypes.string
+		className: React.PropTypes.string
 	},
 	getDefaultProps() {
 		return {
@@ -20,13 +20,14 @@ module.exports = React.createClass({
 		// classes
 		var componentClass = classNames(
 			'Button',
-			('Button-' + this.props.type),
-			(this.props.size ? 'Button-' + this.props.size : null),
-			this.props.customClass
+			'Button-' + this.props.type,
+			this.props.size ? 'Button-' + this.props.size : null,
+			this.props.className
 		);
 
 		// props
-		var props = blacklist(this.props, ['type', 'size', 'customClass']);
+		var props = blacklist(this.props, ['type', 'size', 'className']);
+		props.className = componentClass;
 
 		var tag = 'a';
 
@@ -37,7 +38,7 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			tag,
-			Object.assign({ className: componentClass }, props),
+			props,
 			this.props.children
 		);
 	}
