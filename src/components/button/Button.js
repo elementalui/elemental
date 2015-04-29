@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var classNames = require('classnames');
-var _ = require('underscore');
+var blacklist = require('blacklist');
 
 module.exports = React.createClass({
 	displayName: 'ElementalButton',
@@ -8,6 +8,7 @@ module.exports = React.createClass({
 		onClick: React.PropTypes.func,
 		type: React.PropTypes.string,
 		size: React.PropTypes.string,
+		href: React.PropTypes.string,
 		customClass: React.PropTypes.string
 	},
 	getDefaultProps() {
@@ -25,12 +26,19 @@ module.exports = React.createClass({
 		);
 
 		// props
-		var props = _.omit(this.props, ['type', 'size', 'customClass']);
-		
-		return (
-			<button type="button" className={componentClass} {...props}>
-				{this.props.children}
-			</button>
+		var props = blacklist(this.props, ['type', 'size', 'customClass']);
+
+		var tag = 'a';
+
+		if (!props.href) {
+			tag = 'button';
+			props.type = 'button';
+		}
+
+		return React.createElement(
+			tag,
+			Object.assign({ className: componentClass }, props),
+			this.props.children
 		);
 	}
 });
