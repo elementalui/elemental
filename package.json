@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "gulp dev",
-    "release": "gulp release"
+    "release": "gulp release",
+    "publish-site": "gulp publish:site"
   },
   "dependencies": {
     "blacklist": "^1.1.2",
