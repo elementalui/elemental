@@ -119,17 +119,19 @@ var App = React.createClass({
 	}
 });
 
+var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
+
 var routes = React.createElement(
 	Router.Route,
-	{ name: 'app', path: '/', handler: App },
-	React.createElement(Router.Route, { name: 'home', path: '/', handler: require('./pages/Home') }),
-	React.createElement(Router.Route, { name: 'buttons', path: '/buttons', handler: require('./pages/Buttons') }),
-	React.createElement(Router.Route, { name: 'tables', path: '/tables', handler: require('./pages/Tables') }),
-	React.createElement(Router.Route, { name: 'forms', path: '/forms', handler: require('./pages/Forms') }),
-	React.createElement(Router.Route, { name: 'spinner', path: '/spinner', handler: require('./pages/Spinner') }),
-	React.createElement(Router.Route, { name: 'modal', path: '/modal', handler: require('./pages/Modal') }),
-	React.createElement(Router.Route, { name: 'grid', path: '/grid', handler: require('./pages/Grid') }),
-	React.createElement(Router.Route, { name: 'date-picker', path: '/date-picker', handler: require('./pages/DatePicker') }),
+	{ name: 'app', path: basepath + '/', handler: App },
+	React.createElement(Router.Route, { name: 'home', path: basepath + '/', handler: require('./pages/Home') }),
+	React.createElement(Router.Route, { name: 'buttons', path: basepath + '/buttons', handler: require('./pages/Buttons') }),
+	React.createElement(Router.Route, { name: 'tables', path: basepath + '/tables', handler: require('./pages/Tables') }),
+	React.createElement(Router.Route, { name: 'forms', path: basepath + '/forms', handler: require('./pages/Forms') }),
+	React.createElement(Router.Route, { name: 'spinner', path: basepath + '/spinner', handler: require('./pages/Spinner') }),
+	React.createElement(Router.Route, { name: 'modal', path: basepath + '/modal', handler: require('./pages/Modal') }),
+	React.createElement(Router.Route, { name: 'grid', path: basepath + '/grid', handler: require('./pages/Grid') }),
+	React.createElement(Router.Route, { name: 'date-picker', path: basepath + '/date-picker', handler: require('./pages/DatePicker') }),
 	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
 );
 
