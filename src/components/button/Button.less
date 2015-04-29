@@ -58,12 +58,37 @@
 // default styles
 
 .Button-default {
-	.button-default-variant(@button-default-color; @button-default-border);
+	// .button-default-variant(@btn-default-color; @btn-default-border);
+	#gradient .vertical(#fafafa, #eaeaea);
+	border: 1px solid @input-border-color;
+	color: @text-color;
+
+	&:hover {
+		#gradient .vertical(#fff, #eee);
+		border: 1px solid @input-border-color;
+		color: @text-color;
+	}
+	&:focus {
+		border-color: @app-primary;
+		box-shadow: 0 0 0 3px fade(@app-primary, 10%);
+		color: @text-color;
+		outline: none;
+	}
+	&:active {
+		background: #e6e6e6;
+		border-color: darken(@input-border-color, 10%);
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+		color: @text-color;
+	}
 
 	&.disabled,
 	&[disabled] {
 		background-color: @button-default-disabled-bg;
 	}
+}
+
+.Button-default-primary {
+	.button-default-variant(@button-primary-color; @button-primary-border);
 }
 .Button-default-success {
 	.button-default-variant(@button-success-color; @button-success-border);
@@ -176,7 +201,6 @@
 		border-radius: 0;
 		float: left;
 		margin-left: -1px;
-		position: relative;
 
 		&:first-child {
 			.border-left-radius(@border-radius-base);
@@ -184,6 +208,11 @@
 		}
 		&:last-child {
 			.border-right-radius(@border-radius-base);
+		}
+		&:hover,
+		&:active,
+		&:focus {
+			position: relative;
 		}
 	}
 }

@@ -64,17 +64,21 @@ var Buttons = React.createClass({
 				<Button type="link" size="xs">Link</Button>
 
 				<h2 className="u-margin-top-lg">Colours</h2>
-				<Button type="danger">Danger</Button>
+				<Button type="primary">Primary</Button>
 				<hr />
-				<Button type="default-danger">Danger</Button>
+				<Button type="default-primary">Primary</Button>
+				<hr />
+				<Button type="success">Success</Button>
+				<hr />
+				<Button type="default-success">Success</Button>
 				<hr />
 				<Button type="warning">Warning</Button>
 				<hr />
 				<Button type="default-warning">Warning</Button>
 				<hr />
-				<Button type="success">Success</Button>
+				<Button type="danger">Danger</Button>
 				<hr />
-				<Button type="default-success">Success</Button>
+				<Button type="default-danger">Danger</Button>
 
 				<h2 className="u-margin-top-lg">Button Groups</h2>
 				<div className="Button-group">
