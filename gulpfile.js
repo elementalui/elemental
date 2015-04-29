@@ -12,7 +12,11 @@ var taskConfig = {
 			'react',
 			'react/addons',
 			'underscore'
-		]
+		],
+		less: {
+			path: 'less',
+			entry: 'elemental.less'
+		}
 	},
 
 	example: {
