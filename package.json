@@ -12,7 +12,7 @@
   "scripts": {
     "start": "gulp dev",
     "release": "gulp release",
-    "publish-site": "gulp publish:site"
+    "publish-site": "gulp publish:examples"
   },
   "dependencies": {
     "blacklist": "^1.1.2",
