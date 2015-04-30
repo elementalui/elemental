@@ -5,6 +5,7 @@ var taskConfig = {
 
 	component: {
 		name: 'Elemental',
+		lib: 'lib',
 		dependencies: [
 			'blacklist',
 			'classnames',
