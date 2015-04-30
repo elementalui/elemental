@@ -26,7 +26,7 @@ var PageNav = React.createClass({
 				<Router.Link className="primary-nav__item" to="modal">Modal</Router.Link>
 				<Router.Link className="primary-nav__item" to="grid">Grid</Router.Link>
 				<Router.Link className="primary-nav__item" to="date-picker">Date Picker</Router.Link>
-				<a href="https://github.com/JedWatson/react-express-starter" target="_blank" title="View on GitHub" className="primary-nav__brand right">
+				<a href="https://github.com/elementalui/elemental" target="_blank" title="View on GitHub" className="primary-nav__brand right">
 					<img src="./images/github-logo.svg" className="primary-nav__brand-src" />
 				</a>
 			</nav>
