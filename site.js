@@ -69,7 +69,7 @@ var PageNav = React.createClass({
 			),
 			React.createElement(
 				'a',
-				{ href: 'https://github.com/JedWatson/react-express-starter', target: '_blank', title: 'View on GitHub', className: 'primary-nav__brand right' },
+				{ href: 'https://github.com/elementalui/elemental', target: '_blank', title: 'View on GitHub', className: 'primary-nav__brand right' },
 				React.createElement('img', { src: './images/github-logo.svg', className: 'primary-nav__brand-src' })
 			)
 		);
