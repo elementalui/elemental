@@ -24,6 +24,7 @@ var taskConfig = {
 		dist: 'site/dist',
 		files: [
 			'.gitignore',
+			'CNAME',
 			'index.html',
 			'images/*'
 		],
