@@ -26,6 +26,7 @@ var taskConfig = {
 			'.gitignore',
 			'CNAME',
 			'index.html',
+			'404.html',
 			'images/*'
 		],
 		scripts: [
