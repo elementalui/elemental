@@ -3,3 +3,6 @@
 
 # Dependency directory
 node_modules
+
+# Build folder
+.publish
