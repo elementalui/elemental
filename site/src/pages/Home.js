@@ -25,7 +25,9 @@ var Home = React.createClass({
 				<div className={itemClass}>
 					<Router.Link key={item.value} className="demo-banner-nav__item" onClick={self.toggleMenu} to={item.value}>
 						<span className={'demo-banner-nav__icon octicon octicon-' + item.icon} />
-						<div className="demo-banner-nav__label">{item.label}</div>
+						<div className="demo-banner-nav__label">
+							<span className="demo-banner-nav__label-inner">{item.label}</span>
+						</div>
 					</Router.Link>
 				</div>
 			);

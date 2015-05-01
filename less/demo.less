@@ -396,15 +396,14 @@
 	text-align: center;
 }
 .demo-banner-nav__item {
-	display: inline-block;
-	padding: 1em 0;
+	display: block;
 	text-align: center;
 
 	&:hover,
 	&:focus {
 		text-decoration: none;
 
-		.demo-banner-nav__label {
+		.demo-banner-nav__label-inner {
 			border-bottom-color: currentColor;
 		}
 	}
@@ -413,8 +412,11 @@
 	margin-bottom: 1em;
 }
 .demo-banner-nav__label {
-	border-bottom: 1px dotted transparent;
 	color: @text-color;
+}
+.demo-banner-nav__label-inner {
+	border-bottom: 1px dotted transparent;
+	display: inline-block;
 }
 @media (min-width: @screen-sm-min) {
 	.col-sm-2 {
