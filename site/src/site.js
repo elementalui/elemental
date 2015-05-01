@@ -1,6 +1,16 @@
 var React = require('react');
 var Router = require('react-router');
 
+const NavItems = [
+	{ value: 'buttons',     label: 'Buttons' },
+	{ value: 'tables',      label: 'Tables' },
+	{ value: 'forms',       label: 'Forms' },
+	{ value: 'spinner',     label: 'Spinner' },
+	{ value: 'modal',       label: 'Modal' },
+	{ value: 'grid',        label: 'Grid' },
+	{ value: 'date-picker', label: 'Date Picker' }
+];
+
 var Header = React.createClass({
 	render: function() {
 		return (
@@ -12,20 +22,37 @@ var Header = React.createClass({
 });
 
 var PageNav = React.createClass({
+	getInitialState: function() {
+		return {
+			showMenu: false
+		};
+	},
+	toggleMenu: function() {
+		this.setState({
+			showMenu: !this.state.showMenu
+		});
+	},
 	render: function() {
+		var self = this;
+		var menuClass = this.state.showMenu ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
+		var menuItems = NavItems.map(function(item, i) {
+			return <Router.Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>{item.label}</Router.Link>;
+		});
 		return (
 			<nav className="primary-nav">
 				<Router.Link to="home" className="primary-nav__brand special" title="Home">
 					<img src="./images/elemental-logo-paths.svg" className="primary-nav__brand-src" />
 				</Router.Link>
 				{/*<Router.Link to="home">Home</Router.Link>*/}
-				<Router.Link className="primary-nav__item" to="buttons">Buttons</Router.Link>
-				<Router.Link className="primary-nav__item" to="tables">Tables</Router.Link>
-				<Router.Link className="primary-nav__item" to="forms">Forms</Router.Link>
-				<Router.Link className="primary-nav__item" to="spinner">Spinner</Router.Link>
-				<Router.Link className="primary-nav__item" to="modal">Modal</Router.Link>
-				<Router.Link className="primary-nav__item" to="grid">Grid</Router.Link>
-				<Router.Link className="primary-nav__item" to="date-picker">Date Picker</Router.Link>
+				<button onClick={this.toggleMenu} className="primary-nav__item primary-nav-menu-trigger">
+					<span className="primary-nav-menu-trigger-icon octicon octicon-navicon" />
+					<span className="primary-nav-menu-trigger-label">Menu</span>
+				</button>
+				<div className={menuClass}>
+					<div className="primary-nav-menu-inner">
+						{menuItems}
+					</div>
+				</div>
 				<a href="https://github.com/elementalui/elemental" target="_blank" title="View on GitHub" className="primary-nav__brand right">
 					<img src="./images/github-logo.svg" className="primary-nav__brand-src" />
 				</a>
