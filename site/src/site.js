@@ -11,16 +11,6 @@ const NavItems = [
 	{ value: 'date-picker', label: 'Date Picker' }
 ];
 
-var Header = React.createClass({
-	render: function() {
-		return (
-			<div className="page-header">
-				<h1>Elemental UI</h1>
-			</div>
-		);
-	}
-});
-
 var PageNav = React.createClass({
 	getInitialState: function() {
 		return {

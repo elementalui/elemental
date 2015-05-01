@@ -12,13 +12,9 @@
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
 	color: @heading-color;
-	font-weight: 300;
+	font-weight: 500;
 	margin-bottom: .6em;
 	margin-top: 0;
-}
-
-h1, .h1 {
-	color: mix(@heading-color, @app-primary, 50%);
 }
 h5, .h5,
 h6, .h6 {
@@ -27,6 +23,18 @@ h6, .h6 {
 h6, .h6 {
 	text-transform: uppercase;
 }
+
+
+
+// Lead
+// ------------------------------
+
+.lead {
+	color: @gray;
+	font-size: @font-size-lg;
+	font-weight: 300
+}
+
 
 
 
