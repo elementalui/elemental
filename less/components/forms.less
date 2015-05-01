@@ -531,19 +531,24 @@ select.form-input {
 // dropzone
 .form-dropzone {
 	.transition( border 120ms );
+	background: none;
 	border: 2px dashed @input-border-color;
-	border-radius: @border-radius-base;
+	border-radius: @border-radius-lg;
 	color: darken(@input-border-color, 20%);
 	cursor: pointer;
 	height: 120px;
 	line-height: 120px;
 	padding: 0 1em;
 	text-align: center;
+	width: 100%;
 
+	&:focus,
 	&.active {
 		border-color: lighten(@input-border-color-focus, 20%);
 		border-style: solid;
 		color: @input-border-color-focus;
+		outline: none;
+		-webkit-appearance: none;
 	}
 }
 .form-dropzone-label {
