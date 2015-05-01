@@ -8,7 +8,7 @@
 // Base styles
 // ------------------------------
 
-.btn {
+.Button {
 	.transition(box-shadow ease-in-out 0.15s);
 	.user-select(none);
 	background: none;
@@ -16,12 +16,12 @@
 	border-radius: @border-radius-base;
 	cursor: pointer;
 	display: inline-block;
-	font-weight: @btn-font-weight;
+	font-weight: @button-font-weight;
 	line-height: @component-line-height;
 	height: @component-height;
 	margin-bottom: 0;
 	overflow: hidden; // contain gradient on IE9
-	padding: 0 @btn-padding-horizontal;
+	padding: 0 @button-padding-horizontal;
 	text-align: center;
 	touch-action: manipulation;
 	vertical-align: middle;
@@ -31,7 +31,7 @@
 	&:hover,
 	&:focus,
 	&.focus {
-		color: @btn-default-color;
+		color: @button-default-color;
 		text-decoration: none;
 	}
 
@@ -55,40 +55,70 @@
 // ------------------------------
 
 
-// default styles
+// special case for the default button
 
-.btn-default {
-	.button-default-variant(@btn-default-color; @btn-default-border);
+.Button-default {
+	// .button-default-variant(@btn-default-color; @btn-default-border);
+	#gradient .vertical(#fafafa, #eaeaea);
+	border: 1px solid @input-border-color;
+	color: @text-color;
+	text-shadow: 0 1px 0 white;
+
+
+	&:hover {
+		#gradient .vertical(#fff, #eee);
+		border-color: darken(@input-border-color, 5%) darken(@input-border-color, 5%) darken(@input-border-color, 10%);
+		box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+		color: @text-color;
+	}
+	&:focus {
+		border-color: @app-primary;
+		box-shadow: 0 0 0 3px fade(@app-primary, 10%);
+		color: @text-color;
+		outline: none;
+	}
+	&:active {
+		background: #e6e6e6;
+		border-color: darken(@input-border-color, 10%);
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+		color: @text-color;
+	}
 
 	&.disabled,
 	&[disabled] {
-		background-color: @btn-default-disabled-bg;
+		background-color: @button-default-disabled-bg;
 	}
 }
-.btn-default-success {
-	.button-default-variant(@btn-success-color; @btn-success-border);
+
+// hollow styles
+
+.Button-default-primary {
+	.button-default-variant(@button-primary-color; @button-primary-border);
 }
-.btn-default-warning {
-	.button-default-variant(@btn-warning-color; @btn-warning-border);
+.Button-default-success {
+	.button-default-variant(@button-success-color; @button-success-border);
 }
-.btn-default-danger {
-	.button-default-variant(@btn-danger-color; @btn-danger-border);
+.Button-default-warning {
+	.button-default-variant(@button-warning-color; @button-warning-border);
+}
+.Button-default-danger {
+	.button-default-variant(@button-danger-color; @button-danger-border);
 }
 
 
 // fill styles
 
-.btn-primary {
-	.button-variant(white; @btn-primary-bg);
+.Button-primary {
+	.button-variant(white; @button-primary-bg);
 }
-.btn-success {
-	.button-variant(white; @btn-success-bg);
+.Button-success {
+	.button-variant(white; @button-success-bg);
 }
-.btn-warning {
-	.button-variant(white; @btn-warning-bg);
+.Button-warning {
+	.button-variant(white; @button-warning-bg);
 }
-.btn-danger {
-	.button-variant(white; @btn-danger-bg);
+.Button-danger {
+	.button-variant(white; @button-danger-bg);
 }
 
 
@@ -98,7 +128,7 @@
 // -------------------------
 
 // Make a button look and behave like a link
-.btn-link {
+.Button-link {
 	border-radius: 0;
 	color: @link-color;
 	font-weight: normal;
@@ -124,8 +154,8 @@
 		text-decoration: @link-hover-decoration;
 	}
 }
-.btn-link-cancel {
-	.btn-link();
+.Button-link-cancel {
+	.Button-link();
 	color: @gray-light;
 
 	&:hover,
@@ -141,9 +171,9 @@
 // Button Sizes
 // ------------------------------
 
-.btn-lg { font-size: @font-size-lg; }
-.btn-sm { font-size: @font-size-sm; }
-.btn-xs {
+.Button-lg { font-size: @font-size-lg; }
+.Button-sm { font-size: @font-size-sm; }
+.Button-xs {
 	font-size: @font-size-xs;
 	line-height: 1.9;
 	padding-left: .66em;
@@ -156,7 +186,7 @@
 // Block button
 // ------------------------------
 
-.btn-block {
+.Button-block {
 	display: block;
 	width: 100%;
 }
@@ -167,16 +197,15 @@
 // Button Goups
 // ------------------------------
 
-.btn-group {
+.Button-group {
 	display: inline-block;
 	position: relative;
 	vertical-align: middle;
 
-	> .btn {
+	> .Button {
 		border-radius: 0;
 		float: left;
 		margin-left: -1px;
-		position: relative;
 
 		&:first-child {
 			.border-left-radius(@border-radius-base);
@@ -184,6 +213,11 @@
 		}
 		&:last-child {
 			.border-right-radius(@border-radius-base);
+		}
+		&:hover,
+		&:active,
+		&:focus {
+			position: relative;
 		}
 	}
 }
