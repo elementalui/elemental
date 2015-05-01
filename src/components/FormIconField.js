@@ -13,7 +13,7 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		iconPosition: React.PropTypes.oneOf(['left', 'right']),
-		iconKey: React.PropTypes.oneOf(['calendar', 'camera', 'cart', 'close-circled', 'close', 'cog', 'home', 'information', 'mail', 'menu', 'search', 'star-outline', 'star', 'telephone', 'time', 'user', 'users', 'warning']).isRequired,
+		iconKey: React.PropTypes.string.isRequired,
 		iconFill: React.PropTypes.oneOf(COLOR_VARIANTS),
 		iconColor: React.PropTypes.oneOf(COLOR_VARIANTS),
 		iconIsLoading: React.PropTypes.bool
@@ -30,9 +30,11 @@ module.exports = React.createClass({
 		
 		// classes
 		var fieldClass = classNames('form-icon-field', {
-				'is-fill-icon': this.props.iconFill,
+				'has-fill-icon': this.props.iconFill,
 				'is-loading-icon': this.props.iconIsLoading
 			},
+			(this.props.iconFill ? ('field-context-' + this.props.iconFill) : null),
+			(this.props.iconColor ? ('field-context-' + this.props.iconColor) : null),
 			this.props.iconPosition);
 
 		var iconContainerClass = classNames('form-icon',
@@ -56,8 +58,8 @@ module.exports = React.createClass({
 		return (
 			<FormField {...props}>
 				<div className={fieldClass}>
-					{icon}
 					{this.props.children}
+					{icon}
 				</div>
 			</FormField>
 		);

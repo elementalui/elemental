@@ -25,11 +25,11 @@ var controlOptions = [
 ];
 var COUNTRIES = require('../data/countries');
 var COLOR_VARIANTS = [
-	{ label: 'Default', value: 'default' },
-	{ label: 'Primary', value: 'primary' },
-	{ label: 'Success', value: 'success' },
-	{ label: 'Warning', value: 'warning' },
-	{ label: 'Danger',  value: 'danger' }
+	{ label: 'Default', icon: 'star', value: 'default' },
+	{ label: 'Primary', icon: 'info', value: 'primary' },
+	{ label: 'Success', icon: 'check', value: 'success' },
+	{ label: 'Warning', icon: 'alert', value: 'warning' },
+	{ label: 'Danger',  icon: 'stop', value: 'danger' }
 ];
 
 var Forms = React.createClass({
@@ -43,7 +43,10 @@ var Forms = React.createClass({
 	},
 
 	onDrop: function (files) {
-		console.log('Received files: ', files);
+		var outputFileInfo = files.map(function(file, i) {
+			return '"' + file.name + '" (' + Math.round(file.size / 1024) + 'Kb)';
+		});
+		alert('Received files: \n' + outputFileInfo.join('\n'));
 		this.setState({
 			files: files
 		});
@@ -110,17 +113,9 @@ var Forms = React.createClass({
 
 		// Icon Loops
 
-		var iconFields = icons.map(function(icon, i) {
-			return (
-				<FormIconField key={icon.value} width="one-sixth" iconPosition="left" iconKey={icon.value} iconColor="primary">
-					<FormInput placeholder={icon.label} name={'icon-form-' + icon.value} />
-				</FormIconField>
-			);
-		});
-
 		var iconContextVariantsColor = COLOR_VARIANTS.map(function(color, i) {
 			return (
-				<FormIconField key={color.value} width="one-fifth" iconPosition="left" iconKey="star" iconColor={color.value}>
+				<FormIconField key={color.value} width="one-fifth" iconPosition="left" iconKey={color.icon} iconColor={color.value}>
 					<FormInput placeholder={color.label} name={'icon-form-context-variants-color' + color.value} />
 				</FormIconField>
 			);
@@ -128,7 +123,7 @@ var Forms = React.createClass({
 
 		var iconContextVariantsFill = COLOR_VARIANTS.map(function(color, i) {
 			return (
-				<FormIconField key={color.value} width="one-fifth" iconPosition="left" iconKey="star" iconFill={color.value}>
+				<FormIconField key={color.value} width="one-fifth" iconPosition="left" iconKey={color.icon} iconFill={color.value}>
 					<FormInput placeholder={color.label} name={'icon-form-context-variants-color' + color.value} />
 				</FormIconField>
 			);
@@ -323,10 +318,10 @@ var Forms = React.createClass({
 				<form className="u-margin-bottom-lg">
 					<FormLabel>Alignment</FormLabel>
 					<FormRow>
-						<FormIconField width="one-half" iconPosition="left" iconKey="star">
+						<FormIconField width="one-half" iconPosition="left" iconColor="default" iconKey="star">
 							<FormInput placeholder="Left Aligned" name="icon-alignment-left" />
 						</FormIconField>
-						<FormIconField width="one-half" iconPosition="right" iconKey="star">
+						<FormIconField width="one-half" iconPosition="right" iconColor="default" iconKey="star">
 							<FormInput placeholder="Right Aligned" name="icon-alignment-right" />
 						</FormIconField>
 					</FormRow>
@@ -338,11 +333,7 @@ var Forms = React.createClass({
 					<FormRow>
 						{iconContextVariantsFill}
 					</FormRow>
-					<FormLabel>Icon Types</FormLabel>
-					<FormRow>
-						{iconFields}
-					</FormRow>
-					<FormIconField label="Loading Indicator" iconPosition="right" iconKey="search" iconIsLoading={this.state.searching}>
+					<FormIconField label="Loading Indicator" iconPosition="right" iconKey="search" iconColor="default" iconIsLoading={this.state.searching}>
 						<FormInput onChange={this.handleSearch} type="search" placeholder="Search..." name="icon-form-search" />
 					</FormIconField>
 				</form>
