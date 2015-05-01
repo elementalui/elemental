@@ -67,7 +67,7 @@ var Home = React.createClass({
 						<p>At <a href="http://www.thinkmill.com.au" target="_blank">Thinkmill</a> we are constantly building bespoke web applications for various clients. We noticed that whilst projects vary greatly, we're using the same CSS and Component foundations over and over again.</p>
 						<p>In an effort to keep our projects' codebases <abbr title="Don't Repeat Yourself">DRY</abbr> we decided it was time to build something to improve our workflow and unify our projects to decrease devolpment time.</p>
 						<p>All this coupled with a growing need for a re-usable set of React.js UI Components for the Admin UI in <a href="http://www.keystonejs.com" target="_blank">KeystoneJS</a>, Elemental was born.</p>
-						<p>While there are many other great libraries available (also for React), our goal with Elemental is to develop a light-weight, unopinionated, highly modular framework that we can use across all our web projects.</p>
+						<p>While there are many other great UI Libraries available (including for React), our goal with Elemental is to develop a light-weight, unopinionated, modular framework that we can use across all our web projects.</p>
 						
 						<div className="demo-banner-points">
 							<div className="row">
@@ -76,12 +76,12 @@ var Home = React.createClass({
 									<p>Available for use under the MIT license,  built on foundations of React.js, LESS, Babel and Gulp, and inspired by other great projects.</p>
 								</div>
 								<div className="col-sm-4">
-									<h3>Build Tools</h3>
-									<p>Includes a Gulpfile for compiling our LESS, Moment for date handling, and Babelify for build.</p>
+									<h3>Modern Workflows</h3>
+									<p>Elemental is designed to be installed from npm and built into your project with browserify or webpack. You can customise it by includig our LESS too.</p>
 								</div>
 								<div className="col-sm-4">
 									<h3>Made by Thinkmill</h3>
-									<p>Elemental is the cornerstone of Thinkmill's development suite, made by people who share a passion for HTML, CSS and JavaScript.</p>
+									<p>Elemental UI is the cornerstone of Thinkmill's development suite, made by people who share a passion for HTML, CSS and JavaScript.</p>
 								</div>
 							</div>
 						</div>
