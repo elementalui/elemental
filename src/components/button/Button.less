@@ -55,17 +55,20 @@
 // ------------------------------
 
 
-// default styles
+// special case for the default button
 
 .Button-default {
 	// .button-default-variant(@btn-default-color; @btn-default-border);
 	#gradient .vertical(#fafafa, #eaeaea);
 	border: 1px solid @input-border-color;
 	color: @text-color;
+	text-shadow: 0 1px 0 white;
+
 
 	&:hover {
 		#gradient .vertical(#fff, #eee);
-		border: 1px solid @input-border-color;
+		border-color: darken(@input-border-color, 5%) darken(@input-border-color, 5%) darken(@input-border-color, 10%);
+		box-shadow: 0 1px 0 rgba(0,0,0,0.1);
 		color: @text-color;
 	}
 	&:focus {
@@ -86,6 +89,8 @@
 		background-color: @button-default-disabled-bg;
 	}
 }
+
+// hollow styles
 
 .Button-default-primary {
 	.button-default-variant(@button-primary-color; @button-primary-border);
