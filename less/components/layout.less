@@ -79,7 +79,7 @@
 
 	&:hover,
 	&:focus {
-		color: @app-primary;
+		color: @brand-primary;
 		text-decoration: none;
 	}
 
@@ -88,7 +88,7 @@
 	}
 
 	&.active {
-		box-shadow: inset 0 -3px 0 fade(@app-primary, 66%);
+		box-shadow: inset 0 -3px 0 fade(@brand-primary, 66%);
 		color: @text-color;
 	}
 }
@@ -150,7 +150,7 @@
 
 	&.active {
 		// box-shadow: inset 1px 0 0 @app-primary;
-		color: @app-primary;
+		color: @brand-primary;
 	}
 }
 
@@ -177,6 +177,16 @@
 	color: @gray-light;
 	padding: 2em 0;
 	text-align: center;
+
+	a {
+		color: @brand-primary;
+
+		&:hover,
+		&:focus {
+			color: lighten(@brand-primary, 10%);
+			outline: none;
+		}
+	}
 }
 .page-footer__icon {
 	font-size: 1.125em;
