@@ -81,7 +81,7 @@ var Buttons = React.createClass({
 				<Button type="default-danger">Danger</Button>
 
 				<h2 className="u-margin-top-lg">Button Groups</h2>
-				<div className="Button-group">
+				<div className="ButtonGroup">
 					<Button type="default">Left</Button>
 					<Button type="default">Middle</Button>
 					<Button type="default">Right</Button>

@@ -17,8 +17,8 @@ module.exports = React.createClass({
 		return {
 			buttonLabelInitial: 'Upload File',
 			buttonLabelChange:  'Change File',
-			buttonClassInitial: 'Button Button-default',
-			buttonClassChange:  'Button Button-default'
+			buttonClassInitial: 'Button Button--default',
+			buttonClassChange:  'Button Button--default'
 		};
 	},
 	getInitialState() {
@@ -85,7 +85,7 @@ module.exports = React.createClass({
 					</div>
 					<div className="file-upload-buttons">
 						<button type="button" onClick={this.triggerFileBrowser} className={this.props.buttonClassChange}>{this.props.buttonLabelChange}</button>
-						<button type="button" onClick={this.cancelUpload} className="Button Button-link-cancel">Cancel</button>
+						<button type="button" onClick={this.cancelUpload} className="Button Button--link-cancel">Cancel</button>
 					</div>
 				</div>
 			</div>
