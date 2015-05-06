@@ -20,8 +20,8 @@ module.exports = React.createClass({
 		// classes
 		var componentClass = classNames(
 			'Button',
-			'Button-' + this.props.type,
-			this.props.size ? 'Button-' + this.props.size : null,
+			'Button--' + this.props.type,
+			this.props.size ? 'Button--' + this.props.size : null,
 			this.props.className
 		);
 

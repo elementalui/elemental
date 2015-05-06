@@ -57,7 +57,7 @@
 
 // special case for the default button
 
-.Button-default {
+.Button--default {
 	// .button-default-variant(@btn-default-color; @btn-default-border);
 	#gradient .vertical(#fafafa, #eaeaea);
 	border: 1px solid @input-border-color;
@@ -92,32 +92,32 @@
 
 // hollow styles
 
-.Button-default-primary {
+.Button--default-primary {
 	.button-default-variant(@button-primary-color; @button-primary-border);
 }
-.Button-default-success {
+.Button--default-success {
 	.button-default-variant(@button-success-color; @button-success-border);
 }
-.Button-default-warning {
+.Button--default-warning {
 	.button-default-variant(@button-warning-color; @button-warning-border);
 }
-.Button-default-danger {
+.Button--default-danger {
 	.button-default-variant(@button-danger-color; @button-danger-border);
 }
 
 
 // fill styles
 
-.Button-primary {
+.Button--primary {
 	.button-variant(white; @button-primary-bg);
 }
-.Button-success {
+.Button--success {
 	.button-variant(white; @button-success-bg);
 }
-.Button-warning {
+.Button--warning {
 	.button-variant(white; @button-warning-bg);
 }
-.Button-danger {
+.Button--danger {
 	.button-variant(white; @button-danger-bg);
 }
 
@@ -128,7 +128,7 @@
 // -------------------------
 
 // Make a button look and behave like a link
-.Button-link {
+.Button--link {
 	border-radius: 0;
 	color: @link-color;
 	font-weight: normal;
@@ -154,8 +154,8 @@
 		text-decoration: @link-hover-decoration;
 	}
 }
-.Button-link-cancel {
-	.Button-link();
+.Button--link-cancel {
+	.Button--link();
 	color: @gray-light;
 
 	&:hover,
@@ -171,9 +171,9 @@
 // Button Sizes
 // ------------------------------
 
-.Button-lg { font-size: @font-size-lg; }
-.Button-sm { font-size: @font-size-sm; }
-.Button-xs {
+.Button--lg { font-size: @font-size-lg; }
+.Button--sm { font-size: @font-size-sm; }
+.Button--xs {
 	font-size: @font-size-xs;
 	line-height: 1.9;
 	padding-left: .66em;
