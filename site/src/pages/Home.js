@@ -4,7 +4,6 @@ var Router = require('react-router');
 
 const NavItems = [
 	{ value: 'buttons',     icon: 'screen-full', label: 'Buttons' },
-	{ value: 'tables',      icon: 'list-unordered', label: 'Tables' },
 	{ value: 'forms',       icon: 'diff-modified', label: 'Forms' },
 	{ value: 'spinner',     icon: 'ellipsis', label: 'Spinner' },
 	{ value: 'modal',       icon: 'versions', label: 'Modal' },
@@ -17,12 +16,8 @@ var Home = React.createClass({
 	
 	render () {
 		var menuItems = NavItems.map(function(item, i) {
-			var itemClass = 'demo-banner-nav__col col-xs-4 col-sm-2';
-			if (item.value === 'tables') {
-				itemClass += ' hidden-xs'
-			}
 			return (
-				<div className={itemClass}>
+				<div className="demo-banner-nav__col col-xs-4 col-sm-2">
 					<Router.Link key={item.value} className="demo-banner-nav__item" onClick={self.toggleMenu} to={item.value}>
 						<span className={'demo-banner-nav__icon octicon octicon-' + item.icon} />
 						<div className="demo-banner-nav__label">

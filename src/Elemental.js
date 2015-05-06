@@ -8,7 +8,6 @@ exports.Modal =              require('./components/Modal');
 exports.PasswordInputGroup = require('./components/PasswordInputGroup');
 exports.RadioGroup =         require('./components/RadioGroup');
 exports.Spinner =            require('./components/Spinner');
-exports.Table =              require('./components/Table');
 exports.Tooltip =            require('./components/Tooltip');
 
 exports.FormDragAndDrop =    require('./components/FormDragAndDrop');

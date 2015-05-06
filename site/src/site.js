@@ -3,7 +3,6 @@ var Router = require('react-router');
 
 const NavItems = [
 	{ value: 'buttons',     label: 'Buttons' },
-	{ value: 'tables',      label: 'Tables' },
 	{ value: 'forms',       label: 'Forms' },
 	{ value: 'spinner',     label: 'Spinner' },
 	{ value: 'modal',       label: 'Modal' },
@@ -75,7 +74,6 @@ var routes = (
 	<Router.Route name="app" path={basepath + '/'} handler={App}>
 		<Router.Route name="home" path={basepath + '/'} handler={require('./pages/Home')} />
 		<Router.Route name="buttons" path={basepath + '/buttons'} handler={require('./pages/Buttons')} />
-		<Router.Route name="tables" path={basepath + '/tables'} handler={require('./pages/Tables')} />
 		<Router.Route name="forms" path={basepath + '/forms'} handler={require('./pages/Forms')} />
 		<Router.Route name="spinner" path={basepath + '/spinner'} handler={require('./pages/Spinner')} />
 		<Router.Route name="modal" path={basepath + '/modal'} handler={require('./pages/Modal')} />
