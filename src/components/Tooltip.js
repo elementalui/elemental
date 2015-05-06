@@ -38,7 +38,7 @@ module.exports = React.createClass({
 	render() {
 		// classes
 		var componentClass = classNames(
-			'Tooltip-outer',
+			'TooltipOuter',
 			this.props.className
 		);
 
@@ -77,8 +77,8 @@ module.exports = React.createClass({
 		// content
 		var tooltip = this.state.hover ? (
 			<span style={tooltipStyle} className={'Tooltip ' + this.props.placement}>
-				<span className="Tooltip-content">{this.props.content}</span>
-				<span className="Tooltip-arrow" />
+				<span className="TooltipContent">{this.props.content}</span>
+				<span className="TooltipArrow" />
 			</span>
 		) : null;
 		

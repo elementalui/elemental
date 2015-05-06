@@ -35,7 +35,7 @@
 // Content
 // ------------------------------
 
-.Tooltip-content {
+.TooltipContent {
 	background-color: @tooltip-bg-color;
 	border-radius: .33em;
 	color: white;
@@ -55,7 +55,7 @@
 // Arrow
 // ------------------------------
 
-.Tooltip-arrow {
+.TooltipArrow {
 	.square(0);
 	border:  @tooltip-arrow-width solid transparent;
 	display: inline-block;
@@ -70,7 +70,7 @@
 
 
 // top
-.Tooltip.top .Tooltip-arrow {
+.Tooltip.top .TooltipArrow {
 	border-top-color: @tooltip-bg-color;
 	bottom: -(@tooltip-arrow-width * 2);
 	left: 50%;
@@ -78,7 +78,7 @@
 }
 
 // bottom
-.Tooltip.bottom .Tooltip-arrow {
+.Tooltip.bottom .TooltipArrow {
 	border-bottom-color: @tooltip-bg-color;
 	top: -(@tooltip-arrow-width * 2);
 	left: 50%;
@@ -86,7 +86,7 @@
 }
 
 // left
-.Tooltip.left .Tooltip-arrow {
+.Tooltip.left .TooltipArrow {
 	border-left-color: @tooltip-bg-color;
 	right: -(@tooltip-arrow-width * 2);
 	margin-top: -@tooltip-arrow-width;
@@ -94,7 +94,7 @@
 }
 
 // right
-.Tooltip.right .Tooltip-arrow {
+.Tooltip.right .TooltipArrow {
 	border-right-color: @tooltip-bg-color;
 	left: -(@tooltip-arrow-width * 2);
 	margin-top: -@tooltip-arrow-width;

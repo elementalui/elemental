@@ -9,7 +9,7 @@
 // Base
 // ------------------------------
 
-.spinner {
+.Spinner {
 	display: inline-block;
 	font-size: @spinner-dot-size;
 	height: @spinner-dot-size;
@@ -25,18 +25,18 @@
 // Dots
 // ------------------------------
 
-.spinner__dot {
+.SpinnerDot {
 	.animation( pulse 1s infinite ease-in-out );
 	.square(1em);
 	border-radius: 50%;
 	display: inline-block;
 	vertical-align: top;
 }
-&.spinner__dot--second {
+&.SpinnerDot--second {
 	.animation-delay( 160ms );
 	margin-left: 1em;
 }
-&.spinner__dot--third {
+&.SpinnerDot--third {
 	.animation-delay( 320ms );
 	margin-left: 1em;
 }
@@ -49,13 +49,13 @@
 
 
 // default
-.spinner--default > .spinner__dot { background-color: @spinner-dot-bg; }
+.Spinner--default > .SpinnerDot { background-color: @spinner-dot-bg; }
 
 // primary
-.spinner--primary > .spinner__dot { background-color: @app-primary; }
+.Spinner--primary > .SpinnerDot { background-color: @app-primary; }
 
 // inverted
-.spinner--inverted > .spinner__dot { background-color: white; }
+.Spinner--inverted > .SpinnerDot { background-color: white; }
 
 
 
@@ -65,13 +65,13 @@
 
 
 // default
-.spinner--default > .spinner__dot { background-color: @spinner-dot-bg; }
+.Spinner--default > .SpinnerDot { background-color: @spinner-dot-bg; }
 
 // primary
-.spinner--primary > .spinner__dot { background-color: @app-primary; }
+.Spinner--primary > .SpinnerDot { background-color: @app-primary; }
 
 // inverted
-.spinner--inverted > .spinner__dot { background-color: white; }
+.Spinner--inverted > .SpinnerDot { background-color: white; }
 
 
 
@@ -81,7 +81,7 @@
 
 
 // small
-.spinner--sm {
+.Spinner--sm {
 	font-size: (@spinner-dot-size / 2);
 	height: (@spinner-dot-size / 2);
 }
@@ -93,8 +93,8 @@
 // Inside Buttons
 // ------------------------------
 
-.Button > .spinner {
-	.spinner--sm();
+.Button > .Spinner {
+	.Spinner--sm();
 	margin-right: 2em;
 
 	&:only-child {

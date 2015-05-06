@@ -16,17 +16,17 @@ module.exports = React.createClass({
 	},
 	render() {
 		var componentClass = classNames(
-			'spinner',
-			'spinner--' + this.props.type,
-			'spinner--' + this.props.size,
+			'Spinner',
+			'Spinner--' + this.props.type,
+			'Spinner--' + this.props.size,
 			this.props.className
 		);
 
 		return (
 			<div className={componentClass}>
-				<i className="spinner__dot spinner__dot--first" />
-				<i className="spinner__dot spinner__dot--second" />
-				<i className="spinner__dot spinner__dot--third" />
+				<i className="SpinnerDot SpinnerDot--first" />
+				<i className="SpinnerDot SpinnerDot--second" />
+				<i className="SpinnerDot SpinnerDot--third" />
 			</div>
 		);
 	}
