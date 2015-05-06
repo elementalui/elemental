@@ -20,8 +20,8 @@ module.exports = React.createClass({
 	},
 	render() {
 		// classes
-		var className = classNames('form-input',
-			(this.props.size ? ('form-input-' + this.props.size) : null),
+		var className = classNames('FormInput',
+			(this.props.size ? ('FormInput--' + this.props.size) : null),
 			this.props.className);
 
 		var props = Object.assign(blacklist(this.props, 'className'), {

@@ -5,72 +5,6 @@
 
 
 
-// Inputs
-// ------------------------------
-
-.form-input {
-	.transition( ~"border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s" );
-	background-color: @input-bg-color;
-	background-image: none;
-	border-radius: @border-radius-base;
-	border: 1px solid @input-border-color;
-	border-top-color: darken(@input-border-color, 4%);
-	border-bottom-color: lighten(@input-border-color, 4%);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	color: @text-color;
-	display: block;
-	font-size: @font-size-base;
-	line-height: @component-line-height;
-	height: @component-height;
-	padding: 0 @input-padding-horizontal;
-	width: 100%;
-	-webkit-appearance: none;
-
-
-	// states
-
-	&:hover {
-		border-color: @input-border-color-hover;
-		outline: 0;
-	}
-	&:focus {
-		border-color: @input-border-color-focus;
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@input-border-color-focus, 10%);
-		// box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 4px fade(@input-border-color-focus, 33%);
-		outline: 0;
-	}
-	&.disabled,
-	&[disabled] {
-		background-color: @input-bg-disabled;
-		pointer-events: none;
-	}
-
-	// firefox weirdness
-	&::-moz-focus-inner {
-		border: 0;
-		outline : 0;
-	}
-}
-.form-input-code {
-	font-family: @font-family-monospace;
-}
-
-
-// input sizes
-
-.form-input-lg { font-size: @font-size-lg; }
-.form-input-sm { font-size: @font-size-sm; }
-.form-input-xs {
-	font-size: @font-size-xs;
-	line-height: 1.9;
-	padding-left: .66em;
-	padding-right: .66em;
-}
-
-
-
-
-
 // Labels
 // ------------------------------
 
@@ -142,7 +76,7 @@
 	display: table;
 	margin-bottom: @spacing-md;
 
-	.form-input {
+	.FormInput {
 		.border-right-radius(0);
 		display: table-cell;
 		position: relative;
@@ -216,7 +150,7 @@
 	.form-label {
 		color: @app-danger;
 	}
-	.form-input {
+	.FormInput {
 		border-color: @app-danger;
 
 		&:focus {
@@ -229,7 +163,7 @@
 	.form-label {
 		color: @app-success;
 	}
-	.form-input {
+	.FormInput {
 		border-color: @app-success;
 
 		&:focus {
@@ -269,45 +203,6 @@
 
 
 
-// Textarea
-// ------------------------------
-
-textarea.form-input {
-	.resizable(vertical);
-	height: auto;
-	line-height: 1.4em;
-	padding: .5em @input-padding-horizontal;
-}
-
-
-
-
-// Select
-// ------------------------------
-
-select.form-input {
-	background-image: data-uri('../../public/images/select-arrows.png');
-	background-position: center right @input-padding-horizontal;
-	background-repeat: no-repeat;
-	background-size: 7px 11px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-	border-bottom-color: darken(@input-border-color, 4%);
-	border-top-color: lighten(@input-border-color, 4%);
-	height: @component-height;
-
-	&:focus {
-		box-shadow: 0 0 0 3px fade(@input-border-color-focus, 10%);
-	}
-	&.disabled,
-	&[disabled] {
-		background-image: data-uri('../../public/images/select-arrows-disabled.png');
-		color: @gray-light;
-	}
-}
-
-
-
-
 // Icons
 // ------------------------------
 
@@ -315,7 +210,7 @@ select.form-input {
 	position: relative;
 
 	&.left {
-		> .form-input { padding-left: (@input-padding-horizontal * 3); }
+		> .FormInput { padding-left: (@input-padding-horizontal * 3); }
 		> .form-icon {
 			.border-left-radius(@border-radius-base);
 			left: 0;
@@ -323,10 +218,10 @@ select.form-input {
 		> .spinner {
 			left: 8px;
 		}
-		&.has-fill-icon > .form-input { padding-left: (@input-padding-horizontal * 2) + 1.5; }
+		&.has-fill-icon > .FormInput { padding-left: (@input-padding-horizontal * 2) + 1.5; }
 	}
 	&.right {
-		> .form-input { padding-right: (@input-padding-horizontal * 3); }
+		> .FormInput { padding-right: (@input-padding-horizontal * 3); }
 		> .form-icon {
 			.border-right-radius(@border-radius-base);
 			right: 0;
@@ -334,7 +229,7 @@ select.form-input {
 		> .spinner {
 			right: 8px;
 		}
-		&.has-fill-icon > .form-input { padding-right: (@input-padding-horizontal * 2) + 1.5; }
+		&.has-fill-icon > .FormInput { padding-right: (@input-padding-horizontal * 2) + 1.5; }
 	}
 }
 .form-icon {
@@ -386,16 +281,16 @@ select.form-input {
 	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 	color: @gray;
 
-	.form-input:focus + & {
+	.FormInput:focus + & {
 		box-shadow: inset -1px 0 0 darken(@input-border-color, 10%), inset 0 0 0 1px @input-border-color-focus;
 	}
 }
 
 // handle focus states on differing field contexts
 
-.field-context-danger  > .form-input { .field-focus-state(@app-danger); }
-.field-context-success > .form-input { .field-focus-state(@app-success); }
-.field-context-warning > .form-input { .field-focus-state(@app-warning); }
+.field-context-danger  > .FormInput { .field-focus-state(@app-danger); }
+.field-context-success > .FormInput { .field-focus-state(@app-success); }
+.field-context-warning > .FormInput { .field-focus-state(@app-warning); }
 
 
 
@@ -448,7 +343,7 @@ select.form-input {
 		// the wacky syntax on width is so LESS doesn't try to run the calculation itself,
 		// where it will normalize the values assuming both are pixels. this way it's
 		// left to the browser
-		.form-input:first-child {
+		.FormInput:first-child {
 			margin-left: @form-label-width;
 			width: calc(~"100%" - @form-label-width);
 
