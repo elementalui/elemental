@@ -15,6 +15,9 @@ var FormInput = require('elemental').FormInput;
 var FormLabel = require('elemental').FormLabel;
 var FormSelect = require('elemental').FormSelect;
 
+var InputGroup = require('elemental').InputGroup;
+var InputGroupButton = require('elemental').InputGroupButton;
+
 var icons = require("../../../src/FormIcons").list;
 
 var controlOptions = [
@@ -185,34 +188,26 @@ var Forms = React.createClass({
 
 				<h2 id="section-groups" className="u-padding-top-lg">Input Groups</h2>
 				<form className="u-margin-bottom-lg">
-					<div className="input-group">
-						<input type="text" className="form-input input-group-field" placeholder="Input group field" />
-						<span className="input-group-button">
-							<Button type="default">Button</Button>
-						</span>
-					</div>
-					<div className="input-group">
-						<input type="text" className="form-input input-group-field" placeholder="Input group field" />
-						<span className="input-group-button">
-							<Button type="primary">Button</Button>
-						</span>
-					</div>
-					<div className="input-group">
-						<input type="text" className="form-input input-group-field" placeholder="Input group field" />
-						<span className="input-group-button">
-							<Button type="default">
-								<span className="octicon octicon-pencil" />
-							</Button>
-						</span>
-					</div>
-					<div className="input-group">
-						<input type="text" className="form-input input-group-field" placeholder="Input group field" />
-						<span className="input-group-button">
-							<Button type="primary">
-								<span className="octicon octicon-pencil" />
-							</Button>
-						</span>
-					</div>
+					<InputGroup>
+						<FormInput type="text" className="form-input input-group-field" placeholder="Input group field" />
+						<InputGroupButton type="default">Button</InputGroupButton>
+					</InputGroup>
+					<InputGroup>
+						<FormInput type="text" className="form-input input-group-field" placeholder="Input group field" />
+						<InputGroupButton type="primary">Button</InputGroupButton>
+					</InputGroup>
+					<InputGroup>
+						<FormInput type="text" className="form-input input-group-field" placeholder="Input group field" />
+						<InputGroupButton type="default">
+							<span className="octicon octicon-pencil" />
+						</InputGroupButton>
+					</InputGroup>
+					<InputGroup>
+						<FormInput type="text" className="form-input input-group-field" placeholder="Input group field" />
+						<InputGroupButton type="primary">
+							<span className="octicon octicon-pencil" />
+						</InputGroupButton>
+					</InputGroup>
 				</form>
 
 				

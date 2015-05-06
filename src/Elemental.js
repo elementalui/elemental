@@ -19,3 +19,6 @@ exports.FormIconField =      require('./components/FormIconField');
 exports.FormInput =          require('./components/FormInput');
 exports.FormLabel =          require('./components/FormLabel');
 exports.FormSelect =         require('./components/FormSelect');
+
+exports.InputGroup =         require('./components/InputGroup');
+exports.InputGroupButton =   require('./components/InputGroupButton');

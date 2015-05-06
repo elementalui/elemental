@@ -1,0 +1,29 @@
+// 
+// Input Group
+// ==============================
+
+.InputGroup {
+	display: table;
+	margin-bottom: @spacing-md;
+
+	.FormInput {
+		.border-right-radius(0);
+		display: table-cell;
+		position: relative;
+		width: 100%;
+
+		&:focus {
+			z-index: 1;
+		}
+	}
+	.Button {
+		.border-left-radius(0);
+		margin-left: -1px;
+	}
+}
+.InputGroupButton {
+	display: table-cell;
+	position: relative;
+	vertical-align: middle;
+	width: 1%;
+}
