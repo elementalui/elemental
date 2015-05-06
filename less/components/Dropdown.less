@@ -10,7 +10,7 @@
 // Wrapper
 // ------------------------------
 
-.dropdown {
+.Dropdown {
 	position: relative;
 }
 
@@ -23,7 +23,7 @@
 
 // ensure the menu enters from behind the button
 
-.dropdown-toggle {
+.Dropdown-toggle {
 	position: relative;
 	z-index: @zindex-dropdown-button;
 }
@@ -31,7 +31,7 @@
 
 // disclosure arrow
 
-.dropdown-toggle__arrow {
+.Dropdown-toggle__arrow {
 	border-left:  @dropdown-caret-width solid transparent;
 	border-right: @dropdown-caret-width solid transparent;
 	border-top:   @dropdown-caret-width dashed;
@@ -51,7 +51,7 @@
 
 // base
 
-.dropdown-menu {
+.Dropdown-menu {
 	.animation-duration( 140ms );
 	.animation-timing-function( cubic-bezier(0.77, 0, 0.175, 1) );
 	background-color: @dropdown-bg;
@@ -73,17 +73,17 @@
 		right: 0;
 	}
 }
-.dropdown-menu-enter {
+.Dropdown-menu-enter {
 	.animation-name( dropdownMenuEnter );
 }
-.dropdown-menu-leave {
+.Dropdown-menu-leave {
 	.animation-name( dropdownMenuLeave );
 }
 
 
 // list item 
 
-.dropdown-menu__action {
+.Dropdown-menu__action {
 	clear: both;
 	color: @dropdown-link-color;
 	cursor: pointer;
@@ -115,7 +115,7 @@
 
 // dividers
 
-.dropdown-menu__divider {
+.Dropdown-menu__divider {
 	background-color: @dropdown-divider-bg;
 	height: 1px;
 	margin-bottom: .25em;
@@ -126,7 +126,7 @@
 
 // headers
 
-.dropdown-menu__header {
+.Dropdown-menu__header {
 	color: @dropdown-header-color;
 	display: block;
 	font-size: @font-size-sm;
@@ -138,7 +138,7 @@
 
 // background
 
-.dropdown-menu-backdrop {
+.Dropdown-menu-backdrop {
 	height: 100%;
 	left: 0;
 	position: fixed;

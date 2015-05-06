@@ -15,41 +15,41 @@ module.exports = React.createClass({
 	},
 	render() {
 		// classes
-		var dropdownClass = classNames('dropdown', {
+		var dropdownClass = classNames('Dropdown', {
 			'is-open': this.props.isOpen,
 			'align-right': this.props.alignRight
 		}, this.props.className);
-		var buttonClass = classNames('dropdown-toggle', this.props.buttonClass);
+		var buttonClass = classNames('Dropdown-toggle', this.props.buttonClass);
 
 		// elements
 		var dropdownMenuItems = this.props.items.map(function(item, i) {
 			var menuItem;
 			if (item.type === 'header') {
-				menuItem = <li key={'item-' + i} className="dropdown-menu__header">{item.label}</li>
+				menuItem = <li key={'item-' + i} className="Dropdown-menu__header">{item.label}</li>
 			} else if (item.type === 'divider') {
-				menuItem = <li key={'item-' + i} className="dropdown-menu__divider" />
+				menuItem = <li key={'item-' + i} className="Dropdown-menu__divider" />
 			} else {
 				if (item.href) {
 					menuItem = (
-						<li key={'item-' + i} className="dropdown-menu__item">
-							<a className="dropdown-menu__action" href={item.anchor}>{item.label}</a>
+						<li key={'item-' + i} className="Dropdown-menu__item">
+							<a className="Dropdown-menu__action" href={item.anchor}>{item.label}</a>
 						</li>
 					);
 				} else {
 					menuItem = (
-						<li key={'item-' + i} className="dropdown-menu__item">
-							<span className="dropdown-menu__action" onClick={item.action}>{item.label}</span>
+						<li key={'item-' + i} className="Dropdown-menu__item">
+							<span className="Dropdown-menu__action" onClick={item.action}>{item.label}</span>
 						</li>
 					);
 				}
 			}
 			return menuItem;
 		}.bind(this));
-		var dropdownMenu = this.props.isOpen ? <ul key="dropdown-menu" className="dropdown-menu" role="menu">
+		var dropdownMenu = this.props.isOpen ? <ul key="Dropdown-menu" className="Dropdown-menu" role="menu">
 			{dropdownMenuItems}
 		</ul> : null;
-		var dropdownMenuBackground = this.props.isOpen ? <div className="dropdown-menu-backdrop" onClick={this.props.onChange} /> : null;
-		var disclosureArrow = this.props.buttonDisclosureArrow ? <span className="dropdown-toggle__arrow" /> : null;
+		var dropdownMenuBackground = this.props.isOpen ? <div className="Dropdown-menu-backdrop" onClick={this.props.onChange} /> : null;
+		var disclosureArrow = this.props.buttonDisclosureArrow ? <span className="Dropdown-toggle__arrow" /> : null;
 		
 		return (
 			<div className={dropdownClass}>
@@ -57,7 +57,7 @@ module.exports = React.createClass({
 					{this.props.buttonLabel}
 					{disclosureArrow}
 				</button>
-				<ReactCSSTransitionGroup transitionName="dropdown-menu" component="div">{dropdownMenu}</ReactCSSTransitionGroup>
+				<ReactCSSTransitionGroup transitionName="Dropdown-menu" component="div">{dropdownMenu}</ReactCSSTransitionGroup>
 				{dropdownMenuBackground}
 			</div>
 		);

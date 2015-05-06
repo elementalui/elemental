@@ -1,9 +1,9 @@
 var React = require('react/addons');
 
 var Button = require('elemental').Button;
-var EmailInputGroup = require('elemental').EmailInputGroup;
+var FormField = require('elemental').FormField;
+var FormInput = require('elemental').FormInput;
 var Modal = require('elemental').Modal;
-var PasswordInputGroup = require('elemental').PasswordInputGroup;
 var Spinner = require('elemental').Spinner;
 
 module.exports = React.createClass({
@@ -54,13 +54,17 @@ module.exports = React.createClass({
 				<Button onClick={this.toggleModal}>Launch Modal</Button>
 				<Modal isOpen={this.state.modalIsOpen} onChange={this.toggleModal} headerTitle="Modal Header" headerHasCloseButton backdropClosesModal>
 					<form>
-						<div className="modal-body">
-							<EmailInputGroup    label="Email"    value={this.state.inputEmail}    onChange={updateEmail}    required />
-							<PasswordInputGroup label="Password" value={this.state.inputPassword} onChange={updatePassword} required />
+						<div className="Modal-body">
+							<FormField label="Email">
+								<FormInput label="Email" type="email" value={this.state.inputEmail} onChange={updateEmail} required />
+							</FormField>
+							<FormField label="Password">
+								<FormInput label="Password" type="password" value={this.state.inputPassword} onChange={updatePassword} required />
+							</FormField>
 						</div>
-						<div className="modal-footer">
+						<div className="Modal-footer">
 							{submitButton}
-							<Button onClick={this.toggleModal} type="link-cancel">Cancel</Button>
+							<Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>
 						</div>
 					</form>
 				</Modal>

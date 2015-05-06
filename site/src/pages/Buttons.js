@@ -88,7 +88,7 @@ var Buttons = React.createClass({
 				</div>
 
 				<h2 className="u-margin-top-lg">Dropdown</h2>
-				<Dropdown isOpen={this.state.dropdownOpen} onChange={this.toggleDropdown} items={DROPDOWN_OPTIONS} buttonLabel="Action" buttonClass="Button Button-default" buttonDisclosureArrow />
+				<Dropdown isOpen={this.state.dropdownOpen} onChange={this.toggleDropdown} items={DROPDOWN_OPTIONS} buttonLabel="Action" buttonClass="Button Button--default" buttonDisclosureArrow />
 
 				<h2 className="u-margin-top-lg">Tooltip</h2>
 				<p>
