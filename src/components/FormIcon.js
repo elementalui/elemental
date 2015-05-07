@@ -9,29 +9,25 @@ module.exports = React.createClass({
 	displayName: 'FormIcon',
 	propTypes: {
 		className: React.PropTypes.string,
-		icon: React.PropTypes.oneOf(['calendar', 'camera', 'cart', 'close-circled', 'close', 'cog', 'home', 'information', 'mail', 'menu', 'search', 'star-outline', 'star', 'telephone', 'time', 'user', 'users', 'warning']),
+		icon: React.PropTypes.string,
 		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		color: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		isLoading: React.PropTypes.bool
 	},
 	render() {
 		// classes
-		var componentClass = classNames('form-icon',
-			(this.props.fill ? 'form-icon-fill--' + this.props.fill : null),
-			(this.props.type ? 'form-icon-color--' + this.props.type : null),
-			this.props.className);
-
-		var iconClass = classNames(
-			'form-icon-src',
-			icons[this.props.icon].className
+		var className = classNames(
+			'IconField__icon',
+			icons[this.props.icon].className,
+			(this.props.fill ? 'IconField__icon-fill--' + this.props.fill : null),
+			(this.props.type ? 'IconField__icon-color--' + this.props.type : null),
+			this.props.className
 		);
 
 		var component = this.props.isLoading ? (
 			<Spinner size="sm" />
 		) : (
-			<div className={componentClass}>
-				<span className={iconClass} />
-			</div>
+			<div className={className} />
 		);
 
 		return component;

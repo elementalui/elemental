@@ -5,13 +5,13 @@ var classNames = require('classnames');
 var Button = require('elemental').Button;
 
 module.exports = React.createClass({
-	displayName: 'InputGroupButton',
+	displayName: 'InputGroupAddon',
 	propTypes: {
 		className: React.PropTypes.string
 	},
 	render() {
 		return (
-			<span className="InputGroupButton">
+			<span className="InputGroup_addon">
 				<Button {...this.props}>
 					{this.props.children}
 				</Button>

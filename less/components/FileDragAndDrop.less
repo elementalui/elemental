@@ -1,0 +1,33 @@
+//
+// File Drag and Drop
+// ==============================
+
+
+.FileDragAndDrop {
+	.transition( border 120ms );
+	background: none;
+	border: 2px dashed @input-border-color;
+	border-radius: @border-radius-lg;
+	color: darken(@input-border-color, 20%);
+	cursor: pointer;
+	height: 120px;
+	line-height: 120px;
+	padding: 0 1em;
+	text-align: center;
+	width: 100%;
+
+	&:focus,
+	&.active {
+		border-color: lighten(@input-border-color-focus, 20%);
+		border-style: solid;
+		color: @input-border-color-focus;
+		outline: none;
+		-webkit-appearance: none;
+	}
+}
+.FileDragAndDrop__label {
+	display: inline-block;
+	font-weight: 500;
+	line-height: 1.2;
+	vertical-align: middle;
+}

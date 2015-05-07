@@ -10,8 +10,6 @@ exports.RadioGroup =         require('./components/RadioGroup');
 exports.Spinner =            require('./components/Spinner');
 exports.Tooltip =            require('./components/Tooltip');
 
-exports.FormDragAndDrop =    require('./components/FormDragAndDrop');
-exports.FormFile =           require('./components/FormFile');
 exports.FormField =          require('./components/FormField');
 exports.FormRow =            require('./components/FormRow');
 exports.FormIcon =           require('./components/FormIcon');
@@ -20,5 +18,8 @@ exports.FormInput =          require('./components/FormInput');
 exports.FormLabel =          require('./components/FormLabel');
 exports.FormSelect =         require('./components/FormSelect');
 
+exports.FileDragAndDrop =    require('./components/FileDragAndDrop');
+exports.FileUpload =         require('./components/FileUpload');
+
 exports.InputGroup =         require('./components/InputGroup');
-exports.InputGroupButton =   require('./components/InputGroupButton');
+exports.InputGroupAddon =    require('./components/InputGroupAddon');

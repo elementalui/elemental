@@ -99,7 +99,7 @@ module.exports = React.createClass({
 		return (
 			<div className={componentClass}>
 				{componentLabel}
-				<select className="form-input" id={forAndID} onChange={this.handleChange} onBlur={this.handleBlur} {...props}>
+				<select className="FormInput" id={forAndID} onChange={this.handleChange} onBlur={this.handleBlur} {...props}>
 					{options}
 				</select>
 				{validationMessage}

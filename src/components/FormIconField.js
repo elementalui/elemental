@@ -29,7 +29,7 @@ module.exports = React.createClass({
 
 		
 		// classes
-		var fieldClass = classNames('form-icon-field', {
+		var fieldClass = classNames('IconField', {
 				'has-fill-icon': this.props.iconFill,
 				'is-loading-icon': this.props.iconIsLoading
 			},
@@ -37,22 +37,18 @@ module.exports = React.createClass({
 			(this.props.iconColor ? ('field-context-' + this.props.iconColor) : null),
 			this.props.iconPosition);
 
-		var iconContainerClass = classNames('form-icon',
-			(this.props.iconFill ? 'form-icon-fill--' + this.props.iconFill : null),
-			(this.props.iconColor ? 'form-icon-color--' + this.props.iconColor : null),
-			this.props.className);
-
 		var iconClass = classNames(
-			'form-icon-src',
-			icons[this.props.iconKey].className
+			'IconField__icon',
+			(this.props.iconFill ? 'IconField__icon-fill--' + this.props.iconFill : null),
+			(this.props.iconColor ? 'IconField__icon-color--' + this.props.iconColor : null),
+			icons[this.props.iconKey].className,
+			this.props.className
 		);
 
 		var icon = this.props.iconIsLoading ? (
 			<Spinner size="sm" />
 		) : (
-			<div className={iconContainerClass}>
-				<span className={iconClass} />
-			</div>
+			<span className={iconClass} />
 		);
 
 		return (

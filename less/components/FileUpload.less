@@ -1,0 +1,28 @@
+//
+// File Upload
+// ==============================
+
+
+.FileUpload {
+	overflow: hidden;
+}
+
+.FileUpload__image {
+	border-radius: @border-radius-base;
+	border: 1px solid @input-border-color;
+	float: left;
+	margin-right: @grid-gutter-width;
+	padding: 5px;
+	width: 120px;
+}
+.FileUpload__image-src {
+	height: auto;
+	max-width: 100%;
+}
+
+.FileUpload__message {
+	.text-overflow();
+	color: @gray;
+	display: inline-block;
+	margin-bottom: @spacing-md;
+}

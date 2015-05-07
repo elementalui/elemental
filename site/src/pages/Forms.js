@@ -5,10 +5,10 @@ var EmailInputGroup = require('elemental').EmailInputGroup;
 var PasswordInputGroup = require('elemental').PasswordInputGroup;
 var RadioGroup = require('elemental').RadioGroup;
 
-var FormDragAndDrop = require('elemental').FormDragAndDrop;
+var FileDragAndDrop = require('elemental').FileDragAndDrop;
 var FormField = require('elemental').FormField;
 var FormRow = require('elemental').FormRow;
-var FormFile = require('elemental').FormFile;
+var FileUpload = require('elemental').FileUpload;
 var FormIcon = require('elemental').FormIcon;
 var FormIconField = require('elemental').FormIconField;
 var FormInput = require('elemental').FormInput;
@@ -16,7 +16,7 @@ var FormLabel = require('elemental').FormLabel;
 var FormSelect = require('elemental').FormSelect;
 
 var InputGroup = require('elemental').InputGroup;
-var InputGroupButton = require('elemental').InputGroupButton;
+var InputGroupAddon = require('elemental').InputGroupAddon;
 
 var icons = require("../../../src/FormIcons").list;
 
@@ -189,24 +189,45 @@ var Forms = React.createClass({
 				<h2 id="section-groups" className="u-padding-top-lg">Input Groups</h2>
 				<form className="u-margin-bottom-lg">
 					<InputGroup>
-						<FormInput type="text" className="form-input input-group-field" placeholder="Input group field" />
-						<InputGroupButton type="default">Button</InputGroupButton>
+						<FormInput type="text" placeholder="Input group field" />
+						<InputGroupAddon type="default">Button</InputGroupAddon>
 					</InputGroup>
 					<InputGroup>
-						<FormInput type="text" className="form-input input-group-field" placeholder="Input group field" />
-						<InputGroupButton type="primary">Button</InputGroupButton>
+						<FormInput type="text" placeholder="Input group field" />
+						<InputGroupAddon type="primary">Button</InputGroupAddon>
 					</InputGroup>
 					<InputGroup>
-						<FormInput type="text" className="form-input input-group-field" placeholder="Input group field" />
-						<InputGroupButton type="default">
+						<FormInput type="text" placeholder="Input group field" />
+						<InputGroupAddon type="default">
 							<span className="octicon octicon-pencil" />
-						</InputGroupButton>
+						</InputGroupAddon>
 					</InputGroup>
 					<InputGroup>
-						<FormInput type="text" className="form-input input-group-field" placeholder="Input group field" />
-						<InputGroupButton type="primary">
+						<FormInput type="text" placeholder="Input group field" />
+						<InputGroupAddon type="primary">
 							<span className="octicon octicon-pencil" />
-						</InputGroupButton>
+						</InputGroupAddon>
+					</InputGroup>
+					
+					<InputGroup>
+						<InputGroupAddon type="default">Button</InputGroupAddon>
+						<FormInput type="text" placeholder="Input group field" />
+					</InputGroup>
+					<InputGroup>
+						<InputGroupAddon type="primary">Button</InputGroupAddon>
+						<FormInput type="text" placeholder="Input group field" />
+					</InputGroup>
+					<InputGroup>
+						<InputGroupAddon type="default">
+							<span className="octicon octicon-pencil" />
+						</InputGroupAddon>
+						<FormInput type="text" placeholder="Input group field" />
+					</InputGroup>
+					<InputGroup>
+						<InputGroupAddon type="primary">
+							<span className="octicon octicon-pencil" />
+						</InputGroupAddon>
+						<FormInput type="text" placeholder="Input group field" />
 					</InputGroup>
 				</form>
 
@@ -309,7 +330,7 @@ var Forms = React.createClass({
 					</FormRow>
 				</form>
 				<h2 id="section-icon" className="u-padding-top-lg">Icons</h2>
-				<p>Elemental uses the wonderful <a href="https://octicons.github.com/" target="_blank">Octicons Suit from GitHub</a></p>
+				<p>Elemental uses the wonderful <a href="https://octicons.github.com/" target="_blank">Octicons Suite from GitHub</a></p>
 				<form className="u-margin-bottom-lg">
 					<FormLabel>Alignment</FormLabel>
 					<FormRow>
@@ -337,11 +358,11 @@ var Forms = React.createClass({
 				<form className="horizontal-form u-margin-bottom-lg">
 					<div className="form-field">
 						<FormLabel verticalAlign="top">Image</FormLabel>
-						<FormFile buttonLabelInitial="Upload Image" buttonLabelChange="Change Image" accept="image/jpg, image/gif, image/png" />
+						<FileUpload buttonLabelInitial="Upload Image" buttonLabelChange="Change Image" accept="image/jpg, image/gif, image/png" />
 					</div>
 					<div className="form-field">
 						<FormLabel verticalAlign="top">Images</FormLabel>
-						<FormDragAndDrop files={this.state.files} onDrop={this.onDrop} />
+						<FileDragAndDrop files={this.state.files} onDrop={this.onDrop} />
 					</div>
 				</form>
 			</div>
