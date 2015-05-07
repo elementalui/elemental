@@ -35,15 +35,15 @@ module.exports = React.createClass({
 			<div className="demo-container container">
 				<h1>Date Picker</h1>
 				
-				<h2 className="u-margin-top-lg">Day Picker</h2>
+				<h2>Day Picker</h2>
 				<p>Pick a single date</p>
 				<Button onClick={this.toggleDatePicker} type="default">Launch Date Picker</Button>
 				
-				<h2 className="u-margin-top-lg">Multi Picker</h2>
+				<h2>Multi Picker</h2>
 				<p>Pick a start and end date</p>
 				<Button onClick={this.toggleMultiPicker} type="default">Launch Multi Picker</Button>
 				
-				<h2 className="u-margin-top-lg">Multi Picker with Ranges</h2>
+				<h2>Multi Picker with Ranges</h2>
 				<p>Pick a start and end date, with the option to use predefined ranges.</p>
 				<Button onClick={this.toggleRangePicker} type="default">Launch Range Picker</Button>
 				

@@ -9,7 +9,7 @@ var Grid = React.createClass({
 				<h1>Grid</h1>
 				<p className="lead">Uses the standard Bootstrap grid which is a 12 column responsive layout, with a 20px gutter.</p>
 
-				<h2 className="u-padding-top-lg">Three equal columns</h2>
+				<h2>Three equal columns</h2>
 				<div className="row">
 					<div className="col-sm-4">
 						<div className="demo-box u-text-muted">.col-sm-4</div>
@@ -21,7 +21,7 @@ var Grid = React.createClass({
 						<div className="demo-box u-text-muted">.col-sm-4</div>
 					</div>
 				</div>
-				<h2 className="u-padding-top-lg">Three unequal columns</h2>
+				<h2>Three unequal columns</h2>
 				<div className="row">
 					<div className="col-sm-3">
 						<div className="demo-box u-text-muted">.col-sm-3</div>
@@ -33,7 +33,7 @@ var Grid = React.createClass({
 						<div className="demo-box u-text-muted">.col-sm-3</div>
 					</div>
 				</div>
-				<h2 className="u-padding-top-lg">Two unequal columns</h2>
+				<h2>Two unequal columns</h2>
 				<div className="row">
 					<div className="col-sm-8">
 						<div className="demo-box u-text-muted">.col-sm-8</div>
@@ -42,7 +42,7 @@ var Grid = React.createClass({
 						<div className="demo-box u-text-muted">.col-sm-4</div>
 					</div>
 				</div>
-				<h2 className="u-padding-top-lg">Columns on a small device</h2>
+				<h2>Columns on a small device</h2>
 				<div className="row">
 					<div className="col-xs-4">
 						<div className="demo-box u-text-muted">

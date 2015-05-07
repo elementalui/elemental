@@ -136,8 +136,8 @@ var Forms = React.createClass({
 			<div className="demo-container container">
 				<h1>Forms</h1>
 
-				<h2 id="section-basic" className="u-padding-top-lg">Basic Example</h2>
-				<form className="u-margin-bottom-lg">
+				<h2 id="section-basic">Basic Example</h2>
+				<form>
 					<FormField label="Email address" htmlFor="basic-form-input-email">
 						<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />
 					</FormField>
@@ -153,7 +153,7 @@ var Forms = React.createClass({
 				</form>
 
 
-				<h2 id="section-horizontal" className="u-padding-top-lg">Horizontal Form</h2>
+				<h2 id="section-horizontal">Horizontal Form</h2>
 				<form className="horizontal-form u-margin-bottom-lg">
 					<FormField label="Email address" htmlFor="horizontal-form-input-email">
 						<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />
@@ -167,7 +167,7 @@ var Forms = React.createClass({
 				</form>
 
 
-				<h2 id="section-inline" className="u-padding-top-lg">Inline Form</h2>
+				<h2 id="section-inline">Inline Form</h2>
 				<form className="inline-form u-margin-bottom-lg">
 					<FormField label="Email address" htmlFor="inline-form-input-email">
 						<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />
@@ -186,8 +186,8 @@ var Forms = React.createClass({
 				</form>
 
 
-				<h2 id="section-groups" className="u-padding-top-lg">Input Groups</h2>
-				<form className="u-margin-bottom-lg">
+				<h2 id="section-groups">Input Groups</h2>
+				<form>
 					<InputGroup>
 						<FormInput type="text" placeholder="Input group field" />
 						<InputGroupAddon type="default">Button</InputGroupAddon>
@@ -232,8 +232,8 @@ var Forms = React.createClass({
 				</form>
 
 				
-				<h2 id="section-controls" className="u-padding-top-lg">Supported Controls</h2>
-				<form className="u-margin-bottom-lg">
+				<h2 id="section-controls">Supported Controls</h2>
+				<form>
 					<FormField label="Input" htmlFor="supported-controls-input">
 						<FormInput placeholder="Input" name="supported-controls-input" />
 					</FormField>
@@ -279,16 +279,16 @@ var Forms = React.createClass({
 					</div>
 				</form>
 				
-				<h2 id="section-validation" className="u-padding-top-lg">Validation</h2>
-				<form className="u-margin-bottom-xl">
+				<h2 id="section-validation">Validation</h2>
+				<form>
 					<RadioGroup label="Radios" value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />
 					<FormSelect   label="Select"   value={this.state.inputSelect}   onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
 					<EmailInputGroup    label="Email"    value={this.state.inputEmail}    onChange={updateEmail}    required />
 					<PasswordInputGroup label="Password" value={this.state.inputPassword} onChange={updatePassword} required />
 				</form>
 
-				<h2 id="section-complex" className="u-padding-top-lg">Complex Forms</h2>
-				<form className="u-margin-bottom-lg">
+				<h2 id="section-complex">Complex Forms</h2>
+				<form>
 					<FormRow>
 						<FormField width="one-half" label="Credit Card Number" htmlFor="credit-card-number">
 							<FormInput pattern="[0-9]*" placeholder="Card Number" name="credit-card-number" />
@@ -329,9 +329,9 @@ var Forms = React.createClass({
 						</FormField>
 					</FormRow>
 				</form>
-				<h2 id="section-icon" className="u-padding-top-lg">Icons</h2>
+				<h2 id="section-icon">Icons</h2>
 				<p>Elemental uses the wonderful <a href="https://octicons.github.com/" target="_blank">Octicons Suite from GitHub</a></p>
-				<form className="u-margin-bottom-lg">
+				<form>
 					<FormLabel>Alignment</FormLabel>
 					<FormRow>
 						<FormIconField width="one-half" iconPosition="left" iconColor="default" iconKey="star">
@@ -354,7 +354,7 @@ var Forms = React.createClass({
 					</FormIconField>
 				</form>
 
-				<h2 id="section-upload" className="u-padding-top-lg">File Upload</h2>
+				<h2 id="section-upload">File Upload</h2>
 				<form className="horizontal-form u-margin-bottom-lg">
 					<div className="form-field">
 						<FormLabel verticalAlign="top">Image</FormLabel>

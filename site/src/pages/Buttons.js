@@ -27,7 +27,7 @@ var Buttons = React.createClass({
 		return (
 			<div className="demo-container container">
 				<h1>Buttons</h1>
-				<h2 className="u-margin-top-lg">Standard</h2>
+				<h2>Standard</h2>
 				<Button type="default">Default</Button>
 				<hr />
 				<Button type="primary">Primary</Button>
@@ -36,7 +36,7 @@ var Buttons = React.createClass({
 				<hr />
 				<Button type="link">Link</Button>
 
-				<h2 className="u-margin-top-lg">Large</h2>
+				<h2>Large</h2>
 				<Button type="default" size="lg">Default</Button>
 				<hr />
 				<Button type="primary" size="lg">Primary</Button>
@@ -45,7 +45,7 @@ var Buttons = React.createClass({
 				<hr />
 				<Button type="link" size="lg">Link</Button>
 
-				<h2 className="u-margin-top-lg">Small</h2>
+				<h2>Small</h2>
 				<Button type="default" size="sm">Default</Button>
 				<hr />
 				<Button type="primary" size="sm">Primary</Button>
@@ -54,7 +54,7 @@ var Buttons = React.createClass({
 				<hr />
 				<Button type="link" size="sm">Link</Button>
 
-				<h2 className="u-margin-top-lg">Extra Small</h2>
+				<h2>Extra Small</h2>
 				<Button type="default" size="xs">Default</Button>
 				<hr />
 				<Button type="primary" size="xs">Primary</Button>
@@ -63,7 +63,7 @@ var Buttons = React.createClass({
 				<hr />
 				<Button type="link" size="xs">Link</Button>
 
-				<h2 className="u-margin-top-lg">Colours</h2>
+				<h2>Colours</h2>
 				<Button type="primary">Primary</Button>
 				<hr />
 				<Button type="default-primary">Primary</Button>
@@ -80,17 +80,17 @@ var Buttons = React.createClass({
 				<hr />
 				<Button type="default-danger">Danger</Button>
 
-				<h2 className="u-margin-top-lg">Button Groups</h2>
+				<h2>Button Groups</h2>
 				<div className="ButtonGroup">
 					<Button type="default">Left</Button>
 					<Button type="default">Middle</Button>
 					<Button type="default">Right</Button>
 				</div>
 
-				<h2 className="u-margin-top-lg">Dropdown</h2>
+				<h2>Dropdown</h2>
 				<Dropdown isOpen={this.state.dropdownOpen} onChange={this.toggleDropdown} items={DROPDOWN_OPTIONS} buttonLabel="Action" buttonClass="Button Button--default" buttonDisclosureArrow />
 
-				<h2 className="u-margin-top-lg">Tooltip</h2>
+				<h2>Tooltip</h2>
 				<p>
 					<span> This is a sentence with a </span>
 					<Tooltip placement="top" content="This is the tooltip content!">

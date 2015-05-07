@@ -10,34 +10,36 @@ var Buttons = React.createClass({
 				<h1>Spinner</h1>
 				<div className="row">
 					<div className="col-sm-4">
-						<h2 className="u-padding-top-lg">Standard</h2>
+						<h2>Default</h2>
 						<div className="demo-box">
 							<Spinner type="default" />
 						</div>
 					</div>
 					<div className="col-sm-4">
-						<h2 className="u-padding-top-lg">Primary</h2>
+						<h2>Primary</h2>
 						<div className="demo-box">
 							<Spinner type="primary" />
 						</div>
 					</div>
 					<div className="col-sm-4">
-						<h2 className="u-padding-top-lg">Inverted</h2>
+						<h2>Inverted</h2>
 						<div className="demo-box demo-box--inverted">
 							<Spinner type="inverted" />
 						</div>
 					</div>
 				</div>
 
-				<h2 className="u-padding-top-lg">Use in Buttons</h2>
-				<Button type="default" className="u-margin-right-sm">
-					<Spinner type="primary" />
+				<h2>Use in Buttons</h2>
+				<Button type="default">
+					<Spinner />
 				</Button>
-				<Button type="default" className="u-margin-right-sm" disabled>
+				<hr />
+				<Button type="default" disabled>
 					<Spinner type="primary" />
 					Saving
 				</Button>
-				<Button type="primary" className="u-margin-right-sm" disabled>
+				<hr />
+				<Button type="primary" disabled>
 					<Spinner type="inverted" />
 					Saving
 				</Button>
