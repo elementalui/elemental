@@ -10,10 +10,12 @@
     "url": "https://github.com/elementalui/elemental.git"
   },
   "scripts": {
-    "start": "gulp dev",
-    "release": "gulp release",
+    "build-lib": "gulp build:lib",
     "publish-site": "gulp publish:examples",
-    "build-lib": "gulp build:lib"
+    "release": "gulp release",
+    "site": "gulp dev:server",
+    "start": "gulp dev",
+    "watch": "gulp watch:lib"
   },
   "dependencies": {
     "blacklist": "^1.1.2",
@@ -30,9 +32,6 @@
   },
   "peerDependencies": {
     "react": "^0.13.0"
-  },
-  "browserify-shim": {
-    "react": "global:React"
   },
   "keywords": [
     "react",
