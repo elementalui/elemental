@@ -20,7 +20,7 @@
     "classnames": "^1.2.0",
     "lodash": "^3.8.0",
     "moment": "^2.10.2",
-    "react-date-select": "0.0.4"
+    "react-date-select": "0.0.5"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
