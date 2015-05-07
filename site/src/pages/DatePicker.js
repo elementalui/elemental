@@ -1,56 +1,35 @@
 var React = require('react/addons');
-var moment = require('moment');
+var DateSelect = require('react-date-select');
 
-var Button = require('elemental').Button;
-var DatePicker = require('elemental').DatePicker;
-var EmailInputGroup = require('elemental').EmailInputGroup;
-var PasswordInputGroup = require('elemental').PasswordInputGroup;
-
-
-var DEFAULT_RANGES = [
-	{ value: moment(),                        label: 'Today' },
-	{ value: moment().subtract(1, 'days'),    label: 'Yesterday' }
-];
-
-module.exports = React.createClass({
-	displayName: 'VIEW_DatePicker',
+var DateSelectExamples = React.createClass({
 	getInitialState() {
 		return {
-			datePickerIsOpen: false,
-			multiPickerIsOpen: false,
-			rangePickerIsOpen: false
+			singleDateValue: new Date(),
+			multiDateValue1: [new Date(), new Date()],
+			multiDateValue2: [new Date(), new Date()]
 		};
 	},
-	toggleDatePicker() {
-		this.setState({ datePickerIsOpen: !this.state.datePickerIsOpen });
-	},
-	toggleMultiPicker() {
-		this.setState({ multiPickerIsOpen: !this.state.multiPickerIsOpen });
-	},
-	toggleRangePicker() {
-		this.setState({ rangePickerIsOpen: !this.state.rangePickerIsOpen });
+	onDateChange(key, value) {
+		this.setState({ key: value });
 	},
 	render() {
 		return (
 			<div className="demo-container container">
 				<h1>Date Picker</h1>
-				
 				<h2>Day Picker</h2>
 				<p>Pick a single date</p>
-				<Button onClick={this.toggleDatePicker} type="default">Launch Date Picker</Button>
+				<DateSelect value={this.state.singleDateValue} onChange={this.onDateChange.bind(this, 'singleDateValue')} />
 				
 				<h2>Multi Picker</h2>
 				<p>Pick a start and end date</p>
-				<Button onClick={this.toggleMultiPicker} type="default">Launch Multi Picker</Button>
+				<DateSelect value={this.state.multiDateValue1} onChange={this.onDateChange.bind(this, 'multiDateValue1')} isMulti buttonLabel="Launch range picker" />
 				
 				<h2>Multi Picker with Ranges</h2>
 				<p>Pick a start and end date, with the option to use predefined ranges.</p>
-				<Button onClick={this.toggleRangePicker} type="default">Launch Range Picker</Button>
-				
-				<DatePicker isOpen={this.state.datePickerIsOpen}  onChange={this.toggleDatePicker} />
-				<DatePicker isOpen={this.state.multiPickerIsOpen} onChange={this.toggleMultiPicker} isMulti />
-				<DatePicker isOpen={this.state.rangePickerIsOpen} onChange={this.toggleRangePicker} isMulti showPredefinedRanges />
+				<DateSelect value={this.state.multiDateValue2} onChange={this.onDateChange.bind(this, 'multiDateValue2')} isMulti showPredefinedRanges buttonLabel="Launch range picker (with default ranges)" />
 			</div>
 		);
 	}
 });
+
+module.exports = DateSelectExamples;
