@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var classNames = require('classnames');
-var _ = require('underscore');
+var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormLabel',

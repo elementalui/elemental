@@ -1,5 +1,5 @@
 var React = require('react/addons');
-var _ = require('underscore');
+var _ = require('lodash');
 var classNames = require('classnames');
 
 module.exports = React.createClass({

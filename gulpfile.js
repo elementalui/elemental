@@ -9,10 +9,10 @@ var taskConfig = {
 		dependencies: [
 			'blacklist',
 			'classnames',
+			'lodash',
 			'moment',
 			'react',
-			'react/addons',
-			'underscore'
+			'react/addons'
 		],
 		less: {
 			path: 'less',

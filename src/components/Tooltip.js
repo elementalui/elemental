@@ -1,7 +1,7 @@
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var classNames = require('classnames');
-var _ = require('underscore');
+var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'Tooltip',
