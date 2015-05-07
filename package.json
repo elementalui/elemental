@@ -19,6 +19,7 @@
     "blacklist": "^1.1.2",
     "classnames": "^1.2.0",
     "moment": "^2.10.2",
+    "react-date-select": "0.0.4",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
