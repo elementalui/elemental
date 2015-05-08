@@ -2,26 +2,52 @@ var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var classNames = require('classnames');
 
+var Button = require('./Button');
+
 module.exports = React.createClass({
 	displayName: 'Dropdown',
 	propTypes: {
 		items: React.PropTypes.array.isRequired,
-		onChange: React.PropTypes.func,
 		className: React.PropTypes.string,
 		buttonClass: React.PropTypes.string,
 		buttonLabel: React.PropTypes.string,
-		buttonDisclosureArrow: React.PropTypes.bool,
-		isOpen: React.PropTypes.bool
+		buttonHasDisclosureArrow: React.PropTypes.bool
 	},
-	render() {
-		// classes
-		var dropdownClass = classNames('Dropdown', {
-			'is-open': this.props.isOpen,
-			'align-right': this.props.alignRight
-		}, this.props.className);
+	getDefaultProps () {
+		return {
+			buttonHasDisclosureArrow: true
+		};
+	},
+	getInitialState () {
+		return {
+			isOpen: false
+		};
+	},
+	openDropdown () {
+		this.setState({ isOpen: true });
+	},
+	closeDropdown () {
+		this.setState({ isOpen: false });
+	},
+	renderChildren () {
+		return React.Children.map(this.props.children, (child) => {
+			child.props.onClick = this.openDropdown;
+			return child;
+		});
+	},
+	renderButton () {
 		var buttonClass = classNames('Dropdown-toggle', this.props.buttonClass);
+		var disclosureArrow = this.props.buttonHasDisclosureArrow ? <span className="Dropdown-toggle__arrow" /> : null;
+		return (
+			<Button onClick={this.state.isOpen ? this.closeDropdown : this.openDropdown} className={buttonClass}>
+				{this.props.buttonLabel}
+				{disclosureArrow}
+			</Button>
+		);
+	},
+	renderDropdownMenu () {
+		if (!this.state.isOpen) return;
 
-		// elements
 		var dropdownMenuItems = this.props.items.map(function(item, i) {
 			var menuItem;
 			if (item.type === 'header') {
@@ -45,20 +71,31 @@ module.exports = React.createClass({
 			}
 			return menuItem;
 		}.bind(this));
-		var dropdownMenu = this.props.isOpen ? <ul key="Dropdown-menu" className="Dropdown-menu" role="menu">
-			{dropdownMenuItems}
-		</ul> : null;
-		var dropdownMenuBackground = this.props.isOpen ? <div className="Dropdown-menu-backdrop" onClick={this.props.onChange} /> : null;
-		var disclosureArrow = this.props.buttonDisclosureArrow ? <span className="Dropdown-toggle__arrow" /> : null;
+
+		return (
+			<ul key="Dropdown-menu" className="Dropdown-menu" role="menu">
+				{dropdownMenuItems}
+			</ul>
+		);
+	},
+	renderDropdownMenuBackground () {
+		if (!this.state.isOpen) return;
+		return <div className="Dropdown-menu-backdrop" onClick={this.closeDropdown} />;
+	},
+	render () {
+		// classes
+		var dropdownClass = classNames('Dropdown', {
+			'is-open': this.state.isOpen,
+			'align-right': this.props.alignRight
+		}, this.props.className);
 		
 		return (
 			<div className={dropdownClass}>
-				<button onClick={this.props.onChange} className={buttonClass} type="button">
-					{this.props.buttonLabel}
-					{disclosureArrow}
-				</button>
-				<ReactCSSTransitionGroup transitionName="Dropdown-menu" component="div">{dropdownMenu}</ReactCSSTransitionGroup>
-				{dropdownMenuBackground}
+				{React.Children.count(this.props.children) ? this.renderChildren() : this.renderButton()}
+				<ReactCSSTransitionGroup transitionName="Dropdown-menu" component="div">
+					{this.renderDropdownMenu()}
+				</ReactCSSTransitionGroup>
+				{this.renderDropdownMenuBackground()}
 			</div>
 		);
 	}

@@ -88,7 +88,7 @@ var Buttons = React.createClass({
 				</div>
 
 				<h2>Dropdown</h2>
-				<Dropdown isOpen={this.state.dropdownOpen} onChange={this.toggleDropdown} items={DROPDOWN_OPTIONS} buttonLabel="Action" buttonClass="Button Button--default" buttonDisclosureArrow />
+				<Dropdown items={DROPDOWN_OPTIONS} buttonLabel="Action" />
 
 				<h2>Tooltip</h2>
 				<p>
