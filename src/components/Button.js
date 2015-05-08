@@ -5,11 +5,12 @@ var blacklist = require('blacklist');
 module.exports = React.createClass({
 	displayName: 'ElementalButton',
 	propTypes: {
-		onClick: React.PropTypes.func,
-		type: React.PropTypes.string,
-		size: React.PropTypes.string,
+		className: React.PropTypes.string,
 		href: React.PropTypes.string,
-		className: React.PropTypes.string
+		onClick: React.PropTypes.func,
+		size: React.PropTypes.string,
+		submit: React.PropTypes.bool,
+		type: React.PropTypes.string
 	},
 	getDefaultProps() {
 		return {
@@ -33,7 +34,7 @@ module.exports = React.createClass({
 
 		if (!props.href) {
 			tag = 'button';
-			props.type = 'button';
+			props.type = this.props.submit ? 'submit' : 'button';
 		}
 
 		return React.createElement(
