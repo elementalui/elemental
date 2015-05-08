@@ -7,7 +7,7 @@
 .button-variant(@color; @background) {
 	#gradient .vertical(lighten(@background, 4%), darken(@background, 4%));
 	background-color: @background;
-	border-color: darken(@background, 4%) darken(@background, 4%) darken(@background, 8%);
+	border-color: @background darken(@background, 4%) darken(@background, 12%);
 	color: @color;
 
 	&:hover,
