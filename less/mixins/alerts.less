@@ -1,0 +1,16 @@
+// 
+// Alerts
+// ==============================
+
+.alert-variant(@color) {
+	background-color: fade(@color, 10%);
+	border-color: fade(@color, 5%);
+	color: @color;
+
+	hr {
+		border-top-color: darken(@color, 5%);
+	}
+	.alert-link {
+		color: darken(@color, 10%);
+	}
+}

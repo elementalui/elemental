@@ -1,0 +1,65 @@
+//
+// Alerts
+// --------------------------------------------------
+
+
+// Base styles
+// -------------------------
+
+.alert {
+	padding: .75em  1em;
+	margin-bottom: 1em;
+	border: 1px solid transparent;
+	border-radius: @border-radius-base;
+
+	// Headings for larger alerts
+	h4 {
+		margin-top: 0;
+		// Specified for the h4 to prevent conflicts of changing @headingsColor
+		color: inherit;
+	}
+	// Provide class for links that match alerts
+	.alert-link {}
+
+	// Improve alignment and spacing of inner content
+	> p,
+	> ul {
+		margin-bottom: 0;
+	}
+	> p + p {
+		margin-top: 5px;
+	}
+}
+
+// Dismissable alerts
+//
+// Expand the right padding and account for the close button's positioning.
+
+.alert-dismissable {
+	padding-right: 2em;
+
+	// Adjust close link position
+	.close {
+		position: relative;
+		top: -2px;
+		right: -21px;
+		color: inherit;
+	}
+}
+
+// Alternate styles
+//
+// Generate contextual modifier classes for colorizing the alert.
+
+.alert-success {
+	.alert-variant(@app-success);
+}
+.alert-info {
+	.alert-variant(@app-info);
+}
+.alert-warning {
+	.alert-variant(@app-warning);
+}
+.alert-danger {
+	.alert-variant(@app-danger);
+}
