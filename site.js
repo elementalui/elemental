@@ -4720,7 +4720,7 @@ var Home = React.createClass({
 					React.createElement(
 						'h2',
 						{ className: 'demo-banner__heading demo-banner__heading-2' },
-						'A UI Tooklit for React.js Websites and Apps'
+						'A UI Toolkit for React.js Websites and Apps'
 					),
 					React.createElement(
 						'div',
@@ -4826,7 +4826,7 @@ var Home = React.createClass({
 							{ title: 'Don\'t Repeat Yourself' },
 							'DRY'
 						),
-						' we decided it was time to build something to improve our workflow and unify our projects to decrease devolpment time.'
+						' we decided it was time to build something to improve our workflow and unify our projects to decrease development time.'
 					),
 					React.createElement(
 						'p',
@@ -4875,7 +4875,7 @@ var Home = React.createClass({
 								React.createElement(
 									'p',
 									null,
-									'Elemental is designed to be installed from npm and built into your project with browserify or webpack. You can customise it by includig our LESS too.'
+									'Elemental is designed to be installed from npm and built into your project with browserify or webpack. You can customise it by including our LESS too.'
 								)
 							),
 							React.createElement(
