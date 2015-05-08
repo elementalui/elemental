@@ -60,7 +60,7 @@ var Home = React.createClass({
 					<div className="demo-container container">
 						<h2 className="demo-banner__heading demo-banner__heading-2">Why build <em>another</em> UI kit?</h2>
 						<p>At <a href="http://www.thinkmill.com.au" target="_blank">Thinkmill</a> we are constantly building bespoke web applications for various clients. We noticed that whilst projects vary greatly, we're using the same CSS and Component foundations over and over again.</p>
-						<p>In an effort to keep our projects' codebases <abbr title="Don't Repeat Yourself">DRY</abbr> we decided it was time to build something to improve our workflow and unify our projects to decrease devolpment time.</p>
+						<p>In an effort to keep our projects' codebases <abbr title="Don't Repeat Yourself">DRY</abbr> we decided it was time to build something to improve our workflow and unify our projects to decrease development time.</p>
 						<p>All this coupled with a growing need for a re-usable set of React.js UI Components for the Admin UI in <a href="http://www.keystonejs.com" target="_blank">KeystoneJS</a>, Elemental was born.</p>
 						<p>While there are many other great UI Libraries available (including for React), our goal with Elemental is to develop a light-weight, unopinionated, modular framework that we can use across all our web projects.</p>
 						
@@ -72,7 +72,7 @@ var Home = React.createClass({
 								</div>
 								<div className="col-sm-4">
 									<h3>Modern Workflows</h3>
-									<p>Elemental is designed to be installed from npm and built into your project with browserify or webpack. You can customise it by includig our LESS too.</p>
+									<p>Elemental is designed to be installed from npm and built into your project with browserify or webpack. You can customise it by including our LESS too.</p>
 								</div>
 								<div className="col-sm-4">
 									<h3>Made by Thinkmill</h3>
