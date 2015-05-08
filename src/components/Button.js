@@ -2,6 +2,20 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
 
+var BUTTON_TYPES = [
+	'default',
+	'default-primary',
+	'default-success',
+	'default-warning',
+	'default-danger',
+	'primary',
+	'success',
+	'warning',
+	'danger',
+	'link',
+	'link-cancel'
+]
+
 module.exports = React.createClass({
 	displayName: 'ElementalButton',
 	propTypes: {
@@ -10,7 +24,7 @@ module.exports = React.createClass({
 		onClick: React.PropTypes.func,
 		size: React.PropTypes.string,
 		submit: React.PropTypes.bool,
-		type: React.PropTypes.string
+		type: React.PropTypes.oneOf(BUTTON_TYPES)
 	},
 	getDefaultProps() {
 		return {
