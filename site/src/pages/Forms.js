@@ -310,7 +310,7 @@ var Forms = React.createClass({
 					</FormRow>
 				</form>
 				<h2 id="section-icon">Icons</h2>
-				<p>Elemental uses the wonderful <a href="https://octicons.github.com/" target="_blank">Octicons Suite from GitHub</a></p>
+				<p className="lead">Elemental uses the wonderful <a href="https://octicons.github.com/" target="_blank">Octicons Suite from GitHub</a></p>
 				<form>
 					<FormLabel>Alignment</FormLabel>
 					<FormRow>
