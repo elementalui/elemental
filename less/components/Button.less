@@ -58,9 +58,9 @@
 // special case for the default button
 
 .Button--default {
-	// .button-default-variant(@btn-default-color; @btn-default-border);
 	#gradient .vertical(#fafafa, #eaeaea);
 	border: 1px solid @input-border-color;
+	border-color: @input-border-color darken(@input-border-color, 6%) darken(@input-border-color, 12%);
 	color: @text-color;
 	text-shadow: 0 1px 0 white;
 
