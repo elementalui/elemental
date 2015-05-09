@@ -7,65 +7,14 @@
 
 
 
-// 
+
 // Type
-// ==============================
-
-
-
-
-
-// Headings
 // ------------------------------
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-	color: @heading-color;
-	font-weight: 500;
-	margin-bottom: .6em;
-	margin-top: 0;
-}
-h2 {
+.demo-container > h2 {
 	margin-top: 3em;
 }
-h5, .h5,
-h6, .h6 {
-	color: @gray-light;
-}
-h6, .h6 {
-	text-transform: uppercase;
-}
 
-
-
-// Lead
-// ------------------------------
-
-.lead {
-	color: @gray;
-	font-size: @font-size-lg;
-	font-weight: 300
-}
-
-
-
-
-// Code
-// ------------------------------
-
-code {
-	background: @code-bg-color;
-	border-radius: @border-radius-base;
-	border: 1px solid @code-border-color;
-	color: @code-text-color;
-	padding: 0 0.3em;
-}
-
-
-
-//
-// Demo
-// ==============================
 
 
 
@@ -128,24 +77,30 @@ code {
 	color: @gray-light;
 	cursor: pointer;
 	display: block;
-	margin: 0 1.5vw;
+	padding: 0 1.5vw;
 
+	&:active,
 	&:hover,
 	&:focus {
-		box-shadow: inset 0 -3px 0 @brand-primary;
 		color: @text-color;
 		text-decoration: none;
-	}
 
-	&:active {
-		box-shadow: inset 0 -3px 0 @brand-primary;
-		color: @text-color;
+		> .primary-nav__item-inner {
+			box-shadow: inset 0 -3px 0 @brand-primary;
+		}
 	}
 
 	&.active {
-		box-shadow: inset 0 -3px 0 @brand-primary;
 		color: @text-color;
 		font-weight: 500;
+	}
+}
+.primary-nav__item-inner {
+	.transition( all 140ms );
+	display: inline-block;
+
+	.active > & {
+		box-shadow: inset 0 -3px 0 @brand-primary;
 	}
 }
 
@@ -372,6 +327,8 @@ code {
 .demo-banner__heading-2 {
 	font-size: 32px;
 	font-weight: 300;
+	margin-bottom: 1em !important;
+	margin-top: 0 !important;
 }
 
 
@@ -480,6 +437,7 @@ code {
 
 // primary
 .demo-banner--primary {
+	#gradient .directional( spin(@brand-primary,12%), spin(@brand-primary,-12%), 135deg );
 	background-color: @brand-primary;
 	color: white;
 	margin-top: -(@navbar-height);
@@ -498,15 +456,24 @@ code {
 		color: white;
 		opacity: .75;
 	}
+	@media (max-width: 480px) {
+		.demo-banner__button {
+			display: block;
+		}
+	}
 }
 .demo-banner-illustration {
 	.animation( fadeIn 2s );
 	.square(240px);
 	background: url('../images/hero-bg.svg') no-repeat left top;
 	background-size: 240px, 240px;
-	left: -90px;
+	left: -84px;
 	position: absolute;
-	top: -63px;
+	top: -75px;
+
+	@media (min-width: 768px) {
+		left: -94px;
+	}
 }
 
 
@@ -546,7 +513,6 @@ code {
 	border-radius: @border-radius-base;
 	margin-bottom: @grid-gutter-width;
 	padding: 2em;
-	text-align: center;
 }
 .demo-box--inverted {
 	background-color: @app-primary;
