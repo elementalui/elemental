@@ -1,3 +1,4 @@
+exports.Alert =              require('./components/Alert');
 exports.Button =             require('./components/Button');
 exports.DatePicker =         require('./components/DatePicker');
 exports.DatePickerCalendar = require('./components/DatePickerCalendar');
