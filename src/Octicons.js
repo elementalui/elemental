@@ -58,7 +58,7 @@ var list = [
 	{ label: 'File Media',               value: 'file-media',                className: 'octicon octicon-file-media' },
 	{ label: 'File Pdf',                 value: 'file-pdf',                  className: 'octicon octicon-file-pdf' },
 	{ label: 'File Submodule',           value: 'file-submodule',            className: 'octicon octicon-file-submodule' },
-	{ label: 'File Symlink Directory'    value: 'file-symlink-directory',    className: 'octicon octicon-file-symlink-directory' },
+	{ label: 'File Symlink Directory',   value: 'file-symlink-directory',    className: 'octicon octicon-file-symlink-directory' },
 	{ label: 'File Symlink File',        value: 'file-symlink-file',         className: 'octicon octicon-file-symlink-file' },
 	{ label: 'File Text',                value: 'file-text',                 className: 'octicon octicon-file-text' },
 	{ label: 'File Zip',                 value: 'file-zip',                  className: 'octicon octicon-file-zip' },
