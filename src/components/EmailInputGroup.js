@@ -86,7 +86,7 @@ module.exports = React.createClass({
 		return (
 			<div className={formGroupClass}>
 				{componentLabel}
-				<input onChange={this.handleChange} onBlur={this.handleBlur} value={this.props.value} type="email" className="form-input" placeholder="Enter email" id="inputEmail" />
+				<input onChange={this.handleChange} onBlur={this.handleBlur} value={this.props.value} type="email" className="FormInput" placeholder="Enter email" id="inputEmail" />
 				{validationMessage}
 			</div>
 		);
