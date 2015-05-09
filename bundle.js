@@ -1,7 +1,7 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var list = [{ label: 'Alert', value: 'alert', className: 'octicon octicon-alert' }, { label: 'Alignment Align', value: 'alignment-align', className: 'octicon octicon-alignment-align' }, { label: 'Alignment Aligned To', value: 'alignment-aligned-to', className: 'octicon octicon-alignment-aligned-to' }, { label: 'Alignment Unalign', value: 'alignment-unalign', className: 'octicon octicon-alignment-unalign' }, { label: 'Arrow Down', value: 'arrow-down', className: 'octicon octicon-arrow-down' }, { label: 'Arrow Left', value: 'arrow-left', className: 'octicon octicon-arrow-left' }, { label: 'Arrow Right', value: 'arrow-right', className: 'octicon octicon-arrow-right' }, { label: 'Arrow Small Down', value: 'arrow-small-down', className: 'octicon octicon-arrow-small-down' }, { label: 'Arrow Small Left', value: 'arrow-small-left', className: 'octicon octicon-arrow-small-left' }, { label: 'Arrow Small Right', value: 'arrow-small-right', className: 'octicon octicon-arrow-small-right' }, { label: 'Arrow Small Up', value: 'arrow-small-up', className: 'octicon octicon-arrow-small-up' }, { label: 'Arrow Up', value: 'arrow-up', className: 'octicon octicon-arrow-up' }, { label: 'Beer', value: 'beer', className: 'octicon octicon-beer' }, { label: 'Book', value: 'book', className: 'octicon octicon-book' }, { label: 'Bookmark', value: 'bookmark', className: 'octicon octicon-bookmark' }, { label: 'Briefcase', value: 'briefcase', className: 'octicon octicon-briefcase' }, { label: 'Broadcast', value: 'broadcast', className: 'octicon octicon-broadcast' }, { label: 'Browser', value: 'browser', className: 'octicon octicon-browser' }, { label: 'Bug', value: 'bug', className: 'octicon octicon-bug' }, { label: 'Calendar', value: 'calendar', className: 'octicon octicon-calendar' }, { label: 'Check', value: 'check', className: 'octicon octicon-check' }, { label: 'Checklist', value: 'checklist', className: 'octicon octicon-checklist' }, { label: 'Chevron Down', value: 'chevron-down', className: 'octicon octicon-chevron-down' }, { label: 'Chevron Left', value: 'chevron-left', className: 'octicon octicon-chevron-left' }, { label: 'Chevron Right', value: 'chevron-right', className: 'octicon octicon-chevron-right' }, { label: 'Chevron Up', value: 'chevron-up', className: 'octicon octicon-chevron-up' }, { label: 'Circle Slash', value: 'circle-slash', className: 'octicon octicon-circle-slash' }, { label: 'Circuit Board', value: 'circuit-board', className: 'octicon octicon-circuit-board' }, { label: 'Clippy', value: 'clippy', className: 'octicon octicon-clippy' }, { label: 'Clock', value: 'clock', className: 'octicon octicon-clock' }, { label: 'Cloud Download', value: 'cloud-download', className: 'octicon octicon-cloud-download' }, { label: 'Cloud Upload', value: 'cloud-upload', className: 'octicon octicon-cloud-upload' }, { label: 'Code', value: 'code', className: 'octicon octicon-code' }, { label: 'Color Mode', value: 'color-mode', className: 'octicon octicon-color-mode' }, { label: 'Comment', value: 'comment', className: 'octicon octicon-comment' }, { label: 'Comment Discussion', value: 'comment-discussion', className: 'octicon octicon-comment-discussion' }, { label: 'Credit Card', value: 'credit-card', className: 'octicon octicon-credit-card' }, { label: 'Dash', value: 'dash', className: 'octicon octicon-dash' }, { label: 'Minus', value: 'minus', className: 'octicon octicon-minus' }, { label: 'Dashboard', value: 'dashboard', className: 'octicon octicon-dashboard' }, { label: 'Database', value: 'database', className: 'octicon octicon-database' }, { label: 'Camera', value: 'camera', className: 'octicon octicon-camera' }, { label: 'Video', value: 'video', className: 'octicon octicon-video' }, { label: 'Desktop', value: 'desktop', className: 'octicon octicon-desktop' }, { label: 'Mobile', value: 'mobile', className: 'octicon octicon-mobile' }, { label: 'Diff', value: 'diff', className: 'octicon octicon-diff' }, { label: 'Diff Added', value: 'diff-added', className: 'octicon octicon-diff-added' }, { label: 'Diff Ignored', value: 'diff-ignored', className: 'octicon octicon-diff-ignored' }, { label: 'Diff Modified', value: 'diff-modified', className: 'octicon octicon-diff-modified' }, { label: 'Diff Removed', value: 'diff-removed', className: 'octicon octicon-diff-removed' }, { label: 'Diff Renamed', value: 'diff-renamed', className: 'octicon octicon-diff-renamed' }, { label: 'Ellipsis', value: 'ellipsis', className: 'octicon octicon-ellipsis' }, { label: 'Eye', value: 'eye', className: 'octicon octicon-eye' }, { label: 'File Binary', value: 'file-binary', className: 'octicon octicon-file-binary' }, { label: 'File Code', value: 'file-code', className: 'octicon octicon-file-code' }, { label: 'File Directory', value: 'file-directory', className: 'octicon octicon-file-directory' }, { label: 'File Media', value: 'file-media', className: 'octicon octicon-file-media' }, { label: 'File Pdf', value: 'file-pdf', className: 'octicon octicon-file-pdf' }, { label: 'File Submodule', value: 'file-submodule', className: 'octicon octicon-file-submodule' }, { label: 'File Symlink Directory', value: 'file-symlink-directory', className: 'octicon octicon-file-symlink-directory' }, { label: 'File Symlink File', value: 'file-symlink-file', className: 'octicon octicon-file-symlink-file' }, { label: 'File Text', value: 'file-text', className: 'octicon octicon-file-text' }, { label: 'File Zip', value: 'file-zip', className: 'octicon octicon-file-zip' }, { label: 'Flame', value: 'flame', className: 'octicon octicon-flame' }, { label: 'Fold', value: 'fold', className: 'octicon octicon-fold' }, { label: 'Gear', value: 'gear', className: 'octicon octicon-gear' }, { label: 'Gift', value: 'gift', className: 'octicon octicon-gift' }, { label: 'Gist', value: 'gist', className: 'octicon octicon-gist' }, { label: 'Gist Secret', value: 'gist-secret', className: 'octicon octicon-gist-secret' }, { label: 'Git Branch Create', value: 'git-branch-create', className: 'octicon octicon-git-branch-create' }, { label: 'Git Branch Delete', value: 'git-branch-delete', className: 'octicon octicon-git-branch-delete' }, { label: 'Git Branch', value: 'git-branch', className: 'octicon octicon-git-branch' }, { label: 'Git Commit', value: 'git-commit', className: 'octicon octicon-git-commit' }, { label: 'Git Compare', value: 'git-compare', className: 'octicon octicon-git-compare' }, { label: 'Git Merge', value: 'git-merge', className: 'octicon octicon-git-merge' }, { label: 'Git Pull Request Abandoned', value: 'git-pull-request-abandoned', className: 'octicon octicon-git-pull-request-abandoned' }, { label: 'Git Pull Request', value: 'git-pull-request', className: 'octicon octicon-git-pull-request' }, { label: 'Globe', value: 'globe', className: 'octicon octicon-globe' }, { label: 'Graph', value: 'graph', className: 'octicon octicon-graph' }, { label: 'Heart', value: 'heart', className: 'octicon octicon-heart' }, { label: 'History', value: 'history', className: 'octicon octicon-history' }, { label: 'Home', value: 'home', className: 'octicon octicon-home' }, { label: 'Horizontal Rule', value: 'horizontal-rule', className: 'octicon octicon-horizontal-rule' }, { label: 'Hourglass', value: 'hourglass', className: 'octicon octicon-hourglass' }, { label: 'Hubot', value: 'hubot', className: 'octicon octicon-hubot' }, { label: 'Inbox', value: 'inbox', className: 'octicon octicon-inbox' }, { label: 'Info', value: 'info', className: 'octicon octicon-info' }, { label: 'Issue Closed', value: 'issue-closed', className: 'octicon octicon-issue-closed' }, { label: 'Issue Opened', value: 'issue-opened', className: 'octicon octicon-issue-opened' }, { label: 'Issue Reopened', value: 'issue-reopened', className: 'octicon octicon-issue-reopened' }, { label: 'Jersey', value: 'jersey', className: 'octicon octicon-jersey' }, { label: 'Jump Down', value: 'jump-down', className: 'octicon octicon-jump-down' }, { label: 'Jump Left', value: 'jump-left', className: 'octicon octicon-jump-left' }, { label: 'Jump Right', value: 'jump-right', className: 'octicon octicon-jump-right' }, { label: 'Jump Up', value: 'jump-up', className: 'octicon octicon-jump-up' }, { label: 'Key', value: 'key', className: 'octicon octicon-key' }, { label: 'Keyboard', value: 'keyboard', className: 'octicon octicon-keyboard' }, { label: 'Law', value: 'law', className: 'octicon octicon-law' }, { label: 'Light Bulb', value: 'light-bulb', className: 'octicon octicon-light-bulb' }, { label: 'Link', value: 'link', className: 'octicon octicon-link' }, { label: 'Link External', value: 'link-external', className: 'octicon octicon-link-external' }, { label: 'List Ordered', value: 'list-ordered', className: 'octicon octicon-list-ordered' }, { label: 'List Unordered', value: 'list-unordered', className: 'octicon octicon-list-unordered' }, { label: 'Location', value: 'location', className: 'octicon octicon-location' }, { label: 'Lock', value: 'lock', className: 'octicon octicon-lock' }, { label: 'Logo Github', value: 'logo-github', className: 'octicon octicon-logo-github' }, { label: 'Mail', value: 'mail', className: 'octicon octicon-mail' }, { label: 'Mail Read', value: 'mail-read', className: 'octicon octicon-mail-read' }, { label: 'Mail Reply', value: 'mail-reply', className: 'octicon octicon-mail-reply' }, { label: 'Mark Github', value: 'mark-github', className: 'octicon octicon-mark-github' }, { label: 'Markdown', value: 'markdown', className: 'octicon octicon-markdown' }, { label: 'Megaphone', value: 'megaphone', className: 'octicon octicon-megaphone' }, { label: 'Mention', value: 'mention', className: 'octicon octicon-mention' }, { label: 'Microscope', value: 'microscope', className: 'octicon octicon-microscope' }, { label: 'Milestone', value: 'milestone', className: 'octicon octicon-milestone' }, { label: 'Mirror', value: 'mirror', className: 'octicon octicon-mirror' }, { label: 'Mortar Board', value: 'mortar-board', className: 'octicon octicon-mortar-board' }, { label: 'Move Down', value: 'move-down', className: 'octicon octicon-move-down' }, { label: 'Move Left', value: 'move-left', className: 'octicon octicon-move-left' }, { label: 'Move Right', value: 'move-right', className: 'octicon octicon-move-right' }, { label: 'Move Up', value: 'move-up', className: 'octicon octicon-move-up' }, { label: 'Mute', value: 'mute', className: 'octicon octicon-mute' }, { label: 'No Newline', value: 'no-newline', className: 'octicon octicon-no-newline' }, { label: 'Octoface', value: 'octoface', className: 'octicon octicon-octoface' }, { label: 'Organization', value: 'organization', className: 'octicon octicon-organization' }, { label: 'Package', value: 'package', className: 'octicon octicon-package' }, { label: 'Paintcan', value: 'paintcan', className: 'octicon octicon-paintcan' }, { label: 'Pencil', value: 'pencil', className: 'octicon octicon-pencil' }, { label: 'Person', value: 'person', className: 'octicon octicon-person' }, { label: 'Pin', value: 'pin', className: 'octicon octicon-pin' }, { label: 'Playback Fast Forward', value: 'playback-fast-forward', className: 'octicon octicon-playback-fast-forward' }, { label: 'Playback Pause', value: 'playback-pause', className: 'octicon octicon-playback-pause' }, { label: 'Playback Play', value: 'playback-play', className: 'octicon octicon-playback-play' }, { label: 'Playback Rewind', value: 'playback-rewind', className: 'octicon octicon-playback-rewind' }, { label: 'Plug', value: 'plug', className: 'octicon octicon-plug' }, { label: 'Add', value: 'add', className: 'octicon octicon-add' }, { label: 'Create', value: 'create', className: 'octicon octicon-create' }, { label: 'Plus', value: 'plus', className: 'octicon octicon-plus' }, { label: 'Podium', value: 'podium', className: 'octicon octicon-podium' }, { label: 'Primitive Dot', value: 'primitive-dot', className: 'octicon octicon-primitive-dot' }, { label: 'Primitive Square', value: 'primitive-square', className: 'octicon octicon-primitive-square' }, { label: 'Pulse', value: 'pulse', className: 'octicon octicon-pulse' }, { label: 'Puzzle', value: 'puzzle', className: 'octicon octicon-puzzle' }, { label: 'Question', value: 'question', className: 'octicon octicon-question' }, { label: 'Quote', value: 'quote', className: 'octicon octicon-quote' }, { label: 'Radio Tower', value: 'radio-tower', className: 'octicon octicon-radio-tower' }, { label: 'Repo', value: 'repo', className: 'octicon octicon-repo' }, { label: 'Forked', value: 'forked', className: 'octicon octicon-forked' }, { label: 'Rocket', value: 'rocket', className: 'octicon octicon-rocket' }, { label: 'Rss', value: 'rss', className: 'octicon octicon-rss' }, { label: 'Ruby', value: 'ruby', className: 'octicon octicon-ruby' }, { label: 'Screen Full', value: 'screen-full', className: 'octicon octicon-screen-full' }, { label: 'Screen Normal', value: 'screen-normal', className: 'octicon octicon-screen-normal' }, { label: 'Search', value: 'search', className: 'octicon octicon-search' }, { label: 'Server', value: 'server', className: 'octicon octicon-server' }, { label: 'Settings', value: 'settings', className: 'octicon octicon-settings' }, { label: 'Log In', value: 'log-in', className: 'octicon octicon-log-in' }, { label: 'Sign In', value: 'sign-in', className: 'octicon octicon-sign-in' }, { label: 'Log Out', value: 'log-out', className: 'octicon octicon-log-out' }, { label: 'Sign Out', value: 'sign-out', className: 'octicon octicon-sign-out' }, { label: 'Split', value: 'split', className: 'octicon octicon-split' }, { label: 'Squirrel', value: 'squirrel', className: 'octicon octicon-squirrel' }, { label: 'Star', value: 'star', className: 'octicon octicon-star' }, { label: 'Steps', value: 'steps', className: 'octicon octicon-steps' }, { label: 'Stop', value: 'stop', className: 'octicon octicon-stop' }, { label: 'Sync', value: 'sync', className: 'octicon octicon-sync' }, { label: 'Tag', value: 'tag', className: 'octicon octicon-tag' }, { label: 'Telescope', value: 'telescope', className: 'octicon octicon-telescope' }, { label: 'Terminal', value: 'terminal', className: 'octicon octicon-terminal' }, { label: 'Three Bars', value: 'three-bars', className: 'octicon octicon-three-bars' }, { label: 'Thumbsdown', value: 'thumbsdown', className: 'octicon octicon-thumbsdown' }, { label: 'Thumbsup', value: 'thumbsup', className: 'octicon octicon-thumbsup' }, { label: 'Tools', value: 'tools', className: 'octicon octicon-tools' }, { label: 'Trashcan', value: 'trashcan', className: 'octicon octicon-trashcan' }, { label: 'Triangle Down', value: 'triangle-down', className: 'octicon octicon-triangle-down' }, { label: 'Triangle Left', value: 'triangle-left', className: 'octicon octicon-triangle-left' }, { label: 'Triangle Right', value: 'triangle-right', className: 'octicon octicon-triangle-right' }, { label: 'Triangle Up', value: 'triangle-up', className: 'octicon octicon-triangle-up' }, { label: 'Unfold', value: 'unfold', className: 'octicon octicon-unfold' }, { label: 'Unmute', value: 'unmute', className: 'octicon octicon-unmute' }, { label: 'Versions', value: 'versions', className: 'octicon octicon-versions' }, { label: 'Remove Close', value: 'remove-close', className: 'octicon octicon-remove-close' }, { label: 'X', value: 'x', className: 'octicon octicon-x' }, { label: 'Zap', value: 'zap', className: 'octicon octicon-zap' }];
+var list = [{ label: 'Alert', value: 'alert', className: 'octicon octicon-alert' }, { label: 'Alignment Align', value: 'alignment-align', className: 'octicon octicon-alignment-align' }, { label: 'Alignment Aligned To', value: 'alignment-aligned-to', className: 'octicon octicon-alignment-aligned-to' }, { label: 'Alignment Unalign', value: 'alignment-unalign', className: 'octicon octicon-alignment-unalign' }, { label: 'Arrow Down', value: 'arrow-down', className: 'octicon octicon-arrow-down' }, { label: 'Arrow Left', value: 'arrow-left', className: 'octicon octicon-arrow-left' }, { label: 'Arrow Right', value: 'arrow-right', className: 'octicon octicon-arrow-right' }, { label: 'Arrow Small Down', value: 'arrow-small-down', className: 'octicon octicon-arrow-small-down' }, { label: 'Arrow Small Left', value: 'arrow-small-left', className: 'octicon octicon-arrow-small-left' }, { label: 'Arrow Small Right', value: 'arrow-small-right', className: 'octicon octicon-arrow-small-right' }, { label: 'Arrow Small Up', value: 'arrow-small-up', className: 'octicon octicon-arrow-small-up' }, { label: 'Arrow Up', value: 'arrow-up', className: 'octicon octicon-arrow-up' }, { label: 'Beer', value: 'beer', className: 'octicon octicon-beer' }, { label: 'Book', value: 'book', className: 'octicon octicon-book' }, { label: 'Bookmark', value: 'bookmark', className: 'octicon octicon-bookmark' }, { label: 'Briefcase', value: 'briefcase', className: 'octicon octicon-briefcase' }, { label: 'Broadcast', value: 'broadcast', className: 'octicon octicon-broadcast' }, { label: 'Browser', value: 'browser', className: 'octicon octicon-browser' }, { label: 'Bug', value: 'bug', className: 'octicon octicon-bug' }, { label: 'Calendar', value: 'calendar', className: 'octicon octicon-calendar' }, { label: 'Check', value: 'check', className: 'octicon octicon-check' }, { label: 'Checklist', value: 'checklist', className: 'octicon octicon-checklist' }, { label: 'Chevron Down', value: 'chevron-down', className: 'octicon octicon-chevron-down' }, { label: 'Chevron Left', value: 'chevron-left', className: 'octicon octicon-chevron-left' }, { label: 'Chevron Right', value: 'chevron-right', className: 'octicon octicon-chevron-right' }, { label: 'Chevron Up', value: 'chevron-up', className: 'octicon octicon-chevron-up' }, { label: 'Circle Slash', value: 'circle-slash', className: 'octicon octicon-circle-slash' }, { label: 'Circuit Board', value: 'circuit-board', className: 'octicon octicon-circuit-board' }, { label: 'Clippy', value: 'clippy', className: 'octicon octicon-clippy' }, { label: 'Clock', value: 'clock', className: 'octicon octicon-clock' }, { label: 'Cloud Download', value: 'cloud-download', className: 'octicon octicon-cloud-download' }, { label: 'Cloud Upload', value: 'cloud-upload', className: 'octicon octicon-cloud-upload' }, { label: 'Code', value: 'code', className: 'octicon octicon-code' }, { label: 'Color Mode', value: 'color-mode', className: 'octicon octicon-color-mode' }, { label: 'Comment', value: 'comment', className: 'octicon octicon-comment' }, { label: 'Comment Discussion', value: 'comment-discussion', className: 'octicon octicon-comment-discussion' }, { label: 'Credit Card', value: 'credit-card', className: 'octicon octicon-credit-card' }, { label: 'Dash', value: 'dash', className: 'octicon octicon-dash' }, { label: 'Dashboard', value: 'dashboard', className: 'octicon octicon-dashboard' }, { label: 'Database', value: 'database', className: 'octicon octicon-database' }, { label: 'Device Camera', value: 'device-camera', className: 'octicon octicon-device-camera' }, { label: 'Device Camera Video', value: 'device-camera-video', className: 'octicon octicon-device-camera-video' }, { label: 'Device Desktop', value: 'device-desktop', className: 'octicon octicon-device-desktop' }, { label: 'Device Mobile', value: 'device-mobile', className: 'octicon octicon-device-mobile' }, { label: 'Diff', value: 'diff', className: 'octicon octicon-diff' }, { label: 'Diff Added', value: 'diff-added', className: 'octicon octicon-diff-added' }, { label: 'Diff Ignored', value: 'diff-ignored', className: 'octicon octicon-diff-ignored' }, { label: 'Diff Modified', value: 'diff-modified', className: 'octicon octicon-diff-modified' }, { label: 'Diff Removed', value: 'diff-removed', className: 'octicon octicon-diff-removed' }, { label: 'Diff Renamed', value: 'diff-renamed', className: 'octicon octicon-diff-renamed' }, { label: 'Ellipsis', value: 'ellipsis', className: 'octicon octicon-ellipsis' }, { label: 'Eye', value: 'eye', className: 'octicon octicon-eye' }, { label: 'File Binary', value: 'file-binary', className: 'octicon octicon-file-binary' }, { label: 'File Code', value: 'file-code', className: 'octicon octicon-file-code' }, { label: 'File Directory', value: 'file-directory', className: 'octicon octicon-file-directory' }, { label: 'File Media', value: 'file-media', className: 'octicon octicon-file-media' }, { label: 'File Pdf', value: 'file-pdf', className: 'octicon octicon-file-pdf' }, { label: 'File Submodule', value: 'file-submodule', className: 'octicon octicon-file-submodule' }, { label: 'File Symlink Directory', value: 'file-symlink-directory', className: 'octicon octicon-file-symlink-directory' }, { label: 'File Symlink File', value: 'file-symlink-file', className: 'octicon octicon-file-symlink-file' }, { label: 'File Text', value: 'file-text', className: 'octicon octicon-file-text' }, { label: 'File Zip', value: 'file-zip', className: 'octicon octicon-file-zip' }, { label: 'Flame', value: 'flame', className: 'octicon octicon-flame' }, { label: 'Fold', value: 'fold', className: 'octicon octicon-fold' }, { label: 'Gear', value: 'gear', className: 'octicon octicon-gear' }, { label: 'Gift', value: 'gift', className: 'octicon octicon-gift' }, { label: 'Gist', value: 'gist', className: 'octicon octicon-gist' }, { label: 'Gist Secret', value: 'gist-secret', className: 'octicon octicon-gist-secret' }, { label: 'Git Branch', value: 'git-branch', className: 'octicon octicon-git-branch' }, { label: 'Git Commit', value: 'git-commit', className: 'octicon octicon-git-commit' }, { label: 'Git Compare', value: 'git-compare', className: 'octicon octicon-git-compare' }, { label: 'Git Merge', value: 'git-merge', className: 'octicon octicon-git-merge' }, { label: 'Git Pull Request', value: 'git-pull-request', className: 'octicon octicon-git-pull-request' }, { label: 'Globe', value: 'globe', className: 'octicon octicon-globe' }, { label: 'Graph', value: 'graph', className: 'octicon octicon-graph' }, { label: 'Heart', value: 'heart', className: 'octicon octicon-heart' }, { label: 'History', value: 'history', className: 'octicon octicon-history' }, { label: 'Home', value: 'home', className: 'octicon octicon-home' }, { label: 'Horizontal Rule', value: 'horizontal-rule', className: 'octicon octicon-horizontal-rule' }, { label: 'Hourglass', value: 'hourglass', className: 'octicon octicon-hourglass' }, { label: 'Hubot', value: 'hubot', className: 'octicon octicon-hubot' }, { label: 'Inbox', value: 'inbox', className: 'octicon octicon-inbox' }, { label: 'Info', value: 'info', className: 'octicon octicon-info' }, { label: 'Issue Closed', value: 'issue-closed', className: 'octicon octicon-issue-closed' }, { label: 'Issue Opened', value: 'issue-opened', className: 'octicon octicon-issue-opened' }, { label: 'Issue Reopened', value: 'issue-reopened', className: 'octicon octicon-issue-reopened' }, { label: 'Jersey', value: 'jersey', className: 'octicon octicon-jersey' }, { label: 'Jump Down', value: 'jump-down', className: 'octicon octicon-jump-down' }, { label: 'Jump Left', value: 'jump-left', className: 'octicon octicon-jump-left' }, { label: 'Jump Right', value: 'jump-right', className: 'octicon octicon-jump-right' }, { label: 'Jump Up', value: 'jump-up', className: 'octicon octicon-jump-up' }, { label: 'Key', value: 'key', className: 'octicon octicon-key' }, { label: 'Keyboard', value: 'keyboard', className: 'octicon octicon-keyboard' }, { label: 'Law', value: 'law', className: 'octicon octicon-law' }, { label: 'Light Bulb', value: 'light-bulb', className: 'octicon octicon-light-bulb' }, { label: 'Link', value: 'link', className: 'octicon octicon-link' }, { label: 'Link External', value: 'link-external', className: 'octicon octicon-link-external' }, { label: 'List Ordered', value: 'list-ordered', className: 'octicon octicon-list-ordered' }, { label: 'List Unordered', value: 'list-unordered', className: 'octicon octicon-list-unordered' }, { label: 'Location', value: 'location', className: 'octicon octicon-location' }, { label: 'Lock', value: 'lock', className: 'octicon octicon-lock' }, { label: 'Logo Github', value: 'logo-github', className: 'octicon octicon-logo-github' }, { label: 'Mail', value: 'mail', className: 'octicon octicon-mail' }, { label: 'Mail Read', value: 'mail-read', className: 'octicon octicon-mail-read' }, { label: 'Mail Reply', value: 'mail-reply', className: 'octicon octicon-mail-reply' }, { label: 'Mark Github', value: 'mark-github', className: 'octicon octicon-mark-github' }, { label: 'Markdown', value: 'markdown', className: 'octicon octicon-markdown' }, { label: 'Megaphone', value: 'megaphone', className: 'octicon octicon-megaphone' }, { label: 'Mention', value: 'mention', className: 'octicon octicon-mention' }, { label: 'Microscope', value: 'microscope', className: 'octicon octicon-microscope' }, { label: 'Milestone', value: 'milestone', className: 'octicon octicon-milestone' }, { label: 'Mirror', value: 'mirror', className: 'octicon octicon-mirror' }, { label: 'Mortar Board', value: 'mortar-board', className: 'octicon octicon-mortar-board' }, { label: 'Move Down', value: 'move-down', className: 'octicon octicon-move-down' }, { label: 'Move Left', value: 'move-left', className: 'octicon octicon-move-left' }, { label: 'Move Right', value: 'move-right', className: 'octicon octicon-move-right' }, { label: 'Move Up', value: 'move-up', className: 'octicon octicon-move-up' }, { label: 'Mute', value: 'mute', className: 'octicon octicon-mute' }, { label: 'No Newline', value: 'no-newline', className: 'octicon octicon-no-newline' }, { label: 'Octoface', value: 'octoface', className: 'octicon octicon-octoface' }, { label: 'Organization', value: 'organization', className: 'octicon octicon-organization' }, { label: 'Package', value: 'package', className: 'octicon octicon-package' }, { label: 'Paintcan', value: 'paintcan', className: 'octicon octicon-paintcan' }, { label: 'Pencil', value: 'pencil', className: 'octicon octicon-pencil' }, { label: 'Person', value: 'person', className: 'octicon octicon-person' }, { label: 'Pin', value: 'pin', className: 'octicon octicon-pin' }, { label: 'Playback Fast Forward', value: 'playback-fast-forward', className: 'octicon octicon-playback-fast-forward' }, { label: 'Playback Pause', value: 'playback-pause', className: 'octicon octicon-playback-pause' }, { label: 'Playback Play', value: 'playback-play', className: 'octicon octicon-playback-play' }, { label: 'Playback Rewind', value: 'playback-rewind', className: 'octicon octicon-playback-rewind' }, { label: 'Plug', value: 'plug', className: 'octicon octicon-plug' }, { label: 'Plus', value: 'plus', className: 'octicon octicon-plus' }, { label: 'Podium', value: 'podium', className: 'octicon octicon-podium' }, { label: 'Primitive Dot', value: 'primitive-dot', className: 'octicon octicon-primitive-dot' }, { label: 'Primitive Square', value: 'primitive-square', className: 'octicon octicon-primitive-square' }, { label: 'Pulse', value: 'pulse', className: 'octicon octicon-pulse' }, { label: 'Puzzle', value: 'puzzle', className: 'octicon octicon-puzzle' }, { label: 'Question', value: 'question', className: 'octicon octicon-question' }, { label: 'Quote', value: 'quote', className: 'octicon octicon-quote' }, { label: 'Radio Tower', value: 'radio-tower', className: 'octicon octicon-radio-tower' }, { label: 'Repo', value: 'repo', className: 'octicon octicon-repo' }, { label: 'Repo Clone', value: 'repo-clone', className: 'octicon octicon-repo-clone' }, { label: 'Repo Force Push', value: 'repo-force-push', className: 'octicon octicon-repo-force-push' }, { label: 'Repo Forked', value: 'repo-forked', className: 'octicon octicon-repo-forked' }, { label: 'Repo Pull', value: 'repo-pull', className: 'octicon octicon-repo-pull' }, { label: 'Repo Push', value: 'repo-push', className: 'octicon octicon-repo-push' }, { label: 'Rocket', value: 'rocket', className: 'octicon octicon-rocket' }, { label: 'Rss', value: 'rss', className: 'octicon octicon-rss' }, { label: 'Ruby', value: 'ruby', className: 'octicon octicon-ruby' }, { label: 'Screen Full', value: 'screen-full', className: 'octicon octicon-screen-full' }, { label: 'Screen Normal', value: 'screen-normal', className: 'octicon octicon-screen-normal' }, { label: 'Search', value: 'search', className: 'octicon octicon-search' }, { label: 'Server', value: 'server', className: 'octicon octicon-server' }, { label: 'Settings', value: 'settings', className: 'octicon octicon-settings' }, { label: 'Sign In', value: 'sign-in', className: 'octicon octicon-sign-in' }, { label: 'Sign Out', value: 'sign-out', className: 'octicon octicon-sign-out' }, { label: 'Split', value: 'split', className: 'octicon octicon-split' }, { label: 'Squirrel', value: 'squirrel', className: 'octicon octicon-squirrel' }, { label: 'Star', value: 'star', className: 'octicon octicon-star' }, { label: 'Steps', value: 'steps', className: 'octicon octicon-steps' }, { label: 'Stop', value: 'stop', className: 'octicon octicon-stop' }, { label: 'Sync', value: 'sync', className: 'octicon octicon-sync' }, { label: 'Tag', value: 'tag', className: 'octicon octicon-tag' }, { label: 'Telescope', value: 'telescope', className: 'octicon octicon-telescope' }, { label: 'Terminal', value: 'terminal', className: 'octicon octicon-terminal' }, { label: 'Three Bars', value: 'three-bars', className: 'octicon octicon-three-bars' }, { label: 'Thumbsdown', value: 'thumbsdown', className: 'octicon octicon-thumbsdown' }, { label: 'Thumbsup', value: 'thumbsup', className: 'octicon octicon-thumbsup' }, { label: 'Tools', value: 'tools', className: 'octicon octicon-tools' }, { label: 'Trashcan', value: 'trashcan', className: 'octicon octicon-trashcan' }, { label: 'Triangle Down', value: 'triangle-down', className: 'octicon octicon-triangle-down' }, { label: 'Triangle Left', value: 'triangle-left', className: 'octicon octicon-triangle-left' }, { label: 'Triangle Right', value: 'triangle-right', className: 'octicon octicon-triangle-right' }, { label: 'Triangle Up', value: 'triangle-up', className: 'octicon octicon-triangle-up' }, { label: 'Unfold', value: 'unfold', className: 'octicon octicon-unfold' }, { label: 'Unmute', value: 'unmute', className: 'octicon octicon-unmute' }, { label: 'Versions', value: 'versions', className: 'octicon octicon-versions' }, { label: 'X', value: 'x', className: 'octicon octicon-x' }, { label: 'Zap', value: 'zap', className: 'octicon octicon-zap' }];
 
 var map = {};
 list.forEach(function (icon) {
@@ -20,14 +20,50 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
 
+var ALERT_TYPES = ['danger', 'info', 'primary', 'success', 'warning'];
+
+module.exports = React.createClass({
+	displayName: 'ElementalAlert',
+	propTypes: {
+		className: React.PropTypes.string,
+		type: React.PropTypes.oneOf(ALERT_TYPES)
+	},
+	getDefaultProps: function getDefaultProps() {
+		return {
+			type: 'default'
+		};
+	},
+	render: function render() {
+		var componentClass = classNames('Alert', 'Alert--' + this.props.type, this.props.className);
+
+		var props = blacklist(this.props, ['type', 'className']);
+
+		return React.createElement(
+			'div',
+			{ className: componentClass },
+			this.props.children
+		);
+	}
+});
+
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],3:[function(require,module,exports){
+'use strict';
+
+var React = require('react/addons');
+var classNames = require('classnames');
+var blacklist = require('blacklist');
+
+var BUTTON_TYPES = ['default', 'default-primary', 'default-success', 'default-warning', 'default-danger', 'primary', 'success', 'warning', 'danger', 'link', 'link-cancel'];
+
 module.exports = React.createClass({
 	displayName: 'ElementalButton',
 	propTypes: {
-		onClick: React.PropTypes.func,
-		type: React.PropTypes.string,
-		size: React.PropTypes.string,
+		className: React.PropTypes.string,
 		href: React.PropTypes.string,
-		className: React.PropTypes.string
+		onClick: React.PropTypes.func,
+		size: React.PropTypes.string,
+		submit: React.PropTypes.bool,
+		type: React.PropTypes.oneOf(BUTTON_TYPES)
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -36,7 +72,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// classes
-		var componentClass = classNames('Button', 'Button-' + this.props.type, this.props.size ? 'Button-' + this.props.size : null, this.props.className);
+		var componentClass = classNames('Button', 'Button--' + this.props.type, this.props.size ? 'Button--' + this.props.size : null, this.props.className);
 
 		// props
 		var props = blacklist(this.props, ['type', 'size', 'className']);
@@ -46,14 +82,14 @@ module.exports = React.createClass({
 
 		if (!props.href) {
 			tag = 'button';
-			props.type = 'button';
+			props.type = this.props.submit ? 'submit' : 'button';
 		}
 
 		return React.createElement(tag, props, this.props.children);
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],3:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],4:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -190,7 +226,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./DatePickerCalendar":4,"classnames":undefined,"moment":undefined,"react/addons":undefined}],4:[function(require,module,exports){
+},{"./DatePickerCalendar":5,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -337,7 +373,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./DatePickerHeader":5,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
+},{"./DatePickerHeader":6,"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -465,61 +501,89 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
+},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],7:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var classNames = require('classnames');
 
+var Button = require('./Button');
+
 module.exports = React.createClass({
 	displayName: 'Dropdown',
 	propTypes: {
 		items: React.PropTypes.array.isRequired,
-		onChange: React.PropTypes.func,
 		className: React.PropTypes.string,
 		buttonClass: React.PropTypes.string,
 		buttonLabel: React.PropTypes.string,
-		buttonDisclosureArrow: React.PropTypes.bool,
-		isOpen: React.PropTypes.bool
+		buttonHasDisclosureArrow: React.PropTypes.bool
 	},
-	render: function render() {
-		// classes
-		var dropdownClass = classNames('dropdown', {
-			'is-open': this.props.isOpen,
-			'align-right': this.props.alignRight
-		}, this.props.className);
-		var buttonClass = classNames('dropdown-toggle', this.props.buttonClass);
+	getDefaultProps: function getDefaultProps() {
+		return {
+			buttonHasDisclosureArrow: true
+		};
+	},
+	getInitialState: function getInitialState() {
+		return {
+			isOpen: false
+		};
+	},
+	openDropdown: function openDropdown() {
+		this.setState({ isOpen: true });
+	},
+	closeDropdown: function closeDropdown() {
+		this.setState({ isOpen: false });
+	},
+	renderChildren: function renderChildren() {
+		var _this = this;
 
-		// elements
+		return React.Children.map(this.props.children, function (child) {
+			child.props.onClick = _this.openDropdown;
+			return child;
+		});
+	},
+	renderButton: function renderButton() {
+		var buttonClass = classNames('Dropdown-toggle', this.props.buttonClass);
+		var disclosureArrow = this.props.buttonHasDisclosureArrow ? React.createElement('span', { className: 'Dropdown-toggle__arrow' }) : null;
+		return React.createElement(
+			Button,
+			{ onClick: this.state.isOpen ? this.closeDropdown : this.openDropdown, className: buttonClass },
+			this.props.buttonLabel,
+			disclosureArrow
+		);
+	},
+	renderDropdownMenu: function renderDropdownMenu() {
+		if (!this.state.isOpen) return;
+
 		var dropdownMenuItems = this.props.items.map((function (item, i) {
 			var menuItem;
 			if (item.type === 'header') {
 				menuItem = React.createElement(
 					'li',
-					{ key: 'item-' + i, className: 'dropdown-menu__header' },
+					{ key: 'item-' + i, className: 'Dropdown-menu__header' },
 					item.label
 				);
 			} else if (item.type === 'divider') {
-				menuItem = React.createElement('li', { key: 'item-' + i, className: 'dropdown-menu__divider' });
+				menuItem = React.createElement('li', { key: 'item-' + i, className: 'Dropdown-menu__divider' });
 			} else {
 				if (item.href) {
 					menuItem = React.createElement(
 						'li',
-						{ key: 'item-' + i, className: 'dropdown-menu__item' },
+						{ key: 'item-' + i, className: 'Dropdown-menu__item' },
 						React.createElement(
 							'a',
-							{ className: 'dropdown-menu__action', href: item.anchor },
+							{ className: 'Dropdown-menu__action', href: item.anchor },
 							item.label
 						)
 					);
 				} else {
 					menuItem = React.createElement(
 						'li',
-						{ key: 'item-' + i, className: 'dropdown-menu__item' },
+						{ key: 'item-' + i, className: 'Dropdown-menu__item' },
 						React.createElement(
 							'span',
-							{ className: 'dropdown-menu__action', onClick: item.action },
+							{ className: 'Dropdown-menu__action', onClick: item.action },
 							item.label
 						)
 					);
@@ -527,34 +591,39 @@ module.exports = React.createClass({
 			}
 			return menuItem;
 		}).bind(this));
-		var dropdownMenu = this.props.isOpen ? React.createElement(
+
+		return React.createElement(
 			'ul',
-			{ key: 'dropdown-menu', className: 'dropdown-menu', role: 'menu' },
+			{ key: 'Dropdown-menu', className: 'Dropdown-menu', role: 'menu' },
 			dropdownMenuItems
-		) : null;
-		var dropdownMenuBackground = this.props.isOpen ? React.createElement('div', { className: 'dropdown-menu-backdrop', onClick: this.props.onChange }) : null;
-		var disclosureArrow = this.props.buttonDisclosureArrow ? React.createElement('span', { className: 'dropdown-toggle__arrow' }) : null;
+		);
+	},
+	renderDropdownMenuBackground: function renderDropdownMenuBackground() {
+		if (!this.state.isOpen) return;
+		return React.createElement('div', { className: 'Dropdown-menu-backdrop', onClick: this.closeDropdown });
+	},
+	render: function render() {
+		// classes
+		var dropdownClass = classNames('Dropdown', {
+			'is-open': this.state.isOpen,
+			'align-right': this.props.alignRight
+		}, this.props.className);
 
 		return React.createElement(
 			'div',
 			{ className: dropdownClass },
-			React.createElement(
-				'button',
-				{ onClick: this.props.onChange, className: buttonClass, type: 'button' },
-				this.props.buttonLabel,
-				disclosureArrow
-			),
+			React.Children.count(this.props.children) ? this.renderChildren() : this.renderButton(),
 			React.createElement(
 				ReactCSSTransitionGroup,
-				{ transitionName: 'dropdown-menu', component: 'div' },
-				dropdownMenu
+				{ transitionName: 'Dropdown-menu', component: 'div' },
+				this.renderDropdownMenu()
 			),
-			dropdownMenuBackground
+			this.renderDropdownMenuBackground()
 		);
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],7:[function(require,module,exports){
+},{"./Button":3,"classnames":undefined,"react/addons":undefined}],8:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -650,13 +719,13 @@ module.exports = React.createClass({
 			'div',
 			{ className: formGroupClass },
 			componentLabel,
-			React.createElement('input', { onChange: this.handleChange, onBlur: this.handleBlur, value: this.props.value, type: 'email', className: 'form-input', placeholder: 'Enter email', id: 'inputEmail' }),
+			React.createElement('input', { onChange: this.handleChange, onBlur: this.handleBlur, value: this.props.value, type: 'email', className: 'FormInput', placeholder: 'Enter email', id: 'inputEmail' }),
 			validationMessage
 		);
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],8:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],9:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -727,8 +796,8 @@ var Dropzone = React.createClass({
 
 	render: function render() {
 
-		var className = classNames('form-dropzone', {
-			active: this.state.isDragActive
+		var className = classNames('FileDragAndDrop', {
+			'active': this.state.isDragActive
 		}, this.props.className);
 
 		return React.createElement(
@@ -737,7 +806,7 @@ var Dropzone = React.createClass({
 			React.createElement('input', { style: { display: 'none' }, type: 'file', multiple: true, ref: 'fileInput', onChange: this.onDrop }),
 			React.createElement(
 				'div',
-				{ className: 'form-dropzone-label' },
+				{ className: 'FileDragAndDrop__label' },
 				this.state.isDragActive ? this.props.labelActive : this.props.label
 			),
 			this.props.children
@@ -748,55 +817,7 @@ var Dropzone = React.createClass({
 
 module.exports = Dropzone;
 
-},{"classnames":undefined,"react/addons":undefined}],9:[function(require,module,exports){
-'use strict';
-
-var React = require('react/addons');
-var classNames = require('classnames');
-var _ = require('underscore');
-
-module.exports = React.createClass({
-	displayName: 'FormField',
-	propTypes: {
-		className: React.PropTypes.string,
-		disabled: React.PropTypes.bool,
-		label: React.PropTypes.string,
-		multiline: React.PropTypes.bool,
-		onChange: React.PropTypes.func,
-		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
-		type: React.PropTypes.string,
-		value: React.PropTypes.string,
-		width: React.PropTypes.oneOf(['one-half', 'two-quarters', 'three-sixths', 'one-quarter', 'three-quarters', 'one-third', 'two-sixths', 'two-thirds', 'four-sixths', 'one-fifth', 'two-fifths', 'three-fifths', 'four-fifths', 'one-sixth', 'five-sixths'])
-	},
-	getDefaultProps: function getDefaultProps() {
-		return {
-			type: 'text'
-		};
-	},
-	render: function render() {
-		// classes
-		var componentClass = classNames('form-field', this.props.width, this.props.className);
-
-		// props
-		var props = _.omit(this.props, ['label', 'width', 'className']);
-
-		// elements
-		var componentLabel = !!this.props.label ? React.createElement(
-			'label',
-			{ className: 'form-label', htmlFor: this.props.id || this.props.htmlFor },
-			this.props.label
-		) : null;
-
-		return React.createElement(
-			'div',
-			{ className: componentClass },
-			componentLabel,
-			this.props.children
-		);
-	}
-});
-
-},{"classnames":undefined,"react/addons":undefined,"underscore":undefined}],10:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],10:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -806,7 +827,7 @@ var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
-	displayName: 'FormFile',
+	displayName: 'FileUpload',
 	propTypes: {
 		buttonClassChange: React.PropTypes.string,
 		buttonClassInitial: React.PropTypes.string,
@@ -820,8 +841,8 @@ module.exports = React.createClass({
 		return {
 			buttonLabelInitial: 'Upload File',
 			buttonLabelChange: 'Change File',
-			buttonClassInitial: 'Button Button-default',
-			buttonClassChange: 'Button Button-default'
+			buttonClassInitial: 'Button Button--default',
+			buttonClassChange: 'Button Button--default'
 		};
 	},
 	getInitialState: function getInitialState() {
@@ -882,18 +903,18 @@ module.exports = React.createClass({
 		if (!isEmptyObject(file)) {
 			component = React.createElement(
 				'div',
-				{ className: 'file-upload' },
+				{ className: 'FileUpload' },
 				React.createElement(
 					'div',
-					{ className: 'file-upload-image' },
-					React.createElement('img', { className: 'file-upload-image-src', src: this.state.data_uri })
+					{ className: 'FileUpload__image' },
+					React.createElement('img', { className: 'FileUpload__image-src', src: this.state.data_uri })
 				),
 				React.createElement(
 					'div',
-					{ className: 'file-upload-content' },
+					{ className: 'FileUpload__content' },
 					React.createElement(
 						'div',
-						{ className: 'file-upload-message' },
+						{ className: 'FileUpload__message' },
 						file.name,
 						' (',
 						Math.round(file.size / 1024),
@@ -901,7 +922,7 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						'div',
-						{ className: 'file-upload-buttons' },
+						{ className: 'FileUpload__buttons' },
 						React.createElement(
 							'button',
 							{ type: 'button', onClick: this.triggerFileBrowser, className: this.props.buttonClassChange },
@@ -909,7 +930,7 @@ module.exports = React.createClass({
 						),
 						React.createElement(
 							'button',
-							{ type: 'button', onClick: this.cancelUpload, className: 'Button Button-link-cancel' },
+							{ type: 'button', onClick: this.cancelUpload, className: 'Button Button--link-cancel' },
 							'Cancel'
 						)
 					)
@@ -931,46 +952,88 @@ module.exports = React.createClass({
 
 var React = require('react/addons');
 var classNames = require('classnames');
-var _ = require('underscore');
+var _ = require('lodash');
+
+module.exports = React.createClass({
+	displayName: 'FormField',
+	propTypes: {
+		className: React.PropTypes.string,
+		disabled: React.PropTypes.bool,
+		label: React.PropTypes.string,
+		multiline: React.PropTypes.bool,
+		onChange: React.PropTypes.func,
+		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
+		type: React.PropTypes.string,
+		value: React.PropTypes.string,
+		width: React.PropTypes.oneOf(['one-half', 'two-quarters', 'three-sixths', 'one-quarter', 'three-quarters', 'one-third', 'two-sixths', 'two-thirds', 'four-sixths', 'one-fifth', 'two-fifths', 'three-fifths', 'four-fifths', 'one-sixth', 'five-sixths'])
+	},
+	getDefaultProps: function getDefaultProps() {
+		return {
+			type: 'text'
+		};
+	},
+	render: function render() {
+		// classes
+		var componentClass = classNames('form-field', this.props.width, this.props.className);
+
+		// props
+		var props = _.omit(this.props, ['label', 'width', 'className']);
+
+		// elements
+		var componentLabel = !!this.props.label ? React.createElement(
+			'label',
+			{ className: 'form-label', htmlFor: this.props.id || this.props.htmlFor },
+			this.props.label
+		) : null;
+
+		return React.createElement(
+			'div',
+			{ className: componentClass },
+			componentLabel,
+			this.props.children
+		);
+	}
+});
+
+},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],12:[function(require,module,exports){
+'use strict';
+
+var React = require('react/addons');
+var classNames = require('classnames');
+var _ = require('lodash');
 var Spinner = require('elemental').Spinner;
 
-var icons = require('../FormIcons').map;
+var icons = require('../Octicons').map;
 
 module.exports = React.createClass({
 	displayName: 'FormIcon',
 	propTypes: {
 		className: React.PropTypes.string,
-		icon: React.PropTypes.oneOf(['calendar', 'camera', 'cart', 'close-circled', 'close', 'cog', 'home', 'information', 'mail', 'menu', 'search', 'star-outline', 'star', 'telephone', 'time', 'user', 'users', 'warning']),
+		icon: React.PropTypes.string,
 		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		color: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		isLoading: React.PropTypes.bool
 	},
 	render: function render() {
 		// classes
-		var componentClass = classNames('form-icon', this.props.fill ? 'form-icon-fill--' + this.props.fill : null, this.props.type ? 'form-icon-color--' + this.props.type : null, this.props.className);
+		var className = classNames('IconField__icon', icons[this.props.icon].className, this.props.fill ? 'IconField__icon-fill--' + this.props.fill : null, this.props.type ? 'IconField__icon-color--' + this.props.type : null, this.props.className);
 
-		var iconClass = classNames('form-icon-src', icons[this.props.icon].className);
-
-		var component = this.props.isLoading ? React.createElement(Spinner, { size: 'sm' }) : React.createElement(
-			'div',
-			{ className: componentClass },
-			React.createElement('span', { className: iconClass })
-		);
+		var component = this.props.isLoading ? React.createElement(Spinner, { size: 'sm' }) : React.createElement('div', { className: className });
 
 		return component;
 	}
 });
 
-},{"../FormIcons":1,"classnames":undefined,"elemental":"elemental","react/addons":undefined,"underscore":undefined}],12:[function(require,module,exports){
+},{"../Octicons":1,"classnames":undefined,"elemental":"elemental","lodash":undefined,"react/addons":undefined}],13:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 var classNames = require('classnames');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var FormField = require('elemental').FormField;
 var Spinner = require('elemental').Spinner;
-var icons = require('../FormIcons').map;
+var icons = require('../Octicons').map;
 
 var COLOR_VARIANTS = ['danger', 'default', 'primary', 'success', 'warning'];
 
@@ -994,20 +1057,14 @@ module.exports = React.createClass({
 		var props = _.omit(this.props, ['className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading']);
 
 		// classes
-		var fieldClass = classNames('form-icon-field', {
+		var fieldClass = classNames('IconField', {
 			'has-fill-icon': this.props.iconFill,
 			'is-loading-icon': this.props.iconIsLoading
 		}, this.props.iconFill ? 'field-context-' + this.props.iconFill : null, this.props.iconColor ? 'field-context-' + this.props.iconColor : null, this.props.iconPosition);
 
-		var iconContainerClass = classNames('form-icon', this.props.iconFill ? 'form-icon-fill--' + this.props.iconFill : null, this.props.iconColor ? 'form-icon-color--' + this.props.iconColor : null, this.props.className);
+		var iconClass = classNames('IconField__icon', this.props.iconFill ? 'IconField__icon-fill--' + this.props.iconFill : null, this.props.iconColor ? 'IconField__icon-color--' + this.props.iconColor : null, icons[this.props.iconKey].className, this.props.className);
 
-		var iconClass = classNames('form-icon-src', icons[this.props.iconKey].className);
-
-		var icon = this.props.iconIsLoading ? React.createElement(Spinner, { size: 'sm' }) : React.createElement(
-			'div',
-			{ className: iconContainerClass },
-			React.createElement('span', { className: iconClass })
-		);
+		var icon = this.props.iconIsLoading ? React.createElement(Spinner, { size: 'sm' }) : React.createElement('span', { className: iconClass });
 
 		return React.createElement(
 			FormField,
@@ -1022,7 +1079,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../FormIcons":1,"classnames":undefined,"elemental":"elemental","react/addons":undefined,"underscore":undefined}],13:[function(require,module,exports){
+},{"../Octicons":1,"classnames":undefined,"elemental":"elemental","lodash":undefined,"react/addons":undefined}],14:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1049,7 +1106,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// classes
-		var className = classNames('form-input', this.props.size ? 'form-input-' + this.props.size : null, this.props.className);
+		var className = classNames('FormInput', this.props.size ? 'FormInput--' + this.props.size : null, this.props.className);
 
 		var props = _extends(blacklist(this.props, 'className'), {
 			onBlur: this.handleBlur,
@@ -1061,14 +1118,14 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],14:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],15:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
 var classNames = require('classnames');
-var _ = require('underscore');
+var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormLabel',
@@ -1099,12 +1156,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined,"underscore":undefined}],15:[function(require,module,exports){
+},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],16:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 var classNames = require('classnames');
-var _ = require('underscore');
+var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormRow',
@@ -1126,13 +1183,13 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined,"underscore":undefined}],16:[function(require,module,exports){
+},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],17:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
-var _ = require('underscore');
+var _ = require('lodash');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1249,7 +1306,7 @@ module.exports = React.createClass({
 			componentLabel,
 			React.createElement(
 				'select',
-				_extends({ className: 'form-input', id: forAndID, onChange: this.handleChange, onBlur: this.handleBlur }, props),
+				_extends({ className: 'FormInput', id: forAndID, onChange: this.handleChange, onBlur: this.handleBlur }, props),
 				options
 			),
 			validationMessage
@@ -1257,7 +1314,61 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined,"underscore":undefined}],17:[function(require,module,exports){
+},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],18:[function(require,module,exports){
+'use strict';
+
+var React = require('react/addons');
+var classNames = require('classnames');
+var _ = require('lodash');
+
+module.exports = React.createClass({
+	displayName: 'InputGroup',
+	propTypes: {
+		className: React.PropTypes.string
+	},
+	render: function render() {
+		// props
+		var props = _.omit(this.props, ['className']);
+
+		// classes
+		var className = classNames('InputGroup', this.props.className);
+
+		return React.createElement(
+			'div',
+			{ className: className },
+			this.props.children
+		);
+	}
+});
+
+},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],19:[function(require,module,exports){
+'use strict';
+
+var React = require('react/addons');
+var classNames = require('classnames');
+// var _ = require('lodash');
+
+var Button = require('elemental').Button;
+
+module.exports = React.createClass({
+	displayName: 'InputGroupAddon',
+	propTypes: {
+		className: React.PropTypes.string
+	},
+	render: function render() {
+		return React.createElement(
+			'span',
+			{ className: 'InputGroup_addon' },
+			React.createElement(
+				Button,
+				this.props,
+				this.props.children
+			)
+		);
+	}
+});
+
+},{"classnames":undefined,"elemental":"elemental","react/addons":undefined}],20:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1274,27 +1385,27 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// classes
-		var dialogClass = classNames('modal-dialog', this.props.className);
+		var dialogClass = classNames('Modal-dialog', this.props.className);
 
 		// elements
 		var header = this.props.headerTitle ? React.createElement(
 			'div',
-			{ className: 'modal-header' },
-			this.props.headerHasCloseButton ? React.createElement('span', { onClick: this.props.onChange, className: 'modal-close' }) : null,
+			{ className: 'Modal-header' },
+			this.props.headerHasCloseButton ? React.createElement('span', { onClick: this.props.onChange, className: 'Modal-close' }) : null,
 			React.createElement(
 				'h4',
-				{ className: 'modal-title' },
+				{ className: 'Modal-title' },
 				'Modal Header'
 			)
 		) : null;
 
-		var modalBackground = this.props.isOpen ? React.createElement('div', { className: 'modal-backdrop', onClick: this.props.backdropClosesModal ? this.props.onChange : null }) : null;
+		var modalBackground = this.props.isOpen ? React.createElement('div', { className: 'Modal-backdrop', onClick: this.props.backdropClosesModal ? this.props.onChange : null }) : null;
 		var modalDialog = this.props.isOpen ? React.createElement(
 			'div',
 			{ className: dialogClass },
 			React.createElement(
 				'div',
-				{ className: 'modal-content' },
+				{ className: 'Modal-content' },
 				header,
 				this.props.children
 			)
@@ -1302,22 +1413,22 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ className: 'modal' },
+			{ className: 'Modal' },
 			React.createElement(
 				ReactCSSTransitionGroup,
-				{ transitionName: 'modal-dialog', component: 'div' },
+				{ transitionName: 'Modal-dialog', component: 'div' },
 				modalDialog
 			),
 			React.createElement(
 				ReactCSSTransitionGroup,
-				{ transitionName: 'modal-background', component: 'div' },
+				{ transitionName: 'Modal-background', component: 'div' },
 				modalBackground
 			)
 		);
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1411,19 +1522,19 @@ module.exports = React.createClass({
 			'div',
 			{ className: formGroupClass },
 			componentLabel,
-			React.createElement('input', { onChange: this.handleChange, onBlur: this.handleBlur, value: this.props.value, type: 'password', className: 'form-input', placeholder: 'Enter password', id: 'inputPassword' }),
+			React.createElement('input', { onChange: this.handleChange, onBlur: this.handleBlur, value: this.props.value, type: 'password', className: 'FormInput', placeholder: 'Enter password', id: 'inputPassword' }),
 			validationMessage
 		);
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],19:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],22:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
-var _ = require('underscore');
+var _ = require('lodash');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1553,7 +1664,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined,"underscore":undefined}],20:[function(require,module,exports){
+},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],23:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1573,78 +1684,19 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
-		var componentClass = classNames('spinner', 'spinner--' + this.props.type, 'spinner--' + this.props.size, this.props.className);
+		var componentClass = classNames('Spinner', 'Spinner--' + this.props.type, 'Spinner--' + this.props.size, this.props.className);
 
 		return React.createElement(
 			'div',
 			{ className: componentClass },
-			React.createElement('i', { className: 'spinner__dot spinner__dot--first' }),
-			React.createElement('i', { className: 'spinner__dot spinner__dot--second' }),
-			React.createElement('i', { className: 'spinner__dot spinner__dot--third' })
+			React.createElement('i', { className: 'Spinner_dot Spinner_dot--first' }),
+			React.createElement('i', { className: 'Spinner_dot Spinner_dot--second' }),
+			React.createElement('i', { className: 'Spinner_dot Spinner_dot--third' })
 		);
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
-'use strict';
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var React = require('react/addons');
-var classNames = require('classnames');
-var _ = require('underscore');
-
-module.exports = React.createClass({
-	displayName: 'Table',
-	propTypes: {
-		cols: React.PropTypes.array,
-		rows: React.PropTypes.array,
-		headers: React.PropTypes.array,
-		className: React.PropTypes.string
-	},
-	render: function render() {
-		// classes
-		var componentClass = classNames('table', this.props.className);
-
-		// props
-		var props = _.omit(this.props, ['cols', 'rows', 'headers', 'className']);
-
-		// cols
-		var tableCols;
-		if (this.props.cols) {
-			var cols = this.props.cols.map(function (col, i) {
-				return React.createElement('col', { key: 'col' + i, width: col });
-			});
-		}
-		var tableCols = this.props.cols ? React.createElement(
-			'colgroup',
-			null,
-			cols
-		) : null;
-
-		return React.createElement(
-			'table',
-			_extends({}, props, { className: componentClass }),
-			tableCols,
-			React.createElement(
-				'thead',
-				null,
-				React.createElement(
-					'tr',
-					null,
-					this.props.headers
-				)
-			),
-			React.createElement(
-				'tbody',
-				null,
-				this.props.rows
-			)
-		);
-	}
-});
-
-},{"classnames":undefined,"react/addons":undefined,"underscore":undefined}],22:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],24:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1652,7 +1704,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var classNames = require('classnames');
-var _ = require('underscore');
+var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'Tooltip',
@@ -1688,7 +1740,7 @@ module.exports = React.createClass({
 
 	render: function render() {
 		// classes
-		var componentClass = classNames('Tooltip-outer', this.props.className);
+		var componentClass = classNames('TooltipOuter', this.props.className);
 
 		// props
 		var props = _.omit(this.props, ['content', 'className', 'placement', 'target']);
@@ -1728,10 +1780,10 @@ module.exports = React.createClass({
 			{ style: tooltipStyle, className: 'Tooltip ' + this.props.placement },
 			React.createElement(
 				'span',
-				{ className: 'Tooltip-content' },
+				{ className: 'TooltipContent' },
 				this.props.content
 			),
-			React.createElement('span', { className: 'Tooltip-arrow' })
+			React.createElement('span', { className: 'TooltipArrow' })
 		) : null;
 
 		return React.createElement(
@@ -1751,9 +1803,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined,"underscore":undefined}],"elemental":[function(require,module,exports){
+},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],"elemental":[function(require,module,exports){
 'use strict';
 
+exports.Alert = require('./components/Alert');
 exports.Button = require('./components/Button');
 exports.DatePicker = require('./components/DatePicker');
 exports.DatePickerCalendar = require('./components/DatePickerCalendar');
@@ -1764,11 +1817,8 @@ exports.Modal = require('./components/Modal');
 exports.PasswordInputGroup = require('./components/PasswordInputGroup');
 exports.RadioGroup = require('./components/RadioGroup');
 exports.Spinner = require('./components/Spinner');
-exports.Table = require('./components/Table');
 exports.Tooltip = require('./components/Tooltip');
 
-exports.FormDragAndDrop = require('./components/FormDragAndDrop');
-exports.FormFile = require('./components/FormFile');
 exports.FormField = require('./components/FormField');
 exports.FormRow = require('./components/FormRow');
 exports.FormIcon = require('./components/FormIcon');
@@ -1777,4 +1827,10 @@ exports.FormInput = require('./components/FormInput');
 exports.FormLabel = require('./components/FormLabel');
 exports.FormSelect = require('./components/FormSelect');
 
-},{"./components/Button":2,"./components/DatePicker":3,"./components/DatePickerCalendar":4,"./components/DatePickerHeader":5,"./components/Dropdown":6,"./components/EmailInputGroup":7,"./components/FormDragAndDrop":8,"./components/FormField":9,"./components/FormFile":10,"./components/FormIcon":11,"./components/FormIconField":12,"./components/FormInput":13,"./components/FormLabel":14,"./components/FormRow":15,"./components/FormSelect":16,"./components/Modal":17,"./components/PasswordInputGroup":18,"./components/RadioGroup":19,"./components/Spinner":20,"./components/Table":21,"./components/Tooltip":22}]},{},[]);
+exports.FileDragAndDrop = require('./components/FileDragAndDrop');
+exports.FileUpload = require('./components/FileUpload');
+
+exports.InputGroup = require('./components/InputGroup');
+exports.InputGroupAddon = require('./components/InputGroupAddon');
+
+},{"./components/Alert":2,"./components/Button":3,"./components/DatePicker":4,"./components/DatePickerCalendar":5,"./components/DatePickerHeader":6,"./components/Dropdown":7,"./components/EmailInputGroup":8,"./components/FileDragAndDrop":9,"./components/FileUpload":10,"./components/FormField":11,"./components/FormIcon":12,"./components/FormIconField":13,"./components/FormInput":14,"./components/FormLabel":15,"./components/FormRow":16,"./components/FormSelect":17,"./components/InputGroup":18,"./components/InputGroupAddon":19,"./components/Modal":20,"./components/PasswordInputGroup":21,"./components/RadioGroup":22,"./components/Spinner":23,"./components/Tooltip":24}]},{},[]);
