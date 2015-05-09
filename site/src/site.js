@@ -2,6 +2,7 @@ var React = require('react');
 var Router = require('react-router');
 
 const NavItems = [
+	{ value: 'css',         label: 'CSS' },
 	{ value: 'buttons',     label: 'Buttons' },
 	{ value: 'forms',       label: 'Forms' },
 	{ value: 'spinner',     label: 'Spinner' },
@@ -25,7 +26,9 @@ var PageNav = React.createClass({
 		var self = this;
 		var menuClass = this.state.showMenu ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
 		var menuItems = NavItems.map(function(item, i) {
-			return <Router.Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>{item.label}</Router.Link>;
+			return <Router.Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>
+				<span className="primary-nav__item-inner">{item.label}</span>
+			</Router.Link>;
 		});
 		return (
 			<nav className="primary-nav">
@@ -73,6 +76,7 @@ var basepath = (window.location.pathname.slice(0,10) === '/elemental') ? '/eleme
 var routes = (
 	<Router.Route name="app" path={basepath + '/'} handler={App}>
 		<Router.Route name="home" path={basepath + '/'} handler={require('./pages/Home')} />
+		<Router.Route name="css" path={basepath + '/css'} handler={require('./pages/CSS')} />
 		<Router.Route name="buttons" path={basepath + '/buttons'} handler={require('./pages/Buttons')} />
 		<Router.Route name="forms" path={basepath + '/forms'} handler={require('./pages/Forms')} />
 		<Router.Route name="spinner" path={basepath + '/spinner'} handler={require('./pages/Spinner')} />

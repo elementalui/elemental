@@ -1,0 +1,72 @@
+//
+// Type
+// ==============================
+
+
+
+
+
+// Headings
+// ------------------------------
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	color: @heading-color;
+	font-weight: normal;
+	line-height: 1;
+	margin-bottom: .66em;
+	margin-top: 0;
+}
+
+h1, .h1 {
+	font-weight: 500;
+	font-size: 3em;
+}
+h2, .h2 {
+	font-size: 2em;
+	font-weight: 300;
+}
+h3, .h3 {
+	color: @gray-light;
+	font-size: 1.25em;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+}
+h4, .h4 {
+	font-size: 1em;
+}
+h5, .h5 {
+	font-size: .85em;
+}
+h6, .h6 {
+	font-size: .75em;
+}
+
+
+
+// Lead
+// ------------------------------
+
+.lead {
+	color: @gray;
+	font-size: @font-size-lg;
+	font-weight: 300
+}
+
+
+
+
+// Code
+// ------------------------------
+
+code {
+	background: @code-bg-color;
+	border-radius: @border-radius-base;
+	border: 1px solid @code-border-color;
+	color: @code-text-color;
+	padding: 0 0.3em;
+}
