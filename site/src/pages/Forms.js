@@ -18,7 +18,7 @@ var FormSelect = require('elemental').FormSelect;
 var InputGroup = require('elemental').InputGroup;
 var InputGroupAddon = require('elemental').InputGroupAddon;
 
-var icons = require("../../../src/FormIcons").list;
+var icons = require("../../../src/Octicons").list;
 
 var controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
@@ -190,17 +190,7 @@ var Forms = React.createClass({
 				<form>
 					<InputGroup>
 						<FormInput type="text" placeholder="Input group field" />
-						<InputGroupAddon type="default">Button</InputGroupAddon>
-					</InputGroup>
-					<InputGroup>
-						<FormInput type="text" placeholder="Input group field" />
 						<InputGroupAddon type="primary">Button</InputGroupAddon>
-					</InputGroup>
-					<InputGroup>
-						<FormInput type="text" placeholder="Input group field" />
-						<InputGroupAddon type="default">
-							<span className="octicon octicon-pencil" />
-						</InputGroupAddon>
 					</InputGroup>
 					<InputGroup>
 						<FormInput type="text" placeholder="Input group field" />
@@ -214,17 +204,7 @@ var Forms = React.createClass({
 						<FormInput type="text" placeholder="Input group field" />
 					</InputGroup>
 					<InputGroup>
-						<InputGroupAddon type="primary">Button</InputGroupAddon>
-						<FormInput type="text" placeholder="Input group field" />
-					</InputGroup>
-					<InputGroup>
 						<InputGroupAddon type="default">
-							<span className="octicon octicon-pencil" />
-						</InputGroupAddon>
-						<FormInput type="text" placeholder="Input group field" />
-					</InputGroup>
-					<InputGroup>
-						<InputGroupAddon type="primary">
 							<span className="octicon octicon-pencil" />
 						</InputGroupAddon>
 						<FormInput type="text" placeholder="Input group field" />

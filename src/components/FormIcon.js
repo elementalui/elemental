@@ -3,7 +3,7 @@ var classNames = require('classnames');
 var _ = require('lodash');
 var Spinner = require('elemental').Spinner;
 
-var icons = require("../FormIcons").map;
+var icons = require("../Octicons").map;
 
 module.exports = React.createClass({
 	displayName: 'FormIcon',
