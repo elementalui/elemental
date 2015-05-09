@@ -11,19 +11,19 @@ var Buttons = React.createClass({
 				<div className="row">
 					<div className="col-sm-4">
 						<h2>Default</h2>
-						<div className="demo-box">
+						<div className="demo-box u-text-center">
 							<Spinner type="default" />
 						</div>
 					</div>
 					<div className="col-sm-4">
 						<h2>Primary</h2>
-						<div className="demo-box">
+						<div className="demo-box u-text-center">
 							<Spinner type="primary" />
 						</div>
 					</div>
 					<div className="col-sm-4">
 						<h2>Inverted</h2>
-						<div className="demo-box demo-box--inverted">
+						<div className="demo-box u-text-center demo-box--inverted">
 							<Spinner type="inverted" />
 						</div>
 					</div>
