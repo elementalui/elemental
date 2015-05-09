@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "gulp": "^3.8.11",
-    "react": "^0.13.2",
+    "react": "^0.13.3",
     "react-component-gulp-tasks": "^0.7.0",
     "react-router": "^0.13.3"
   },
