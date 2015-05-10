@@ -3716,19 +3716,19 @@ select.FormInput[disabled] {
   width: 100%;
   z-index: 110;
 }
-.DateSelect-dialog-enter {
-  -webkit-animation-name: DateSelectDialogEnter;
-  animation-name: DateSelectDialogEnter;
+.modal-dialog-enter {
+  -webkit-animation-name: modalDialogEnter;
+  animation-name: modalDialogEnter;
   -webkit-animation-duration: 280ms;
   animation-duration: 280ms;
   -webkit-animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.DateSelect-dialog-leave {
+.modal-dialog-leave {
   -webkit-animation-duration: 140ms;
   animation-duration: 140ms;
-  -webkit-animation-name: DateSelectDialogLeave;
-  animation-name: DateSelectDialogLeave;
+  -webkit-animation-name: modalDialogLeave;
+  animation-name: modalDialogLeave;
 }
 .DateSelect-content {
   background-color: #fafafa;
@@ -4180,17 +4180,17 @@ select.FormInput[disabled] {
   width: 100%;
   z-index: 109;
 }
-.DateSelect-background-enter {
-  -webkit-animation-name: DateSelectBackdropEnter;
-  animation-name: DateSelectBackdropEnter;
+.modal-backdrop-enter {
+  -webkit-animation-name: modalBackdropEnter;
+  animation-name: modalBackdropEnter;
 }
-.DateSelect-background-leave {
+.modal-backdrop-leave {
   -webkit-animation-delay: 240ms;
   animation-delay: 240ms;
-  -webkit-animation-name: DateSelectBackdropLeave;
-  animation-name: DateSelectBackdropLeave;
+  -webkit-animation-name: modalBackdropLeave;
+  animation-name: modalBackdropLeave;
 }
-@-webkit-keyframes DateSelectDialogEnter {
+@-webkit-keyframes modalDialogEnter {
   from {
     opacity: 0;
     -webkit-transform: scale(0.8);
@@ -4200,7 +4200,7 @@ select.FormInput[disabled] {
     -webkit-transform: scale(1);
   }
 }
-@keyframes DateSelectDialogEnter {
+@keyframes modalDialogEnter {
   from {
     opacity: 0;
     transform: scale(0.8);
@@ -4210,7 +4210,7 @@ select.FormInput[disabled] {
     transform: scale(1);
   }
 }
-@-webkit-keyframes DateSelectDialogLeave {
+@-webkit-keyframes modalDialogLeave {
   from {
     opacity: 1;
     -webkit-transform: scale(1);
@@ -4220,7 +4220,7 @@ select.FormInput[disabled] {
     -webkit-transform: scale(0.8);
   }
 }
-@keyframes DateSelectDialogLeave {
+@keyframes modalDialogLeave {
   from {
     opacity: 1;
     transform: scale(1);
@@ -4230,7 +4230,7 @@ select.FormInput[disabled] {
     transform: scale(0.8);
   }
 }
-@-webkit-keyframes DateSelectBackdropEnter {
+@-webkit-keyframes modalBackdropEnter {
   from {
     opacity: 0;
   }
@@ -4238,7 +4238,7 @@ select.FormInput[disabled] {
     opacity: 1;
   }
 }
-@keyframes DateSelectBackdropEnter {
+@keyframes modalBackdropEnter {
   from {
     opacity: 0;
   }
@@ -4246,7 +4246,7 @@ select.FormInput[disabled] {
     opacity: 1;
   }
 }
-@-webkit-keyframes DateSelectBackdropLeave {
+@-webkit-keyframes modalBackdropLeave {
   from {
     opacity: 1;
   }
@@ -4254,7 +4254,7 @@ select.FormInput[disabled] {
     opacity: 0;
   }
 }
-@keyframes DateSelectBackdropLeave {
+@keyframes modalBackdropLeave {
   from {
     opacity: 1;
   }
