@@ -13,7 +13,8 @@ var BUTTON_TYPES = [
 	'warning',
 	'danger',
 	'link',
-	'link-cancel'
+	'link-cancel',
+	'link-delete'
 ]
 
 module.exports = React.createClass({

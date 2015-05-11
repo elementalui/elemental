@@ -129,7 +129,6 @@
 
 // Make a button look and behave like a link
 .Button--link {
-	border-radius: 0;
 	color: @link-color;
 	font-weight: normal;
 
@@ -162,6 +161,31 @@
 	&:focus {
 		color: @app-danger;
 		outline: none;
+	}
+}
+.Button--link-delete {
+	.Button--link();
+	color: @gray-light;
+
+	&:hover,
+	&:focus {
+		#gradient .vertical(lighten(@app-danger, 4%), darken(@app-danger, 4%));
+		background-color: @app-danger;
+		border-color: darken(@app-danger, 4%) darken(@app-danger, 8%) darken(@app-danger, 12%);
+		box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+		color: white;
+		text-decoration: none;
+	}
+	&:focus {
+		box-shadow: 0 0 0 3px fade(@app-danger, 25%);
+		outline: none;
+	}
+	&:active {
+		background-color: darken(@app-danger, 4%);
+		background-image: none !important;
+		border-color: darken(@app-danger, 12%) darken(@app-danger, 8%) darken(@app-danger, 8%);
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+		color: white;
 	}
 }
 
