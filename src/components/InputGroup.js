@@ -1,6 +1,6 @@
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'InputGroup',
@@ -9,14 +9,14 @@ module.exports = React.createClass({
 	},
 	render() {
 		// props
-		var props = _.omit(this.props, ['className']);
+		var props = blacklist(this.props, 'className');
 
 		
 		// classes
 		var className = classNames('InputGroup', this.props.className);
 
 		return (
-			<div className={className}>
+			<div className={className} {...props}>
 				{this.props.children}
 			</div>
 		);

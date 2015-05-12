@@ -1,6 +1,6 @@
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormRow',
@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
 		
 		// props
-		var props = _.omit(this.props, ['className']);
+		var props = blacklist(this.props, ['className']);
 
 		return (
 			<div className={className}>

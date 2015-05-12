@@ -1,7 +1,7 @@
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'Tooltip',
@@ -43,7 +43,7 @@ module.exports = React.createClass({
 		);
 
 		// props
-		var props = _.omit(this.props, ['content', 'className', 'placement', 'target']);
+		var props = blacklist(this.props, ['content', 'className', 'placement', 'target']);
 
 		// style
 		var tooltipStyle = {};

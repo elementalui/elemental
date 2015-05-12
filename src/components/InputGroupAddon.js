@@ -1,6 +1,5 @@
 var React = require('react/addons');
 var classNames = require('classnames');
-// var _ = require('lodash');
 
 var Button = require('elemental').Button;
 

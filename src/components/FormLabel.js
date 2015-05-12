@@ -1,6 +1,6 @@
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormLabel',
@@ -14,7 +14,7 @@ module.exports = React.createClass({
 
 		
 		// props
-		var props = _.omit(this.props, ['htmlFor', 'id', 'className', 'style']);
+		var props = blacklist(this.props, ['htmlFor', 'id', 'className', 'style']);
 
 
 		// style

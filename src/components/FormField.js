@@ -1,6 +1,6 @@
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormField',
@@ -28,7 +28,7 @@ module.exports = React.createClass({
 
 		
 		// props
-		var props = _.omit(this.props, ['label', 'width', 'className']);
+		var props = blacklist(this.props, ['label', 'width', 'className']);
 
 		
 		// elements
@@ -39,7 +39,7 @@ module.exports = React.createClass({
 		) : null;
 
 		return (
-			<div className={componentClass}>
+			<div className={componentClass} {...props}>
 				{componentLabel}
 				{this.props.children}
 			</div>

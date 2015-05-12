@@ -1,5 +1,5 @@
 var React = require('react/addons');
-var _ = require('lodash');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -65,15 +65,9 @@ module.exports = React.createClass({
 	},
 	render() {
 		var self = this;
+		
 		// props
-		var props = _.extend({}, this.props)
-		delete props.alwaysValidate
-		delete props.label
-		delete props.onChange
-		delete props.options
-		delete props.required
-		delete props.requiredMessage
-		delete props.value
+		var props = blacklist(this.props, ['alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value']);
 
 		// classes
 		var componentClass = classNames('form-field', {

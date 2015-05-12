@@ -1,6 +1,6 @@
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 var FormField = require('elemental').FormField;
 var Spinner = require('elemental').Spinner;
@@ -25,7 +25,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		// props
-		var props = _.omit(this.props, ['className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading']);
+		var props = blacklist(this.props, ['className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading']);
 
 		
 		// classes
