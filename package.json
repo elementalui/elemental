@@ -10,8 +10,11 @@
     "url": "https://github.com/elementalui/elemental.git"
   },
   "scripts": {
-    "build-lib": "gulp build:lib",
-    "publish-site": "gulp publish:examples",
+    "build:lib": "gulp build:lib",
+    "bump": "gulp bump",
+    "publish:site": "gulp publish:examples",
+    "publish:npm": "gulp publish:npm",
+    "publish:tag": "gulp pubilsh:tag",
     "release": "gulp release",
     "site": "gulp dev:server",
     "start": "gulp dev",
