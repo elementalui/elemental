@@ -6,17 +6,16 @@ var PasswordInputGroup = require('elemental').PasswordInputGroup;
 var RadioGroup = require('elemental').RadioGroup;
 
 var FileDragAndDrop = require('elemental').FileDragAndDrop;
-var FormField = require('elemental').FormField;
-var FormRow = require('elemental').FormRow;
 var FileUpload = require('elemental').FileUpload;
+var FormField = require('elemental').FormField;
 var FormIcon = require('elemental').FormIcon;
 var FormIconField = require('elemental').FormIconField;
 var FormInput = require('elemental').FormInput;
 var FormLabel = require('elemental').FormLabel;
+var FormRow = require('elemental').FormRow;
 var FormSelect = require('elemental').FormSelect;
-
 var InputGroup = require('elemental').InputGroup;
-var InputGroupAddon = require('elemental').InputGroupAddon;
+
 
 var icons = require("../../../src/Octicons").list;
 
@@ -190,23 +189,23 @@ var Forms = React.createClass({
 				<form>
 					<InputGroup>
 						<FormInput type="text" placeholder="Input group field" />
-						<InputGroupAddon type="primary">Button</InputGroupAddon>
+						<InputGroup.Addon type="primary">Button</InputGroup.Addon>
 					</InputGroup>
 					<InputGroup>
 						<FormInput type="text" placeholder="Input group field" />
-						<InputGroupAddon type="primary">
+						<InputGroup.Addon type="primary">
 							<span className="octicon octicon-pencil" />
-						</InputGroupAddon>
+						</InputGroup.Addon>
 					</InputGroup>
 					
 					<InputGroup>
-						<InputGroupAddon type="default">Button</InputGroupAddon>
+						<InputGroup.Addon type="default">Button</InputGroup.Addon>
 						<FormInput type="text" placeholder="Input group field" />
 					</InputGroup>
 					<InputGroup>
-						<InputGroupAddon type="default">
+						<InputGroup.Addon type="default">
 							<span className="octicon octicon-pencil" />
-						</InputGroupAddon>
+						</InputGroup.Addon>
 						<FormInput type="text" placeholder="Input group field" />
 					</InputGroup>
 				</form>
