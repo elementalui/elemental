@@ -22,3 +22,6 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+// expose the addon to the top level export
+module.exports.Addon = require('./InputGroupAddon')
