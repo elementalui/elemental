@@ -356,24 +356,24 @@
 
 // lists
 .demo-banner-list {
-	line-height: 2;
+	line-height: 1.3;
 	list-style: none;
-	margin: 1em 0 0;
+	margin: 2em 0 0;
 	padding: 0;
 
 	> li {
-		margin: 0 0 0 15px;
+		margin: 0 0 15px 15px;
 		padding: 0 0 0 15px;
 		position: relative;
+
 		&::before {
 			.square(4px);
 			background-color: rgba(0, 0, 0, 0.5);
 			border-radius: 50%;
 			content: " ";
 			left: 0;
-			margin-top: -2px;
 			position: absolute;
-			top: 50%;
+			top: 8px;
 		}
 	}
 }
@@ -456,22 +456,34 @@
 		opacity: .75;
 	}
 	@media (max-width: 480px) {
+		.demo-banner__heading-1 {
+			font-size: 48px;
+			letter-spacing: -0.01em;
+			margin-bottom: 20px;
+		}
+		.demo-banner__heading-2 { font-size: 30px; }
 		.demo-banner__button {
 			display: block;
+			font-size: 16px;
+			line-height: 3;
+			height: auto;
 		}
 	}
 }
 .demo-banner-illustration {
 	.animation( fadeIn 2s );
-	.square(240px);
+	.square(180px);
 	background: url('../images/hero-bg.svg') no-repeat left top;
-	background-size: 240px, 240px;
-	left: -80px;
+	background-size: 180px, 180px;
+	left: -54px;
 	position: absolute;
-	top: -75px;
+	top: -56px;
 
-	@media (min-width: 768px) {
+	@media (min-width: 481px) {
+		.square(240px);
+		background-size: 240px, 240px;
 		left: -90px;
+		top: -75px;
 	}
 }
 
