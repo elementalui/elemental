@@ -12,25 +12,17 @@ var CSSExamples = React.createClass({
 	getInitialState() {
 		return {
 			allChecked: false,
-			selectedRows: []
+			selectedRows: {}
 		};
 	},
 
 	toggleAllRows() {
-		// console.log('getCheckboxes', this.getCheckboxes());
-
-		// var totalRows = this.getCheckboxes().length;
-		var rowsToCheck = [];
-		var selectedRows = [];
-
-		for (var i = 0; i < 20; i++) {
-			rowsToCheck.push(i)
-		}
-
-		console.log(rowsToCheck);
+		var selectedRows = {};
 
 		if (!this.state.allChecked) {
-			selectedRows = rowsToCheck;
+			for (var i = 0; i < USERS.length; i++) {
+				selectedRows[i] = true;
+			}
 		}
 
 		this.setState({
@@ -39,18 +31,15 @@ var CSSExamples = React.createClass({
 		});
 	},
 
-	handleChange(checkbox) {
-		var newRows = this.state.selectedRows;
-
-		if (_.contains(newRows, checkbox)) {
-			newRows = _.without(newRows, checkbox);
+	handleChange(e) {
+		var selectedRows = this.state.selectedRows;
+		if (e.target.value in selectedRows) {
+			delete selectedRows[e.target.value];
 		} else {
-			newRows.push(checkbox);
+			selectedRows[e.target.value] = true;
 		}
-
-
 		this.setState({
-			selectedRows: newRows
+			selectedRows: selectedRows
 		});
 	},
 	render() {
@@ -58,13 +47,13 @@ var CSSExamples = React.createClass({
 
 		var tableHeaderCols = TABLE_HEADERS.map(function(thead, i) {
 			var row = !i ? (
-				<th>
+				<th key={'header-' + i}>
 					<label title="Toggle all customers" className="table-checkbox-label">
 						<input type="checkbox" className="table-checkbox" onChange={self.toggleAllRows} />
 					</label>
 				</th>
 			) : (
-				<th>{thead}</th>
+				<th key={'header-' + i}>{thead}</th>
 			);
 			return row;
 		});
@@ -82,7 +71,7 @@ var CSSExamples = React.createClass({
 				<tr key={'row-' + i} className={rowClass}>
 					<td>
 						<label className="table-checkbox-label">
-							<input id={'checkbox-' + i} onChange={self.handleChange.bind(this, i)} checked={checked} type="checkbox" name="customers" className="table-checkbox" />
+							<input id={'checkbox-' + i} value={i} onChange={self.handleChange} checked={checked} type="checkbox" name="customers" className="table-checkbox" />
 						</label>
 					</td>
 					<td>
@@ -95,7 +84,7 @@ var CSSExamples = React.createClass({
 		});
 
 		var alerts = ['info', 'success', 'warning', 'danger'].map(function(alertType, i) {
-			return <Alert type={alertType}>This is a {alertType} alert</Alert>;
+			return <Alert key={alertType} type={alertType}>This is a {alertType} alert</Alert>;
 		});
 		return (
 			<div className="demo-container container">
