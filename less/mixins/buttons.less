@@ -5,16 +5,19 @@
 // Inspired by https://github.com/twbs/bootstrap
 
 .button-variant(@color; @background) {
-	#gradient .vertical(lighten(@background, 6%), darken(@background, 6%));
+	#gradient .vertical(lighten(@background, 5%), darken(@background, 5%));
 	background-color: @background;
-	border-color: darken(@background, 6%) darken(@background, 12%) darken(@background, 18%);
+	border-color: darken(@background, 5%) darken(@background, 10%) darken(@background, 15%);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 	color: @color;
+	font-weight: 400;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 
 	&:hover,
 	&:focus,
 	&.focus {
-		#gradient .vertical(lighten(@background, 8%), @background);
+		#gradient .vertical(lighten(@background, 10%), @background);
+		border-color: @background darken(@background, 5%) darken(@background, 10%);
 		box-shadow: 0 1px 0 rgba(0,0,0,0.1);
 		color: @color;
 		outline: none;
@@ -27,7 +30,7 @@
 	&.active {
 		background-color: darken(@background, 4%);
 		background-image: none;
-		border-color: darken(@background, 18%) darken(@background, 12%) darken(@background, 6%);
+		border-color: darken(@background, 15%) darken(@background, 10%) darken(@background, 5%);
 		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 	}
 }
