@@ -9,7 +9,6 @@ var taskConfig = {
 		dependencies: [
 			'blacklist',
 			'classnames',
-			'lodash',
 			'moment',
 			'react',
 			'react/addons'
