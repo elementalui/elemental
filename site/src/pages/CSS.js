@@ -70,7 +70,9 @@ var CSSExamples = React.createClass({
 		});
 
 		var tableRows = USERS.map(function(user, i) {
-			var userAge = moment().diff(user.dob, 'years');
+			var dob = moment(user.dob, 'MMM DD, YYYY');
+			var userAge = moment().diff(dob, 'years');
+			var userAge = 1;
 			var checked = i in self.state.selectedRows;
 			var rowClass = classNames({
 				'row-selected': checked
