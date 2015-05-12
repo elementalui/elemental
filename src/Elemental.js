@@ -1,8 +1,5 @@
 exports.Alert =              require('./components/Alert');
 exports.Button =             require('./components/Button');
-exports.DatePicker =         require('./components/DatePicker');
-exports.DatePickerCalendar = require('./components/DatePickerCalendar');
-exports.DatePickerHeader =   require('./components/DatePickerHeader');
 exports.Dropdown =           require('./components/Dropdown');
 exports.EmailInputGroup =    require('./components/EmailInputGroup');
 exports.Modal =              require('./components/Modal');
