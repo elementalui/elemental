@@ -108,7 +108,7 @@ var CSSExamples = React.createClass({
 					<h5>h.5 Elemental heading</h5>
 					<h6>h.6 Elemental heading</h6>
 					<hr />
-					<div className="lead">This is a page lead, it serves as a subtitle</div>
+					<div className="lead">This is a page lead, it serves an introduction the proceeding content.</div>
 				</div>
 
 				<h2>Alerts</h2>

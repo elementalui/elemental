@@ -8,11 +8,16 @@ var BUTTON_TYPES = [
 	'default-success',
 	'default-warning',
 	'default-danger',
+	'hollow-primary',
+	'hollow-success',
+	'hollow-warning',
+	'hollow-danger',
 	'primary',
 	'success',
 	'warning',
 	'danger',
 	'link',
+	'link-text',
 	'link-cancel',
 	'link-delete'
 ]

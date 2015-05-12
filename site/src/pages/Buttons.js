@@ -12,6 +12,32 @@ var DROPDOWN_OPTIONS = [
 	{ type: 'item', anchor: 'javascript:;', label: 'Separated link' },
 ];
 
+var BUTTON_SIZES = [
+	{ label: 'Large',            value: 'lg' },
+	{ label: 'Default',          value: 'md' },
+	{ label: 'Small',            value: 'sm' },
+	{ label: 'Extra Small',      value: 'xs' }
+];
+
+var BUTTON_VARIANTS = [
+	{ label: 'Primary',          value: 'primary' },
+	{ label: 'Success',          value: 'success' },
+	{ label: 'Warning',          value: 'warning' },
+	{ label: 'Danger',           value: 'danger' },
+	{ label: 'Default Primary',  value: 'default-primary' },
+	{ label: 'Default Success',  value: 'default-success' },
+	{ label: 'Default Warning',  value: 'default-warning' },
+	{ label: 'Default Danger',   value: 'default-danger' },
+	{ label: 'Hollow Primary',   value: 'hollow-primary' },
+	{ label: 'Hollow Success',   value: 'hollow-success' },
+	{ label: 'Hollow Warning',   value: 'hollow-warning' },
+	{ label: 'Hollow Danger',    value: 'hollow-danger' },
+	{ label: 'Link',             value: 'link' },
+	{ label: 'Link Text',        value: 'link-text' },
+	{ label: 'Link Cancel',      value: 'link-cancel' },
+	{ label: 'Link Delete',      value: 'link-delete' }
+];
+
 var Buttons = React.createClass({
 	displayName: 'VIEW_Buttons',
 	getInitialState() {
@@ -22,63 +48,42 @@ var Buttons = React.createClass({
 	toggleDropdown() {
 		this.setState({ dropdownOpen: !this.state.dropdownOpen });
 	},
+	renderButtonSizes() {
+		return BUTTON_SIZES.map(size => {
+			 return (
+			 	<div key={size.value} className="col-sm-3">
+				 	<div className="demo-box u-text-center">
+					 	<Button size={size.value}>{size.label}</Button>
+					 </div>
+				 </div>
+			 );
+		});
+	},
+	renderButtonVariants() {
+		return BUTTON_VARIANTS.map(type => {
+			 return (
+			 	<div key={type.value} className="col-sm-3">
+				 	<div className="demo-box u-text-center">
+					 	<Button type={type.value}>{type.label}</Button>
+					 </div>
+				 </div>
+			 );
+		});
+	},
 
 	render () {
 		return (
 			<div className="demo-container container">
 				<h1>Buttons</h1>
-				<h2>Standard</h2>
-				<Button type="default">Default</Button>
-				<hr />
-				<Button type="primary">Primary</Button>
-				<hr />
-				<Button type="default" disabled>Disabled</Button>
-				<hr />
-				<Button type="link">Link</Button>
+				<h2>Sizes</h2>
+				<div className="row">
+					{this.renderButtonSizes()}
+				</div>
 
-				<h2>Large</h2>
-				<Button type="default" size="lg">Default</Button>
-				<hr />
-				<Button type="primary" size="lg">Primary</Button>
-				<hr />
-				<Button type="default" size="lg" disabled>Disabled</Button>
-				<hr />
-				<Button type="link" size="lg">Link</Button>
-
-				<h2>Small</h2>
-				<Button type="default" size="sm">Default</Button>
-				<hr />
-				<Button type="primary" size="sm">Primary</Button>
-				<hr />
-				<Button type="default" size="sm" disabled>Disabled</Button>
-				<hr />
-				<Button type="link" size="sm">Link</Button>
-
-				<h2>Extra Small</h2>
-				<Button type="default" size="xs">Default</Button>
-				<hr />
-				<Button type="primary" size="xs">Primary</Button>
-				<hr />
-				<Button type="default" size="xs" disabled>Disabled</Button>
-				<hr />
-				<Button type="link" size="xs">Link</Button>
-
-				<h2>Colours</h2>
-				<Button type="primary">Primary</Button>
-				<hr />
-				<Button type="default-primary">Primary</Button>
-				<hr />
-				<Button type="success">Success</Button>
-				<hr />
-				<Button type="default-success">Success</Button>
-				<hr />
-				<Button type="warning">Warning</Button>
-				<hr />
-				<Button type="default-warning">Warning</Button>
-				<hr />
-				<Button type="danger">Danger</Button>
-				<hr />
-				<Button type="default-danger">Danger</Button>
+				<h2>Variants</h2>
+				<div className="row">
+					{this.renderButtonVariants()}
+				</div>
 
 				<h2>Button Groups</h2>
 				<div className="ButtonGroup">
@@ -88,7 +93,16 @@ var Buttons = React.createClass({
 				</div>
 
 				<h2>Dropdown</h2>
-				<Dropdown items={DROPDOWN_OPTIONS} buttonLabel="Action" />
+				<div className="row">
+					<div className="col-sm-6">
+						<Dropdown items={DROPDOWN_OPTIONS} buttonLabel="Default Trigger" />
+					</div>
+					<div className="col-sm-6">
+						<Dropdown items={DROPDOWN_OPTIONS}>
+							<h3 style={{ marginTop: 15 }}>Custom Trigger</h3>
+						</Dropdown>
+					</div>
+				</div>
 
 				<h2>Tooltip</h2>
 				<p>

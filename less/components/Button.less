@@ -90,19 +90,34 @@
 	}
 }
 
-// hollow styles
+// default styles
 
 .Button--default-primary {
-	.button-default-variant(@button-primary-color; @button-primary-border);
+	.button-default-variant(@button-primary-color);
 }
 .Button--default-success {
-	.button-default-variant(@button-success-color; @button-success-border);
+	.button-default-variant(@button-success-color);
 }
 .Button--default-warning {
-	.button-default-variant(@button-warning-color; @button-warning-border);
+	.button-default-variant(@button-warning-color);
 }
 .Button--default-danger {
-	.button-default-variant(@button-danger-color; @button-danger-border);
+	.button-default-variant(@button-danger-color);
+}
+
+// hollow styles
+
+.Button--hollow-primary {
+	.button-hollow-variant(@button-primary-color; @button-primary-border);
+}
+.Button--hollow-success {
+	.button-hollow-variant(@button-success-color; @button-success-border);
+}
+.Button--hollow-warning {
+	.button-hollow-variant(@button-warning-color; @button-warning-border);
+}
+.Button--hollow-danger {
+	.button-hollow-variant(@button-danger-color; @button-danger-border);
 }
 
 
@@ -151,6 +166,16 @@
 		background-color: transparent;
 		color: @link-hover-color;
 		text-decoration: @link-hover-decoration;
+	}
+}
+.Button--link-text {
+	.Button--link();
+	color: @text-color;
+
+	&:hover,
+	&:focus {
+		color: @app-primary;
+		outline: none;
 	}
 }
 .Button--link-cancel {
