@@ -42,3 +42,46 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+
+// create simple children for the modal
+module.exports.Body = React.createClass({
+	displayName: 'ModalBody',
+	propTypes: {
+		className: React.PropTypes.string
+	},
+	render() {
+		// props
+		var props = blacklist(this.props, 'className');
+
+		
+		// classes
+		var className = classNames('Modal-body', this.props.className);
+
+		return (
+			<div className={className} {...props}>
+				{this.props.children}
+			</div>
+		);
+	}
+});
+module.exports.Footer = React.createClass({
+	displayName: 'ModalFooter',
+	propTypes: {
+		className: React.PropTypes.string
+	},
+	render() {
+		// props
+		var props = blacklist(this.props, 'className');
+
+		
+		// classes
+		var className = classNames('Modal-footer', this.props.className);
+
+		return (
+			<div className={className} {...props}>
+				{this.props.children}
+			</div>
+		);
+	}
+});
