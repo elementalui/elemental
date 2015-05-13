@@ -35,8 +35,8 @@ var Home = React.createClass({
 						<h1 className="demo-banner__heading demo-banner__heading-1">Elemental UI</h1>
 						<h2 className="demo-banner__heading demo-banner__heading-2">A UI Toolkit for React.js Websites and Apps</h2>
 						<div className="demo-banner__buttons">
-							<Button className="demo-banner__button" type="primary" href="https://twitter.com/elementalui" target="_blank">Follow @ElementalUI on Twitter</Button>
-							<Button className="demo-banner__button" type="link" href="https://github.com/elementalui/elemental" target="_blank">View the GitHub Project</Button>
+							<Button type="demo-primary" href="https://twitter.com/elementalui" target="_blank">Follow @ElementalUI on Twitter</Button>
+							<Button type="demo-link" href="https://github.com/elementalui/elemental" target="_blank">View the GitHub Project</Button>
 						</div>
 					</div>
 				</header>
