@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -11,6 +12,9 @@ module.exports = React.createClass({
 		headerHasCloseButton: React.PropTypes.bool
 	},
 	render() {
+		// props
+		var props = blacklist(this.props, ['backdropClosesModal', 'className', 'headerHasCloseButton', 'headerTitle', 'isOpen']);
+
 		// classes
 		var dialogClass = classNames('Modal-dialog', this.props.className);
 
@@ -27,7 +31,7 @@ module.exports = React.createClass({
 		</div></div> : null;
 		
 		return (
-			<div className="Modal">
+			<div className="Modal" {...props}>
 				<ReactCSSTransitionGroup transitionName="Modal-dialog" component="div">
 					{modalDialog}
 				</ReactCSSTransitionGroup>
