@@ -50,11 +50,12 @@ module.exports = React.createClass({
 		var props = blacklist(this.props, ['type', 'size', 'className']);
 		props.className = componentClass;
 
-		var tag = 'a';
+		var tag = 'button';
+		props.type = this.props.submit ? 'submit' : 'button';
 
-		if (!props.href) {
-			tag = 'button';
-			props.type = this.props.submit ? 'submit' : 'button';
+		if (props.href) {
+			tag = 'a';
+			props.type = null;
 		}
 
 		return React.createElement(
