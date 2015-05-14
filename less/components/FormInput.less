@@ -87,8 +87,8 @@
 
 	// indicate clickability when using an anchor
 	a& {
-		background-color: mix(@link-color, @body-bg, 10%);
-		border-color: fade(@link-color, 20%);
+		background-color: fade(@link-color, 5%);
+		border-color: fade(@link-color, 10%);
 		color: @link-color;
 		margin-right: 5px;
 		min-width: 0;
@@ -96,9 +96,10 @@
 		
 		&:hover,
 		&:focus {
-			background-color: mix(@link-hover-color, @body-bg, 10%);
-			border-color: fade(@link-hover-color, 20%);
-			color: @link-hover-color;
+			background-color: fade(@link-color, 10%);
+			border-color: fade(@link-color, 10%);
+			color: @link-color;
+			text-decoration: none;
 		};
 	}
 }
