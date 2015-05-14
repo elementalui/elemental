@@ -14,6 +14,7 @@ module.exports = React.createClass({
 	displayName: 'FormNote',
 	propTypes: {
 		className: React.PropTypes.string,
+		note: React.PropTypes.string,
 		type: React.PropTypes.oneOf(NOTE_TYPES),
 	},
 	getDefaultProps() {
@@ -31,10 +32,12 @@ module.exports = React.createClass({
 
 		
 		// props
-		var props = blacklist(this.props, 'className', 'type');
+		var props = blacklist(this.props, 'className', 'note', 'type');
 
+
+		// allow users to pass through the note as an attribute or as children
 		return (
-			<div className={componentClass} {...props}>
+			<div className={componentClass} dangerouslySetInnerHTML={this.props.note ? { __html: this.props.note } : null} {...props}>
 				{this.props.children}
 			</div>
 		);
