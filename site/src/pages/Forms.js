@@ -12,6 +12,7 @@ var FormIcon = require('elemental').FormIcon;
 var FormIconField = require('elemental').FormIconField;
 var FormInput = require('elemental').FormInput;
 var FormLabel = require('elemental').FormLabel;
+var FormNote = require('elemental').FormNote;
 var FormRow = require('elemental').FormRow;
 var FormSelect = require('elemental').FormSelect;
 var InputGroup = require('elemental').InputGroup;
@@ -232,30 +233,25 @@ var Forms = React.createClass({
 						<FormSelect options={controlOptions} firstOption="Select" />
 					</FormField>
 					<FormSelect label="Disabled Select" options={controlOptions} htmlFor="supported-conrols-select-disabled" firstOption="Disabled Select" disabled />
-					<div className="form-field">
-						<div className="form-label">Checkboxes</div>
+					<FormField label="Checkboxes">
 						{checkboxes}
-					</div>
-					<div className="form-field">
-						<div className="form-label">Radios</div>
+					</FormField>
+					<FormField label="Radios">
 						{radios}
-					</div>
-					<div className="form-field">
-						<div className="form-label">Inline Checkboxes</div>
+					</FormField>
+					<FormField label="Inline Checkboxes">
 						<div className="inline-controls">
 							{checkboxes}
 						</div>
-					</div>
-					<div className="form-field">
-						<div className="form-label">Inline Radios</div>
+					</FormField>
+					<FormField label="Inline Radios">
 						<div className="inline-controls">
 							{radios}
 						</div>
-					</div>
-					<div className="form-field">
-						<label className="form-label">Help Block</label>
-						<div className="form-help">A block of help text that may extend beyond one line. Use &lt;span&gt; or &lt;div&gt; to control display.</div>
-					</div>
+					</FormField>
+					<FormField label="Form Note">
+						<FormNote>A block of help text that may extend beyond one line. Use &lt;span&gt; or &lt;div&gt; to control display.</FormNote>
+					</FormField>
 				</form>
 				
 				<h2 id="section-validation">Validation</h2>
