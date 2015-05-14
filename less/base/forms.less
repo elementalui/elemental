@@ -27,7 +27,11 @@
 	margin-bottom: @spacing-md;
 }
 
-// Make the wrapper behave like a table
+
+
+
+// Form Rows
+// ------------------------------
 
 .form-row {
 	&:extend(.clearfix all);
@@ -38,6 +42,7 @@
 		min-width: 100%;
 
 		> .form-field {
+			display: block; // override .horizontal-form styles inside .form-row
 			float: left;
 			padding: 0 (@input-padding-horizontal / 2);
 
@@ -62,6 +67,11 @@
 			&.one-sixth      { width: 16.666%; }
 			&.five-sixths    { width: 83.333%; }
 		}
+	}
+
+	// inside a form field
+	.form-field > .form-row {
+		margin-bottom: 0;
 	}
 }
 
@@ -210,7 +220,7 @@
 			display: table-cell;
 			line-height: @component-height;
 			margin-bottom: 0;
-			vertical-align: middle;
+			vertical-align: top;
 			width: @form-label-width;
 
 			&:not(:first-child) {
@@ -218,21 +228,21 @@
 			}
 		}
 
-		// Account for missing labels
-		// the wacky syntax on width is so LESS doesn't try to run the calculation itself,
-		// where it will normalize the values assuming both are pixels. this way it's
-		// left to the browser
-		.FormInput:first-child {
-			margin-left: @form-label-width;
-			width: calc(~"100%" - @form-label-width);
+		// reset styles when using rows inside .horizontal-form
+		.form-row > .form-field {
+			display: block;
+			margin-bottom: 0;
+			min-width: 0;
 
-			& + .form-validation {
-				margin-left: @form-label-width;
+			> .form-label {
+				display: block;
+			}
+
+			.FormInput {
+				margin: 0;
+				width: 100%;
 			}
 		}
-	}
-	.horizontal-form-submit-button {
-		margin-left: @form-label-width;
 	}
 }
 
