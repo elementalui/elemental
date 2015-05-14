@@ -84,7 +84,8 @@
 
 // header
 .Modal-header {
-	box-shadow: inset 0 -1px 0 rgba(0,0,0,.05), 0 1px 0 rgba(0,0,0,.05);
+	box-shadow: 0 2px 0 rgba(0,0,0,.05);
+	z-index: 1;
 }
 .Modal-title {
 	color: inherit;
@@ -130,13 +131,17 @@
 
 // body
 .Modal-body {
-	padding-bottom: @modal-padding-horizontal;
-	padding-top: @modal-padding-horizontal;
+	margin: 0;
+	max-height: 400px;
+	overflow-y: scroll;
+	padding: @modal-padding-vertical @modal-padding-horizontal;
+	-webkit-overflow-scrolling: touch;
 }
 
 // footer
 .Modal-footer {
-	box-shadow: inset 0 1px 0 rgba(0,0,0,.05), 0 -1px 0 rgba(0,0,0,.05);
+	box-shadow: 0 -2px 0 rgba(0,0,0,.05);
+	z-index: 1;
 }
 
 
