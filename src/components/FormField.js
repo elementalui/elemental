@@ -9,6 +9,7 @@ module.exports = React.createClass({
 		disabled: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
+		offsetAbsentLabel: React.PropTypes.bool,
 		onChange: React.PropTypes.func,
 		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
 		type: React.PropTypes.string,
@@ -22,13 +23,13 @@ module.exports = React.createClass({
 	},
 	render() {
 		// classes
-		var componentClass = classNames('form-field',
-			this.props.width,
-			this.props.className);
+		var componentClass = classNames('form-field', {
+			'offset-absent-label': this.props.offsetAbsentLabel
+		}, this.props.width, this.props.className);
 
 		
 		// props
-		var props = blacklist(this.props, ['label', 'width', 'className']);
+		var props = blacklist(this.props, 'className', 'label', 'type', 'width');
 
 		
 		// elements

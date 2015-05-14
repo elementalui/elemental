@@ -160,8 +160,8 @@ var Forms = React.createClass({
 					<FormField label="Password" htmlFor="horizontal-form-input-password">
 						<FormInput type="password" placeholder="Password" name="horizontal-form-input-password" />
 					</FormField>
-					<FormField>
-						<Button type="default" className="horizontal-form-submit-button">Submit</Button>
+					<FormField offsetAbsentLabel>
+						<Button type="default">Submit</Button>
 					</FormField>
 				</form>
 
