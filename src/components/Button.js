@@ -20,7 +20,7 @@ var BUTTON_TYPES = [
 	'link-text',
 	'link-cancel',
 	'link-delete'
-]
+];
 
 module.exports = React.createClass({
 	displayName: 'ElementalButton',
