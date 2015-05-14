@@ -24,6 +24,12 @@
 			.border-left-radius(0);
 		}
 	}
+
+	// remove the bottom margin when inside a .form-field
+	// this occurs when using in a .horizontal-form
+	.form-field > & {
+		margin-bottom: 0;
+	}
 }
 
 // element
