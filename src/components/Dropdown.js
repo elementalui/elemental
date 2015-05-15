@@ -18,7 +18,8 @@ module.exports = React.createClass({
 	},
 	getDefaultProps () {
 		return {
-			buttonHasDisclosureArrow: true
+			buttonHasDisclosureArrow: true,
+			onSelect: function() {}
 		};
 	},
 	getInitialState () {
@@ -49,7 +50,16 @@ module.exports = React.createClass({
 			</Button>
 		);
 	},
+
+	onClick (selectedItem) {
+		this.setState({
+			isOpen: !this.state.isOpen,
+		});
+
+		this.props.onSelect(selectedItem)
+	},
 	renderDropdownMenu () {
+		var self = this;
 		if (!this.state.isOpen) return;
 
 		var dropdownMenuItems = this.props.items.map(function(item, i) {
@@ -59,19 +69,11 @@ module.exports = React.createClass({
 			} else if (item.type === 'divider') {
 				menuItem = <li key={'item-' + i} className="Dropdown-menu__divider" />
 			} else {
-				if (item.href) {
-					menuItem = (
-						<li key={'item-' + i} className="Dropdown-menu__item">
-							<a className="Dropdown-menu__action" href={item.anchor}>{item.label}</a>
-						</li>
-					);
-				} else {
-					menuItem = (
-						<li key={'item-' + i} className="Dropdown-menu__item">
-							<span className="Dropdown-menu__action" onClick={item.action}>{item.label}</span>
-						</li>
-					);
-				}
+				menuItem = (
+					<li key={'item-' + i} className="Dropdown-menu__item">
+						<span className="Dropdown-menu__action" onClick={self.onClick.bind(self, item.label)}>{item.label}</span>
+					</li>
+				);
 			}
 			return menuItem;
 		}.bind(this));
