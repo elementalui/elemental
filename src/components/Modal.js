@@ -20,11 +20,11 @@ module.exports = React.createClass({
 
 		// elements
 		var header = this.props.headerTitle ? <div className="Modal-header">
-			{this.props.headerHasCloseButton ? <span onClick={this.props.onChange} className="Modal-close" /> : null}
+			{this.props.headerHasCloseButton ? <span onClick={this.props.onCancel} className="Modal-close" /> : null}
 			<h4 className="Modal-title">{this.props.headerTitle}</h4>
 		</div> : null; 
 
-		var modalBackground = this.props.isOpen ? <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.props.onChange : null} /> : null;
+		var modalBackground = this.props.isOpen ? <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.props.onCancel : null} /> : null;
 		var modalDialog = this.props.isOpen ? <div className={dialogClass}><div className="Modal-content">
 			{header}
 			{this.props.children}

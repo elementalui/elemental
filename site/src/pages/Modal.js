@@ -52,7 +52,7 @@ module.exports = React.createClass({
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac viverra augue. Vivamus ultricies nec massa a vulputate. Donec non lacus sit amet augue faucibus sodales ut at nulla. Donec id tincidunt nulla. Aenean sit amet libero velit. Nam maximus leo sit amet dolor tincidunt egestas. Nunc facilisis tellus et sapien consectetur varius. In ligula orci, tincidunt eu molestie sit amet, facilisis in nisl. Cras elit risus, scelerisque quis elementum sed, convallis a mi. Etiam placerat eros vitae hendrerit varius.</p>
 				<p>Morbi maximus metus diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla dolor felis, vulputate quis imperdiet vel, molestie tincidunt dui. Nulla aliquet ut lorem ac dignissim. Cras sem lectus, iaculis quis mi quis, convallis euismod massa. Fusce augue ipsum, consectetur ut nisl vel, convallis varius felis. Aenean finibus id justo et varius.</p>
 				<Button onClick={this.toggleModal}>Launch Modal</Button>
-				<Modal isOpen={this.state.modalIsOpen} onChange={this.toggleModal} headerTitle="Modal Header" headerHasCloseButton backdropClosesModal>
+				<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} headerTitle="Modal Header" headerHasCloseButton backdropClosesModal>
 					<form>
 						<div className="Modal-body">
 							<FormField label="Email">
