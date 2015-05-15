@@ -41,7 +41,7 @@ module.exports = React.createClass({
 		});
 	},
 	renderButton () {
-		var disclosureArrow = this.props.buttonHasDisclosureArrow ? <span className="Dropdown-toggle__arrow" /> : null;
+		var disclosureArrow = this.props.buttonHasDisclosureArrow ? <span className="disclosure-arrow" /> : null;
 		
 		return (
 			<Button type={this.props.buttonType} onClick={this.state.isOpen ? this.closeDropdown : this.openDropdown} className="Dropdown-toggle">
