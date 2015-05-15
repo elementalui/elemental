@@ -69,6 +69,11 @@
 	top: 100%;
 	z-index: @zindex-dropdown;
 
+	// fix height and scroll
+	max-height: @dropdown-menu-height;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+
 	.align-right & {
 		left: auto;
 		right: 0;
