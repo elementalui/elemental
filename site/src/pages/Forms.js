@@ -226,7 +226,7 @@ var Forms = React.createClass({
 						</InputGroup.Section>
 					</InputGroup>
 					
-					<p className="lead">Use in more complex formations</p>
+					<p className="lead">Use in more sophisticated formations</p>
 					<InputGroup>
 						<InputGroup.Section>
 							<Button>Alpha</Button>
