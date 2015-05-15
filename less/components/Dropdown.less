@@ -139,9 +139,16 @@
 	color: @dropdown-header-color;
 	display: block;
 	font-size: @font-size-sm;
+	font-weight: 500;
 	line-height: @line-height-base;
+	margin-top: 1em;
 	padding: 3px 20px;
 	white-space: nowrap;
+
+	// margin looks clumsy when preceeded by a divider
+	.Dropdown-menu__divider + & {
+		margin-top: 0;
+	}
 }
 
 
