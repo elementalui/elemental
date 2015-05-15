@@ -21,4 +21,3 @@ exports.FileDragAndDrop =    require('./components/FileDragAndDrop');
 exports.FileUpload =         require('./components/FileUpload');
 
 exports.InputGroup =         require('./components/InputGroup');
-exports.InputGroupAddon =    require('./components/InputGroupAddon');
