@@ -188,26 +188,66 @@ var Forms = React.createClass({
 
 				<h2 id="section-groups">Input Groups</h2>
 				<form>
+					<p className="lead">Defaults to contiguous form elements</p>
 					<InputGroup>
-						<FormInput type="text" placeholder="Input group field" />
-						<InputGroup.Addon type="primary">Button</InputGroup.Addon>
+						<InputGroup.Section grow>
+							<FormInput type="text" placeholder="Input group field" />
+						</InputGroup.Section>
+						<InputGroup.Section>
+							<Button>Button</Button>
+						</InputGroup.Section>
 					</InputGroup>
 					<InputGroup>
-						<FormInput type="text" placeholder="Input group field" />
-						<InputGroup.Addon type="primary">
-							<span className="octicon octicon-pencil" />
-						</InputGroup.Addon>
+						<InputGroup.Section type="primary">
+							<Button><span className="octicon octicon-pencil" /></Button>
+						</InputGroup.Section>
+						<InputGroup.Section grow>
+							<FormInput type="text" placeholder="Input group field" />
+						</InputGroup.Section>
 					</InputGroup>
 					
-					<InputGroup>
-						<InputGroup.Addon type="default">Button</InputGroup.Addon>
-						<FormInput type="text" placeholder="Input group field" />
+					<p className="lead">But they can be separate when required</p>
+					<InputGroup contiguous={false}>
+						<InputGroup.Section grow>
+							<FormInput type="text" placeholder="Input group field" />
+						</InputGroup.Section>
+						<InputGroup.Section>
+							<Button type="primary">Button</Button>
+						</InputGroup.Section>
 					</InputGroup>
+					<InputGroup contiguous={false}>
+						<InputGroup.Section>
+							<Button type="primary">
+								<span className="octicon octicon-pencil" />
+							</Button>
+						</InputGroup.Section>
+						<InputGroup.Section grow>
+							<FormInput type="text" placeholder="Input group field" />
+						</InputGroup.Section>
+					</InputGroup>
+					
+					<p className="lead">Use in more complex formations</p>
 					<InputGroup>
-						<InputGroup.Addon type="default">
-							<span className="octicon octicon-pencil" />
-						</InputGroup.Addon>
-						<FormInput type="text" placeholder="Input group field" />
+						<InputGroup.Section>
+							<Button>Alpha</Button>
+						</InputGroup.Section>
+						<InputGroup.Section grow>
+							<FormInput type="text" placeholder="Input group field" />
+						</InputGroup.Section>
+						<InputGroup.Section>
+							<Button type="primary">Omega</Button>
+						</InputGroup.Section>
+					</InputGroup>
+					<InputGroup contiguous={false}>
+						<InputGroup.Section grow>
+							<FormInput type="text" placeholder="Input group field" />
+						</InputGroup.Section>
+						<InputGroup.Section>
+							<Button type="primary">Primary</Button>
+						</InputGroup.Section>
+						<InputGroup.Section>
+							<Button>Default</Button>
+						</InputGroup.Section>
 					</InputGroup>
 				</form>
 

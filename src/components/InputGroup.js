@@ -5,7 +5,13 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'InputGroup',
 	propTypes: {
-		className: React.PropTypes.string
+		className: React.PropTypes.string,
+		contiguous: React.PropTypes.bool
+	},
+	getDefaultProps() {
+		return {
+			contiguous: true
+		};
 	},
 	render() {
 		// props
@@ -13,7 +19,9 @@ module.exports = React.createClass({
 
 		
 		// classes
-		var className = classNames('InputGroup', this.props.className);
+		var className = classNames('InputGroup',{
+			'is-contiguous': this.props.contiguous
+		},this.props.className);
 
 		return (
 			<div className={className} {...props}>
@@ -24,4 +32,4 @@ module.exports = React.createClass({
 });
 
 // expose the addon to the top level export
-module.exports.Addon = require('./InputGroupAddon');
+module.exports.Section = require('./InputGroupSection');

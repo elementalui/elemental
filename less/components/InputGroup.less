@@ -9,22 +9,6 @@
 	display: table;
 	margin-bottom: @spacing-md;
 
-	.FormInput {
-		display: table-cell;
-		position: relative;
-		width: 100%;
-
-		&:focus {
-			z-index: 1;
-		}
-		&:first-child {
-			.border-right-radius(0);
-		}
-		&:last-child {
-			.border-left-radius(0);
-		}
-	}
-
 	// remove the bottom margin when inside a .form-field
 	// this occurs when using in a .horizontal-form
 	.form-field > & {
@@ -32,27 +16,84 @@
 	}
 }
 
-// element
 
-.InputGroup_addon {
+// common
+
+.InputGroup_section {
 	display: table-cell;
-	position: relative;
+	padding-left: .25em;
+	padding-right: .25em;
 	vertical-align: middle;
 	width: 1%;
 
-	> * {
-		position: relative;
+	// make flush when contiguous
+	.is-contiguous & {
+		padding-left: 0;
+		padding-right: 0;
+	}
 
-		&:focus {
-			z-index: 1;
-		}
-	}
-	&:first-child > * {
-		.border-right-radius(0);
-		margin-right: -1px;
-	}
-	&:last-child > * {
-		.border-left-radius(0);
-		margin-left: -1px;
+	// remove padding on alpha/omega
+	&:first-child { padding-left: 0; }
+	&:last-child  { padding-right: 0; }
+}
+
+// stretch the appropriate element - 1 per input group
+
+.InputGroup_section--grow {
+	width: 100%;
+}
+
+
+// bring focused elements to the front so we can see their decoration
+
+.InputGroup_section > .FormInput,
+.InputGroup_section > .Button {
+	position: relative;
+
+	&:focus {
+		z-index: 1;
 	}
 }
+
+
+
+
+//  Contiguous fields/buttons
+// ------------------------------
+	
+
+// remove the border radius initially
+
+.InputGroup.is-contiguous > .InputGroup_section {
+	> .FormInput,
+	> .Button {
+		border-radius: 0;
+	}
+
+	// reapply where appropriate
+	&:first-child > .FormInput,
+	&:first-child > .Button {
+		.border-left-radius(@border-radius-base);
+	}
+	&:last-child > .FormInput,
+	&:last-child > .Button {
+		.border-right-radius(@border-radius-base);
+	}
+
+	// pull the button on top of the input's border
+	&:first-child > .Button {
+		margin-right: -2px;
+	}
+	&:last-child > .Button {
+		margin-left: -2px;
+	}
+}
+
+
+
+
+
+
+
+
+
