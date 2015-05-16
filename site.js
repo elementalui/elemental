@@ -139,64 +139,32 @@ Router.run(routes, Router.HistoryLocation, function (Handler) {
 var process = module.exports = {};
 var queue = [];
 var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
 
 function drainQueue() {
     if (draining) {
         return;
     }
-    var timeout = setTimeout(cleanUpNextTick);
     draining = true;
-
+    var currentQueue;
     var len = queue.length;
     while(len) {
         currentQueue = queue;
         queue = [];
-        while (++queueIndex < len) {
-            currentQueue[queueIndex].run();
+        var i = -1;
+        while (++i < len) {
+            currentQueue[i]();
         }
-        queueIndex = -1;
         len = queue.length;
     }
-    currentQueue = null;
     draining = false;
-    clearTimeout(timeout);
 }
-
 process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
+    queue.push(fun);
     if (!draining) {
         setTimeout(drainQueue, 0);
     }
 };
 
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
 process.title = 'browser';
 process.browser = true;
 process.env = {};
@@ -3921,6 +3889,10 @@ var Button = require('elemental').Button;
 
 var DROPDOWN_OPTIONS = [{ type: 'item', anchor: 'javascript:;', label: 'Action' }, { type: 'item', anchor: 'javascript:;', label: 'Another action' }, { type: 'item', anchor: 'javascript:;', label: 'Something else here' }, { type: 'divider' }, { type: 'header', label: 'Dropdown header' }, { type: 'item', anchor: 'javascript:;', label: 'Separated link' }];
 
+var BUTTON_SIZES = [{ label: 'Large', value: 'lg' }, { label: 'Default', value: 'md' }, { label: 'Small', value: 'sm' }, { label: 'Extra Small', value: 'xs' }];
+
+var BUTTON_VARIANTS = [{ label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }, { label: 'Default Primary', value: 'default-primary' }, { label: 'Default Success', value: 'default-success' }, { label: 'Default Warning', value: 'default-warning' }, { label: 'Default Danger', value: 'default-danger' }, { label: 'Hollow Primary', value: 'hollow-primary' }, { label: 'Hollow Success', value: 'hollow-success' }, { label: 'Hollow Warning', value: 'hollow-warning' }, { label: 'Hollow Danger', value: 'hollow-danger' }, { label: 'Link', value: 'link' }, { label: 'Link Text', value: 'link-text' }, { label: 'Link Cancel', value: 'link-cancel' }, { label: 'Link Delete', value: 'link-delete' }];
+
 var Buttons = React.createClass({
 	displayName: 'VIEW_Buttons',
 	getInitialState: function getInitialState() {
@@ -3930,6 +3902,40 @@ var Buttons = React.createClass({
 	},
 	toggleDropdown: function toggleDropdown() {
 		this.setState({ dropdownOpen: !this.state.dropdownOpen });
+	},
+	renderButtonSizes: function renderButtonSizes() {
+		return BUTTON_SIZES.map(function (size) {
+			return React.createElement(
+				'div',
+				{ key: size.value, className: 'col-sm-3' },
+				React.createElement(
+					'div',
+					{ className: 'demo-box u-text-center' },
+					React.createElement(
+						Button,
+						{ size: size.value },
+						size.label
+					)
+				)
+			);
+		});
+	},
+	renderButtonVariants: function renderButtonVariants() {
+		return BUTTON_VARIANTS.map(function (type) {
+			return React.createElement(
+				'div',
+				{ key: type.value, className: 'col-sm-3' },
+				React.createElement(
+					'div',
+					{ className: 'demo-box u-text-center' },
+					React.createElement(
+						Button,
+						{ type: type.value },
+						type.label
+					)
+				)
+			);
+		});
 	},
 
 	render: function render() {
@@ -3944,166 +3950,22 @@ var Buttons = React.createClass({
 			React.createElement(
 				'h2',
 				null,
-				'Standard'
+				'Sizes'
 			),
 			React.createElement(
-				Button,
-				{ type: 'default' },
-				'Default'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'primary' },
-				'Primary'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default', disabled: true },
-				'Disabled'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'link' },
-				'Link'
+				'div',
+				{ className: 'row' },
+				this.renderButtonSizes()
 			),
 			React.createElement(
 				'h2',
 				null,
-				'Large'
+				'Variants'
 			),
 			React.createElement(
-				Button,
-				{ type: 'default', size: 'lg' },
-				'Default'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'primary', size: 'lg' },
-				'Primary'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default', size: 'lg', disabled: true },
-				'Disabled'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'link', size: 'lg' },
-				'Link'
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Small'
-			),
-			React.createElement(
-				Button,
-				{ type: 'default', size: 'sm' },
-				'Default'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'primary', size: 'sm' },
-				'Primary'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default', size: 'sm', disabled: true },
-				'Disabled'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'link', size: 'sm' },
-				'Link'
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Extra Small'
-			),
-			React.createElement(
-				Button,
-				{ type: 'default', size: 'xs' },
-				'Default'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'primary', size: 'xs' },
-				'Primary'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default', size: 'xs', disabled: true },
-				'Disabled'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'link', size: 'xs' },
-				'Link'
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Colours'
-			),
-			React.createElement(
-				Button,
-				{ type: 'primary' },
-				'Primary'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default-primary' },
-				'Primary'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'success' },
-				'Success'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default-success' },
-				'Success'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'warning' },
-				'Warning'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default-warning' },
-				'Warning'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'danger' },
-				'Danger'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default-danger' },
-				'Danger'
+				'div',
+				{ className: 'row' },
+				this.renderButtonVariants()
 			),
 			React.createElement(
 				'h2',
@@ -4134,7 +3996,28 @@ var Buttons = React.createClass({
 				null,
 				'Dropdown'
 			),
-			React.createElement(Dropdown, { items: DROPDOWN_OPTIONS, buttonLabel: 'Action' }),
+			React.createElement(
+				'div',
+				{ className: 'row' },
+				React.createElement(
+					'div',
+					{ className: 'col-sm-6' },
+					React.createElement(Dropdown, { items: DROPDOWN_OPTIONS, buttonLabel: 'Default Trigger' })
+				),
+				React.createElement(
+					'div',
+					{ className: 'col-sm-6' },
+					React.createElement(
+						Dropdown,
+						{ items: DROPDOWN_OPTIONS },
+						React.createElement(
+							'h3',
+							{ style: { marginTop: 15 } },
+							'Custom Trigger'
+						)
+					)
+				)
+			),
 			React.createElement(
 				'h2',
 				null,
@@ -4224,25 +4107,17 @@ var CSSExamples = React.createClass({
 	getInitialState: function getInitialState() {
 		return {
 			allChecked: false,
-			selectedRows: []
+			selectedRows: {}
 		};
 	},
 
 	toggleAllRows: function toggleAllRows() {
-		// console.log('getCheckboxes', this.getCheckboxes());
-
-		// var totalRows = this.getCheckboxes().length;
-		var rowsToCheck = [];
-		var selectedRows = [];
-
-		for (var i = 0; i < 20; i++) {
-			rowsToCheck.push(i);
-		}
-
-		console.log(rowsToCheck);
+		var selectedRows = {};
 
 		if (!this.state.allChecked) {
-			selectedRows = rowsToCheck;
+			for (var i = 0; i < USERS.length; i++) {
+				selectedRows[i] = true;
+			}
 		}
 
 		this.setState({
@@ -4251,17 +4126,15 @@ var CSSExamples = React.createClass({
 		});
 	},
 
-	handleChange: function handleChange(checkbox) {
-		var newRows = this.state.selectedRows;
-
-		if (_.contains(newRows, checkbox)) {
-			newRows = _.without(newRows, checkbox);
+	handleChange: function handleChange(e) {
+		var selectedRows = this.state.selectedRows;
+		if (e.target.value in selectedRows) {
+			delete selectedRows[e.target.value];
 		} else {
-			newRows.push(checkbox);
+			selectedRows[e.target.value] = true;
 		}
-
 		this.setState({
-			selectedRows: newRows
+			selectedRows: selectedRows
 		});
 	},
 	render: function render() {
@@ -4270,7 +4143,7 @@ var CSSExamples = React.createClass({
 		var tableHeaderCols = TABLE_HEADERS.map(function (thead, i) {
 			var row = !i ? React.createElement(
 				'th',
-				null,
+				{ key: 'header-' + i },
 				React.createElement(
 					'label',
 					{ title: 'Toggle all customers', className: 'table-checkbox-label' },
@@ -4278,14 +4151,16 @@ var CSSExamples = React.createClass({
 				)
 			) : React.createElement(
 				'th',
-				null,
+				{ key: 'header-' + i },
 				thead
 			);
 			return row;
 		});
 
 		var tableRows = USERS.map(function (user, i) {
-			var userAge = moment().diff(user.dob, 'years');
+			var dob = moment(user.dob, 'MMM DD, YYYY');
+			var userAge = moment().diff(dob, 'years');
+			var userAge = 1;
 			var checked = (i in self.state.selectedRows);
 			var rowClass = classNames({
 				'row-selected': checked
@@ -4300,7 +4175,7 @@ var CSSExamples = React.createClass({
 					React.createElement(
 						'label',
 						{ className: 'table-checkbox-label' },
-						React.createElement('input', { id: 'checkbox-' + i, onChange: self.handleChange.bind(this, i), checked: checked, type: 'checkbox', name: 'customers', className: 'table-checkbox' })
+						React.createElement('input', { id: 'checkbox-' + i, value: i, onChange: self.handleChange, checked: checked, type: 'checkbox', name: 'customers', className: 'table-checkbox' })
 					)
 				),
 				React.createElement(
@@ -4328,7 +4203,7 @@ var CSSExamples = React.createClass({
 		var alerts = ['info', 'success', 'warning', 'danger'].map(function (alertType, i) {
 			return React.createElement(
 				Alert,
-				{ type: alertType },
+				{ key: alertType, type: alertType },
 				'This is a ',
 				alertType,
 				' alert'
@@ -4384,7 +4259,7 @@ var CSSExamples = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'lead' },
-					'This is a page lead, it serves as a subtitle'
+					'This is a page lead, it serves an introduction the proceeding content.'
 				)
 			),
 			React.createElement(
@@ -4454,6 +4329,22 @@ var DateSelectExamples = React.createClass({
 				'h1',
 				null,
 				'Date Picker'
+			),
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'We built ',
+				React.createElement(
+					'a',
+					{ href: 'http://jedwatson.github.io/react-date-select' },
+					'react-date-select'
+				),
+				' for Elemental, and published it separately to ',
+				React.createElement(
+					'a',
+					{ href: 'https://www.npmjs.com/package/react-date-select' },
+					'npm'
+				)
 			),
 			React.createElement(
 				'h2',
@@ -4529,17 +4420,16 @@ var PasswordInputGroup = require('elemental').PasswordInputGroup;
 var RadioGroup = require('elemental').RadioGroup;
 
 var FileDragAndDrop = require('elemental').FileDragAndDrop;
-var FormField = require('elemental').FormField;
-var FormRow = require('elemental').FormRow;
 var FileUpload = require('elemental').FileUpload;
+var FormField = require('elemental').FormField;
 var FormIcon = require('elemental').FormIcon;
 var FormIconField = require('elemental').FormIconField;
 var FormInput = require('elemental').FormInput;
 var FormLabel = require('elemental').FormLabel;
+var FormNote = require('elemental').FormNote;
+var FormRow = require('elemental').FormRow;
 var FormSelect = require('elemental').FormSelect;
-
 var InputGroup = require('elemental').InputGroup;
-var InputGroupAddon = require('elemental').InputGroupAddon;
 
 var icons = require('../../../src/Octicons').list;
 
@@ -4716,10 +4606,10 @@ var Forms = React.createClass({
 				),
 				React.createElement(
 					FormField,
-					null,
+					{ offsetAbsentLabel: true },
 					React.createElement(
 						Button,
-						{ type: 'default', className: 'horizontal-form-submit-button' },
+						{ type: 'default' },
 						'Submit'
 					)
 				)
@@ -4771,44 +4661,145 @@ var Forms = React.createClass({
 				'form',
 				null,
 				React.createElement(
+					'p',
+					{ className: 'lead' },
+					'Defaults to contiguous form elements'
+				),
+				React.createElement(
 					InputGroup,
 					null,
-					React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' }),
 					React.createElement(
-						InputGroupAddon,
-						{ type: 'primary' },
-						'Button'
+						InputGroup.Section,
+						{ grow: true },
+						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+					),
+					React.createElement(
+						InputGroup.Section,
+						null,
+						React.createElement(
+							Button,
+							null,
+							'Button'
+						)
 					)
 				),
 				React.createElement(
 					InputGroup,
 					null,
-					React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' }),
 					React.createElement(
-						InputGroupAddon,
+						InputGroup.Section,
 						{ type: 'primary' },
-						React.createElement('span', { className: 'octicon octicon-pencil' })
+						React.createElement(
+							Button,
+							null,
+							React.createElement('span', { className: 'octicon octicon-pencil' })
+						)
+					),
+					React.createElement(
+						InputGroup.Section,
+						{ grow: true },
+						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+					)
+				),
+				React.createElement(
+					'p',
+					{ className: 'lead' },
+					'But they can be separate when required'
+				),
+				React.createElement(
+					InputGroup,
+					{ contiguous: false },
+					React.createElement(
+						InputGroup.Section,
+						{ grow: true },
+						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+					),
+					React.createElement(
+						InputGroup.Section,
+						null,
+						React.createElement(
+							Button,
+							{ type: 'primary' },
+							'Button'
+						)
 					)
 				),
 				React.createElement(
 					InputGroup,
-					null,
+					{ contiguous: false },
 					React.createElement(
-						InputGroupAddon,
-						{ type: 'default' },
-						'Button'
+						InputGroup.Section,
+						null,
+						React.createElement(
+							Button,
+							{ type: 'primary' },
+							React.createElement('span', { className: 'octicon octicon-pencil' })
+						)
 					),
-					React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+					React.createElement(
+						InputGroup.Section,
+						{ grow: true },
+						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+					)
+				),
+				React.createElement(
+					'p',
+					{ className: 'lead' },
+					'Use in more sophisticated formations'
 				),
 				React.createElement(
 					InputGroup,
 					null,
 					React.createElement(
-						InputGroupAddon,
-						{ type: 'default' },
-						React.createElement('span', { className: 'octicon octicon-pencil' })
+						InputGroup.Section,
+						null,
+						React.createElement(
+							Button,
+							null,
+							'Alpha'
+						)
 					),
-					React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+					React.createElement(
+						InputGroup.Section,
+						{ grow: true },
+						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+					),
+					React.createElement(
+						InputGroup.Section,
+						null,
+						React.createElement(
+							Button,
+							{ type: 'primary' },
+							'Omega'
+						)
+					)
+				),
+				React.createElement(
+					InputGroup,
+					{ contiguous: false },
+					React.createElement(
+						InputGroup.Section,
+						{ grow: true },
+						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+					),
+					React.createElement(
+						InputGroup.Section,
+						null,
+						React.createElement(
+							Button,
+							{ type: 'primary' },
+							'Primary'
+						)
+					),
+					React.createElement(
+						InputGroup.Section,
+						null,
+						React.createElement(
+							Button,
+							null,
+							'Default'
+						)
+					)
 				)
 			),
 			React.createElement(
@@ -4851,33 +4842,18 @@ var Forms = React.createClass({
 				),
 				React.createElement(FormSelect, { label: 'Disabled Select', options: controlOptions, htmlFor: 'supported-conrols-select-disabled', firstOption: 'Disabled Select', disabled: true }),
 				React.createElement(
-					'div',
-					{ className: 'form-field' },
-					React.createElement(
-						'div',
-						{ className: 'form-label' },
-						'Checkboxes'
-					),
+					FormField,
+					{ label: 'Checkboxes' },
 					checkboxes
 				),
 				React.createElement(
-					'div',
-					{ className: 'form-field' },
-					React.createElement(
-						'div',
-						{ className: 'form-label' },
-						'Radios'
-					),
+					FormField,
+					{ label: 'Radios' },
 					radios
 				),
 				React.createElement(
-					'div',
-					{ className: 'form-field' },
-					React.createElement(
-						'div',
-						{ className: 'form-label' },
-						'Inline Checkboxes'
-					),
+					FormField,
+					{ label: 'Inline Checkboxes' },
 					React.createElement(
 						'div',
 						{ className: 'inline-controls' },
@@ -4885,13 +4861,8 @@ var Forms = React.createClass({
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'form-field' },
-					React.createElement(
-						'div',
-						{ className: 'form-label' },
-						'Inline Radios'
-					),
+					FormField,
+					{ label: 'Inline Radios' },
 					React.createElement(
 						'div',
 						{ className: 'inline-controls' },
@@ -4899,16 +4870,11 @@ var Forms = React.createClass({
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'form-field' },
+					FormField,
+					{ label: 'Form Note' },
 					React.createElement(
-						'label',
-						{ className: 'form-label' },
-						'Help Block'
-					),
-					React.createElement(
-						'div',
-						{ className: 'form-help' },
+						FormNote,
+						null,
 						'A block of help text that may extend beyond one line. Use <span> or <div> to control display.'
 					)
 				)
@@ -5438,12 +5404,12 @@ var Home = React.createClass({
 						{ className: 'demo-banner__buttons' },
 						React.createElement(
 							Button,
-							{ className: 'demo-banner__button', type: 'primary', href: 'https://twitter.com/elementalui', target: '_blank' },
+							{ type: 'demo-primary', href: 'https://twitter.com/elementalui', target: '_blank' },
 							'Follow @ElementalUI on Twitter'
 						),
 						React.createElement(
 							Button,
-							{ className: 'demo-banner__button', type: 'link', href: 'https://github.com/elementalui/elemental', target: '_blank' },
+							{ type: 'demo-link', href: 'https://github.com/elementalui/elemental', target: '_blank' },
 							'View the GitHub Project'
 						)
 					)
@@ -5691,7 +5657,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				Modal,
-				{ isOpen: this.state.modalIsOpen, onChange: this.toggleModal, headerTitle: 'Modal Header', headerHasCloseButton: true, backdropClosesModal: true },
+				{ isOpen: this.state.modalIsOpen, onCancel: this.toggleModal, headerTitle: 'Modal Header', headerHasCloseButton: true, backdropClosesModal: true },
 				React.createElement(
 					'form',
 					null,

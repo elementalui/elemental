@@ -53,11 +53,12 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
 
-var BUTTON_TYPES = ['default', 'default-primary', 'default-success', 'default-warning', 'default-danger', 'primary', 'success', 'warning', 'danger', 'link', 'link-cancel'];
+var BUTTON_TYPES = ['default', 'default-primary', 'default-success', 'default-warning', 'default-danger', 'hollow-primary', 'hollow-success', 'hollow-warning', 'hollow-danger', 'primary', 'success', 'warning', 'danger', 'link', 'link-text', 'link-cancel', 'link-delete'];
 
 module.exports = React.createClass({
 	displayName: 'ElementalButton',
 	propTypes: {
+		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		href: React.PropTypes.string,
 		onClick: React.PropTypes.func,
@@ -72,17 +73,20 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// classes
-		var componentClass = classNames('Button', 'Button--' + this.props.type, this.props.size ? 'Button--' + this.props.size : null, this.props.className);
+		var componentClass = classNames('Button', 'Button--' + this.props.type, this.props.size ? 'Button--' + this.props.size : null, {
+			'Button--block': this.props.block
+		}, this.props.className);
 
 		// props
 		var props = blacklist(this.props, ['type', 'size', 'className']);
 		props.className = componentClass;
 
-		var tag = 'a';
+		var tag = 'button';
+		props.type = this.props.submit ? 'submit' : 'button';
 
-		if (!props.href) {
-			tag = 'button';
-			props.type = this.props.submit ? 'submit' : 'button';
+		if (props.href) {
+			tag = 'a';
+			props.type = null;
 		}
 
 		return React.createElement(tag, props, this.props.children);
@@ -92,420 +96,11 @@ module.exports = React.createClass({
 },{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],4:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-var moment = require('moment');
-var classNames = require('classnames');
-
-var DatePickerCalendar = require('./DatePickerCalendar');
-
-var DEFAULT_RANGES = [{ value: moment().subtract(1, 'weeks'), label: 'Past week' }, { value: moment().subtract(1, 'months'), label: 'Past month' }, { value: moment().subtract(3, 'months'), label: 'Past 3 months' }, { value: moment().subtract(6, 'months'), label: 'Past 6 months' }, { value: moment().subtract(12, 'months'), label: 'Past 12 months' }];
-
-module.exports = React.createClass({
-	displayName: 'DatePicker',
-	propTypes: {
-		isOpen: React.PropTypes.bool,
-		isMulti: React.PropTypes.bool,
-		showPredefinedRanges: React.PropTypes.bool,
-		predefinedRangeOptions: React.PropTypes.array,
-		backdropClosesDatePicker: React.PropTypes.bool,
-
-		isExpanded: React.PropTypes.bool,
-		isInstant: React.PropTypes.bool,
-		isHeaderless: React.PropTypes.bool,
-
-		className: React.PropTypes.string
-	},
-	getDefaultProps: function getDefaultProps() {
-		return {
-			predefinedRangeOptions: DEFAULT_RANGES
-		};
-	},
-	getInitialState: function getInitialState() {
-		return {
-			startDate: '',
-			endDate: ''
-		};
-	},
-	toggleDropdown: function toggleDropdown() {
-		this.setState({ dropdownOpen: !this.state.dropdownOpen });
-	},
-	render: function render() {
-		var self = this;
-
-		// ranges
-
-		var ranges;
-		if (this.props.showPredefinedRanges) {
-			var rangeItems = this.props.predefinedRangeOptions.map(function (r, i) {
-				function action() {
-					self.setState({
-						startDate: moment().format('D'),
-						endDate: r.value.format('D')
-					});
-					console.log(moment().format() + ' to ' + r.value.format());
-				};
-				return React.createElement(
-					'button',
-					{ key: 'range-button' + i, onClick: action, className: 'date-picker-range' },
-					r.label
-				);
-			});
-
-			ranges = React.createElement(
-				'div',
-				{ className: 'date-picker-ranges' },
-				React.createElement(
-					'div',
-					{ className: 'date-picker-ranges-header' },
-					'Select:'
-				),
-				React.createElement(
-					'div',
-					{ className: 'date-picker-ranges-body' },
-					rangeItems
-				)
-			);
-		}
-
-		// classes
-
-		var componentClass = classNames('date-picker', {
-			'single-picker': !this.props.isMulti,
-			'multi-picker': this.props.isMulti,
-			'range-picker': this.props.showPredefinedRanges
-		}, this.props.className);
-
-		// build the components
-
-		var datePickerBackground = this.props.isOpen ? React.createElement('div', { className: 'modal-backdrop date-picker-backdrop', onClick: this.props.backdropClosesDatePicker ? this.props.onChange : null }) : null;
-		var datePickerDialog = this.props.isOpen ? React.createElement(
-			'div',
-			{ className: 'modal-dialog date-picker-dialog' },
-			React.createElement(
-				'div',
-				{ className: 'date-picker-content' },
-				React.createElement(
-					'div',
-					{ className: 'date-picker-body' },
-					React.createElement(DatePickerCalendar, { selectedDate: this.state.startDate, isHeaderless: this.props.isHeaderless, isInstant: this.props.isInstant }),
-					this.props.isMulti && React.createElement(DatePickerCalendar, { selectedDate: this.state.endDate, isHeaderless: this.props.isHeaderless })
-				),
-				ranges,
-				!this.props.isInstant && React.createElement(
-					'div',
-					{ className: 'date-picker-footer' },
-					React.createElement(
-						'button',
-						{ onClick: this.props.onChange, className: 'date-picker-footer-button primary' },
-						'Confirm'
-					),
-					React.createElement(
-						'button',
-						{ onClick: this.props.onChange, className: 'date-picker-footer-button' },
-						'Cancel'
-					)
-				)
-			)
-		) : null;
-
-		return React.createElement(
-			'div',
-			{ className: componentClass },
-			React.createElement(
-				ReactCSSTransitionGroup,
-				{ transitionName: 'modal-dialog', component: 'div' },
-				datePickerDialog
-			),
-			React.createElement(
-				ReactCSSTransitionGroup,
-				{ transitionName: 'modal-background', component: 'div' },
-				datePickerBackground
-			)
-		);
-	}
-});
-
-},{"./DatePickerCalendar":5,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
-'use strict';
-
-var React = require('react/addons');
-var moment = require('moment');
-var classNames = require('classnames');
-
-var DatePickerHeader = require('./DatePickerHeader');
-
-module.exports = React.createClass({
-	displayName: 'DatePickerHeader',
-	propTypes: {
-		isExpanded: React.PropTypes.bool,
-		isHeaderless: React.PropTypes.bool,
-		isInstant: React.PropTypes.bool,
-		selectedDate: React.PropTypes.string,
-		weekStartsOn: React.PropTypes.string,
-		yearRange: React.PropTypes.arrayOf(React.PropTypes.number)
-	},
-	getDefaultProps: function getDefaultProps() {
-		var yearRange = [];
-		yearRange.push(parseInt(moment().subtract(10, 'years').format('YYYY')));
-		yearRange.push(parseInt(moment().add(10, 'years').format('YYYY')));
-
-		return {
-			weekStartsOn: 'Monday',
-			yearRange: yearRange
-		};
-	},
-	getInitialState: function getInitialState() {
-		return {
-			selectedDate: this.props.selectedDate
-		};
-	},
-
-	handleDaySelection: function handleDaySelection(day) {
-		this.setState({ selectedDate: day });
-	},
-
-	render: function render() {
-		console.log('calendar selected day', this.props.selectedDate);
-		var self = this;
-		var firstDayOfMonth = moment().startOf('month').format('D');
-		var lastDayOfMonth = moment().endOf('month').format('D');
-		var currentDayOfMonth = moment().format('D');
-
-		var calendarClass = classNames('date-picker-calendar', {
-			'date-picker-calendar--start': this.props.startDate,
-			'date-picker-calendar--end': this.props.endDate
-		});
-
-		// variables
-		var currentMonth = moment().format('MMMM');
-		var currentYear = moment().format('YYYY');
-		var years = [];
-		var months = ['January', 'February', 'March', 'April', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		var daysOfTheMonth = [];
-		var daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-		for (var i = firstDayOfMonth; i < lastDayOfMonth; i++) {
-			daysOfTheMonth.push(i);
-		}
-		for (var i = this.props.yearRange[0]; i < this.props.yearRange[1]; i++) {
-			years.push(i);
-		}
-
-		// elements
-
-		var weekDays = daysOfTheWeek.map(function (day, i) {
-			return React.createElement(
-				'abbr',
-				{ key: 'day' + i, className: 'date-picker-calendar-legend-day', title: day },
-				day.slice(0, 1)
-			);
-		});
-		var monthDays = daysOfTheMonth.map(function (day) {
-			var dayClass = classNames('date-picker-calendar-month-day', {
-				'current-day': day == currentDayOfMonth,
-				'selected-day': day == self.state.selectedDate,
-				'before-selected-day': self.state.selectedDate && day < self.state.selectedDate,
-				'after-selected-day': self.state.selectedDate && day > self.state.selectedDate
-			});
-			return React.createElement(
-				'button',
-				{ key: 'day' + day, onClick: self.handleDaySelection.bind(this, day), className: dayClass },
-				day
-			);
-		});
-
-		var titleMonths = months.map(function (month, i) {
-			return React.createElement(
-				'option',
-				{ key: 'month' + i, value: month },
-				month.slice(0, 3)
-			);
-		});
-		var titleYears = years.map(function (year, i) {
-			return React.createElement(
-				'option',
-				{ key: 'year' + i, value: year },
-				year
-			);
-		});
-
-		var calendar = React.createElement(
-			'div',
-			{ className: calendarClass },
-			!this.props.isHeaderless && React.createElement(DatePickerHeader, { selectedDate: this.state.selectedDate, isExpanded: this.props.isExpanded }),
-			React.createElement(
-				'div',
-				{ className: 'date-picker-calendar-toolbar' },
-				React.createElement(
-					'button',
-					{ className: 'date-picker-calendar-toolbar-button-prev' },
-					'Previous Month'
-				),
-				React.createElement(
-					'select',
-					{ className: 'date-picker-calendar-toolbar-select', defaultValue: currentMonth },
-					titleMonths
-				),
-				React.createElement(
-					'select',
-					{ className: 'date-picker-calendar-toolbar-select', defaultValue: currentYear },
-					titleYears
-				),
-				React.createElement(
-					'button',
-					{ className: 'date-picker-calendar-toolbar-button-next' },
-					'Next Month'
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: 'date-picker-calendar-legend' },
-				weekDays
-			),
-			React.createElement(
-				'div',
-				{ className: 'date-picker-calendar-month' },
-				monthDays
-			)
-		);
-
-		return calendar;
-	}
-});
-
-},{"./DatePickerHeader":6,"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
-'use strict';
-
-var React = require('react/addons');
-var moment = require('moment');
-var classNames = require('classnames');
-
-module.exports = React.createClass({
-	displayName: 'DatePickerHeader',
-	propTypes: {
-		expanded: React.PropTypes.bool,
-		date: React.PropTypes.object
-	},
-	render: function render() {
-		// helpers
-		var date = moment(this.props.date);
-
-		// classes
-		var componentClass = classNames('date-picker-calendar-header', {
-			'date-picker-calendar-header--expanded': this.props.expanded,
-			'date-picker-calendar-header--condensed': !this.props.expanded,
-			'no-date': !this.props.date
-		});
-
-		// elements
-
-		var header = this.props.expanded ? React.createElement(
-			'div',
-			{ className: componentClass },
-			React.createElement(
-				'span',
-				{ className: 'date-picker-calendar-header-dow' },
-				date.format('dddd')
-			),
-			React.createElement(
-				'span',
-				{ className: 'date-picker-calendar-header-month' },
-				date.format('MMMM')
-			),
-			React.createElement(
-				'span',
-				{ className: 'date-picker-calendar-header-day' },
-				date.format('D')
-			),
-			React.createElement(
-				'span',
-				{ className: 'date-picker-calendar-header-year' },
-				date.format('YYYY')
-			)
-		) : React.createElement(
-			'div',
-			{ className: componentClass },
-			React.createElement(
-				'span',
-				{ className: 'date-picker-calendar-header-dow' },
-				date.format('dddd')
-			),
-			React.createElement(
-				'span',
-				{ className: 'date-picker-calendar-header-day' },
-				date.format('Do')
-			),
-			React.createElement(
-				'span',
-				{ className: 'date-picker-calendar-header-month' },
-				date.format('MMMM')
-			),
-			React.createElement(
-				'span',
-				{ className: 'date-picker-calendar-header-year' },
-				date.format('YYYY')
-			)
-		);
-
-		if (this.props.date) {
-			header = this.props.expanded ? React.createElement(
-				'div',
-				{ className: componentClass },
-				React.createElement(
-					'span',
-					{ className: 'date-picker-calendar-header-dow' },
-					date.format('dddd')
-				),
-				React.createElement(
-					'span',
-					{ className: 'date-picker-calendar-header-month' },
-					date.format('MMMM')
-				),
-				React.createElement(
-					'span',
-					{ className: 'date-picker-calendar-header-day' },
-					date.format('D')
-				),
-				React.createElement(
-					'span',
-					{ className: 'date-picker-calendar-header-year' },
-					date.format('YYYY')
-				)
-			) : React.createElement(
-				'div',
-				{ className: componentClass },
-				React.createElement(
-					'span',
-					{ className: 'date-picker-calendar-header-dow' },
-					date.format('dddd')
-				),
-				React.createElement(
-					'span',
-					{ className: 'date-picker-calendar-header-day' },
-					date.format('Do')
-				),
-				React.createElement(
-					'span',
-					{ className: 'date-picker-calendar-header-month' },
-					date.format('MMMM')
-				),
-				React.createElement(
-					'span',
-					{ className: 'date-picker-calendar-header-year' },
-					date.format('YYYY')
-				)
-			);
-		}
-
-		return header;
-	}
-});
-
-},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],7:[function(require,module,exports){
-'use strict';
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 var Button = require('./Button');
@@ -513,20 +108,23 @@ var Button = require('./Button');
 module.exports = React.createClass({
 	displayName: 'Dropdown',
 	propTypes: {
-		items: React.PropTypes.array.isRequired,
-		className: React.PropTypes.string,
-		buttonClass: React.PropTypes.string,
+		alignRight: React.PropTypes.bool,
+		buttonHasDisclosureArrow: React.PropTypes.bool,
 		buttonLabel: React.PropTypes.string,
-		buttonHasDisclosureArrow: React.PropTypes.bool
+		buttonType: React.PropTypes.string,
+		className: React.PropTypes.string,
+		isOpen: React.PropTypes.bool,
+		items: React.PropTypes.array.isRequired
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
-			buttonHasDisclosureArrow: true
+			buttonHasDisclosureArrow: true,
+			onSelect: function onSelect() {}
 		};
 	},
 	getInitialState: function getInitialState() {
 		return {
-			isOpen: false
+			isOpen: this.props.isOpen || false
 		};
 	},
 	openDropdown: function openDropdown() {
@@ -535,25 +133,34 @@ module.exports = React.createClass({
 	closeDropdown: function closeDropdown() {
 		this.setState({ isOpen: false });
 	},
+
 	renderChildren: function renderChildren() {
 		var _this = this;
 
 		return React.Children.map(this.props.children, function (child) {
-			child.props.onClick = _this.openDropdown;
+			child.props.onClick = _this.state.isOpen ? _this.closeDropdown : _this.openDropdown;
 			return child;
 		});
 	},
 	renderButton: function renderButton() {
-		var buttonClass = classNames('Dropdown-toggle', this.props.buttonClass);
-		var disclosureArrow = this.props.buttonHasDisclosureArrow ? React.createElement('span', { className: 'Dropdown-toggle__arrow' }) : null;
+		var disclosureArrow = this.props.buttonHasDisclosureArrow ? React.createElement('span', { className: 'disclosure-arrow' }) : null;
+
 		return React.createElement(
 			Button,
-			{ onClick: this.state.isOpen ? this.closeDropdown : this.openDropdown, className: buttonClass },
+			{ type: this.props.buttonType, onClick: this.state.isOpen ? this.closeDropdown : this.openDropdown, className: 'Dropdown-toggle' },
 			this.props.buttonLabel,
 			disclosureArrow
 		);
 	},
+
+	onClick: function onClick(selectedItem) {
+		this.setState({
+			isOpen: !this.state.isOpen });
+
+		this.props.onSelect(selectedItem);
+	},
 	renderDropdownMenu: function renderDropdownMenu() {
+		var self = this;
 		if (!this.state.isOpen) return;
 
 		var dropdownMenuItems = this.props.items.map((function (item, i) {
@@ -567,27 +174,15 @@ module.exports = React.createClass({
 			} else if (item.type === 'divider') {
 				menuItem = React.createElement('li', { key: 'item-' + i, className: 'Dropdown-menu__divider' });
 			} else {
-				if (item.href) {
-					menuItem = React.createElement(
-						'li',
-						{ key: 'item-' + i, className: 'Dropdown-menu__item' },
-						React.createElement(
-							'a',
-							{ className: 'Dropdown-menu__action', href: item.anchor },
-							item.label
-						)
-					);
-				} else {
-					menuItem = React.createElement(
-						'li',
-						{ key: 'item-' + i, className: 'Dropdown-menu__item' },
-						React.createElement(
-							'span',
-							{ className: 'Dropdown-menu__action', onClick: item.action },
-							item.label
-						)
-					);
-				}
+				menuItem = React.createElement(
+					'li',
+					{ key: 'item-' + i, className: 'Dropdown-menu__item' },
+					React.createElement(
+						'span',
+						{ className: 'Dropdown-menu__action', onClick: self.onClick.bind(self, item.label) },
+						item.label
+					)
+				);
 			}
 			return menuItem;
 		}).bind(this));
@@ -602,6 +197,7 @@ module.exports = React.createClass({
 		if (!this.state.isOpen) return;
 		return React.createElement('div', { className: 'Dropdown-menu-backdrop', onClick: this.closeDropdown });
 	},
+
 	render: function render() {
 		// classes
 		var dropdownClass = classNames('Dropdown', {
@@ -609,13 +205,16 @@ module.exports = React.createClass({
 			'align-right': this.props.alignRight
 		}, this.props.className);
 
+		// props
+		var props = blacklist(this.props, ['alignRight', 'buttonHasDisclosureArrow', 'buttonLabel', 'buttonType', 'className', 'isOpen', 'items']);
+
 		return React.createElement(
-			'div',
-			{ className: dropdownClass },
+			'span',
+			_extends({ className: dropdownClass }, props),
 			React.Children.count(this.props.children) ? this.renderChildren() : this.renderButton(),
 			React.createElement(
 				ReactCSSTransitionGroup,
-				{ transitionName: 'Dropdown-menu', component: 'div' },
+				{ transitionName: 'Dropdown-menu' },
 				this.renderDropdownMenu()
 			),
 			this.renderDropdownMenuBackground()
@@ -623,7 +222,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Button":3,"classnames":undefined,"react/addons":undefined}],8:[function(require,module,exports){
+},{"./Button":3,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],5:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -725,7 +324,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],9:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],6:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -817,7 +416,7 @@ var Dropzone = React.createClass({
 
 module.exports = Dropzone;
 
-},{"classnames":undefined,"react/addons":undefined}],10:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],7:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -947,12 +546,14 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],11:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],8:[function(require,module,exports){
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormField',
@@ -961,6 +562,7 @@ module.exports = React.createClass({
 		disabled: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
+		offsetAbsentLabel: React.PropTypes.bool,
 		onChange: React.PropTypes.func,
 		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
 		type: React.PropTypes.string,
@@ -974,10 +576,12 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// classes
-		var componentClass = classNames('form-field', this.props.width, this.props.className);
+		var componentClass = classNames('form-field', {
+			'offset-absent-label': this.props.offsetAbsentLabel
+		}, this.props.width, this.props.className);
 
 		// props
-		var props = _.omit(this.props, ['label', 'width', 'className']);
+		var props = blacklist(this.props, 'className', 'label', 'type', 'width');
 
 		// elements
 		var componentLabel = !!this.props.label ? React.createElement(
@@ -988,19 +592,18 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ className: componentClass },
+			_extends({ className: componentClass }, props),
 			componentLabel,
 			this.props.children
 		);
 	}
 });
 
-},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],12:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],9:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 var classNames = require('classnames');
-var _ = require('lodash');
 var Spinner = require('elemental').Spinner;
 
 var icons = require('../Octicons').map;
@@ -1024,12 +627,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"classnames":undefined,"elemental":"elemental","lodash":undefined,"react/addons":undefined}],13:[function(require,module,exports){
+},{"../Octicons":1,"classnames":undefined,"elemental":"elemental","react/addons":undefined}],10:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 var FormField = require('elemental').FormField;
 var Spinner = require('elemental').Spinner;
@@ -1054,7 +657,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// props
-		var props = _.omit(this.props, ['className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading']);
+		var props = blacklist(this.props, ['className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading']);
 
 		// classes
 		var fieldClass = classNames('IconField', {
@@ -1079,7 +682,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"classnames":undefined,"elemental":"elemental","lodash":undefined,"react/addons":undefined}],14:[function(require,module,exports){
+},{"../Octicons":1,"blacklist":undefined,"classnames":undefined,"elemental":"elemental","react/addons":undefined}],11:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1094,6 +697,7 @@ module.exports = React.createClass({
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
 		multiline: React.PropTypes.bool,
+		noedit: React.PropTypes.bool,
 		onChange: React.PropTypes.func,
 		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
 		type: React.PropTypes.string,
@@ -1106,7 +710,9 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// classes
-		var className = classNames('FormInput', this.props.size ? 'FormInput--' + this.props.size : null, this.props.className);
+		var className = classNames({
+			'FormInput-noedit': this.props.noedit,
+			'FormInput': !this.props.noedit }, this.props.size ? 'FormInput--' + this.props.size : null, this.props.className);
 
 		var props = _extends(blacklist(this.props, 'className'), {
 			onBlur: this.handleBlur,
@@ -1114,18 +720,28 @@ module.exports = React.createClass({
 			id: this.props.id || this.props.name
 		});
 
-		return React.createElement(this.props.multiline ? 'textarea' : 'input', props);
+		// element
+		var componentElement = 'input';
+		if (this.props.noedit && this.props.href) {
+			componentElement = 'a';
+		} else if (this.props.noedit) {
+			componentElement = 'div';
+		} else if (this.props.multiline) {
+			componentElement = 'textarea';
+		}
+
+		return React.createElement(componentElement, props);
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],15:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],12:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormLabel',
@@ -1138,7 +754,7 @@ module.exports = React.createClass({
 		var className = classNames('form-label', this.props.className);
 
 		// props
-		var props = _.omit(this.props, ['htmlFor', 'id', 'className', 'style']);
+		var props = blacklist(this.props, ['htmlFor', 'id', 'className', 'style']);
 
 		// style
 		var style;
@@ -1156,12 +772,50 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],16:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],13:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var React = require('react/addons');
+var blacklist = require('blacklist');
+var classNames = require('classnames');
+
+var NOTE_TYPES = ['default', 'primary', 'success', 'warning', 'danger'];
+
+module.exports = React.createClass({
+	displayName: 'FormNote',
+	propTypes: {
+		className: React.PropTypes.string,
+		note: React.PropTypes.string,
+		type: React.PropTypes.oneOf(NOTE_TYPES) },
+	getDefaultProps: function getDefaultProps() {
+		return {
+			type: 'default'
+		};
+	},
+	render: function render() {
+		// classes
+		var componentClass = classNames('FormNote', this.props.type ? 'FormNote--' + this.props.type : null, this.props.className);
+
+		// props
+		var props = blacklist(this.props, 'className', 'note', 'type');
+
+		// allow users to pass through the note as an attribute or as children
+		return React.createElement(
+			'div',
+			_extends({ className: componentClass, dangerouslySetInnerHTML: this.props.note ? { __html: this.props.note } : null }, props),
+			this.props.children
+		);
+	}
+});
+
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],14:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'FormRow',
@@ -1173,7 +827,7 @@ module.exports = React.createClass({
 		var className = classNames('form-row', this.props.className);
 
 		// props
-		var props = _.omit(this.props, ['className']);
+		var props = blacklist(this.props, ['className']);
 
 		return React.createElement(
 			'div',
@@ -1183,13 +837,13 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],17:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],15:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
-var _ = require('lodash');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1258,8 +912,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// props
-		var props = _.extend({}, this.props);
-		var props = _.omit(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className']);
+		var props = blacklist(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className']);
 
 		// classes
 		var componentClass = classNames('form-field', {
@@ -1314,65 +967,85 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],18:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],16:[function(require,module,exports){
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'InputGroup',
 	propTypes: {
-		className: React.PropTypes.string
+		className: React.PropTypes.string,
+		contiguous: React.PropTypes.bool
+	},
+	getDefaultProps: function getDefaultProps() {
+		return {
+			contiguous: true
+		};
 	},
 	render: function render() {
 		// props
-		var props = _.omit(this.props, ['className']);
+		var props = blacklist(this.props, 'className');
 
 		// classes
-		var className = classNames('InputGroup', this.props.className);
+		var className = classNames('InputGroup', {
+			'is-contiguous': this.props.contiguous
+		}, this.props.className);
 
 		return React.createElement(
 			'div',
-			{ className: className },
+			_extends({ className: className }, props),
 			this.props.children
 		);
 	}
 });
 
-},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],19:[function(require,module,exports){
+// expose the addon to the top level export
+module.exports.Section = require('./InputGroupSection');
+
+},{"./InputGroupSection":17,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],17:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-// var _ = require('lodash');
-
-var Button = require('elemental').Button;
 
 module.exports = React.createClass({
-	displayName: 'InputGroupAddon',
+	displayName: 'InputGroupSection',
 	propTypes: {
-		className: React.PropTypes.string
+		className: React.PropTypes.string,
+		grow: React.PropTypes.bool
 	},
 	render: function render() {
+		// props
+		var props = blacklist(this.props, 'className');
+
+		// classes
+		var className = classNames('InputGroup_section', {
+			'InputGroup_section--grow': this.props.grow
+		}, this.props.className);
+		props.className = className;
+
 		return React.createElement(
 			'span',
-			{ className: 'InputGroup_addon' },
-			React.createElement(
-				Button,
-				this.props,
-				this.props.children
-			)
+			props,
+			this.props.children
 		);
 	}
 });
 
-},{"classnames":undefined,"elemental":"elemental","react/addons":undefined}],20:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1384,6 +1057,9 @@ module.exports = React.createClass({
 		headerHasCloseButton: React.PropTypes.bool
 	},
 	render: function render() {
+		// props
+		var props = blacklist(this.props, ['backdropClosesModal', 'className', 'headerHasCloseButton', 'headerTitle', 'isOpen']);
+
 		// classes
 		var dialogClass = classNames('Modal-dialog', this.props.className);
 
@@ -1391,15 +1067,15 @@ module.exports = React.createClass({
 		var header = this.props.headerTitle ? React.createElement(
 			'div',
 			{ className: 'Modal-header' },
-			this.props.headerHasCloseButton ? React.createElement('span', { onClick: this.props.onChange, className: 'Modal-close' }) : null,
+			this.props.headerHasCloseButton ? React.createElement('span', { onClick: this.props.onCancel, className: 'Modal-close' }) : null,
 			React.createElement(
 				'h4',
 				{ className: 'Modal-title' },
-				'Modal Header'
+				this.props.headerTitle
 			)
 		) : null;
 
-		var modalBackground = this.props.isOpen ? React.createElement('div', { className: 'Modal-backdrop', onClick: this.props.backdropClosesModal ? this.props.onChange : null }) : null;
+		var modalBackground = this.props.isOpen ? React.createElement('div', { className: 'Modal-backdrop', onClick: this.props.backdropClosesModal ? this.props.onCancel : null }) : null;
 		var modalDialog = this.props.isOpen ? React.createElement(
 			'div',
 			{ className: dialogClass },
@@ -1413,7 +1089,7 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ className: 'Modal' },
+			_extends({ className: 'Modal' }, props),
 			React.createElement(
 				ReactCSSTransitionGroup,
 				{ transitionName: 'Modal-dialog', component: 'div' },
@@ -1428,7 +1104,47 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
+// create simple children for the modal
+module.exports.Body = React.createClass({
+	displayName: 'ModalBody',
+	propTypes: {
+		className: React.PropTypes.string
+	},
+	render: function render() {
+		// props
+		var props = blacklist(this.props, 'className');
+
+		// classes
+		var className = classNames('Modal-body', this.props.className);
+
+		return React.createElement(
+			'div',
+			_extends({ className: className }, props),
+			this.props.children
+		);
+	}
+});
+module.exports.Footer = React.createClass({
+	displayName: 'ModalFooter',
+	propTypes: {
+		className: React.PropTypes.string
+	},
+	render: function render() {
+		// props
+		var props = blacklist(this.props, 'className');
+
+		// classes
+		var className = classNames('Modal-footer', this.props.className);
+
+		return React.createElement(
+			'div',
+			_extends({ className: className }, props),
+			this.props.children
+		);
+	}
+});
+
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],19:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1528,13 +1244,13 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],22:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],20:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
-var _ = require('lodash');
+var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1600,15 +1316,9 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		var self = this;
+
 		// props
-		var props = _.extend({}, this.props);
-		delete props.alwaysValidate;
-		delete props.label;
-		delete props.onChange;
-		delete props.options;
-		delete props.required;
-		delete props.requiredMessage;
-		delete props.value;
+		var props = blacklist(this.props, ['alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value']);
 
 		// classes
 		var componentClass = classNames('form-field', {
@@ -1664,7 +1374,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],23:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1696,15 +1406,66 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],24:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],22:[function(require,module,exports){
+'use strict';
+
+var React = require('react/addons');
+var blacklist = require('blacklist');
+var classNames = require('classnames');
+
+var ALERT_TYPES = ['danger', 'default', 'info', 'primary', 'success', 'warning'];
+
+module.exports = React.createClass({
+	displayName: 'Tag',
+	propTypes: {
+		className: React.PropTypes.string,
+		hasClearButton: React.PropTypes.bool,
+		label: React.PropTypes.string.isRequired,
+		onClear: React.PropTypes.func,
+		onClick: React.PropTypes.func,
+		type: React.PropTypes.oneOf(ALERT_TYPES)
+	},
+	getDefaultProps: function getDefaultProps() {
+		return {
+			type: 'default'
+		};
+	},
+	renderClearButton: function renderClearButton() {
+		if (!this.props.hasClearButton) return;
+		return React.createElement(
+			'button',
+			{ onClick: this.props.onClear, className: 'Tag__clear' },
+			'×'
+		);
+	},
+	render: function render() {
+		var componentClass = classNames('Tag', 'Tag--' + this.props.type, this.props.className);
+
+		var props = blacklist(this.props, 'className', 'hasClearButton', 'label', 'onClear', 'onClick', 'type');
+		props.className = componentClass;
+
+		return React.createElement(
+			'div',
+			props,
+			React.createElement(
+				'button',
+				{ onClick: this.props.onClick, className: 'Tag__label' },
+				this.props.label
+			),
+			this.renderClearButton()
+		);
+	}
+});
+
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],23:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var blacklist = require('blacklist');
 var classNames = require('classnames');
-var _ = require('lodash');
 
 module.exports = React.createClass({
 	displayName: 'Tooltip',
@@ -1743,7 +1504,7 @@ module.exports = React.createClass({
 		var componentClass = classNames('TooltipOuter', this.props.className);
 
 		// props
-		var props = _.omit(this.props, ['content', 'className', 'placement', 'target']);
+		var props = blacklist(this.props, ['content', 'className', 'placement', 'target']);
 
 		// style
 		var tooltipStyle = {};
@@ -1803,20 +1564,18 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"lodash":undefined,"react/addons":undefined}],"elemental":[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],"elemental":[function(require,module,exports){
 'use strict';
 
 exports.Alert = require('./components/Alert');
 exports.Button = require('./components/Button');
-exports.DatePicker = require('./components/DatePicker');
-exports.DatePickerCalendar = require('./components/DatePickerCalendar');
-exports.DatePickerHeader = require('./components/DatePickerHeader');
 exports.Dropdown = require('./components/Dropdown');
 exports.EmailInputGroup = require('./components/EmailInputGroup');
 exports.Modal = require('./components/Modal');
 exports.PasswordInputGroup = require('./components/PasswordInputGroup');
 exports.RadioGroup = require('./components/RadioGroup');
 exports.Spinner = require('./components/Spinner');
+exports.Tag = require('./components/Tag');
 exports.Tooltip = require('./components/Tooltip');
 
 exports.FormField = require('./components/FormField');
@@ -1824,6 +1583,7 @@ exports.FormRow = require('./components/FormRow');
 exports.FormIcon = require('./components/FormIcon');
 exports.FormIconField = require('./components/FormIconField');
 exports.FormInput = require('./components/FormInput');
+exports.FormNote = require('./components/FormNote');
 exports.FormLabel = require('./components/FormLabel');
 exports.FormSelect = require('./components/FormSelect');
 
@@ -1831,6 +1591,5 @@ exports.FileDragAndDrop = require('./components/FileDragAndDrop');
 exports.FileUpload = require('./components/FileUpload');
 
 exports.InputGroup = require('./components/InputGroup');
-exports.InputGroupAddon = require('./components/InputGroupAddon');
 
-},{"./components/Alert":2,"./components/Button":3,"./components/DatePicker":4,"./components/DatePickerCalendar":5,"./components/DatePickerHeader":6,"./components/Dropdown":7,"./components/EmailInputGroup":8,"./components/FileDragAndDrop":9,"./components/FileUpload":10,"./components/FormField":11,"./components/FormIcon":12,"./components/FormIconField":13,"./components/FormInput":14,"./components/FormLabel":15,"./components/FormRow":16,"./components/FormSelect":17,"./components/InputGroup":18,"./components/InputGroupAddon":19,"./components/Modal":20,"./components/PasswordInputGroup":21,"./components/RadioGroup":22,"./components/Spinner":23,"./components/Tooltip":24}]},{},[]);
+},{"./components/Alert":2,"./components/Button":3,"./components/Dropdown":4,"./components/EmailInputGroup":5,"./components/FileDragAndDrop":6,"./components/FileUpload":7,"./components/FormField":8,"./components/FormIcon":9,"./components/FormIconField":10,"./components/FormInput":11,"./components/FormLabel":12,"./components/FormNote":13,"./components/FormRow":14,"./components/FormSelect":15,"./components/InputGroup":16,"./components/Modal":18,"./components/PasswordInputGroup":19,"./components/RadioGroup":20,"./components/Spinner":21,"./components/Tag":22,"./components/Tooltip":23}]},{},[]);
