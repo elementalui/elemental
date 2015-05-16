@@ -1,0 +1,53 @@
+// 
+// Pagination
+// ==============================
+
+.Pagination {
+	> li {
+		display: inline; // Remove list-style and block-level defaults
+		> a,
+		> span {
+			border: 1px solid transparent;
+			border-radius: 3px;
+			color: @gray;
+			float: left; // Collapse white-space
+			line-height: 1.3;
+			padding: .5em;
+			position: relative;
+			text-decoration: none;
+		}
+	}
+
+	> li > a,
+	> li > span {
+		&:hover,
+		&:focus {
+			background-color: @pagination-hover-bg;
+		}
+	}
+
+	> .active > a,
+	> .active > span {
+		&,
+		&:hover,
+		&:focus {
+			z-index: 2;
+			color: @pagination-active-color;
+			background-color: @pagination-active-bg;
+			border: 1px solid @pagination-border;
+			cursor: default;
+		}
+	}
+
+	> .disabled {
+		> span,
+		> a,
+		> a:hover,
+		> a:focus {
+			color: @pagination-disabled-color;
+			background-color: @pagination-bg;
+			border-color: @pagination-bg;
+			cursor: default;
+		}
+	}
+}
