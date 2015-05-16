@@ -3,50 +3,69 @@
 // ==============================
 
 .Pagination {
+	list-style: none;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+
 	> li {
 		display: inline; // Remove list-style and block-level defaults
+
 		> a,
+		> button,
 		> span {
-			border: 1px solid transparent;
 			border-radius: 3px;
-			color: @gray;
+			border: 1px solid transparent;
+			color: @pagination-color;
 			float: left; // Collapse white-space
 			line-height: 1.3;
-			padding: .5em;
+			padding: .5em .7em;
 			position: relative;
 			text-decoration: none;
+			-webkit-appearance: none;
+
+			// handle hover and focus
+			&:hover,
+			&:focus {
+				background-color: @pagination-hover-bg;
+				border-color: @pagination-hover-border;
+				color: @pagination-hover-color;
+				outline: none;
+			}
 		}
 	}
 
-	> li > a,
-	> li > span {
-		&:hover,
-		&:focus {
-			background-color: @pagination-hover-bg;
-		}
-	}
+
+	// selected page
 
 	> .active > a,
+	> .active > button,
 	> .active > span {
 		&,
 		&:hover,
 		&:focus {
-			z-index: 2;
-			color: @pagination-active-color;
 			background-color: @pagination-active-bg;
-			border: 1px solid @pagination-border;
+			border-color: @pagination-active-border;
+			color: @pagination-active-color;
 			cursor: default;
+			z-index: 2;
 		}
 	}
+	
+
+	// disabled page
 
 	> .disabled {
 		> span,
 		> a,
 		> a:hover,
-		> a:focus {
+		> a:focus,
+		> button,
+		> button:hover,
+		> button:focus {
+			background-color: @pagination-disabled-bg;
+			border-color: @pagination-disabled-bg;
 			color: @pagination-disabled-color;
-			background-color: @pagination-bg;
-			border-color: @pagination-bg;
 			cursor: default;
 		}
 	}
