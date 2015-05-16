@@ -21,20 +21,18 @@
 
 .InputGroup_section {
 	display: table-cell;
-	padding-left: .25em;
-	padding-right: .25em;
 	vertical-align: middle;
 	width: 1%;
+
+	// add gutter to additional elements
+	& + & {
+		padding-left: .5em;
+	}
 
 	// make flush when contiguous
 	.is-contiguous & {
 		padding-left: 0;
-		padding-right: 0;
 	}
-
-	// remove padding on alpha/omega
-	&:first-child { padding-left: 0; }
-	&:last-child  { padding-right: 0; }
 }
 
 // stretch the appropriate element - 1 per input group
