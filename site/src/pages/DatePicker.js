@@ -18,8 +18,9 @@ var DateSelectExamples = React.createClass({
 			<div className="demo-container container">
 				<h1>Date Picker</h1>
 				<p className="lead">
-					We built <a href="http://jedwatson.github.io/react-date-select">react-date-select</a> for Elemental, and published it separately to <a href="https://www.npmjs.com/package/react-date-select">NPM</a>
+					We built <a href="http://jedwatson.github.io/react-date-select">react-date-select</a> for Elemental, and published it separately to <a href="https://www.npmjs.com/package/react-date-select">npm</a>
 				</p>
+				
 				<h2>Day Picker</h2>
 				<p>Pick a single date</p>
 				<DateSelect value={this.state.singleDateValue} onChange={this.onDateChange.bind(this, 'singleDateValue')}>
