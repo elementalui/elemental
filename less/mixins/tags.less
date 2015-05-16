@@ -1,0 +1,18 @@
+// 
+// Tags
+// ==============================
+
+.tag-variant(@color, @background) {
+	background-color: @background;
+	color: @color;
+
+	// states
+	&:hover,
+	&:focus {
+		background-color: darken(@background, 15%);
+		outline: none;
+	}
+	&:active {
+		background-color: darken(@background, 25%);
+	}
+}
