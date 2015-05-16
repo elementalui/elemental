@@ -36,7 +36,7 @@ module.exports = React.createClass({
 
 	renderChildren () {
 		return React.Children.map(this.props.children, (child) => {
-			child.props.onClick = this.openDropdown;
+			child.props.onClick = this.state.isOpen ? this.closeDropdown : this.openDropdown;
 			return child;
 		});
 	},
