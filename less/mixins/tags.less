@@ -2,17 +2,17 @@
 // Tags
 // ==============================
 
-.tag-variant(@color, @background) {
-	background-color: @background;
+.tag-variant(@color) {
+	background-color: fade(@color, 10%);
 	color: @color;
 
 	// states
 	&:hover,
 	&:focus {
-		background-color: darken(@background, 15%);
+		background-color: fade(@color, 15%);
 		outline: none;
 	}
 	&:active {
-		background-color: darken(@background, 25%);
+		background-color: fade(@color, 25%);
 	}
 }

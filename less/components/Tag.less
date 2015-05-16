@@ -12,7 +12,7 @@
 	font-size: .85em;
 	font-weight: 500;
 	overflow: hidden;
-	line-height: 2.3em;
+	line-height: 2.4em;
 
 	& + & {
 		margin-left: .5em;
@@ -33,46 +33,52 @@
 	-webkit-appearance: none;
 
 	// make pills
-	&:first-child { .border-left-radius(2em); }
-	&:last-child { .border-right-radius(2em); }
+	// exaggerate the padding toward the border so it looks even
+	&:first-child {
+		.border-left-radius(2em);
+		padding-left: 1.2em;
+	}
+	&:last-child {
+		.border-right-radius(2em);
+		padding-right: 1.2em;
+	}
 }
 
 
-// label
+// provide separation between the label and clear buttons
 
-.Tag__label {
-	margin-right: 1px;
-}
+.Tag__label { margin-right: 1px; }
+.Tag__clear { margin-left: 1px; }
 
 
-// clear
 
-.Tag__clear {
-	margin-left: 1px;
-}
 
 // Variants
 // ------------------------------
 
 .Tag--default > .Tag__label,
 .Tag--default > .Tag__clear {
-	.tag-variant(@tag-default-color; @tag-default-bg);
+	.tag-variant(@tag-default-color);
 }
 .Tag--primary > .Tag__label,
 .Tag--primary > .Tag__clear {
-	.tag-variant(@tag-primary-color; @tag-primary-bg);
+	.tag-variant(@tag-primary-color);
+}
+.Tag--info > .Tag__label,
+.Tag--info > .Tag__clear {
+	.tag-variant(@tag-info-color);
 }
 .Tag--success > .Tag__label,
 .Tag--success > .Tag__clear {
-	.tag-variant(@tag-success-color; @tag-success-bg);
+	.tag-variant(@tag-success-color);
 }
 .Tag--warning > .Tag__label,
 .Tag--warning > .Tag__clear {
-	.tag-variant(@tag-warning-color; @tag-warning-bg);
+	.tag-variant(@tag-warning-color);
 }
 .Tag--danger > .Tag__label,
 .Tag--danger > .Tag__clear {
-	.tag-variant(@tag-danger-color; @tag-danger-bg);
+	.tag-variant(@tag-danger-color);
 }
 
 

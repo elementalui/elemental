@@ -26,6 +26,10 @@ module.exports = React.createClass({
 			type: 'default'
 		};
 	},
+	renderClearButton() {
+		if (!this.props.hasClearButton) return;
+		return <button onClick={this.props.onClear} className="Tag__clear">&times;</button>
+	},
 	render() {
 		var componentClass = classNames(
 			'Tag',
@@ -33,13 +37,13 @@ module.exports = React.createClass({
 			this.props.className
 		);
 
-		var props = blacklist(this.props, 'className', 'label', 'type');
+		var props = blacklist(this.props, 'className', 'hasClearButton', 'label', 'onClear', 'onClick', 'type');
 		props.className = componentClass
 
 		return (
 			<div {...props}>
-				<button className="Tag__label">{this.props.label}</button>
-				<button className="Tag__clear">&times;</button>
+				<button onClick={this.props.onClick} className="Tag__label">{this.props.label}</button>
+				{this.renderClearButton()}
 			</div>
 		);
 	}
