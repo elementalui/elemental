@@ -12,7 +12,7 @@
 	font-size: .85em;
 	font-weight: 500;
 	overflow: hidden;
-	line-height: 2.4em;
+	line-height: 2.2em;
 
 	& + & {
 		margin-left: .5em;
@@ -35,11 +35,11 @@
 	// make pills
 	// exaggerate the padding toward the border so it looks even
 	&:first-child {
-		.border-left-radius(2em);
+		.border-left-radius(3em);
 		padding-left: 1.2em;
 	}
 	&:last-child {
-		.border-right-radius(2em);
+		.border-right-radius(3em);
 		padding-right: 1.2em;
 	}
 }
@@ -57,29 +57,60 @@
 // Variants
 // ------------------------------
 
+
+// standard
+
 .Tag--default > .Tag__label,
 .Tag--default > .Tag__clear {
-	.tag-variant(@tag-default-color);
+	.tag-variant(@tag-default-color, mix(@tag-default-color, @body-bg, 10%));
 }
 .Tag--primary > .Tag__label,
 .Tag--primary > .Tag__clear {
-	.tag-variant(@tag-primary-color);
+	.tag-variant(@tag-primary-color, mix(@tag-primary-color, @body-bg, 10%));
 }
 .Tag--info > .Tag__label,
 .Tag--info > .Tag__clear {
-	.tag-variant(@tag-info-color);
+	.tag-variant(@tag-info-color, mix(@tag-info-color, @body-bg, 10%));
 }
 .Tag--success > .Tag__label,
 .Tag--success > .Tag__clear {
-	.tag-variant(@tag-success-color);
+	.tag-variant(@tag-success-color, mix(@tag-success-color, @body-bg, 10%));
 }
 .Tag--warning > .Tag__label,
 .Tag--warning > .Tag__clear {
-	.tag-variant(@tag-warning-color);
+	.tag-variant(@tag-warning-color, mix(@tag-warning-color, @body-bg, 10%));
 }
 .Tag--danger > .Tag__label,
 .Tag--danger > .Tag__clear {
-	.tag-variant(@tag-danger-color);
+	.tag-variant(@tag-danger-color, mix(@tag-danger-color, @body-bg, 10%));
+}
+
+
+// inverted
+
+.Tag--default-inverted > .Tag__label,
+.Tag--default-inverted > .Tag__clear {
+	.tag-inverted-variant(white, @tag-default-color);
+}
+.Tag--primary-inverted > .Tag__label,
+.Tag--primary-inverted > .Tag__clear {
+	.tag-inverted-variant(white, @tag-primary-color);
+}
+.Tag--info-inverted > .Tag__label,
+.Tag--info-inverted > .Tag__clear {
+	.tag-inverted-variant(white, @tag-info-color);
+}
+.Tag--success-inverted > .Tag__label,
+.Tag--success-inverted > .Tag__clear {
+	.tag-inverted-variant(white, @tag-success-color);
+}
+.Tag--warning-inverted > .Tag__label,
+.Tag--warning-inverted > .Tag__clear {
+	.tag-inverted-variant(white, @tag-warning-color);
+}
+.Tag--danger-inverted > .Tag__label,
+.Tag--danger-inverted > .Tag__clear {
+	.tag-inverted-variant(white, @tag-danger-color);
 }
 
 
