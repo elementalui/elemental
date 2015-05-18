@@ -23,7 +23,7 @@ var BUTTON_TYPES = [
 ];
 
 module.exports = React.createClass({
-	displayName: 'ElementalButton',
+	displayName: 'Button',
 	propTypes: {
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
