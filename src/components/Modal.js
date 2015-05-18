@@ -3,6 +3,11 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
+function removeClass(ele,cls) {
+	var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+	ele.className = ele.className.replace(reg,' ');
+}
+
 module.exports = React.createClass({
 	displayName: 'Modal',
 	propTypes: {
@@ -11,9 +16,8 @@ module.exports = React.createClass({
 		headerTitle: React.PropTypes.string,
 		headerHasCloseButton: React.PropTypes.bool
 	},
-	render() {
-		// props
-		var props = blacklist(this.props, ['backdropClosesModal', 'className', 'headerHasCloseButton', 'headerTitle', 'isOpen']);
+	renderDialog() {
+		if (!this.props.isOpen) return;
 
 		// classes
 		var dialogClass = classNames('Modal-dialog', this.props.className);
@@ -23,20 +27,36 @@ module.exports = React.createClass({
 			{this.props.headerHasCloseButton ? <span onClick={this.props.onCancel} className="Modal-close" /> : null}
 			<h4 className="Modal-title">{this.props.headerTitle}</h4>
 		</div> : null; 
-
-		var modalBackground = this.props.isOpen ? <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.props.onCancel : null} /> : null;
-		var modalDialog = this.props.isOpen ? <div className={dialogClass}><div className="Modal-content">
-			{header}
-			{this.props.children}
-		</div></div> : null;
 		
 		return (
-			<div className="Modal" {...props}>
+			<div className="Modal-dialog">
+				<div className="Modal-content">
+					{header}
+					{this.props.children}
+				</div>
+			</div>
+		);
+	},
+	renderBackdrop() {
+		if (!this.props.isOpen) return;
+
+		return <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.props.onCancel : null} />;
+	},
+	render() {
+		// classes
+		var className = classNames('Modal', this.props.className);
+
+		// props
+		var props = blacklist(this.props, ['backdropClosesModal', 'className', 'headerHasCloseButton', 'headerTitle', 'isOpen']);
+		props.className = className;
+		
+		return (
+			<div {...props}>
 				<ReactCSSTransitionGroup transitionName="Modal-dialog" component="div">
-					{modalDialog}
+					{this.renderDialog()}
 				</ReactCSSTransitionGroup>
 				<ReactCSSTransitionGroup transitionName="Modal-background" component="div">
-					{modalBackground}
+					{this.renderBackdrop()}
 				</ReactCSSTransitionGroup>
 			</div>
 		);
