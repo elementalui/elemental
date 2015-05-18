@@ -12,8 +12,9 @@
   "scripts": {
     "build:lib": "gulp build:lib",
     "bump": "gulp bump",
-    "publish:site": "gulp publish:examples",
+    "lint": "eslint ./; true",
     "publish:npm": "gulp publish:npm",
+    "publish:site": "gulp publish:examples",
     "publish:tag": "gulp publish:tag",
     "release": "gulp release",
     "site": "gulp dev:server",
@@ -27,6 +28,9 @@
     "react-date-select": "0.0.6"
   },
   "devDependencies": {
+    "babel-eslint": "^3.1.5",
+    "eslint": "^0.21.1",
+    "eslint-plugin-react": "^2.3.0",
     "gulp": "^3.8.11",
     "react": "^0.13.3",
     "react-component-gulp-tasks": "^0.7.0",

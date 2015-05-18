@@ -1,0 +1,6 @@
+.publish/*
+lib/*
+node_modules/*
+site/dist/*
+site/src/data/*
+src/Octicons.js
