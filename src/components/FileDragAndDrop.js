@@ -7,6 +7,7 @@ var classNames = require('classnames');
 
 var Dropzone = React.createClass({
 	propTypes: {
+		className: React.PropTypes.string,
 		label: React.PropTypes.string,
 		labelActive: React.PropTypes.string,
 		onDrop: React.PropTypes.func.isRequired
@@ -15,12 +16,12 @@ var Dropzone = React.createClass({
 		return {
 			label: 'Drag Files Here',
 			labelActive: 'Drop to Upload'
-		}
+		};
 	},
 	getInitialState: function() {
 		return {
 			isDragActive: false
-		}
+		};
 	},
 
 	onDragLeave: function(e) {
@@ -31,7 +32,7 @@ var Dropzone = React.createClass({
 
 	onDragOver: function(e) {
 		e.preventDefault();
-		e.dataTransfer.dropEffect = "copy";
+		e.dataTransfer.dropEffect = 'copy';
 
 		this.setState({
 			isDragActive: true
