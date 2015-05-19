@@ -37,6 +37,7 @@ module.exports = React.createClass({
 	renderChildren () {
 		return React.Children.map(this.props.children, (child) => {
 			child.props.onClick = this.state.isOpen ? this.closeDropdown : this.openDropdown;
+			child.props.className = classNames(child.props.className, 'Dropdown-toggle');
 			return child;
 		});
 	},

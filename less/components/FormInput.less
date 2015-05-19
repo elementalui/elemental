@@ -31,6 +31,8 @@
 		border-color: @input-border-color-hover;
 		outline: 0;
 	}
+	&.focus,
+	&.is-focused,
 	&:focus {
 		border-color: @input-border-color-focus;
 		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px fade(@input-border-color-focus, 10%);
@@ -80,7 +82,7 @@
 	font-size: @font-size-base;
 	line-height: @component-line-height;
 	height: @component-height;
-	min-width: 240px; // totally arbitrary
+	min-width: @input-noedit-width;
 	padding: 0 @input-padding-horizontal;
 	vertical-align: middle;
 	width: auto;
@@ -114,6 +116,7 @@ textarea.FormInput {
 	.resizable(vertical);
 	height: auto;
 	line-height: 1.4em;
+	min-height: 6.75em; // give user's comfortable room to write - about 4 rows
 	padding: .5em @input-padding-horizontal;
 }
 

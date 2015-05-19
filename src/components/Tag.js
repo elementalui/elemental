@@ -8,7 +8,12 @@ var ALERT_TYPES = [
 	'info',
 	'primary',
 	'success',
-	'warning'
+	'warning',
+	'default-inverted',
+	'info-inverted',
+	'primary-inverted',
+	'success-inverted',
+	'warning-inverted'
 ]
 
 module.exports = React.createClass({

@@ -8,8 +8,17 @@
 	border-top:   0.3em dashed;
 	display: inline-block;
 	height: 0;
-	margin-left: 0.5em;
 	margin-top: -0.1em; // whilst vertically centered, it appears to be too low because of lowercase chars next to it
 	vertical-align: middle;
 	width: 0;
+
+	// add spacing
+	&:first-child { margin-right: 0.5em; }
+	&:last-child { margin-left: 0.5em; }
+
+	// special case when beside an icon
+	// margins of inline-block boxes do not collapse (not even with their in-flow children)
+	.octicon + & {
+		margin-left: 0;
+	}
 }
