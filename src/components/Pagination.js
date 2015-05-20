@@ -19,15 +19,9 @@ module.exports = React.createClass({
 		})
 	},
 	renderCount() {
+		var count = this.props.pagination;
 		return (
-			<div className="Pagination__count">
-				<span className="Pagination__count__text">Showing</span>
-				<span className="Pagination__count__text">{this.props.pagination.first}</span>
-				<span className="Pagination__count__text">to</span>
-				<span className="Pagination__count__text">{this.props.pagination.last}</span>
-				<span className="Pagination__count__text">of</span>
-				<span className="Pagination__count__text">{this.props.pagination.total}</span>
-			</div>
+			<div className="Pagination__count">Showing {count.first} to {count.last} of {count.total}</div>
 		);
 	},
 	renderList() {
