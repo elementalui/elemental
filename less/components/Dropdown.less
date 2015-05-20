@@ -25,7 +25,7 @@
 // base
 
 .Dropdown-menu {
-	.animation-duration( 160ms );
+	.animation-duration( 100ms );
 	.animation-timing-function( cubic-bezier(0.77, 0, 0.175, 1) );
 	background-color: @dropdown-bg;
 	border-radius: @border-radius-base;
@@ -148,21 +148,21 @@
 // --------------------
 
 @-webkit-keyframes dropdownMenuEnter {
-	from { opacity: 0; -webkit-transform: translate3d(0, -10px, 0); }
+	from { opacity: 0; -webkit-transform: translate3d(0, -5px, 0); }
 	to   { opacity: 1; -webkit-transform: translate3d(0, 0, 0); }
 }
 @keyframes dropdownMenuEnter {
-	from { opacity: 0; transform: translate3d(0, -10px, 0); }
+	from { opacity: 0; transform: translate3d(0, -5px, 0); }
 	to   { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 @-webkit-keyframes dropdownMenuLeave {
 	from { opacity: 1; -webkit-transform: translate3d(0, 0, 0); }
-	to   { opacity: 0; -webkit-transform: translate3d(0, -10px, 0); }
+	to   { opacity: 0; -webkit-transform: translate3d(0, -5px, 0); }
 }
 @keyframes dropdownMenuLeave {
 	from { opacity: 1; transform: translate3d(0, 0, 0); }
-	to   { opacity: 0; transform: translate3d(0, -10px, 0); }
+	to   { opacity: 0; transform: translate3d(0, -5px, 0); }
 }
 
 
