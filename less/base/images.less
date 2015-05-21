@@ -1,0 +1,47 @@
+//
+// Images
+// ==============================
+
+
+
+
+// Responsive images
+// see ../mixins/image for more information
+// ------------------------------
+
+.img-responsive {
+	.img-responsive();
+}
+
+
+
+
+// Image thumbnail
+// ------------------------------
+
+.img-thumbnail {
+	background-color: white;
+	border-radius: @border-radius-base;
+	border: 1px solid @input-border-color;
+	display: inline-block;
+	height: auto;
+	line-height: 1;
+	max-width: 100%;
+	padding: 4px;
+
+	// contain image within the bounds of the element
+	> img {
+		height: auto;
+		max-width: 100%;
+	}
+
+	// catch any interior absolutely positioned elements
+	position: relative;
+
+	// if the thumbnail is an anchor, handle events
+	a&:hover,
+	a&:focus {
+		border-color: @link-color;
+		outline: none;
+	}
+}
