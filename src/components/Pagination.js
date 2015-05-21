@@ -44,7 +44,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		// props
-		var props = blacklist(this.props, ['className']);
+		var props = blacklist(this.props, 'className');
 
 		
 		// classes
