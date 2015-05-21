@@ -17,33 +17,26 @@ module.exports = React.createClass({
 	},
 	getInitialState() {
 		return {
-			hover: false
+			visible: false
 		};
 	},
 	componentDidMount() {
-		var target = React.findDOMNode(this.refs.target);
+		var target = this.refs.target.getDOMNode();
 		this.setState({
 			targetHeight: target.offsetHeight,
 			targetWidth: target.offsetWidth
 		});
 	},
 
-	handleHover() {
-		this.setState({ hover: true });
+	showTooltip() {
+		this.setState({ visible: true });
 	},
-	handleUnHover() {
-		this.setState({ hover: false });
+	hideTooltip() {
+		this.setState({ visible: false });
 	},
-
-	render() {
-		// classes
-		var componentClass = classNames(
-			'TooltipOuter',
-			this.props.className
-		);
-
-		// props
-		var props = blacklist(this.props, ['content', 'className', 'placement', 'target']);
+	
+	renderTooltip() {
+		if (!this.state.visible) return;
 
 		// style
 		var tooltipStyle = {};
@@ -74,20 +67,22 @@ module.exports = React.createClass({
 			tooltipStyle.marginLeft = 4;
 		}
 
-		// content
-		var tooltip = this.state.hover ? (
+		return (
 			<span style={tooltipStyle} className={'Tooltip ' + this.props.placement}>
 				<span className="TooltipContent">{this.props.content}</span>
 				<span className="TooltipArrow" />
 			</span>
-		) : null;
+		);
+	},
+
+	render() {
+		// props
+		var props = blacklist(this.props, ['content', 'placement', 'target']);
 		
 		return (
-			<span onMouseOver={this.handleHover} onMouseOut={this.handleUnHover} className={componentClass} style={{ display: 'inline-block', position: 'relative' }} {...props}>
-				<span ref="target" style={{ display: 'inline-block' }}>
-					{this.props.children}
-				</span>
-				<ReactCSSTransitionGroup transitionName="Tooltip" component="span">{tooltip}</ReactCSSTransitionGroup>
+			<span ref="target" onMouseOver={this.showTooltip} onMouseOut={this.hideTooltip} onFocus={this.showTooltip} onBlur={this.hideTooltip} style={{ position: 'relative' }} {...props}>
+ 				{this.props.children}
+				<ReactCSSTransitionGroup transitionName="Tooltip" component="span">{this.renderTooltip()}</ReactCSSTransitionGroup>
 			</span>
 		);
 	}
