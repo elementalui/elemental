@@ -20,9 +20,9 @@
 // ------------------------------
 
 .img-thumbnail {
-	background-color: white;
+	background-color: @thumbnail-bg-color;
 	border-radius: @border-radius-base;
-	border: 1px solid @input-border-color;
+	border: 1px solid @thumbnail-border-color;
 	display: inline-block;
 	height: auto;
 	line-height: 1;
@@ -41,7 +41,8 @@
 	// if the thumbnail is an anchor, handle events
 	a&:hover,
 	a&:focus {
-		border-color: @link-color;
+		background-color: @thumbnail-bg-hover-color;
+		border-color: @thumbnail-border-hover-color;
 		outline: none;
 	}
 }
