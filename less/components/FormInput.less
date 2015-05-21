@@ -101,9 +101,15 @@
 			background-color: fade(@link-color, 10%);
 			border-color: fade(@link-color, 10%);
 			color: @link-color;
-			text-decoration: none;
+			outline: none;
+			text-decoration: underline;
 		};
 	}
+}
+.FormInput-noedit--multiline {
+	line-height: 1.3;
+	height: auto;
+	padding: .5em @input-padding-horizontal;
 }
 
 

@@ -24,6 +24,7 @@ module.exports = React.createClass({
 		var className = classNames(
 			{
 				'FormInput-noedit': this.props.noedit,
+				'FormInput-noedit--multiline': this.props.noedit && this.props.multiline,
 				'FormInput': !this.props.noedit,
 			},
 			(this.props.size ? ('FormInput--' + this.props.size) : null),
@@ -40,8 +41,10 @@ module.exports = React.createClass({
 		var componentElement = 'input';
 		if (this.props.noedit && this.props.href) {
 			componentElement = 'a';
+			props.type = null;
 		} else if (this.props.noedit) {
 			componentElement = 'div';
+			props.type = null;
 		} else if (this.props.multiline) {
 			componentElement = 'textarea';
 		}
