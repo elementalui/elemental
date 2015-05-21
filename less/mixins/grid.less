@@ -4,7 +4,7 @@
 
 // Centered container element
 .container-fixed(@gutter: @grid-gutter-width) {
-	&:extend(.clearfix all);
+	// &:extend(.u-clearfix all); // return if deemed necessary
 	margin-left: auto;
 	margin-right: auto;
 	padding-left:  (@gutter / 2);
@@ -13,7 +13,7 @@
 
 // Creates a wrapper for a series of columns
 .make-row(@gutter: @grid-gutter-width) {
-	&:extend(.clearfix all);
+	&:extend(.u-clearfix all);
 	margin-left:  (@gutter / -2);
 	margin-right: (@gutter / -2);
 }

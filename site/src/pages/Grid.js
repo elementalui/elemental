@@ -12,82 +12,82 @@ var Grid = React.createClass({
 				<h2>Three equal columns</h2>
 				<div className="row">
 					<div className="col-sm-4">
-						<div className="demo-box u-text-muted">.col-sm-4</div>
+						<div className="demo-box u-text-center">.col-sm-4</div>
 					</div>
 					<div className="col-sm-4">
-						<div className="demo-box u-text-muted">.col-sm-4</div>
+						<div className="demo-box u-text-center">.col-sm-4</div>
 					</div>
 					<div className="col-sm-4">
-						<div className="demo-box u-text-muted">.col-sm-4</div>
+						<div className="demo-box u-text-center">.col-sm-4</div>
 					</div>
 				</div>
 				<h2>Three unequal columns</h2>
 				<div className="row">
 					<div className="col-sm-3">
-						<div className="demo-box u-text-muted">.col-sm-3</div>
+						<div className="demo-box u-text-center">.col-sm-3</div>
 					</div>
 					<div className="col-sm-6">
-						<div className="demo-box u-text-muted">.col-sm-6</div>
+						<div className="demo-box u-text-center">.col-sm-6</div>
 					</div>
 					<div className="col-sm-3">
-						<div className="demo-box u-text-muted">.col-sm-3</div>
+						<div className="demo-box u-text-center">.col-sm-3</div>
 					</div>
 				</div>
 				<h2>Two unequal columns</h2>
 				<div className="row">
 					<div className="col-sm-8">
-						<div className="demo-box u-text-muted">.col-sm-8</div>
+						<div className="demo-box u-text-center">.col-sm-8</div>
 					</div>
 					<div className="col-sm-4">
-						<div className="demo-box u-text-muted">.col-sm-4</div>
+						<div className="demo-box u-text-center">.col-sm-4</div>
 					</div>
 				</div>
 				<h2>Columns on a small device</h2>
 				<div className="row">
 					<div className="col-xs-4">
-						<div className="demo-box u-text-muted">
+						<div className="demo-box u-text-center">
 							<span className="visible-xs-inline">4</span>
 							<span className="hidden-xs">.col-xs-4</span>
 						</div>
 					</div>
 					<div className="col-xs-4">
-						<div className="demo-box u-text-muted">
+						<div className="demo-box u-text-center">
 							<span className="visible-xs-inline">4</span>
 							<span className="hidden-xs">.col-xs-4</span>
 						</div>
 					</div>
 					<div className="col-xs-4">
-						<div className="demo-box u-text-muted">
+						<div className="demo-box u-text-center">
 							<span className="visible-xs-inline">4</span>
 							<span className="hidden-xs">.col-xs-4</span>
 						</div>
 					</div>
 					<div className="col-xs-8">
-						<div className="demo-box u-text-muted">
+						<div className="demo-box u-text-center">
 							<span className="visible-xs-inline">8</span>
 							<span className="hidden-xs">.col-xs-8</span>
 						</div>
 					</div>
 					<div className="col-xs-4">
-						<div className="demo-box u-text-muted">
+						<div className="demo-box u-text-center">
 							<span className="visible-xs-inline">4</span>
 							<span className="hidden-xs">.col-xs-4</span>
 						</div>
 					</div>
 					<div className="col-xs-3">
-						<div className="demo-box u-text-muted">
+						<div className="demo-box u-text-center">
 							<span className="visible-xs-inline">3</span>
 							<span className="hidden-xs">.col-xs-3</span>
 						</div>
 					</div>
 					<div className="col-xs-6">
-						<div className="demo-box u-text-muted">
+						<div className="demo-box u-text-center">
 							<span className="visible-xs-inline">6</span>
 							<span className="hidden-xs">.col-xs-6</span>
 						</div>
 					</div>
 					<div className="col-xs-3">
-						<div className="demo-box u-text-muted">
+						<div className="demo-box u-text-center">
 							<span className="visible-xs-inline">3</span>
 							<span className="hidden-xs">.col-xs-3</span>
 						</div>

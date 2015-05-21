@@ -1,0 +1,116 @@
+/**
+ * Word breaking
+ *
+ * Break strings when their length exceeds the width of their container.
+ */
+
+.u-text-break {
+	word-wrap: break-word !important;
+}
+
+/**
+ * Horizontal text alignment
+ */
+
+.u-text-center {
+	text-align: center !important;
+}
+
+.u-text-left {
+	text-align: left !important;
+}
+
+.u-text-right {
+	text-align: right !important;
+}
+
+/**
+ * Assign basic colours
+ */
+
+.u-text-muted {
+	color: @gray-light !important;
+}
+
+.u-text-default {
+	color: @text-color !important;
+}
+
+.u-text-primary {
+	color: @app-primary !important;
+}
+
+.u-text-info {
+	color: @app-info !important;
+}
+
+.u-text-warning {
+	color: @app-warning !important;
+}
+
+.u-text-success {
+	color: @app-success !important;
+}
+
+.u-text-danger {
+	color: @app-danger !important;
+}
+
+/**
+ * Inherit the ancestor's text color.
+ */
+
+.u-text-inherit-color {
+	color: inherit !important;
+}
+
+/**
+ * Capitalize the text
+ */
+
+.u-text-caps {
+	text-transform: uppercase !important;
+}
+
+/**
+ * Enables font kerning in all browsers.
+ * http://blog.typekit.com/2014/02/05/kerning-on-the-web/
+ *
+ * 1. Chrome (not Windows), Firefox, Safari 6+, iOS, Android
+ * 2. Chrome (not Windows), Firefox, IE 10+
+ * 3. Safari 7 and future browsers
+ */
+
+.u-text-kern {
+	text-rendering: optimizeLegibility; /* 1 */
+	font-feature-settings: "kern" 1; /* 2 */
+	font-kerning: normal; /* 3 */
+}
+
+/**
+ * Prevent whitespace wrapping
+ */
+
+.u-text-no-wrap {
+	white-space: nowrap !important;
+}
+
+/**
+ * Text truncation
+ *
+ * Prevent text from wrapping onto multiple lines, and truncate with an
+ * ellipsis.
+ *
+ * 1. Ensure that the node has a maximum width after which truncation can
+ *    occur.
+ * 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor
+ *    nodes.
+ */
+
+.u-text-truncate {
+	max-width: 100%; /* 1 */
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	white-space: nowrap !important;
+	word-wrap: normal !important; /* 2 */
+}

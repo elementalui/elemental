@@ -1,0 +1,36 @@
+/**
+ * Pins to all corners by default. But when a width and/or height are
+ * provided, the element will be centered in its nearest relatively-positioned
+ * ancestor.
+ */
+
+.u-pos-absolute-center {
+	bottom: 0 !important;
+	left: 0 !important;
+	margin: auto !important;
+	position: absolute !important;
+	right: 0 !important;
+	top: 0 !important;
+}
+
+/**
+ * 1. Make sure fixed elements are promoted into a new layer, for performance
+ *    reasons.
+ */
+
+.u-pos-fixed {
+	position: fixed !important;
+	backface-visibility: hidden; /* 1 */
+}
+
+.u-pos-absolute {
+	position: absolute !important;
+}
+
+.u-pos-relative {
+	position: relative !important;
+}
+
+.u-pos-static {
+	position: static !important;
+}
