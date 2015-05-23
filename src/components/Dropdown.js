@@ -14,7 +14,8 @@ module.exports = React.createClass({
 		buttonType: React.PropTypes.string,
 		className: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
-		items: React.PropTypes.array.isRequired
+		items: React.PropTypes.array.isRequired,
+		onSelect: React.PropTypes.func
 	},
 	getDefaultProps () {
 		return {
@@ -43,7 +44,7 @@ module.exports = React.createClass({
 	},
 	renderButton () {
 		var disclosureArrow = this.props.buttonHasDisclosureArrow ? <span className="disclosure-arrow" /> : null;
-		
+
 		return (
 			<Button type={this.props.buttonType} onClick={this.state.isOpen ? this.closeDropdown : this.openDropdown} className="Dropdown-toggle">
 				{this.props.buttonLabel}
@@ -54,21 +55,21 @@ module.exports = React.createClass({
 
 	onClick (selectedItem) {
 		this.setState({
-			isOpen: !this.state.isOpen,
+			isOpen: !this.state.isOpen
 		});
 
-		this.props.onSelect(selectedItem)
+		this.props.onSelect(selectedItem);
 	},
 	renderDropdownMenu () {
 		var self = this;
-		if (!this.state.isOpen) return;
+		if (!this.state.isOpen) return null;
 
 		var dropdownMenuItems = this.props.items.map(function(item, i) {
 			var menuItem;
 			if (item.type === 'header') {
-				menuItem = <li key={'item-' + i} className="Dropdown-menu__header">{item.label}</li>
+				menuItem = <li key={'item-' + i} className="Dropdown-menu__header">{item.label}</li>;
 			} else if (item.type === 'divider') {
-				menuItem = <li key={'item-' + i} className="Dropdown-menu__divider" />
+				menuItem = <li key={'item-' + i} className="Dropdown-menu__divider" />;
 			} else {
 				menuItem = (
 					<li key={'item-' + i} className="Dropdown-menu__item">
@@ -77,7 +78,7 @@ module.exports = React.createClass({
 				);
 			}
 			return menuItem;
-		}.bind(this));
+		});
 
 		return (
 			<ul key="Dropdown-menu" className="Dropdown-menu" role="menu">
@@ -86,7 +87,7 @@ module.exports = React.createClass({
 		);
 	},
 	renderDropdownMenuBackground () {
-		if (!this.state.isOpen) return;
+		if (!this.state.isOpen) return null;
 		return <div className="Dropdown-menu-backdrop" onClick={this.closeDropdown} />;
 	},
 

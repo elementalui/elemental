@@ -3,31 +3,25 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
-function removeClass(ele,cls) {
-	var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
-	ele.className = ele.className.replace(reg,' ');
-}
-
 module.exports = React.createClass({
 	displayName: 'Modal',
 	propTypes: {
-		isOpen: React.PropTypes.bool,
 		backdropClosesModal: React.PropTypes.bool,
+		className: React.PropTypes.string,
+		headerHasCloseButton: React.PropTypes.bool,
 		headerTitle: React.PropTypes.string,
-		headerHasCloseButton: React.PropTypes.bool
+		isOpen: React.PropTypes.bool,
+		onCancel: React.PropTypes.func
 	},
 	renderDialog() {
-		if (!this.props.isOpen) return;
-
-		// classes
-		var dialogClass = classNames('Modal-dialog', this.props.className);
+		if (!this.props.isOpen) return null;
 
 		// elements
 		var header = this.props.headerTitle ? <div className="Modal-header">
 			{this.props.headerHasCloseButton ? <span onClick={this.props.onCancel} className="Modal-close" /> : null}
 			<h4 className="Modal-title">{this.props.headerTitle}</h4>
-		</div> : null; 
-		
+		</div> : null;
+
 		return (
 			<div className="Modal-dialog">
 				<div className="Modal-content">
@@ -38,7 +32,7 @@ module.exports = React.createClass({
 		);
 	},
 	renderBackdrop() {
-		if (!this.props.isOpen) return;
+		if (!this.props.isOpen) return null;
 
 		return <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.props.onCancel : null} />;
 	},
@@ -49,7 +43,7 @@ module.exports = React.createClass({
 		// props
 		var props = blacklist(this.props, ['backdropClosesModal', 'className', 'headerHasCloseButton', 'headerTitle', 'isOpen']);
 		props.className = className;
-		
+
 		return (
 			<div {...props}>
 				<ReactCSSTransitionGroup transitionName="Modal-dialog" component="div">
@@ -74,7 +68,7 @@ module.exports.Body = React.createClass({
 		// props
 		var props = blacklist(this.props, 'className');
 
-		
+
 		// classes
 		var className = classNames('Modal-body', this.props.className);
 
@@ -94,7 +88,7 @@ module.exports.Footer = React.createClass({
 		// props
 		var props = blacklist(this.props, 'className');
 
-		
+
 		// classes
 		var className = classNames('Modal-footer', this.props.className);
 

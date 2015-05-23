@@ -14,7 +14,7 @@ var ALERT_TYPES = [
 	'primary-inverted',
 	'success-inverted',
 	'warning-inverted'
-]
+];
 
 module.exports = React.createClass({
 	displayName: 'Tag',
@@ -32,8 +32,8 @@ module.exports = React.createClass({
 		};
 	},
 	renderClearButton() {
-		if (!this.props.hasClearButton) return;
-		return <button onClick={this.props.onClear} className="Tag__clear">&times;</button>
+		if (!this.props.hasClearButton) return null;
+		return <button onClick={this.props.onClear} className="Tag__clear">&times;</button>;
 	},
 	render() {
 		var componentClass = classNames(
@@ -43,7 +43,7 @@ module.exports = React.createClass({
 		);
 
 		var props = blacklist(this.props, 'className', 'hasClearButton', 'label', 'onClear', 'onClick', 'type');
-		props.className = componentClass
+		props.className = componentClass;
 
 		return (
 			<div {...props}>

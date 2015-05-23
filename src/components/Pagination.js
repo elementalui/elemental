@@ -35,7 +35,7 @@ module.exports = React.createClass({
 			});
 			return <button key={'page_' + page} className={className} onClick={self.props.onClick}>{page}</button>;
 		});
-		
+
 		return (
 			<div className="Pagination__list">
 				{pages}
@@ -46,7 +46,7 @@ module.exports = React.createClass({
 		// props
 		var props = blacklist(this.props, 'className');
 
-		
+
 		// classes
 		var componentClass = classNames('Pagination', this.props.className);
 		props.className = componentClass;

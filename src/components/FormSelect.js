@@ -6,15 +6,17 @@ module.exports = React.createClass({
 	displayName: 'FormSelect',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
-		prependEmptyOption: React.PropTypes.bool,
+		className: React.PropTypes.string,
 		firstOption: React.PropTypes.string,
+		htmlFor: React.PropTypes.string,
+		id: React.PropTypes.string,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.array.isRequired,
+		prependEmptyOption: React.PropTypes.bool,
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string,
-		className: React.PropTypes.string
+		value: React.PropTypes.string
 	},
 	getDefaultProps() {
 		return {
@@ -46,7 +48,7 @@ module.exports = React.createClass({
 	},
 	handleChange(e) {
 		this._lastChangeValue = e.target.value;
-		this.props.onChange && this.props.onChange(e.target.value);
+		if (this.props.onChange) this.props.onChange(e.target.value);
 	},
 	handleBlur() {
 		if (!this.props.alwaysValidate) {
@@ -69,7 +71,7 @@ module.exports = React.createClass({
 	render() {
 		// props
 		var props = blacklist(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className']);
-		
+
 		// classes
 		var componentClass = classNames('form-field', {
 			'is-invalid': !this.state.isValid

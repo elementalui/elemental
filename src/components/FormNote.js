@@ -15,7 +15,7 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		note: React.PropTypes.string,
-		type: React.PropTypes.oneOf(NOTE_TYPES),
+		type: React.PropTypes.oneOf(NOTE_TYPES)
 	},
 	getDefaultProps() {
 		return {
@@ -30,7 +30,7 @@ module.exports = React.createClass({
 			this.props.className
 		);
 
-		
+
 		// props
 		var props = blacklist(this.props, 'className', 'note', 'type');
 

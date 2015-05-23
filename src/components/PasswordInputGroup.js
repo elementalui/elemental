@@ -9,11 +9,13 @@ module.exports = React.createClass({
 	displayName: 'PasswordInputGroup',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
-		required: React.PropTypes.bool,
+		className: React.PropTypes.string,
+		invalidMessage: React.PropTypes.string,
+		label: React.PropTypes.string,
 		onChange: React.PropTypes.func,
-		value: React.PropTypes.string,
+		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		invalidMessage: React.PropTypes.string
+		value: React.PropTypes.string
 	},
 	getDefaultProps() {
 		return {
@@ -46,7 +48,7 @@ module.exports = React.createClass({
 	},
 	handleChange(e) {
 		this._lastChangeValue = e.target.value;
-		this.props.onChange && this.props.onChange(e);
+		if (this.props.onChange) this.props.onChange(e);
 	},
 	handleBlur() {
 		if (!this.props.alwaysValidate) {

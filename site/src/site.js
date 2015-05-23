@@ -25,10 +25,12 @@ var PageNav = React.createClass({
 	render: function() {
 		var self = this;
 		var menuClass = this.state.showMenu ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
-		var menuItems = NavItems.map(function(item, i) {
-			return <Router.Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>
-				<span className="primary-nav__item-inner">{item.label}</span>
-			</Router.Link>;
+		var menuItems = NavItems.map(function(item) {
+			return (
+				<Router.Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>
+					<span className="primary-nav__item-inner">{item.label}</span>
+				</Router.Link>
+			);
 		});
 		return (
 			<nav className="primary-nav">
@@ -71,7 +73,7 @@ var App = React.createClass({
 	}
 });
 
-var basepath = (window.location.pathname.slice(0,10) === '/elemental') ? '/elemental' : '';
+var basepath = (window.location.pathname.slice(0, 10) === '/elemental') ? '/elemental' : '';
 
 var routes = (
 	<Router.Route name="app" path={basepath + '/'} handler={App}>

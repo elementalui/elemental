@@ -7,6 +7,8 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
+		htmlFor: React.PropTypes.string,
+		id: React.PropTypes.string,
 		label: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
 		offsetAbsentLabel: React.PropTypes.bool,
@@ -27,13 +29,13 @@ module.exports = React.createClass({
 			'offset-absent-label': this.props.offsetAbsentLabel
 		}, this.props.width, this.props.className);
 
-		
+
 		// props
 		var props = blacklist(this.props, 'className', 'label', 'type', 'width');
 
-		
+
 		// elements
-		var componentLabel = !!this.props.label ? (
+		var componentLabel = this.props.label ? (
 			<label className="form-label" htmlFor={this.props.id || this.props.htmlFor}>
 				{this.props.label}
 			</label>

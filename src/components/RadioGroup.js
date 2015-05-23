@@ -6,6 +6,8 @@ module.exports = React.createClass({
 	displayName: 'RadioGroup',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
+		className: React.PropTypes.string,
+		inline: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.array.isRequired,
@@ -43,7 +45,7 @@ module.exports = React.createClass({
 	},
 	handleChange(e) {
 		this._lastChangeValue = e.target.value;
-		this.props.onChange && this.props.onChange(e.target.value);
+		if (this.props.onChange) this.props.onChange(e.target.value);
 	},
 	handleBlur() {
 		if (!this.props.alwaysValidate) {
@@ -65,7 +67,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		var self = this;
-		
+
 		// props
 		var props = blacklist(this.props, ['alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value']);
 

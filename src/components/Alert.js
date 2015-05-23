@@ -1,6 +1,5 @@
 var React = require('react/addons');
 var classNames = require('classnames');
-var blacklist = require('blacklist');
 
 var ALERT_TYPES = [
 	'danger',
@@ -8,7 +7,7 @@ var ALERT_TYPES = [
 	'primary',
 	'success',
 	'warning'
-]
+];
 
 module.exports = React.createClass({
 	displayName: 'ElementalAlert',
@@ -27,8 +26,6 @@ module.exports = React.createClass({
 			'Alert--' + this.props.type,
 			this.props.className
 		);
-
-		var props = blacklist(this.props, ['type', 'className']);
 
 		return <div className={componentClass}>{this.props.children}</div>;
 	}
