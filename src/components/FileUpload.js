@@ -1,6 +1,5 @@
 var React = require('react/addons');
 var blacklist = require('blacklist');
-var classNames = require('classnames');
 
 module.exports = React.createClass({
 	displayName: 'FileUpload',
@@ -35,7 +34,7 @@ module.exports = React.createClass({
 		var self = this;
 		var reader = new FileReader();
 		var file = e.target.files[0];
-		
+
 		reader.readAsDataURL(file);
 
 		reader.onloadstart = function() {
@@ -47,7 +46,7 @@ module.exports = React.createClass({
 			self.setState({
 				loading: false,
 				file: file,
-				data_uri: upload.target.result
+				dataURI: upload.target.result
 			});
 		};
 	},
@@ -61,35 +60,35 @@ module.exports = React.createClass({
 		// helpers
 		function isEmptyObject(obj) {
 			return Object.keys(obj).length === 0;
-		};
+		}
 		var file = this.state.file;
 
 
 		// props
-
 		var props = blacklist(this.props, 'buttonClassChange', 'buttonClassInitial', 'buttonLabelChange', 'buttonLabelInitial', 'disabled', 'file', 'onChange');
 
 
 		// elements
-
 		var component = <button type="button" onClick={this.triggerFileBrowser} className={this.props.buttonClassInitial} disabled={this.props.disabled}>{this.props.buttonLabelInitial}</button>;
-		
+
 		if (!isEmptyObject(file)) {
-			component = <div className="FileUpload">
-				<div className="FileUpload__image">
-					<img className="FileUpload__image-src" src={this.state.data_uri} />
-				</div>
-				<div className="FileUpload__content">
-					<div className="FileUpload__message">
-						{file.name} ({Math.round(file.size / 1024)}Kb)
+			component = (
+				<div className="FileUpload">
+					<div className="FileUpload__image">
+						<img className="FileUpload__image-src" src={this.state.dataURI} />
 					</div>
-					<div className="FileUpload__buttons">
-						<button type="button" onClick={this.triggerFileBrowser} className={this.props.buttonClassChange}>{this.props.buttonLabelChange}</button>
-						<button type="button" onClick={this.cancelUpload} className="Button Button--link-cancel">Cancel</button>
+					<div className="FileUpload__content">
+						<div className="FileUpload__message">
+							{file.name} ({Math.round(file.size / 1024)}Kb)
+						</div>
+						<div className="FileUpload__buttons">
+							<button type="button" onClick={this.triggerFileBrowser} className={this.props.buttonClassChange}>{this.props.buttonLabelChange}</button>
+							<button type="button" onClick={this.cancelUpload} className="Button Button--link-cancel">Cancel</button>
+						</div>
 					</div>
 				</div>
-			</div>
-		};
+			);
+		}
 
 		return (
 			<div>

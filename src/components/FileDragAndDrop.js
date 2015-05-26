@@ -24,7 +24,7 @@ var Dropzone = React.createClass({
 		};
 	},
 
-	onDragLeave: function(e) {
+	onDragLeave: function() {
 		this.setState({
 			isDragActive: false
 		});

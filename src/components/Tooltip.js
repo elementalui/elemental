@@ -1,14 +1,15 @@
+/* eslint react/no-did-mount-set-state: 0 */
+
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var blacklist = require('blacklist');
-var classNames = require('classnames');
 
 module.exports = React.createClass({
 	displayName: 'Tooltip',
 	propTypes: {
+		className: React.PropTypes.string,
 		content: React.PropTypes.string,
-		placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-		className: React.PropTypes.string
+		placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
 	},
 	getDefaultProps() {
 		return {
@@ -34,9 +35,9 @@ module.exports = React.createClass({
 	hideTooltip() {
 		this.setState({ visible: false });
 	},
-	
+
 	renderTooltip() {
-		if (!this.state.visible) return;
+		if (!this.state.visible) return null;
 
 		// style
 		var tooltipStyle = {};
@@ -78,10 +79,10 @@ module.exports = React.createClass({
 	render() {
 		// props
 		var props = blacklist(this.props, ['content', 'placement', 'target']);
-		
+
 		return (
 			<span ref="target" onMouseOver={this.showTooltip} onMouseOut={this.hideTooltip} onFocus={this.showTooltip} onBlur={this.hideTooltip} style={{ position: 'relative' }} {...props}>
- 				{this.props.children}
+				{this.props.children}
 				<ReactCSSTransitionGroup transitionName="Tooltip" component="span">{this.renderTooltip()}</ReactCSSTransitionGroup>
 			</span>
 		);

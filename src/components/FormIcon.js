@@ -2,15 +2,15 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var Spinner = require('elemental').Spinner;
 
-var icons = require("../Octicons").map;
+var icons = require('../Octicons').map;
 
 module.exports = React.createClass({
 	displayName: 'FormIcon',
 	propTypes: {
 		className: React.PropTypes.string,
-		icon: React.PropTypes.string,
-		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		color: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
+		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
+		icon: React.PropTypes.string,
 		isLoading: React.PropTypes.bool
 	},
 	render() {

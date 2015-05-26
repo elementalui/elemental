@@ -13,9 +13,9 @@ const NavItems = [
 
 var Home = React.createClass({
 	displayName: 'VIEW_Home',
-	
+
 	render () {
-		var menuItems = NavItems.map(function(item, i) {
+		var menuItems = NavItems.map(function(item) {
 			return (
 				<div className="demo-banner-nav__col col-xs-4 col-sm-2">
 					<Router.Link key={item.value} className="demo-banner-nav__item" onClick={self.toggleMenu} to={item.value}>
@@ -63,7 +63,7 @@ var Home = React.createClass({
 						<p>In an effort to keep our projects' codebases <abbr title="Don't Repeat Yourself">DRY</abbr> we decided it was time to build something to improve our workflow and unify our projects to decrease development time.</p>
 						<p>All this coupled with a growing need for a re-usable set of React.js UI Components for the Admin UI in <a href="http://www.keystonejs.com" target="_blank">KeystoneJS</a>, Elemental was born.</p>
 						<p>While there are many other great UI Libraries available (including for React), our goal with Elemental is to develop a light-weight, unopinionated, modular framework that we can use across all our web projects.</p>
-						
+
 						<div className="demo-banner-points">
 							<div className="row">
 								<div className="col-sm-4">

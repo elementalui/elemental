@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -10,10 +9,6 @@ module.exports = React.createClass({
 	render() {
 		// classes
 		var className = classNames('form-row', this.props.className);
-
-		
-		// props
-		var props = blacklist(this.props, ['className']);
 
 		return (
 			<div className={className}>

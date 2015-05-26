@@ -17,11 +17,11 @@ module.exports = React.createClass({
 		// props
 		var props = blacklist(this.props, 'className');
 
-		
+
 		// classes
-		var className = classNames('InputGroup',{
+		var className = classNames('InputGroup', {
 			'is-contiguous': this.props.contiguous
-		},this.props.className);
+		}, this.props.className);
 
 		return (
 			<div className={className} {...props}>

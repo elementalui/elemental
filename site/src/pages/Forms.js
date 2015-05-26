@@ -1,3 +1,5 @@
+/* eslint no-alert: 0 */
+
 var React = require('react');
 
 var Button = require('elemental').Button;
@@ -8,7 +10,6 @@ var RadioGroup = require('elemental').RadioGroup;
 var FileDragAndDrop = require('elemental').FileDragAndDrop;
 var FileUpload = require('elemental').FileUpload;
 var FormField = require('elemental').FormField;
-var FormIcon = require('elemental').FormIcon;
 var FormIconField = require('elemental').FormIconField;
 var FormInput = require('elemental').FormInput;
 var FormLabel = require('elemental').FormLabel;
@@ -17,8 +18,6 @@ var FormRow = require('elemental').FormRow;
 var FormSelect = require('elemental').FormSelect;
 var InputGroup = require('elemental').InputGroup;
 
-
-var icons = require("../../../src/Octicons").list;
 
 var controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
@@ -46,7 +45,7 @@ var Forms = React.createClass({
 	},
 
 	onDrop: function (files) {
-		var outputFileInfo = files.map(function(file, i) {
+		var outputFileInfo = files.map(function(file) {
 			return '"' + file.name + '" (' + Math.round(file.size / 1024) + 'Kb)';
 		});
 		alert('Received files: \n' + outputFileInfo.join('\n'));
@@ -54,7 +53,7 @@ var Forms = React.createClass({
 			files: files
 		});
 	},
-	handleSearch: function (e) {
+	handleSearch: function () {
 		var self = this;
 		self.setState({ searching: true });
 
@@ -70,9 +69,6 @@ var Forms = React.createClass({
 		function updateSelect(option) {
 			self.setState({inputSelect: option});
 		}
-		function updateRadios(option) {
-			self.setState({radioGroup: option});
-		}
 		function updateInlineRadios(option) {
 			self.setState({inlineRadioGroup: option});
 		}
@@ -84,12 +80,11 @@ var Forms = React.createClass({
 		}
 
 		// elements
-
-		var countryOptions = COUNTRIES.map(function(country, i) {
-			return { label: country.name, value: country.code }
+		var countryOptions = COUNTRIES.map(function(country) {
+			return { label: country.name, value: country.code };
 		});
 
-		var checkboxes = [1,2,3].map(function(item) {
+		var checkboxes = [1, 2, 3].map(function(item) {
 			return (
 				<div key={'checkbox-' + item} className="checkbox">
 					<label className="checkbox-label">
@@ -99,7 +94,7 @@ var Forms = React.createClass({
 			);
 		});
 
-		var radios = [1,2,3].map(function(item) {
+		var radios = [1, 2, 3].map(function(item) {
 			return (
 				<div key={'radio-' + item} className="radio">
 					<label className="radio-label">
@@ -109,14 +104,14 @@ var Forms = React.createClass({
 			);
 		});
 
-		var options = [1,2,3,4,5].map(function(item) {
-			return <option key={'option-' + item} value={item}>Option {item}</option>
+		var options = [1, 2, 3, 4, 5].map(function(item) {
+			return <option key={'option-' + item} value={item}>Option {item}</option>;
 		});
 
 
 		// Icon Loops
 
-		var iconContextVariantsColor = COLOR_VARIANTS.map(function(color, i) {
+		var iconContextVariantsColor = COLOR_VARIANTS.map(function(color) {
 			return (
 				<FormIconField key={color.value} width="one-fifth" iconPosition="left" iconKey={color.icon} iconColor={color.value}>
 					<FormInput placeholder={color.label} name={'icon-form-context-variants-color' + color.value} />
@@ -124,7 +119,7 @@ var Forms = React.createClass({
 			);
 		});
 
-		var iconContextVariantsFill = COLOR_VARIANTS.map(function(color, i) {
+		var iconContextVariantsFill = COLOR_VARIANTS.map(function(color) {
 			return (
 				<FormIconField key={color.value} width="one-fifth" iconPosition="left" iconKey={color.icon} iconFill={color.value}>
 					<FormInput placeholder={color.label} name={'icon-form-context-variants-color' + color.value} />
@@ -205,7 +200,7 @@ var Forms = React.createClass({
 							<FormInput type="text" placeholder="Input group field" />
 						</InputGroup.Section>
 					</InputGroup>
-					
+
 					<p className="lead">But they can be separate when required</p>
 					<InputGroup contiguous={false}>
 						<InputGroup.Section grow>
@@ -225,7 +220,7 @@ var Forms = React.createClass({
 							<FormInput type="text" placeholder="Input group field" />
 						</InputGroup.Section>
 					</InputGroup>
-					
+
 					<p className="lead">Use in more sophisticated formations</p>
 					<InputGroup>
 						<InputGroup.Section>
@@ -251,7 +246,7 @@ var Forms = React.createClass({
 					</InputGroup>
 				</form>
 
-				
+
 				<h2 id="section-controls">Supported Controls</h2>
 				<form>
 					<FormField label="Input" htmlFor="supported-controls-input">
@@ -270,9 +265,9 @@ var Forms = React.createClass({
 						<FormInput placeholder="Textarea" name="supported-controls-textarea" multiline />
 					</FormField>
 					<FormField label="Select" htmlFor="supported-controls-select">
-						<FormSelect options={controlOptions} firstOption="Select" />
+						<FormSelect options={options} firstOption="Select" />
 					</FormField>
-					<FormSelect label="Disabled Select" options={controlOptions} htmlFor="supported-conrols-select-disabled" firstOption="Disabled Select" disabled />
+					<FormSelect label="Disabled Select" options={options} htmlFor="supported-conrols-select-disabled" firstOption="Disabled Select" disabled />
 					<FormField label="Checkboxes">
 						{checkboxes}
 					</FormField>
@@ -293,7 +288,7 @@ var Forms = React.createClass({
 						<FormNote>A block of help text that may extend beyond one line. Use &lt;span&gt; or &lt;div&gt; to control display.</FormNote>
 					</FormField>
 				</form>
-				
+
 				<h2 id="section-validation">Validation</h2>
 				<form>
 					<RadioGroup label="Radios" value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />

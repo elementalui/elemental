@@ -1,3 +1,5 @@
+/* eslint no-script-url: 0 */
+
 var React = require('react');
 var Dropdown = require('elemental').Dropdown;
 var Tooltip = require('elemental').Tooltip;
@@ -9,7 +11,7 @@ var DROPDOWN_OPTIONS = [
 	{ type: 'item', anchor: 'javascript:;', label: 'Something else here' },
 	{ type: 'divider' },
 	{ type: 'header', label: 'Dropdown header' },
-	{ type: 'item', anchor: 'javascript:;', label: 'Separated link' },
+	{ type: 'item', anchor: 'javascript:;', label: 'Separated link' }
 ];
 
 var BUTTON_SIZES = [
@@ -50,24 +52,24 @@ var Buttons = React.createClass({
 	},
 	renderButtonSizes() {
 		return BUTTON_SIZES.map(size => {
-			 return (
-			 	<div key={size.value} className="col-sm-3">
-				 	<div className="demo-box u-text-center">
-					 	<Button size={size.value}>{size.label}</Button>
-					 </div>
-				 </div>
-			 );
+			return (
+				<div key={size.value} className="col-sm-3">
+					<div className="demo-box u-text-center">
+						<Button size={size.value}>{size.label}</Button>
+					</div>
+				</div>
+			);
 		});
 	},
 	renderButtonVariants() {
 		return BUTTON_VARIANTS.map(type => {
-			 return (
-			 	<div key={type.value} className="col-sm-3">
-				 	<div className="demo-box u-text-center">
-					 	<Button type={type.value}>{type.label}</Button>
-					 </div>
-				 </div>
-			 );
+			return (
+				<div key={type.value} className="col-sm-3">
+					<div className="demo-box u-text-center">
+						<Button type={type.value}>{type.label}</Button>
+					</div>
+				</div>
+			);
 		});
 	},
 
@@ -110,15 +112,15 @@ var Buttons = React.createClass({
 					<Tooltip placement="top" content="This is the tooltip content!">
 						<span className="a">top aligned toolip with a really long target</span>
 					</Tooltip>
-					 <span> some more content </span>
+					<span> some more content </span>
 					<Tooltip placement="right" content="This is the tooltip content!">
 						<span className="a">right aligned toolip</span>
 					</Tooltip>
-					 <span> some more content </span>
+					<span> some more content </span>
 					<Tooltip placement="bottom" content="This is the tooltip content!">
 						<span className="a">bottom aligned toolip</span>
 					</Tooltip>
-					 <span> some more content </span>
+					<span> some more content </span>
 					<Tooltip placement="left" content="This is the tooltip content!">
 						<span className="a">left aligned toolip</span>
 					</Tooltip>

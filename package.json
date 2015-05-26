@@ -12,7 +12,7 @@
   "scripts": {
     "build:lib": "gulp build:lib",
     "bump": "gulp bump",
-    "lint": "eslint ./; true",
+    "lint": "eslint ./",
     "publish:npm": "gulp publish:npm",
     "publish:site": "gulp publish:examples",
     "publish:tag": "gulp publish:tag",

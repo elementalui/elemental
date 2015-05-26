@@ -1,3 +1,5 @@
+/* eslint no-script-url: 0 */
+
 var React = require('react/addons');
 var classNames = require('classnames');
 var moment = require('moment');
@@ -61,7 +63,6 @@ var CSSExamples = React.createClass({
 		var tableRows = USERS.map(function(user, i) {
 			var dob = moment(user.dob, 'MMM DD, YYYY');
 			var userAge = moment().diff(dob, 'years');
-			var userAge = 1;
 			var checked = i in self.state.selectedRows;
 			var rowClass = classNames({
 				'row-selected': checked
@@ -78,18 +79,18 @@ var CSSExamples = React.createClass({
 						<a href="javascript:;" className="customer-item">{user.name}</a>
 					</td>
 					<td>{userAge}</td>
-					<td>{user.gender.substr(0,1).toUpperCase()}</td>
+					<td>{user.gender.substr(0, 1).toUpperCase()}</td>
 				</tr>
 			);
 		});
 
-		var alerts = ['info', 'success', 'warning', 'danger'].map(function(alertType, i) {
+		var alerts = ['info', 'success', 'warning', 'danger'].map(function(alertType) {
 			return <Alert key={alertType} type={alertType}>This is a {alertType} alert</Alert>;
 		});
 		return (
 			<div className="demo-container container">
 				<h1>CSS</h1>
-				
+
 				<h2>Typography</h2>
 				<div className="demo-box">
 					<h1>h.1 Elemental heading</h1>

@@ -5,14 +5,17 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormLabel',
 	propTypes: {
-		verticalAlign: React.PropTypes.oneOf(['baseline', 'bottom', 'inherit', 'initial', 'middle', 'sub', 'super', 'text-bottom', 'text-top', 'top']),
-		className: React.PropTypes.string
+		className: React.PropTypes.string,
+		htmlFor: React.PropTypes.string,
+		id: React.PropTypes.string,
+		style: React.PropTypes.object,
+		verticalAlign: React.PropTypes.oneOf(['baseline', 'bottom', 'inherit', 'initial', 'middle', 'sub', 'super', 'text-bottom', 'text-top', 'top'])
 	},
 	render() {
 		// classes
 		var className = classNames('form-label', this.props.className);
 
-		
+
 		// props
 		var props = blacklist(this.props, ['htmlFor', 'id', 'className', 'style']);
 
@@ -22,7 +25,7 @@ module.exports = React.createClass({
 		if (this.props.verticalAlign) {
 			style = {
 				verticalAlign: this.props.verticalAlign
-			}
+			};
 		}
 
 		return (

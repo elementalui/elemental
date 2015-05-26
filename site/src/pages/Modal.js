@@ -22,7 +22,7 @@ module.exports = React.createClass({
 	submitForm() {
 		var self = this;
 		self.setState({ formProcessing: true });
-		
+
 		setTimeout(function() {
 			self.setState({ formProcessing: false, modalIsOpen: false });
 		}, 4000);
