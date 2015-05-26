@@ -17,7 +17,7 @@ module.exports = React.createClass({
 
 
 		// props
-		var props = blacklist(this.props, ['htmlFor', 'id', 'className', 'style']);
+		var props = blacklist(this.props, 'htmlFor', 'id', 'className', 'style');
 
 
 		// style

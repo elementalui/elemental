@@ -51,7 +51,7 @@ module.exports = React.createClass({
 		);
 
 		// props
-		var props = blacklist(this.props, ['type', 'size', 'className']);
+		var props = blacklist(this.props, 'type', 'size', 'className');
 		props.className = componentClass;
 
 		var tag = 'button';

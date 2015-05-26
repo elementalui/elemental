@@ -99,7 +99,7 @@ module.exports = React.createClass({
 		}, this.props.className);
 
 		// props
-		var props = blacklist(this.props, ['alignRight', 'buttonHasDisclosureArrow', 'buttonLabel', 'buttonType', 'className', 'isOpen', 'items']);
+		var props = blacklist(this.props, 'alignRight', 'buttonHasDisclosureArrow', 'buttonLabel', 'buttonType', 'className', 'isOpen', 'items');
 
 		return (
 			<span className={dropdownClass} {...props}>
