@@ -78,7 +78,7 @@ module.exports = React.createClass({
 
 	render() {
 		// props
-		var props = blacklist(this.props, ['content', 'placement', 'target']);
+		var props = blacklist(this.props, 'content', 'placement', 'target');
 
 		return (
 			<span ref="target" onMouseOver={this.showTooltip} onMouseOut={this.hideTooltip} onFocus={this.showTooltip} onBlur={this.hideTooltip} style={{ position: 'relative' }} {...props}>

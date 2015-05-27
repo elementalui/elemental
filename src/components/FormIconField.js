@@ -25,7 +25,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		// props
-		var props = blacklist(this.props, ['className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading']);
+		var props = blacklist(this.props, 'className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading');
 
 
 		// classes
