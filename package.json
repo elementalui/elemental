@@ -9,19 +9,6 @@
     "type": "git",
     "url": "https://github.com/elementalui/elemental.git"
   },
-  "scripts": {
-    "build": "gulp build",
-    "build:lib": "gulp build:lib",
-    "bump": "gulp bump",
-    "lint": "eslint ./",
-    "publish:npm": "gulp publish:npm",
-    "publish:site": "gulp publish:examples",
-    "publish:tag": "gulp publish:tag",
-    "release": "gulp release",
-    "site": "gulp dev:server",
-    "start": "gulp dev",
-    "watch": "gulp watch:lib"
-  },
   "dependencies": {
     "blacklist": "^1.1.2",
     "classnames": "^2.1.1",
@@ -39,6 +26,22 @@
   },
   "peerDependencies": {
     "react": "^0.13.0"
+  },
+  "browserify-shim": {
+    "react": "global:React"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "build:lib": "gulp build:lib",
+    "bump": "gulp bump",
+    "lint": "eslint ./",
+    "publish:npm": "gulp publish:npm",
+    "publish:site": "gulp publish:examples",
+    "publish:tag": "gulp publish:tag",
+    "release": "gulp release",
+    "site": "gulp dev:server",
+    "start": "gulp dev",
+    "watch": "gulp watch:lib"
   },
   "keywords": [
     "react",
