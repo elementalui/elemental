@@ -18,7 +18,6 @@ module.exports = {
 
 var React = require('react/addons');
 var classNames = require('classnames');
-var blacklist = require('blacklist');
 
 var ALERT_TYPES = ['danger', 'info', 'primary', 'success', 'warning'];
 
@@ -36,8 +35,6 @@ module.exports = React.createClass({
 	render: function render() {
 		var componentClass = classNames('Alert', 'Alert--' + this.props.type, this.props.className);
 
-		var props = blacklist(this.props, ['type', 'className']);
-
 		return React.createElement(
 			'div',
 			{ className: componentClass },
@@ -46,7 +43,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],3:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],3:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -56,7 +53,7 @@ var blacklist = require('blacklist');
 var BUTTON_TYPES = ['default', 'default-primary', 'default-success', 'default-warning', 'default-danger', 'hollow-primary', 'hollow-success', 'hollow-warning', 'hollow-danger', 'primary', 'success', 'warning', 'danger', 'link', 'link-text', 'link-cancel', 'link-delete'];
 
 module.exports = React.createClass({
-	displayName: 'ElementalButton',
+	displayName: 'Button',
 	propTypes: {
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
@@ -78,7 +75,7 @@ module.exports = React.createClass({
 		}, this.props.className);
 
 		// props
-		var props = blacklist(this.props, ['type', 'size', 'className']);
+		var props = blacklist(this.props, 'type', 'size', 'className');
 		props.className = componentClass;
 
 		var tag = 'button';
@@ -114,7 +111,8 @@ module.exports = React.createClass({
 		buttonType: React.PropTypes.string,
 		className: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
-		items: React.PropTypes.array.isRequired
+		items: React.PropTypes.array.isRequired,
+		onSelect: React.PropTypes.func
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -139,6 +137,7 @@ module.exports = React.createClass({
 
 		return React.Children.map(this.props.children, function (child) {
 			child.props.onClick = _this.state.isOpen ? _this.closeDropdown : _this.openDropdown;
+			child.props.className = classNames(child.props.className, 'Dropdown-toggle');
 			return child;
 		});
 	},
@@ -155,15 +154,16 @@ module.exports = React.createClass({
 
 	onClick: function onClick(selectedItem) {
 		this.setState({
-			isOpen: !this.state.isOpen });
+			isOpen: !this.state.isOpen
+		});
 
 		this.props.onSelect(selectedItem);
 	},
 	renderDropdownMenu: function renderDropdownMenu() {
 		var self = this;
-		if (!this.state.isOpen) return;
+		if (!this.state.isOpen) return null;
 
-		var dropdownMenuItems = this.props.items.map((function (item, i) {
+		var dropdownMenuItems = this.props.items.map(function (item, i) {
 			var menuItem;
 			if (item.type === 'header') {
 				menuItem = React.createElement(
@@ -185,7 +185,7 @@ module.exports = React.createClass({
 				);
 			}
 			return menuItem;
-		}).bind(this));
+		});
 
 		return React.createElement(
 			'ul',
@@ -194,7 +194,7 @@ module.exports = React.createClass({
 		);
 	},
 	renderDropdownMenuBackground: function renderDropdownMenuBackground() {
-		if (!this.state.isOpen) return;
+		if (!this.state.isOpen) return null;
 		return React.createElement('div', { className: 'Dropdown-menu-backdrop', onClick: this.closeDropdown });
 	},
 
@@ -206,7 +206,7 @@ module.exports = React.createClass({
 		}, this.props.className);
 
 		// props
-		var props = blacklist(this.props, ['alignRight', 'buttonHasDisclosureArrow', 'buttonLabel', 'buttonType', 'className', 'isOpen', 'items']);
+		var props = blacklist(this.props, 'alignRight', 'buttonHasDisclosureArrow', 'buttonLabel', 'buttonType', 'className', 'isOpen', 'items');
 
 		return React.createElement(
 			'span',
@@ -238,11 +238,13 @@ module.exports = React.createClass({
 	displayName: 'EmailInputGroup',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
-		required: React.PropTypes.bool,
+		className: React.PropTypes.string,
+		invalidMessage: React.PropTypes.string,
+		label: React.PropTypes.string,
 		onChange: React.PropTypes.func,
-		value: React.PropTypes.string,
+		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		invalidMessage: React.PropTypes.string
+		value: React.PropTypes.string
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -275,7 +277,7 @@ module.exports = React.createClass({
 	},
 	handleChange: function handleChange(e) {
 		this._lastChangeValue = e.target.value;
-		this.props.onChange && this.props.onChange(e);
+		if (this.props.onChange) this.props.onChange(e);
 	},
 	handleBlur: function handleBlur() {
 		if (!this.props.alwaysValidate) {
@@ -338,6 +340,7 @@ var Dropzone = React.createClass({
 	displayName: 'Dropzone',
 
 	propTypes: {
+		className: React.PropTypes.string,
 		label: React.PropTypes.string,
 		labelActive: React.PropTypes.string,
 		onDrop: React.PropTypes.func.isRequired
@@ -354,7 +357,7 @@ var Dropzone = React.createClass({
 		};
 	},
 
-	onDragLeave: function onDragLeave(e) {
+	onDragLeave: function onDragLeave() {
 		this.setState({
 			isDragActive: false
 		});
@@ -423,7 +426,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var React = require('react/addons');
 var blacklist = require('blacklist');
-var classNames = require('classnames');
 
 module.exports = React.createClass({
 	displayName: 'FileUpload',
@@ -470,7 +472,7 @@ module.exports = React.createClass({
 			self.setState({
 				loading: false,
 				file: file,
-				data_uri: upload.target.result
+				dataURI: upload.target.result
 			});
 		};
 	},
@@ -484,15 +486,13 @@ module.exports = React.createClass({
 		// helpers
 		function isEmptyObject(obj) {
 			return Object.keys(obj).length === 0;
-		};
+		}
 		var file = this.state.file;
 
 		// props
-
 		var props = blacklist(this.props, 'buttonClassChange', 'buttonClassInitial', 'buttonLabelChange', 'buttonLabelInitial', 'disabled', 'file', 'onChange');
 
 		// elements
-
 		var component = React.createElement(
 			'button',
 			{ type: 'button', onClick: this.triggerFileBrowser, className: this.props.buttonClassInitial, disabled: this.props.disabled },
@@ -506,7 +506,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'FileUpload__image' },
-					React.createElement('img', { className: 'FileUpload__image-src', src: this.state.data_uri })
+					React.createElement('img', { className: 'FileUpload__image-src', src: this.state.dataURI })
 				),
 				React.createElement(
 					'div',
@@ -535,7 +535,7 @@ module.exports = React.createClass({
 					)
 				)
 			);
-		};
+		}
 
 		return React.createElement(
 			'div',
@@ -546,7 +546,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],8:[function(require,module,exports){
+},{"blacklist":undefined,"react/addons":undefined}],8:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -560,6 +560,8 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
+		htmlFor: React.PropTypes.string,
+		id: React.PropTypes.string,
 		label: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
 		offsetAbsentLabel: React.PropTypes.bool,
@@ -584,7 +586,7 @@ module.exports = React.createClass({
 		var props = blacklist(this.props, 'className', 'label', 'type', 'width');
 
 		// elements
-		var componentLabel = !!this.props.label ? React.createElement(
+		var componentLabel = this.props.label ? React.createElement(
 			'label',
 			{ className: 'form-label', htmlFor: this.props.id || this.props.htmlFor },
 			this.props.label
@@ -604,7 +606,7 @@ module.exports = React.createClass({
 
 var React = require('react/addons');
 var classNames = require('classnames');
-var Spinner = require('elemental').Spinner;
+var Spinner = require('./Spinner');
 
 var icons = require('../Octicons').map;
 
@@ -612,9 +614,9 @@ module.exports = React.createClass({
 	displayName: 'FormIcon',
 	propTypes: {
 		className: React.PropTypes.string,
-		icon: React.PropTypes.string,
-		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		color: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
+		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
+		icon: React.PropTypes.string,
 		isLoading: React.PropTypes.bool
 	},
 	render: function render() {
@@ -627,15 +629,15 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"classnames":undefined,"elemental":"elemental","react/addons":undefined}],10:[function(require,module,exports){
+},{"../Octicons":1,"./Spinner":22,"classnames":undefined,"react/addons":undefined}],10:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
-var FormField = require('elemental').FormField;
-var Spinner = require('elemental').Spinner;
+var FormField = require('./FormField');
+var Spinner = require('./Spinner');
 var icons = require('../Octicons').map;
 
 var COLOR_VARIANTS = ['danger', 'default', 'primary', 'success', 'warning'];
@@ -644,11 +646,11 @@ module.exports = React.createClass({
 	displayName: 'FormIconField',
 	propTypes: {
 		className: React.PropTypes.string,
-		iconPosition: React.PropTypes.oneOf(['left', 'right']),
-		iconKey: React.PropTypes.string.isRequired,
-		iconFill: React.PropTypes.oneOf(COLOR_VARIANTS),
 		iconColor: React.PropTypes.oneOf(COLOR_VARIANTS),
-		iconIsLoading: React.PropTypes.bool
+		iconFill: React.PropTypes.oneOf(COLOR_VARIANTS),
+		iconIsLoading: React.PropTypes.bool,
+		iconKey: React.PropTypes.string.isRequired,
+		iconPosition: React.PropTypes.oneOf(['left', 'right'])
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -657,7 +659,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// props
-		var props = blacklist(this.props, ['className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading']);
+		var props = blacklist(this.props, 'className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading');
 
 		// classes
 		var fieldClass = classNames('IconField', {
@@ -682,7 +684,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"blacklist":undefined,"classnames":undefined,"elemental":"elemental","react/addons":undefined}],11:[function(require,module,exports){
+},{"../Octicons":1,"./FormField":8,"./Spinner":22,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],11:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -712,7 +714,9 @@ module.exports = React.createClass({
 		// classes
 		var className = classNames({
 			'FormInput-noedit': this.props.noedit,
-			'FormInput': !this.props.noedit }, this.props.size ? 'FormInput--' + this.props.size : null, this.props.className);
+			'FormInput-noedit--multiline': this.props.noedit && this.props.multiline,
+			'FormInput': !this.props.noedit
+		}, this.props.size ? 'FormInput--' + this.props.size : null, this.props.className);
 
 		var props = _extends(blacklist(this.props, 'className'), {
 			onBlur: this.handleBlur,
@@ -724,8 +728,10 @@ module.exports = React.createClass({
 		var componentElement = 'input';
 		if (this.props.noedit && this.props.href) {
 			componentElement = 'a';
+			props.type = null;
 		} else if (this.props.noedit) {
 			componentElement = 'div';
+			props.type = null;
 		} else if (this.props.multiline) {
 			componentElement = 'textarea';
 		}
@@ -746,15 +752,18 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormLabel',
 	propTypes: {
-		verticalAlign: React.PropTypes.oneOf(['baseline', 'bottom', 'inherit', 'initial', 'middle', 'sub', 'super', 'text-bottom', 'text-top', 'top']),
-		className: React.PropTypes.string
+		className: React.PropTypes.string,
+		htmlFor: React.PropTypes.string,
+		id: React.PropTypes.string,
+		style: React.PropTypes.object,
+		verticalAlign: React.PropTypes.oneOf(['baseline', 'bottom', 'inherit', 'initial', 'middle', 'sub', 'super', 'text-bottom', 'text-top', 'top'])
 	},
 	render: function render() {
 		// classes
 		var className = classNames('form-label', this.props.className);
 
 		// props
-		var props = blacklist(this.props, ['htmlFor', 'id', 'className', 'style']);
+		var props = blacklist(this.props, 'htmlFor', 'id', 'className', 'style');
 
 		// style
 		var style;
@@ -788,7 +797,8 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		note: React.PropTypes.string,
-		type: React.PropTypes.oneOf(NOTE_TYPES) },
+		type: React.PropTypes.oneOf(NOTE_TYPES)
+	},
 	getDefaultProps: function getDefaultProps() {
 		return {
 			type: 'default'
@@ -814,7 +824,6 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react/addons');
-var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -826,9 +835,6 @@ module.exports = React.createClass({
 		// classes
 		var className = classNames('form-row', this.props.className);
 
-		// props
-		var props = blacklist(this.props, ['className']);
-
 		return React.createElement(
 			'div',
 			{ className: className },
@@ -837,7 +843,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],15:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],15:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -850,15 +856,17 @@ module.exports = React.createClass({
 	displayName: 'FormSelect',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
-		prependEmptyOption: React.PropTypes.bool,
+		className: React.PropTypes.string,
 		firstOption: React.PropTypes.string,
+		htmlFor: React.PropTypes.string,
+		id: React.PropTypes.string,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.array.isRequired,
+		prependEmptyOption: React.PropTypes.bool,
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string,
-		className: React.PropTypes.string
+		value: React.PropTypes.string
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -890,7 +898,7 @@ module.exports = React.createClass({
 	},
 	handleChange: function handleChange(e) {
 		this._lastChangeValue = e.target.value;
-		this.props.onChange && this.props.onChange(e.target.value);
+		if (this.props.onChange) this.props.onChange(e.target.value);
 	},
 	handleBlur: function handleBlur() {
 		if (!this.props.alwaysValidate) {
@@ -912,7 +920,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// props
-		var props = blacklist(this.props, ['prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className']);
+		var props = blacklist(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className');
 
 		// classes
 		var componentClass = classNames('form-field', {
@@ -1051,17 +1059,15 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'Modal',
 	propTypes: {
-		isOpen: React.PropTypes.bool,
 		backdropClosesModal: React.PropTypes.bool,
+		className: React.PropTypes.string,
+		headerHasCloseButton: React.PropTypes.bool,
 		headerTitle: React.PropTypes.string,
-		headerHasCloseButton: React.PropTypes.bool
+		isOpen: React.PropTypes.bool,
+		onCancel: React.PropTypes.func
 	},
-	render: function render() {
-		// props
-		var props = blacklist(this.props, ['backdropClosesModal', 'className', 'headerHasCloseButton', 'headerTitle', 'isOpen']);
-
-		// classes
-		var dialogClass = classNames('Modal-dialog', this.props.className);
+	renderDialog: function renderDialog() {
+		if (!this.props.isOpen) return null;
 
 		// elements
 		var header = this.props.headerTitle ? React.createElement(
@@ -1075,30 +1081,42 @@ module.exports = React.createClass({
 			)
 		) : null;
 
-		var modalBackground = this.props.isOpen ? React.createElement('div', { className: 'Modal-backdrop', onClick: this.props.backdropClosesModal ? this.props.onCancel : null }) : null;
-		var modalDialog = this.props.isOpen ? React.createElement(
+		return React.createElement(
 			'div',
-			{ className: dialogClass },
+			{ className: 'Modal-dialog' },
 			React.createElement(
 				'div',
 				{ className: 'Modal-content' },
 				header,
 				this.props.children
 			)
-		) : null;
+		);
+	},
+	renderBackdrop: function renderBackdrop() {
+		if (!this.props.isOpen) return null;
+
+		return React.createElement('div', { className: 'Modal-backdrop', onClick: this.props.backdropClosesModal ? this.props.onCancel : null });
+	},
+	render: function render() {
+		// classes
+		var className = classNames('Modal', this.props.className);
+
+		// props
+		var props = blacklist(this.props, 'backdropClosesModal', 'className', 'headerHasCloseButton', 'headerTitle', 'isOpen');
+		props.className = className;
 
 		return React.createElement(
 			'div',
-			_extends({ className: 'Modal' }, props),
+			props,
 			React.createElement(
 				ReactCSSTransitionGroup,
 				{ transitionName: 'Modal-dialog', component: 'div' },
-				modalDialog
+				this.renderDialog()
 			),
 			React.createElement(
 				ReactCSSTransitionGroup,
 				{ transitionName: 'Modal-background', component: 'div' },
-				modalBackground
+				this.renderBackdrop()
 			)
 		);
 	}
@@ -1148,6 +1166,81 @@ module.exports.Footer = React.createClass({
 'use strict';
 
 var React = require('react/addons');
+var blacklist = require('blacklist');
+var classNames = require('classnames');
+
+module.exports = React.createClass({
+	displayName: 'Pagination',
+	propTypes: {
+		className: React.PropTypes.string,
+		onClick: React.PropTypes.func,
+		pagination: React.PropTypes.shape({
+			currentPage: React.PropTypes.number,
+			first: React.PropTypes.number,
+			last: React.PropTypes.number,
+			next: React.PropTypes.bool,
+			pages: React.PropTypes.array,
+			previous: React.PropTypes.bool,
+			total: React.PropTypes.number,
+			totalPages: React.PropTypes.number
+		})
+	},
+	renderCount: function renderCount() {
+		var count = this.props.pagination;
+		return React.createElement(
+			'div',
+			{ className: 'Pagination__count' },
+			'Showing ',
+			count.first,
+			' to ',
+			count.last,
+			' of ',
+			count.total
+		);
+	},
+	renderList: function renderList() {
+		if (!this.props.pagination.pages) return 'No pages...';
+
+		var self = this;
+
+		var pages = this.props.pagination.pages.map(function (page) {
+			var className = classNames('Pagination__list__item', {
+				'is-selected': self.props.pagination.currentPage === page
+			});
+			return React.createElement(
+				'button',
+				{ key: 'page_' + page, className: className, onClick: self.props.onClick },
+				page
+			);
+		});
+
+		return React.createElement(
+			'div',
+			{ className: 'Pagination__list' },
+			pages
+		);
+	},
+	render: function render() {
+		// props
+		var props = blacklist(this.props, 'className');
+
+		// classes
+		var componentClass = classNames('Pagination', this.props.className);
+		props.className = componentClass;
+
+		return React.createElement(
+			'div',
+			props,
+			this.renderCount(),
+			this.renderList()
+		);
+	}
+});
+
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],20:[function(require,module,exports){
+'use strict';
+
+var React = require('react/addons');
 var classNames = require('classnames');
 
 function validatePassword(value) {
@@ -1158,11 +1251,13 @@ module.exports = React.createClass({
 	displayName: 'PasswordInputGroup',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
-		required: React.PropTypes.bool,
+		className: React.PropTypes.string,
+		invalidMessage: React.PropTypes.string,
+		label: React.PropTypes.string,
 		onChange: React.PropTypes.func,
-		value: React.PropTypes.string,
+		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		invalidMessage: React.PropTypes.string
+		value: React.PropTypes.string
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -1195,7 +1290,7 @@ module.exports = React.createClass({
 	},
 	handleChange: function handleChange(e) {
 		this._lastChangeValue = e.target.value;
-		this.props.onChange && this.props.onChange(e);
+		if (this.props.onChange) this.props.onChange(e);
 	},
 	handleBlur: function handleBlur() {
 		if (!this.props.alwaysValidate) {
@@ -1244,7 +1339,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],20:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1257,6 +1352,8 @@ module.exports = React.createClass({
 	displayName: 'RadioGroup',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
+		className: React.PropTypes.string,
+		inline: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.array.isRequired,
@@ -1294,7 +1391,7 @@ module.exports = React.createClass({
 	},
 	handleChange: function handleChange(e) {
 		this._lastChangeValue = e.target.value;
-		this.props.onChange && this.props.onChange(e.target.value);
+		if (this.props.onChange) this.props.onChange(e.target.value);
 	},
 	handleBlur: function handleBlur() {
 		if (!this.props.alwaysValidate) {
@@ -1318,7 +1415,7 @@ module.exports = React.createClass({
 		var self = this;
 
 		// props
-		var props = blacklist(this.props, ['alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value']);
+		var props = blacklist(this.props, 'alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value');
 
 		// classes
 		var componentClass = classNames('form-field', {
@@ -1374,7 +1471,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],22:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1406,14 +1503,14 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],22:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],23:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
-var ALERT_TYPES = ['danger', 'default', 'info', 'primary', 'success', 'warning'];
+var ALERT_TYPES = ['danger', 'default', 'info', 'primary', 'success', 'warning', 'default-inverted', 'info-inverted', 'primary-inverted', 'success-inverted', 'warning-inverted'];
 
 module.exports = React.createClass({
 	displayName: 'Tag',
@@ -1431,7 +1528,7 @@ module.exports = React.createClass({
 		};
 	},
 	renderClearButton: function renderClearButton() {
-		if (!this.props.hasClearButton) return;
+		if (!this.props.hasClearButton) return null;
 		return React.createElement(
 			'button',
 			{ onClick: this.props.onClear, className: 'Tag__clear' },
@@ -1457,7 +1554,9 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],23:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],24:[function(require,module,exports){
+/* eslint react/no-did-mount-set-state: 0 */
+
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1465,14 +1564,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var blacklist = require('blacklist');
-var classNames = require('classnames');
 
 module.exports = React.createClass({
 	displayName: 'Tooltip',
 	propTypes: {
+		className: React.PropTypes.string,
 		content: React.PropTypes.string,
-		placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-		className: React.PropTypes.string
+		placement: React.PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -1481,30 +1579,26 @@ module.exports = React.createClass({
 	},
 	getInitialState: function getInitialState() {
 		return {
-			hover: false
+			visible: false
 		};
 	},
 	componentDidMount: function componentDidMount() {
-		var target = React.findDOMNode(this.refs.target);
+		var target = this.refs.target.getDOMNode();
 		this.setState({
 			targetHeight: target.offsetHeight,
 			targetWidth: target.offsetWidth
 		});
 	},
 
-	handleHover: function handleHover() {
-		this.setState({ hover: true });
+	showTooltip: function showTooltip() {
+		this.setState({ visible: true });
 	},
-	handleUnHover: function handleUnHover() {
-		this.setState({ hover: false });
+	hideTooltip: function hideTooltip() {
+		this.setState({ visible: false });
 	},
 
-	render: function render() {
-		// classes
-		var componentClass = classNames('TooltipOuter', this.props.className);
-
-		// props
-		var props = blacklist(this.props, ['content', 'className', 'placement', 'target']);
+	renderTooltip: function renderTooltip() {
+		if (!this.state.visible) return null;
 
 		// style
 		var tooltipStyle = {};
@@ -1535,8 +1629,7 @@ module.exports = React.createClass({
 			tooltipStyle.marginLeft = 4;
 		}
 
-		// content
-		var tooltip = this.state.hover ? React.createElement(
+		return React.createElement(
 			'span',
 			{ style: tooltipStyle, className: 'Tooltip ' + this.props.placement },
 			React.createElement(
@@ -1545,51 +1638,50 @@ module.exports = React.createClass({
 				this.props.content
 			),
 			React.createElement('span', { className: 'TooltipArrow' })
-		) : null;
+		);
+	},
+
+	render: function render() {
+		// props
+		var props = blacklist(this.props, 'content', 'placement', 'target');
 
 		return React.createElement(
 			'span',
-			_extends({ onMouseOver: this.handleHover, onMouseOut: this.handleUnHover, className: componentClass, style: { display: 'inline-block', position: 'relative' } }, props),
-			React.createElement(
-				'span',
-				{ ref: 'target', style: { display: 'inline-block' } },
-				this.props.children
-			),
+			_extends({ ref: 'target', onMouseOver: this.showTooltip, onMouseOut: this.hideTooltip, onFocus: this.showTooltip, onBlur: this.hideTooltip, style: { position: 'relative' } }, props),
+			this.props.children,
 			React.createElement(
 				ReactCSSTransitionGroup,
 				{ transitionName: 'Tooltip', component: 'span' },
-				tooltip
+				this.renderTooltip()
 			)
 		);
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],"elemental":[function(require,module,exports){
+},{"blacklist":undefined,"react/addons":undefined}],"elemental":[function(require,module,exports){
 'use strict';
 
 exports.Alert = require('./components/Alert');
 exports.Button = require('./components/Button');
 exports.Dropdown = require('./components/Dropdown');
 exports.EmailInputGroup = require('./components/EmailInputGroup');
+exports.FileDragAndDrop = require('./components/FileDragAndDrop');
+exports.FileUpload = require('./components/FileUpload');
+exports.FormField = require('./components/FormField');
+exports.FormIcon = require('./components/FormIcon');
+exports.FormIconField = require('./components/FormIconField');
+exports.FormInput = require('./components/FormInput');
+exports.FormLabel = require('./components/FormLabel');
+exports.FormNote = require('./components/FormNote');
+exports.FormRow = require('./components/FormRow');
+exports.FormSelect = require('./components/FormSelect');
+exports.InputGroup = require('./components/InputGroup');
 exports.Modal = require('./components/Modal');
+exports.Pagination = require('./components/Pagination');
 exports.PasswordInputGroup = require('./components/PasswordInputGroup');
 exports.RadioGroup = require('./components/RadioGroup');
 exports.Spinner = require('./components/Spinner');
 exports.Tag = require('./components/Tag');
 exports.Tooltip = require('./components/Tooltip');
 
-exports.FormField = require('./components/FormField');
-exports.FormRow = require('./components/FormRow');
-exports.FormIcon = require('./components/FormIcon');
-exports.FormIconField = require('./components/FormIconField');
-exports.FormInput = require('./components/FormInput');
-exports.FormNote = require('./components/FormNote');
-exports.FormLabel = require('./components/FormLabel');
-exports.FormSelect = require('./components/FormSelect');
-
-exports.FileDragAndDrop = require('./components/FileDragAndDrop');
-exports.FileUpload = require('./components/FileUpload');
-
-exports.InputGroup = require('./components/InputGroup');
-
-},{"./components/Alert":2,"./components/Button":3,"./components/Dropdown":4,"./components/EmailInputGroup":5,"./components/FileDragAndDrop":6,"./components/FileUpload":7,"./components/FormField":8,"./components/FormIcon":9,"./components/FormIconField":10,"./components/FormInput":11,"./components/FormLabel":12,"./components/FormNote":13,"./components/FormRow":14,"./components/FormSelect":15,"./components/InputGroup":16,"./components/Modal":18,"./components/PasswordInputGroup":19,"./components/RadioGroup":20,"./components/Spinner":21,"./components/Tag":22,"./components/Tooltip":23}]},{},[]);
+},{"./components/Alert":2,"./components/Button":3,"./components/Dropdown":4,"./components/EmailInputGroup":5,"./components/FileDragAndDrop":6,"./components/FileUpload":7,"./components/FormField":8,"./components/FormIcon":9,"./components/FormIconField":10,"./components/FormInput":11,"./components/FormLabel":12,"./components/FormNote":13,"./components/FormRow":14,"./components/FormSelect":15,"./components/InputGroup":16,"./components/Modal":18,"./components/Pagination":19,"./components/PasswordInputGroup":20,"./components/RadioGroup":21,"./components/Spinner":22,"./components/Tag":23,"./components/Tooltip":24}]},{},[]);

@@ -22,7 +22,7 @@ var PageNav = React.createClass({
 	render: function render() {
 		var self = this;
 		var menuClass = this.state.showMenu ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
-		var menuItems = NavItems.map(function (item, i) {
+		var menuItems = NavItems.map(function (item) {
 			return React.createElement(
 				Router.Link,
 				{ key: item.value, className: 'primary-nav__item', onClick: self.toggleMenu, to: item.value },
@@ -139,32 +139,64 @@ Router.run(routes, Router.HistoryLocation, function (Handler) {
 var process = module.exports = {};
 var queue = [];
 var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
 
 function drainQueue() {
     if (draining) {
         return;
     }
+    var timeout = setTimeout(cleanUpNextTick);
     draining = true;
-    var currentQueue;
+
     var len = queue.length;
     while(len) {
         currentQueue = queue;
         queue = [];
-        var i = -1;
-        while (++i < len) {
-            currentQueue[i]();
+        while (++queueIndex < len) {
+            currentQueue[queueIndex].run();
         }
+        queueIndex = -1;
         len = queue.length;
     }
+    currentQueue = null;
     draining = false;
+    clearTimeout(timeout);
 }
+
 process.nextTick = function (fun) {
-    queue.push(fun);
-    if (!draining) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
         setTimeout(drainQueue, 0);
     }
 };
 
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
 process.title = 'browser';
 process.browser = true;
 process.env = {};
@@ -3880,6 +3912,8 @@ module.exports = [{ name: 'Afghanistan', code: 'AF' }, { name: 'Åland Islands',
 module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismodacfermentum.com", "password": "ZKG57ZFJ9HK", "dob": "Feb 23, 1976", "gender": "female" }, { "name": "Hermione Maddox", "email": "Curabitur.massa@eu.ca", "password": "ECI38CRA9MB", "dob": "Dec 4, 1959", "gender": "female" }, { "name": "Vladimir Rodgers", "email": "diam@ettristiquepellentesque.com", "password": "ESK96WFK9OD", "dob": "May 12, 1979", "gender": "male" }, { "name": "Kelsie Ewing", "email": "rutrum.non@tellus.co.uk", "password": "KVE70PUO5TB", "dob": "Jul 14, 1968", "gender": "female" }, { "name": "Yetta Higgins", "email": "quis.pede@lectusquis.com", "password": "KAE34UXU2QZ", "dob": "Oct 13, 1971", "gender": "female" }, { "name": "Kadeem Montgomery", "email": "facilisis.facilisis@vitaesodalesat.edu", "password": "POX16RXV9HL", "dob": "Oct 13, 1968", "gender": "male" }, { "name": "Martina Dodson", "email": "Cras.lorem@convallis.org", "password": "TIY32LRA7IU", "dob": "Jan 31, 1974", "gender": "female" }, { "name": "Grady Gonzalez", "email": "posuere.cubilia@Aenean.org", "password": "VKN16PHI8PW", "dob": "Jun 22, 1982", "gender": "male" }, { "name": "Lacey Hutchinson", "email": "Maecenas.iaculis@sedpede.net", "password": "LDN67DTE6CC", "dob": "Jul 23, 1986", "gender": "female" }, { "name": "John Santiago", "email": "eleifend.egestas@convallis.ca", "password": "ZEY52DKW3ZZ", "dob": "May 5, 1968", "gender": "male" }, { "name": "Philip Floyd", "email": "Proin@enimnisl.ca", "password": "RZK97GMJ7EK", "dob": "Mar 20, 1952", "gender": "male" }, { "name": "Leslie Chavez", "email": "sociis.natoque.penatibus@porttitor.net", "password": "AKN50QNQ8HK", "dob": "Apr 19, 1947", "gender": "female" }, { "name": "Alisa Allison", "email": "vitae@netusetmalesuada.ca", "password": "XLP00XDR9UW", "dob": "May 23, 1955", "gender": "female" }, { "name": "Joshua Clarke", "email": "mi@quamPellentesque.net", "password": "LSN56SXD3SH", "dob": "Apr 12, 1968", "gender": "male" }, { "name": "Victoria Holden", "email": "magna@pedeac.net", "password": "BUS61XTJ6KI", "dob": "Jan 22, 1990", "gender": "female" }, { "name": "Kibo Goodwin", "email": "est@nec.org", "password": "GWM68BLL8LN", "dob": "Nov 21, 1950", "gender": "male" }, { "name": "Marvin Justice", "email": "Integer@Quisquetincidunt.co.uk", "password": "NRQ89UJQ5FH", "dob": "Dec 8, 1958", "gender": "male" }, { "name": "Justin Rowland", "email": "magna.a.neque@anequeNullam.ca", "password": "JKQ17ZVE3TE", "dob": "May 31, 1994", "gender": "male" }, { "name": "Tiger Blevins", "email": "enim.sit@felisNulla.net", "password": "MLA03EJG4WI", "dob": "Feb 1, 1981", "gender": "male" }, { "name": "Peter Bray", "email": "nascetur@Nullamutnisi.edu", "password": "BAL79WGC4II", "dob": "Dec 22, 1950", "gender": "male" }];
 
 },{}],53:[function(require,module,exports){
+/* eslint no-script-url: 0 */
+
 'use strict';
 
 var React = require('react');
@@ -4090,6 +4124,8 @@ var Buttons = React.createClass({
 module.exports = Buttons;
 
 },{"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
+/* eslint no-script-url: 0 */
+
 'use strict';
 
 var React = require('react/addons');
@@ -4160,7 +4196,6 @@ var CSSExamples = React.createClass({
 		var tableRows = USERS.map(function (user, i) {
 			var dob = moment(user.dob, 'MMM DD, YYYY');
 			var userAge = moment().diff(dob, 'years');
-			var userAge = 1;
 			var checked = (i in self.state.selectedRows);
 			var rowClass = classNames({
 				'row-selected': checked
@@ -4200,7 +4235,7 @@ var CSSExamples = React.createClass({
 			);
 		});
 
-		var alerts = ['info', 'success', 'warning', 'danger'].map(function (alertType, i) {
+		var alerts = ['info', 'success', 'warning', 'danger'].map(function (alertType) {
 			return React.createElement(
 				Alert,
 				{ key: alertType, type: alertType },
@@ -4259,7 +4294,7 @@ var CSSExamples = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'lead' },
-					'This is a page lead, it serves an introduction the proceeding content.'
+					'This is a page lead, it introduces the proceeding content.'
 				)
 			),
 			React.createElement(
@@ -4410,6 +4445,8 @@ var DateSelectExamples = React.createClass({
 module.exports = DateSelectExamples;
 
 },{"elemental":undefined,"react-date-select":3,"react/addons":undefined}],56:[function(require,module,exports){
+/* eslint no-alert: 0 */
+
 'use strict';
 
 var React = require('react');
@@ -4422,7 +4459,6 @@ var RadioGroup = require('elemental').RadioGroup;
 var FileDragAndDrop = require('elemental').FileDragAndDrop;
 var FileUpload = require('elemental').FileUpload;
 var FormField = require('elemental').FormField;
-var FormIcon = require('elemental').FormIcon;
 var FormIconField = require('elemental').FormIconField;
 var FormInput = require('elemental').FormInput;
 var FormLabel = require('elemental').FormLabel;
@@ -4430,8 +4466,6 @@ var FormNote = require('elemental').FormNote;
 var FormRow = require('elemental').FormRow;
 var FormSelect = require('elemental').FormSelect;
 var InputGroup = require('elemental').InputGroup;
-
-var icons = require('../../../src/Octicons').list;
 
 var controlOptions = [{ label: 'Caramel', value: 'caramel' }, { label: 'Chocolate', value: 'chocolate' }, { label: 'Strawberry', value: 'strawberry' }, { label: 'Vanilla', value: 'vanilla' }];
 var COUNTRIES = require('../data/countries');
@@ -4448,7 +4482,7 @@ var Forms = React.createClass({
 	},
 
 	onDrop: function onDrop(files) {
-		var outputFileInfo = files.map(function (file, i) {
+		var outputFileInfo = files.map(function (file) {
 			return '"' + file.name + '" (' + Math.round(file.size / 1024) + 'Kb)';
 		});
 		alert('Received files: \n' + outputFileInfo.join('\n'));
@@ -4456,7 +4490,7 @@ var Forms = React.createClass({
 			files: files
 		});
 	},
-	handleSearch: function handleSearch(e) {
+	handleSearch: function handleSearch() {
 		var self = this;
 		self.setState({ searching: true });
 
@@ -4472,9 +4506,6 @@ var Forms = React.createClass({
 		function updateSelect(option) {
 			self.setState({ inputSelect: option });
 		}
-		function updateRadios(option) {
-			self.setState({ radioGroup: option });
-		}
 		function updateInlineRadios(option) {
 			self.setState({ inlineRadioGroup: option });
 		}
@@ -4486,8 +4517,7 @@ var Forms = React.createClass({
 		}
 
 		// elements
-
-		var countryOptions = COUNTRIES.map(function (country, i) {
+		var countryOptions = COUNTRIES.map(function (country) {
 			return { label: country.name, value: country.code };
 		});
 
@@ -4517,18 +4547,9 @@ var Forms = React.createClass({
 			);
 		});
 
-		var options = [1, 2, 3, 4, 5].map(function (item) {
-			return React.createElement(
-				'option',
-				{ key: 'option-' + item, value: item },
-				'Option ',
-				item
-			);
-		});
-
 		// Icon Loops
 
-		var iconContextVariantsColor = COLOR_VARIANTS.map(function (color, i) {
+		var iconContextVariantsColor = COLOR_VARIANTS.map(function (color) {
 			return React.createElement(
 				FormIconField,
 				{ key: color.value, width: 'one-fifth', iconPosition: 'left', iconKey: color.icon, iconColor: color.value },
@@ -4536,7 +4557,7 @@ var Forms = React.createClass({
 			);
 		});
 
-		var iconContextVariantsFill = COLOR_VARIANTS.map(function (color, i) {
+		var iconContextVariantsFill = COLOR_VARIANTS.map(function (color) {
 			return React.createElement(
 				FormIconField,
 				{ key: color.value, width: 'one-fifth', iconPosition: 'left', iconKey: color.icon, iconFill: color.value },
@@ -4838,9 +4859,9 @@ var Forms = React.createClass({
 				React.createElement(
 					FormField,
 					{ label: 'Select', htmlFor: 'supported-controls-select' },
-					React.createElement(FormSelect, { options: controlOptions, firstOption: 'Select' })
+					React.createElement(FormSelect, { options: controlOptions, firstOption: 'Select', onChange: updateSelect })
 				),
-				React.createElement(FormSelect, { label: 'Disabled Select', options: controlOptions, htmlFor: 'supported-conrols-select-disabled', firstOption: 'Disabled Select', disabled: true }),
+				React.createElement(FormSelect, { label: 'Disabled Select', options: controlOptions, onChange: updateSelect, htmlFor: 'supported-conrols-select-disabled', firstOption: 'Disabled Select', disabled: true }),
 				React.createElement(
 					FormField,
 					{ label: 'Checkboxes' },
@@ -4964,7 +4985,7 @@ var Forms = React.createClass({
 					React.createElement(
 						FormField,
 						{ width: 'two-thirds' },
-						React.createElement(FormSelect, { options: countryOptions, firstOption: 'Country' })
+						React.createElement(FormSelect, { options: countryOptions, firstOption: 'Country', onChange: updateSelect })
 					)
 				)
 			),
@@ -5066,7 +5087,7 @@ var Forms = React.createClass({
 
 module.exports = Forms;
 
-},{"../../../src/Octicons":61,"../data/countries":51,"elemental":undefined,"react":undefined}],57:[function(require,module,exports){
+},{"../data/countries":51,"elemental":undefined,"react":undefined}],57:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -5101,7 +5122,7 @@ var Grid = React.createClass({
 					{ className: 'col-sm-4' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						'.col-sm-4'
 					)
 				),
@@ -5110,7 +5131,7 @@ var Grid = React.createClass({
 					{ className: 'col-sm-4' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						'.col-sm-4'
 					)
 				),
@@ -5119,7 +5140,7 @@ var Grid = React.createClass({
 					{ className: 'col-sm-4' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						'.col-sm-4'
 					)
 				)
@@ -5137,7 +5158,7 @@ var Grid = React.createClass({
 					{ className: 'col-sm-3' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						'.col-sm-3'
 					)
 				),
@@ -5146,7 +5167,7 @@ var Grid = React.createClass({
 					{ className: 'col-sm-6' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						'.col-sm-6'
 					)
 				),
@@ -5155,7 +5176,7 @@ var Grid = React.createClass({
 					{ className: 'col-sm-3' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						'.col-sm-3'
 					)
 				)
@@ -5173,7 +5194,7 @@ var Grid = React.createClass({
 					{ className: 'col-sm-8' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						'.col-sm-8'
 					)
 				),
@@ -5182,7 +5203,7 @@ var Grid = React.createClass({
 					{ className: 'col-sm-4' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						'.col-sm-4'
 					)
 				)
@@ -5200,7 +5221,7 @@ var Grid = React.createClass({
 					{ className: 'col-xs-4' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						React.createElement(
 							'span',
 							{ className: 'visible-xs-inline' },
@@ -5218,7 +5239,7 @@ var Grid = React.createClass({
 					{ className: 'col-xs-4' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						React.createElement(
 							'span',
 							{ className: 'visible-xs-inline' },
@@ -5236,7 +5257,7 @@ var Grid = React.createClass({
 					{ className: 'col-xs-4' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						React.createElement(
 							'span',
 							{ className: 'visible-xs-inline' },
@@ -5254,7 +5275,7 @@ var Grid = React.createClass({
 					{ className: 'col-xs-8' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						React.createElement(
 							'span',
 							{ className: 'visible-xs-inline' },
@@ -5272,7 +5293,7 @@ var Grid = React.createClass({
 					{ className: 'col-xs-4' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						React.createElement(
 							'span',
 							{ className: 'visible-xs-inline' },
@@ -5290,7 +5311,7 @@ var Grid = React.createClass({
 					{ className: 'col-xs-3' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						React.createElement(
 							'span',
 							{ className: 'visible-xs-inline' },
@@ -5308,7 +5329,7 @@ var Grid = React.createClass({
 					{ className: 'col-xs-6' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						React.createElement(
 							'span',
 							{ className: 'visible-xs-inline' },
@@ -5326,7 +5347,7 @@ var Grid = React.createClass({
 					{ className: 'col-xs-3' },
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-muted' },
+						{ className: 'demo-box u-text-center' },
 						React.createElement(
 							'span',
 							{ className: 'visible-xs-inline' },
@@ -5359,7 +5380,7 @@ var Home = React.createClass({
 	displayName: 'VIEW_Home',
 
 	render: function render() {
-		var menuItems = NavItems.map(function (item, i) {
+		var menuItems = NavItems.map(function (item) {
 			return React.createElement(
 				'div',
 				{ className: 'demo-banner-nav__col col-xs-4 col-sm-2' },
@@ -5785,19 +5806,4 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"elemental":undefined,"react":undefined}],61:[function(require,module,exports){
-'use strict';
-
-var list = [{ label: 'Alert', value: 'alert', className: 'octicon octicon-alert' }, { label: 'Alignment Align', value: 'alignment-align', className: 'octicon octicon-alignment-align' }, { label: 'Alignment Aligned To', value: 'alignment-aligned-to', className: 'octicon octicon-alignment-aligned-to' }, { label: 'Alignment Unalign', value: 'alignment-unalign', className: 'octicon octicon-alignment-unalign' }, { label: 'Arrow Down', value: 'arrow-down', className: 'octicon octicon-arrow-down' }, { label: 'Arrow Left', value: 'arrow-left', className: 'octicon octicon-arrow-left' }, { label: 'Arrow Right', value: 'arrow-right', className: 'octicon octicon-arrow-right' }, { label: 'Arrow Small Down', value: 'arrow-small-down', className: 'octicon octicon-arrow-small-down' }, { label: 'Arrow Small Left', value: 'arrow-small-left', className: 'octicon octicon-arrow-small-left' }, { label: 'Arrow Small Right', value: 'arrow-small-right', className: 'octicon octicon-arrow-small-right' }, { label: 'Arrow Small Up', value: 'arrow-small-up', className: 'octicon octicon-arrow-small-up' }, { label: 'Arrow Up', value: 'arrow-up', className: 'octicon octicon-arrow-up' }, { label: 'Beer', value: 'beer', className: 'octicon octicon-beer' }, { label: 'Book', value: 'book', className: 'octicon octicon-book' }, { label: 'Bookmark', value: 'bookmark', className: 'octicon octicon-bookmark' }, { label: 'Briefcase', value: 'briefcase', className: 'octicon octicon-briefcase' }, { label: 'Broadcast', value: 'broadcast', className: 'octicon octicon-broadcast' }, { label: 'Browser', value: 'browser', className: 'octicon octicon-browser' }, { label: 'Bug', value: 'bug', className: 'octicon octicon-bug' }, { label: 'Calendar', value: 'calendar', className: 'octicon octicon-calendar' }, { label: 'Check', value: 'check', className: 'octicon octicon-check' }, { label: 'Checklist', value: 'checklist', className: 'octicon octicon-checklist' }, { label: 'Chevron Down', value: 'chevron-down', className: 'octicon octicon-chevron-down' }, { label: 'Chevron Left', value: 'chevron-left', className: 'octicon octicon-chevron-left' }, { label: 'Chevron Right', value: 'chevron-right', className: 'octicon octicon-chevron-right' }, { label: 'Chevron Up', value: 'chevron-up', className: 'octicon octicon-chevron-up' }, { label: 'Circle Slash', value: 'circle-slash', className: 'octicon octicon-circle-slash' }, { label: 'Circuit Board', value: 'circuit-board', className: 'octicon octicon-circuit-board' }, { label: 'Clippy', value: 'clippy', className: 'octicon octicon-clippy' }, { label: 'Clock', value: 'clock', className: 'octicon octicon-clock' }, { label: 'Cloud Download', value: 'cloud-download', className: 'octicon octicon-cloud-download' }, { label: 'Cloud Upload', value: 'cloud-upload', className: 'octicon octicon-cloud-upload' }, { label: 'Code', value: 'code', className: 'octicon octicon-code' }, { label: 'Color Mode', value: 'color-mode', className: 'octicon octicon-color-mode' }, { label: 'Comment', value: 'comment', className: 'octicon octicon-comment' }, { label: 'Comment Discussion', value: 'comment-discussion', className: 'octicon octicon-comment-discussion' }, { label: 'Credit Card', value: 'credit-card', className: 'octicon octicon-credit-card' }, { label: 'Dash', value: 'dash', className: 'octicon octicon-dash' }, { label: 'Dashboard', value: 'dashboard', className: 'octicon octicon-dashboard' }, { label: 'Database', value: 'database', className: 'octicon octicon-database' }, { label: 'Device Camera', value: 'device-camera', className: 'octicon octicon-device-camera' }, { label: 'Device Camera Video', value: 'device-camera-video', className: 'octicon octicon-device-camera-video' }, { label: 'Device Desktop', value: 'device-desktop', className: 'octicon octicon-device-desktop' }, { label: 'Device Mobile', value: 'device-mobile', className: 'octicon octicon-device-mobile' }, { label: 'Diff', value: 'diff', className: 'octicon octicon-diff' }, { label: 'Diff Added', value: 'diff-added', className: 'octicon octicon-diff-added' }, { label: 'Diff Ignored', value: 'diff-ignored', className: 'octicon octicon-diff-ignored' }, { label: 'Diff Modified', value: 'diff-modified', className: 'octicon octicon-diff-modified' }, { label: 'Diff Removed', value: 'diff-removed', className: 'octicon octicon-diff-removed' }, { label: 'Diff Renamed', value: 'diff-renamed', className: 'octicon octicon-diff-renamed' }, { label: 'Ellipsis', value: 'ellipsis', className: 'octicon octicon-ellipsis' }, { label: 'Eye', value: 'eye', className: 'octicon octicon-eye' }, { label: 'File Binary', value: 'file-binary', className: 'octicon octicon-file-binary' }, { label: 'File Code', value: 'file-code', className: 'octicon octicon-file-code' }, { label: 'File Directory', value: 'file-directory', className: 'octicon octicon-file-directory' }, { label: 'File Media', value: 'file-media', className: 'octicon octicon-file-media' }, { label: 'File Pdf', value: 'file-pdf', className: 'octicon octicon-file-pdf' }, { label: 'File Submodule', value: 'file-submodule', className: 'octicon octicon-file-submodule' }, { label: 'File Symlink Directory', value: 'file-symlink-directory', className: 'octicon octicon-file-symlink-directory' }, { label: 'File Symlink File', value: 'file-symlink-file', className: 'octicon octicon-file-symlink-file' }, { label: 'File Text', value: 'file-text', className: 'octicon octicon-file-text' }, { label: 'File Zip', value: 'file-zip', className: 'octicon octicon-file-zip' }, { label: 'Flame', value: 'flame', className: 'octicon octicon-flame' }, { label: 'Fold', value: 'fold', className: 'octicon octicon-fold' }, { label: 'Gear', value: 'gear', className: 'octicon octicon-gear' }, { label: 'Gift', value: 'gift', className: 'octicon octicon-gift' }, { label: 'Gist', value: 'gist', className: 'octicon octicon-gist' }, { label: 'Gist Secret', value: 'gist-secret', className: 'octicon octicon-gist-secret' }, { label: 'Git Branch', value: 'git-branch', className: 'octicon octicon-git-branch' }, { label: 'Git Commit', value: 'git-commit', className: 'octicon octicon-git-commit' }, { label: 'Git Compare', value: 'git-compare', className: 'octicon octicon-git-compare' }, { label: 'Git Merge', value: 'git-merge', className: 'octicon octicon-git-merge' }, { label: 'Git Pull Request', value: 'git-pull-request', className: 'octicon octicon-git-pull-request' }, { label: 'Globe', value: 'globe', className: 'octicon octicon-globe' }, { label: 'Graph', value: 'graph', className: 'octicon octicon-graph' }, { label: 'Heart', value: 'heart', className: 'octicon octicon-heart' }, { label: 'History', value: 'history', className: 'octicon octicon-history' }, { label: 'Home', value: 'home', className: 'octicon octicon-home' }, { label: 'Horizontal Rule', value: 'horizontal-rule', className: 'octicon octicon-horizontal-rule' }, { label: 'Hourglass', value: 'hourglass', className: 'octicon octicon-hourglass' }, { label: 'Hubot', value: 'hubot', className: 'octicon octicon-hubot' }, { label: 'Inbox', value: 'inbox', className: 'octicon octicon-inbox' }, { label: 'Info', value: 'info', className: 'octicon octicon-info' }, { label: 'Issue Closed', value: 'issue-closed', className: 'octicon octicon-issue-closed' }, { label: 'Issue Opened', value: 'issue-opened', className: 'octicon octicon-issue-opened' }, { label: 'Issue Reopened', value: 'issue-reopened', className: 'octicon octicon-issue-reopened' }, { label: 'Jersey', value: 'jersey', className: 'octicon octicon-jersey' }, { label: 'Jump Down', value: 'jump-down', className: 'octicon octicon-jump-down' }, { label: 'Jump Left', value: 'jump-left', className: 'octicon octicon-jump-left' }, { label: 'Jump Right', value: 'jump-right', className: 'octicon octicon-jump-right' }, { label: 'Jump Up', value: 'jump-up', className: 'octicon octicon-jump-up' }, { label: 'Key', value: 'key', className: 'octicon octicon-key' }, { label: 'Keyboard', value: 'keyboard', className: 'octicon octicon-keyboard' }, { label: 'Law', value: 'law', className: 'octicon octicon-law' }, { label: 'Light Bulb', value: 'light-bulb', className: 'octicon octicon-light-bulb' }, { label: 'Link', value: 'link', className: 'octicon octicon-link' }, { label: 'Link External', value: 'link-external', className: 'octicon octicon-link-external' }, { label: 'List Ordered', value: 'list-ordered', className: 'octicon octicon-list-ordered' }, { label: 'List Unordered', value: 'list-unordered', className: 'octicon octicon-list-unordered' }, { label: 'Location', value: 'location', className: 'octicon octicon-location' }, { label: 'Lock', value: 'lock', className: 'octicon octicon-lock' }, { label: 'Logo Github', value: 'logo-github', className: 'octicon octicon-logo-github' }, { label: 'Mail', value: 'mail', className: 'octicon octicon-mail' }, { label: 'Mail Read', value: 'mail-read', className: 'octicon octicon-mail-read' }, { label: 'Mail Reply', value: 'mail-reply', className: 'octicon octicon-mail-reply' }, { label: 'Mark Github', value: 'mark-github', className: 'octicon octicon-mark-github' }, { label: 'Markdown', value: 'markdown', className: 'octicon octicon-markdown' }, { label: 'Megaphone', value: 'megaphone', className: 'octicon octicon-megaphone' }, { label: 'Mention', value: 'mention', className: 'octicon octicon-mention' }, { label: 'Microscope', value: 'microscope', className: 'octicon octicon-microscope' }, { label: 'Milestone', value: 'milestone', className: 'octicon octicon-milestone' }, { label: 'Mirror', value: 'mirror', className: 'octicon octicon-mirror' }, { label: 'Mortar Board', value: 'mortar-board', className: 'octicon octicon-mortar-board' }, { label: 'Move Down', value: 'move-down', className: 'octicon octicon-move-down' }, { label: 'Move Left', value: 'move-left', className: 'octicon octicon-move-left' }, { label: 'Move Right', value: 'move-right', className: 'octicon octicon-move-right' }, { label: 'Move Up', value: 'move-up', className: 'octicon octicon-move-up' }, { label: 'Mute', value: 'mute', className: 'octicon octicon-mute' }, { label: 'No Newline', value: 'no-newline', className: 'octicon octicon-no-newline' }, { label: 'Octoface', value: 'octoface', className: 'octicon octicon-octoface' }, { label: 'Organization', value: 'organization', className: 'octicon octicon-organization' }, { label: 'Package', value: 'package', className: 'octicon octicon-package' }, { label: 'Paintcan', value: 'paintcan', className: 'octicon octicon-paintcan' }, { label: 'Pencil', value: 'pencil', className: 'octicon octicon-pencil' }, { label: 'Person', value: 'person', className: 'octicon octicon-person' }, { label: 'Pin', value: 'pin', className: 'octicon octicon-pin' }, { label: 'Playback Fast Forward', value: 'playback-fast-forward', className: 'octicon octicon-playback-fast-forward' }, { label: 'Playback Pause', value: 'playback-pause', className: 'octicon octicon-playback-pause' }, { label: 'Playback Play', value: 'playback-play', className: 'octicon octicon-playback-play' }, { label: 'Playback Rewind', value: 'playback-rewind', className: 'octicon octicon-playback-rewind' }, { label: 'Plug', value: 'plug', className: 'octicon octicon-plug' }, { label: 'Plus', value: 'plus', className: 'octicon octicon-plus' }, { label: 'Podium', value: 'podium', className: 'octicon octicon-podium' }, { label: 'Primitive Dot', value: 'primitive-dot', className: 'octicon octicon-primitive-dot' }, { label: 'Primitive Square', value: 'primitive-square', className: 'octicon octicon-primitive-square' }, { label: 'Pulse', value: 'pulse', className: 'octicon octicon-pulse' }, { label: 'Puzzle', value: 'puzzle', className: 'octicon octicon-puzzle' }, { label: 'Question', value: 'question', className: 'octicon octicon-question' }, { label: 'Quote', value: 'quote', className: 'octicon octicon-quote' }, { label: 'Radio Tower', value: 'radio-tower', className: 'octicon octicon-radio-tower' }, { label: 'Repo', value: 'repo', className: 'octicon octicon-repo' }, { label: 'Repo Clone', value: 'repo-clone', className: 'octicon octicon-repo-clone' }, { label: 'Repo Force Push', value: 'repo-force-push', className: 'octicon octicon-repo-force-push' }, { label: 'Repo Forked', value: 'repo-forked', className: 'octicon octicon-repo-forked' }, { label: 'Repo Pull', value: 'repo-pull', className: 'octicon octicon-repo-pull' }, { label: 'Repo Push', value: 'repo-push', className: 'octicon octicon-repo-push' }, { label: 'Rocket', value: 'rocket', className: 'octicon octicon-rocket' }, { label: 'Rss', value: 'rss', className: 'octicon octicon-rss' }, { label: 'Ruby', value: 'ruby', className: 'octicon octicon-ruby' }, { label: 'Screen Full', value: 'screen-full', className: 'octicon octicon-screen-full' }, { label: 'Screen Normal', value: 'screen-normal', className: 'octicon octicon-screen-normal' }, { label: 'Search', value: 'search', className: 'octicon octicon-search' }, { label: 'Server', value: 'server', className: 'octicon octicon-server' }, { label: 'Settings', value: 'settings', className: 'octicon octicon-settings' }, { label: 'Sign In', value: 'sign-in', className: 'octicon octicon-sign-in' }, { label: 'Sign Out', value: 'sign-out', className: 'octicon octicon-sign-out' }, { label: 'Split', value: 'split', className: 'octicon octicon-split' }, { label: 'Squirrel', value: 'squirrel', className: 'octicon octicon-squirrel' }, { label: 'Star', value: 'star', className: 'octicon octicon-star' }, { label: 'Steps', value: 'steps', className: 'octicon octicon-steps' }, { label: 'Stop', value: 'stop', className: 'octicon octicon-stop' }, { label: 'Sync', value: 'sync', className: 'octicon octicon-sync' }, { label: 'Tag', value: 'tag', className: 'octicon octicon-tag' }, { label: 'Telescope', value: 'telescope', className: 'octicon octicon-telescope' }, { label: 'Terminal', value: 'terminal', className: 'octicon octicon-terminal' }, { label: 'Three Bars', value: 'three-bars', className: 'octicon octicon-three-bars' }, { label: 'Thumbsdown', value: 'thumbsdown', className: 'octicon octicon-thumbsdown' }, { label: 'Thumbsup', value: 'thumbsup', className: 'octicon octicon-thumbsup' }, { label: 'Tools', value: 'tools', className: 'octicon octicon-tools' }, { label: 'Trashcan', value: 'trashcan', className: 'octicon octicon-trashcan' }, { label: 'Triangle Down', value: 'triangle-down', className: 'octicon octicon-triangle-down' }, { label: 'Triangle Left', value: 'triangle-left', className: 'octicon octicon-triangle-left' }, { label: 'Triangle Right', value: 'triangle-right', className: 'octicon octicon-triangle-right' }, { label: 'Triangle Up', value: 'triangle-up', className: 'octicon octicon-triangle-up' }, { label: 'Unfold', value: 'unfold', className: 'octicon octicon-unfold' }, { label: 'Unmute', value: 'unmute', className: 'octicon octicon-unmute' }, { label: 'Versions', value: 'versions', className: 'octicon octicon-versions' }, { label: 'X', value: 'x', className: 'octicon octicon-x' }, { label: 'Zap', value: 'zap', className: 'octicon octicon-zap' }];
-
-var map = {};
-list.forEach(function (icon) {
-	map[icon.value] = icon;
-});
-
-module.exports = {
-	list: list,
-	map: map
-};
-
-},{}]},{},[1]);
+},{"elemental":undefined,"react":undefined}]},{},[1]);

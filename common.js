@@ -4,32 +4,64 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 var process = module.exports = {};
 var queue = [];
 var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
 
 function drainQueue() {
     if (draining) {
         return;
     }
+    var timeout = setTimeout(cleanUpNextTick);
     draining = true;
-    var currentQueue;
+
     var len = queue.length;
     while(len) {
         currentQueue = queue;
         queue = [];
-        var i = -1;
-        while (++i < len) {
-            currentQueue[i]();
+        while (++queueIndex < len) {
+            currentQueue[queueIndex].run();
         }
+        queueIndex = -1;
         len = queue.length;
     }
+    currentQueue = null;
     draining = false;
+    clearTimeout(timeout);
 }
+
 process.nextTick = function (fun) {
-    queue.push(fun);
-    if (!draining) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
         setTimeout(drainQueue, 0);
     }
 };
 
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
 process.title = 'browser';
 process.browser = true;
 process.env = {};
@@ -4519,7 +4551,7 @@ if ("production" !== process.env.NODE_ENV) {
       if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
         console.debug(
           'Download the React DevTools for a better development experience: ' +
-          'http://fb.me/react-devtools'
+          'https://fb.me/react-devtools'
         );
       }
     }
@@ -4546,7 +4578,7 @@ if ("production" !== process.env.NODE_ENV) {
       if (!expectedFeatures[i]) {
         console.error(
           'One or more ES5 shim/shams expected by React are not available: ' +
-          'http://fb.me/react-warning-polyfills'
+          'https://fb.me/react-warning-polyfills'
         );
         break;
       }
@@ -4554,7 +4586,7 @@ if ("production" !== process.env.NODE_ENV) {
   }
 }
 
-React.version = '0.13.2';
+React.version = '0.13.3';
 
 module.exports = React;
 
@@ -6279,7 +6311,7 @@ var ReactClass = {
         ("production" !== process.env.NODE_ENV ? warning(
           this instanceof Constructor,
           'Something is calling a React component directly. Use a factory or ' +
-          'JSX instead. See: http://fb.me/react-legacyfactory'
+          'JSX instead. See: https://fb.me/react-legacyfactory'
         ) : null);
       }
 
@@ -6491,20 +6523,38 @@ ReactComponent.prototype.forceUpdate = function(callback) {
  */
 if ("production" !== process.env.NODE_ENV) {
   var deprecatedAPIs = {
-    getDOMNode: 'getDOMNode',
-    isMounted: 'isMounted',
-    replaceProps: 'replaceProps',
-    replaceState: 'replaceState',
-    setProps: 'setProps'
+    getDOMNode: [
+      'getDOMNode',
+      'Use React.findDOMNode(component) instead.'
+    ],
+    isMounted: [
+      'isMounted',
+      'Instead, make sure to clean up subscriptions and pending requests in ' +
+      'componentWillUnmount to prevent memory leaks.'
+    ],
+    replaceProps: [
+      'replaceProps',
+      'Instead, call React.render again at the top level.'
+    ],
+    replaceState: [
+      'replaceState',
+      'Refactor your code to use setState instead (see ' +
+      'https://github.com/facebook/react/issues/3236).'
+    ],
+    setProps: [
+      'setProps',
+      'Instead, call React.render again at the top level.'
+    ]
   };
-  var defineDeprecationWarning = function(methodName, displayName) {
+  var defineDeprecationWarning = function(methodName, info) {
     try {
       Object.defineProperty(ReactComponent.prototype, methodName, {
         get: function() {
           ("production" !== process.env.NODE_ENV ? warning(
             false,
-            '%s(...) is deprecated in plain JavaScript React classes.',
-            displayName
+            '%s(...) is deprecated in plain JavaScript React classes. %s',
+            info[0],
+            info[1]
           ) : null);
           return undefined;
         }
@@ -6902,6 +6952,7 @@ var ReactCompositeComponentMixin = {
     this._pendingReplaceState = false;
     this._pendingForceUpdate = false;
 
+    var childContext;
     var renderedElement;
 
     var previouslyMounting = ReactLifeCycle.currentlyMountingInstance;
@@ -6916,7 +6967,8 @@ var ReactCompositeComponentMixin = {
         }
       }
 
-      renderedElement = this._renderValidatedComponent();
+      childContext = this._getValidatedChildContext(context);
+      renderedElement = this._renderValidatedComponent(childContext);
     } finally {
       ReactLifeCycle.currentlyMountingInstance = previouslyMounting;
     }
@@ -6930,7 +6982,7 @@ var ReactCompositeComponentMixin = {
       this._renderedComponent,
       rootID,
       transaction,
-      this._processChildContext(context)
+      this._mergeChildContext(context, childContext)
     );
     if (inst.componentDidMount) {
       transaction.getReactMountReady().enqueue(inst.componentDidMount, inst);
@@ -7060,7 +7112,7 @@ var ReactCompositeComponentMixin = {
    * @return {object}
    * @private
    */
-  _processChildContext: function(currentContext) {
+  _getValidatedChildContext: function(currentContext) {
     var inst = this._instance;
     var childContext = inst.getChildContext && inst.getChildContext();
     if (childContext) {
@@ -7085,6 +7137,13 @@ var ReactCompositeComponentMixin = {
           name
         ) : invariant(name in inst.constructor.childContextTypes));
       }
+      return childContext;
+    }
+    return null;
+  },
+
+  _mergeChildContext: function(currentContext, childContext) {
+    if (childContext) {
       return assign({}, currentContext, childContext);
     }
     return currentContext;
@@ -7344,6 +7403,10 @@ var ReactCompositeComponentMixin = {
       return inst.state;
     }
 
+    if (replace && queue.length === 1) {
+      return queue[0];
+    }
+
     var nextState = assign({}, replace ? queue[0] : inst.state);
     for (var i = replace ? 1 : 0; i < queue.length; i++) {
       var partial = queue[i];
@@ -7413,13 +7476,14 @@ var ReactCompositeComponentMixin = {
   _updateRenderedComponent: function(transaction, context) {
     var prevComponentInstance = this._renderedComponent;
     var prevRenderedElement = prevComponentInstance._currentElement;
-    var nextRenderedElement = this._renderValidatedComponent();
+    var childContext = this._getValidatedChildContext();
+    var nextRenderedElement = this._renderValidatedComponent(childContext);
     if (shouldUpdateReactComponent(prevRenderedElement, nextRenderedElement)) {
       ReactReconciler.receiveComponent(
         prevComponentInstance,
         nextRenderedElement,
         transaction,
-        this._processChildContext(context)
+        this._mergeChildContext(context, childContext)
       );
     } else {
       // These two IDs are actually the same! But nothing should rely on that.
@@ -7435,7 +7499,7 @@ var ReactCompositeComponentMixin = {
         this._renderedComponent,
         thisID,
         transaction,
-        this._processChildContext(context)
+        this._mergeChildContext(context, childContext)
       );
       this._replaceNodeWithMarkupByID(prevComponentID, nextMarkup);
     }
@@ -7473,11 +7537,12 @@ var ReactCompositeComponentMixin = {
   /**
    * @private
    */
-  _renderValidatedComponent: function() {
+  _renderValidatedComponent: function(childContext) {
     var renderedComponent;
     var previousContext = ReactContext.current;
-    ReactContext.current = this._processChildContext(
-      this._currentElement._context
+    ReactContext.current = this._mergeChildContext(
+      this._currentElement._context,
+      childContext
     );
     ReactCurrentOwner.current = this;
     try {
@@ -7846,6 +7911,7 @@ var ReactDOM = mapObject({
 
   // SVG
   circle: 'circle',
+  clipPath: 'clipPath',
   defs: 'defs',
   ellipse: 'ellipse',
   g: 'g',
@@ -7997,11 +8063,13 @@ function assertValidProps(props) {
       'Can only set one of `children` or `props.dangerouslySetInnerHTML`.'
     ) : invariant(props.children == null));
     ("production" !== process.env.NODE_ENV ? invariant(
-      props.dangerouslySetInnerHTML.__html != null,
+      typeof props.dangerouslySetInnerHTML === 'object' &&
+      '__html' in props.dangerouslySetInnerHTML,
       '`props.dangerouslySetInnerHTML` must be in the form `{__html: ...}`. ' +
-      'Please visit http://fb.me/react-invariant-dangerously-set-inner-html ' +
+      'Please visit https://fb.me/react-invariant-dangerously-set-inner-html ' +
       'for more information.'
-    ) : invariant(props.dangerouslySetInnerHTML.__html != null));
+    ) : invariant(typeof props.dangerouslySetInnerHTML === 'object' &&
+    '__html' in props.dangerouslySetInnerHTML));
   }
   if ("production" !== process.env.NODE_ENV) {
     ("production" !== process.env.NODE_ENV ? warning(
@@ -10807,7 +10875,7 @@ function warnAndMonitorForKeyUse(message, element, parentType) {
 
   ("production" !== process.env.NODE_ENV ? warning(
     false,
-    message + '%s%s See http://fb.me/react-warning-keys for more information.',
+    message + '%s%s See https://fb.me/react-warning-keys for more information.',
     parentOrOwnerAddendum,
     childOwnerAddendum
   ) : null);
@@ -15343,6 +15411,7 @@ var ReactUpdates = require("./ReactUpdates");
 var SyntheticEvent = require("./SyntheticEvent");
 
 var assign = require("./Object.assign");
+var emptyObject = require("./emptyObject");
 
 var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -15684,6 +15753,9 @@ assign(
 );
 
 ReactShallowRenderer.prototype.render = function(element, context) {
+  if (!context) {
+    context = emptyObject;
+  }
   var transaction = ReactUpdates.ReactReconcileTransaction.getPooled();
   this._render(element, transaction, context);
   ReactUpdates.ReactReconcileTransaction.release(transaction);
@@ -15824,7 +15896,7 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 
-},{"./EventConstants":16,"./EventPluginHub":18,"./EventPropagators":21,"./Object.assign":29,"./React":31,"./ReactBrowserEventEmitter":33,"./ReactCompositeComponent":43,"./ReactElement":63,"./ReactEmptyComponent":65,"./ReactInstanceHandles":72,"./ReactInstanceMap":73,"./ReactMount":77,"./ReactUpdates":100,"./SyntheticEvent":109}],96:[function(require,module,exports){
+},{"./EventConstants":16,"./EventPluginHub":18,"./EventPropagators":21,"./Object.assign":29,"./React":31,"./ReactBrowserEventEmitter":33,"./ReactCompositeComponent":43,"./ReactElement":63,"./ReactEmptyComponent":65,"./ReactInstanceHandles":72,"./ReactInstanceMap":73,"./ReactMount":77,"./ReactUpdates":100,"./SyntheticEvent":109,"./emptyObject":131}],96:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -16929,6 +17001,7 @@ var MUST_USE_ATTRIBUTE = DOMProperty.injection.MUST_USE_ATTRIBUTE;
 
 var SVGDOMPropertyConfig = {
   Properties: {
+    clipPath: MUST_USE_ATTRIBUTE,
     cx: MUST_USE_ATTRIBUTE,
     cy: MUST_USE_ATTRIBUTE,
     d: MUST_USE_ATTRIBUTE,
@@ -16974,6 +17047,7 @@ var SVGDOMPropertyConfig = {
     y: MUST_USE_ATTRIBUTE
   },
   DOMAttributeNames: {
+    clipPath: 'clip-path',
     fillOpacity: 'fill-opacity',
     fontFamily: 'font-family',
     fontSize: 'font-size',
@@ -19901,6 +19975,7 @@ var shouldWrap = {
   // Force wrapping for SVG elements because if they get created inside a <div>,
   // they will be initialized in the wrong namespace (and will not display).
   'circle': true,
+  'clipPath': true,
   'defs': true,
   'ellipse': true,
   'g': true,
@@ -19943,6 +20018,7 @@ var markupWrap = {
   'th': trWrap,
 
   'circle': svgWrap,
+  'clipPath': svgWrap,
   'defs': svgWrap,
   'ellipse': svgWrap,
   'g': svgWrap,
@@ -21809,47 +21885,53 @@ module.exports = function blacklist (src) {
   http://jedwatson.github.io/classnames
 */
 
-function classNames() {
-	var classes = '';
-	var arg;
+(function () {
+	'use strict';
 
-	for (var i = 0; i < arguments.length; i++) {
-		arg = arguments[i];
-		if (!arg) {
-			continue;
-		}
+	function classNames () {
 
-		if ('string' === typeof arg || 'number' === typeof arg) {
-			classes += ' ' + arg;
-		} else if (Object.prototype.toString.call(arg) === '[object Array]') {
-			classes += ' ' + classNames.apply(null, arg);
-		} else if ('object' === typeof arg) {
-			for (var key in arg) {
-				if (!arg.hasOwnProperty(key) || !arg[key]) {
-					continue;
+		var classes = '';
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if ('string' === argType || 'number' === argType) {
+				classes += ' ' + arg;
+
+			} else if (Array.isArray(arg)) {
+				classes += ' ' + classNames.apply(null, arg);
+
+			} else if ('object' === argType) {
+				for (var key in arg) {
+					if (arg.hasOwnProperty(key) && arg[key]) {
+						classes += ' ' + key;
+					}
 				}
-				classes += ' ' + key;
 			}
 		}
+
+		return classes.substr(1);
 	}
-	return classes.substr(1);
-}
 
-// safely export classNames for node / browserify
-if (typeof module !== 'undefined' && module.exports) {
-	module.exports = classNames;
-}
+	if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(function () {
+			return classNames;
+		});
+	} else if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else {
+		window.classNames = classNames;
+	}
 
-// safely export classNames for RequireJS
-if (typeof define !== 'undefined' && define.amd) {
-	define('classnames', [], function() {
-		return classNames;
-	});
-}
+}());
 
 },{}],"moment":[function(require,module,exports){
 //! moment.js
-//! version : 2.10.2
+//! version : 2.10.3
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -21872,28 +21954,12 @@ if (typeof define !== 'undefined' && define.amd) {
         hookCallback = callback;
     }
 
-    function defaultParsingFlags() {
-        // We need to deep clone this object.
-        return {
-            empty           : false,
-            unusedTokens    : [],
-            unusedInput     : [],
-            overflow        : -2,
-            charsLeftOver   : 0,
-            nullInput       : false,
-            invalidMonth    : null,
-            invalidFormat   : false,
-            userInvalidated : false,
-            iso             : false
-        };
-    }
-
     function isArray(input) {
         return Object.prototype.toString.call(input) === '[object Array]';
     }
 
     function isDate(input) {
-        return Object.prototype.toString.call(input) === '[object Date]' || input instanceof Date;
+        return input instanceof Date || Object.prototype.toString.call(input) === '[object Date]';
     }
 
     function map(arr, fn) {
@@ -21930,21 +21996,45 @@ if (typeof define !== 'undefined' && define.amd) {
         return createLocalOrUTC(input, format, locale, strict, true).utc();
     }
 
+    function defaultParsingFlags() {
+        // We need to deep clone this object.
+        return {
+            empty           : false,
+            unusedTokens    : [],
+            unusedInput     : [],
+            overflow        : -2,
+            charsLeftOver   : 0,
+            nullInput       : false,
+            invalidMonth    : null,
+            invalidFormat   : false,
+            userInvalidated : false,
+            iso             : false
+        };
+    }
+
+    function getParsingFlags(m) {
+        if (m._pf == null) {
+            m._pf = defaultParsingFlags();
+        }
+        return m._pf;
+    }
+
     function valid__isValid(m) {
         if (m._isValid == null) {
+            var flags = getParsingFlags(m);
             m._isValid = !isNaN(m._d.getTime()) &&
-                m._pf.overflow < 0 &&
-                !m._pf.empty &&
-                !m._pf.invalidMonth &&
-                !m._pf.nullInput &&
-                !m._pf.invalidFormat &&
-                !m._pf.userInvalidated;
+                flags.overflow < 0 &&
+                !flags.empty &&
+                !flags.invalidMonth &&
+                !flags.nullInput &&
+                !flags.invalidFormat &&
+                !flags.userInvalidated;
 
             if (m._strict) {
                 m._isValid = m._isValid &&
-                    m._pf.charsLeftOver === 0 &&
-                    m._pf.unusedTokens.length === 0 &&
-                    m._pf.bigHour === undefined;
+                    flags.charsLeftOver === 0 &&
+                    flags.unusedTokens.length === 0 &&
+                    flags.bigHour === undefined;
             }
         }
         return m._isValid;
@@ -21953,10 +22043,10 @@ if (typeof define !== 'undefined' && define.amd) {
     function valid__createInvalid (flags) {
         var m = create_utc__createUTC(NaN);
         if (flags != null) {
-            extend(m._pf, flags);
+            extend(getParsingFlags(m), flags);
         }
         else {
-            m._pf.userInvalidated = true;
+            getParsingFlags(m).userInvalidated = true;
         }
 
         return m;
@@ -21992,7 +22082,7 @@ if (typeof define !== 'undefined' && define.amd) {
             to._offset = from._offset;
         }
         if (typeof from._pf !== 'undefined') {
-            to._pf = from._pf;
+            to._pf = getParsingFlags(from);
         }
         if (typeof from._locale !== 'undefined') {
             to._locale = from._locale;
@@ -22027,7 +22117,7 @@ if (typeof define !== 'undefined' && define.amd) {
     }
 
     function isMoment (obj) {
-        return obj instanceof Moment || (obj != null && hasOwnProp(obj, '_isAMomentObject'));
+        return obj instanceof Moment || (obj != null && obj._isAMomentObject != null);
     }
 
     function toInt(argumentForCoercion) {
@@ -22465,7 +22555,7 @@ if (typeof define !== 'undefined' && define.amd) {
         if (month != null) {
             array[MONTH] = month;
         } else {
-            config._pf.invalidMonth = input;
+            getParsingFlags(config).invalidMonth = input;
         }
     });
 
@@ -22549,7 +22639,7 @@ if (typeof define !== 'undefined' && define.amd) {
         var overflow;
         var a = m._a;
 
-        if (a && m._pf.overflow === -2) {
+        if (a && getParsingFlags(m).overflow === -2) {
             overflow =
                 a[MONTH]       < 0 || a[MONTH]       > 11  ? MONTH :
                 a[DATE]        < 1 || a[DATE]        > daysInMonth(a[YEAR], a[MONTH]) ? DATE :
@@ -22559,11 +22649,11 @@ if (typeof define !== 'undefined' && define.amd) {
                 a[MILLISECOND] < 0 || a[MILLISECOND] > 999 ? MILLISECOND :
                 -1;
 
-            if (m._pf._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
+            if (getParsingFlags(m)._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
                 overflow = DATE;
             }
 
-            m._pf.overflow = overflow;
+            getParsingFlags(m).overflow = overflow;
         }
 
         return m;
@@ -22576,10 +22666,12 @@ if (typeof define !== 'undefined' && define.amd) {
     }
 
     function deprecate(msg, fn) {
-        var firstTime = true;
+        var firstTime = true,
+            msgWithStack = msg + '\n' + (new Error()).stack;
+
         return extend(function () {
             if (firstTime) {
-                warn(msg);
+                warn(msgWithStack);
                 firstTime = false;
             }
             return fn.apply(this, arguments);
@@ -22624,7 +22716,7 @@ if (typeof define !== 'undefined' && define.amd) {
             match = from_string__isoRegex.exec(string);
 
         if (match) {
-            config._pf.iso = true;
+            getParsingFlags(config).iso = true;
             for (i = 0, l = isoDates.length; i < l; i++) {
                 if (isoDates[i][1].exec(string)) {
                     // match[5] should be 'T' or undefined
@@ -22904,7 +22996,7 @@ if (typeof define !== 'undefined' && define.amd) {
             yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
 
             if (config._dayOfYear > daysInYear(yearToUse)) {
-                config._pf._overflowDayOfYear = true;
+                getParsingFlags(config)._overflowDayOfYear = true;
             }
 
             date = createUTCDate(yearToUse, 0, config._dayOfYear);
@@ -23000,7 +23092,7 @@ if (typeof define !== 'undefined' && define.amd) {
         }
 
         config._a = [];
-        config._pf.empty = true;
+        getParsingFlags(config).empty = true;
 
         // This array is used to make a Date, either with `new Date` or `Date.UTC`
         var string = '' + config._i,
@@ -23016,7 +23108,7 @@ if (typeof define !== 'undefined' && define.amd) {
             if (parsedInput) {
                 skipped = string.substr(0, string.indexOf(parsedInput));
                 if (skipped.length > 0) {
-                    config._pf.unusedInput.push(skipped);
+                    getParsingFlags(config).unusedInput.push(skipped);
                 }
                 string = string.slice(string.indexOf(parsedInput) + parsedInput.length);
                 totalParsedInputLength += parsedInput.length;
@@ -23024,27 +23116,29 @@ if (typeof define !== 'undefined' && define.amd) {
             // don't parse if it's not a known token
             if (formatTokenFunctions[token]) {
                 if (parsedInput) {
-                    config._pf.empty = false;
+                    getParsingFlags(config).empty = false;
                 }
                 else {
-                    config._pf.unusedTokens.push(token);
+                    getParsingFlags(config).unusedTokens.push(token);
                 }
                 addTimeToArrayFromToken(token, parsedInput, config);
             }
             else if (config._strict && !parsedInput) {
-                config._pf.unusedTokens.push(token);
+                getParsingFlags(config).unusedTokens.push(token);
             }
         }
 
         // add remaining unparsed input length to the string
-        config._pf.charsLeftOver = stringLength - totalParsedInputLength;
+        getParsingFlags(config).charsLeftOver = stringLength - totalParsedInputLength;
         if (string.length > 0) {
-            config._pf.unusedInput.push(string);
+            getParsingFlags(config).unusedInput.push(string);
         }
 
         // clear _12h flag if hour is <= 12
-        if (config._pf.bigHour === true && config._a[HOUR] <= 12) {
-            config._pf.bigHour = undefined;
+        if (getParsingFlags(config).bigHour === true &&
+                config._a[HOUR] <= 12 &&
+                config._a[HOUR] > 0) {
+            getParsingFlags(config).bigHour = undefined;
         }
         // handle meridiem
         config._a[HOUR] = meridiemFixWrap(config._locale, config._a[HOUR], config._meridiem);
@@ -23088,7 +23182,7 @@ if (typeof define !== 'undefined' && define.amd) {
             currentScore;
 
         if (config._f.length === 0) {
-            config._pf.invalidFormat = true;
+            getParsingFlags(config).invalidFormat = true;
             config._d = new Date(NaN);
             return;
         }
@@ -23099,7 +23193,6 @@ if (typeof define !== 'undefined' && define.amd) {
             if (config._useUTC != null) {
                 tempConfig._useUTC = config._useUTC;
             }
-            tempConfig._pf = defaultParsingFlags();
             tempConfig._f = config._f[i];
             configFromStringAndFormat(tempConfig);
 
@@ -23108,12 +23201,12 @@ if (typeof define !== 'undefined' && define.amd) {
             }
 
             // if there is any input that was not parsed add a penalty for that format
-            currentScore += tempConfig._pf.charsLeftOver;
+            currentScore += getParsingFlags(tempConfig).charsLeftOver;
 
             //or tokens
-            currentScore += tempConfig._pf.unusedTokens.length * 10;
+            currentScore += getParsingFlags(tempConfig).unusedTokens.length * 10;
 
-            tempConfig._pf.score = currentScore;
+            getParsingFlags(tempConfig).score = currentScore;
 
             if (scoreToBeat == null || currentScore < scoreToBeat) {
                 scoreToBeat = currentScore;
@@ -23156,6 +23249,8 @@ if (typeof define !== 'undefined' && define.amd) {
             configFromStringAndArray(config);
         } else if (format) {
             configFromStringAndFormat(config);
+        } else if (isDate(input)) {
+            config._d = input;
         } else {
             configFromInput(config);
         }
@@ -23208,7 +23303,6 @@ if (typeof define !== 'undefined' && define.amd) {
         c._i = input;
         c._f = format;
         c._strict = strict;
-        c._pf = defaultParsingFlags();
 
         return createFromConfig(c);
     }
@@ -23782,11 +23876,25 @@ if (typeof define !== 'undefined' && define.amd) {
     }
 
     function from (time, withoutSuffix) {
+        if (!this.isValid()) {
+            return this.localeData().invalidDate();
+        }
         return create__createDuration({to: this, from: time}).locale(this.locale()).humanize(!withoutSuffix);
     }
 
     function fromNow (withoutSuffix) {
         return this.from(local__createLocal(), withoutSuffix);
+    }
+
+    function to (time, withoutSuffix) {
+        if (!this.isValid()) {
+            return this.localeData().invalidDate();
+        }
+        return create__createDuration({from: this, to: time}).locale(this.locale()).humanize(!withoutSuffix);
+    }
+
+    function toNow (withoutSuffix) {
+        return this.to(local__createLocal(), withoutSuffix);
     }
 
     function locale (key) {
@@ -23891,11 +23999,11 @@ if (typeof define !== 'undefined' && define.amd) {
     }
 
     function parsingFlags () {
-        return extend({}, this._pf);
+        return extend({}, getParsingFlags(this));
     }
 
     function invalidAt () {
-        return this._pf.overflow;
+        return getParsingFlags(this).overflow;
     }
 
     addFormatToken(0, ['gg', 2], 0, function () {
@@ -24046,7 +24154,7 @@ if (typeof define !== 'undefined' && define.amd) {
         if (weekday != null) {
             week.d = weekday;
         } else {
-            config._pf.invalidWeekday = input;
+            getParsingFlags(config).invalidWeekday = input;
         }
     });
 
@@ -24171,7 +24279,7 @@ if (typeof define !== 'undefined' && define.amd) {
     });
     addParseToken(['h', 'hh'], function (input, array, config) {
         array[HOUR] = toInt(input);
-        config._pf.bigHour = true;
+        getParsingFlags(config).bigHour = true;
     });
 
     // LOCALES
@@ -24288,6 +24396,8 @@ if (typeof define !== 'undefined' && define.amd) {
     momentPrototype__proto.format       = format;
     momentPrototype__proto.from         = from;
     momentPrototype__proto.fromNow      = fromNow;
+    momentPrototype__proto.to           = to;
+    momentPrototype__proto.toNow        = toNow;
     momentPrototype__proto.get          = getSet;
     momentPrototype__proto.invalidAt    = invalidAt;
     momentPrototype__proto.isAfter      = isAfter;
@@ -24476,7 +24586,7 @@ if (typeof define !== 'undefined' && define.amd) {
         }
         // Lenient ordinal parsing accepts just a number in addition to
         // number + (possibly) stuff coming from _ordinalParseLenient.
-        this._ordinalParseLenient = new RegExp(this._ordinalParse.source + '|' + /\d{1,2}/.source);
+        this._ordinalParseLenient = new RegExp(this._ordinalParse.source + '|' + (/\d{1,2}/).source);
     }
 
     var prototype__proto = Locale.prototype;
@@ -24693,13 +24803,13 @@ if (typeof define !== 'undefined' && define.amd) {
             // handle milliseconds separately because of floating point math errors (issue #1867)
             days = this._days + Math.round(yearsToDays(this._months / 12));
             switch (units) {
-                case 'week'   : return days / 7            + milliseconds / 6048e5;
-                case 'day'    : return days                + milliseconds / 864e5;
-                case 'hour'   : return days * 24           + milliseconds / 36e5;
-                case 'minute' : return days * 24 * 60      + milliseconds / 6e4;
-                case 'second' : return days * 24 * 60 * 60 + milliseconds / 1000;
+                case 'week'   : return days / 7     + milliseconds / 6048e5;
+                case 'day'    : return days         + milliseconds / 864e5;
+                case 'hour'   : return days * 24    + milliseconds / 36e5;
+                case 'minute' : return days * 1440  + milliseconds / 6e4;
+                case 'second' : return days * 86400 + milliseconds / 1000;
                 // Math.floor prevents floating point math errors here
-                case 'millisecond': return Math.floor(days * 24 * 60 * 60 * 1000) + milliseconds;
+                case 'millisecond': return Math.floor(days * 864e5) + milliseconds;
                 default: throw new Error('Unknown unit ' + units);
             }
         }
@@ -24900,7 +25010,7 @@ if (typeof define !== 'undefined' && define.amd) {
     // Side effect imports
 
 
-    utils_hooks__hooks.version = '2.10.2';
+    utils_hooks__hooks.version = '2.10.3';
 
     setHookCallback(local__createLocal);
 
