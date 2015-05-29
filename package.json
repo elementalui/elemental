@@ -10,6 +10,7 @@
     "url": "https://github.com/elementalui/elemental.git"
   },
   "scripts": {
+    "build": "gulp build",
     "build:lib": "gulp build:lib",
     "bump": "gulp bump",
     "lint": "eslint ./",
