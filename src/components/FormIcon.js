@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var classNames = require('classnames');
-var Spinner = require('elemental').Spinner;
+var Spinner = require('./Spinner');
 
 var icons = require('../Octicons').map;
 

@@ -2,8 +2,8 @@ var React = require('react/addons');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
-var FormField = require('elemental').FormField;
-var Spinner = require('elemental').Spinner;
+var FormField = require('./FormField');
+var Spinner = require('./Spinner');
 var icons = require('../Octicons').map;
 
 var COLOR_VARIANTS = ['danger', 'default', 'primary', 'success', 'warning'];
