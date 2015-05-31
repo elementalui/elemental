@@ -16,6 +16,7 @@
 		"key-spacing": 0,
 		"no-multi-spaces": 0,
 		"no-underscore-dangle": 0,
+		"object-curly-spacing": [1, "always"],
 		"react/display-name": 0,
 		"react/jsx-boolean-value": 1,
 		"react/jsx-quotes": 1,

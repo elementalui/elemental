@@ -32,10 +32,10 @@ module.exports = React.createClass({
 
 		// handle form input and validation
 		function updateEmail(e) {
-			self.setState({inputEmail: e.target.value});
+			self.setState({ inputEmail: e.target.value });
 		}
 		function updatePassword(e) {
-			self.setState({inputPassword: e.target.value});
+			self.setState({ inputPassword: e.target.value });
 		}
 
 		var submitButton = this.state.formProcessing ? (
