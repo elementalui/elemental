@@ -93,7 +93,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				{component}
-				<input style={{display: 'none' }} type="file" ref="fileInput" onChange={this.handleChange} {...props} />
+				<input style={{ display: 'none' }} type="file" ref="fileInput" onChange={this.handleChange} {...props} />
 			</div>
 		);
 	}

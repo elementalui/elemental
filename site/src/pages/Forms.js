@@ -67,16 +67,16 @@ var Forms = React.createClass({
 
 		// handle form input and validation
 		function updateSelect(option) {
-			self.setState({inputSelect: option});
+			self.setState({ inputSelect: option });
 		}
 		function updateInlineRadios(option) {
-			self.setState({inlineRadioGroup: option});
+			self.setState({ inlineRadioGroup: option });
 		}
 		function updateEmail(e) {
-			self.setState({inputEmail: e.target.value});
+			self.setState({ inputEmail: e.target.value });
 		}
 		function updatePassword(e) {
-			self.setState({inputPassword: e.target.value});
+			self.setState({ inputPassword: e.target.value });
 		}
 
 		// elements
