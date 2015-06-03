@@ -6,4 +6,15 @@ Currently under development; built by [@JedWatson](https://github.com/JedWatson)
 
 See [elemental-ui.com](http://elemental-ui.com) for examples and demos; docs coming soon!
 
-Follow us on twitter @elementalui for updates!
+Follow us on twitter [@elementalui](https://twitter.com/elementalui) for updates!
+
+## Browser Support
+
+We'd like Elemental to be viable (functionally and aesthetically) to as many browsers as possible, without hindering our ability to move quickly.
+
+For now that means:
+
+- Chrome (mobile and desktop)
+- Safari (mobile and desktop)
+- Firefox
+- Internet Explorer 9 and up
