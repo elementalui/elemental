@@ -37,11 +37,10 @@ module.exports = React.createClass({
 
 	renderChildren () {
 		return React.Children.map(this.props.children, (child) => {
-			var props = Object.assign({}, child.props, {
+			return React.cloneElement(child, {
 				onClick: this.state.isOpen ? this.closeDropdown : this.openDropdown,
 				className: classNames(child.props.className, 'Dropdown-toggle')
 			});
-			return React.cloneElement(child, props);
 		});
 	},
 	renderButton () {
