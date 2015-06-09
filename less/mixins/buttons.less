@@ -71,27 +71,3 @@
 		background-color: @button-default-disabled-bg;
 	}
 }
-
-.button-hollow-variant(@color; @border) {
-	background: none;
-	border-color: @border;
-	color: @color;
-
-	&:hover,
-	&:focus {
-		background-color: mix(@border, @body-bg, 8%);
-		background-image: none;
-		border-color: darken(@border, 10%);
-		color: @color;
-		outline: none;
-	}
-	&:focus,
-	&.focus {
-		box-shadow: 0 0 0 3px fade(@border, 10%);
-	}
-	&:active {
-		background-color: fade(@border, 20%);
-		border-color: darken(@border, 20%);
-		box-shadow: none;
-	}
-}
