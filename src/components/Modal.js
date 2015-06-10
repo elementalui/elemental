@@ -11,7 +11,8 @@ module.exports = React.createClass({
 		headerHasCloseButton: React.PropTypes.bool,
 		headerTitle: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
-		onCancel: React.PropTypes.func
+		onCancel: React.PropTypes.func,
+		top: React.PropTypes.number
 	},
 	renderDialog() {
 		if (!this.props.isOpen) return null;
@@ -22,8 +23,10 @@ module.exports = React.createClass({
 			<h4 className="Modal-title">{this.props.headerTitle}</h4>
 		</div> : null;
 
+		var top = typeof this.props.top !== 'undefined' ? this.props.top : window.pageYOffset;
+
 		return (
-			<div className="Modal-dialog">
+			<div className="Modal-dialog" style={{top: `${top}px`}}>
 				<div className="Modal-content">
 					{header}
 					{this.props.children}
