@@ -10,26 +10,7 @@
 // Wrapper
 // ------------------------------
 
-.Modal {
-	// avoid "display: none"
-	// it stops the CSS transitions of the interior elements from completing
-	pointer-events: none;
-	visibility: hidden;
-
-	&.is-open {
-		bottom: 0;
-		left: 0;
-		outline: 0;
-		overflow: hidden;
-		position: fixed;
-		right: 0;
-		top: 0;
-		z-index: 1050;
-		-webkit-overflow-scrolling: touch;
-		pointer-events: auto;
-		visibility: visible;
-	}
-}
+.Modal {}
 
 
 
@@ -151,14 +132,10 @@
 // body
 .Modal-body {
 	margin: 0;
+	max-height: @modal-body-height;
+	overflow: scroll;
 	padding: @modal-padding-vertical @modal-padding-horizontal;
-
-	// fixed height on the body
-	&.fixed-height {
-		max-height: @modal-body-height;
-		overflow: scroll;
-		-webkit-overflow-scrolling: touch;
-	}
+	-webkit-overflow-scrolling: touch;
 }
 
 // footer

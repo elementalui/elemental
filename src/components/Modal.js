@@ -38,9 +38,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		// classes
-		var className = classNames('Modal', {
-			'is-open': this.props.isOpen
-		}, this.props.className);
+		var className = classNames('Modal', this.props.className);
 
 		// props
 		var props = blacklist(this.props, 'backdropClosesModal', 'className', 'headerHasCloseButton', 'headerTitle', 'isOpen');
