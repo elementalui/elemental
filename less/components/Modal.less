@@ -132,10 +132,14 @@
 // body
 .Modal-body {
 	margin: 0;
-	max-height: @modal-body-height;
-	overflow: scroll;
 	padding: @modal-padding-vertical @modal-padding-horizontal;
-	-webkit-overflow-scrolling: touch;
+
+	// fixed height on the body
+	&.fixed-height {
+		max-height: @modal-body-height;
+		overflow: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
 }
 
 // footer
