@@ -10,7 +10,26 @@
 // Wrapper
 // ------------------------------
 
-.Modal {}
+.Modal {
+	// avoid "display: none"
+	// it stops the CSS transitions of the interior elements from completing
+	pointer-events: none;
+	visibility: hidden;
+
+	&.is-open {
+		bottom: 0;
+		left: 0;
+		outline: 0;
+		overflow: hidden;
+		position: fixed;
+		right: 0;
+		top: 0;
+		z-index: 1050;
+		-webkit-overflow-scrolling: touch;
+		pointer-events: auto;
+		visibility: visible;
+	}
+}
 
 
 
