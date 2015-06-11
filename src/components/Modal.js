@@ -26,7 +26,7 @@ module.exports = React.createClass({
 		var top = typeof this.props.top !== 'undefined' ? this.props.top : window.pageYOffset;
 
 		return (
-			<div className="Modal-dialog" style={{top: `${top}px`}}>
+			<div className="Modal-dialog" style={{top}}>
 				<div className="Modal-content">
 					{header}
 					{this.props.children}
