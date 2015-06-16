@@ -1,5 +1,4 @@
 var list = [
-
 	{ label: 'Alert',                    value: 'alert',                     className: 'octicon octicon-alert' },
 	{ label: 'Alignment Align',          value: 'alignment-align',           className: 'octicon octicon-alignment-align' },
 	{ label: 'Alignment Aligned To',     value: 'alignment-aligned-to',      className: 'octicon octicon-alignment-aligned-to' },
@@ -181,12 +180,12 @@ var list = [
 	{ label: 'Zap',                      value: 'zap',                       className: 'octicon octicon-zap' }
 ];
 
-var map = {}
+var map = {};
 list.forEach(function(icon) {
-	map[icon.value] = icon
-})
+	map[icon.value] = icon;
+});
 
 module.exports = {
 	list: list,
 	map: map
-}
+};
