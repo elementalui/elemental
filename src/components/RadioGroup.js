@@ -26,6 +26,11 @@ module.exports = React.createClass({
 			validationIsActive: this.props.alwaysValidate
 		};
 	},
+	componentDidMount() {
+		if (this.state.validationIsActive) {
+			this.validateInput(this.props.value);
+		}
+	},
 	componentWillReceiveProps(newProps) {
 		if (this.state.validationIsActive) {
 			if (newProps.value !== this.props.value && newProps.value !== this._lastChangeValue && !newProps.alwaysValidate) {
@@ -36,11 +41,6 @@ module.exports = React.createClass({
 				});
 			}
 			this.validateInput(newProps.value);
-		}
-	},
-	componentDidMount() {
-		if (this.state.validationIsActive) {
-			this.validateInput(this.props.value);
 		}
 	},
 	handleChange(e) {
