@@ -1,4 +1,5 @@
 .publish/*
+dist/*
 lib/*
 node_modules/*
 site/dist/*
