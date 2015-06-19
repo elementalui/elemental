@@ -1,5 +1,6 @@
 exports.Alert = require('./components/Alert');
 exports.Button = require('./components/Button');
+exports.ButtonGroup = require('./components/ButtonGroup');
 exports.Dropdown = require('./components/Dropdown');
 exports.EmailInputGroup = require('./components/EmailInputGroup');
 exports.FileDragAndDrop = require('./components/FileDragAndDrop');
