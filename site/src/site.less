@@ -529,3 +529,63 @@ a.Button--demo-link {
 .demo-box--inverted {
 	background-color: @app-primary;
 }
+
+
+
+
+// Code examples
+// ------------------------------
+
+
+// common
+
+.code-example__pre,
+.code-example__example {
+	border-radius: @border-radius-base;
+	padding: 20px;
+}
+
+
+// wrap the example component(s) in a white box
+
+.code-example__example {
+	.border-top-radius(@border-radius-base);
+	background-color: white;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+
+	// catchall margin removal on children
+	> div:last-child,
+	> span:last-child {
+		margin-bottom: 0;
+	}
+
+	// remove the border radius when there's corresponding code
+	&:first-child {
+		.border-bottom-radius( 0 );
+	}
+}
+
+
+// format and present the code
+
+.code-example__pre {
+	background: @code-bg-color;
+	color: @code-text-color;
+	overflow: auto;
+
+	.code-example__example + & {
+		border: 1px solid @code-border-color;
+		border-top: none;
+		border-radius: 0 0 @border-radius-base @border-radius-base;
+		margin: 0;
+	}
+}
+
+
+
+
+
+
+
+
+
