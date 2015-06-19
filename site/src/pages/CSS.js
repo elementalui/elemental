@@ -84,9 +84,6 @@ var CSSExamples = React.createClass({
 			);
 		});
 
-		var alerts = ['info', 'success', 'warning', 'danger'].map(function(alertType) {
-			return <Alert key={alertType} type={alertType}>This is a {alertType} alert</Alert>;
-		});
 		return (
 			<div className="demo-container container">
 				<h1>CSS</h1>
@@ -104,7 +101,22 @@ var CSSExamples = React.createClass({
 				</div>
 
 				<h2>Alerts</h2>
-				{alerts}
+				<div className="code-example">
+					<div className="code-example__example">
+						<Alert type="info"><strong>Info:</strong> This could be something helpful, better read it just to make sure.</Alert>
+						<Alert type="success"><strong>Success:</strong> Nothing to worry about, everything is going great!</Alert>
+						<Alert type="warning"><strong>Warning:</strong> Pay attention to me, things are not going according to plan.</Alert>
+						<Alert type="danger"><strong>Error:</strong> You need to take action, something has gone terribly wrong!</Alert>
+					</div>
+					<pre className="code-example__pre">
+						<code className="code-example__code language-markup">
+							&lt;Alert type="info"&gt;...&lt;/Alert&gt;
+							&lt;Alert type="success"&gt;...&lt;/Alert&gt;
+							&lt;Alert type="warning"&gt;...&lt;/Alert&gt;
+							&lt;Alert type="danger"&gt;...&lt;/Alert&gt;
+						</code>
+					</pre>
+				</div>
 
 				<h2>Tables</h2>
 				<table className="table">

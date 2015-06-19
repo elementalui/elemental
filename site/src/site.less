@@ -537,6 +537,13 @@ a.Button--demo-link {
 // ------------------------------
 
 
+// base
+
+.code-example {
+	margin-bottom: 2em;
+}
+
+
 // common
 
 .code-example__pre,
@@ -551,7 +558,7 @@ a.Button--demo-link {
 .code-example__example {
 	.border-top-radius(@border-radius-base);
 	background-color: white;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	border: 1px solid @code-border-color;
 
 	// catchall margin removal on children
 	> div:last-child,
@@ -570,7 +577,6 @@ a.Button--demo-link {
 
 .code-example__pre {
 	background: @code-bg-color;
-	color: @code-text-color;
 	overflow: auto;
 
 	.code-example__example + & {
@@ -578,6 +584,31 @@ a.Button--demo-link {
 		border-top: none;
 		border-radius: 0 0 @border-radius-base @border-radius-base;
 		margin: 0;
+	}
+}
+
+
+// format interior elements
+
+.code-example__example-element--block {
+	& + & {
+		margin-top: 1em;
+	}
+}
+
+.code-example__example-element--inline {
+	& + & {
+		margin-top: 1em;
+	}
+
+	@media (min-width: @screen-sm) {
+		display: inline-block;
+		vertical-align: text-bottom;
+
+		& + & {
+			margin-left: 1em;
+			margin-top: 0;
+		}
 	}
 }
 
