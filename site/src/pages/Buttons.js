@@ -160,26 +160,6 @@ var Buttons = React.createClass({
 						</Dropdown>
 					</div>
 				</div>
-
-				<h2>Tooltip</h2>
-				<p>
-					<span> This is a sentence with a </span>
-					<Tooltip placement="top" content="This is the tooltip content!">
-						<span className="a">top aligned toolip with a really long target</span>
-					</Tooltip>
-					<span> some more content </span>
-					<Tooltip placement="right" content="This is the tooltip content!">
-						<span className="a">right aligned toolip</span>
-					</Tooltip>
-					<span> some more content </span>
-					<Tooltip placement="bottom" content="This is the tooltip content!">
-						<span className="a">bottom aligned toolip</span>
-					</Tooltip>
-					<span> some more content </span>
-					<Tooltip placement="left" content="This is the tooltip content!">
-						<span className="a">left aligned toolip</span>
-					</Tooltip>
-				</p>
 			</div>
 		);
 	}
