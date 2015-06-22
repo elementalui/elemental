@@ -14,7 +14,7 @@ const DROPDOWN_OPTIONS = [
 
 const BUTTON_SIZES = [
 	{ label: 'Large',            value: 'lg' },
-	{ label: 'Default',          value: 'md' },
+	{ label: 'Default',          value: null },
 	{ label: 'Small',            value: 'sm' },
 	{ label: 'Extra Small',      value: 'xs' }
 ];
