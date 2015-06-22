@@ -4,12 +4,12 @@ var React = require('react');
 var { Dropdown, Tooltip, Button, ButtonGroup } = require('elemental');
 
 const DROPDOWN_OPTIONS = [
-	{ type: 'item', anchor: 'javascript:;', label: 'Action' },
-	{ type: 'item', anchor: 'javascript:;', label: 'Another action' },
-	{ type: 'item', anchor: 'javascript:;', label: 'Something else here' },
+	{ label: 'Action' },
+	{ label: 'Another action' },
+	{ label: 'Something else here' },
 	{ type: 'divider' },
 	{ type: 'header', label: 'Dropdown header' },
-	{ type: 'item', anchor: 'javascript:;', label: 'Separated link' }
+	{ label: 'Separated link' }
 ];
 
 const BUTTON_SIZES = [
