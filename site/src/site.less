@@ -573,6 +573,19 @@ a.Button--demo-link {
 }
 
 
+// example heading to provide context if necessary
+
+.code-example__example__heading {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+	color: @gray-light;
+	font-size: @font-size-sm;
+	font-weight: 500;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	text-transform: uppercase;
+}
+
+
 // format and present the code
 
 .code-example__pre {
@@ -609,6 +622,30 @@ a.Button--demo-link {
 			margin-left: 1em;
 			margin-top: 0;
 		}
+	}
+}
+
+
+// inline code (not for use with Prism)
+
+.inline-code {
+	background-color: fade(firebrick, 6%);
+	border-radius: 4px;
+	color: firebrick;
+	font-size: 90%;
+	padding: 2px 4px;
+	white-space: nowrap;
+}
+
+
+
+
+// Usage table
+
+.usage-table {
+	td, th {
+		line-height: 1.4;
+		vertical-align: top;
 	}
 }
 
