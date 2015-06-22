@@ -2,7 +2,9 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
 
-var BUTTON_TYPES = [
+const BUTTON_SIZES = ['lg', 'sm', 'xs'];
+
+const BUTTON_TYPES = [
 	'default',
 	'default-primary',
 	'default-success',
@@ -25,7 +27,7 @@ module.exports = React.createClass({
 		className: React.PropTypes.string,
 		href: React.PropTypes.string,
 		onClick: React.PropTypes.func,
-		size: React.PropTypes.string,
+		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(BUTTON_TYPES)
 	},
