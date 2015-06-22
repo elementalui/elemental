@@ -19,14 +19,14 @@ var FormSelect = require('elemental').FormSelect;
 var InputGroup = require('elemental').InputGroup;
 
 
-var controlOptions = [
+const controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
 	{ label: 'Chocolate',  value: 'chocolate' },
 	{ label: 'Strawberry', value: 'strawberry' },
 	{ label: 'Vanilla',    value: 'vanilla' }
 ];
-var COUNTRIES = require('../data/countries');
-var COLOR_VARIANTS = [
+const COUNTRIES = require('../data/countries');
+const COLOR_VARIANTS = [
 	{ label: 'Default', icon: 'star', value: 'default' },
 	{ label: 'Primary', icon: 'info', value: 'primary' },
 	{ label: 'Success', icon: 'check', value: 'success' },
@@ -44,7 +44,7 @@ var Forms = React.createClass({
 		};
 	},
 
-	onDrop: function (files) {
+	onDrop (files) {
 		var outputFileInfo = files.map(function(file) {
 			return '"' + file.name + '" (' + Math.round(file.size / 1024) + 'Kb)';
 		});
@@ -53,7 +53,7 @@ var Forms = React.createClass({
 			files: files
 		});
 	},
-	handleSearch: function () {
+	handleSearch () {
 		var self = this;
 		self.setState({ searching: true });
 

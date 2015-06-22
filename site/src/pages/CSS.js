@@ -6,8 +6,8 @@ var moment = require('moment');
 
 var Alert = require('elemental').Alert;
 
-var USERS = require('../data/users');
-var TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
+const USERS = require('../data/users');
+const TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
 
 var CSSExamples = React.createClass({
 
