@@ -13,6 +13,12 @@ table {
 .table {
 	text-align: left;
 	width: 100%;
+
+	// alternate alignment (defaults to `middle`)
+	&.align-bottom td,
+	&.align-bottom th { vertical-align: bottom; }
+	&.align-top td,
+	&.align-top th { vertical-align: top; }
 }
 
 
@@ -29,9 +35,6 @@ table {
 	line-height: 1;
 	padding: @table-padding 0;
 	vertical-align: middle;
-
-	.align-bottom & { vertical-align: bottom; }
-	.align-top & { vertical-align: top; }
 
 	// make the content flush
 	&:first-child {
