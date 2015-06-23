@@ -20,7 +20,7 @@ module.exports = React.createClass({
 
 		// classes
 		var className = classNames('InputGroup', {
-			'is-contiguous': this.props.contiguous
+			'InputGroup--contiguous': this.props.contiguous
 		}, this.props.className);
 
 		return (
