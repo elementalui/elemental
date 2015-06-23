@@ -8,11 +8,35 @@
 
 
 
+// Site Explicit Variables
+// ------------------------------
+
+
+// navigation
+
+@nav-brand-size: 32px;
+@navbar-height: 50px;
+
+
+// code
+
+@inline-code-color:              #bf2a5c;
+@inline-code-bg:                 fade(@inline-code-color, 7%);
+
+
+
+
+
 // Type
 // ------------------------------
 
-.demo-container > h2 {
-	margin-top: 3em;
+.demo-container {
+	p {
+		margin-bottom: 1em;
+		margin-top: 0;
+	}
+	> h2 { margin-top: 3em; }
+	> h3 { margin-top: 3em; }
 }
 
 
@@ -50,9 +74,6 @@
 
 // Primary Navigation
 // ------------------------------
-
-@nav-brand-size: 32px;
-@navbar-height: 50px;
 
 // base
 
@@ -521,10 +542,10 @@ a.Button--demo-link {
 // ------------------------------
 
 .demo-box {
-	background-color: darken(@body-bg, 2%);
+	background-color: darken(@body-bg, 3%);
 	border-radius: @border-radius-base;
-	margin-bottom: @grid-gutter-width;
-	padding: 2em 1em;
+	margin-bottom: 1em;
+	padding: .66em 1.5em;
 }
 .demo-box--inverted {
 	background-color: @app-primary;
@@ -541,6 +562,11 @@ a.Button--demo-link {
 
 .code-example {
 	margin-bottom: 2em;
+	margin-top: 2em;
+
+	.demo-box {
+		margin-bottom: 0;
+	}
 }
 
 
@@ -603,12 +629,15 @@ a.Button--demo-link {
 
 // format interior elements
 
+.code-example__example-element {
+	border-radius: .3em;
+	padding: .5em 1.5em;
+}
 .code-example__example-element--block {
 	& + & {
 		margin-top: 1em;
 	}
 }
-
 .code-example__example-element--inline {
 	& + & {
 		margin-top: 1em;
@@ -624,17 +653,24 @@ a.Button--demo-link {
 		}
 	}
 }
+.code-example__example-element--primary-bg {
+	background-color: @app-primary;
+}
 
 
 // inline code (not for use with Prism)
 
 .inline-code {
-	background-color: fade(firebrick, 6%);
-	border-radius: 4px;
-	color: firebrick;
+	background-color: @inline-code-bg;
+	border-radius: .3em;
+	color: @inline-code-color;
 	font-size: 90%;
-	padding: 2px 4px;
+	padding: 0 4px;
 	white-space: nowrap;
+}
+.inline-code--list-item {
+	display: inline-block;
+	margin-top: 4px;
 }
 
 
