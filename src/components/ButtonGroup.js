@@ -5,7 +5,7 @@ var React = require('react/addons');
 module.exports = React.createClass({
 	displayName: 'ButtonGroup',
 	propTypes: {
-		children: React.PropTypes.node
+		children: React.PropTypes.node.isRequired
 	},
 	render() {
 		var componentClass = classNames('ButtonGroup', this.props.className);
