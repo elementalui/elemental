@@ -1,6 +1,9 @@
 var React = require('react');
 
 var ExampleSource = React.createClass({
+	propTypes: {
+		children: React.PropTypes.string.isRequired
+	},
 	fixIndentation (children) {
 		if (typeof children !== 'string') return children;
 		var lines = children.split('\n').filter(l => l);
