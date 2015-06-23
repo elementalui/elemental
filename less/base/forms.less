@@ -33,16 +33,16 @@
 // Form Rows
 // ------------------------------
 
-.form-row {
+.FormRow {
 	&:extend(.u-clearfix all);
 }
 @media (min-width: @screen-sm) {
-	.form-row {
+	.FormRow {
 		margin: 0 -(@input-padding-horizontal / 2) @spacing-md;
 		min-width: 100%;
 
 		> .form-field {
-			display: block; // override .horizontal-form styles inside .form-row
+			display: block; // override .horizontal-form styles inside .FormRow
 			float: left;
 			padding: 0 (@input-padding-horizontal / 2);
 
@@ -70,7 +70,7 @@
 	}
 
 	// inside a form field
-	.form-field > .form-row {
+	.form-field > .FormRow {
 		margin-bottom: 0;
 	}
 }
@@ -227,7 +227,7 @@
 		}
 
 		// reset styles when using rows inside .horizontal-form
-		.form-row > .form-field {
+		.FormRow > .form-field {
 			display: block;
 			margin-bottom: 0;
 			min-width: 0;
