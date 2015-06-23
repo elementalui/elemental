@@ -1,6 +1,7 @@
 exports.Alert = require('./components/Alert');
 exports.Button = require('./components/Button');
 exports.ButtonGroup = require('./components/ButtonGroup');
+exports.Checkbox = require('./components/Checkbox');
 exports.Dropdown = require('./components/Dropdown');
 exports.EmailInputGroup = require('./components/EmailInputGroup');
 exports.FileDragAndDrop = require('./components/FileDragAndDrop');
@@ -17,6 +18,7 @@ exports.InputGroup = require('./components/InputGroup');
 exports.Modal = require('./components/Modal');
 exports.Pagination = require('./components/Pagination');
 exports.PasswordInputGroup = require('./components/PasswordInputGroup');
+exports.Radio = require('./components/Radio');
 exports.RadioGroup = require('./components/RadioGroup');
 exports.Spinner = require('./components/Spinner');
 exports.Tag = require('./components/Tag');
