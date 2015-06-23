@@ -90,11 +90,10 @@ module.exports = React.createClass({
 		// options
 		var radios = this.props.options.map(function(radio, i) {
 			return (
-				<div key={'radio-' + i} className="radio">
-					<label className="radio-label">
-						<input value={radio.value} type="radio" onChange={self.handleChange} onBlur={self.handleBlur} name={self.props.name} className="radio-input" /> {radio.label}
-					</label>
-				</div>
+				<label key={'radio-' + i} className="Radio">
+					<input value={radio.value} type="radio" onChange={self.handleChange} onBlur={self.handleBlur} name={self.props.name} className="Radio__input" />
+					<span className="Radio__label">{radio.label}</span>
+				</label>
 			);
 		});
 		if (this.props.inline) {
