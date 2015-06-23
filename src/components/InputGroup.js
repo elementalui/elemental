@@ -8,11 +8,6 @@ module.exports = React.createClass({
 		className: React.PropTypes.string,
 		contiguous: React.PropTypes.bool
 	},
-	getDefaultProps() {
-		return {
-			contiguous: true
-		};
-	},
 	render() {
 		// props
 		var props = blacklist(this.props, 'className');
