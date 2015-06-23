@@ -3,6 +3,8 @@
 var React = require('react');
 var { Dropdown, Tooltip, Button, ButtonGroup } = require('elemental');
 
+var ExampleSource = require('../components/ExampleSource');
+
 const DROPDOWN_OPTIONS = [
 	{ label: 'Action' },
 	{ label: 'Another action' },
@@ -78,14 +80,12 @@ var Buttons = React.createClass({
 					<div className="code-example__example">
 						{this.renderButtonSizes()}
 					</div>
-					<pre className="code-example__pre">
-						<code className="code-example__code language-markup">
-							&lt;Button size="lg"&gt;Large Button&lt;/Button&gt;
-							&lt;Button&gt;Default Button&lt;/Button&gt;
-							&lt;Button size="sm"&gt;Small Button&lt;/Button&gt;
-							&lt;Button size="xs"&gt;Extra Small Button&lt;/Button&gt;
-						</code>
-					</pre>
+					<ExampleSource>
+						{`<Button size="lg">Large Button</Button>
+						<Button>Default Button</Button>
+						<Button size="sm">Small Button</Button>
+						<Button size="xs">Extra Small Button</Button>`}
+					</ExampleSource>
 				</div>
 
 				<h2>Variants</h2>
@@ -94,42 +94,36 @@ var Buttons = React.createClass({
 						<div className="code-example__example__heading">Fill Buttons</div>
 						{this.renderButtonVariants(BUTTON_VARIANTS)}
 					</div>
-					<pre className="code-example__pre">
-						<code className="code-example__code language-markup">
-							&lt;Button type="primary"&gt;Primary&lt;/Button&gt;
-							&lt;Button type="success"&gt;Success&lt;/Button&gt;
-							&lt;Button type="warning"&gt;Warning&lt;/Button&gt;
-							&lt;Button type="danger"&gt;Danger&lt;/Button&gt;
-						</code>
-					</pre>
+					<ExampleSource>
+						{`<Button type="primary">Primary</Button>
+						<Button type="success">Success</Button>
+						<Button type="warning">Warning</Button>
+						<Button type="danger">Danger</Button>`}
+					</ExampleSource>
 				</div>
 				<div className="code-example">
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Default Button Alternatives</div>
 						{this.renderButtonVariants(BUTTON_DEFAULT_VARIANTS)}
 					</div>
-					<pre className="code-example__pre">
-						<code className="code-example__code language-markup">
-							&lt;Button type="default-primary"&gt;Default Primary&lt;/Button&gt;
-							&lt;Button type="default-success"&gt;Default Success&lt;/Button&gt;
-							&lt;Button type="default-warning"&gt;Default Warning&lt;/Button&gt;
-							&lt;Button type="default-danger"&gt;Default Danger&lt;/Button&gt;
-						</code>
-					</pre>
+					<ExampleSource>
+						{`<Button type="default-primary">Default Primary</Button>
+						<Button type="default-success">Default Success</Button>
+						<Button type="default-warning">Default Warning</Button>
+						<Button type="default-danger">Default Danger</Button>`}
+					</ExampleSource>
 				</div>
 				<div className="code-example">
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Link Style Buttons</div>
 						{this.renderButtonVariants(BUTTON_LINK_VARIANTS)}
 					</div>
-					<pre className="code-example__pre">
-						<code className="code-example__code language-markup">
-							&lt;Button type="link"&gt;Link&lt;/Button&gt;
-							&lt;Button type="link-text"&gt;Link Text&lt;/Button&gt;
-							&lt;Button type="link-cancel"&gt;Link Cancel&lt;/Button&gt;
-							&lt;Button type="link-delete"&gt;Link Delete&lt;/Button&gt;
-						</code>
-					</pre>
+					<ExampleSource>
+						{`<Button type="link">Link</Button>
+						<Button type="link-text">Link Text</Button>
+						<Button type="link-cancel">Link Cancel</Button>
+						<Button type="link-delete">Link Delete</Button>`}
+					</ExampleSource>
 				</div>
 
 				<h3>Usage</h3>
@@ -209,15 +203,13 @@ var Buttons = React.createClass({
 							<Button type="default">Right</Button>
 						</ButtonGroup>
 					</div>
-					<pre className="code-example__pre">
-						<code className="code-example__code language-markup">
-							&lt;ButtonGroup&gt;
-								&lt;Button type="default">Left&lt;/Button&gt;
-								&lt;Button type="default">Middle&lt;/Button&gt;
-								&lt;Button type="default">Right&lt;/Button&gt;
-							&lt;/ButtonGroup&gt;
-						</code>
-					</pre>
+					<ExampleSource>
+						{`<ButtonGroup>
+							<Button type="default">Left</Button>
+							<Button type="default">Middle</Button>
+							<Button type="default">Right</Button>
+						</ButtonGroup>`}
+					</ExampleSource>
 				</div>
 
 				<h3>Usage</h3>
@@ -236,7 +228,7 @@ var Buttons = React.createClass({
 							<td>children</td>
 							<td>node</td>
 							<td>undefined</td>
-							<td>Must use Elemental <code className="inline-code">&lt;Button /&gt;</code> components for correct styling</td>
+						<td>Must use Elemental <code className="inline-code">&lt;Button /&gt;</code> components for correct styling</td>
 						</tr>
 						<tr>
 							<td>className</td>
@@ -252,26 +244,22 @@ var Buttons = React.createClass({
 					<div className="code-example__example">
 						<Dropdown items={DROPDOWN_OPTIONS} buttonLabel="Default Trigger" className="reallyLongCustomClassNameThatStandsOut" />
 					</div>
-					<pre className="code-example__pre">
-						<code className="code-example__code language-markup">
-						&lt;Dropdown items=&#123;&#91;...&#93;&#125; buttonLabel="Default Trigger" /&gt;
-						</code>
-					</pre>
+					<ExampleSource>
+						{`<Dropdown items={[...]} buttonLabel="Default Trigger" />`}
+					</ExampleSource>
 				</div>
 				<div className="code-example">
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Custom Trigger</div>
 						<Dropdown items={DROPDOWN_OPTIONS} className="reallyLongCustomClassNameThatStandsOut">
-							<h3 style={{ marginBottom: 0 }}>I'm an H3!</h3>
+							<h3 style={{ marginBottom: 0 }}>I am an H3!</h3>
 						</Dropdown>
 					</div>
-					<pre className="code-example__pre">
-						<code className="code-example__code language-markup">
-							&lt;Dropdown items=&#123;&#91;...&#93;&#125;&gt;
-								&lt;h3&gt;I'm an H3!&lt;/h3&gt;
-							&lt;/Dropdown&gt;
-						</code>
-					</pre>
+					<ExampleSource>
+						{`<Dropdown items={[...]}>
+							<h3>I am an H3!</h3>
+						</Dropdown>`}
+					</ExampleSource>
 				</div>
 
 				<h3>Usage</h3>
