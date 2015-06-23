@@ -4,13 +4,11 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'Spinner',
 	propTypes: {
-		className: React.PropTypes.string,
 		size: React.PropTypes.oneOf(['sm', 'md', 'lg']),
 		type: React.PropTypes.oneOf(['default', 'primary', 'inverted'])
 	},
 	getDefaultProps() {
 		return {
-			size: 'md',
 			type: 'default'
 		};
 	},
@@ -24,9 +22,9 @@ module.exports = React.createClass({
 
 		return (
 			<div className={componentClass}>
-				<i className="Spinner_dot Spinner_dot--first" />
-				<i className="Spinner_dot Spinner_dot--second" />
-				<i className="Spinner_dot Spinner_dot--third" />
+				<span className="Spinner_dot Spinner_dot--first" />
+				<span className="Spinner_dot Spinner_dot--second" />
+				<span className="Spinner_dot Spinner_dot--third" />
 			</div>
 		);
 	}
