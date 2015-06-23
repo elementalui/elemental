@@ -151,17 +151,23 @@
 // Checkbox & Radio
 // ------------------------------
 
-.checkbox,
-.radio {
+.Checkbox,
+.Radio {
+	display: block;
 	margin-bottom: .5em;
 }
 
-.inline-controls {
-	.checkbox,
-	.radio {
-		display: inline-block;
-		margin-right: 1em;
-	}
+.Checkbox__label,
+.Radio__label {
+	margin-left: .5em;
+}
+
+.inline-controls > .Checkbox,
+.inline-controls > .Radio,
+.Checkbox--inline,
+.Radio--inline {
+	display: inline-block;
+	margin-right: 1em;
 }
 
 
@@ -242,8 +248,8 @@
 
 @media (min-width: @screen-sm) {
 	.inline-form {
-		.checkbox,
-		.radio,
+		.Checkbox,
+		.Radio,
 		.form-field {
 			display: inline-block;
 			padding-left: .25em;
@@ -253,8 +259,8 @@
 			&:first-child { padding-left: 0; }
 			&:last-child { padding-right: 0; }
 		}
-		.checkbox,
-		.radio {
+		.Checkbox,
+		.Radio {
 			line-height: 2.4em;
 			margin: 0 @input-padding-horizontal;
 		}
