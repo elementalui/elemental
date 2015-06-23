@@ -9,6 +9,7 @@ var Radio = React.createClass({
 	},
 	render() {
 		var componentClass = classNames('Radio', {
+			'Radio--disabled': this.props.disabled,
 			'Radio--inline': this.props.inline
 		}, this.props.className);
 		var props = blacklist(this.props, 'className', 'label');

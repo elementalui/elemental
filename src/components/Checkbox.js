@@ -9,6 +9,7 @@ var Checkbox = React.createClass({
 	},
 	render() {
 		var componentClass = classNames('Checkbox', {
+			'Checkbox--disabled': this.props.disabled,
 			'Checkbox--inline': this.props.inline
 		}, this.props.className);
 		var props = blacklist(this.props, 'className', 'label');
