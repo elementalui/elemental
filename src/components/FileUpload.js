@@ -44,14 +44,15 @@ module.exports = React.createClass({
 		};
 		reader.onloadend = function(upload) {
 			self.setState({
-				loading: false,
+				dataURI: upload.target.result,
 				file: file,
-				dataURI: upload.target.result
+				loading: false
 			});
 		};
 	},
 	cancelUpload() {
 		this.setState({
+			dataURI: false,
 			file: false
 		});
 	},
@@ -61,7 +62,7 @@ module.exports = React.createClass({
 		function isEmptyObject(obj) {
 			return Object.keys(obj).length === 0;
 		}
-		var file = this.state.file;
+		var { dataURI, file } = this.state;
 
 
 		// props
@@ -71,11 +72,12 @@ module.exports = React.createClass({
 		// elements
 		var component = <button type="button" onClick={this.triggerFileBrowser} className={this.props.buttonClassInitial} disabled={this.props.disabled}>{this.props.buttonLabelInitial}</button>;
 
-		if (!isEmptyObject(file)) {
+		if (dataURI) {
+			console.log(file, dataURI)
 			component = (
 				<div className="FileUpload">
 					<div className="FileUpload__image">
-						<img className="FileUpload__image-src" src={this.state.dataURI} />
+						<img className="FileUpload__image-src" src={dataURI} />
 					</div>
 					<div className="FileUpload__content">
 						<div className="FileUpload__message">
