@@ -81,10 +81,12 @@ var Buttons = React.createClass({
 						{this.renderButtonSizes()}
 					</div>
 					<ExampleSource>
-						{`<Button size="lg">Large Button</Button>
-						<Button>Default Button</Button>
-						<Button size="sm">Small Button</Button>
-						<Button size="xs">Extra Small Button</Button>`}
+						{`
+							<Button size="lg">Large Button</Button>
+							<Button>Default Button</Button>
+							<Button size="sm">Small Button</Button>
+							<Button size="xs">Extra Small Button</Button>
+						`}
 					</ExampleSource>
 				</div>
 
@@ -95,10 +97,12 @@ var Buttons = React.createClass({
 						{this.renderButtonVariants(BUTTON_VARIANTS)}
 					</div>
 					<ExampleSource>
-						{`<Button type="primary">Primary</Button>
-						<Button type="success">Success</Button>
-						<Button type="warning">Warning</Button>
-						<Button type="danger">Danger</Button>`}
+						{`
+							<Button type="primary">Primary</Button>
+							<Button type="success">Success</Button>
+							<Button type="warning">Warning</Button>
+							<Button type="danger">Danger</Button>
+						`}
 					</ExampleSource>
 				</div>
 				<div className="code-example">
@@ -107,10 +111,12 @@ var Buttons = React.createClass({
 						{this.renderButtonVariants(BUTTON_DEFAULT_VARIANTS)}
 					</div>
 					<ExampleSource>
-						{`<Button type="default-primary">Default Primary</Button>
-						<Button type="default-success">Default Success</Button>
-						<Button type="default-warning">Default Warning</Button>
-						<Button type="default-danger">Default Danger</Button>`}
+						{`
+							<Button type="default-primary">Default Primary</Button>
+							<Button type="default-success">Default Success</Button>
+							<Button type="default-warning">Default Warning</Button>
+							<Button type="default-danger">Default Danger</Button>
+						`}
 					</ExampleSource>
 				</div>
 				<div className="code-example">
@@ -119,10 +125,12 @@ var Buttons = React.createClass({
 						{this.renderButtonVariants(BUTTON_LINK_VARIANTS)}
 					</div>
 					<ExampleSource>
-						{`<Button type="link">Link</Button>
-						<Button type="link-text">Link Text</Button>
-						<Button type="link-cancel">Link Cancel</Button>
-						<Button type="link-delete">Link Delete</Button>`}
+						{`
+							<Button type="link">Link</Button>
+							<Button type="link-text">Link Text</Button>
+							<Button type="link-cancel">Link Cancel</Button>
+							<Button type="link-delete">Link Delete</Button>
+						`}
 					</ExampleSource>
 				</div>
 
@@ -204,11 +212,13 @@ var Buttons = React.createClass({
 						</ButtonGroup>
 					</div>
 					<ExampleSource>
-						{`<ButtonGroup>
-							<Button type="default">Left</Button>
-							<Button type="default">Middle</Button>
-							<Button type="default">Right</Button>
-						</ButtonGroup>`}
+						{`
+							<ButtonGroup>
+								<Button type="default">Left</Button>
+								<Button type="default">Middle</Button>
+								<Button type="default">Right</Button>
+							</ButtonGroup>
+						`}
 					</ExampleSource>
 				</div>
 
@@ -256,9 +266,11 @@ var Buttons = React.createClass({
 						</Dropdown>
 					</div>
 					<ExampleSource>
-						{`<Dropdown items={[...]}>
-							<h3>I am an H3!</h3>
-						</Dropdown>`}
+						{`
+							<Dropdown items={[...]}>
+								<h3>I am an H3!</h3>
+							</Dropdown>
+						`}
 					</ExampleSource>
 				</div>
 
