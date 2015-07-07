@@ -636,43 +636,45 @@ var Forms = React.createClass({
 				</div>
 
 				<h3>Usage</h3>
-				<table className="table usage-table">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<body>
-						<tr>
-							<td>label</td>
-							<td>string</td>
-							<td>''</td>
-							<td>
+				<div className="usage-table">
+					<table className="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<body>
+							<tr>
+								<td>label</td>
+								<td>string</td>
+								<td>''</td>
+								<td className="usage-table__description">
 
-							</td>
-						</tr>
-						<tr>
-							<td>offsetAbsentLabel</td>
-							<td>bool</td>
-							<td>false</td>
-							<td>
-							</td>
-						</tr>
-						<tr>
-							<td>width</td>
-							<td>string</td>
-							<td>''</td>
-							<td>
-								Declare a width for your field; must be used inside a <code className="inline-code">{`<FormRow>`}</code> component. Possible options:
-								<br />
-								<code className="inline-code inline-code--list-item">one-half</code> <code className="inline-code inline-code--list-item">two-quarters</code> <code className="inline-code inline-code--list-item">three-sixths</code> <code className="inline-code inline-code--list-item">one-quarter</code> <code className="inline-code inline-code--list-item">three-quarters</code> <code className="inline-code inline-code--list-item">one-third</code> <code className="inline-code inline-code--list-item">two-sixths</code> <code className="inline-code inline-code--list-item">two-thirds</code> <code className="inline-code inline-code--list-item">four-sixths</code> <code className="inline-code inline-code--list-item">one-fifth</code> <code className="inline-code inline-code--list-item">two-fifths</code> <code className="inline-code inline-code--list-item">three-fifths</code> <code className="inline-code inline-code--list-item">four-fifths</code> <code className="inline-code inline-code--list-item">one-sixth</code> <code className="inline-code inline-code--list-item">five-sixths</code>
-							</td>
-						</tr>
-					</body>
-				</table>
+								</td>
+							</tr>
+							<tr>
+								<td>offsetAbsentLabel</td>
+								<td>bool</td>
+								<td>false</td>
+								<td className="usage-table__description">
+								</td>
+							</tr>
+							<tr>
+								<td>width</td>
+								<td>string</td>
+								<td>''</td>
+								<td className="usage-table__description">
+									Declare a width for your field; must be used inside a <code className="inline-code">{`<FormRow>`}</code> component. Possible options:
+									<br />
+									<code className="inline-code inline-code--list-item">one-half</code> <code className="inline-code inline-code--list-item">two-quarters</code> <code className="inline-code inline-code--list-item">three-sixths</code> <code className="inline-code inline-code--list-item">one-quarter</code> <code className="inline-code inline-code--list-item">three-quarters</code> <code className="inline-code inline-code--list-item">one-third</code> <code className="inline-code inline-code--list-item">two-sixths</code> <code className="inline-code inline-code--list-item">two-thirds</code> <code className="inline-code inline-code--list-item">four-sixths</code> <code className="inline-code inline-code--list-item">one-fifth</code> <code className="inline-code inline-code--list-item">two-fifths</code> <code className="inline-code inline-code--list-item">three-fifths</code> <code className="inline-code inline-code--list-item">four-fifths</code> <code className="inline-code inline-code--list-item">one-sixth</code> <code className="inline-code inline-code--list-item">five-sixths</code>
+								</td>
+							</tr>
+						</body>
+					</table>
+				</div>
 
 				
 				<h2>Icons</h2>

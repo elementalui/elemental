@@ -54,39 +54,41 @@ var Buttons = React.createClass({
 				</div>
 
 				<h3>Usage</h3>
-				<table className="table usage-table">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Type</th>
-							<th>Default</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-					<body>
-						<tr>
-							<td>size</td>
-							<td>string</td>
-							<td>''</td>
-							<td>
-								<p>Declare the size of the dots in the spinner. Possible options:
-								<br/>
-								<code className="inline-code">sm</code> <code className="inline-code">lg</code></p>
-								Spinners automatically become small when inside of buttons
-							</td>
-						</tr>
-						<tr>
-							<td>type</td>
-							<td>string</td>
-							<td>default</td>
-							<td>
-								Declare the colour of the dots in the spinner. Possible options:
-								<br/>
-								<code className="inline-code">default</code> <code className="inline-code">primary</code> <code className="inline-code">inverted</code>
-							</td>
-						</tr>
-					</body>
-				</table>
+				<div className="usage-table">
+					<table className="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<body>
+							<tr>
+								<td>size</td>
+								<td>string</td>
+								<td>''</td>
+								<td className="usage-table__description">
+									<p>Declare the size of the dots in the spinner. Possible options:
+									<br/>
+									<code className="inline-code">sm</code> <code className="inline-code">lg</code></p>
+									Spinners automatically become small when inside of buttons
+								</td>
+							</tr>
+							<tr>
+								<td>type</td>
+								<td>string</td>
+								<td>default</td>
+								<td className="usage-table__description">
+									Declare the colour of the dots in the spinner. Possible options:
+									<br/>
+									<code className="inline-code">default</code> <code className="inline-code">primary</code> <code className="inline-code">inverted</code>
+								</td>
+							</tr>
+						</body>
+					</table>
+				</div>
 			</div>
 		);
 	}
