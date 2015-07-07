@@ -582,12 +582,6 @@ a.Button--demo-link {
 	background-color: white;
 	border: 1px solid @code-border-color;
 
-	// catchall margin removal on children
-	> div:last-child,
-	> span:last-child {
-		margin-bottom: 0;
-	}
-
 	// remove the border radius when there's corresponding code
 	&:first-child {
 		.border-bottom-radius( 0 );
