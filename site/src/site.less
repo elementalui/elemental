@@ -606,7 +606,8 @@ a.Button--demo-link {
 
 .code-example__pre {
 	background: @code-bg-color;
-	overflow: auto;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
 
 	.code-example__example + & {
 		border: 1px solid @code-border-color;
