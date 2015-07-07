@@ -7,8 +7,8 @@ const NavItems = [
 	{ value: 'forms',       label: 'Forms' },
 	{ value: 'spinner',     label: 'Spinner' },
 	{ value: 'modal',       label: 'Modal' },
-	{ value: 'grid',        label: 'Grid' },
-	{ value: 'date-picker', label: 'Date Picker' }
+	{ value: 'grid',        label: 'Grid' }
+	// { value: 'date-picker', label: 'Date Picker' }
 ];
 
 var PageNav = React.createClass({
