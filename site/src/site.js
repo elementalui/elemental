@@ -12,19 +12,20 @@ const NavItems = [
 ];
 
 var PageNav = React.createClass({
-	getInitialState: function() {
+	getInitialState () {
 		return {
-			showMenu: false
+			mobileMenuIsVisible: false
 		};
 	},
-	toggleMenu: function() {
+	toggleMenu () {
 		this.setState({
-			showMenu: !this.state.showMenu
+			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
 		});
 	},
-	render: function() {
+	render () {
 		var self = this;
-		var menuClass = this.state.showMenu ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
+		var height = window.innerHeight;
+		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
 		var menuItems = NavItems.map(function(item) {
 			return (
 				<Router.Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>
@@ -40,9 +41,9 @@ var PageNav = React.createClass({
 				{/*<Router.Link to="home">Home</Router.Link>*/}
 				<button onClick={this.toggleMenu} className="primary-nav__item primary-nav-menu-trigger">
 					<span className="primary-nav-menu-trigger-icon octicon octicon-navicon" />
-					<span className="primary-nav-menu-trigger-label">Menu</span>
+					<span className="primary-nav-menu-trigger-label">{this.state.mobileMenuIsVisible ? 'Close' : 'Menu'}</span>
 				</button>
-				<div className={menuClass}>
+				<div className={menuClass} style={{ height }}>
 					<div className="primary-nav-menu-inner">
 						{menuItems}
 					</div>
@@ -56,7 +57,7 @@ var PageNav = React.createClass({
 });
 
 var App = React.createClass({
-	render: function() {
+	render () {
 		return (
 			<div className="page-wrapper">
 				<PageNav />
