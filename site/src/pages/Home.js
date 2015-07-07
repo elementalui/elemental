@@ -3,12 +3,13 @@ var Button = require('elemental').Button;
 var Router = require('react-router');
 
 const NavItems = [
+	{ value: 'css',         icon: 'paintcan', label: 'CSS' },
 	{ value: 'buttons',     icon: 'screen-full', label: 'Buttons' },
 	{ value: 'forms',       icon: 'diff-modified', label: 'Forms' },
 	{ value: 'spinner',     icon: 'ellipsis', label: 'Spinner' },
 	{ value: 'modal',       icon: 'versions', label: 'Modal' },
 	{ value: 'grid',        icon: 'mirror', label: 'Grid' },
-	{ value: 'date-picker', icon: 'calendar', label: 'Date' }
+	// { value: 'date-picker', icon: 'calendar', label: 'Date' }
 ];
 
 var Home = React.createClass({
