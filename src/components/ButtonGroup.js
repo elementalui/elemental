@@ -1,19 +1,14 @@
-var blacklist = require('blacklist');
-var classNames = require('classnames');
+var classnames = require('classnames');
 var React = require('react/addons');
 
 module.exports = React.createClass({
 	displayName: 'ButtonGroup',
 	propTypes: {
-		children: React.PropTypes.node.isRequired
+		children: React.PropTypes.node.isRequired,
+		className: React.PropTypes.string
 	},
 	render() {
-		var componentClass = classNames('ButtonGroup', this.props.className);
-
-		// props
-		var props = blacklist(this.props, 'type', 'size', 'className');
-		props.className = componentClass;
-
-		return <div {...props}>{this.props.children}</div>;
+		var className = classnames('ButtonGroup', this.props.className);
+		return <div {...this.props} className={className} />;
 	}
 });
