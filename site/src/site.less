@@ -671,10 +671,16 @@ a.Button--demo-link {
 
 .usage-table {
 	min-height: 1px;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	
 	td, th {
 		line-height: 1.4;
 		vertical-align: top;
 	}
+}
+.usage-table__description {
+	min-width: 200px;
 }
 
 
