@@ -265,6 +265,10 @@
 		&:focus {
 			position: relative;
 		}
+		// circumvent bug where adjacent siblings would overlap on hover
+		&:focus {
+			z-index: 1;
+		}
 	}
 }
 
