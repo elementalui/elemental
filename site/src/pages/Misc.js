@@ -1,7 +1,7 @@
 var React = require('react');
 var ExampleSource = require('../components/ExampleSource');
 var Alert = require('elemental').Alert;
-var Tag = require('elemental').Tag;
+var Pill = require('elemental').Pill;
 
 var Misc = React.createClass({
 	displayName: 'VIEW_Misc',
@@ -10,7 +10,7 @@ var Misc = React.createClass({
 		return (
 			<div className="demo-container container">
 				<h1>Miscellaneous</h1>
-				<p className="lead">Some components have there own thing going on&hellip;</p>
+				<p className="lead">Some components march to the beat of their own drum&hellip;</p>
 				
 				<h2>Alerts</h2>
 				<div className="code-example">
@@ -61,22 +61,22 @@ var Misc = React.createClass({
 					</table>
 				</div>
 
-				<h2>Tags</h2>
+				<h2>Pills</h2>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Tag label="Create" type="success-inverted" />
-						<Tag label="First Tag" type="primary" showClearButton />
-						<Tag label="Second Tag" type="primary" showClearButton />
-						<Tag label="Third Tag" type="primary" showClearButton />
-						<Tag label="Clear All" />
+						<Pill label="Create" type="success-inverted" />
+						<Pill label="First Pill" type="primary" showClearButton />
+						<Pill label="Second Pill" type="primary" showClearButton />
+						<Pill label="Third Pill" type="primary" showClearButton />
+						<Pill label="Clear All" />
 					</div>
 					<ExampleSource>
 						{`
-							<Tag label="Create" type="success-inverted" />
-							<Tag label="First Tag" type="primary" showClearButton />
-							<Tag label="Second Tag" type="primary" showClearButton />
-							<Tag label="Third Tag" type="primary" showClearButton />
-							<Tag label="Clear All" />
+							<Pill label="Create" type="success-inverted" />
+							<Pill label="First Pill" type="primary" showClearButton />
+							<Pill label="Second Pill" type="primary" showClearButton />
+							<Pill label="Third Pill" type="primary" showClearButton />
+							<Pill label="Clear All" />
 						`}
 					</ExampleSource>
 				</div>

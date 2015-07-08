@@ -18,7 +18,7 @@ var ALERT_TYPES = [
 ];
 
 module.exports = React.createClass({
-	displayName: 'Tag',
+	displayName: 'Pill',
 	propTypes: {
 		className: React.PropTypes.string,
 		label: React.PropTypes.string.isRequired,
@@ -34,12 +34,12 @@ module.exports = React.createClass({
 	},
 	renderClearButton() {
 		if (!this.props.showClearButton) return null;
-		return <button onClick={this.props.onClear} className="Tag__clear">&times;</button>;
+		return <button onClick={this.props.onClear} className="Pill__clear">&times;</button>;
 	},
 	render() {
 		var componentClass = classNames(
-			'Tag',
-			'Tag--' + this.props.type,
+			'Pill',
+			'Pill--' + this.props.type,
 			this.props.className
 		);
 
@@ -48,7 +48,7 @@ module.exports = React.createClass({
 
 		return (
 			<div {...props}>
-				<button onClick={this.props.onClick} className="Tag__label">{this.props.label}</button>
+				<button onClick={this.props.onClick} className="Pill__label">{this.props.label}</button>
 				{this.renderClearButton()}
 			</div>
 		);

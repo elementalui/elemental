@@ -1,0 +1,122 @@
+//
+// Pill
+// ==============================
+
+
+
+
+// base
+
+.Pill {
+	display: inline-block;
+	font-size: .85em;
+	font-weight: 500;
+	overflow: hidden;
+	line-height: 2.2em;
+
+	& + & {
+		margin-left: .5em;
+	}
+}
+
+
+// common
+
+.Pill__label,
+.Pill__clear {
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: block;
+	float: left;
+	padding: 0 .9em;
+	-webkit-appearance: none;
+
+	// make pills - exaggerate the padding toward the radii so it looks even
+	&:first-child {
+		.border-left-radius(3em);
+		padding-left: 1.1em;
+	}
+	&:last-child {
+		.border-right-radius(3em);
+		padding-right: 1.1em;
+	}
+}
+
+
+// provide separation between the label and clear buttons
+// floating stops the margins from collapsing into eaching
+
+.Pill__label { margin-right: 1px; }
+.Pill__clear { margin-left: 1px; }
+
+
+
+
+// Variants
+// ------------------------------
+
+
+// standard
+
+.Pill--default > .Pill__label,
+.Pill--default > .Pill__clear {
+	.pill-variant(@pill-default-color, mix(@pill-default-color, @body-bg, 10%));
+}
+.Pill--primary > .Pill__label,
+.Pill--primary > .Pill__clear {
+	.pill-variant(@pill-primary-color, mix(@pill-primary-color, @body-bg, 10%));
+}
+.Pill--info > .Pill__label,
+.Pill--info > .Pill__clear {
+	.pill-variant(@pill-info-color, mix(@pill-info-color, @body-bg, 10%));
+}
+.Pill--success > .Pill__label,
+.Pill--success > .Pill__clear {
+	.pill-variant(@pill-success-color, mix(@pill-success-color, @body-bg, 10%));
+}
+.Pill--warning > .Pill__label,
+.Pill--warning > .Pill__clear {
+	.pill-variant(@pill-warning-color, mix(@pill-warning-color, @body-bg, 10%));
+}
+.Pill--danger > .Pill__label,
+.Pill--danger > .Pill__clear {
+	.pill-variant(@pill-danger-color, mix(@pill-danger-color, @body-bg, 10%));
+}
+
+
+// inverted
+
+.Pill--default-inverted > .Pill__label,
+.Pill--default-inverted > .Pill__clear {
+	.pill-inverted-variant(white, @pill-default-color);
+}
+.Pill--primary-inverted > .Pill__label,
+.Pill--primary-inverted > .Pill__clear {
+	.pill-inverted-variant(white, @pill-primary-color);
+}
+.Pill--info-inverted > .Pill__label,
+.Pill--info-inverted > .Pill__clear {
+	.pill-inverted-variant(white, @pill-info-color);
+}
+.Pill--success-inverted > .Pill__label,
+.Pill--success-inverted > .Pill__clear {
+	.pill-inverted-variant(white, @pill-success-color);
+}
+.Pill--warning-inverted > .Pill__label,
+.Pill--warning-inverted > .Pill__clear {
+	.pill-inverted-variant(white, @pill-warning-color);
+}
+.Pill--danger-inverted > .Pill__label,
+.Pill--danger-inverted > .Pill__clear {
+	.pill-inverted-variant(white, @pill-danger-color);
+}
+
+
+
+
+
+
+
+
+
