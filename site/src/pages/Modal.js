@@ -72,7 +72,7 @@ module.exports = React.createClass({
 				<div className="code-example">
 					<div className="code-example__example">
 						<div className="Modal-content">
-							<ModalHeader text="Modal Header" hasCloseButton />
+							<ModalHeader text="Modal Header" showCloseButton />
 							<ModalBody>
 								<p>Content and controls go in the Modal Body.</p>
 							</ModalBody>
@@ -85,7 +85,7 @@ module.exports = React.createClass({
 					<ExampleSource>
 						{`
 							<Modal>
-								<ModalHeader text="Modal Header" hasCloseButton />
+								<ModalHeader text="Modal Header" showCloseButton />
 								<ModalBody>
 									<p>Content and controls go in the Modal Body.</p>
 								</ModalBody>
@@ -111,7 +111,7 @@ module.exports = React.createClass({
 					<ExampleSource>
 						{`
 							<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>
-								<ModalHeader text="Live Demo" hasCloseButton onClose={this.toggleModal} />
+								<ModalHeader text="Live Demo" showCloseButton onClose={this.toggleModal} />
 								<form action="#" onSubmit={this.submitForm} noValidate>
 									<ModalBody>
 										<FormField label="Email">
@@ -155,7 +155,7 @@ module.exports = React.createClass({
 								<th>Description</th>
 							</tr>
 						</thead>
-						<body>
+						<tbody>
 							<tr>
 								<td className="usage-table__name">backdropClosesModal</td>
 								<td className="usage-table__type">bool</td>
@@ -180,7 +180,7 @@ module.exports = React.createClass({
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.</td>
 							</tr>
-						</body>
+						</tbody>
 					</table>
 				</div>
 
@@ -195,7 +195,7 @@ module.exports = React.createClass({
 								<th>Description</th>
 							</tr>
 						</thead>
-						<body>
+						<tbody>
 							<tr>
 								<td className="usage-table__name">children</td>
 								<td className="usage-table__type">node</td>
@@ -203,7 +203,7 @@ module.exports = React.createClass({
 								<td className="usage-table__description">Alternative to using the text attribute, for when you need more control over the content.</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">hasCloseButton</td>
+								<td className="usage-table__name">showCloseButton</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">Allow users to dismiss the modal.</td>
@@ -214,7 +214,7 @@ module.exports = React.createClass({
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Creates a title for the modal. We use "text" because <code className="inline-code">title</code> is reserved.</td>
 							</tr>
-						</body>
+						</tbody>
 					</table>
 				</div>
 				
@@ -222,7 +222,7 @@ module.exports = React.createClass({
 				<p>These are simple wrappers to abstract the classnames, they may become more functional in the future.</p>
 
 				<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>
-					<ModalHeader text="Live Demo" hasCloseButton onClose={this.toggleModal} />
+					<ModalHeader text="Live Demo" showCloseButton onClose={this.toggleModal} />
 					<form action="#" onSubmit={this.submitForm} noValidate>
 						<ModalBody>
 							<FormField label="Email">

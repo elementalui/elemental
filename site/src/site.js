@@ -7,7 +7,7 @@ const NavItems = [
 	{ value: 'forms',       label: 'Forms' },
 	{ value: 'spinner',     label: 'Spinner' },
 	{ value: 'modal',       label: 'Modal' },
-	{ value: 'grid',        label: 'Grid' }
+	{ value: 'misc',        label: 'Misc' }
 	// { value: 'date-picker', label: 'Date Picker' }
 ];
 
@@ -103,7 +103,7 @@ var routes = (
 		<Router.Route name="forms" path={basepath + '/forms'} handler={require('./pages/Forms')} />
 		<Router.Route name="spinner" path={basepath + '/spinner'} handler={require('./pages/Spinner')} />
 		<Router.Route name="modal" path={basepath + '/modal'} handler={require('./pages/Modal')} />
-		<Router.Route name="grid" path={basepath + '/grid'} handler={require('./pages/Grid')} />
+		<Router.Route name="misc" path={basepath + '/misc'} handler={require('./pages/Misc')} />
 		<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />
 		<Router.DefaultRoute handler={require('./pages/Home')} />
 	</Router.Route>

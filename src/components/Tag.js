@@ -9,6 +9,7 @@ var ALERT_TYPES = [
 	'primary',
 	'success',
 	'warning',
+	'danger-inverted',
 	'default-inverted',
 	'info-inverted',
 	'primary-inverted',
@@ -20,10 +21,10 @@ module.exports = React.createClass({
 	displayName: 'Tag',
 	propTypes: {
 		className: React.PropTypes.string,
-		hasClearButton: React.PropTypes.bool,
 		label: React.PropTypes.string.isRequired,
 		onClear: React.PropTypes.func,
 		onClick: React.PropTypes.func,
+		showClearButton: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(ALERT_TYPES)
 	},
 	getDefaultProps() {
@@ -32,7 +33,7 @@ module.exports = React.createClass({
 		};
 	},
 	renderClearButton() {
-		if (!this.props.hasClearButton) return null;
+		if (!this.props.showClearButton) return null;
 		return <button onClick={this.props.onClear} className="Tag__clear">&times;</button>;
 	},
 	render() {
@@ -42,7 +43,7 @@ module.exports = React.createClass({
 			this.props.className
 		);
 
-		var props = blacklist(this.props, 'className', 'hasClearButton', 'label', 'onClear', 'onClick', 'type');
+		var props = blacklist(this.props, 'className', 'showClearButton', 'label', 'onClear', 'onClick', 'type');
 		props.className = componentClass;
 
 		return (

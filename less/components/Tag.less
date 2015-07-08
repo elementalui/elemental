@@ -29,18 +29,17 @@
 	cursor: pointer;
 	display: block;
 	float: left;
-	padding: 0 1em;
+	padding: 0 .9em;
 	-webkit-appearance: none;
 
-	// make pills
-	// exaggerate the padding toward the border so it looks even
+	// make pills - exaggerate the padding toward the radii so it looks even
 	&:first-child {
 		.border-left-radius(3em);
-		padding-left: 1.2em;
+		padding-left: 1.1em;
 	}
 	&:last-child {
 		.border-right-radius(3em);
-		padding-right: 1.2em;
+		padding-right: 1.1em;
 	}
 }
 

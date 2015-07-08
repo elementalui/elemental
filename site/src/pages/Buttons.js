@@ -145,7 +145,7 @@ var Buttons = React.createClass({
 								<th>Description</th>
 							</tr>
 						</thead>
-						<body>
+						<tbody>
 							<tr>
 								<td className="usage-table__name">block</td>
 								<td className="usage-table__type">bool</td>
@@ -175,7 +175,7 @@ var Buttons = React.createClass({
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">'default'</td>
 								<td className="usage-table__description">
-									Style of the button - one of:
+									One of:
 									<br />
 									<code className="inline-code">default</code>
 									<br />
@@ -186,7 +186,7 @@ var Buttons = React.createClass({
 									<code className="inline-code">link</code> <code className="inline-code">link-text</code> <code className="inline-code">link-cancel</code> <code className="inline-code">link-delete</code>
 			 					</td>
 							</tr>
-						</body>
+						</tbody>
 					</table>
 				</div>
 
@@ -221,14 +221,14 @@ var Buttons = React.createClass({
 								<th>Description</th>
 							</tr>
 						</thead>
-						<body>
+						<tbody>
 							<tr>
 								<td className="usage-table__name">children</td>
 								<td className="usage-table__type">node</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">Required. Must use Elemental <code className="inline-code">&lt;Button /&gt;</code> components for correct styling</td>
 							</tr>
-						</body>
+						</tbody>
 					</table>
 				</div>
 
@@ -268,7 +268,7 @@ var Buttons = React.createClass({
 								<th>Description</th>
 							</tr>
 						</thead>
-						<body>
+						<tbody>
 							<tr>
 								<td className="usage-table__name">alignRight</td>
 								<td className="usage-table__type">bool</td>
@@ -317,7 +317,7 @@ var Buttons = React.createClass({
 								<td className="usage-table__default">function()&nbsp;&#123;&#125;</td>
 								<td className="usage-table__description">The function that is called on each menu item when clicked</td>
 							</tr>
-						</body>
+						</tbody>
 					</table>
 				</div>
 			</div>

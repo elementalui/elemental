@@ -13,12 +13,8 @@ module.exports = React.createClass({
 	displayName: 'ElementalAlert',
 	propTypes: {
 		className: React.PropTypes.string,
-		type: React.PropTypes.oneOf(ALERT_TYPES)
-	},
-	getDefaultProps() {
-		return {
-			type: 'default'
-		};
+		children: React.PropTypes.node.isRequired,
+		type: React.PropTypes.oneOf(ALERT_TYPES).isRequired
 	},
 	render() {
 		var componentClass = classNames(

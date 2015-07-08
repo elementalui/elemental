@@ -646,7 +646,7 @@ var Forms = React.createClass({
 								<th>Description</th>
 							</tr>
 						</thead>
-						<body>
+						<tbody>
 							<tr>
 								<td>label</td>
 								<td>string</td>
@@ -672,7 +672,7 @@ var Forms = React.createClass({
 									<code className="inline-code inline-code--list-item">one-half</code> <code className="inline-code inline-code--list-item">two-quarters</code> <code className="inline-code inline-code--list-item">three-sixths</code> <code className="inline-code inline-code--list-item">one-quarter</code> <code className="inline-code inline-code--list-item">three-quarters</code> <code className="inline-code inline-code--list-item">one-third</code> <code className="inline-code inline-code--list-item">two-sixths</code> <code className="inline-code inline-code--list-item">two-thirds</code> <code className="inline-code inline-code--list-item">four-sixths</code> <code className="inline-code inline-code--list-item">one-fifth</code> <code className="inline-code inline-code--list-item">two-fifths</code> <code className="inline-code inline-code--list-item">three-fifths</code> <code className="inline-code inline-code--list-item">four-fifths</code> <code className="inline-code inline-code--list-item">one-sixth</code> <code className="inline-code inline-code--list-item">five-sixths</code>
 								</td>
 							</tr>
-						</body>
+						</tbody>
 					</table>
 				</div>
 
