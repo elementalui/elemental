@@ -578,7 +578,6 @@ a.Button--demo-link {
 
 .code-example__pre,
 .code-example__example {
-	border-radius: @border-radius-base;
 	padding: 20px;
 }
 
@@ -614,14 +613,14 @@ a.Button--demo-link {
 
 .code-example__pre {
 	background: @code-bg-color;
+	border: 1px solid @code-border-color;
+	border-top: none;
+	margin: 0;
 	overflow-x: scroll;
 	-webkit-overflow-scrolling: touch;
 
-	.code-example__example + & {
-		border: 1px solid @code-border-color;
-		border-top: none;
-		border-radius: 0 0 @border-radius-base @border-radius-base;
-		margin: 0;
+	&:last-child {
+		.border-bottom-radius( @border-radius-base );
 	}
 }
 

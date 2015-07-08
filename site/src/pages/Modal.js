@@ -105,18 +105,11 @@ module.exports = React.createClass({
 					</div>
 					<ExampleSource>
 						{`
-							<!-- JS -->
-							var submitButton = this.state.formProcessing ? (
-								<Button type="primary" disabled>
-									<Spinner type="inverted" />
-									Submitting
-								</Button>
-							) : (
-								<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>
-							);
-
-							<!-- XML -->
 							<Button onClick={this.toggleModal}>Launch Modal</Button>
+						`}
+					</ExampleSource>
+					<ExampleSource>
+						{`
 							<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>
 								<ModalHeader text="Live Demo" hasCloseButton onClose={this.toggleModal} />
 								<form action="#" onSubmit={this.submitForm} noValidate>
@@ -134,6 +127,18 @@ module.exports = React.createClass({
 									</ModalFooter>
 								</form>
 							</Modal>
+						`}
+					</ExampleSource>
+					<ExampleSource>
+						{`
+							var submitButton = this.state.formProcessing ? (
+								<Button type="primary" disabled>
+									<Spinner type="inverted" />
+									Submitting
+								</Button>
+							) : (
+								<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>
+							);
 						`}
 					</ExampleSource>
 				</div>
