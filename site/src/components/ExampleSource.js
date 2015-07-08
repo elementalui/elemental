@@ -1,8 +1,14 @@
+var classNames = require('classnames');
 var React = require('react');
 
 var ExampleSource = React.createClass({
 	propTypes: {
 		children: React.PropTypes.string.isRequired
+	},
+	getDefaultProps () {
+		return {
+			language: 'markup'
+		}
 	},
 	fixIndentation (children) {
 		if (typeof children !== 'string') return children;
@@ -16,9 +22,12 @@ var ExampleSource = React.createClass({
 		return lines.join('\n');
 	},
 	render () {
+		var codeClass = classNames('code-example__code', (
+			'language-' + this.props.language
+		));
 		return (
 			<pre className="code-example__pre">
-				<code className="code-example__code language-markup">
+				<code className={codeClass}>
 					{this.fixIndentation(this.props.children)}
 				</code>
 			</pre>
