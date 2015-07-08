@@ -25,6 +25,7 @@
 	left: 0;
 	margin-left: auto;
 	margin-right: auto;
+	padding: @grid-gutter-width / 2;
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -46,6 +47,8 @@
 
 .Modal-content {
 	background-color: @modal-bg;
+	border-radius: @border-radius-base;
+	box-shadow: 0 0 0 1px rgba(0,0,0,.175), 0 3px 8px rgba(0,0,0,.175);
 	outline: none; // remove focus outline from opened modal
 	position: relative;
 }
@@ -59,10 +62,6 @@
 		margin-top: 100px;
 		width: @screen-sm;
 	}
-	.Modal-content {
-		border-radius: @border-radius-base;
-		box-shadow: 0 0 0 1px rgba(0,0,0,.175), 0 3px 8px rgba(0,0,0,.175);
-	}
 }
 
 
@@ -72,9 +71,9 @@
 // ------------------------------
 
 // common
-.Modal-header,
-.Modal-body,
-.Modal-footer {
+.Modal__header,
+.Modal__body,
+.Modal__footer {
 	margin-left: @modal-padding-horizontal;
 	margin-right: @modal-padding-horizontal;
 	padding-bottom: @modal-padding-vertical;
@@ -83,11 +82,11 @@
 }
 
 // header
-.Modal-header {
+.Modal__header {
 	box-shadow: 0 2px 0 rgba(0,0,0,.05);
 	z-index: 1;
 }
-.Modal-title {
+.Modal__header__text {
 	color: inherit;
 	font-size: 18px;
 	font-weight: 500;
@@ -96,15 +95,14 @@
 }
 
 // close button
-.Modal-close {
+.Modal__header__close {
 	.transition(opacity 140ms);
 	// dechrome
 	background: none;
 	border: none;
 	cursor: pointer;
-	line-height: 1ex;
+	line-height: 1ex; // get it? ;)
 	margin: 0;
-	padding: 0;
 	
 	// style and position
 	opacity: .4;
@@ -130,16 +128,16 @@
 }
 
 // body
-.Modal-body {
+.Modal__body {
 	margin: 0;
-	max-height: @modal-body-height;
-	overflow: scroll;
+	// max-height: @modal-body-height;
+	// overflow: scroll;
 	padding: @modal-padding-vertical @modal-padding-horizontal;
-	-webkit-overflow-scrolling: touch;
+	// -webkit-overflow-scrolling: touch;
 }
 
 // footer
-.Modal-footer {
+.Modal__footer {
 	box-shadow: 0 -2px 0 rgba(0,0,0,.05);
 	z-index: 1;
 }

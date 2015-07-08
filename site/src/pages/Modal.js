@@ -4,7 +4,12 @@ var Button = require('elemental').Button;
 var FormField = require('elemental').FormField;
 var FormInput = require('elemental').FormInput;
 var Modal = require('elemental').Modal;
+var ModalBody = require('elemental').ModalBody;
+var ModalFooter = require('elemental').ModalFooter;
+var ModalHeader = require('elemental').ModalHeader;
 var Spinner = require('elemental').Spinner;
+
+var ExampleSource = require('../components/ExampleSource');
 
 module.exports = React.createClass({
 	displayName: 'VIEW_Modal',
@@ -12,72 +17,220 @@ module.exports = React.createClass({
 		return {
 			formProcessing: false,
 			modalIsOpen: false,
-			'inputEmail': '',
-			'inputPassword': ''
+			email: '',
+			password: ''
 		};
 	},
 	toggleModal() {
-		this.setState({ modalIsOpen: !this.state.modalIsOpen });
-	},
-	submitForm() {
 		var self = this;
-		self.setState({ formProcessing: true });
+		this.setState({
+			modalIsOpen: !this.state.modalIsOpen
+		}, function () {
+			if (self.state.modalIsOpen) {
+				self.refs.email.getDOMNode().focus();
+			}
+		});
+	},
+	submitForm(e) {
+		e.preventDefault();
+		var self = this;
+		this.setState({ formProcessing: true });
 
 		setTimeout(function() {
-			self.setState({ formProcessing: false, modalIsOpen: false });
-		}, 4000);
+			self.setState({
+				formProcessing: false,
+				modalIsOpen: false,
+				email: '',
+				password: ''
+			});
+		}, 3000);
 	},
 	render() {
 		var self = this;
 
-		// handle form input and validation
-		function updateEmail(e) {
-			self.setState({ inputEmail: e.target.value });
-		}
-		function updatePassword(e) {
-			self.setState({ inputPassword: e.target.value });
-		}
+		// handle form input
+		function updateInput(e) {
+			var newState = {};
+			newState[e.target.name] = e.target.value;
+			self.setState(newState);
+		};
 
+		// variable submit button
 		var submitButton = this.state.formProcessing ? (
-			<Button onClick={this.submitForm} type="primary" disabled>
+			<Button type="primary" disabled>
 				<Spinner type="inverted" />
 				Submitting
 			</Button>
 		) : (
-			<Button onClick={this.submitForm} type="primary" disabled={!this.state.inputEmail || !this.state.inputPassword}>Submit</Button>
+			<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>
 		);
 		return (
 			<div className="demo-container container">
 				<h1>Modal</h1>
-				<p>Buy why, some say, the moon? Why choose this as our goal? And they may as well ask why climb the highest mountain?</p>
-				<p>The sky is the limit only for those who aren't afraid to fly!</p>
-				<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
-				<Button onClick={this.toggleModal}>Launch Modal</Button>
-				<p>If you could see the earth illuminated when you were in a place as dark as night, it would look to you more splendid than the moon.</p>
-				<p>NASA is not about the ‘Adventure of Human Space Exploration’…We won’t be doing it just to get out there in space – we’ll be doing it because the things we learn out there will be making life better for a lot of people who won’t be able to go.</p>
-				<p>It suddenly struck me that that tiny pea, pretty and blue, was the Earth. I put up my thumb and shut one eye, and my thumb blotted out the planet Earth. I didn't feel like a giant. I felt very, very small.</p>
-				<p>We choose to go to the moon in this decade and do the other things, not because they are easy, but because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one which we intend to win.</p>
-				<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
-				<p>It suddenly struck me that that tiny pea, pretty and blue, was the Earth. I put up my thumb and shut one eye, and my thumb blotted out the planet Earth. I didn't feel like a giant. I felt very, very small.</p>
-				<p>Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next 10.</p>
-				<p>We have an infinite amount to learn both from nature and from each other</p>
-				<p>The Earth was small, light blue, and so touchingly alone, our home that must be defended like a holy relic. The Earth was absolutely round. I believe I never knew what the word round meant until I saw Earth from space.</p>
-				<p>We want to explore. We’re curious people. Look back over history, people have put their lives at stake to go out and explore … We believe in what we’re doing. Now it’s time to go.</p>
-				<Button onClick={this.toggleModal}>Launch Modal</Button>
-				<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} headerTitle="Modal Header" headerHasCloseButton backdropClosesModal>
-					<form>
-						<div className="Modal-body">
+
+				<h2>Static Example</h2>
+				<div className="code-example">
+					<div className="code-example__example">
+						<div className="Modal-content">
+							<ModalHeader text="Modal Header" hasCloseButton />
+							<ModalBody>
+								<p>Content and controls go in the Modal Body.</p>
+							</ModalBody>
+							<ModalFooter>
+								<Button type="primary">Modal Footer</Button>
+								<Button type="link-cancel">Button</Button>
+							</ModalFooter>
+						</div>
+					</div>
+					<ExampleSource>
+						{`
+							<Modal>
+								<ModalHeader text="Modal Header" hasCloseButton />
+								<ModalBody>
+									<p>Content and controls go in the Modal Body.</p>
+								</ModalBody>
+								<ModalFooter>
+									<Button type="primary">Modal Footer</Button>
+									<Button type="link-cancel">Button</Button>
+								</ModalFooter>
+							</Modal>
+						`}
+					</ExampleSource>
+				</div>
+				
+				<h2>Live Demo</h2>
+				<div className="code-example">
+					<div className="code-example__example">
+						<Button onClick={this.toggleModal}>Launch Modal</Button>
+					</div>
+					<ExampleSource>
+						{`
+							<!-- JS -->
+							var submitButton = this.state.formProcessing ? (
+								<Button type="primary" disabled>
+									<Spinner type="inverted" />
+									Submitting
+								</Button>
+							) : (
+								<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>
+							);
+
+							<!-- XML -->
+							<Button onClick={this.toggleModal}>Launch Modal</Button>
+							<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>
+								<ModalHeader text="Live Demo" hasCloseButton onClose={this.toggleModal} />
+								<form action="#" onSubmit={this.submitForm} noValidate>
+									<ModalBody>
+										<FormField label="Email">
+											<FormInput label="Email" type="email" name="email" ref="email" value={this.state.email} onChange={updateInput} required />
+										</FormField>
+										<FormField label="Password">
+											<FormInput label="Password" type="password" name="password" ref="password" value={this.state.password} onChange={updateInput} required />
+										</FormField>
+									</ModalBody>
+									<ModalFooter>
+										{submitButton}
+										<Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>
+									</ModalFooter>
+								</form>
+							</Modal>
+						`}
+					</ExampleSource>
+				</div>
+				
+				<h2>Usage</h2>
+				<h3>Modal</h3>
+				<div className="usage-table">
+					<table className="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<body>
+							<tr>
+								<td className="usage-table__name">backdropClosesModal</td>
+								<td className="usage-table__type">bool</td>
+								<td className="usage-table__default">false</td>
+								<td className="usage-table__description">Pass through to make the backdrop available as a target to dismiss the modal.</td>
+							</tr>
+							<tr>
+								<td className="usage-table__name">isOpen</td>
+								<td className="usage-table__type">bool</td>
+								<td className="usage-table__default">false</td>
+								<td className="usage-table__description">Managed by state;  this is how to control the visibility of the modal.</td>
+							</tr>
+							<tr>
+								<td className="usage-table__name">onCancel</td>
+								<td className="usage-table__type">func</td>
+								<td className="usage-table__default">undefined</td>
+								<td className="usage-table__description">The function used to handle cancel events on the modal; typically sets the open state to <code className="inline-code">false</code></td>
+							</tr>
+							<tr>
+								<td className="usage-table__name">top</td>
+								<td className="usage-table__type">string</td>
+								<td className="usage-table__default">''</td>
+								<td className="usage-table__description">Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.</td>
+							</tr>
+						</body>
+					</table>
+				</div>
+
+				<h3>Modal Header</h3>
+				<div className="usage-table">
+					<table className="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<body>
+							<tr>
+								<td className="usage-table__name">children</td>
+								<td className="usage-table__type">node</td>
+								<td className="usage-table__default">undefined</td>
+								<td className="usage-table__description">Alternative to using the text attribute, for when you need more control over the content.</td>
+							</tr>
+							<tr>
+								<td className="usage-table__name">hasCloseButton</td>
+								<td className="usage-table__type">bool</td>
+								<td className="usage-table__default">false</td>
+								<td className="usage-table__description">Allow users to dismiss the modal.</td>
+							</tr>
+							<tr>
+								<td className="usage-table__name">text</td>
+								<td className="usage-table__type">string</td>
+								<td className="usage-table__default">''</td>
+								<td className="usage-table__description">Creates a title for the modal. We use "text" because <code className="inline-code">title</code> is reserved.</td>
+							</tr>
+						</body>
+					</table>
+				</div>
+				
+				<h3>Modal Body/Footer</h3>
+				<p>These are simple wrappers to abstract the classnames, they may become more functional in the future.</p>
+
+				<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>
+					<ModalHeader text="Live Demo" hasCloseButton onClose={this.toggleModal} />
+					<form action="#" onSubmit={this.submitForm} noValidate>
+						<ModalBody>
 							<FormField label="Email">
-								<FormInput label="Email" type="email" value={this.state.inputEmail} onChange={updateEmail} required />
+								<FormInput label="Email" type="email" name="email" ref="email" value={this.state.email} onChange={updateInput} required />
 							</FormField>
 							<FormField label="Password">
-								<FormInput label="Password" type="password" value={this.state.inputPassword} onChange={updatePassword} required />
+								<FormInput label="Password" type="password" name="password" ref="password" value={this.state.password} onChange={updateInput} required />
 							</FormField>
-						</div>
-						<div className="Modal-footer">
+						</ModalBody>
+						<ModalFooter>
 							{submitButton}
 							<Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>
-						</div>
+						</ModalFooter>
 					</form>
 				</Modal>
 			</div>
