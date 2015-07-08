@@ -24,10 +24,13 @@ var taskConfig = {
 		dist: 'site/dist',
 		files: [
 			'.gitignore',
-			'CNAME',
-			'index.html',
 			'404.html',
-			'images/*'
+			'404.html',
+			'CNAME',
+			'images/*',
+			'index.html',
+			'prism.css',
+			'prism.js'
 		],
 		scripts: [
 			'site.js'
