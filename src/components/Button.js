@@ -26,7 +26,6 @@ module.exports = React.createClass({
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		href: React.PropTypes.string,
-		onClick: React.PropTypes.func,
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(BUTTON_TYPES)

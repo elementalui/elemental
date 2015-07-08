@@ -66,9 +66,9 @@ var Buttons = React.createClass({
 						</thead>
 						<body>
 							<tr>
-								<td>size</td>
-								<td>string</td>
-								<td>''</td>
+								<td className="usage-table__name">size</td>
+								<td className="usage-table__type">string</td>
+								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">
 									<p>Declare the size of the dots in the spinner. Possible options:
 									<br/>
@@ -77,9 +77,9 @@ var Buttons = React.createClass({
 								</td>
 							</tr>
 							<tr>
-								<td>type</td>
-								<td>string</td>
-								<td>default</td>
+								<td className="usage-table__name">type</td>
+								<td className="usage-table__type">string</td>
+								<td className="usage-table__default">default</td>
 								<td className="usage-table__description">
 									Declare the colour of the dots in the spinner. Possible options:
 									<br/>
