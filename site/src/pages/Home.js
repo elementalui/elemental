@@ -18,7 +18,7 @@ var Home = React.createClass({
 	render () {
 		var menuItems = NavItems.map(function(item) {
 			return (
-				<div className="demo-banner-nav__col col-xs-4 col-sm-2">
+				<div key={item.label} className="demo-banner-nav__col col-xs-4 col-sm-2">
 					<Router.Link key={item.value} className="demo-banner-nav__item" onClick={self.toggleMenu} to={item.value}>
 						<span className={'demo-banner-nav__icon octicon octicon-' + item.icon} />
 						<div className="demo-banner-nav__label">
@@ -36,8 +36,8 @@ var Home = React.createClass({
 						<h1 className="demo-banner__heading demo-banner__heading-1">Elemental UI</h1>
 						<h2 className="demo-banner__heading demo-banner__heading-2">A UI Toolkit for React.js Websites and Apps</h2>
 						<div className="demo-banner__buttons">
-							<Button type="demo-primary" href="https://twitter.com/elementalui" target="_blank">Follow @ElementalUI on Twitter</Button>
-							<Button type="demo-link" href="https://github.com/elementalui/elemental" target="_blank">View the GitHub Project</Button>
+							<a className="Button Button--demo-primary" href="https://twitter.com/elementalui" target="_blank">Follow @ElementalUI on Twitter</a>
+							<a className="Button Button--demo-link" href="https://github.com/elementalui/elemental" target="_blank">View the GitHub Project</a>
 						</div>
 					</div>
 				</header>
