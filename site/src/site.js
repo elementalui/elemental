@@ -14,17 +14,36 @@ const NavItems = [
 var PageNav = React.createClass({
 	getInitialState () {
 		return {
-			mobileMenuIsVisible: false
+			mobileMenuIsVisible: false,
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
 		};
 	},
+
+	handleResize (e) {
+		this.setState({
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
+		});
+	},
+
+	componentDidMount () {
+		window.addEventListener('resize', this.handleResize);
+	},
+
+	componentWillUnmount () {
+		window.removeEventListener('resize', this.handleResize);
+	},
+
 	toggleMenu () {
 		this.setState({
 			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
 		});
 	},
+
 	render () {
 		var self = this;
-		var height = window.innerHeight;
+		var height = (this.state.windowWidth < 768) ? this.state.windowHeight : 'auto';
 		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
 		var menuItems = NavItems.map(function(item) {
 			return (
