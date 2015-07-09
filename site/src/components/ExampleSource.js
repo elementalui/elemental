@@ -1,3 +1,4 @@
+/* global Prism */
 var classNames = require('classnames');
 var React = require('react');
 
@@ -9,6 +10,15 @@ var ExampleSource = React.createClass({
 		return {
 			language: 'markup'
 		}
+	},
+	componentDidMount () {
+		this.hightlight();
+	},
+	componentDidUpdate () {
+		this.hightlight();
+	},
+	hightlight () {
+		Prism.highlightElement(this.refs.code.getDOMNode(), true);
 	},
 	fixIndentation (children) {
 		if (typeof children !== 'string') return children;
@@ -27,7 +37,7 @@ var ExampleSource = React.createClass({
 		));
 		return (
 			<pre className="code-example__pre">
-				<code className={codeClass}>
+				<code ref="code" className={codeClass}>
 					{this.fixIndentation(this.props.children)}
 				</code>
 			</pre>
