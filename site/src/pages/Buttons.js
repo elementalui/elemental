@@ -147,31 +147,31 @@ var Buttons = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__name">block</td>
+								<td className="usage-table__prop">block</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">Turns the button into a block-level element which will fill the width of its container</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">href</td>
+								<td className="usage-table__prop">href</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">When provided the component will render as an <code className="inline-code">&lt;a&gt;</code> instead of <code className="inline-code">&lt;button&gt;</code></td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">size</td>
+								<td className="usage-table__prop">size</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Size of the button - one of: <code className="inline-code">lg</code> <code className="inline-code">sm</code> <code className="inline-code">xs</code></td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">submit</td>
+								<td className="usage-table__prop">submit</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">Applies the <code className="inline-code">submit</code> attribute to the button for use in forms</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">type</td>
+								<td className="usage-table__prop">type</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">'default'</td>
 								<td className="usage-table__description">
@@ -223,7 +223,7 @@ var Buttons = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__name">children</td>
+								<td className="usage-table__prop">children</td>
 								<td className="usage-table__type">node</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">Required. Must use Elemental <code className="inline-code">&lt;Button /&gt;</code> components for correct styling</td>
@@ -270,49 +270,49 @@ var Buttons = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__name">alignRight</td>
+								<td className="usage-table__prop">alignRight</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">The dropdown menu is aligned left by default, apply this attribute to right align the dropdown menu</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">buttonHasDisclosureArrow</td>
+								<td className="usage-table__prop">buttonHasDisclosureArrow</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">true</td>
 								<td className="usage-table__description">Display a disclosure arrow along with the label of the button. Ignore if a custom trigger is employed</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">buttonLabel</td>
+								<td className="usage-table__prop">buttonLabel</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Whatever action the button represents</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">buttonType</td>
+								<td className="usage-table__prop">buttonType</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">See above section on button types</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">children</td>
+								<td className="usage-table__prop">children</td>
 								<td className="usage-table__type">element</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">A single child, cloned and used as the dropdown's trigger element</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">isOpen</td>
+								<td className="usage-table__prop">isOpen</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">The dropdown menu is controlled by user input. Use this if you need to manually toggle the open state of the dropdown menu</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">items</td>
+								<td className="usage-table__prop">items</td>
 								<td className="usage-table__type">array</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">The list of items to display in the menu formatted</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">onSelect</td>
+								<td className="usage-table__prop">onSelect</td>
 								<td className="usage-table__type">func</td>
 								<td className="usage-table__default">function()&nbsp;&#123;&#125;</td>
 								<td className="usage-table__description">The function that is called on each menu item when clicked</td>

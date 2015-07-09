@@ -42,13 +42,13 @@ var Misc = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__name">children</td>
+								<td className="usage-table__prop">children</td>
 								<td className="usage-table__type">node</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">Required</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">type</td>
+								<td className="usage-table__prop">type</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Required. 
@@ -93,25 +93,25 @@ var Misc = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__name">showClearButton</td>
+								<td className="usage-table__prop">showClearButton</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">Display the clear button, rendered beside the label</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">label</td>
+								<td className="usage-table__prop">label</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">Required. The tag label</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">onClear</td>
+								<td className="usage-table__prop">onClear</td>
 								<td className="usage-table__type">func</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">Run when the user clicks the clear button</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">type</td>
+								<td className="usage-table__prop">type</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">'default'</td>
 								<td className="usage-table__description">

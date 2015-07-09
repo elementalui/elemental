@@ -157,25 +157,25 @@ module.exports = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__name">backdropClosesModal</td>
+								<td className="usage-table__prop">backdropClosesModal</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">Pass through to make the backdrop available as a target to dismiss the modal.</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">isOpen</td>
+								<td className="usage-table__prop">isOpen</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">Managed by state;  this is how to control the visibility of the modal.</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">onCancel</td>
+								<td className="usage-table__prop">onCancel</td>
 								<td className="usage-table__type">func</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">The function used to handle cancel events on the modal; typically sets the open state to <code className="inline-code">false</code></td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">top</td>
+								<td className="usage-table__prop">top</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.</td>
@@ -197,25 +197,25 @@ module.exports = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__name">children</td>
+								<td className="usage-table__prop">children</td>
 								<td className="usage-table__type">node</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">Alternative to using the text attribute, for when you need more control over the content.</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">showCloseButton</td>
+								<td className="usage-table__prop">showCloseButton</td>
 								<td className="usage-table__type">bool</td>
 								<td className="usage-table__default">false</td>
 								<td className="usage-table__description">Allow users to dismiss the modal.</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">onClose</td>
+								<td className="usage-table__prop">onClose</td>
 								<td className="usage-table__type">func</td>
 								<td className="usage-table__default">undefined</td>
 								<td className="usage-table__description">What to do when the user clicks the close button</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">text</td>
+								<td className="usage-table__prop">text</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Creates a title for the modal. We use "text" because <code className="inline-code">title</code> is reserved.</td>

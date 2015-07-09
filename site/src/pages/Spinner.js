@@ -66,7 +66,7 @@ var Buttons = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__name">size</td>
+								<td className="usage-table__prop">size</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">
@@ -77,7 +77,7 @@ var Buttons = React.createClass({
 								</td>
 							</tr>
 							<tr>
-								<td className="usage-table__name">type</td>
+								<td className="usage-table__prop">type</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">default</td>
 								<td className="usage-table__description">
