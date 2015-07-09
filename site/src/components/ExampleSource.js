@@ -12,12 +12,12 @@ var ExampleSource = React.createClass({
 		}
 	},
 	componentDidMount () {
-		this.hightlight();
+		this.highlight();
 	},
 	componentDidUpdate () {
-		this.hightlight();
+		this.highlight();
 	},
-	hightlight () {
+	highlight () {
 		Prism.highlightElement(this.refs.code.getDOMNode(), true);
 	},
 	fixIndentation (children) {
