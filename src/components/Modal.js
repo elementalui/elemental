@@ -50,3 +50,9 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+
+// expose the children to the top level export
+module.exports.Body = require('./ModalBody');
+module.exports.Footer = require('./ModalFooter');
+module.exports.Header = require('./ModalHeader');

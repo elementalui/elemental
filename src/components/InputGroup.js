@@ -26,5 +26,5 @@ module.exports = React.createClass({
 	}
 });
 
-// expose the addon to the top level export
+// expose the child to the top level export
 module.exports.Section = require('./InputGroupSection');

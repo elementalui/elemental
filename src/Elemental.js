@@ -15,6 +15,7 @@ exports.FormNote = require('./components/FormNote');
 exports.FormRow = require('./components/FormRow');
 exports.FormSelect = require('./components/FormSelect');
 exports.InputGroup = require('./components/InputGroup');
+exports.InputGroupSection = require('./components/InputGroupSection');
 exports.Modal = require('./components/Modal');
 exports.ModalBody = require('./components/ModalBody');
 exports.ModalFooter = require('./components/ModalFooter');
