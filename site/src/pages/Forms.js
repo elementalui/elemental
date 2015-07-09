@@ -121,7 +121,7 @@ var Forms = React.createClass({
 
 				
 				<h2>Basic Example</h2>
-				<p>Individual form controls automatically receive some global styling. All textual <code className="inline-code">{`<FormInput>`}</code>, and <code className="inline-code">{`<FormSelect>`}</code> elements with are set to <code className="inline-code">width: 100%;</code> by default. Wrap controls in <code className="inline-code">{`<FormGroup>`}</code> for optimum spacing.</p>
+				<p>Individual form controls automatically receive some global styling. All textual <code className="inline-code">{`<FormInput>`}</code>, and <code className="inline-code">{`<FormSelect>`}</code> elements with are set to <code className="inline-code">width: 100%;</code> by default. Wrap controls in <code className="inline-code">{`<FormField>`}</code> for optimum spacing.</p>
 				<div className="code-example">
 					<div className="code-example__example">
 						<form>
@@ -158,7 +158,7 @@ var Forms = React.createClass({
 
 				
 				<h2>Horizontal Form</h2>
-				<p>Adding the class <code className="inline-code">.form-horizontal</code> to your wrapper (which doesn't have to be a <code className="inline-code">{`<form>`}</code> tag) changes the <code className="inline-code">FormGroup</code> component to behave like a row. The label width can be updated from inside the LESS variables file where it's defined as <code className="inline-code">@form-label-width</code>. This only applies to forms within viewports that are at least 768px wide.</p>
+				<p>Adding the class <code className="inline-code">.form-horizontal</code> to your wrapper (which doesn't have to be a <code className="inline-code">{`<form>`}</code> tag) changes the <code className="inline-code">FormField</code> component to behave like a row. The label width can be updated from inside the LESS variables file where it's defined as <code className="inline-code">@form-label-width</code>. This only applies to forms within viewports that are at least 768px wide.</p>
 				<div className="code-example">
 					<div className="code-example__example">
 						<form className="horizontal-form">
