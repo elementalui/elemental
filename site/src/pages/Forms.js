@@ -121,7 +121,7 @@ var Forms = React.createClass({
 
 				
 				<h2>Basic Example</h2>
-				<p>Individual form controls automatically receive some global styling. All textual <code className="inline-code">{`<FormInput>`}</code>, and <code className="inline-code">{`<FormSelect>`}</code> elements with are set to width: 100%; by default. Wrap controls in <code className="inline-code">{`<FormGroup>`}</code> for optimum spacing.</p>
+				<p>Individual form controls automatically receive some global styling. All textual <code className="inline-code">{`<FormInput>`}</code>, and <code className="inline-code">{`<FormSelect>`}</code> elements with are set to <code className="inline-code">width: 100%;</code> by default. Wrap controls in <code className="inline-code">{`<FormGroup>`}</code> for optimum spacing.</p>
 				<div className="code-example">
 					<div className="code-example__example">
 						<form>
