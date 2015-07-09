@@ -34,7 +34,7 @@ var Misc = React.createClass({
 					<table className="table">
 						<thead>
 							<tr>
-								<th>Name</th>
+								<th>Prop</th>
 								<th>Type</th>
 								<th>Default</th>
 								<th>Description</th>
@@ -85,7 +85,7 @@ var Misc = React.createClass({
 					<table className="table">
 						<thead>
 							<tr>
-								<th>Name</th>
+								<th>Prop</th>
 								<th>Type</th>
 								<th>Default</th>
 								<th>Description</th>
