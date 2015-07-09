@@ -54,7 +54,7 @@ code[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #4aacb8;
+	color: #138492;
 }
 
 .token.selector,
@@ -63,7 +63,7 @@ code[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #157581;
+	color: #31adb8;
 }
 
 .token.operator,
