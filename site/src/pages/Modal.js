@@ -209,6 +209,12 @@ module.exports = React.createClass({
 								<td className="usage-table__description">Allow users to dismiss the modal.</td>
 							</tr>
 							<tr>
+								<td className="usage-table__name">onClose</td>
+								<td className="usage-table__type">func</td>
+								<td className="usage-table__default">undefined</td>
+								<td className="usage-table__description">What to do when the user clicks the close button</td>
+							</tr>
+							<tr>
 								<td className="usage-table__name">text</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
