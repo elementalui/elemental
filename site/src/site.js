@@ -85,7 +85,7 @@ var App = React.createClass({
 				</div>
 				<div className="page-footer">
 					<div className="demo-container container">
-						Copyright &copy; 2015 &middot; (MIT) License &middot; Built by <a href="https://twitter.com/jedwatson">@jedwatson</a> and <a href="https://twitter.com/jossmackison">@jossmackison</a> at <a href="http://www.thinkmill.com.au" target="_blank">Thinkmill</a>
+						Copyright &copy; 2015 &middot; (MIT) License &middot; Built by <a href="http://www.thinkmill.com.au" target="_blank">Thinkmill</a>, initially for integration with <a href="http://www.keystonejs.com" target="_blank">KeystoneJS</a>
 					</div>
 				</div>
 			</div>
