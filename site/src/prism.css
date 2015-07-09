@@ -9,6 +9,7 @@ code[class*="language-"] {
 	color: black;
 	direction: ltr;
 	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	font-size: 12px;
 	line-height: 1.5;
 	text-align: left;
 	white-space: pre;
@@ -53,7 +54,7 @@ code[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #905;
+	color: #4aacb8;
 }
 
 .token.selector,
@@ -62,7 +63,7 @@ code[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #690;
+	color: #157581;
 }
 
 .token.operator,
