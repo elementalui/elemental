@@ -1,139 +1,4 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var Router = require('react-router');
-
-var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'grid', label: 'Grid' }, { value: 'date-picker', label: 'Date Picker' }];
-
-var PageNav = React.createClass({
-	displayName: 'PageNav',
-
-	getInitialState: function getInitialState() {
-		return {
-			showMenu: false
-		};
-	},
-	toggleMenu: function toggleMenu() {
-		this.setState({
-			showMenu: !this.state.showMenu
-		});
-	},
-	render: function render() {
-		var self = this;
-		var menuClass = this.state.showMenu ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
-		var menuItems = NavItems.map(function (item) {
-			return React.createElement(
-				Router.Link,
-				{ key: item.value, className: 'primary-nav__item', onClick: self.toggleMenu, to: item.value },
-				React.createElement(
-					'span',
-					{ className: 'primary-nav__item-inner' },
-					item.label
-				)
-			);
-		});
-		return React.createElement(
-			'nav',
-			{ className: 'primary-nav' },
-			React.createElement(
-				Router.Link,
-				{ to: 'home', className: 'primary-nav__brand special', title: 'Home' },
-				React.createElement('img', { src: './images/elemental-logo-paths.svg', className: 'primary-nav__brand-src' })
-			),
-			React.createElement(
-				'button',
-				{ onClick: this.toggleMenu, className: 'primary-nav__item primary-nav-menu-trigger' },
-				React.createElement('span', { className: 'primary-nav-menu-trigger-icon octicon octicon-navicon' }),
-				React.createElement(
-					'span',
-					{ className: 'primary-nav-menu-trigger-label' },
-					'Menu'
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: menuClass },
-				React.createElement(
-					'div',
-					{ className: 'primary-nav-menu-inner' },
-					menuItems
-				)
-			),
-			React.createElement(
-				'a',
-				{ href: 'https://github.com/elementalui/elemental', target: '_blank', title: 'View on GitHub', className: 'primary-nav__brand right' },
-				React.createElement('img', { src: './images/github-logo.svg', className: 'primary-nav__brand-src' })
-			)
-		);
-	}
-});
-
-var App = React.createClass({
-	displayName: 'App',
-
-	render: function render() {
-		return React.createElement(
-			'div',
-			{ className: 'page-wrapper' },
-			React.createElement(PageNav, null),
-			React.createElement(
-				'div',
-				{ className: 'page-body' },
-				React.createElement(Router.RouteHandler, null)
-			),
-			React.createElement(
-				'div',
-				{ className: 'page-footer' },
-				React.createElement(
-					'div',
-					{ className: 'demo-container container' },
-					'Copyright © 2015 · (MIT) License · Built by ',
-					React.createElement(
-						'a',
-						{ href: 'https://twitter.com/jedwatson' },
-						'@jedwatson'
-					),
-					' and ',
-					React.createElement(
-						'a',
-						{ href: 'https://twitter.com/jossmackison' },
-						'@jossmackison'
-					),
-					' at ',
-					React.createElement(
-						'a',
-						{ href: 'http://www.thinkmill.com.au', target: '_blank' },
-						'Thinkmill'
-					)
-				)
-			)
-		);
-	}
-});
-
-var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
-
-var routes = React.createElement(
-	Router.Route,
-	{ name: 'app', path: basepath + '/', handler: App },
-	React.createElement(Router.Route, { name: 'home', path: basepath + '/', handler: require('./pages/Home') }),
-	React.createElement(Router.Route, { name: 'css', path: basepath + '/css', handler: require('./pages/CSS') }),
-	React.createElement(Router.Route, { name: 'buttons', path: basepath + '/buttons', handler: require('./pages/Buttons') }),
-	React.createElement(Router.Route, { name: 'forms', path: basepath + '/forms', handler: require('./pages/Forms') }),
-	React.createElement(Router.Route, { name: 'spinner', path: basepath + '/spinner', handler: require('./pages/Spinner') }),
-	React.createElement(Router.Route, { name: 'modal', path: basepath + '/modal', handler: require('./pages/Modal') }),
-	React.createElement(Router.Route, { name: 'grid', path: basepath + '/grid', handler: require('./pages/Grid') }),
-	React.createElement(Router.Route, { name: 'date-picker', path: basepath + '/date-picker', handler: require('./pages/DatePicker') }),
-	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
-);
-
-Router.run(routes, Router.HistoryLocation, function (Handler) {
-	React.render(React.createElement(Handler, null), document.body);
-});
-/*<Router.Link to="home">Home</Router.Link>*/
-
-},{"./pages/Buttons":53,"./pages/CSS":54,"./pages/DatePicker":55,"./pages/Forms":56,"./pages/Grid":57,"./pages/Home":58,"./pages/Modal":59,"./pages/Spinner":60,"react":undefined,"react-router":31}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -225,7 +90,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -281,8 +146,7 @@ var DateSelect = React.createClass({
 		var _this = this;
 
 		return React.Children.map(this.props.children, function (child) {
-			child.props.onClick = _this.openDateSelect;
-			return child;
+			return React.cloneElement(child, { onClick: _this.openDateSelect });
 		});
 	},
 	renderButton: function renderButton() {
@@ -303,7 +167,7 @@ var DateSelect = React.createClass({
 });
 
 module.exports = DateSelect;
-},{"./DateSelectDialog":5,"blacklist":undefined,"moment":undefined,"react":undefined}],4:[function(require,module,exports){
+},{"./DateSelectDialog":4,"blacklist":undefined,"moment":undefined,"react":undefined}],3:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -313,7 +177,7 @@ var classNames = require('classnames');
 var DateSelectHeader = require('./DateSelectHeader');
 
 module.exports = React.createClass({
-	displayName: 'DateSelectHeader',
+	displayName: 'DateSelectCalendar',
 	propTypes: {
 		isExpanded: React.PropTypes.bool,
 		isHeaderless: React.PropTypes.bool,
@@ -348,9 +212,9 @@ module.exports = React.createClass({
 		var lastDayOfMonth = moment().endOf('month').format('D');
 		var currentDayOfMonth = moment().format('D');
 
-		var calendarClass = classNames('DateSelect-calendar', {
-			'DateSelect-calendar--start': this.props.startDate,
-			'DateSelect-calendar--end': this.props.endDate
+		var calendarClass = classNames('DateSelectCalendar', {
+			'DateSelectCalendar--start': this.props.startDate,
+			'DateSelectCalendar--end': this.props.endDate
 		});
 
 		// variables
@@ -363,8 +227,8 @@ module.exports = React.createClass({
 		for (var i = firstDayOfMonth; i < lastDayOfMonth; i++) {
 			daysOfTheMonth.push(i);
 		}
-		for (var i = this.props.yearRange[0]; i < this.props.yearRange[1]; i++) {
-			years.push(i);
+		for (var j = this.props.yearRange[0]; j < this.props.yearRange[1]; j++) {
+			years.push(j);
 		}
 
 		// elements
@@ -372,16 +236,16 @@ module.exports = React.createClass({
 		var weekDays = daysOfTheWeek.map(function (day, i) {
 			return React.createElement(
 				'abbr',
-				{ key: 'day' + i, className: 'DateSelect-calendar-legend-day', title: day },
+				{ key: 'day' + i, className: 'DateSelectCalendar__legend__day', title: day },
 				day.slice(0, 1)
 			);
 		});
 		var monthDays = daysOfTheMonth.map(function (day) {
-			var dayClass = classNames('DateSelect-calendar-month-day', {
-				'current-day': day == currentDayOfMonth,
-				'selected-day': day == self.state.selectedDate,
-				'before-selected-day': self.state.selectedDate && day < self.state.selectedDate,
-				'after-selected-day': self.state.selectedDate && day > self.state.selectedDate
+			var dayClass = classNames('DateSelectCalendar__month__day', {
+				'is-current-day': day === currentDayOfMonth,
+				'is-selected': day === self.state.selectedDate,
+				'is-before-selected-day': self.state.selectedDate && day < self.state.selectedDate,
+				'is-after-selected-day': self.state.selectedDate && day > self.state.selectedDate
 			});
 			return React.createElement(
 				'button',
@@ -411,36 +275,36 @@ module.exports = React.createClass({
 			!this.props.isHeaderless && React.createElement(DateSelectHeader, { selectedDate: this.state.selectedDate, isExpanded: this.props.isExpanded }),
 			React.createElement(
 				'div',
-				{ className: 'DateSelect-calendar-toolbar' },
+				{ className: 'DateSelectCalendar__toolbar' },
 				React.createElement(
 					'button',
-					{ className: 'DateSelect-calendar-toolbar-button-prev' },
+					{ className: 'DateSelectCalendar__toolbar__button DateSelectCalendar__toolbar__button--prev' },
 					'Previous Month'
 				),
 				React.createElement(
 					'select',
-					{ className: 'DateSelect-calendar-toolbar-select', defaultValue: currentMonth },
+					{ className: 'DateSelectCalendar__toolbar__select', defaultValue: currentMonth },
 					titleMonths
 				),
 				React.createElement(
 					'select',
-					{ className: 'DateSelect-calendar-toolbar-select', defaultValue: currentYear },
+					{ className: 'DateSelectCalendar__toolbar__select', defaultValue: currentYear },
 					titleYears
 				),
 				React.createElement(
 					'button',
-					{ className: 'DateSelect-calendar-toolbar-button-next' },
+					{ className: 'DateSelectCalendar__toolbar__button DateSelectCalendar__toolbar__button--next' },
 					'Next Month'
 				)
 			),
 			React.createElement(
 				'div',
-				{ className: 'DateSelect-calendar-legend' },
+				{ className: 'DateSelectCalendar__legend' },
 				weekDays
 			),
 			React.createElement(
 				'div',
-				{ className: 'DateSelect-calendar-month' },
+				{ className: 'DateSelectCalendar__month' },
 				monthDays
 			)
 		);
@@ -448,7 +312,7 @@ module.exports = React.createClass({
 		return calendar;
 	}
 });
-},{"./DateSelectHeader":6,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
+},{"./DateSelectHeader":5,"classnames":undefined,"moment":undefined,"react/addons":undefined}],4:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -479,7 +343,7 @@ module.exports = React.createClass({
 		};
 	},
 	renderDialog: function renderDialog() {
-		if (!this.props.isOpen) return;
+		if (!this.props.isOpen) return null;
 		return React.createElement(
 			'div',
 			{ className: 'DateSelect-dialog' },
@@ -495,15 +359,15 @@ module.exports = React.createClass({
 				this.renderRanges(),
 				!this.props.isInstant && React.createElement(
 					'div',
-					{ className: 'DateSelect-footer' },
+					{ className: 'DateSelectFooter' },
 					React.createElement(
 						'button',
-						{ onClick: this.props.onSelect, className: 'DateSelect-footer-button primary' },
+						{ onClick: this.props.onSelect, className: 'DateSelectFooter__button DateSelectFooter__button--primary' },
 						'Confirm'
 					),
 					React.createElement(
 						'button',
-						{ onClick: this.props.onCancel, className: 'DateSelect-footer-button' },
+						{ onClick: this.props.onCancel, className: 'DateSelectFooter__button DateSelectFooter__button--link' },
 						'Cancel'
 					)
 				)
@@ -511,7 +375,7 @@ module.exports = React.createClass({
 		);
 	},
 	renderRanges: function renderRanges() {
-		if (!this.props.showPredefinedRanges) return;
+		if (!this.props.showPredefinedRanges) return null;
 		var self = this;
 		var rangeItems = this.props.predefinedRangeOptions.map(function (r, i) {
 			function action() {
@@ -519,30 +383,21 @@ module.exports = React.createClass({
 					startDate: moment().format('D'),
 					endDate: r.value.format('D')
 				});
-			};
+			}
 			return React.createElement(
 				'button',
-				{ key: 'range-button' + i, onClick: action, className: 'DateSelect-range' },
+				{ key: 'range-button' + i, onClick: action, className: 'DateSelect__range__item' },
 				r.label
 			);
 		});
 		return React.createElement(
 			'div',
-			{ className: 'DateSelect-ranges' },
-			React.createElement(
-				'div',
-				{ className: 'DateSelect-ranges-header' },
-				'Select:'
-			),
-			React.createElement(
-				'div',
-				{ className: 'DateSelect-ranges-body' },
-				rangeItems
-			)
+			{ className: 'DateSelect__range' },
+			rangeItems
 		);
 	},
 	renderBackdrop: function renderBackdrop() {
-		if (!this.props.isOpen) return;
+		if (!this.props.isOpen) return null;
 		return React.createElement('div', { className: 'DateSelect-backdrop', onClick: this.props.backdropClosesDateSelect ? this.props.onCancel : null });
 	},
 	render: function render() {
@@ -570,7 +425,7 @@ module.exports = React.createClass({
 		);
 	}
 });
-},{"./DateSelectCalendar":4,"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
+},{"./DateSelectCalendar":3,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -588,35 +443,34 @@ module.exports = React.createClass({
 		var date = moment(this.props.date);
 
 		// classes
-		var componentClass = classNames('DateSelect-calendar-header', {
-			'DateSelect-calendar-header--expanded': this.props.expanded,
-			'DateSelect-calendar-header--condensed': !this.props.expanded,
+		var componentClass = classNames('DateSelectHeader', {
+			'DateSelectHeader--expanded': this.props.expanded,
+			'DateSelectHeader--condensed': !this.props.expanded,
 			'no-date': !this.props.date
 		});
 
 		// elements
-
 		var header = this.props.expanded ? React.createElement(
 			'div',
 			{ className: componentClass },
 			React.createElement(
 				'span',
-				{ className: 'DateSelect-calendar-header-dow' },
+				{ className: 'DateSelectHeader__dow' },
 				date.format('dddd')
 			),
 			React.createElement(
 				'span',
-				{ className: 'DateSelect-calendar-header-month' },
+				{ className: 'DateSelectHeader__month' },
 				date.format('MMMM')
 			),
 			React.createElement(
 				'span',
-				{ className: 'DateSelect-calendar-header-day' },
+				{ className: 'DateSelectHeader__day' },
 				date.format('D')
 			),
 			React.createElement(
 				'span',
-				{ className: 'DateSelect-calendar-header-year' },
+				{ className: 'DateSelectHeader__year' },
 				date.format('YYYY')
 			)
 		) : React.createElement(
@@ -624,22 +478,22 @@ module.exports = React.createClass({
 			{ className: componentClass },
 			React.createElement(
 				'span',
-				{ className: 'DateSelect-calendar-header-dow' },
+				{ className: 'DateSelectHeader__dow' },
 				date.format('dddd')
 			),
 			React.createElement(
 				'span',
-				{ className: 'DateSelect-calendar-header-day' },
+				{ className: 'DateSelectHeader__day' },
 				date.format('Do')
 			),
 			React.createElement(
 				'span',
-				{ className: 'DateSelect-calendar-header-month' },
+				{ className: 'DateSelectHeader__month' },
 				date.format('MMMM')
 			),
 			React.createElement(
 				'span',
-				{ className: 'DateSelect-calendar-header-year' },
+				{ className: 'DateSelectHeader__year' },
 				date.format('YYYY')
 			)
 		);
@@ -650,22 +504,22 @@ module.exports = React.createClass({
 				{ className: componentClass },
 				React.createElement(
 					'span',
-					{ className: 'DateSelect-calendar-header-dow' },
+					{ className: 'DateSelectHeader__dow' },
 					date.format('dddd')
 				),
 				React.createElement(
 					'span',
-					{ className: 'DateSelect-calendar-header-month' },
+					{ className: 'DateSelectHeader__month' },
 					date.format('MMMM')
 				),
 				React.createElement(
 					'span',
-					{ className: 'DateSelect-calendar-header-day' },
+					{ className: 'DateSelectHeader__day' },
 					date.format('D')
 				),
 				React.createElement(
 					'span',
-					{ className: 'DateSelect-calendar-header-year' },
+					{ className: 'DateSelectHeader__year' },
 					date.format('YYYY')
 				)
 			) : React.createElement(
@@ -673,22 +527,22 @@ module.exports = React.createClass({
 				{ className: componentClass },
 				React.createElement(
 					'span',
-					{ className: 'DateSelect-calendar-header-dow' },
+					{ className: 'DateSelectHeader__dow' },
 					date.format('dddd')
 				),
 				React.createElement(
 					'span',
-					{ className: 'DateSelect-calendar-header-day' },
+					{ className: 'DateSelectHeader__day' },
 					date.format('Do')
 				),
 				React.createElement(
 					'span',
-					{ className: 'DateSelect-calendar-header-month' },
+					{ className: 'DateSelectHeader__month' },
 					date.format('MMMM')
 				),
 				React.createElement(
 					'span',
-					{ className: 'DateSelect-calendar-header-year' },
+					{ className: 'DateSelectHeader__year' },
 					date.format('YYYY')
 				)
 			);
@@ -697,7 +551,7 @@ module.exports = React.createClass({
 		return header;
 	}
 });
-},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],7:[function(require,module,exports){
+},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
 /**
  * Represents a cancellation caused by navigating away
  * before the previous transition has fully resolved.
@@ -707,7 +561,7 @@ module.exports = React.createClass({
 function Cancellation() {}
 
 module.exports = Cancellation;
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -738,7 +592,7 @@ var History = {
 };
 
 module.exports = History;
-},{"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],9:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],8:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -814,7 +668,7 @@ var Match = (function () {
 })();
 
 module.exports = Match;
-},{"./PathUtils":11}],10:[function(require,module,exports){
+},{"./PathUtils":10}],9:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -885,7 +739,7 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-},{"./PropTypes":12}],11:[function(require,module,exports){
+},{"./PropTypes":11}],10:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -1039,7 +893,7 @@ var PathUtils = {
 };
 
 module.exports = PathUtils;
-},{"object-assign":40,"qs":41,"react/lib/invariant":49}],12:[function(require,module,exports){
+},{"object-assign":39,"qs":40,"react/lib/invariant":48}],11:[function(require,module,exports){
 'use strict';
 
 var assign = require('react/lib/Object.assign');
@@ -1071,7 +925,7 @@ var PropTypes = assign({}, ReactPropTypes, {
 });
 
 module.exports = PropTypes;
-},{"./Route":14,"react":undefined,"react/lib/Object.assign":47}],13:[function(require,module,exports){
+},{"./Route":13,"react":undefined,"react/lib/Object.assign":46}],12:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -1084,7 +938,7 @@ function Redirect(to, params, query) {
 }
 
 module.exports = Redirect;
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1285,7 +1139,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":11,"react/lib/Object.assign":47,"react/lib/invariant":49,"react/lib/warning":50}],15:[function(require,module,exports){
+},{"./PathUtils":10,"react/lib/Object.assign":46,"react/lib/invariant":48,"react/lib/warning":49}],14:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -1361,7 +1215,7 @@ var ScrollHistory = {
 };
 
 module.exports = ScrollHistory;
-},{"./getWindowScrollPosition":30,"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],16:[function(require,module,exports){
+},{"./getWindowScrollPosition":29,"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],15:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -1436,7 +1290,7 @@ var State = {
 };
 
 module.exports = State;
-},{"./PropTypes":12}],17:[function(require,module,exports){
+},{"./PropTypes":11}],16:[function(require,module,exports){
 /* jshint -W058 */
 
 'use strict';
@@ -1512,7 +1366,7 @@ Transition.to = function (transition, routes, params, query, callback) {
 };
 
 module.exports = Transition;
-},{"./Cancellation":7,"./Redirect":13}],18:[function(require,module,exports){
+},{"./Cancellation":6,"./Redirect":12}],17:[function(require,module,exports){
 /**
  * Actions that modify the URL.
  */
@@ -1538,7 +1392,7 @@ var LocationActions = {
 };
 
 module.exports = LocationActions;
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -1568,7 +1422,7 @@ var ImitateBrowserBehavior = {
 };
 
 module.exports = ImitateBrowserBehavior;
-},{"../actions/LocationActions":18}],20:[function(require,module,exports){
+},{"../actions/LocationActions":17}],19:[function(require,module,exports){
 /**
  * A scroll behavior that always scrolls to the top of the page
  * after a transition.
@@ -1584,7 +1438,7 @@ var ScrollToTopBehavior = {
 };
 
 module.exports = ScrollToTopBehavior;
-},{}],21:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1623,7 +1477,7 @@ var ContextWrapper = (function (_React$Component) {
 })(React.Component);
 
 module.exports = ContextWrapper;
-},{"react":undefined}],22:[function(require,module,exports){
+},{"react":undefined}],21:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1671,7 +1525,7 @@ DefaultRoute.defaultProps = {
 };
 
 module.exports = DefaultRoute;
-},{"../PropTypes":12,"./Route":26,"./RouteHandler":27}],23:[function(require,module,exports){
+},{"../PropTypes":11,"./Route":25,"./RouteHandler":26}],22:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1807,7 +1661,7 @@ Link.defaultProps = {
 };
 
 module.exports = Link;
-},{"../PropTypes":12,"react":undefined,"react/lib/Object.assign":47}],24:[function(require,module,exports){
+},{"../PropTypes":11,"react":undefined,"react/lib/Object.assign":46}],23:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1856,7 +1710,7 @@ NotFoundRoute.defaultProps = {
 };
 
 module.exports = NotFoundRoute;
-},{"../PropTypes":12,"./Route":26,"./RouteHandler":27}],25:[function(require,module,exports){
+},{"../PropTypes":11,"./Route":25,"./RouteHandler":26}],24:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1900,7 +1754,7 @@ Redirect.propTypes = {
 Redirect.defaultProps = {};
 
 module.exports = Redirect;
-},{"../PropTypes":12,"./Route":26}],26:[function(require,module,exports){
+},{"../PropTypes":11,"./Route":25}],25:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1992,7 +1846,7 @@ Route.defaultProps = {
 };
 
 module.exports = Route;
-},{"../PropTypes":12,"./RouteHandler":27,"react":undefined,"react/lib/invariant":49}],27:[function(require,module,exports){
+},{"../PropTypes":11,"./RouteHandler":26,"react":undefined,"react/lib/invariant":48}],26:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -2101,7 +1955,7 @@ RouteHandler.childContextTypes = {
 };
 
 module.exports = RouteHandler;
-},{"../PropTypes":12,"./ContextWrapper":21,"react":undefined,"react/lib/Object.assign":47}],28:[function(require,module,exports){
+},{"../PropTypes":11,"./ContextWrapper":20,"react":undefined,"react/lib/Object.assign":46}],27:[function(require,module,exports){
 (function (process){
 /* jshint -W058 */
 'use strict';
@@ -2618,7 +2472,7 @@ function createRouter(options) {
 
 module.exports = createRouter;
 }).call(this,require('_process'))
-},{"./Cancellation":7,"./History":8,"./Match":9,"./PathUtils":11,"./PropTypes":12,"./Redirect":13,"./Route":14,"./ScrollHistory":15,"./Transition":17,"./actions/LocationActions":18,"./behaviors/ImitateBrowserBehavior":19,"./createRoutesFromReactChildren":29,"./isReactChildren":32,"./locations/HashLocation":33,"./locations/HistoryLocation":34,"./locations/RefreshLocation":35,"./locations/StaticLocation":36,"./supportsHistory":39,"_process":2,"react":undefined,"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49,"react/lib/warning":50}],29:[function(require,module,exports){
+},{"./Cancellation":6,"./History":7,"./Match":8,"./PathUtils":10,"./PropTypes":11,"./Redirect":12,"./Route":13,"./ScrollHistory":14,"./Transition":16,"./actions/LocationActions":17,"./behaviors/ImitateBrowserBehavior":18,"./createRoutesFromReactChildren":28,"./isReactChildren":31,"./locations/HashLocation":32,"./locations/HistoryLocation":33,"./locations/RefreshLocation":34,"./locations/StaticLocation":35,"./supportsHistory":38,"_process":1,"react":undefined,"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48,"react/lib/warning":49}],28:[function(require,module,exports){
 /* jshint -W084 */
 'use strict';
 
@@ -2700,7 +2554,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":14,"./components/DefaultRoute":22,"./components/NotFoundRoute":24,"./components/Redirect":25,"react":undefined,"react/lib/Object.assign":47,"react/lib/warning":50}],30:[function(require,module,exports){
+},{"./Route":13,"./components/DefaultRoute":21,"./components/NotFoundRoute":23,"./components/Redirect":24,"react":undefined,"react/lib/Object.assign":46,"react/lib/warning":49}],29:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -2719,7 +2573,7 @@ function getWindowScrollPosition() {
 }
 
 module.exports = getWindowScrollPosition;
-},{"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],31:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],30:[function(require,module,exports){
 'use strict';
 
 exports.DefaultRoute = require('./components/DefaultRoute');
@@ -2751,7 +2605,7 @@ exports.createRoutesFromReactChildren = require('./createRoutesFromReactChildren
 
 exports.create = require('./createRouter');
 exports.run = require('./runRouter');
-},{"./History":8,"./Navigation":10,"./Route":14,"./State":16,"./behaviors/ImitateBrowserBehavior":19,"./behaviors/ScrollToTopBehavior":20,"./components/DefaultRoute":22,"./components/Link":23,"./components/NotFoundRoute":24,"./components/Redirect":25,"./components/Route":26,"./components/RouteHandler":27,"./createRouter":28,"./createRoutesFromReactChildren":29,"./locations/HashLocation":33,"./locations/HistoryLocation":34,"./locations/RefreshLocation":35,"./locations/StaticLocation":36,"./locations/TestLocation":37,"./runRouter":38}],32:[function(require,module,exports){
+},{"./History":7,"./Navigation":9,"./Route":13,"./State":15,"./behaviors/ImitateBrowserBehavior":18,"./behaviors/ScrollToTopBehavior":19,"./components/DefaultRoute":21,"./components/Link":22,"./components/NotFoundRoute":23,"./components/Redirect":24,"./components/Route":25,"./components/RouteHandler":26,"./createRouter":27,"./createRoutesFromReactChildren":28,"./locations/HashLocation":32,"./locations/HistoryLocation":33,"./locations/RefreshLocation":34,"./locations/StaticLocation":35,"./locations/TestLocation":36,"./runRouter":37}],31:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -2765,7 +2619,7 @@ function isReactChildren(object) {
 }
 
 module.exports = isReactChildren;
-},{"react":undefined}],33:[function(require,module,exports){
+},{"react":undefined}],32:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -2877,7 +2731,7 @@ var HashLocation = {
 };
 
 module.exports = HashLocation;
-},{"../History":8,"../actions/LocationActions":18}],34:[function(require,module,exports){
+},{"../History":7,"../actions/LocationActions":17}],33:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -2964,7 +2818,7 @@ var HistoryLocation = {
 };
 
 module.exports = HistoryLocation;
-},{"../History":8,"../actions/LocationActions":18}],35:[function(require,module,exports){
+},{"../History":7,"../actions/LocationActions":17}],34:[function(require,module,exports){
 'use strict';
 
 var HistoryLocation = require('./HistoryLocation');
@@ -2996,7 +2850,7 @@ var RefreshLocation = {
 };
 
 module.exports = RefreshLocation;
-},{"../History":8,"./HistoryLocation":34}],36:[function(require,module,exports){
+},{"../History":7,"./HistoryLocation":33}],35:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -3046,7 +2900,7 @@ StaticLocation.prototype.replace = throwCannotModify;
 StaticLocation.prototype.pop = throwCannotModify;
 
 module.exports = StaticLocation;
-},{"react/lib/invariant":49}],37:[function(require,module,exports){
+},{"react/lib/invariant":48}],36:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -3141,7 +2995,7 @@ var TestLocation = (function () {
 })();
 
 module.exports = TestLocation;
-},{"../History":8,"../actions/LocationActions":18,"react/lib/invariant":49}],38:[function(require,module,exports){
+},{"../History":7,"../actions/LocationActions":17,"react/lib/invariant":48}],37:[function(require,module,exports){
 'use strict';
 
 var createRouter = require('./createRouter');
@@ -3192,7 +3046,7 @@ function runRouter(routes, location, callback) {
 }
 
 module.exports = runRouter;
-},{"./createRouter":28}],39:[function(require,module,exports){
+},{"./createRouter":27}],38:[function(require,module,exports){
 'use strict';
 
 function supportsHistory() {
@@ -3209,7 +3063,7 @@ function supportsHistory() {
 }
 
 module.exports = supportsHistory;
-},{}],40:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -3237,10 +3091,10 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],41:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":42}],42:[function(require,module,exports){
+},{"./lib/":41}],41:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -3257,7 +3111,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":43,"./stringify":44}],43:[function(require,module,exports){
+},{"./parse":42,"./stringify":43}],42:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -3420,7 +3274,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":45}],44:[function(require,module,exports){
+},{"./utils":44}],43:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -3519,7 +3373,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":45}],45:[function(require,module,exports){
+},{"./utils":44}],44:[function(require,module,exports){
 // Load modules
 
 
@@ -3653,7 +3507,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],46:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -3697,7 +3551,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],47:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -3746,7 +3600,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],48:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -3780,7 +3634,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],49:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -3837,7 +3691,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":2}],50:[function(require,module,exports){
+},{"_process":1}],49:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -3900,7 +3754,65 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":48,"_process":2}],51:[function(require,module,exports){
+},{"./emptyFunction":47,"_process":1}],50:[function(require,module,exports){
+/* global Prism */
+'use strict';
+
+var classNames = require('classnames');
+var React = require('react');
+
+var ExampleSource = React.createClass({
+	displayName: 'ExampleSource',
+
+	propTypes: {
+		children: React.PropTypes.string.isRequired
+	},
+	getDefaultProps: function getDefaultProps() {
+		return {
+			language: 'markup'
+		};
+	},
+	componentDidMount: function componentDidMount() {
+		this.highlight();
+	},
+	componentDidUpdate: function componentDidUpdate() {
+		this.highlight();
+	},
+	highlight: function highlight() {
+		Prism.highlightElement(this.refs.code.getDOMNode(), true);
+	},
+	fixIndentation: function fixIndentation(children) {
+		if (typeof children !== 'string') return children;
+		var lines = children.split('\n').filter(function (l) {
+			return l;
+		});
+		if (!lines.length) return children;
+		var indent = /^\t+/.exec(lines[0]);
+		if (indent) {
+			indent = indent[0].length;
+			lines = lines.map(function (s) {
+				return s.substr(indent);
+			});
+		}
+		return lines.join('\n');
+	},
+	render: function render() {
+		var codeClass = classNames('code-example__code', 'language-' + this.props.language);
+		return React.createElement(
+			'pre',
+			{ className: 'code-example__pre' },
+			React.createElement(
+				'code',
+				{ ref: 'code', className: codeClass },
+				this.fixIndentation(this.props.children)
+			)
+		);
+	}
+});
+
+module.exports = ExampleSource;
+
+},{"classnames":undefined,"react":undefined}],51:[function(require,module,exports){
 // Thank you https://gist.github.com/Keeguon/2310008
 'use strict';
 
@@ -3917,15 +3829,25 @@ module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismoda
 'use strict';
 
 var React = require('react');
-var Dropdown = require('elemental').Dropdown;
-var Tooltip = require('elemental').Tooltip;
-var Button = require('elemental').Button;
 
-var DROPDOWN_OPTIONS = [{ type: 'item', anchor: 'javascript:;', label: 'Action' }, { type: 'item', anchor: 'javascript:;', label: 'Another action' }, { type: 'item', anchor: 'javascript:;', label: 'Something else here' }, { type: 'divider' }, { type: 'header', label: 'Dropdown header' }, { type: 'item', anchor: 'javascript:;', label: 'Separated link' }];
+var _require = require('elemental');
 
-var BUTTON_SIZES = [{ label: 'Large', value: 'lg' }, { label: 'Default', value: 'md' }, { label: 'Small', value: 'sm' }, { label: 'Extra Small', value: 'xs' }];
+var Dropdown = _require.Dropdown;
+var Tooltip = _require.Tooltip;
+var Button = _require.Button;
+var ButtonGroup = _require.ButtonGroup;
 
-var BUTTON_VARIANTS = [{ label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }, { label: 'Default Primary', value: 'default-primary' }, { label: 'Default Success', value: 'default-success' }, { label: 'Default Warning', value: 'default-warning' }, { label: 'Default Danger', value: 'default-danger' }, { label: 'Hollow Primary', value: 'hollow-primary' }, { label: 'Hollow Success', value: 'hollow-success' }, { label: 'Hollow Warning', value: 'hollow-warning' }, { label: 'Hollow Danger', value: 'hollow-danger' }, { label: 'Link', value: 'link' }, { label: 'Link Text', value: 'link-text' }, { label: 'Link Cancel', value: 'link-cancel' }, { label: 'Link Delete', value: 'link-delete' }];
+var ExampleSource = require('../components/ExampleSource');
+
+var DROPDOWN_OPTIONS = [{ label: 'Action' }, { label: 'Another action' }, { label: 'Something else here' }, { type: 'divider' }, { type: 'header', label: 'Dropdown header' }, { label: 'Separated link' }];
+
+var BUTTON_SIZES = [{ label: 'Large', value: 'lg' }, { label: 'Default', value: null }, { label: 'Small', value: 'sm' }, { label: 'Extra Small', value: 'xs' }];
+
+var BUTTON_VARIANTS = [{ label: 'Primary', value: 'primary' }, { label: 'Success', value: 'success' }, { label: 'Warning', value: 'warning' }, { label: 'Danger', value: 'danger' }];
+
+var BUTTON_DEFAULT_VARIANTS = [{ label: 'Default Primary', value: 'default-primary' }, { label: 'Default Success', value: 'default-success' }, { label: 'Default Warning', value: 'default-warning' }, { label: 'Default Danger', value: 'default-danger' }];
+
+var BUTTON_LINK_VARIANTS = [{ label: 'Link', value: 'link' }, { label: 'Link Text', value: 'link-text' }, { label: 'Link Cancel', value: 'link-cancel' }, { label: 'Link Delete', value: 'link-delete' }];
 
 var Buttons = React.createClass({
 	displayName: 'VIEW_Buttons',
@@ -3941,32 +3863,25 @@ var Buttons = React.createClass({
 		return BUTTON_SIZES.map(function (size) {
 			return React.createElement(
 				'div',
-				{ key: size.value, className: 'col-sm-3' },
+				{ key: size.value, className: 'code-example__example-element--inline' },
 				React.createElement(
-					'div',
-					{ className: 'demo-box u-text-center' },
-					React.createElement(
-						Button,
-						{ size: size.value },
-						size.label
-					)
+					Button,
+					{ size: size.value },
+					size.label,
+					' Button'
 				)
 			);
 		});
 	},
-	renderButtonVariants: function renderButtonVariants() {
-		return BUTTON_VARIANTS.map(function (type) {
+	renderButtonVariants: function renderButtonVariants(variantType) {
+		return variantType.map(function (type) {
 			return React.createElement(
 				'div',
-				{ key: type.value, className: 'col-sm-3' },
+				{ key: type.value, className: 'code-example__example-element--inline' },
 				React.createElement(
-					'div',
-					{ className: 'demo-box u-text-center' },
-					React.createElement(
-						Button,
-						{ type: type.value },
-						type.label
-					)
+					Button,
+					{ type: type.value },
+					type.label
 				)
 			);
 		});
@@ -3988,8 +3903,17 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'row' },
-				this.renderButtonSizes()
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					this.renderButtonSizes()
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Button size="lg">Large Button</Button>\n\t\t\t\t\t\t\t<Button>Default Button</Button>\n\t\t\t\t\t\t\t<Button size="sm">Small Button</Button>\n\t\t\t\t\t\t\t<Button size="xs">Extra Small Button</Button>\n\t\t\t\t\t\t'
+				)
 			),
 			React.createElement(
 				'h2',
@@ -3998,8 +3922,337 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'row' },
-				this.renderButtonVariants()
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Fill Buttons'
+					),
+					this.renderButtonVariants(BUTTON_VARIANTS)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Button type="primary">Primary</Button>\n\t\t\t\t\t\t\t<Button type="success">Success</Button>\n\t\t\t\t\t\t\t<Button type="warning">Warning</Button>\n\t\t\t\t\t\t\t<Button type="danger">Danger</Button>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Default Button Alternatives'
+					),
+					this.renderButtonVariants(BUTTON_DEFAULT_VARIANTS)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Button type="default-primary">Default Primary</Button>\n\t\t\t\t\t\t\t<Button type="default-success">Default Success</Button>\n\t\t\t\t\t\t\t<Button type="default-warning">Default Warning</Button>\n\t\t\t\t\t\t\t<Button type="default-danger">Default Danger</Button>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Link Style Buttons'
+					),
+					this.renderButtonVariants(BUTTON_LINK_VARIANTS)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Button type="link">Link</Button>\n\t\t\t\t\t\t\t<Button type="link-text">Link Text</Button>\n\t\t\t\t\t\t\t<Button type="link-cancel">Link Cancel</Button>\n\t\t\t\t\t\t\t<Button type="link-delete">Link Delete</Button>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Usage'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					'table',
+					{ className: 'table' },
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'block'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Turns the button into a block-level element which will fill the width of its container'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'href'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'When provided the component will render as an ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'<a>'
+								),
+								' instead of ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'<button>'
+								)
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'size'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Size of the button - one of: ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'lg'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'sm'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'xs'
+								)
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'submit'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Applies the ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'submit'
+								),
+								' attribute to the button for use in forms'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'type'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'default\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'One of:',
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'default'
+								),
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'default-primary'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'default-success'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'default-warning'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'default-danger'
+								),
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'primary'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'success'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'warning'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'danger'
+								),
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'link'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'link-text'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'link-cancel'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'link-delete'
+								)
+							)
+						)
+					)
+				)
 			),
 			React.createElement(
 				'h2',
@@ -4008,21 +4261,109 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'ButtonGroup' },
+				{ className: 'code-example' },
 				React.createElement(
-					Button,
-					{ type: 'default' },
-					'Left'
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						ButtonGroup,
+						null,
+						React.createElement(
+							Button,
+							{ type: 'default' },
+							'Left'
+						),
+						React.createElement(
+							Button,
+							{ type: 'default' },
+							'Middle'
+						),
+						React.createElement(
+							Button,
+							{ type: 'default' },
+							'Right'
+						)
+					)
 				),
 				React.createElement(
-					Button,
-					{ type: 'default' },
-					'Middle'
-				),
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<ButtonGroup>\n\t\t\t\t\t\t\t\t<Button type="default">Left</Button>\n\t\t\t\t\t\t\t\t<Button type="default">Middle</Button>\n\t\t\t\t\t\t\t\t<Button type="default">Right</Button>\n\t\t\t\t\t\t\t</ButtonGroup>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Usage'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
 				React.createElement(
-					Button,
-					{ type: 'default' },
-					'Right'
+					'table',
+					{ className: 'table' },
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'children'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'node'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Required. Must use Elemental ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'<Button />'
+								),
+								' components for correct styling'
+							)
+						)
+					)
 				)
 			),
 			React.createElement(
@@ -4032,88 +4373,279 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'row' },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: 'col-sm-6' },
-					React.createElement(Dropdown, { items: DROPDOWN_OPTIONS, buttonLabel: 'Default Trigger' })
+					{ className: 'code-example__example' },
+					React.createElement(Dropdown, { items: DROPDOWN_OPTIONS, buttonLabel: 'Default Trigger', className: 'reallyLongCustomClassNameThatStandsOut' })
 				),
 				React.createElement(
-					'div',
-					{ className: 'col-sm-6' },
-					React.createElement(
-						Dropdown,
-						{ items: DROPDOWN_OPTIONS },
-						React.createElement(
-							'h3',
-							{ style: { marginTop: 15 } },
-							'Custom Trigger'
-						)
-					)
+					ExampleSource,
+					null,
+					'<Dropdown items={[...]} buttonLabel="Default Trigger" />'
 				)
 			),
 			React.createElement(
-				'h2',
-				null,
-				'Tooltip'
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Custom Trigger'
+					),
+					React.createElement(
+						Dropdown,
+						{ items: DROPDOWN_OPTIONS, className: 'reallyLongCustomClassNameThatStandsOut' },
+						React.createElement(
+							'h3',
+							{ style: { marginBottom: 0 } },
+							'I am an H3!'
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Dropdown items={[...]}>\n\t\t\t\t\t\t\t\t<h3>I am an H3!</h3>\n\t\t\t\t\t\t\t</Dropdown>\n\t\t\t\t\t\t'
+				)
 			),
 			React.createElement(
-				'p',
+				'h3',
 				null,
+				'Usage'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
 				React.createElement(
-					'span',
-					null,
-					' This is a sentence with a '
-				),
-				React.createElement(
-					Tooltip,
-					{ placement: 'top', content: 'This is the tooltip content!' },
+					'table',
+					{ className: 'table' },
 					React.createElement(
-						'span',
-						{ className: 'a' },
-						'top aligned toolip with a really long target'
-					)
-				),
-				React.createElement(
-					'span',
-					null,
-					' some more content '
-				),
-				React.createElement(
-					Tooltip,
-					{ placement: 'right', content: 'This is the tooltip content!' },
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
 					React.createElement(
-						'span',
-						{ className: 'a' },
-						'right aligned toolip'
-					)
-				),
-				React.createElement(
-					'span',
-					null,
-					' some more content '
-				),
-				React.createElement(
-					Tooltip,
-					{ placement: 'bottom', content: 'This is the tooltip content!' },
-					React.createElement(
-						'span',
-						{ className: 'a' },
-						'bottom aligned toolip'
-					)
-				),
-				React.createElement(
-					'span',
-					null,
-					' some more content '
-				),
-				React.createElement(
-					Tooltip,
-					{ placement: 'left', content: 'This is the tooltip content!' },
-					React.createElement(
-						'span',
-						{ className: 'a' },
-						'left aligned toolip'
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'alignRight'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The dropdown menu is aligned left by default, apply this attribute to right align the dropdown menu'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'buttonHasDisclosureArrow'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'true'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Display a disclosure arrow along with the label of the button. Ignore if a custom trigger is employed'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'buttonLabel'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Whatever action the button represents'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'buttonType'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'See above section on button types'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'children'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'element'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'A single child, cloned and used as the dropdown\'s trigger element'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'isOpen'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The dropdown menu is controlled by user input. Use this if you need to manually toggle the open state of the dropdown menu'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'items'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'array'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The list of items to display in the menu formatted'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'onSelect'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'func'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'function() {}'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The function that is called on each menu item when clicked'
+							)
+						)
 					)
 				)
 			)
@@ -4123,7 +4655,7 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
+},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
@@ -4132,7 +4664,7 @@ var React = require('react/addons');
 var classNames = require('classnames');
 var moment = require('moment');
 
-var Alert = require('elemental').Alert;
+var ExampleSource = require('../components/ExampleSource');
 
 var USERS = require('../data/users');
 var TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
@@ -4182,8 +4714,8 @@ var CSSExamples = React.createClass({
 				{ key: 'header-' + i },
 				React.createElement(
 					'label',
-					{ title: 'Toggle all customers', className: 'table-checkbox-label' },
-					React.createElement('input', { type: 'checkbox', className: 'table-checkbox', onChange: self.toggleAllRows })
+					{ title: 'Toggle all users' },
+					React.createElement('input', { type: 'checkbox', onChange: self.toggleAllRows })
 				)
 			) : React.createElement(
 				'th',
@@ -4210,7 +4742,7 @@ var CSSExamples = React.createClass({
 					React.createElement(
 						'label',
 						{ className: 'table-checkbox-label' },
-						React.createElement('input', { id: 'checkbox-' + i, value: i, onChange: self.handleChange, checked: checked, type: 'checkbox', name: 'customers', className: 'table-checkbox' })
+						React.createElement('input', { id: 'checkbox-' + i, value: i, onChange: self.handleChange, checked: checked, type: 'checkbox', name: 'users' })
 					)
 				),
 				React.createElement(
@@ -4218,7 +4750,7 @@ var CSSExamples = React.createClass({
 					null,
 					React.createElement(
 						'a',
-						{ href: 'javascript:;', className: 'customer-item' },
+						{ href: 'javascript:;' },
 						user.name
 					)
 				),
@@ -4235,15 +4767,6 @@ var CSSExamples = React.createClass({
 			);
 		});
 
-		var alerts = ['info', 'success', 'warning', 'danger'].map(function (alertType) {
-			return React.createElement(
-				Alert,
-				{ key: alertType, type: alertType },
-				'This is a ',
-				alertType,
-				' alert'
-			);
-		});
 		return React.createElement(
 			'div',
 			{ className: 'demo-container container' },
@@ -4259,75 +4782,405 @@ var CSSExamples = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'demo-box' },
-				React.createElement(
-					'h1',
-					null,
-					'h.1 Elemental heading'
-				),
-				React.createElement(
-					'h2',
-					null,
-					'h.2 Elemental heading'
-				),
-				React.createElement(
-					'h3',
-					null,
-					'h.3 Elemental heading'
-				),
-				React.createElement(
-					'h4',
-					null,
-					'h.4 Elemental heading'
-				),
-				React.createElement(
-					'h5',
-					null,
-					'h.5 Elemental heading'
-				),
-				React.createElement(
-					'h6',
-					null,
-					'h.6 Elemental heading'
-				),
-				React.createElement('hr', null),
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: 'lead' },
-					'This is a page lead, it introduces the proceeding content.'
+					{ className: 'code-example__example' },
+					React.createElement(
+						'h1',
+						null,
+						'h.1 Elemental heading'
+					),
+					React.createElement(
+						'h2',
+						null,
+						'h.2 Elemental heading'
+					),
+					React.createElement(
+						'h3',
+						null,
+						'h.3 Elemental heading'
+					),
+					React.createElement(
+						'h4',
+						null,
+						'h.4 Elemental heading'
+					),
+					React.createElement(
+						'h5',
+						null,
+						'h.5 Elemental heading'
+					),
+					React.createElement(
+						'h6',
+						null,
+						'h.6 Elemental heading'
+					),
+					React.createElement('hr', null),
+					React.createElement(
+						'div',
+						{ className: 'lead' },
+						'This is a page lead, it introduces the proceeding content.'
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<h1>h.1 Elemental heading</h1>\n\t\t\t\t\t\t\t<h2>h.2 Elemental heading</h2>\n\t\t\t\t\t\t\t<h3>h.3 Elemental heading</h3>\n\t\t\t\t\t\t\t<h4>h.4 Elemental heading</h4>\n\t\t\t\t\t\t\t<h5>h.5 Elemental heading</h5>\n\t\t\t\t\t\t\t<h6>h.6 Elemental heading</h6>\n\t\t\t\t\t\t\t<hr />\n\t\t\t\t\t\t\t<div className="lead">This is a page lead, it introduces the proceeding content.</div>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
 				'h2',
 				null,
-				'Alerts'
+				'Grid'
 			),
-			alerts,
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'Uses the standard Bootstrap grid which is a 12 column responsive layout, with a 20px gutter.'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Three equal columns'
+					),
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								'.col-sm-4'
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								'.col-sm-4'
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								'.col-sm-4'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<div className="row">\n\t\t\t\t\t\t\t\t<div className="col-sm-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-4</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-4</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-4</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Three unequal columns'
+					),
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								'.col-sm-3'
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-6' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								'.col-sm-6'
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								'.col-sm-3'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<div className="row">\n\t\t\t\t\t\t\t\t<div className="col-sm-3">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-3</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-6">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-6</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-3">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-3</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Two unequal columns'
+					),
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-sm-8' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								'.col-sm-8'
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-sm-4' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								'.col-sm-4'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<div className="row">\n\t\t\t\t\t\t\t\t<div className="col-sm-8">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-8</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-4</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Columns on a small device'
+					),
+					React.createElement(
+						'div',
+						{ className: 'row' },
+						React.createElement(
+							'div',
+							{ className: 'col-xs-4' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								React.createElement(
+									'span',
+									{ className: 'visible-xs-inline' },
+									'4'
+								),
+								React.createElement(
+									'span',
+									{ className: 'hidden-xs' },
+									'.col-xs-4'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-xs-4' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								React.createElement(
+									'span',
+									{ className: 'visible-xs-inline' },
+									'4'
+								),
+								React.createElement(
+									'span',
+									{ className: 'hidden-xs' },
+									'.col-xs-4'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-xs-4' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								React.createElement(
+									'span',
+									{ className: 'visible-xs-inline' },
+									'4'
+								),
+								React.createElement(
+									'span',
+									{ className: 'hidden-xs' },
+									'.col-xs-4'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-xs-8' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								React.createElement(
+									'span',
+									{ className: 'visible-xs-inline' },
+									'8'
+								),
+								React.createElement(
+									'span',
+									{ className: 'hidden-xs' },
+									'.col-xs-8'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-xs-4' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								React.createElement(
+									'span',
+									{ className: 'visible-xs-inline' },
+									'4'
+								),
+								React.createElement(
+									'span',
+									{ className: 'hidden-xs' },
+									'.col-xs-4'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-xs-3' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								React.createElement(
+									'span',
+									{ className: 'visible-xs-inline' },
+									'3'
+								),
+								React.createElement(
+									'span',
+									{ className: 'hidden-xs' },
+									'.col-xs-3'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-xs-6' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								React.createElement(
+									'span',
+									{ className: 'visible-xs-inline' },
+									'6'
+								),
+								React.createElement(
+									'span',
+									{ className: 'hidden-xs' },
+									'.col-xs-6'
+								)
+							)
+						),
+						React.createElement(
+							'div',
+							{ className: 'col-xs-3' },
+							React.createElement(
+								'div',
+								{ className: 'demo-box u-text-center' },
+								React.createElement(
+									'span',
+									{ className: 'visible-xs-inline' },
+									'3'
+								),
+								React.createElement(
+									'span',
+									{ className: 'hidden-xs' },
+									'.col-xs-3'
+								)
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<div className="row">\n\t\t\t\t\t\t\t\t<div className="col-xs-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">4</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-4</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">4</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-4</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">4</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-4</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-8">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">8</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-8</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">4</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-4</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-3">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">3</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-3</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-6">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">6</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-6</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-3">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">3</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-3</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t'
+				)
+			),
 			React.createElement(
 				'h2',
 				null,
 				'Tables'
 			),
 			React.createElement(
-				'table',
-				{ className: 'table' },
+				'div',
+				{ className: 'code-example' },
 				React.createElement(
-					'colgroup',
-					null,
-					React.createElement('col', { width: '50' }),
-					React.createElement('col', { width: '' }),
-					React.createElement('col', { width: '10%' }),
-					React.createElement('col', { width: '10%' })
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'table',
+						{ className: 'table' },
+						React.createElement(
+							'colgroup',
+							null,
+							React.createElement('col', { width: '50' }),
+							React.createElement('col', { width: '' }),
+							React.createElement('col', { width: '10%' }),
+							React.createElement('col', { width: '10%' })
+						),
+						React.createElement(
+							'thead',
+							null,
+							tableHeaderCols
+						),
+						React.createElement(
+							'tbody',
+							null,
+							tableRows
+						)
+					)
 				),
 				React.createElement(
-					'thead',
+					ExampleSource,
 					null,
-					tableHeaderCols
-				),
-				React.createElement(
-					'tbody',
-					null,
-					tableRows
+					'\n\t\t\t\t\t\t\t<table className="table">\n\t\t\t\t\t\t\t\t<colgroup>\n\t\t\t\t\t\t\t\t\t<col width="50" />\n\t\t\t\t\t\t\t\t\t<col width="" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t</colgroup>\n\t\t\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t\t<th>User</th>\n\t\t\t\t\t\t\t\t\t\t<th>Age</th>\n\t\t\t\t\t\t\t\t\t\t<th>Gender</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<a href="javascript:;">Hanna Villarreal</a>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>39</td>\n\t\t\t\t\t\t\t\t\t\t<td>F</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t'
 				)
 			)
 		);
@@ -4336,7 +5189,7 @@ var CSSExamples = React.createClass({
 
 module.exports = CSSExamples;
 
-},{"../data/users":52,"classnames":undefined,"elemental":undefined,"moment":undefined,"react/addons":undefined}],55:[function(require,module,exports){
+},{"../components/ExampleSource":50,"../data/users":52,"classnames":undefined,"moment":undefined,"react/addons":undefined}],55:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -4444,28 +5297,33 @@ var DateSelectExamples = React.createClass({
 
 module.exports = DateSelectExamples;
 
-},{"elemental":undefined,"react-date-select":3,"react/addons":undefined}],56:[function(require,module,exports){
+},{"elemental":undefined,"react-date-select":2,"react/addons":undefined}],56:[function(require,module,exports){
 /* eslint no-alert: 0 */
 
 'use strict';
 
 var React = require('react');
 
-var Button = require('elemental').Button;
-var EmailInputGroup = require('elemental').EmailInputGroup;
-var PasswordInputGroup = require('elemental').PasswordInputGroup;
-var RadioGroup = require('elemental').RadioGroup;
+var _require = require('elemental');
 
-var FileDragAndDrop = require('elemental').FileDragAndDrop;
-var FileUpload = require('elemental').FileUpload;
-var FormField = require('elemental').FormField;
-var FormIconField = require('elemental').FormIconField;
-var FormInput = require('elemental').FormInput;
-var FormLabel = require('elemental').FormLabel;
-var FormNote = require('elemental').FormNote;
-var FormRow = require('elemental').FormRow;
-var FormSelect = require('elemental').FormSelect;
-var InputGroup = require('elemental').InputGroup;
+var Button = _require.Button;
+var Checkbox = _require.Checkbox;
+var EmailInputGroup = _require.EmailInputGroup;
+var FileDragAndDrop = _require.FileDragAndDrop;
+var FileUpload = _require.FileUpload;
+var FormField = _require.FormField;
+var FormIconField = _require.FormIconField;
+var FormInput = _require.FormInput;
+var FormLabel = _require.FormLabel;
+var FormNote = _require.FormNote;
+var FormRow = _require.FormRow;
+var FormSelect = _require.FormSelect;
+var InputGroup = _require.InputGroup;
+var PasswordInputGroup = _require.PasswordInputGroup;
+var Radio = _require.Radio;
+var RadioGroup = _require.RadioGroup;
+
+var ExampleSource = require('../components/ExampleSource');
 
 var controlOptions = [{ label: 'Caramel', value: 'caramel' }, { label: 'Chocolate', value: 'chocolate' }, { label: 'Strawberry', value: 'strawberry' }, { label: 'Vanilla', value: 'vanilla' }];
 var COUNTRIES = require('../data/countries');
@@ -4522,29 +5380,11 @@ var Forms = React.createClass({
 		});
 
 		var checkboxes = [1, 2, 3].map(function (item) {
-			return React.createElement(
-				'div',
-				{ key: 'checkbox-' + item, className: 'checkbox' },
-				React.createElement(
-					'label',
-					{ className: 'checkbox-label' },
-					React.createElement('input', { type: 'checkbox', className: 'checkbox-input' }),
-					' Check me out'
-				)
-			);
+			return React.createElement(Checkbox, { key: 'checkbox_' + item, name: 'checkbox_' + item, label: 'Check me out' });
 		});
 
 		var radios = [1, 2, 3].map(function (item) {
-			return React.createElement(
-				'div',
-				{ key: 'radio-' + item, className: 'radio' },
-				React.createElement(
-					'label',
-					{ className: 'radio-label' },
-					React.createElement('input', { type: 'radio', name: 'supportedControlsRadios', className: 'radio-input' }),
-					' Pick me'
-				)
-			);
+			return React.createElement(Radio, { key: 'radio_' + item, name: 'supportedControlsRadios', label: 'Pick me' });
 		});
 
 		// Icon Loops
@@ -4575,423 +5415,905 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-basic' },
+				null,
 				'Basic Example'
 			),
 			React.createElement(
-				'form',
+				'p',
 				null,
+				'Individual form controls automatically receive some global styling. All textual ',
 				React.createElement(
-					FormField,
-					{ label: 'Email address', htmlFor: 'basic-form-input-email' },
-					React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'basic-form-input-email' })
+					'code',
+					{ className: 'inline-code' },
+					'<FormInput>'
 				),
+				', and ',
 				React.createElement(
-					FormField,
-					{ label: 'Password', htmlFor: 'basic-form-input-password' },
-					React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'basic-form-input-password' })
+					'code',
+					{ className: 'inline-code' },
+					'<FormSelect>'
 				),
+				' elements with are set to ',
+				React.createElement(
+					'code',
+					{ className: 'inline-code' },
+					'width: 100%;'
+				),
+				' by default. Wrap controls in ',
+				React.createElement(
+					'code',
+					{ className: 'inline-code' },
+					'<FormField>'
+				),
+				' for optimum spacing.'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: 'form-field' },
+					{ className: 'code-example__example' },
 					React.createElement(
-						'label',
-						{ className: 'checkbox-label' },
-						React.createElement('input', { type: 'checkbox', className: 'checkbox-input' }),
-						' Check me out'
+						'form',
+						null,
+						React.createElement(
+							FormField,
+							{ label: 'Email address', htmlFor: 'basic-form-input-email' },
+							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'basic-form-input-email' })
+						),
+						React.createElement(
+							FormField,
+							{ label: 'Password', htmlFor: 'basic-form-input-password' },
+							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'basic-form-input-password' })
+						),
+						React.createElement(
+							FormField,
+							null,
+							React.createElement(Checkbox, { label: 'Check it' })
+						),
+						React.createElement(
+							Button,
+							{ type: 'default' },
+							'Submit'
+						)
 					)
 				),
 				React.createElement(
-					Button,
-					{ type: 'default' },
-					'Submit'
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-horizontal' },
+				null,
 				'Horizontal Form'
 			),
 			React.createElement(
-				'form',
-				{ className: 'horizontal-form u-margin-bottom-lg' },
+				'p',
+				null,
+				'Adding the class ',
 				React.createElement(
-					FormField,
-					{ label: 'Email address', htmlFor: 'horizontal-form-input-email' },
-					React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'horizontal-form-input-email' })
+					'code',
+					{ className: 'inline-code' },
+					'.form-horizontal'
 				),
+				' to your wrapper (which doesn\'t have to be a ',
 				React.createElement(
-					FormField,
-					{ label: 'Password', htmlFor: 'horizontal-form-input-password' },
-					React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'horizontal-form-input-password' })
+					'code',
+					{ className: 'inline-code' },
+					'<form>'
 				),
+				' tag) changes the ',
 				React.createElement(
-					FormField,
-					{ offsetAbsentLabel: true },
+					'code',
+					{ className: 'inline-code' },
+					'FormField'
+				),
+				' component to behave like a row. The label width can be updated from inside the LESS variables file where it\'s defined as ',
+				React.createElement(
+					'code',
+					{ className: 'inline-code' },
+					'@form-label-width'
+				),
+				'. This only applies to forms within viewports that are at least 768px wide.'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
 					React.createElement(
-						Button,
-						{ type: 'default' },
-						'Submit'
+						'form',
+						{ className: 'horizontal-form' },
+						React.createElement(
+							FormField,
+							{ label: 'Email address', htmlFor: 'horizontal-form-input-email' },
+							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'horizontal-form-input-email' })
+						),
+						React.createElement(
+							FormField,
+							{ label: 'Password', htmlFor: 'horizontal-form-input-password' },
+							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'horizontal-form-input-password' })
+						),
+						React.createElement(
+							FormField,
+							{ offsetAbsentLabel: true },
+							React.createElement(Checkbox, { label: 'Check it' })
+						),
+						React.createElement(
+							FormField,
+							{ offsetAbsentLabel: true },
+							React.createElement(
+								Button,
+								{ type: 'default' },
+								'Submit'
+							)
+						)
 					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<form className="horizontal-form">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="horizontal-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="horizontal-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="horizontal-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-inline' },
+				null,
 				'Inline Form'
 			),
 			React.createElement(
-				'form',
-				{ className: 'inline-form u-margin-bottom-lg' },
+				'p',
+				null,
+				'Adding the class ',
 				React.createElement(
-					FormField,
-					{ label: 'Email address', htmlFor: 'inline-form-input-email' },
-					React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'inline-form-input-email' })
+					'code',
+					{ className: 'inline-code' },
+					'.form-inline'
 				),
+				' to your wrapper (which doesn\'t have to be a ',
 				React.createElement(
-					FormField,
-					{ label: 'Password', htmlFor: 'inline-form-input-password' },
-					React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'inline-form-input-password' })
+					'code',
+					{ className: 'inline-code' },
+					'<form>'
 				),
+				' tag)  for left-aligned and inline-block controls. This only applies to forms within viewports that are at least 768px wide.'
+			),
+			React.createElement(
+				'p',
+				null,
+				'Note: you should always use labels to improve accessibility - they are only visible to screen readers. Form labels within viewports that are below 768px wide will be rendered regularly to improve usability.'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: 'checkbox' },
+					{ className: 'code-example__example' },
 					React.createElement(
-						'label',
-						{ className: 'checkbox-label' },
-						React.createElement('input', { type: 'checkbox', className: 'checkbox-input' }),
-						' Check it'
+						'form',
+						{ className: 'inline-form' },
+						React.createElement(
+							FormField,
+							{ label: 'Email address', htmlFor: 'inline-form-input-email' },
+							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'inline-form-input-email' })
+						),
+						React.createElement(
+							FormField,
+							{ label: 'Password', htmlFor: 'inline-form-input-password' },
+							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'inline-form-input-password' })
+						),
+						React.createElement(
+							FormField,
+							null,
+							React.createElement(Checkbox, { label: 'Check it' })
+						),
+						React.createElement(
+							FormField,
+							null,
+							React.createElement(
+								Button,
+								{ type: 'default' },
+								'Submit'
+							)
+						)
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'form-field' },
-					React.createElement(
-						Button,
-						{ type: 'default' },
-						'Submit'
-					)
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<form className="inline-form">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="inline-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="inline-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="inline-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-groups' },
+				null,
 				'Input Groups'
 			),
 			React.createElement(
-				'form',
-				null,
+				'div',
+				{ className: 'code-example' },
 				React.createElement(
-					'p',
-					{ className: 'lead' },
-					'Defaults to contiguous form elements'
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Contiguous form elements'
+					),
+					React.createElement(
+						InputGroup,
+						{ contiguous: true },
+						React.createElement(
+							InputGroup.Section,
+							{ grow: true },
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+						),
+						React.createElement(
+							InputGroup.Section,
+							null,
+							React.createElement(
+								Button,
+								null,
+								'Button'
+							)
+						)
+					),
+					React.createElement(
+						InputGroup,
+						{ contiguous: true },
+						React.createElement(
+							InputGroup.Section,
+							{ type: 'primary' },
+							React.createElement(
+								Button,
+								null,
+								React.createElement('span', { className: 'octicon octicon-pencil' })
+							)
+						),
+						React.createElement(
+							InputGroup.Section,
+							{ grow: true },
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+						)
+					)
 				),
 				React.createElement(
-					InputGroup,
+					ExampleSource,
 					null,
+					'\n\t\t\t\t\t\t\t<InputGroup contiguous>\n\t\t\t\t\t\t\t\t<InputGroup.Section grow>\n\t\t\t\t\t\t\t\t\t<FormInput type="text" placeholder="Input group field" />\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t\t<InputGroup.Section>\n\t\t\t\t\t\t\t\t\t<Button>Button</Button>\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t</InputGroup>\n\t\t\t\t\t\t\t<InputGroup contiguous>\n\t\t\t\t\t\t\t\t<InputGroup.Section type="primary">\n\t\t\t\t\t\t\t\t\t<Button><span className="octicon octicon-pencil" /></Button>\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t\t<InputGroup.Section grow>\n\t\t\t\t\t\t\t\t\t<FormInput type="text" placeholder="Input group field" />\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t</InputGroup>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
 					React.createElement(
-						InputGroup.Section,
-						{ grow: true },
-						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Separate when required'
 					),
 					React.createElement(
-						InputGroup.Section,
+						InputGroup,
 						null,
 						React.createElement(
-							Button,
+							InputGroup.Section,
+							{ grow: true },
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+						),
+						React.createElement(
+							InputGroup.Section,
 							null,
-							'Button'
+							React.createElement(
+								Button,
+								{ type: 'primary' },
+								'Button'
+							)
+						)
+					),
+					React.createElement(
+						InputGroup,
+						null,
+						React.createElement(
+							InputGroup.Section,
+							null,
+							React.createElement(
+								Button,
+								{ type: 'primary' },
+								React.createElement('span', { className: 'octicon octicon-pencil' })
+							)
+						),
+						React.createElement(
+							InputGroup.Section,
+							{ grow: true },
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
 						)
 					)
 				),
 				React.createElement(
-					InputGroup,
+					ExampleSource,
 					null,
+					'\n\t\t\t\t\t\t\t<InputGroup>\n\t\t\t\t\t\t\t\t<InputGroup.Section grow>\n\t\t\t\t\t\t\t\t\t<FormInput type="text" placeholder="Input group field" />\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t\t<InputGroup.Section>\n\t\t\t\t\t\t\t\t\t<Button type="primary">Button</Button>\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t</InputGroup>\n\t\t\t\t\t\t\t<InputGroup>\n\t\t\t\t\t\t\t\t<InputGroup.Section>\n\t\t\t\t\t\t\t\t\t<Button type="primary">\n\t\t\t\t\t\t\t\t\t\t<span className="octicon octicon-pencil" />\n\t\t\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t\t<InputGroup.Section grow>\n\t\t\t\t\t\t\t\t\t<FormInput type="text" placeholder="Input group field" />\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t</InputGroup>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
 					React.createElement(
-						InputGroup.Section,
-						{ type: 'primary' },
+						'div',
+						{ className: 'code-example__example__heading' },
+						'More sophisticated formations'
+					),
+					React.createElement(
+						InputGroup,
+						{ contiguous: true },
 						React.createElement(
-							Button,
+							InputGroup.Section,
 							null,
-							React.createElement('span', { className: 'octicon octicon-pencil' })
+							React.createElement(
+								Button,
+								null,
+								'Alpha'
+							)
+						),
+						React.createElement(
+							InputGroup.Section,
+							{ grow: true },
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+						),
+						React.createElement(
+							InputGroup.Section,
+							null,
+							React.createElement(
+								Button,
+								{ type: 'primary' },
+								'Omega'
+							)
 						)
 					),
 					React.createElement(
-						InputGroup.Section,
-						{ grow: true },
-						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
-					)
-				),
-				React.createElement(
-					'p',
-					{ className: 'lead' },
-					'But they can be separate when required'
-				),
-				React.createElement(
-					InputGroup,
-					{ contiguous: false },
-					React.createElement(
-						InputGroup.Section,
-						{ grow: true },
-						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
-					),
-					React.createElement(
-						InputGroup.Section,
+						InputGroup,
 						null,
 						React.createElement(
-							Button,
-							{ type: 'primary' },
-							'Button'
-						)
-					)
-				),
-				React.createElement(
-					InputGroup,
-					{ contiguous: false },
-					React.createElement(
-						InputGroup.Section,
-						null,
+							InputGroup.Section,
+							{ grow: true },
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+						),
 						React.createElement(
-							Button,
-							{ type: 'primary' },
-							React.createElement('span', { className: 'octicon octicon-pencil' })
+							InputGroup.Section,
+							null,
+							React.createElement(
+								Button,
+								{ type: 'primary' },
+								'Primary'
+							)
+						),
+						React.createElement(
+							InputGroup.Section,
+							null,
+							React.createElement(
+								Button,
+								null,
+								'Default'
+							)
 						)
-					),
-					React.createElement(
-						InputGroup.Section,
-						{ grow: true },
-						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
 					)
 				),
 				React.createElement(
-					'p',
-					{ className: 'lead' },
-					'Use in more sophisticated formations'
-				),
-				React.createElement(
-					InputGroup,
+					ExampleSource,
 					null,
-					React.createElement(
-						InputGroup.Section,
-						null,
-						React.createElement(
-							Button,
-							null,
-							'Alpha'
-						)
-					),
-					React.createElement(
-						InputGroup.Section,
-						{ grow: true },
-						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
-					),
-					React.createElement(
-						InputGroup.Section,
-						null,
-						React.createElement(
-							Button,
-							{ type: 'primary' },
-							'Omega'
-						)
-					)
-				),
-				React.createElement(
-					InputGroup,
-					{ contiguous: false },
-					React.createElement(
-						InputGroup.Section,
-						{ grow: true },
-						React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
-					),
-					React.createElement(
-						InputGroup.Section,
-						null,
-						React.createElement(
-							Button,
-							{ type: 'primary' },
-							'Primary'
-						)
-					),
-					React.createElement(
-						InputGroup.Section,
-						null,
-						React.createElement(
-							Button,
-							null,
-							'Default'
-						)
-					)
+					'\n\t\t\t\t\t\t\t<InputGroup contiguous>\n\t\t\t\t\t\t\t\t<InputGroup.Section>\n\t\t\t\t\t\t\t\t\t<Button>Alpha</Button>\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t\t<InputGroup.Section grow>\n\t\t\t\t\t\t\t\t\t<FormInput type="text" placeholder="Input group field" />\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t\t<InputGroup.Section>\n\t\t\t\t\t\t\t\t\t<Button type="primary">Omega</Button>\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t</InputGroup>\n\t\t\t\t\t\t\t<InputGroup>\n\t\t\t\t\t\t\t\t<InputGroup.Section grow>\n\t\t\t\t\t\t\t\t\t<FormInput type="text" placeholder="Input group field" />\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t\t<InputGroup.Section>\n\t\t\t\t\t\t\t\t\t<Button type="primary">Primary</Button>\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t\t<InputGroup.Section>\n\t\t\t\t\t\t\t\t\t<Button>Default</Button>\n\t\t\t\t\t\t\t\t</InputGroup.Section>\n\t\t\t\t\t\t\t</InputGroup>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-controls' },
+				null,
+				'Sizes'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						FormField,
+						{ label: 'Input', htmlFor: 'supported-controls-input' },
+						React.createElement(FormInput, { placeholder: 'Input', name: 'supported-controls-input' })
+					),
+					React.createElement(
+						FormField,
+						{ label: 'Large Input', htmlFor: 'supported-controls-input-lg' },
+						React.createElement(FormInput, { placeholder: 'Large', name: 'supported-controls-input-lg', size: 'lg' })
+					),
+					React.createElement(
+						FormField,
+						{ label: 'Small Input', htmlFor: 'supported-controls-input-sm' },
+						React.createElement(FormInput, { placeholder: 'Small', name: 'supported-controls-input-sm', size: 'sm' })
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<FormField label="Input" htmlFor="supported-controls-input">\n\t\t\t\t\t\t\t\t<FormInput placeholder="Input" name="supported-controls-input" />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormField label="Large Input" htmlFor="supported-controls-input-lg">\n\t\t\t\t\t\t\t\t<FormInput placeholder="Large" name="supported-controls-input-lg" size="lg" />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormField label="Small Input" htmlFor="supported-controls-input-sm">\n\t\t\t\t\t\t\t\t<FormInput placeholder="Small" name="supported-controls-input-sm" size="sm" />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
 				'Supported Controls'
 			),
 			React.createElement(
-				'form',
-				null,
+				'div',
+				{ className: 'code-example' },
 				React.createElement(
-					FormField,
-					{ label: 'Input', htmlFor: 'supported-controls-input' },
-					React.createElement(FormInput, { placeholder: 'Input', name: 'supported-controls-input' })
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(FormInput, { placeholder: 'Input' })
 				),
 				React.createElement(
-					FormField,
-					{ label: 'Large Input', htmlFor: 'supported-controls-input-lg' },
-					React.createElement(FormInput, { placeholder: 'Large', name: 'supported-controls-input-lg', size: 'lg' })
+					ExampleSource,
+					null,
+					'<FormInput placeholder="Input" />'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(FormInput, { placeholder: 'Textarea', multiline: true })
 				),
 				React.createElement(
-					FormField,
-					{ label: 'Small Input', htmlFor: 'supported-controls-input-sm' },
-					React.createElement(FormInput, { placeholder: 'Small', name: 'supported-controls-input-sm', size: 'sm' })
-				),
+					ExampleSource,
+					null,
+					'<FormInput placeholder="Textarea" multiline />'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
 				React.createElement(
-					FormField,
-					{ label: 'Disabled Input', htmlFor: 'supported-controls-input-disabled' },
-					React.createElement(FormInput, { placeholder: 'Disabled', name: 'supported-controls-input-disabled', disabled: true })
-				),
-				React.createElement(
-					FormField,
-					{ label: 'Textarea', htmlFor: 'supported-controls-textarea' },
-					React.createElement(FormInput, { placeholder: 'Textarea', name: 'supported-controls-textarea', multiline: true })
-				),
-				React.createElement(
-					FormField,
-					{ label: 'Select', htmlFor: 'supported-controls-select' },
+					'div',
+					{ className: 'code-example__example' },
 					React.createElement(FormSelect, { options: controlOptions, firstOption: 'Select', onChange: updateSelect })
 				),
-				React.createElement(FormSelect, { label: 'Disabled Select', options: controlOptions, onChange: updateSelect, htmlFor: 'supported-conrols-select-disabled', firstOption: 'Disabled Select', disabled: true }),
 				React.createElement(
-					FormField,
-					{ label: 'Checkboxes' },
-					checkboxes
-				),
+					ExampleSource,
+					null,
+					'<FormSelect options={[...]} firstOption="Select" onChange={this.handleSelect} />'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
 				React.createElement(
-					FormField,
-					{ label: 'Radios' },
-					radios
-				),
-				React.createElement(
-					FormField,
-					{ label: 'Inline Checkboxes' },
+					'div',
+					{ className: 'code-example__example' },
 					React.createElement(
-						'div',
-						{ className: 'inline-controls' },
-						checkboxes
+						FormField,
+						{ label: 'Checkboxes' },
+						React.createElement(Checkbox, { label: 'Check me out' }),
+						React.createElement(Checkbox, { label: 'Check me out' })
+					),
+					React.createElement(
+						FormField,
+						{ label: 'Radios' },
+						React.createElement(Radio, { name: 'default_radios', label: 'Pick me' }),
+						React.createElement(Radio, { name: 'default_radios', label: 'Pick me' })
+					),
+					React.createElement(
+						FormField,
+						{ label: 'Inline Checkboxes' },
+						React.createElement(
+							'div',
+							{ className: 'inline-controls' },
+							React.createElement(Checkbox, { label: 'Check me out' }),
+							React.createElement(Checkbox, { label: 'Check me out' })
+						)
+					),
+					React.createElement(
+						FormField,
+						{ label: 'Inline Radios' },
+						React.createElement(
+							'div',
+							{ className: 'inline-controls' },
+							React.createElement(Radio, { name: 'inline_radios', label: 'Pick me' }),
+							React.createElement(Radio, { name: 'inline_radios', label: 'Pick me' })
+						)
 					)
 				),
 				React.createElement(
-					FormField,
-					{ label: 'Inline Radios' },
-					React.createElement(
-						'div',
-						{ className: 'inline-controls' },
-						radios
-					)
-				),
-				React.createElement(
-					FormField,
-					{ label: 'Form Note' },
-					React.createElement(
-						FormNote,
-						null,
-						'A block of help text that may extend beyond one line. Use <span> or <div> to control display.'
-					)
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<FormField label="Checkboxes">\n\t\t\t\t\t\t\t\t<Checkbox label="Check me out" />\n\t\t\t\t\t\t\t\t<Checkbox label="I\'m disabled" disabled />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormField label="Radios">\n\t\t\t\t\t\t\t\t<Radio name="default_radios" label="Pick me" />\n\t\t\t\t\t\t\t\t<Radio name="default_radios" label="Pick me" />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormField label="Inline Checkboxes">\n\t\t\t\t\t\t\t\t<div className="inline-controls">\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check me out" />\n\t\t\t\t\t\t\t\t\t<Checkbox label="I\'m disabled" disabled />\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormField label="Inline Radios">\n\t\t\t\t\t\t\t\t<div className="inline-controls">\n\t\t\t\t\t\t\t\t\t<Radio name="inline_radios" label="Pick me" />\n\t\t\t\t\t\t\t\t\t<Radio name="inline_radios" label="Pick me" />\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-validation' },
-				'Validation'
+				null,
+				'Disabled State'
 			),
 			React.createElement(
-				'form',
-				null,
-				React.createElement(RadioGroup, { label: 'Radios', value: this.state.inlineRadioGroup, onChange: updateInlineRadios, options: controlOptions, name: 'inlineRadioGroup', required: true, inline: true }),
-				React.createElement(FormSelect, { label: 'Select', value: this.state.inputSelect, onChange: updateSelect, options: controlOptions, htmlFor: 'inputSelect', required: true, prependEmptyOption: true }),
-				React.createElement(EmailInputGroup, { label: 'Email', value: this.state.inputEmail, onChange: updateEmail, required: true }),
-				React.createElement(PasswordInputGroup, { label: 'Password', value: this.state.inputPassword, onChange: updatePassword, required: true })
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						FormField,
+						{ label: 'Input', htmlFor: 'supported-controls-input-disabled' },
+						React.createElement(FormInput, { placeholder: 'Input', name: 'supported-controls-input-disabled', disabled: true })
+					),
+					React.createElement(
+						FormField,
+						{ label: 'Textarea', htmlFor: 'supported-controls-textarea' },
+						React.createElement(FormInput, { placeholder: 'Textarea', name: 'supported-controls-textarea-disabled', disabled: true, multiline: true })
+					),
+					React.createElement(FormSelect, { label: 'Select', options: controlOptions, onChange: updateSelect, htmlFor: 'supported-conrols-select-disabled', firstOption: 'Select', disabled: true }),
+					React.createElement(
+						FormField,
+						{ label: 'Checkboxes' },
+						React.createElement(Checkbox, { label: 'Check me out', disabled: true })
+					),
+					React.createElement(
+						FormField,
+						{ label: 'Radios' },
+						React.createElement(Radio, { name: 'default_radios', label: 'Pick me', disabled: true })
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<FormField label="Input" htmlFor="supported-controls-input-disabled">\n\t\t\t\t\t\t\t\t<FormInput placeholder="Input" name="supported-controls-input-disabled" disabled />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormField label="Textarea" htmlFor="supported-controls-textarea">\n\t\t\t\t\t\t\t\t<FormInput placeholder="Textarea" name="supported-controls-textarea-disabled" disabled multiline />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormSelect label="Select" options={controlOptions} onChange={updateSelect} htmlFor="supported-conrols-select-disabled" firstOption="Select" disabled />\n\t\t\t\t\t\t\t<FormField label="Checkboxes">\n\t\t\t\t\t\t\t\t<Checkbox label="Check me out" disabled />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormField label="Radios">\n\t\t\t\t\t\t\t\t<Radio name="default_radios" label="Pick me" disabled />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t'
+				)
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-complex' },
+				null,
+				'Notes'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						FormField,
+						{ label: 'Input with note' },
+						React.createElement(FormInput, null),
+						React.createElement(
+							FormNote,
+							null,
+							'A note to help the user understand its associated field; may extend beyond one line.'
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<FormField label="Input with note">\n\t\t\t\t\t\t\t\t<FormInput />\n\t\t\t\t\t\t\t\t<FormNote>A note to help the user understand its associated field; may extend beyond one line.</FormNote>\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
 				'Complex Forms'
 			),
 			React.createElement(
-				'form',
+				'p',
 				null,
+				'Wrap any group of ',
 				React.createElement(
-					FormRow,
-					null,
+					'code',
+					{ className: 'inline-code' },
+					'<FormField>'
+				),
+				' in the ',
+				React.createElement(
+					'code',
+					{ className: 'inline-code' },
+					'<FormRow>'
+				),
+				' component to easily set desired widths.'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
 					React.createElement(
-						FormField,
-						{ width: 'one-half', label: 'Credit Card Number', htmlFor: 'credit-card-number' },
-						React.createElement(FormInput, { pattern: '[0-9]*', placeholder: 'Card Number', name: 'credit-card-number' })
+						FormRow,
+						null,
+						React.createElement(
+							FormField,
+							{ width: 'one-half', label: 'Credit Card Number', htmlFor: 'credit-card-number' },
+							React.createElement(FormInput, { pattern: '[0-9]*', placeholder: 'Card Number', name: 'credit-card-number' })
+						),
+						React.createElement(
+							FormField,
+							{ width: 'one-quarter', label: 'Expiration', htmlFor: 'credit-card-expiration' },
+							React.createElement(FormInput, { placeholder: 'MM/YYYY', name: 'credit-card-expiration' })
+						),
+						React.createElement(
+							FormField,
+							{ width: 'one-quarter', label: 'Security Code (CCV)', htmlFor: 'credit-card-security' },
+							React.createElement(FormInput, { pattern: '[0-9]*', placeholder: '123', name: 'credit-card-security' })
+						)
+					),
+					React.createElement(
+						FormRow,
+						null,
+						React.createElement(
+							FormField,
+							{ width: 'one-half', label: 'First Name', htmlFor: 'first-name' },
+							React.createElement(FormInput, { placeholder: 'First Name', name: 'first-name' })
+						),
+						React.createElement(
+							FormField,
+							{ width: 'one-half', label: 'Last Name', htmlFor: 'last-name' },
+							React.createElement(FormInput, { placeholder: 'Last Name', name: 'last-name' })
+						)
 					),
 					React.createElement(
 						FormField,
-						{ width: 'one-quarter', label: 'Expiration', htmlFor: 'credit-card-expiration' },
-						React.createElement(FormInput, { placeholder: 'MM/YYYY', name: 'credit-card-expiration' })
+						{ label: 'Billing Address', htmlFor: 'address-street1' },
+						React.createElement(FormInput, { placeholder: 'Address Line 1', name: 'address-street1' })
 					),
 					React.createElement(
 						FormField,
-						{ width: 'one-quarter', label: 'Security Code (CCV)', htmlFor: 'credit-card-security' },
-						React.createElement(FormInput, { pattern: '[0-9]*', placeholder: '123', name: 'credit-card-security' })
+						null,
+						React.createElement(FormInput, { placeholder: 'Address Line 2', name: 'address-street2' })
+					),
+					React.createElement(
+						FormRow,
+						null,
+						React.createElement(
+							FormField,
+							{ width: 'two-thirds' },
+							React.createElement(FormInput, { placeholder: 'City', name: 'city' })
+						),
+						React.createElement(
+							FormField,
+							{ width: 'one-third' },
+							React.createElement(FormInput, { placeholder: 'State', name: 'state' })
+						),
+						React.createElement(
+							FormField,
+							{ width: 'one-third' },
+							React.createElement(FormInput, { width: 'one-third', placeholder: 'Post Code', name: 'city' })
+						),
+						React.createElement(
+							FormField,
+							{ width: 'two-thirds' },
+							React.createElement(FormSelect, { options: countryOptions, firstOption: 'Country', onChange: updateSelect })
+						)
 					)
 				),
 				React.createElement(
-					FormRow,
+					ExampleSource,
 					null,
-					React.createElement(
-						FormField,
-						{ width: 'one-half', label: 'First Name', htmlFor: 'first-name' },
-						React.createElement(FormInput, { placeholder: 'First Name', name: 'first-name' })
-					),
-					React.createElement(
-						FormField,
-						{ width: 'one-half', label: 'Last Name', htmlFor: 'last-name' },
-						React.createElement(FormInput, { placeholder: 'Last Name', name: 'last-name' })
-					)
-				),
+					'\n\t\t\t\t\t\t\t<FormRow>\n\t\t\t\t\t\t\t\t<FormField width="one-half" label="Credit Card Number" htmlFor="credit-card-number">\n\t\t\t\t\t\t\t\t\t<FormInput pattern="[0-9]*" placeholder="Card Number" name="credit-card-number" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField width="one-quarter" label="Expiration" htmlFor="credit-card-expiration">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="MM/YYYY" name="credit-card-expiration" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField width="one-quarter" label="Security Code (CCV)" htmlFor="credit-card-security">\n\t\t\t\t\t\t\t\t\t<FormInput pattern="[0-9]*" placeholder="123" name="credit-card-security" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</FormRow>\n\t\t\t\t\t\t\t<FormRow>\n\t\t\t\t\t\t\t\t<FormField width="one-half" label="First Name" htmlFor="first-name">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="First Name" name="first-name" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField width="one-half" label="Last Name" htmlFor="last-name">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Last Name" name="last-name" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</FormRow>\n\t\t\t\t\t\t\t<FormField label="Billing Address" htmlFor="address-street1">\n\t\t\t\t\t\t\t\t<FormInput placeholder="Address Line 1" name="address-street1" />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t<FormInput placeholder="Address Line 2" name="address-street2" />\n\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t<FormRow>\n\t\t\t\t\t\t\t\t<FormField width="two-thirds">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="City" name="city" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField width="one-third">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="State" name="state" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField width="one-third">\n\t\t\t\t\t\t\t\t\t<FormInput width="one-third" placeholder="Post Code" name="city" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField width="two-thirds">\n\t\t\t\t\t\t\t\t\t<FormSelect options={countryOptions} firstOption="Country" onChange={updateSelect} />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</FormRow>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Usage'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
 				React.createElement(
-					FormField,
-					{ label: 'Billing Address', htmlFor: 'address-street1' },
-					React.createElement(FormInput, { placeholder: 'Address Line 1', name: 'address-street1' })
-				),
-				React.createElement(
-					FormField,
-					null,
-					React.createElement(FormInput, { placeholder: 'Address Line 2', name: 'address-street2' })
-				),
-				React.createElement(
-					FormRow,
-					null,
+					'table',
+					{ className: 'table' },
 					React.createElement(
-						FormField,
-						{ width: 'two-thirds' },
-						React.createElement(FormInput, { placeholder: 'City', name: 'city' })
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
 					),
 					React.createElement(
-						FormField,
-						{ width: 'one-third' },
-						React.createElement(FormInput, { placeholder: 'State', name: 'state' })
-					),
-					React.createElement(
-						FormField,
-						{ width: 'one-third' },
-						React.createElement(FormInput, { width: 'one-third', placeholder: 'Post Code', name: 'city' })
-					),
-					React.createElement(
-						FormField,
-						{ width: 'two-thirds' },
-						React.createElement(FormSelect, { options: countryOptions, firstOption: 'Country', onChange: updateSelect })
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								null,
+								'label'
+							),
+							React.createElement(
+								'td',
+								null,
+								'string'
+							),
+							React.createElement(
+								'td',
+								null,
+								'\'\''
+							),
+							React.createElement('td', { className: 'usage-table__description' })
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								null,
+								'offsetAbsentLabel'
+							),
+							React.createElement(
+								'td',
+								null,
+								'bool'
+							),
+							React.createElement(
+								'td',
+								null,
+								'false'
+							),
+							React.createElement('td', { className: 'usage-table__description' })
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								null,
+								'width'
+							),
+							React.createElement(
+								'td',
+								null,
+								'string'
+							),
+							React.createElement(
+								'td',
+								null,
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Declare a width for your field; must be used inside a ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'<FormRow>'
+								),
+								' component. Possible options:',
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'one-half'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'two-quarters'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'three-sixths'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'one-quarter'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'three-quarters'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'one-third'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'two-sixths'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'two-thirds'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'four-sixths'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'one-fifth'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'two-fifths'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'three-fifths'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'four-fifths'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'one-sixth'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code inline-code--list-item' },
+									'five-sixths'
+								)
+							)
+						)
 					)
 				)
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-icon' },
+				null,
 				'Icons'
 			),
 			React.createElement(
@@ -5005,61 +6327,127 @@ var Forms = React.createClass({
 				)
 			),
 			React.createElement(
-				'form',
-				null,
+				'div',
+				{ className: 'code-example' },
 				React.createElement(
-					FormLabel,
-					null,
-					'Alignment'
-				),
-				React.createElement(
-					FormRow,
-					null,
+					'div',
+					{ className: 'code-example__example' },
 					React.createElement(
-						FormIconField,
-						{ width: 'one-half', iconPosition: 'left', iconColor: 'default', iconKey: 'star' },
-						React.createElement(FormInput, { placeholder: 'Left Aligned', name: 'icon-alignment-left' })
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Alignment'
 					),
 					React.createElement(
-						FormIconField,
-						{ width: 'one-half', iconPosition: 'right', iconColor: 'default', iconKey: 'star' },
-						React.createElement(FormInput, { placeholder: 'Right Aligned', name: 'icon-alignment-right' })
+						FormRow,
+						null,
+						React.createElement(
+							FormIconField,
+							{ width: 'one-half', iconPosition: 'left', iconColor: 'default', iconKey: 'star' },
+							React.createElement(FormInput, { placeholder: 'Left Aligned', name: 'icon-alignment-left' })
+						),
+						React.createElement(
+							FormIconField,
+							{ width: 'one-half', iconPosition: 'right', iconColor: 'default', iconKey: 'star' },
+							React.createElement(FormInput, { placeholder: 'Right Aligned', name: 'icon-alignment-right' })
+						)
 					)
 				),
 				React.createElement(
-					FormLabel,
+					ExampleSource,
 					null,
-					'Context Variants: Color'
+					'\n\t\t\t\t\t\t\t<FormRow>\n\t\t\t\t\t\t\t\t<FormIconField width="one-half" iconPosition="left" iconColor="default" iconKey="star">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Left Aligned" name="icon-alignment-left" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-half" iconPosition="right" iconColor="default" iconKey="star">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Right Aligned" name="icon-alignment-right" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t</FormRow>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Context Variants: Color'
+					),
+					React.createElement(
+						FormRow,
+						null,
+						iconContextVariantsColor
+					)
 				),
 				React.createElement(
-					FormRow,
+					ExampleSource,
 					null,
-					iconContextVariantsColor
+					'\n\t\t\t\t\t\t\t<FormRow>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="star" iconColor="default">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Default" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="info" iconColor="primary">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Primary" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="check" iconColor="success">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Success" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="alert" iconColor="warning">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Warning" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="stop" iconColor="danger">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Danger" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t</FormRow>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Context Variants: Fill'
+					),
+					React.createElement(
+						FormRow,
+						null,
+						iconContextVariantsFill
+					)
 				),
 				React.createElement(
-					FormLabel,
+					ExampleSource,
 					null,
-					'Context Variants: Fill'
+					'\n\t\t\t\t\t\t\t<FormRow>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="star" iconFill="default">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Default" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="info" iconFill="primary">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Primary" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="check" iconFill="success">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Success" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="alert" iconFill="warning">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Warning" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t\t<FormIconField width="one-fifth" iconPosition="left" iconKey="stop" iconFill="danger">\n\t\t\t\t\t\t\t\t\t<FormInput placeholder="Danger" />\n\t\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t\t</FormRow>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Loading Indicator'
+					),
+					React.createElement(
+						FormIconField,
+						{ iconPosition: 'right', iconKey: 'search', iconColor: 'default', iconIsLoading: this.state.searching },
+						React.createElement(FormInput, { onChange: this.handleSearch, type: 'search', placeholder: 'Search...', name: 'icon-form-search' })
+					)
 				),
 				React.createElement(
-					FormRow,
+					ExampleSource,
 					null,
-					iconContextVariantsFill
-				),
-				React.createElement(
-					FormIconField,
-					{ label: 'Loading Indicator', iconPosition: 'right', iconKey: 'search', iconColor: 'default', iconIsLoading: this.state.searching },
-					React.createElement(FormInput, { onChange: this.handleSearch, type: 'search', placeholder: 'Search...', name: 'icon-form-search' })
+					'\n\t\t\t\t\t\t\t<FormIconField iconPosition="right" iconKey="search" iconColor="default" iconIsLoading={this.state.searching}>\n\t\t\t\t\t\t\t\t<FormInput onChange={this.handleSearch} type="search" placeholder="Search..." name="icon-form-search" />\n\t\t\t\t\t\t\t</FormIconField>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
 				'h2',
-				{ id: 'section-upload' },
+				null,
+				'Validation'
+			),
+			React.createElement(
+				'form',
+				null,
+				React.createElement(RadioGroup, { label: 'Radios', value: this.state.inlineRadioGroup, onChange: updateInlineRadios, options: controlOptions, name: 'inlineRadioGroup', required: true, inline: true }),
+				React.createElement(FormSelect, { label: 'Select', value: this.state.inputSelect, onChange: updateSelect, options: controlOptions, htmlFor: 'inputSelect', required: true, prependEmptyOption: true }),
+				React.createElement(EmailInputGroup, { label: 'Email', value: this.state.inputEmail, onChange: updateEmail, required: true }),
+				React.createElement(PasswordInputGroup, { label: 'Password', value: this.state.inputPassword, onChange: updatePassword, required: true })
+			),
+			React.createElement(
+				'h2',
+				null,
 				'File Upload'
 			),
 			React.createElement(
 				'form',
-				{ className: 'horizontal-form u-margin-bottom-lg' },
+				{ className: 'horizontal-form' },
 				React.createElement(
 					'div',
 					{ className: 'form-field' },
@@ -5087,294 +6475,14 @@ var Forms = React.createClass({
 
 module.exports = Forms;
 
-},{"../data/countries":51,"elemental":undefined,"react":undefined}],57:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-
-var Grid = React.createClass({
-	displayName: 'VIEW_Grid',
-
-	render: function render() {
-		return React.createElement(
-			'div',
-			{ className: 'demo-container container' },
-			React.createElement(
-				'h1',
-				null,
-				'Grid'
-			),
-			React.createElement(
-				'p',
-				{ className: 'lead' },
-				'Uses the standard Bootstrap grid which is a 12 column responsive layout, with a 20px gutter.'
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Three equal columns'
-			),
-			React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'col-sm-4' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						'.col-sm-4'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-sm-4' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						'.col-sm-4'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-sm-4' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						'.col-sm-4'
-					)
-				)
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Three unequal columns'
-			),
-			React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'col-sm-3' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						'.col-sm-3'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-sm-6' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						'.col-sm-6'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-sm-3' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						'.col-sm-3'
-					)
-				)
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Two unequal columns'
-			),
-			React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'col-sm-8' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						'.col-sm-8'
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-sm-4' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						'.col-sm-4'
-					)
-				)
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Columns on a small device'
-			),
-			React.createElement(
-				'div',
-				{ className: 'row' },
-				React.createElement(
-					'div',
-					{ className: 'col-xs-4' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(
-							'span',
-							{ className: 'visible-xs-inline' },
-							'4'
-						),
-						React.createElement(
-							'span',
-							{ className: 'hidden-xs' },
-							'.col-xs-4'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-xs-4' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(
-							'span',
-							{ className: 'visible-xs-inline' },
-							'4'
-						),
-						React.createElement(
-							'span',
-							{ className: 'hidden-xs' },
-							'.col-xs-4'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-xs-4' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(
-							'span',
-							{ className: 'visible-xs-inline' },
-							'4'
-						),
-						React.createElement(
-							'span',
-							{ className: 'hidden-xs' },
-							'.col-xs-4'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-xs-8' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(
-							'span',
-							{ className: 'visible-xs-inline' },
-							'8'
-						),
-						React.createElement(
-							'span',
-							{ className: 'hidden-xs' },
-							'.col-xs-8'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-xs-4' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(
-							'span',
-							{ className: 'visible-xs-inline' },
-							'4'
-						),
-						React.createElement(
-							'span',
-							{ className: 'hidden-xs' },
-							'.col-xs-4'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-xs-3' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(
-							'span',
-							{ className: 'visible-xs-inline' },
-							'3'
-						),
-						React.createElement(
-							'span',
-							{ className: 'hidden-xs' },
-							'.col-xs-3'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-xs-6' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(
-							'span',
-							{ className: 'visible-xs-inline' },
-							'6'
-						),
-						React.createElement(
-							'span',
-							{ className: 'hidden-xs' },
-							'.col-xs-6'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-xs-3' },
-					React.createElement(
-						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(
-							'span',
-							{ className: 'visible-xs-inline' },
-							'3'
-						),
-						React.createElement(
-							'span',
-							{ className: 'hidden-xs' },
-							'.col-xs-3'
-						)
-					)
-				)
-			)
-		);
-	}
-});
-
-module.exports = Grid;
-
-},{"react":undefined}],58:[function(require,module,exports){
+},{"../components/ExampleSource":50,"../data/countries":51,"elemental":undefined,"react":undefined}],57:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Button = require('elemental').Button;
 var Router = require('react-router');
 
-var NavItems = [{ value: 'buttons', icon: 'screen-full', label: 'Buttons' }, { value: 'forms', icon: 'diff-modified', label: 'Forms' }, { value: 'spinner', icon: 'ellipsis', label: 'Spinner' }, { value: 'modal', icon: 'versions', label: 'Modal' }, { value: 'grid', icon: 'mirror', label: 'Grid' }, { value: 'date-picker', icon: 'calendar', label: 'Date' }];
+var NavItems = [{ value: 'css', icon: 'paintcan', label: 'CSS' }, { value: 'buttons', icon: 'screen-full', label: 'Buttons' }, { value: 'forms', icon: 'diff-modified', label: 'Forms' }, { value: 'spinner', icon: 'ellipsis', label: 'Spinner' }, { value: 'modal', icon: 'versions', label: 'Modal' }, { value: 'misc', icon: 'code', label: 'Misc' }];
 
 var Home = React.createClass({
 	displayName: 'VIEW_Home',
@@ -5383,7 +6491,7 @@ var Home = React.createClass({
 		var menuItems = NavItems.map(function (item) {
 			return React.createElement(
 				'div',
-				{ className: 'demo-banner-nav__col col-xs-4 col-sm-2' },
+				{ key: item.label, className: 'demo-banner-nav__col col-xs-4 col-sm-2' },
 				React.createElement(
 					Router.Link,
 					{ key: item.value, className: 'demo-banner-nav__item', onClick: self.toggleMenu, to: item.value },
@@ -5424,13 +6532,13 @@ var Home = React.createClass({
 						'div',
 						{ className: 'demo-banner__buttons' },
 						React.createElement(
-							Button,
-							{ type: 'demo-primary', href: 'https://twitter.com/elementalui', target: '_blank' },
+							'a',
+							{ className: 'Button Button--demo-primary', href: 'https://twitter.com/elementalui', target: '_blank' },
 							'Follow @ElementalUI on Twitter'
 						),
 						React.createElement(
-							Button,
-							{ type: 'demo-link', href: 'https://github.com/elementalui/elemental', target: '_blank' },
+							'a',
+							{ className: 'Button Button--demo-link', href: 'https://github.com/elementalui/elemental', target: '_blank' },
 							'View the GitHub Project'
 						)
 					)
@@ -5600,7 +6708,457 @@ var Home = React.createClass({
 
 module.exports = Home;
 
-},{"elemental":undefined,"react":undefined,"react-router":31}],59:[function(require,module,exports){
+// { value: 'date-picker', icon: 'calendar', label: 'Date' }
+
+},{"elemental":undefined,"react":undefined,"react-router":30}],58:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ExampleSource = require('../components/ExampleSource');
+var Alert = require('elemental').Alert;
+var Pill = require('elemental').Pill;
+
+var Misc = React.createClass({
+	displayName: 'VIEW_Misc',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'demo-container container' },
+			React.createElement(
+				'h1',
+				null,
+				'Miscellaneous'
+			),
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'Some components march to the beat of their own drum…'
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Alerts'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						Alert,
+						{ type: 'info' },
+						React.createElement(
+							'strong',
+							null,
+							'Info:'
+						),
+						' This could be something helpful, better read it just to make sure.'
+					),
+					React.createElement(
+						Alert,
+						{ type: 'success' },
+						React.createElement(
+							'strong',
+							null,
+							'Success:'
+						),
+						' Nothing to worry about, everything is going great!'
+					),
+					React.createElement(
+						Alert,
+						{ type: 'warning' },
+						React.createElement(
+							'strong',
+							null,
+							'Warning:'
+						),
+						' Pay attention to me, things are not going according to plan.'
+					),
+					React.createElement(
+						Alert,
+						{ type: 'danger' },
+						React.createElement(
+							'strong',
+							null,
+							'Error:'
+						),
+						' You need to take action, something has gone terribly wrong!'
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Alert type="info"><strong>Info:</strong> This could be something helpful, better read it just to make sure.</Alert>\n\t\t\t\t\t\t\t<Alert type="success"><strong>Success:</strong> Nothing to worry about, everything is going great!</Alert>\n\t\t\t\t\t\t\t<Alert type="warning"><strong>Warning:</strong> Pay attention to me, things are not going according to plan.</Alert>\n\t\t\t\t\t\t\t<Alert type="danger"><strong>Error:</strong> You need to take action, something has gone terribly wrong!</Alert>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Usage'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					'table',
+					{ className: 'table' },
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'children'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'node'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Required'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'type'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Required. One of:',
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'danger'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'info'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'primary'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'success'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'warning'
+								)
+							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Pills'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(Pill, { label: 'Create', type: 'success-inverted' }),
+					React.createElement(Pill, { label: 'First Pill', type: 'primary', showClearButton: true }),
+					React.createElement(Pill, { label: 'Second Pill', type: 'primary', showClearButton: true }),
+					React.createElement(Pill, { label: 'Third Pill', type: 'primary', showClearButton: true }),
+					React.createElement(Pill, { label: 'Clear All' })
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Pill label="Create" type="success-inverted" />\n\t\t\t\t\t\t\t<Pill label="First Pill" type="primary" showClearButton />\n\t\t\t\t\t\t\t<Pill label="Second Pill" type="primary" showClearButton />\n\t\t\t\t\t\t\t<Pill label="Third Pill" type="primary" showClearButton />\n\t\t\t\t\t\t\t<Pill label="Clear All" />\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Usage'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					'table',
+					{ className: 'table' },
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'showClearButton'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Display the clear button, rendered beside the label'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'label'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Required. The tag label'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'onClear'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'func'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Run when the user clicks the clear button'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'type'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'default\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'One of:',
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'danger'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'default'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'info'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'primary'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'success'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'warning'
+								),
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'danger-inverted'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'default-inverted'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'info-inverted'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'primary-inverted'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'success-inverted'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'warning-inverted'
+								)
+							)
+						)
+					)
+				)
+			)
+		);
+	}
+});
+
+module.exports = Misc;
+
+},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],59:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -5609,7 +7167,12 @@ var Button = require('elemental').Button;
 var FormField = require('elemental').FormField;
 var FormInput = require('elemental').FormInput;
 var Modal = require('elemental').Modal;
+var ModalBody = require('elemental').ModalBody;
+var ModalFooter = require('elemental').ModalFooter;
+var ModalHeader = require('elemental').ModalHeader;
 var Spinner = require('elemental').Spinner;
+
+var ExampleSource = require('../components/ExampleSource');
 
 module.exports = React.createClass({
 	displayName: 'VIEW_Modal',
@@ -5617,40 +7180,53 @@ module.exports = React.createClass({
 		return {
 			formProcessing: false,
 			modalIsOpen: false,
-			'inputEmail': '',
-			'inputPassword': ''
+			email: '',
+			password: ''
 		};
 	},
 	toggleModal: function toggleModal() {
-		this.setState({ modalIsOpen: !this.state.modalIsOpen });
-	},
-	submitForm: function submitForm() {
 		var self = this;
-		self.setState({ formProcessing: true });
+		this.setState({
+			modalIsOpen: !this.state.modalIsOpen
+		}, function () {
+			if (self.state.modalIsOpen) {
+				self.refs.email.getDOMNode().focus();
+			}
+		});
+	},
+	submitForm: function submitForm(e) {
+		e.preventDefault();
+		var self = this;
+		this.setState({ formProcessing: true });
 
 		setTimeout(function () {
-			self.setState({ formProcessing: false, modalIsOpen: false });
-		}, 4000);
+			self.setState({
+				formProcessing: false,
+				modalIsOpen: false,
+				email: '',
+				password: ''
+			});
+		}, 3000);
 	},
 	render: function render() {
 		var self = this;
 
-		// handle form input and validation
-		function updateEmail(e) {
-			self.setState({ inputEmail: e.target.value });
-		}
-		function updatePassword(e) {
-			self.setState({ inputPassword: e.target.value });
-		}
+		// handle form input
+		function updateInput(e) {
+			var newState = {};
+			newState[e.target.name] = e.target.value;
+			self.setState(newState);
+		};
 
+		// variable submit button
 		var submitButton = this.state.formProcessing ? React.createElement(
 			Button,
-			{ onClick: this.submitForm, type: 'primary', disabled: true },
+			{ type: 'primary', disabled: true },
 			React.createElement(Spinner, { type: 'inverted' }),
 			'Submitting'
 		) : React.createElement(
 			Button,
-			{ onClick: this.submitForm, type: 'primary', disabled: !this.state.inputEmail || !this.state.inputPassword },
+			{ type: 'primary', disabled: !this.state.email || !this.state.password, submit: true },
 			'Submit'
 		);
 		return React.createElement(
@@ -5662,43 +7238,416 @@ module.exports = React.createClass({
 				'Modal'
 			),
 			React.createElement(
-				'p',
+				'h2',
 				null,
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac viverra augue. Vivamus ultricies nec massa a vulputate. Donec non lacus sit amet augue faucibus sodales ut at nulla. Donec id tincidunt nulla. Aenean sit amet libero velit. Nam maximus leo sit amet dolor tincidunt egestas. Nunc facilisis tellus et sapien consectetur varius. In ligula orci, tincidunt eu molestie sit amet, facilisis in nisl. Cras elit risus, scelerisque quis elementum sed, convallis a mi. Etiam placerat eros vitae hendrerit varius.'
+				'Static Example'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'Modal-content' },
+						React.createElement(ModalHeader, { text: 'Modal Header', showCloseButton: true }),
+						React.createElement(
+							ModalBody,
+							null,
+							React.createElement(
+								'p',
+								null,
+								'Content and controls go in the Modal Body.'
+							)
+						),
+						React.createElement(
+							ModalFooter,
+							null,
+							React.createElement(
+								Button,
+								{ type: 'primary' },
+								'Modal Footer'
+							),
+							React.createElement(
+								Button,
+								{ type: 'link-cancel' },
+								'Button'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Modal>\n\t\t\t\t\t\t\t\t<ModalHeader text="Modal Header" showCloseButton />\n\t\t\t\t\t\t\t\t<ModalBody>\n\t\t\t\t\t\t\t\t\t<p>Content and controls go in the Modal Body.</p>\n\t\t\t\t\t\t\t\t</ModalBody>\n\t\t\t\t\t\t\t\t<ModalFooter>\n\t\t\t\t\t\t\t\t\t<Button type="primary">Modal Footer</Button>\n\t\t\t\t\t\t\t\t\t<Button type="link-cancel">Button</Button>\n\t\t\t\t\t\t\t\t</ModalFooter>\n\t\t\t\t\t\t\t</Modal>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Live Demo'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						Button,
+						{ onClick: this.toggleModal },
+						'Launch Modal'
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Button onClick={this.toggleModal}>Launch Modal</Button>\n\t\t\t\t\t\t'
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>\n\t\t\t\t\t\t\t\t<ModalHeader text="Live Demo" showCloseButton onClose={this.toggleModal} />\n\t\t\t\t\t\t\t\t<form action="#" onSubmit={this.submitForm} noValidate>\n\t\t\t\t\t\t\t\t\t<ModalBody>\n\t\t\t\t\t\t\t\t\t\t<FormField label="Email">\n\t\t\t\t\t\t\t\t\t\t\t<FormInput label="Email" type="email" name="email" ref="email" value={this.state.email} onChange={updateInput} required />\n\t\t\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t\t\t<FormField label="Password">\n\t\t\t\t\t\t\t\t\t\t\t<FormInput label="Password" type="password" name="password" ref="password" value={this.state.password} onChange={updateInput} required />\n\t\t\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t\t</ModalBody>\n\t\t\t\t\t\t\t\t\t<ModalFooter>\n\t\t\t\t\t\t\t\t\t\t{submitButton}\n\t\t\t\t\t\t\t\t\t\t<Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>\n\t\t\t\t\t\t\t\t\t</ModalFooter>\n\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t</Modal>\n\t\t\t\t\t\t'
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\tvar submitButton = this.state.formProcessing ? (\n\t\t\t\t\t\t\t\t<Button type="primary" disabled>\n\t\t\t\t\t\t\t\t\t<Spinner type="inverted" />\n\t\t\t\t\t\t\t\t\tSubmitting\n\t\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t\t<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>\n\t\t\t\t\t\t\t);\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Usage'
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Modal'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					'table',
+					{ className: 'table' },
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'backdropClosesModal'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Pass through to make the backdrop available as a target to dismiss the modal.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'isOpen'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Managed by state;  this is how to control the visibility of the modal.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'onCancel'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'func'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The function used to handle cancel events on the modal; typically sets the open state to ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'false'
+								)
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'top'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.'
+							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Modal Header'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					'table',
+					{ className: 'table' },
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'children'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'node'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Alternative to using the text attribute, for when you need more control over the content.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'showCloseButton'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'bool'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'false'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Allow users to dismiss the modal.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'onClose'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'func'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'What to do when the user clicks the close button'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'text'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Creates a title for the modal. We use "text" because ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'title'
+								),
+								' is reserved.'
+							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Modal Body/Footer'
 			),
 			React.createElement(
 				'p',
 				null,
-				'Morbi maximus metus diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla dolor felis, vulputate quis imperdiet vel, molestie tincidunt dui. Nulla aliquet ut lorem ac dignissim. Cras sem lectus, iaculis quis mi quis, convallis euismod massa. Fusce augue ipsum, consectetur ut nisl vel, convallis varius felis. Aenean finibus id justo et varius.'
-			),
-			React.createElement(
-				Button,
-				{ onClick: this.toggleModal },
-				'Launch Modal'
+				'These are simple wrappers to abstract the classnames, they may become more functional in the future.'
 			),
 			React.createElement(
 				Modal,
-				{ isOpen: this.state.modalIsOpen, onCancel: this.toggleModal, headerTitle: 'Modal Header', headerHasCloseButton: true, backdropClosesModal: true },
+				{ isOpen: this.state.modalIsOpen, onCancel: this.toggleModal, backdropClosesModal: true },
+				React.createElement(ModalHeader, { text: 'Live Demo', showCloseButton: true, onClose: this.toggleModal }),
 				React.createElement(
 					'form',
-					null,
+					{ action: '#', onSubmit: this.submitForm, noValidate: true },
 					React.createElement(
-						'div',
-						{ className: 'Modal-body' },
+						ModalBody,
+						null,
 						React.createElement(
 							FormField,
 							{ label: 'Email' },
-							React.createElement(FormInput, { label: 'Email', type: 'email', value: this.state.inputEmail, onChange: updateEmail, required: true })
+							React.createElement(FormInput, { label: 'Email', type: 'email', name: 'email', ref: 'email', value: this.state.email, onChange: updateInput, required: true })
 						),
 						React.createElement(
 							FormField,
 							{ label: 'Password' },
-							React.createElement(FormInput, { label: 'Password', type: 'password', value: this.state.inputPassword, onChange: updatePassword, required: true })
+							React.createElement(FormInput, { label: 'Password', type: 'password', name: 'password', ref: 'password', value: this.state.password, onChange: updateInput, required: true })
 						)
 					),
 					React.createElement(
-						'div',
-						{ className: 'Modal-footer' },
+						ModalFooter,
+						null,
 						submitButton,
 						React.createElement(
 							Button,
@@ -5712,12 +7661,14 @@ module.exports = React.createClass({
 	}
 });
 
-},{"elemental":undefined,"react/addons":undefined}],60:[function(require,module,exports){
+},{"../components/ExampleSource":50,"elemental":undefined,"react/addons":undefined}],60:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Button = require('elemental').Button;
 var Spinner = require('elemental').Spinner;
+
+var ExampleSource = require('../components/ExampleSource');
 
 var Buttons = React.createClass({
 	displayName: 'VIEW_Spinner',
@@ -5732,73 +7683,211 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'row' },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: 'col-sm-4' },
+					{ className: 'code-example__example' },
 					React.createElement(
-						'h2',
-						null,
-						'Default'
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Independent'
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-center' },
-						React.createElement(Spinner, { type: 'default' })
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-sm-4' },
-					React.createElement(
-						'h2',
-						null,
-						'Primary'
+						{ className: 'demo-box u-text-center code-example__example-element--inline' },
+						React.createElement(Spinner, null)
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-center' },
+						{ className: 'demo-box u-text-center code-example__example-element--inline' },
 						React.createElement(Spinner, { type: 'primary' })
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-sm-4' },
-					React.createElement(
-						'h2',
-						null,
-						'Inverted'
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-center demo-box--inverted' },
+						{ className: 'demo-box u-text-center code-example__example-element--inline code-example__example-element--primary-bg' },
 						React.createElement(Spinner, { type: 'inverted' })
 					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'<Spinner />\n<Spinner type="primary" />\n<Spinner type="inverted" />'
 				)
 			),
 			React.createElement(
-				'h2',
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Inside Buttons'
+					),
+					React.createElement(
+						'div',
+						{ className: 'code-example__example-element--inline' },
+						React.createElement(
+							Button,
+							{ disabled: true },
+							React.createElement(Spinner, null)
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'code-example__example-element--inline' },
+						React.createElement(
+							Button,
+							{ disabled: true },
+							React.createElement(Spinner, { type: 'primary' }),
+							'Saving'
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'code-example__example-element--inline' },
+						React.createElement(
+							Button,
+							{ type: 'primary', disabled: true },
+							React.createElement(Spinner, { type: 'inverted' }),
+							'Saving'
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'<Button disabled><Spinner /></Button>\n<Button disabled><Spinner type="primary" />Saving</Button>\n<Button type="primary" disabled><Spinner type="inverted" />Saving</Button>'
+				)
+			),
+			React.createElement(
+				'h3',
 				null,
-				'Use in Buttons'
+				'Usage'
 			),
 			React.createElement(
-				Button,
-				{ type: 'default' },
-				React.createElement(Spinner, null)
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'default', disabled: true },
-				React.createElement(Spinner, { type: 'primary' }),
-				'Saving'
-			),
-			React.createElement('hr', null),
-			React.createElement(
-				Button,
-				{ type: 'primary', disabled: true },
-				React.createElement(Spinner, { type: 'inverted' }),
-				'Saving'
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					'table',
+					{ className: 'table' },
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'size'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								React.createElement(
+									'p',
+									null,
+									'Declare the size of the dots in the spinner. Possible options:',
+									React.createElement('br', null),
+									React.createElement(
+										'code',
+										{ className: 'inline-code' },
+										'sm'
+									),
+									' ',
+									React.createElement(
+										'code',
+										{ className: 'inline-code' },
+										'lg'
+									)
+								),
+								'Spinners automatically become small when inside of buttons'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'type'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'default'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Declare the colour of the dots in the spinner. Possible options:',
+								React.createElement('br', null),
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'default'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'primary'
+								),
+								' ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'inverted'
+								)
+							)
+						)
+					)
+				)
 			)
 		);
 	}
@@ -5806,4 +7895,155 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"elemental":undefined,"react":undefined}]},{},[1]);
+},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],61:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Router = require('react-router');
+
+var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
+// { value: 'date-picker', label: 'Date Picker' }
+];
+
+var PageNav = React.createClass({
+	displayName: 'PageNav',
+
+	getInitialState: function getInitialState() {
+		return {
+			mobileMenuIsVisible: false,
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
+		};
+	},
+
+	handleResize: function handleResize(e) {
+		this.setState({
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
+		});
+	},
+
+	componentDidMount: function componentDidMount() {
+		window.addEventListener('resize', this.handleResize);
+	},
+
+	componentWillUnmount: function componentWillUnmount() {
+		window.removeEventListener('resize', this.handleResize);
+	},
+
+	toggleMenu: function toggleMenu() {
+		this.setState({
+			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
+		});
+	},
+
+	render: function render() {
+		var self = this;
+		var height = this.state.windowWidth < 768 ? this.state.windowHeight : 'auto';
+		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
+		var menuItems = NavItems.map(function (item) {
+			return React.createElement(
+				Router.Link,
+				{ key: item.value, className: 'primary-nav__item', onClick: self.toggleMenu, to: item.value },
+				React.createElement(
+					'span',
+					{ className: 'primary-nav__item-inner' },
+					item.label
+				)
+			);
+		});
+		return React.createElement(
+			'nav',
+			{ className: 'primary-nav' },
+			React.createElement(
+				Router.Link,
+				{ to: 'home', className: 'primary-nav__brand special', title: 'Home' },
+				React.createElement('img', { src: './images/elemental-logo-paths.svg', className: 'primary-nav__brand-src' })
+			),
+			React.createElement(
+				'button',
+				{ onClick: this.toggleMenu, className: 'primary-nav__item primary-nav-menu-trigger' },
+				React.createElement('span', { className: 'primary-nav-menu-trigger-icon octicon octicon-navicon' }),
+				React.createElement(
+					'span',
+					{ className: 'primary-nav-menu-trigger-label' },
+					this.state.mobileMenuIsVisible ? 'Close' : 'Menu'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: menuClass, style: { height: height } },
+				React.createElement(
+					'div',
+					{ className: 'primary-nav-menu-inner' },
+					menuItems
+				)
+			),
+			React.createElement(
+				'a',
+				{ href: 'https://github.com/elementalui/elemental', target: '_blank', title: 'View on GitHub', className: 'primary-nav__brand right' },
+				React.createElement('img', { src: './images/github-logo.svg', className: 'primary-nav__brand-src' })
+			)
+		);
+	}
+});
+
+var App = React.createClass({
+	displayName: 'App',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'page-wrapper' },
+			React.createElement(PageNav, null),
+			React.createElement(
+				'div',
+				{ className: 'page-body' },
+				React.createElement(Router.RouteHandler, null)
+			),
+			React.createElement(
+				'div',
+				{ className: 'page-footer' },
+				React.createElement(
+					'div',
+					{ className: 'demo-container container' },
+					'Copyright © 2015 · (MIT) License · Built by ',
+					React.createElement(
+						'a',
+						{ href: 'http://www.thinkmill.com.au', target: '_blank' },
+						'Thinkmill'
+					),
+					', initially for integration with ',
+					React.createElement(
+						'a',
+						{ href: 'http://www.keystonejs.com', target: '_blank' },
+						'KeystoneJS'
+					)
+				)
+			)
+		);
+	}
+});
+
+var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
+
+var routes = React.createElement(
+	Router.Route,
+	{ name: 'app', path: basepath + '/', handler: App },
+	React.createElement(Router.Route, { name: 'home', path: basepath + '/', handler: require('./pages/Home') }),
+	React.createElement(Router.Route, { name: 'css', path: basepath + '/css', handler: require('./pages/CSS') }),
+	React.createElement(Router.Route, { name: 'buttons', path: basepath + '/buttons', handler: require('./pages/Buttons') }),
+	React.createElement(Router.Route, { name: 'forms', path: basepath + '/forms', handler: require('./pages/Forms') }),
+	React.createElement(Router.Route, { name: 'spinner', path: basepath + '/spinner', handler: require('./pages/Spinner') }),
+	React.createElement(Router.Route, { name: 'modal', path: basepath + '/modal', handler: require('./pages/Modal') }),
+	React.createElement(Router.Route, { name: 'misc', path: basepath + '/misc', handler: require('./pages/Misc') }),
+	React.createElement(Router.Route, { name: 'date-picker', path: basepath + '/date-picker', handler: require('./pages/DatePicker') }),
+	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
+);
+
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+	React.render(React.createElement(Handler, null), document.body);
+});
+/*<Router.Link to="home">Home</Router.Link>*/
+
+},{"./pages/Buttons":53,"./pages/CSS":54,"./pages/DatePicker":55,"./pages/Forms":56,"./pages/Home":57,"./pages/Misc":58,"./pages/Modal":59,"./pages/Spinner":60,"react":undefined,"react-router":30}]},{},[61]);
