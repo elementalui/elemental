@@ -10,7 +10,7 @@
 table {
 	border-collapse: collapse;
 }
-.table {
+.Table {
 	text-align: left;
 	width: 100%;
 
@@ -28,8 +28,8 @@ table {
 
 // common
 
-.table td,
-.table th {
+.Table td,
+.Table th {
 	border-top: 1px solid @table-border-color;
 	display: table-cell;
 	line-height: 1;
@@ -57,7 +57,7 @@ table {
 
 // links in cells
 
-.table td > a {
+.Table td > a {
 	color: @text-color;
 	display: inline-block;
 	margin: -@table-padding;
@@ -73,7 +73,7 @@ table {
 
 // header
 
-.table th {
+.Table th {
 	border-bottom: 2px solid @table-border-color;
 	border-top: 0;
 	color: @gray-light;
@@ -87,7 +87,7 @@ table {
 
 // section
 
-.table-section {
+.Table-section {
 	background-color: #fafafa;
 	color: @gray;
 	font-size: @font-size-sm;
@@ -115,12 +115,12 @@ table {
 .th-sort {
 	color: inherit;
 	display: block;
-	
+
 	&:hover,
 	&:focus {
 		color: @text-color;
 		text-decoration: none;
-		
+
 		.th-sort__icon {
 			opacity: 1;
 		}
@@ -133,7 +133,7 @@ table {
 .th-sort--asc,
 .th-sort--desc {
 	color: @text-color;
-	
+
 	.th-sort__icon {
 		opacity: 1;
 	}
@@ -150,7 +150,7 @@ table {
 	opacity: 0;
 	position: relative;
 	top: 3px;
-	
+
 	&:before,
 	&:after {
 		.square(0);
@@ -158,19 +158,19 @@ table {
 		content: "";
 		position: absolute;
 	}
-	
+
 	// up arrow
 	&:before {
 		border-bottom-color: @text-color;
 		top: 0;
 	}
-	
+
 	// down arrow
 	&:after {
 		border-top-color: @text-color;
 		bottom: 0;
 	}
-	
+
 	// differentiate between asc/desc
 	.th-sort--asc &:after {
 		opacity: .5;
@@ -179,10 +179,3 @@ table {
 		opacity: .5;
 	}
 }
-
-
-
-
-
-
-
