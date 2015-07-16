@@ -97,7 +97,7 @@ module.exports = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
-				
+
 				<h2>Live Demo</h2>
 				<div className="code-example">
 					<div className="code-example__example">
@@ -142,11 +142,11 @@ module.exports = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
-				
+
 				<h2>Usage</h2>
 				<h3>Modal</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -181,12 +181,12 @@ module.exports = React.createClass({
 								<td className="usage-table__description">Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 
 				<h3>Modal Header</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -221,9 +221,9 @@ module.exports = React.createClass({
 								<td className="usage-table__description">Creates a title for the modal. We use "text" because <code className="inline-code">title</code> is reserved.</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
-				
+
 				<h3>Modal Body/Footer</h3>
 				<p>These are simple wrappers to abstract the classnames, they may become more functional in the future.</p>
 

@@ -119,7 +119,7 @@ var Forms = React.createClass({
 			<div className="demo-container container">
 				<h1>Forms</h1>
 
-				
+
 				<h2>Basic Example</h2>
 				<p>Individual form controls automatically receive some global styling. All textual <code className="inline-code">{`<FormInput>`}</code>, and <code className="inline-code">{`<FormSelect>`}</code> elements with are set to <code className="inline-code">width: 100%;</code> by default. Wrap controls in <code className="inline-code">{`<FormField>`}</code> for optimum spacing.</p>
 				<div className="code-example">
@@ -156,7 +156,7 @@ var Forms = React.createClass({
 				</div>
 
 
-				
+
 				<h2>Horizontal Form</h2>
 				<p>Adding the class <code className="inline-code">.form-horizontal</code> to your wrapper (which doesn't have to be a <code className="inline-code">{`<form>`}</code> tag) changes the <code className="inline-code">FormField</code> component to behave like a row. The label width can be updated from inside the LESS variables file where it's defined as <code className="inline-code">@form-label-width</code>. This only applies to forms within viewports that are at least 768px wide.</p>
 				<div className="code-example">
@@ -197,7 +197,7 @@ var Forms = React.createClass({
 				</div>
 
 
-				
+
 				<h2>Inline Form</h2>
 				<p>Adding the class <code className="inline-code">.form-inline</code> to your wrapper (which doesn't have to be a <code className="inline-code">{`<form>`}</code> tag)  for left-aligned and inline-block controls. This only applies to forms within viewports that are at least 768px wide.</p>
 				<p>Note: you should always use labels to improve accessibility - they are only visible to screen readers. Form labels within viewports that are below 768px wide will be rendered regularly to improve usability.</p>
@@ -239,7 +239,7 @@ var Forms = React.createClass({
 				</div>
 
 
-				
+
 				<h2>Input Groups</h2>
 				<div className="code-example">
 					<div className="code-example__example">
@@ -384,7 +384,7 @@ var Forms = React.createClass({
 				</div>
 
 
-				
+
 				<h2>Sizes</h2>
 				<div className="code-example">
 					<div className="code-example__example">
@@ -414,7 +414,7 @@ var Forms = React.createClass({
 				</div>
 
 
-				
+
 				<h2>Supported Controls</h2>
 				<div className="code-example">
 					<div className="code-example__example">
@@ -489,7 +489,7 @@ var Forms = React.createClass({
 					</ExampleSource>
 				</div>
 
-				
+
 				<h2>Disabled State</h2>
 				<div className="code-example">
 					<div className="code-example__example">
@@ -526,7 +526,7 @@ var Forms = React.createClass({
 					</ExampleSource>
 				</div>
 
-				
+
 				<h2>Notes</h2>
 				<div className="code-example">
 					<div className="code-example__example">
@@ -545,7 +545,7 @@ var Forms = React.createClass({
 					</ExampleSource>
 				</div>
 
-				
+
 				<h2>Complex Forms</h2>
 				<p>Wrap any group of <code className="inline-code">{`<FormField>`}</code> in the <code className="inline-code">{`<FormRow>`}</code> component to easily set desired widths.</p>
 				<div className="code-example">
@@ -637,7 +637,7 @@ var Forms = React.createClass({
 
 				<h3>Usage</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -673,10 +673,10 @@ var Forms = React.createClass({
 								</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 
-				
+
 				<h2>Icons</h2>
 				<p className="lead">Elemental uses the wonderful <a href="https://octicons.github.com/" target="_blank">Octicons Suite from GitHub</a></p>
 				<div className="code-example">
@@ -778,7 +778,7 @@ var Forms = React.createClass({
 					</ExampleSource>
 				</div>
 
-				
+
 				<h2>Validation</h2>
 				<form>
 					<RadioGroup         label="Radios"   value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />
@@ -787,7 +787,7 @@ var Forms = React.createClass({
 					<PasswordInputGroup label="Password" value={this.state.inputPassword}    onChange={updatePassword} required />
 				</form>
 
-				
+
 				<h2>File Upload</h2>
 				<form className="horizontal-form">
 					<div className="form-field">

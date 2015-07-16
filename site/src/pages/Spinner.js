@@ -55,7 +55,7 @@ var Buttons = React.createClass({
 
 				<h3>Usage</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -87,7 +87,7 @@ var Buttons = React.createClass({
 								</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			</div>
 		);

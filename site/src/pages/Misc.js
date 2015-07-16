@@ -2,6 +2,7 @@ var React = require('react');
 var ExampleSource = require('../components/ExampleSource');
 var Alert = require('elemental').Alert;
 var Pill = require('elemental').Pill;
+var Table = require('elemental').Table;
 
 var Misc = React.createClass({
 	displayName: 'VIEW_Misc',
@@ -11,7 +12,7 @@ var Misc = React.createClass({
 			<div className="demo-container container">
 				<h1>Miscellaneous</h1>
 				<p className="lead">Some components march to the beat of their own drum&hellip;</p>
-				
+
 				<h2>Alerts</h2>
 				<div className="code-example">
 					<div className="code-example__example">
@@ -31,7 +32,7 @@ var Misc = React.createClass({
 				</div>
 				<h3>Usage</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -51,14 +52,14 @@ var Misc = React.createClass({
 								<td className="usage-table__prop">type</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">''</td>
-								<td className="usage-table__description">Required. 
+								<td className="usage-table__description">Required.
 									One of:
 									<br />
 									<code className="inline-code">danger</code> <code className="inline-code">info</code> <code className="inline-code">primary</code> <code className="inline-code">success</code> <code className="inline-code">warning</code>
 								</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 
 				<h2>Pills</h2>
@@ -82,7 +83,7 @@ var Misc = React.createClass({
 				</div>
 				<h3>Usage</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -123,7 +124,7 @@ var Misc = React.createClass({
 								</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			</div>
 		);

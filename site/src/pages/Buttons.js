@@ -136,7 +136,7 @@ var Buttons = React.createClass({
 
 				<h3>Usage</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -187,7 +187,7 @@ var Buttons = React.createClass({
 			 					</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 
 				<h2>Button Groups</h2>
@@ -212,7 +212,7 @@ var Buttons = React.createClass({
 
 				<h3>Usage</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -229,7 +229,7 @@ var Buttons = React.createClass({
 								<td className="usage-table__description">Required. Must use Elemental <code className="inline-code">&lt;Button /&gt;</code> components for correct styling</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 
 				<h2>Dropdown</h2>
@@ -259,7 +259,7 @@ var Buttons = React.createClass({
 
 				<h3>Usage</h3>
 				<div className="usage-table">
-					<table className="table">
+					<Table>
 						<thead>
 							<tr>
 								<th>Prop</th>
@@ -318,7 +318,7 @@ var Buttons = React.createClass({
 								<td className="usage-table__description">The function that is called on each menu item when clicked</td>
 							</tr>
 						</tbody>
-					</table>
+					</Table>
 				</div>
 			</div>
 		);

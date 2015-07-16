@@ -113,10 +113,10 @@ var CSSExamples = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
-				
+
 				<h2>Grid</h2>
 				<p className="lead">Uses the standard Bootstrap grid which is a 12 column responsive layout, with a 20px gutter.</p>
-				
+
 				<div className="code-example">
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Three equal columns</div>
@@ -320,7 +320,7 @@ var CSSExamples = React.createClass({
 				<h2>Tables</h2>
 				<div className="code-example">
 					<div className="code-example__example">
-						<table className="table">
+						<Table>
 							<colgroup>
 								<col width="50" />
 								<col width="" />
@@ -333,11 +333,11 @@ var CSSExamples = React.createClass({
 							<tbody>
 								{tableRows}
 							</tbody>
-						</table>
+						</Table>
 					</div>
 					<ExampleSource>
 						{`
-							<table className="table">
+							<Table>
 								<colgroup>
 									<col width="50" />
 									<col width="" />
@@ -372,7 +372,7 @@ var CSSExamples = React.createClass({
 									</tr>
 									{...}
 								</tbody>
-							</table>
+							</Table>
 						`}
 					</ExampleSource>
 				</div>
