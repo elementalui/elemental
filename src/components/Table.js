@@ -1,28 +1,24 @@
-var React = require('react/addons');
-var blacklist = require('blacklist');
-var classNames = require('classnames');
+import classNames from'classnames';
+import React from'react/addons';
 
 module.exports = React.createClass({
-	displayName: 'FormNote',
+	displayName: 'Table',
+
 	propTypes: {
 		children: React.PropTypes.any,
 		className: React.PropTypes.string
 	},
+
 	render() {
 		// classes
-		var componentClass = classNames(
+		var className = classNames(
 			'Table',
 			this.props.className
 		);
 
-		// props
-		var props = blacklist(this.props, 'className');
-
 		// render table element
 		return (
-			<table className={componentClass} {...props}>
-				{this.props.children}
-			</table>
+			<table className={className} {...this.props} />
 		);
 	}
 });
