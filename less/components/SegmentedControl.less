@@ -1,0 +1,85 @@
+// 
+// Segmented Control
+// ==============================
+
+
+// base
+
+.SegmentedControl {
+	border: 1px solid @input-border-color;
+	border-radius: 5px;
+	display: table;
+	font-size: @font-size-sm;
+	margin-bottom: @spacing-md;
+	width: 100%;
+}
+
+// with equal widths
+
+.SegmentedControl--equal-widths {
+	table-layout: fixed;
+}
+
+
+// item
+
+.SegmentedControl__item {
+	display: table-cell;
+	padding: 2px 1px;
+
+	&:first-child {
+		padding-left: 2px;
+	}
+	&:last-child {
+		padding-right: 2px;
+	}
+}
+
+
+// item
+
+/*button*/.SegmentedControl__button {
+	.text-overflow();
+	background: none;
+	border: none;
+	border-radius: 3px;
+	display: block;
+
+	// buttons receive padding from the browser. we want to
+	// squeeze all the space that we can out of this small component
+	padding-left: 0;
+	padding-right: 0;
+
+	width: 100%;
+	-webkit-appearance: none;
+
+	&:hover,
+	&:focus {
+		background-color: rgba(0, 0, 0, 0.05);
+		outline: none;
+	}
+}
+
+// variants
+
+.control-variant(@color) {
+	color: @color;
+
+	&.is-selected {
+		background-color: @color;
+		color: white;
+	}
+}
+
+.SegmentedControl--default .SegmentedControl__button{ .control-variant(@text-color); }
+.SegmentedControl--muted   .SegmentedControl__button{ .control-variant(@gray); }
+
+.SegmentedControl--danger  .SegmentedControl__button{ .control-variant(@app-danger); }
+.SegmentedControl--info    .SegmentedControl__button{ .control-variant(@app-info); }
+.SegmentedControl--primary .SegmentedControl__button{ .control-variant(@app-primary); }
+.SegmentedControl--success .SegmentedControl__button{ .control-variant(@app-success); }
+.SegmentedControl--warning .SegmentedControl__button{ .control-variant(@app-warning); }
+
+
+
+
