@@ -26,3 +26,4 @@ exports.Pill = require('./components/Pill');
 exports.Radio = require('./components/Radio');
 exports.RadioGroup = require('./components/RadioGroup');
 exports.Spinner = require('./components/Spinner');
+exports.Table = require('./components/Table');
