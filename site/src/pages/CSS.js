@@ -5,6 +5,7 @@ var classNames = require('classnames');
 var moment = require('moment');
 
 var ExampleSource = require('../components/ExampleSource');
+var { Table } = require('elemental');
 
 const USERS = require('../data/users');
 const TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
