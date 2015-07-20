@@ -1,11 +1,11 @@
 /* eslint no-script-url: 0 */
 
-var React = require('react/addons');
-var classNames = require('classnames');
-var moment = require('moment');
+const React = require('react/addons');
+const classNames = require('classnames');
+const moment = require('moment');
 
-var ExampleSource = require('../components/ExampleSource');
-var { Table } = require('elemental');
+const ExampleSource = require('../components/ExampleSource');
+const { Table } = require('elemental');
 
 const USERS = require('../data/users');
 const TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];

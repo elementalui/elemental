@@ -1,8 +1,8 @@
 /* eslint no-alert: 0 */
 
-var React = require('react');
+const React = require('react');
 
-var {
+const {
 	Button,
 	Checkbox,
 	EmailInputGroup,
@@ -18,10 +18,11 @@ var {
 	InputGroup,
 	PasswordInputGroup,
 	Radio,
-	RadioGroup
+	RadioGroup,
+	Table
 } = require('elemental');
 
-var ExampleSource = require('../components/ExampleSource');
+const ExampleSource = require('../components/ExampleSource');
 
 
 const controlOptions = [

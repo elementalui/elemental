@@ -1,15 +1,18 @@
-var React = require('react/addons');
+const React = require('react/addons');
 
-var Button = require('elemental').Button;
-var FormField = require('elemental').FormField;
-var FormInput = require('elemental').FormInput;
-var Modal = require('elemental').Modal;
-var ModalBody = require('elemental').ModalBody;
-var ModalFooter = require('elemental').ModalFooter;
-var ModalHeader = require('elemental').ModalHeader;
-var Spinner = require('elemental').Spinner;
+const {
+	Button,
+	FormField,
+	FormInput,
+	Modal,
+	ModalBody,
+	ModalFooter,
+	ModalHeader,
+	Spinner,
+	Table
+} = require('elemental');
 
-var ExampleSource = require('../components/ExampleSource');
+const ExampleSource = require('../components/ExampleSource');
 
 module.exports = React.createClass({
 	displayName: 'VIEW_Modal',

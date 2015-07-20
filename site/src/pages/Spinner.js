@@ -1,8 +1,6 @@
-var React = require('react');
-var Button = require('elemental').Button;
-var Spinner = require('elemental').Spinner;
-
-var ExampleSource = require('../components/ExampleSource');
+const React = require('react');
+const { Button, Spinner, Table } = require('elemental');
+const ExampleSource = require('../components/ExampleSource');
 
 var Buttons = React.createClass({
 	displayName: 'VIEW_Spinner',

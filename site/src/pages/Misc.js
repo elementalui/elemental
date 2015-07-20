@@ -1,8 +1,6 @@
-var React = require('react');
-var ExampleSource = require('../components/ExampleSource');
-var Alert = require('elemental').Alert;
-var Pill = require('elemental').Pill;
-var Table = require('elemental').Table;
+const React = require('react');
+const ExampleSource = require('../components/ExampleSource');
+const { Alert, Pill, Table } = require('elemental');
 
 var Misc = React.createClass({
 	displayName: 'VIEW_Misc',
