@@ -133,11 +133,10 @@ textarea.FormInput {
 // Select
 // ------------------------------
 
-select.FormInput {
-	background-image: data-uri('../../public/images/select-arrows.png');
-	background-position: center right @input-padding-horizontal;
-	background-repeat: no-repeat;
-	background-size: 7px 11px;
+
+// base
+
+.FormSelect {
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 	border-bottom-color: darken(@input-border-color, 4%);
 	border-top-color: lighten(@input-border-color, 4%);
@@ -148,11 +147,29 @@ select.FormInput {
 	}
 	&.disabled,
 	&[disabled] {
-		background-image: data-uri('../../public/images/select-arrows-disabled.png');
 		color: @gray-light;
 	}
 }
 
+
+// arrows
+
+.FormSelect__arrows {
+	bottom: 0;
+	line-height: @component-height;
+	pointer-events: none;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	width: @component-height;
+
+	& > svg {
+		fill: @text-color;
+	}
+}
+.FormSelect__arrows--disabled > svg {
+	fill: @gray-light;
+}
 
 
 
