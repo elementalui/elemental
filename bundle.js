@@ -609,7 +609,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Button":3,"./Spinner":29,"blacklist":undefined,"react/addons":undefined}],10:[function(require,module,exports){
+},{"./Button":3,"./Spinner":30,"blacklist":undefined,"react/addons":undefined}],10:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -678,7 +678,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"./Spinner":29,"classnames":undefined,"react/addons":undefined}],12:[function(require,module,exports){
+},{"../Octicons":1,"./Spinner":30,"classnames":undefined,"react/addons":undefined}],12:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -733,7 +733,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"./FormField":10,"./Spinner":29,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],13:[function(require,module,exports){
+},{"../Octicons":1,"./FormField":10,"./Spinner":30,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],13:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -893,42 +893,60 @@ module.exports = React.createClass({
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
-var blacklist = require('blacklist');
-var classNames = require('classnames');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-module.exports = React.createClass({
+var _blacklist = require('blacklist');
+
+var _blacklist2 = _interopRequireDefault(_blacklist);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _reactAddons = require('react/addons');
+
+var _reactAddons2 = _interopRequireDefault(_reactAddons);
+
+var _icons = require('../icons');
+
+var _icons2 = _interopRequireDefault(_icons);
+
+module.exports = _reactAddons2['default'].createClass({
 	displayName: 'FormSelect',
 	propTypes: {
-		alwaysValidate: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		firstOption: React.PropTypes.string,
-		htmlFor: React.PropTypes.string,
-		id: React.PropTypes.string,
-		label: React.PropTypes.string,
-		onChange: React.PropTypes.func.isRequired,
-		options: React.PropTypes.array.isRequired,
-		prependEmptyOption: React.PropTypes.bool,
-		required: React.PropTypes.bool,
-		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string
+		alwaysValidate: _reactAddons2['default'].PropTypes.bool,
+		className: _reactAddons2['default'].PropTypes.string,
+		firstOption: _reactAddons2['default'].PropTypes.string,
+		htmlFor: _reactAddons2['default'].PropTypes.string,
+		id: _reactAddons2['default'].PropTypes.string,
+		label: _reactAddons2['default'].PropTypes.string,
+		onChange: _reactAddons2['default'].PropTypes.func.isRequired,
+		options: _reactAddons2['default'].PropTypes.array.isRequired,
+		prependEmptyOption: _reactAddons2['default'].PropTypes.bool,
+		required: _reactAddons2['default'].PropTypes.bool,
+		requiredMessage: _reactAddons2['default'].PropTypes.string,
+		value: _reactAddons2['default'].PropTypes.string
 	},
+
 	getDefaultProps: function getDefaultProps() {
 		return {
 			requiredMessage: 'This field is required'
 		};
 	},
+
 	getInitialState: function getInitialState() {
 		return {
 			isValid: true,
 			validationIsActive: this.props.alwaysValidate
 		};
 	},
+
 	componentDidMount: function componentDidMount() {
 		if (this.state.validationIsActive) {
 			this.validateInput(this.props.value);
 		}
 	},
+
 	componentWillReceiveProps: function componentWillReceiveProps(newProps) {
 		if (this.state.validationIsActive) {
 			if (newProps.value !== this.props.value && newProps.value !== this._lastChangeValue && !newProps.alwaysValidate) {
@@ -941,16 +959,19 @@ module.exports = React.createClass({
 			this.validateInput(newProps.value);
 		}
 	},
+
 	handleChange: function handleChange(e) {
 		this._lastChangeValue = e.target.value;
 		if (this.props.onChange) this.props.onChange(e.target.value);
 	},
+
 	handleBlur: function handleBlur() {
 		if (!this.props.alwaysValidate) {
 			this.setState({ validationIsActive: false });
 		}
 		this.validateInput(this.props.value);
 	},
+
 	validateInput: function validateInput(value) {
 		var newState = {
 			isValid: true
@@ -963,19 +984,28 @@ module.exports = React.createClass({
 		}
 		this.setState(newState);
 	},
+
+	renderIcon: function renderIcon(icon) {
+		var iconClassname = _classnames2['default']('FormSelect__arrows', {
+			'FormSelect__arrows--disabled': this.props.disabled
+		});
+
+		return _reactAddons2['default'].createElement('span', { dangerouslySetInnerHTML: { __html: icon }, className: iconClassname });
+	},
+
 	render: function render() {
 		// props
-		var props = blacklist(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className');
+		var props = _blacklist2['default'](this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className');
 
 		// classes
-		var componentClass = classNames('form-field', {
+		var componentClass = _classnames2['default']('form-field', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 
 		// validation message
-		var validationMessage;
+		var validationMessage = undefined;
 		if (!this.state.isValid) {
-			validationMessage = React.createElement(
+			validationMessage = _reactAddons2['default'].createElement(
 				'div',
 				{ className: 'form-validation is-invalid' },
 				this.props.requiredMessage
@@ -984,7 +1014,7 @@ module.exports = React.createClass({
 
 		// dynamic elements
 		var forAndID = this.props.htmlFor || this.props.id;
-		var componentLabel = this.props.label ? React.createElement(
+		var componentLabel = this.props.label ? _reactAddons2['default'].createElement(
 			'label',
 			{ className: 'form-label', htmlFor: forAndID },
 			this.props.label
@@ -992,35 +1022,36 @@ module.exports = React.createClass({
 
 		// options
 		var options = this.props.options.map(function (opt, i) {
-			return React.createElement(
+			return _reactAddons2['default'].createElement(
 				'option',
 				{ key: 'option-' + i, value: opt.value },
 				opt.label
 			);
 		});
 		if (this.props.prependEmptyOption || this.props.firstOption) {
-			options.unshift(React.createElement(
+			options.unshift(_reactAddons2['default'].createElement(
 				'option',
 				{ key: 'option-blank', value: '' },
 				this.props.firstOption ? this.props.firstOption : 'Select...'
 			));
 		}
 
-		return React.createElement(
+		return _reactAddons2['default'].createElement(
 			'div',
 			{ className: componentClass },
 			componentLabel,
-			React.createElement(
+			_reactAddons2['default'].createElement(
 				'select',
-				_extends({ className: 'FormInput', id: forAndID, onChange: this.handleChange, onBlur: this.handleBlur }, props),
+				_extends({ className: 'FormInput FormSelect', id: forAndID, onChange: this.handleChange, onBlur: this.handleBlur }, props),
 				options
 			),
+			this.renderIcon(_icons2['default'].selectArrows),
 			validationMessage
 		);
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
+},{"../icons":32,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1629,6 +1660,73 @@ module.exports = React.createClass({
 },{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],29:[function(require,module,exports){
 'use strict';
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+module.exports = _react2['default'].createClass({
+	displayName: 'SegmentedControl',
+
+	propTypes: {
+		className: _react2['default'].PropTypes.string,
+		equalWidthSegments: _react2['default'].PropTypes.bool,
+		onChange: _react2['default'].PropTypes.func.isRequired,
+		options: _react2['default'].PropTypes.array.isRequired,
+		type: _react2['default'].PropTypes.oneOf('default', 'muted', 'danger', 'info', 'primary', 'success', 'warning'),
+		value: _react2['default'].PropTypes.string
+	},
+
+	getDefaultProps: function getDefaultProps() {
+		return {
+			type: 'default'
+		};
+	},
+
+	onChange: function onChange(value) {
+		this.props.onChange(value);
+	},
+
+	render: function render() {
+		var _this = this;
+
+		var componentClassName = _classnames2['default']('SegmentedControl', 'SegmentedControl--' + this.props.type, {
+			'SegmentedControl--equal-widths': this.props.equalWidthSegments
+		}, this.props.className);
+
+		var options = this.props.options.map(function (op) {
+
+			var buttonClassName = _classnames2['default']('SegmentedControl__button', {
+				'is-selected': op.value === _this.props.value
+			});
+
+			return _react2['default'].createElement(
+				'span',
+				{ key: 'option-' + op.value, className: 'SegmentedControl__item' },
+				_react2['default'].createElement(
+					'button',
+					{ type: 'button', onClick: _this.onChange.bind(_this, op.value), className: buttonClassName },
+					op.label
+				)
+			);
+		});
+
+		return _react2['default'].createElement(
+			'div',
+			{ className: componentClassName },
+			options
+		);
+	}
+});
+
+},{"classnames":undefined,"react":undefined}],30:[function(require,module,exports){
+'use strict';
+
 var React = require('react/addons');
 var classNames = require('classnames');
 
@@ -1656,7 +1754,51 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],"elemental":[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],31:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _reactAddons = require('react/addons');
+
+var _reactAddons2 = _interopRequireDefault(_reactAddons);
+
+module.exports = _reactAddons2['default'].createClass({
+	displayName: 'Table',
+
+	propTypes: {
+		children: _reactAddons2['default'].PropTypes.any,
+		className: _reactAddons2['default'].PropTypes.string
+	},
+
+	render: function render() {
+		// classes
+		var className = _classnames2['default']('Table', this.props.className);
+
+		// render table element
+		return _reactAddons2['default'].createElement('table', _extends({ className: className }, this.props));
+	}
+});
+
+},{"classnames":undefined,"react/addons":undefined}],32:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+	selectArrows: require('./selectArrows')
+};
+
+},{"./selectArrows":33}],33:[function(require,module,exports){
+'use strict';
+
+module.exports = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' + '<svg width="7px" height="11px" viewBox="0 0 7 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' + '<path d="M3.5,0 L7,4 L0,4 L3.5,0 Z M3.5,11 L7,7 L0,7 L3.5,11 Z" />' + '</svg>';
+
+},{}],"elemental":[function(require,module,exports){
 'use strict';
 
 exports.Alert = require('./components/Alert');
@@ -1686,6 +1828,8 @@ exports.PasswordInputGroup = require('./components/PasswordInputGroup');
 exports.Pill = require('./components/Pill');
 exports.Radio = require('./components/Radio');
 exports.RadioGroup = require('./components/RadioGroup');
+exports.SegmentedControl = require('./components/SegmentedControl');
 exports.Spinner = require('./components/Spinner');
+exports.Table = require('./components/Table');
 
-},{"./components/Alert":2,"./components/Button":3,"./components/ButtonGroup":4,"./components/Checkbox":5,"./components/Dropdown":6,"./components/EmailInputGroup":7,"./components/FileDragAndDrop":8,"./components/FileUpload":9,"./components/FormField":10,"./components/FormIcon":11,"./components/FormIconField":12,"./components/FormInput":13,"./components/FormLabel":14,"./components/FormNote":15,"./components/FormRow":16,"./components/FormSelect":17,"./components/InputGroup":18,"./components/InputGroupSection":19,"./components/Modal":20,"./components/ModalBody":21,"./components/ModalFooter":22,"./components/ModalHeader":23,"./components/Pagination":24,"./components/PasswordInputGroup":25,"./components/Pill":26,"./components/Radio":27,"./components/RadioGroup":28,"./components/Spinner":29}]},{},[]);
+},{"./components/Alert":2,"./components/Button":3,"./components/ButtonGroup":4,"./components/Checkbox":5,"./components/Dropdown":6,"./components/EmailInputGroup":7,"./components/FileDragAndDrop":8,"./components/FileUpload":9,"./components/FormField":10,"./components/FormIcon":11,"./components/FormIconField":12,"./components/FormInput":13,"./components/FormLabel":14,"./components/FormNote":15,"./components/FormRow":16,"./components/FormSelect":17,"./components/InputGroup":18,"./components/InputGroupSection":19,"./components/Modal":20,"./components/ModalBody":21,"./components/ModalFooter":22,"./components/ModalHeader":23,"./components/Pagination":24,"./components/PasswordInputGroup":25,"./components/Pill":26,"./components/Radio":27,"./components/RadioGroup":28,"./components/SegmentedControl":29,"./components/Spinner":30,"./components/Table":31}]},{},[]);

@@ -349,6 +349,7 @@
 }
 .form-field {
   margin-bottom: 1em;
+  position: relative;
 }
 @media (min-width: 768px) {
   .FormRow {
@@ -2398,56 +2399,56 @@ hr {
 table {
   border-collapse: collapse;
 }
-.table {
+.Table {
   text-align: left;
   width: 100%;
 }
-.table.align-bottom td,
-.table.align-bottom th {
+.Table.align-bottom td,
+.Table.align-bottom th {
   vertical-align: bottom;
 }
-.table.align-top td,
-.table.align-top th {
+.Table.align-top td,
+.Table.align-top th {
   vertical-align: top;
 }
-.table td,
-.table th {
+.Table td,
+.Table th {
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   display: table-cell;
   line-height: 1;
   padding: 0.66em;
   vertical-align: middle;
 }
-.table td:first-child,
-.table th:first-child {
+.Table td:first-child,
+.Table th:first-child {
   padding-left: 0;
 }
-.table td:first-child > a,
-.table th:first-child > a {
+.Table td:first-child > a,
+.Table th:first-child > a {
   margin-left: 0;
   padding-left: 0;
 }
-.table td:last-child,
-.table th:last-child {
+.Table td:last-child,
+.Table th:last-child {
   padding-right: 0;
 }
-.table td:last-child > a,
-.table th:last-child > a {
+.Table td:last-child > a,
+.Table th:last-child > a {
   margin-right: 0;
   padding-right: 0;
 }
-.table td > a {
+.Table td > a {
   color: #333333;
   display: inline-block;
   margin: -0.66em;
   padding: 0.66em;
 }
-.table td > a:hover,
-.table td > a:focus {
+.Table td > a:hover,
+.Table td > a:focus {
   color: #333333;
   outline: none;
 }
-.table th {
+.Table th {
   border-bottom: 2px solid rgba(0, 0, 0, 0.06);
   border-top: 0;
   color: #999999;
@@ -2456,7 +2457,7 @@ table {
   text-align: left;
   vertical-align: bottom;
 }
-.table-section {
+.Table-section {
   background-color: #fafafa;
   color: #666666;
   font-size: 12px;
@@ -3542,23 +3543,33 @@ textarea.FormInput {
   min-height: 6.75em;
   padding: 0.5em 0.75em;
 }
-select.FormInput {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAWCAYAAADwza0nAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODBFQkMyNkZDRUJFMTFFNEIzQzZGOUUwMjFDMTZDRkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODBFQkMyNzBDRUJFMTFFNEIzQzZGOUUwMjFDMTZDRkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4MEVCQzI2RENFQkUxMUU0QjNDNkY5RTAyMUMxNkNGRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4MEVCQzI2RUNFQkUxMUU0QjNDNkY5RTAyMUMxNkNGRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkYdGT4AAADNSURBVHjaYuzp6WHAASqgdAc2SRYcmvyAuAWImYD4OhBvRFfAhEWTORAvB2JmIGYE4mVQMbwaVYB4MxBzIYlxQcVUcGkUBeLtUBodYMgx4TMVn2uYoH5Zjs0f+PwP0jgZGorEApDayaDoyIJikgATA5lgpGicBsT/ScTTQBpzgXgTCZaB1OaCNP4F4kggPkmEppNQtX9hfvwGxL5AfAePpjtQNd/QA+c1EHtCaXSAIceEz1R8rmHC449/0BCMxuZ/FjwhVw1lb8CmACDAABlpNwXghNgSAAAAAElFTkSuQmCC");
-  background-position: center right 0.75em;
-  background-repeat: no-repeat;
-  background-size: 7px 11px;
+.FormSelect {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
   border-bottom-color: #c2c2c2;
   border-top-color: #d6d6d6;
   height: 2.4em;
 }
-select.FormInput:focus {
+.FormSelect:focus {
   box-shadow: 0 0 0 3px rgba(19, 133, 229, 0.1);
 }
-select.FormInput.disabled,
-select.FormInput[disabled] {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAWCAYAAADwza0nAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODBFQkMyNzNDRUJFMTFFNEIzQzZGOUUwMjFDMTZDRkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODBFQkMyNzRDRUJFMTFFNEIzQzZGOUUwMjFDMTZDRkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4MEVCQzI3MUNFQkUxMUU0QjNDNkY5RTAyMUMxNkNGRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4MEVCQzI3MkNFQkUxMUU0QjNDNkY5RTAyMUMxNkNGRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlrWsNMAAADMSURBVHjaYjxz5gwDDlABpTuwSbLg0OQHxC1AzATE14F4I7oCJiyazIF4ORAzAzEjEC+DiuHVqALEm4GYC0mMCyqmgkujKBBvh9LoAEOOCZ+p+FzDBPXLcmz+wOd/kMbJ0FAkFoDUTmbEE494ARMDmWCkaJwGxP9JxNNAGnOBeBMJloHU5oI0/gXiSCA+SYSmk1C1f2F+/AbEvkB8B4+mO1A139AD5zUQe0JpdIAhx4TPVHyuYcLjj3/QEIzG5n8WPCFXDWVvwKYAIMAAmpc5UlUKw70AAAAASUVORK5CYII=");
+.FormSelect.disabled,
+.FormSelect[disabled] {
   color: #999999;
+}
+.FormSelect__arrows {
+  bottom: 0;
+  line-height: 2.4em;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  width: 2.4em;
+}
+.FormSelect__arrows > svg {
+  fill: #333333;
+}
+.FormSelect__arrows--disabled > svg {
+  fill: #999999;
 }
 .FormNote {
   font-size: 12px;
@@ -4219,6 +4230,95 @@ select.FormInput[disabled] {
 .Pill--danger-inverted > .Pill__label:active,
 .Pill--danger-inverted > .Pill__clear:active {
   background-color: #d12d2d;
+}
+.SegmentedControl {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  display: table;
+  font-size: 12px;
+  margin-bottom: 1em;
+  width: 100%;
+}
+.SegmentedControl--equal-widths {
+  table-layout: fixed;
+}
+.SegmentedControl__item {
+  display: table-cell;
+  padding: 2px 1px;
+}
+.SegmentedControl__item:first-child {
+  padding-left: 2px;
+}
+.SegmentedControl__item:last-child {
+  padding-right: 2px;
+}
+/*button*/
+.SegmentedControl__button {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  border-radius: 3px;
+  display: block;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  -webkit-appearance: none;
+}
+.SegmentedControl__button:hover,
+.SegmentedControl__button:focus {
+  background-color: rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+.SegmentedControl--default .SegmentedControl__button {
+  color: #333333;
+}
+.SegmentedControl--default .SegmentedControl__button.is-selected {
+  background-color: #333333;
+  color: white;
+}
+.SegmentedControl--muted .SegmentedControl__button {
+  color: #666666;
+}
+.SegmentedControl--muted .SegmentedControl__button.is-selected {
+  background-color: #666666;
+  color: white;
+}
+.SegmentedControl--danger .SegmentedControl__button {
+  color: #d64242;
+}
+.SegmentedControl--danger .SegmentedControl__button.is-selected {
+  background-color: #d64242;
+  color: white;
+}
+.SegmentedControl--info .SegmentedControl__button {
+  color: #56cdfc;
+}
+.SegmentedControl--info .SegmentedControl__button.is-selected {
+  background-color: #56cdfc;
+  color: white;
+}
+.SegmentedControl--primary .SegmentedControl__button {
+  color: #1385e5;
+}
+.SegmentedControl--primary .SegmentedControl__button.is-selected {
+  background-color: #1385e5;
+  color: white;
+}
+.SegmentedControl--success .SegmentedControl__button {
+  color: #34c240;
+}
+.SegmentedControl--success .SegmentedControl__button.is-selected {
+  background-color: #34c240;
+  color: white;
+}
+.SegmentedControl--warning .SegmentedControl__button {
+  color: #fa9f47;
+}
+.SegmentedControl--warning .SegmentedControl__button.is-selected {
+  background-color: #fa9f47;
+  color: white;
 }
 .Spinner {
   display: inline-block;

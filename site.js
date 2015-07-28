@@ -1,4 +1,155 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Router = require('react-router');
+
+var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
+// { value: 'date-picker', label: 'Date Picker' }
+];
+
+var PageNav = React.createClass({
+	displayName: 'PageNav',
+
+	getInitialState: function getInitialState() {
+		return {
+			mobileMenuIsVisible: false,
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
+		};
+	},
+
+	handleResize: function handleResize(e) {
+		this.setState({
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
+		});
+	},
+
+	componentDidMount: function componentDidMount() {
+		window.addEventListener('resize', this.handleResize);
+	},
+
+	componentWillUnmount: function componentWillUnmount() {
+		window.removeEventListener('resize', this.handleResize);
+	},
+
+	toggleMenu: function toggleMenu() {
+		this.setState({
+			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
+		});
+	},
+
+	render: function render() {
+		var self = this;
+		var height = this.state.windowWidth < 768 ? this.state.windowHeight : 'auto';
+		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
+		var menuItems = NavItems.map(function (item) {
+			return React.createElement(
+				Router.Link,
+				{ key: item.value, className: 'primary-nav__item', onClick: self.toggleMenu, to: item.value },
+				React.createElement(
+					'span',
+					{ className: 'primary-nav__item-inner' },
+					item.label
+				)
+			);
+		});
+		return React.createElement(
+			'nav',
+			{ className: 'primary-nav' },
+			React.createElement(
+				Router.Link,
+				{ to: 'home', className: 'primary-nav__brand special', title: 'Home' },
+				React.createElement('img', { src: './images/elemental-logo-paths.svg', className: 'primary-nav__brand-src' })
+			),
+			React.createElement(
+				'button',
+				{ onClick: this.toggleMenu, className: 'primary-nav__item primary-nav-menu-trigger' },
+				React.createElement('span', { className: 'primary-nav-menu-trigger-icon octicon octicon-navicon' }),
+				React.createElement(
+					'span',
+					{ className: 'primary-nav-menu-trigger-label' },
+					this.state.mobileMenuIsVisible ? 'Close' : 'Menu'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: menuClass, style: { height: height } },
+				React.createElement(
+					'div',
+					{ className: 'primary-nav-menu-inner' },
+					menuItems
+				)
+			),
+			React.createElement(
+				'a',
+				{ href: 'https://github.com/elementalui/elemental', target: '_blank', title: 'View on GitHub', className: 'primary-nav__brand right' },
+				React.createElement('img', { src: './images/github-logo.svg', className: 'primary-nav__brand-src' })
+			)
+		);
+	}
+});
+
+var App = React.createClass({
+	displayName: 'App',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'page-wrapper' },
+			React.createElement(PageNav, null),
+			React.createElement(
+				'div',
+				{ className: 'page-body' },
+				React.createElement(Router.RouteHandler, null)
+			),
+			React.createElement(
+				'div',
+				{ className: 'page-footer' },
+				React.createElement(
+					'div',
+					{ className: 'demo-container container' },
+					'Copyright © 2015 · (MIT) License · Built by ',
+					React.createElement(
+						'a',
+						{ href: 'http://www.thinkmill.com.au', target: '_blank' },
+						'Thinkmill'
+					),
+					', initially for integration with ',
+					React.createElement(
+						'a',
+						{ href: 'http://www.keystonejs.com', target: '_blank' },
+						'KeystoneJS'
+					)
+				)
+			)
+		);
+	}
+});
+
+var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
+
+var routes = React.createElement(
+	Router.Route,
+	{ name: 'app', path: basepath + '/', handler: App },
+	React.createElement(Router.Route, { name: 'home', path: basepath + '/', handler: require('./pages/Home') }),
+	React.createElement(Router.Route, { name: 'css', path: basepath + '/css', handler: require('./pages/CSS') }),
+	React.createElement(Router.Route, { name: 'buttons', path: basepath + '/buttons', handler: require('./pages/Buttons') }),
+	React.createElement(Router.Route, { name: 'forms', path: basepath + '/forms', handler: require('./pages/Forms') }),
+	React.createElement(Router.Route, { name: 'spinner', path: basepath + '/spinner', handler: require('./pages/Spinner') }),
+	React.createElement(Router.Route, { name: 'modal', path: basepath + '/modal', handler: require('./pages/Modal') }),
+	React.createElement(Router.Route, { name: 'misc', path: basepath + '/misc', handler: require('./pages/Misc') }),
+	React.createElement(Router.Route, { name: 'date-picker', path: basepath + '/date-picker', handler: require('./pages/DatePicker') }),
+	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
+);
+
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+	React.render(React.createElement(Handler, null), document.body);
+});
+/*<Router.Link to="home">Home</Router.Link>*/
+
+},{"./pages/Buttons":54,"./pages/CSS":55,"./pages/DatePicker":56,"./pages/Forms":57,"./pages/Home":58,"./pages/Misc":59,"./pages/Modal":60,"./pages/Spinner":61,"react":undefined,"react-router":31}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -49,7 +200,7 @@ process.nextTick = function (fun) {
         }
     }
     queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
+    if (!draining) {
         setTimeout(drainQueue, 0);
     }
 };
@@ -90,7 +241,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -167,7 +318,7 @@ var DateSelect = React.createClass({
 });
 
 module.exports = DateSelect;
-},{"./DateSelectDialog":4,"blacklist":undefined,"moment":undefined,"react":undefined}],3:[function(require,module,exports){
+},{"./DateSelectDialog":5,"blacklist":undefined,"moment":undefined,"react":undefined}],4:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -312,7 +463,7 @@ module.exports = React.createClass({
 		return calendar;
 	}
 });
-},{"./DateSelectHeader":5,"classnames":undefined,"moment":undefined,"react/addons":undefined}],4:[function(require,module,exports){
+},{"./DateSelectHeader":6,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -425,7 +576,7 @@ module.exports = React.createClass({
 		);
 	}
 });
-},{"./DateSelectCalendar":3,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
+},{"./DateSelectCalendar":4,"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -551,7 +702,7 @@ module.exports = React.createClass({
 		return header;
 	}
 });
-},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
+},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],7:[function(require,module,exports){
 /**
  * Represents a cancellation caused by navigating away
  * before the previous transition has fully resolved.
@@ -561,7 +712,7 @@ module.exports = React.createClass({
 function Cancellation() {}
 
 module.exports = Cancellation;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -592,7 +743,7 @@ var History = {
 };
 
 module.exports = History;
-},{"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],8:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],9:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -668,7 +819,7 @@ var Match = (function () {
 })();
 
 module.exports = Match;
-},{"./PathUtils":10}],9:[function(require,module,exports){
+},{"./PathUtils":11}],10:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -739,7 +890,7 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-},{"./PropTypes":11}],10:[function(require,module,exports){
+},{"./PropTypes":12}],11:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -893,7 +1044,7 @@ var PathUtils = {
 };
 
 module.exports = PathUtils;
-},{"object-assign":39,"qs":40,"react/lib/invariant":48}],11:[function(require,module,exports){
+},{"object-assign":40,"qs":41,"react/lib/invariant":49}],12:[function(require,module,exports){
 'use strict';
 
 var assign = require('react/lib/Object.assign');
@@ -925,7 +1076,7 @@ var PropTypes = assign({}, ReactPropTypes, {
 });
 
 module.exports = PropTypes;
-},{"./Route":13,"react":undefined,"react/lib/Object.assign":46}],12:[function(require,module,exports){
+},{"./Route":14,"react":undefined,"react/lib/Object.assign":47}],13:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -938,7 +1089,7 @@ function Redirect(to, params, query) {
 }
 
 module.exports = Redirect;
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1139,7 +1290,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":10,"react/lib/Object.assign":46,"react/lib/invariant":48,"react/lib/warning":49}],14:[function(require,module,exports){
+},{"./PathUtils":11,"react/lib/Object.assign":47,"react/lib/invariant":49,"react/lib/warning":50}],15:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -1215,7 +1366,7 @@ var ScrollHistory = {
 };
 
 module.exports = ScrollHistory;
-},{"./getWindowScrollPosition":29,"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],15:[function(require,module,exports){
+},{"./getWindowScrollPosition":30,"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],16:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -1290,7 +1441,7 @@ var State = {
 };
 
 module.exports = State;
-},{"./PropTypes":11}],16:[function(require,module,exports){
+},{"./PropTypes":12}],17:[function(require,module,exports){
 /* jshint -W058 */
 
 'use strict';
@@ -1366,7 +1517,7 @@ Transition.to = function (transition, routes, params, query, callback) {
 };
 
 module.exports = Transition;
-},{"./Cancellation":6,"./Redirect":12}],17:[function(require,module,exports){
+},{"./Cancellation":7,"./Redirect":13}],18:[function(require,module,exports){
 /**
  * Actions that modify the URL.
  */
@@ -1392,7 +1543,7 @@ var LocationActions = {
 };
 
 module.exports = LocationActions;
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -1422,7 +1573,7 @@ var ImitateBrowserBehavior = {
 };
 
 module.exports = ImitateBrowserBehavior;
-},{"../actions/LocationActions":17}],19:[function(require,module,exports){
+},{"../actions/LocationActions":18}],20:[function(require,module,exports){
 /**
  * A scroll behavior that always scrolls to the top of the page
  * after a transition.
@@ -1438,7 +1589,7 @@ var ScrollToTopBehavior = {
 };
 
 module.exports = ScrollToTopBehavior;
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1477,7 +1628,7 @@ var ContextWrapper = (function (_React$Component) {
 })(React.Component);
 
 module.exports = ContextWrapper;
-},{"react":undefined}],21:[function(require,module,exports){
+},{"react":undefined}],22:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1525,7 +1676,7 @@ DefaultRoute.defaultProps = {
 };
 
 module.exports = DefaultRoute;
-},{"../PropTypes":11,"./Route":25,"./RouteHandler":26}],22:[function(require,module,exports){
+},{"../PropTypes":12,"./Route":26,"./RouteHandler":27}],23:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1661,7 +1812,7 @@ Link.defaultProps = {
 };
 
 module.exports = Link;
-},{"../PropTypes":11,"react":undefined,"react/lib/Object.assign":46}],23:[function(require,module,exports){
+},{"../PropTypes":12,"react":undefined,"react/lib/Object.assign":47}],24:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1710,7 +1861,7 @@ NotFoundRoute.defaultProps = {
 };
 
 module.exports = NotFoundRoute;
-},{"../PropTypes":11,"./Route":25,"./RouteHandler":26}],24:[function(require,module,exports){
+},{"../PropTypes":12,"./Route":26,"./RouteHandler":27}],25:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1754,7 +1905,7 @@ Redirect.propTypes = {
 Redirect.defaultProps = {};
 
 module.exports = Redirect;
-},{"../PropTypes":11,"./Route":25}],25:[function(require,module,exports){
+},{"../PropTypes":12,"./Route":26}],26:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1846,7 +1997,7 @@ Route.defaultProps = {
 };
 
 module.exports = Route;
-},{"../PropTypes":11,"./RouteHandler":26,"react":undefined,"react/lib/invariant":48}],26:[function(require,module,exports){
+},{"../PropTypes":12,"./RouteHandler":27,"react":undefined,"react/lib/invariant":49}],27:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1955,7 +2106,7 @@ RouteHandler.childContextTypes = {
 };
 
 module.exports = RouteHandler;
-},{"../PropTypes":11,"./ContextWrapper":20,"react":undefined,"react/lib/Object.assign":46}],27:[function(require,module,exports){
+},{"../PropTypes":12,"./ContextWrapper":21,"react":undefined,"react/lib/Object.assign":47}],28:[function(require,module,exports){
 (function (process){
 /* jshint -W058 */
 'use strict';
@@ -2472,7 +2623,7 @@ function createRouter(options) {
 
 module.exports = createRouter;
 }).call(this,require('_process'))
-},{"./Cancellation":6,"./History":7,"./Match":8,"./PathUtils":10,"./PropTypes":11,"./Redirect":12,"./Route":13,"./ScrollHistory":14,"./Transition":16,"./actions/LocationActions":17,"./behaviors/ImitateBrowserBehavior":18,"./createRoutesFromReactChildren":28,"./isReactChildren":31,"./locations/HashLocation":32,"./locations/HistoryLocation":33,"./locations/RefreshLocation":34,"./locations/StaticLocation":35,"./supportsHistory":38,"_process":1,"react":undefined,"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48,"react/lib/warning":49}],28:[function(require,module,exports){
+},{"./Cancellation":7,"./History":8,"./Match":9,"./PathUtils":11,"./PropTypes":12,"./Redirect":13,"./Route":14,"./ScrollHistory":15,"./Transition":17,"./actions/LocationActions":18,"./behaviors/ImitateBrowserBehavior":19,"./createRoutesFromReactChildren":29,"./isReactChildren":32,"./locations/HashLocation":33,"./locations/HistoryLocation":34,"./locations/RefreshLocation":35,"./locations/StaticLocation":36,"./supportsHistory":39,"_process":2,"react":undefined,"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49,"react/lib/warning":50}],29:[function(require,module,exports){
 /* jshint -W084 */
 'use strict';
 
@@ -2554,7 +2705,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":13,"./components/DefaultRoute":21,"./components/NotFoundRoute":23,"./components/Redirect":24,"react":undefined,"react/lib/Object.assign":46,"react/lib/warning":49}],29:[function(require,module,exports){
+},{"./Route":14,"./components/DefaultRoute":22,"./components/NotFoundRoute":24,"./components/Redirect":25,"react":undefined,"react/lib/Object.assign":47,"react/lib/warning":50}],30:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -2573,7 +2724,7 @@ function getWindowScrollPosition() {
 }
 
 module.exports = getWindowScrollPosition;
-},{"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],30:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],31:[function(require,module,exports){
 'use strict';
 
 exports.DefaultRoute = require('./components/DefaultRoute');
@@ -2605,7 +2756,7 @@ exports.createRoutesFromReactChildren = require('./createRoutesFromReactChildren
 
 exports.create = require('./createRouter');
 exports.run = require('./runRouter');
-},{"./History":7,"./Navigation":9,"./Route":13,"./State":15,"./behaviors/ImitateBrowserBehavior":18,"./behaviors/ScrollToTopBehavior":19,"./components/DefaultRoute":21,"./components/Link":22,"./components/NotFoundRoute":23,"./components/Redirect":24,"./components/Route":25,"./components/RouteHandler":26,"./createRouter":27,"./createRoutesFromReactChildren":28,"./locations/HashLocation":32,"./locations/HistoryLocation":33,"./locations/RefreshLocation":34,"./locations/StaticLocation":35,"./locations/TestLocation":36,"./runRouter":37}],31:[function(require,module,exports){
+},{"./History":8,"./Navigation":10,"./Route":14,"./State":16,"./behaviors/ImitateBrowserBehavior":19,"./behaviors/ScrollToTopBehavior":20,"./components/DefaultRoute":22,"./components/Link":23,"./components/NotFoundRoute":24,"./components/Redirect":25,"./components/Route":26,"./components/RouteHandler":27,"./createRouter":28,"./createRoutesFromReactChildren":29,"./locations/HashLocation":33,"./locations/HistoryLocation":34,"./locations/RefreshLocation":35,"./locations/StaticLocation":36,"./locations/TestLocation":37,"./runRouter":38}],32:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -2619,7 +2770,7 @@ function isReactChildren(object) {
 }
 
 module.exports = isReactChildren;
-},{"react":undefined}],32:[function(require,module,exports){
+},{"react":undefined}],33:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -2731,7 +2882,7 @@ var HashLocation = {
 };
 
 module.exports = HashLocation;
-},{"../History":7,"../actions/LocationActions":17}],33:[function(require,module,exports){
+},{"../History":8,"../actions/LocationActions":18}],34:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -2818,7 +2969,7 @@ var HistoryLocation = {
 };
 
 module.exports = HistoryLocation;
-},{"../History":7,"../actions/LocationActions":17}],34:[function(require,module,exports){
+},{"../History":8,"../actions/LocationActions":18}],35:[function(require,module,exports){
 'use strict';
 
 var HistoryLocation = require('./HistoryLocation');
@@ -2850,7 +3001,7 @@ var RefreshLocation = {
 };
 
 module.exports = RefreshLocation;
-},{"../History":7,"./HistoryLocation":33}],35:[function(require,module,exports){
+},{"../History":8,"./HistoryLocation":34}],36:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -2900,7 +3051,7 @@ StaticLocation.prototype.replace = throwCannotModify;
 StaticLocation.prototype.pop = throwCannotModify;
 
 module.exports = StaticLocation;
-},{"react/lib/invariant":48}],36:[function(require,module,exports){
+},{"react/lib/invariant":49}],37:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -2995,7 +3146,7 @@ var TestLocation = (function () {
 })();
 
 module.exports = TestLocation;
-},{"../History":7,"../actions/LocationActions":17,"react/lib/invariant":48}],37:[function(require,module,exports){
+},{"../History":8,"../actions/LocationActions":18,"react/lib/invariant":49}],38:[function(require,module,exports){
 'use strict';
 
 var createRouter = require('./createRouter');
@@ -3046,7 +3197,7 @@ function runRouter(routes, location, callback) {
 }
 
 module.exports = runRouter;
-},{"./createRouter":27}],38:[function(require,module,exports){
+},{"./createRouter":28}],39:[function(require,module,exports){
 'use strict';
 
 function supportsHistory() {
@@ -3063,7 +3214,7 @@ function supportsHistory() {
 }
 
 module.exports = supportsHistory;
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -3091,10 +3242,10 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":41}],41:[function(require,module,exports){
+},{"./lib/":42}],42:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -3111,7 +3262,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":42,"./stringify":43}],42:[function(require,module,exports){
+},{"./parse":43,"./stringify":44}],43:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -3274,7 +3425,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":44}],43:[function(require,module,exports){
+},{"./utils":45}],44:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -3373,7 +3524,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":44}],44:[function(require,module,exports){
+},{"./utils":45}],45:[function(require,module,exports){
 // Load modules
 
 
@@ -3507,7 +3658,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -3551,7 +3702,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -3600,7 +3751,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -3634,7 +3785,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -3691,7 +3842,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":1}],49:[function(require,module,exports){
+},{"_process":2}],50:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -3754,7 +3905,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":47,"_process":1}],50:[function(require,module,exports){
+},{"./emptyFunction":48,"_process":2}],51:[function(require,module,exports){
 /* global Prism */
 'use strict';
 
@@ -3812,18 +3963,18 @@ var ExampleSource = React.createClass({
 
 module.exports = ExampleSource;
 
-},{"classnames":undefined,"react":undefined}],51:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],52:[function(require,module,exports){
 // Thank you https://gist.github.com/Keeguon/2310008
 'use strict';
 
 module.exports = [{ name: 'Afghanistan', code: 'AF' }, { name: 'Åland Islands', code: 'AX' }, { name: 'Albania', code: 'AL' }, { name: 'Algeria', code: 'DZ' }, { name: 'American Samoa', code: 'AS' }, { name: 'AndorrA', code: 'AD' }, { name: 'Angola', code: 'AO' }, { name: 'Anguilla', code: 'AI' }, { name: 'Antarctica', code: 'AQ' }, { name: 'Antigua and Barbuda', code: 'AG' }, { name: 'Argentina', code: 'AR' }, { name: 'Armenia', code: 'AM' }, { name: 'Aruba', code: 'AW' }, { name: 'Australia', code: 'AU' }, { name: 'Austria', code: 'AT' }, { name: 'Azerbaijan', code: 'AZ' }, { name: 'Bahamas', code: 'BS' }, { name: 'Bahrain', code: 'BH' }, { name: 'Bangladesh', code: 'BD' }, { name: 'Barbados', code: 'BB' }, { name: 'Belarus', code: 'BY' }, { name: 'Belgium', code: 'BE' }, { name: 'Belize', code: 'BZ' }, { name: 'Benin', code: 'BJ' }, { name: 'Bermuda', code: 'BM' }, { name: 'Bhutan', code: 'BT' }, { name: 'Bolivia', code: 'BO' }, { name: 'Bosnia and Herzegovina', code: 'BA' }, { name: 'Botswana', code: 'BW' }, { name: 'Bouvet Island', code: 'BV' }, { name: 'Brazil', code: 'BR' }, { name: 'British Indian Ocean Territory', code: 'IO' }, { name: 'Brunei Darussalam', code: 'BN' }, { name: 'Bulgaria', code: 'BG' }, { name: 'Burkina Faso', code: 'BF' }, { name: 'Burundi', code: 'BI' }, { name: 'Cambodia', code: 'KH' }, { name: 'Cameroon', code: 'CM' }, { name: 'Canada', code: 'CA' }, { name: 'Cape Verde', code: 'CV' }, { name: 'Cayman Islands', code: 'KY' }, { name: 'Central African Republic', code: 'CF' }, { name: 'Chad', code: 'TD' }, { name: 'Chile', code: 'CL' }, { name: 'China', code: 'CN' }, { name: 'Christmas Island', code: 'CX' }, { name: 'Cocos (Keeling) Islands', code: 'CC' }, { name: 'Colombia', code: 'CO' }, { name: 'Comoros', code: 'KM' }, { name: 'Congo', code: 'CG' }, { name: 'Congo, The Democratic Republic of the', code: 'CD' }, { name: 'Cook Islands', code: 'CK' }, { name: 'Costa Rica', code: 'CR' }, { name: 'Cote D\'Ivoire', code: 'CI' }, { name: 'Croatia', code: 'HR' }, { name: 'Cuba', code: 'CU' }, { name: 'Cyprus', code: 'CY' }, { name: 'Czech Republic', code: 'CZ' }, { name: 'Denmark', code: 'DK' }, { name: 'Djibouti', code: 'DJ' }, { name: 'Dominica', code: 'DM' }, { name: 'Dominican Republic', code: 'DO' }, { name: 'Ecuador', code: 'EC' }, { name: 'Egypt', code: 'EG' }, { name: 'El Salvador', code: 'SV' }, { name: 'Equatorial Guinea', code: 'GQ' }, { name: 'Eritrea', code: 'ER' }, { name: 'Estonia', code: 'EE' }, { name: 'Ethiopia', code: 'ET' }, { name: 'Falkland Islands (Malvinas)', code: 'FK' }, { name: 'Faroe Islands', code: 'FO' }, { name: 'Fiji', code: 'FJ' }, { name: 'Finland', code: 'FI' }, { name: 'France', code: 'FR' }, { name: 'French Guiana', code: 'GF' }, { name: 'French Polynesia', code: 'PF' }, { name: 'French Southern Territories', code: 'TF' }, { name: 'Gabon', code: 'GA' }, { name: 'Gambia', code: 'GM' }, { name: 'Georgia', code: 'GE' }, { name: 'Germany', code: 'DE' }, { name: 'Ghana', code: 'GH' }, { name: 'Gibraltar', code: 'GI' }, { name: 'Greece', code: 'GR' }, { name: 'Greenland', code: 'GL' }, { name: 'Grenada', code: 'GD' }, { name: 'Guadeloupe', code: 'GP' }, { name: 'Guam', code: 'GU' }, { name: 'Guatemala', code: 'GT' }, { name: 'Guernsey', code: 'GG' }, { name: 'Guinea', code: 'GN' }, { name: 'Guinea-Bissau', code: 'GW' }, { name: 'Guyana', code: 'GY' }, { name: 'Haiti', code: 'HT' }, { name: 'Heard Island and Mcdonald Islands', code: 'HM' }, { name: 'Holy See (Vatican City State)', code: 'VA' }, { name: 'Honduras', code: 'HN' }, { name: 'Hong Kong', code: 'HK' }, { name: 'Hungary', code: 'HU' }, { name: 'Iceland', code: 'IS' }, { name: 'India', code: 'IN' }, { name: 'Indonesia', code: 'ID' }, { name: 'Iran, Islamic Republic Of', code: 'IR' }, { name: 'Iraq', code: 'IQ' }, { name: 'Ireland', code: 'IE' }, { name: 'Isle of Man', code: 'IM' }, { name: 'Israel', code: 'IL' }, { name: 'Italy', code: 'IT' }, { name: 'Jamaica', code: 'JM' }, { name: 'Japan', code: 'JP' }, { name: 'Jersey', code: 'JE' }, { name: 'Jordan', code: 'JO' }, { name: 'Kazakhstan', code: 'KZ' }, { name: 'Kenya', code: 'KE' }, { name: 'Kiribati', code: 'KI' }, { name: 'Korea, Democratic People\'S Republic of', code: 'KP' }, { name: 'Korea, Republic of', code: 'KR' }, { name: 'Kuwait', code: 'KW' }, { name: 'Kyrgyzstan', code: 'KG' }, { name: 'Lao People\'S Democratic Republic', code: 'LA' }, { name: 'Latvia', code: 'LV' }, { name: 'Lebanon', code: 'LB' }, { name: 'Lesotho', code: 'LS' }, { name: 'Liberia', code: 'LR' }, { name: 'Libyan Arab Jamahiriya', code: 'LY' }, { name: 'Liechtenstein', code: 'LI' }, { name: 'Lithuania', code: 'LT' }, { name: 'Luxembourg', code: 'LU' }, { name: 'Macao', code: 'MO' }, { name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK' }, { name: 'Madagascar', code: 'MG' }, { name: 'Malawi', code: 'MW' }, { name: 'Malaysia', code: 'MY' }, { name: 'Maldives', code: 'MV' }, { name: 'Mali', code: 'ML' }, { name: 'Malta', code: 'MT' }, { name: 'Marshall Islands', code: 'MH' }, { name: 'Martinique', code: 'MQ' }, { name: 'Mauritania', code: 'MR' }, { name: 'Mauritius', code: 'MU' }, { name: 'Mayotte', code: 'YT' }, { name: 'Mexico', code: 'MX' }, { name: 'Micronesia, Federated States of', code: 'FM' }, { name: 'Moldova, Republic of', code: 'MD' }, { name: 'Monaco', code: 'MC' }, { name: 'Mongolia', code: 'MN' }, { name: 'Montserrat', code: 'MS' }, { name: 'Morocco', code: 'MA' }, { name: 'Mozambique', code: 'MZ' }, { name: 'Myanmar', code: 'MM' }, { name: 'Namibia', code: 'NA' }, { name: 'Nauru', code: 'NR' }, { name: 'Nepal', code: 'NP' }, { name: 'Netherlands', code: 'NL' }, { name: 'Netherlands Antilles', code: 'AN' }, { name: 'New Caledonia', code: 'NC' }, { name: 'New Zealand', code: 'NZ' }, { name: 'Nicaragua', code: 'NI' }, { name: 'Niger', code: 'NE' }, { name: 'Nigeria', code: 'NG' }, { name: 'Niue', code: 'NU' }, { name: 'Norfolk Island', code: 'NF' }, { name: 'Northern Mariana Islands', code: 'MP' }, { name: 'Norway', code: 'NO' }, { name: 'Oman', code: 'OM' }, { name: 'Pakistan', code: 'PK' }, { name: 'Palau', code: 'PW' }, { name: 'Palestinian Territory, Occupied', code: 'PS' }, { name: 'Panama', code: 'PA' }, { name: 'Papua New Guinea', code: 'PG' }, { name: 'Paraguay', code: 'PY' }, { name: 'Peru', code: 'PE' }, { name: 'Philippines', code: 'PH' }, { name: 'Pitcairn', code: 'PN' }, { name: 'Poland', code: 'PL' }, { name: 'Portugal', code: 'PT' }, { name: 'Puerto Rico', code: 'PR' }, { name: 'Qatar', code: 'QA' }, { name: 'Reunion', code: 'RE' }, { name: 'Romania', code: 'RO' }, { name: 'Russian Federation', code: 'RU' }, { name: 'RWANDA', code: 'RW' }, { name: 'Saint Helena', code: 'SH' }, { name: 'Saint Kitts and Nevis', code: 'KN' }, { name: 'Saint Lucia', code: 'LC' }, { name: 'Saint Pierre and Miquelon', code: 'PM' }, { name: 'Saint Vincent and the Grenadines', code: 'VC' }, { name: 'Samoa', code: 'WS' }, { name: 'San Marino', code: 'SM' }, { name: 'Sao Tome and Principe', code: 'ST' }, { name: 'Saudi Arabia', code: 'SA' }, { name: 'Senegal', code: 'SN' }, { name: 'Serbia and Montenegro', code: 'CS' }, { name: 'Seychelles', code: 'SC' }, { name: 'Sierra Leone', code: 'SL' }, { name: 'Singapore', code: 'SG' }, { name: 'Slovakia', code: 'SK' }, { name: 'Slovenia', code: 'SI' }, { name: 'Solomon Islands', code: 'SB' }, { name: 'Somalia', code: 'SO' }, { name: 'South Africa', code: 'ZA' }, { name: 'South Georgia and the South Sandwich Islands', code: 'GS' }, { name: 'Spain', code: 'ES' }, { name: 'Sri Lanka', code: 'LK' }, { name: 'Sudan', code: 'SD' }, { name: 'Suriname', code: 'SR' }, { name: 'Svalbard and Jan Mayen', code: 'SJ' }, { name: 'Swaziland', code: 'SZ' }, { name: 'Sweden', code: 'SE' }, { name: 'Switzerland', code: 'CH' }, { name: 'Syrian Arab Republic', code: 'SY' }, { name: 'Taiwan, Province of China', code: 'TW' }, { name: 'Tajikistan', code: 'TJ' }, { name: 'Tanzania, United Republic of', code: 'TZ' }, { name: 'Thailand', code: 'TH' }, { name: 'Timor-Leste', code: 'TL' }, { name: 'Togo', code: 'TG' }, { name: 'Tokelau', code: 'TK' }, { name: 'Tonga', code: 'TO' }, { name: 'Trinidad and Tobago', code: 'TT' }, { name: 'Tunisia', code: 'TN' }, { name: 'Turkey', code: 'TR' }, { name: 'Turkmenistan', code: 'TM' }, { name: 'Turks and Caicos Islands', code: 'TC' }, { name: 'Tuvalu', code: 'TV' }, { name: 'Uganda', code: 'UG' }, { name: 'Ukraine', code: 'UA' }, { name: 'United Arab Emirates', code: 'AE' }, { name: 'United Kingdom', code: 'GB' }, { name: 'United States', code: 'US' }, { name: 'United States Minor Outlying Islands', code: 'UM' }, { name: 'Uruguay', code: 'UY' }, { name: 'Uzbekistan', code: 'UZ' }, { name: 'Vanuatu', code: 'VU' }, { name: 'Venezuela', code: 'VE' }, { name: 'Viet Nam', code: 'VN' }, { name: 'Virgin Islands, British', code: 'VG' }, { name: 'Virgin Islands, U.S.', code: 'VI' }, { name: 'Wallis and Futuna', code: 'WF' }, { name: 'Western Sahara', code: 'EH' }, { name: 'Yemen', code: 'YE' }, { name: 'Zambia', code: 'ZM' }, { name: 'Zimbabwe', code: 'ZW' }];
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 "use strict";
 
 module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismodacfermentum.com", "password": "ZKG57ZFJ9HK", "dob": "Feb 23, 1976", "gender": "female" }, { "name": "Hermione Maddox", "email": "Curabitur.massa@eu.ca", "password": "ECI38CRA9MB", "dob": "Dec 4, 1959", "gender": "female" }, { "name": "Vladimir Rodgers", "email": "diam@ettristiquepellentesque.com", "password": "ESK96WFK9OD", "dob": "May 12, 1979", "gender": "male" }, { "name": "Kelsie Ewing", "email": "rutrum.non@tellus.co.uk", "password": "KVE70PUO5TB", "dob": "Jul 14, 1968", "gender": "female" }, { "name": "Yetta Higgins", "email": "quis.pede@lectusquis.com", "password": "KAE34UXU2QZ", "dob": "Oct 13, 1971", "gender": "female" }, { "name": "Kadeem Montgomery", "email": "facilisis.facilisis@vitaesodalesat.edu", "password": "POX16RXV9HL", "dob": "Oct 13, 1968", "gender": "male" }, { "name": "Martina Dodson", "email": "Cras.lorem@convallis.org", "password": "TIY32LRA7IU", "dob": "Jan 31, 1974", "gender": "female" }, { "name": "Grady Gonzalez", "email": "posuere.cubilia@Aenean.org", "password": "VKN16PHI8PW", "dob": "Jun 22, 1982", "gender": "male" }, { "name": "Lacey Hutchinson", "email": "Maecenas.iaculis@sedpede.net", "password": "LDN67DTE6CC", "dob": "Jul 23, 1986", "gender": "female" }, { "name": "John Santiago", "email": "eleifend.egestas@convallis.ca", "password": "ZEY52DKW3ZZ", "dob": "May 5, 1968", "gender": "male" }, { "name": "Philip Floyd", "email": "Proin@enimnisl.ca", "password": "RZK97GMJ7EK", "dob": "Mar 20, 1952", "gender": "male" }, { "name": "Leslie Chavez", "email": "sociis.natoque.penatibus@porttitor.net", "password": "AKN50QNQ8HK", "dob": "Apr 19, 1947", "gender": "female" }, { "name": "Alisa Allison", "email": "vitae@netusetmalesuada.ca", "password": "XLP00XDR9UW", "dob": "May 23, 1955", "gender": "female" }, { "name": "Joshua Clarke", "email": "mi@quamPellentesque.net", "password": "LSN56SXD3SH", "dob": "Apr 12, 1968", "gender": "male" }, { "name": "Victoria Holden", "email": "magna@pedeac.net", "password": "BUS61XTJ6KI", "dob": "Jan 22, 1990", "gender": "female" }, { "name": "Kibo Goodwin", "email": "est@nec.org", "password": "GWM68BLL8LN", "dob": "Nov 21, 1950", "gender": "male" }, { "name": "Marvin Justice", "email": "Integer@Quisquetincidunt.co.uk", "password": "NRQ89UJQ5FH", "dob": "Dec 8, 1958", "gender": "male" }, { "name": "Justin Rowland", "email": "magna.a.neque@anequeNullam.ca", "password": "JKQ17ZVE3TE", "dob": "May 31, 1994", "gender": "male" }, { "name": "Tiger Blevins", "email": "enim.sit@felisNulla.net", "password": "MLA03EJG4WI", "dob": "Feb 1, 1981", "gender": "male" }, { "name": "Peter Bray", "email": "nascetur@Nullamutnisi.edu", "password": "BAL79WGC4II", "dob": "Dec 22, 1950", "gender": "male" }];
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
@@ -3833,6 +3984,7 @@ var React = require('react');
 var _require = require('elemental');
 
 var Dropdown = _require.Dropdown;
+var Table = _require.Table;
 var Tooltip = _require.Tooltip;
 var Button = _require.Button;
 var ButtonGroup = _require.ButtonGroup;
@@ -3986,8 +4138,8 @@ var Buttons = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -4300,8 +4452,8 @@ var Buttons = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -4421,8 +4573,8 @@ var Buttons = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -4655,7 +4807,7 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
+},{"../components/ExampleSource":51,"elemental":undefined,"react":undefined}],55:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
@@ -4665,6 +4817,10 @@ var classNames = require('classnames');
 var moment = require('moment');
 
 var ExampleSource = require('../components/ExampleSource');
+
+var _require = require('elemental');
+
+var Table = _require.Table;
 
 var USERS = require('../data/users');
 var TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
@@ -5155,8 +5311,8 @@ var CSSExamples = React.createClass({
 					'div',
 					{ className: 'code-example__example' },
 					React.createElement(
-						'table',
-						{ className: 'table' },
+						Table,
+						null,
 						React.createElement(
 							'colgroup',
 							null,
@@ -5180,7 +5336,7 @@ var CSSExamples = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<table className="table">\n\t\t\t\t\t\t\t\t<colgroup>\n\t\t\t\t\t\t\t\t\t<col width="50" />\n\t\t\t\t\t\t\t\t\t<col width="" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t</colgroup>\n\t\t\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t\t<th>User</th>\n\t\t\t\t\t\t\t\t\t\t<th>Age</th>\n\t\t\t\t\t\t\t\t\t\t<th>Gender</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<a href="javascript:;">Hanna Villarreal</a>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>39</td>\n\t\t\t\t\t\t\t\t\t\t<td>F</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Table>\n\t\t\t\t\t\t\t\t<colgroup>\n\t\t\t\t\t\t\t\t\t<col width="50" />\n\t\t\t\t\t\t\t\t\t<col width="" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t</colgroup>\n\t\t\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t\t<th>User</th>\n\t\t\t\t\t\t\t\t\t\t<th>Age</th>\n\t\t\t\t\t\t\t\t\t\t<th>Gender</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<a href="javascript:;">Hanna Villarreal</a>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>39</td>\n\t\t\t\t\t\t\t\t\t\t<td>F</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</Table>\n\t\t\t\t\t\t'
 				)
 			)
 		);
@@ -5189,7 +5345,7 @@ var CSSExamples = React.createClass({
 
 module.exports = CSSExamples;
 
-},{"../components/ExampleSource":50,"../data/users":52,"classnames":undefined,"moment":undefined,"react/addons":undefined}],55:[function(require,module,exports){
+},{"../components/ExampleSource":51,"../data/users":53,"classnames":undefined,"elemental":undefined,"moment":undefined,"react/addons":undefined}],56:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -5297,7 +5453,7 @@ var DateSelectExamples = React.createClass({
 
 module.exports = DateSelectExamples;
 
-},{"elemental":undefined,"react-date-select":2,"react/addons":undefined}],56:[function(require,module,exports){
+},{"elemental":undefined,"react-date-select":3,"react/addons":undefined}],57:[function(require,module,exports){
 /* eslint no-alert: 0 */
 
 'use strict';
@@ -5322,6 +5478,7 @@ var InputGroup = _require.InputGroup;
 var PasswordInputGroup = _require.PasswordInputGroup;
 var Radio = _require.Radio;
 var RadioGroup = _require.RadioGroup;
+var Table = _require.Table;
 
 var ExampleSource = require('../components/ExampleSource');
 
@@ -6115,8 +6272,8 @@ var Forms = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -6475,7 +6632,7 @@ var Forms = React.createClass({
 
 module.exports = Forms;
 
-},{"../components/ExampleSource":50,"../data/countries":51,"elemental":undefined,"react":undefined}],57:[function(require,module,exports){
+},{"../components/ExampleSource":51,"../data/countries":52,"elemental":undefined,"react":undefined}],58:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -6710,13 +6867,17 @@ module.exports = Home;
 
 // { value: 'date-picker', icon: 'calendar', label: 'Date' }
 
-},{"elemental":undefined,"react":undefined,"react-router":30}],58:[function(require,module,exports){
+},{"elemental":undefined,"react":undefined,"react-router":31}],59:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var ExampleSource = require('../components/ExampleSource');
-var Alert = require('elemental').Alert;
-var Pill = require('elemental').Pill;
+
+var _require = require('elemental');
+
+var Alert = _require.Alert;
+var Pill = _require.Pill;
+var Table = _require.Table;
 
 var Misc = React.createClass({
 	displayName: 'VIEW_Misc',
@@ -6802,8 +6963,8 @@ var Misc = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -6948,8 +7109,8 @@ var Misc = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -7158,19 +7319,22 @@ var Misc = React.createClass({
 
 module.exports = Misc;
 
-},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],59:[function(require,module,exports){
+},{"../components/ExampleSource":51,"elemental":undefined,"react":undefined}],60:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
 
-var Button = require('elemental').Button;
-var FormField = require('elemental').FormField;
-var FormInput = require('elemental').FormInput;
-var Modal = require('elemental').Modal;
-var ModalBody = require('elemental').ModalBody;
-var ModalFooter = require('elemental').ModalFooter;
-var ModalHeader = require('elemental').ModalHeader;
-var Spinner = require('elemental').Spinner;
+var _require = require('elemental');
+
+var Button = _require.Button;
+var FormField = _require.FormField;
+var FormInput = _require.FormInput;
+var Modal = _require.Modal;
+var ModalBody = _require.ModalBody;
+var ModalFooter = _require.ModalFooter;
+var ModalHeader = _require.ModalHeader;
+var Spinner = _require.Spinner;
+var Table = _require.Table;
 
 var ExampleSource = require('../components/ExampleSource');
 
@@ -7330,8 +7494,8 @@ module.exports = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -7476,8 +7640,8 @@ module.exports = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -7661,12 +7825,16 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../components/ExampleSource":50,"elemental":undefined,"react/addons":undefined}],60:[function(require,module,exports){
+},{"../components/ExampleSource":51,"elemental":undefined,"react/addons":undefined}],61:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var Button = require('elemental').Button;
-var Spinner = require('elemental').Spinner;
+
+var _require = require('elemental');
+
+var Button = _require.Button;
+var Spinner = _require.Spinner;
+var Table = _require.Table;
 
 var ExampleSource = require('../components/ExampleSource');
 
@@ -7770,8 +7938,8 @@ var Buttons = React.createClass({
 				'div',
 				{ className: 'usage-table' },
 				React.createElement(
-					'table',
-					{ className: 'table' },
+					Table,
+					null,
 					React.createElement(
 						'thead',
 						null,
@@ -7895,155 +8063,4 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],61:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var Router = require('react-router');
-
-var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
-// { value: 'date-picker', label: 'Date Picker' }
-];
-
-var PageNav = React.createClass({
-	displayName: 'PageNav',
-
-	getInitialState: function getInitialState() {
-		return {
-			mobileMenuIsVisible: false,
-			windowHeight: window.innerHeight,
-			windowWidth: window.innerWidth
-		};
-	},
-
-	handleResize: function handleResize(e) {
-		this.setState({
-			windowHeight: window.innerHeight,
-			windowWidth: window.innerWidth
-		});
-	},
-
-	componentDidMount: function componentDidMount() {
-		window.addEventListener('resize', this.handleResize);
-	},
-
-	componentWillUnmount: function componentWillUnmount() {
-		window.removeEventListener('resize', this.handleResize);
-	},
-
-	toggleMenu: function toggleMenu() {
-		this.setState({
-			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
-		});
-	},
-
-	render: function render() {
-		var self = this;
-		var height = this.state.windowWidth < 768 ? this.state.windowHeight : 'auto';
-		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
-		var menuItems = NavItems.map(function (item) {
-			return React.createElement(
-				Router.Link,
-				{ key: item.value, className: 'primary-nav__item', onClick: self.toggleMenu, to: item.value },
-				React.createElement(
-					'span',
-					{ className: 'primary-nav__item-inner' },
-					item.label
-				)
-			);
-		});
-		return React.createElement(
-			'nav',
-			{ className: 'primary-nav' },
-			React.createElement(
-				Router.Link,
-				{ to: 'home', className: 'primary-nav__brand special', title: 'Home' },
-				React.createElement('img', { src: './images/elemental-logo-paths.svg', className: 'primary-nav__brand-src' })
-			),
-			React.createElement(
-				'button',
-				{ onClick: this.toggleMenu, className: 'primary-nav__item primary-nav-menu-trigger' },
-				React.createElement('span', { className: 'primary-nav-menu-trigger-icon octicon octicon-navicon' }),
-				React.createElement(
-					'span',
-					{ className: 'primary-nav-menu-trigger-label' },
-					this.state.mobileMenuIsVisible ? 'Close' : 'Menu'
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: menuClass, style: { height: height } },
-				React.createElement(
-					'div',
-					{ className: 'primary-nav-menu-inner' },
-					menuItems
-				)
-			),
-			React.createElement(
-				'a',
-				{ href: 'https://github.com/elementalui/elemental', target: '_blank', title: 'View on GitHub', className: 'primary-nav__brand right' },
-				React.createElement('img', { src: './images/github-logo.svg', className: 'primary-nav__brand-src' })
-			)
-		);
-	}
-});
-
-var App = React.createClass({
-	displayName: 'App',
-
-	render: function render() {
-		return React.createElement(
-			'div',
-			{ className: 'page-wrapper' },
-			React.createElement(PageNav, null),
-			React.createElement(
-				'div',
-				{ className: 'page-body' },
-				React.createElement(Router.RouteHandler, null)
-			),
-			React.createElement(
-				'div',
-				{ className: 'page-footer' },
-				React.createElement(
-					'div',
-					{ className: 'demo-container container' },
-					'Copyright © 2015 · (MIT) License · Built by ',
-					React.createElement(
-						'a',
-						{ href: 'http://www.thinkmill.com.au', target: '_blank' },
-						'Thinkmill'
-					),
-					', initially for integration with ',
-					React.createElement(
-						'a',
-						{ href: 'http://www.keystonejs.com', target: '_blank' },
-						'KeystoneJS'
-					)
-				)
-			)
-		);
-	}
-});
-
-var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
-
-var routes = React.createElement(
-	Router.Route,
-	{ name: 'app', path: basepath + '/', handler: App },
-	React.createElement(Router.Route, { name: 'home', path: basepath + '/', handler: require('./pages/Home') }),
-	React.createElement(Router.Route, { name: 'css', path: basepath + '/css', handler: require('./pages/CSS') }),
-	React.createElement(Router.Route, { name: 'buttons', path: basepath + '/buttons', handler: require('./pages/Buttons') }),
-	React.createElement(Router.Route, { name: 'forms', path: basepath + '/forms', handler: require('./pages/Forms') }),
-	React.createElement(Router.Route, { name: 'spinner', path: basepath + '/spinner', handler: require('./pages/Spinner') }),
-	React.createElement(Router.Route, { name: 'modal', path: basepath + '/modal', handler: require('./pages/Modal') }),
-	React.createElement(Router.Route, { name: 'misc', path: basepath + '/misc', handler: require('./pages/Misc') }),
-	React.createElement(Router.Route, { name: 'date-picker', path: basepath + '/date-picker', handler: require('./pages/DatePicker') }),
-	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
-);
-
-Router.run(routes, Router.HistoryLocation, function (Handler) {
-	React.render(React.createElement(Handler, null), document.body);
-});
-/*<Router.Link to="home">Home</Router.Link>*/
-
-},{"./pages/Buttons":53,"./pages/CSS":54,"./pages/DatePicker":55,"./pages/Forms":56,"./pages/Home":57,"./pages/Misc":58,"./pages/Modal":59,"./pages/Spinner":60,"react":undefined,"react-router":30}]},{},[61]);
+},{"../components/ExampleSource":51,"elemental":undefined,"react":undefined}]},{},[1]);
