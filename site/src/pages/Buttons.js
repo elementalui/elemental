@@ -1,7 +1,7 @@
 /* eslint no-script-url: 0 */
 
 var React = require('react');
-var { Dropdown, Tooltip, Button, ButtonGroup } = require('elemental');
+var { Dropdown, Table, Tooltip, Button, ButtonGroup } = require('elemental');
 
 var ExampleSource = require('../components/ExampleSource');
 
