@@ -13,7 +13,8 @@
     "blacklist": "^1.1.2",
     "classnames": "^2.1.2",
     "moment": "^2.10.3",
-    "react-date-select": "0.0.7"
+    "react-date-select": "0.0.7",
+    "react-interval": "^1.0.4"
   },
   "devDependencies": {
     "babel-eslint": "^3.1.17",
