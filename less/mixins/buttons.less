@@ -4,6 +4,9 @@
 
 // Inspired by https://github.com/twbs/bootstrap
 
+
+// Fill
+
 .button-variant(@color; @background) {
 	#gradient .vertical(lighten(@background, 5%), darken(@background, 5%));
 	background-color: @background;
@@ -34,6 +37,9 @@
 		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 	}
 }
+
+
+// Default
 
 .button-default-variant(@color) {
 	#gradient .vertical(#fafafa, #eaeaea);
@@ -69,5 +75,32 @@
 	&.disabled,
 	&[disabled] {
 		background-color: @button-default-disabled-bg;
+	}
+}
+
+
+// Hollow
+
+.button-hollow-variant(@color; @border) {
+	background: none;
+	border-color: @border;
+	color: @color;
+
+	&:hover,
+	&:focus {
+		background-color: mix(@border, @body-bg, 8%);
+		background-image: none;
+		border-color: darken(@border, 10%);
+		color: @color;
+		outline: none;
+	}
+	&:focus,
+	&.focus {
+		box-shadow: 0 0 0 3px fade(@border, 10%);
+	}
+	&:active {
+		background-color: fade(@border, 20%);
+		border-color: darken(@border, 20%);
+		box-shadow: none;
 	}
 }

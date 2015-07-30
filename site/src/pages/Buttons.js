@@ -35,6 +35,13 @@ const BUTTON_DEFAULT_VARIANTS = [
 	{ label: 'Default Danger',   value: 'default-danger' }
 ];
 
+const BUTTON_HOLLOW_VARIANTS = [
+	{ label: 'Hollow Primary',  value: 'hollow-primary' },
+	{ label: 'Hollow Success',  value: 'hollow-success' },
+	{ label: 'Hollow Warning',  value: 'hollow-warning' },
+	{ label: 'Hollow Danger',   value: 'hollow-danger' }
+];
+
 const BUTTON_LINK_VARIANTS = [
 	{ label: 'Link',             value: 'link' },
 	{ label: 'Link Text',        value: 'link-text' },
@@ -116,6 +123,20 @@ var Buttons = React.createClass({
 							<Button type="default-success">Default Success</Button>
 							<Button type="default-warning">Default Warning</Button>
 							<Button type="default-danger">Default Danger</Button>
+						`}
+					</ExampleSource>
+				</div>
+				<div className="code-example">
+					<div className="code-example__example">
+						<div className="code-example__example__heading">Hollow Button Alternatives</div>
+						{this.renderButtonVariants(BUTTON_HOLLOW_VARIANTS)}
+					</div>
+					<ExampleSource>
+						{`
+							<Button type="default-primary">Hollow Primary</Button>
+							<Button type="default-success">Hollow Success</Button>
+							<Button type="default-warning">Hollow Warning</Button>
+							<Button type="default-danger">Hollow Danger</Button>
 						`}
 					</ExampleSource>
 				</div>
