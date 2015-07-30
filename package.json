@@ -36,6 +36,7 @@
     "build:lib": "gulp build:lib",
     "bump": "gulp bump",
     "lint": "eslint ./",
+    "prepublish": "npm run build:lib",
     "publish:npm": "gulp publish:npm",
     "publish:site": "gulp publish:examples",
     "publish:tag": "gulp publish:tag",
