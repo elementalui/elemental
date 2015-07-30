@@ -2,6 +2,28 @@ var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var blacklist = require('blacklist');
 var classNames = require('classnames');
+var ReactInterval = require('react-interval');
+var { shouldComponentUpdate } = require('react/lib/ReactComponentWithPureRenderMixin');
+
+const safeTop = element => {
+	const { innerHeight, pageYOffset, getComputedStyle } = window;
+	const { clientHeight, offsetTop } = element;
+	const { marginBottom, marginTop } = getComputedStyle(element);
+	const [mTop, mBottom] = [parseInt(marginTop, 10), parseInt(marginBottom, 10)];
+	const height = clientHeight + mTop + mBottom;
+
+	if ((offsetTop - mTop) < pageYOffset && offsetTop - mTop + height > pageYOffset + innerHeight) {
+		// Scrolling within modal content, don't move
+		return false;
+	}
+	if (offsetTop - mTop < pageYOffset && height > innerHeight) {
+		// Stick to the window bottom
+		return pageYOffset + innerHeight - height;
+	} else {
+		// Stick to the window top
+		return pageYOffset;
+	}
+};
 
 module.exports = React.createClass({
 	displayName: 'Modal',
@@ -12,13 +34,23 @@ module.exports = React.createClass({
 		onCancel: React.PropTypes.func,
 		top: React.PropTypes.number
 	},
+	getInitialState() {
+		return { top: typeof this.props.top !== 'undefined' ? this.props.top : window.pageYOffset };
+	},
+	shouldComponentUpdate,
+	updateTop() {
+		const top = safeTop(React.findDOMNode(this.refs.dialog));
+		if (top !== false) {
+			this.setState({ top });
+		}
+	},
 	renderDialog() {
 		if (!this.props.isOpen) return null;
-		
-		var top = typeof this.props.top !== 'undefined' ? this.props.top : window.pageYOffset;
 
 		return (
-			<div className="Modal-dialog" style={{ top }}>
+			<div ref="dialog" className="Modal-dialog" style={{ top: this.state.top }}>
+				<ReactInterval timeout={200} enabled={typeof this.props.top === 'undefined'}
+					callback={this.updateTop} />
 				<div className="Modal-content">
 					{this.props.children}
 				</div>
