@@ -1,155 +1,4 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var Router = require('react-router');
-
-var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
-// { value: 'date-picker', label: 'Date Picker' }
-];
-
-var PageNav = React.createClass({
-	displayName: 'PageNav',
-
-	getInitialState: function getInitialState() {
-		return {
-			mobileMenuIsVisible: false,
-			windowHeight: window.innerHeight,
-			windowWidth: window.innerWidth
-		};
-	},
-
-	handleResize: function handleResize(e) {
-		this.setState({
-			windowHeight: window.innerHeight,
-			windowWidth: window.innerWidth
-		});
-	},
-
-	componentDidMount: function componentDidMount() {
-		window.addEventListener('resize', this.handleResize);
-	},
-
-	componentWillUnmount: function componentWillUnmount() {
-		window.removeEventListener('resize', this.handleResize);
-	},
-
-	toggleMenu: function toggleMenu() {
-		this.setState({
-			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
-		});
-	},
-
-	render: function render() {
-		var self = this;
-		var height = this.state.windowWidth < 768 ? this.state.windowHeight : 'auto';
-		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
-		var menuItems = NavItems.map(function (item) {
-			return React.createElement(
-				Router.Link,
-				{ key: item.value, className: 'primary-nav__item', onClick: self.toggleMenu, to: item.value },
-				React.createElement(
-					'span',
-					{ className: 'primary-nav__item-inner' },
-					item.label
-				)
-			);
-		});
-		return React.createElement(
-			'nav',
-			{ className: 'primary-nav' },
-			React.createElement(
-				Router.Link,
-				{ to: 'home', className: 'primary-nav__brand special', title: 'Home' },
-				React.createElement('img', { src: './images/elemental-logo-paths.svg', className: 'primary-nav__brand-src' })
-			),
-			React.createElement(
-				'button',
-				{ onClick: this.toggleMenu, className: 'primary-nav__item primary-nav-menu-trigger' },
-				React.createElement('span', { className: 'primary-nav-menu-trigger-icon octicon octicon-navicon' }),
-				React.createElement(
-					'span',
-					{ className: 'primary-nav-menu-trigger-label' },
-					this.state.mobileMenuIsVisible ? 'Close' : 'Menu'
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: menuClass, style: { height: height } },
-				React.createElement(
-					'div',
-					{ className: 'primary-nav-menu-inner' },
-					menuItems
-				)
-			),
-			React.createElement(
-				'a',
-				{ href: 'https://github.com/elementalui/elemental', target: '_blank', title: 'View on GitHub', className: 'primary-nav__brand right' },
-				React.createElement('img', { src: './images/github-logo.svg', className: 'primary-nav__brand-src' })
-			)
-		);
-	}
-});
-
-var App = React.createClass({
-	displayName: 'App',
-
-	render: function render() {
-		return React.createElement(
-			'div',
-			{ className: 'page-wrapper' },
-			React.createElement(PageNav, null),
-			React.createElement(
-				'div',
-				{ className: 'page-body' },
-				React.createElement(Router.RouteHandler, null)
-			),
-			React.createElement(
-				'div',
-				{ className: 'page-footer' },
-				React.createElement(
-					'div',
-					{ className: 'demo-container container' },
-					'Copyright © 2015 · (MIT) License · Built by ',
-					React.createElement(
-						'a',
-						{ href: 'http://www.thinkmill.com.au', target: '_blank' },
-						'Thinkmill'
-					),
-					', initially for integration with ',
-					React.createElement(
-						'a',
-						{ href: 'http://www.keystonejs.com', target: '_blank' },
-						'KeystoneJS'
-					)
-				)
-			)
-		);
-	}
-});
-
-var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
-
-var routes = React.createElement(
-	Router.Route,
-	{ name: 'app', path: basepath + '/', handler: App },
-	React.createElement(Router.Route, { name: 'home', path: basepath + '/', handler: require('./pages/Home') }),
-	React.createElement(Router.Route, { name: 'css', path: basepath + '/css', handler: require('./pages/CSS') }),
-	React.createElement(Router.Route, { name: 'buttons', path: basepath + '/buttons', handler: require('./pages/Buttons') }),
-	React.createElement(Router.Route, { name: 'forms', path: basepath + '/forms', handler: require('./pages/Forms') }),
-	React.createElement(Router.Route, { name: 'spinner', path: basepath + '/spinner', handler: require('./pages/Spinner') }),
-	React.createElement(Router.Route, { name: 'modal', path: basepath + '/modal', handler: require('./pages/Modal') }),
-	React.createElement(Router.Route, { name: 'misc', path: basepath + '/misc', handler: require('./pages/Misc') }),
-	React.createElement(Router.Route, { name: 'date-picker', path: basepath + '/date-picker', handler: require('./pages/DatePicker') }),
-	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
-);
-
-Router.run(routes, Router.HistoryLocation, function (Handler) {
-	React.render(React.createElement(Handler, null), document.body);
-});
-/*<Router.Link to="home">Home</Router.Link>*/
-
-},{"./pages/Buttons":54,"./pages/CSS":55,"./pages/DatePicker":56,"./pages/Forms":57,"./pages/Home":58,"./pages/Misc":59,"./pages/Modal":60,"./pages/Spinner":61,"react":undefined,"react-router":31}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -200,7 +49,7 @@ process.nextTick = function (fun) {
         }
     }
     queue.push(new Item(fun, args));
-    if (!draining) {
+    if (queue.length === 1 && !draining) {
         setTimeout(drainQueue, 0);
     }
 };
@@ -241,7 +90,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -318,7 +167,7 @@ var DateSelect = React.createClass({
 });
 
 module.exports = DateSelect;
-},{"./DateSelectDialog":5,"blacklist":undefined,"moment":undefined,"react":undefined}],4:[function(require,module,exports){
+},{"./DateSelectDialog":4,"blacklist":undefined,"moment":undefined,"react":undefined}],3:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -463,7 +312,7 @@ module.exports = React.createClass({
 		return calendar;
 	}
 });
-},{"./DateSelectHeader":6,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
+},{"./DateSelectHeader":5,"classnames":undefined,"moment":undefined,"react/addons":undefined}],4:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -576,7 +425,7 @@ module.exports = React.createClass({
 		);
 	}
 });
-},{"./DateSelectCalendar":4,"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
+},{"./DateSelectCalendar":3,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -702,7 +551,7 @@ module.exports = React.createClass({
 		return header;
 	}
 });
-},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],7:[function(require,module,exports){
+},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
 /**
  * Represents a cancellation caused by navigating away
  * before the previous transition has fully resolved.
@@ -712,7 +561,7 @@ module.exports = React.createClass({
 function Cancellation() {}
 
 module.exports = Cancellation;
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -743,7 +592,7 @@ var History = {
 };
 
 module.exports = History;
-},{"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],9:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],8:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -819,7 +668,7 @@ var Match = (function () {
 })();
 
 module.exports = Match;
-},{"./PathUtils":11}],10:[function(require,module,exports){
+},{"./PathUtils":10}],9:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -890,7 +739,7 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-},{"./PropTypes":12}],11:[function(require,module,exports){
+},{"./PropTypes":11}],10:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -1044,7 +893,7 @@ var PathUtils = {
 };
 
 module.exports = PathUtils;
-},{"object-assign":40,"qs":41,"react/lib/invariant":49}],12:[function(require,module,exports){
+},{"object-assign":39,"qs":40,"react/lib/invariant":48}],11:[function(require,module,exports){
 'use strict';
 
 var assign = require('react/lib/Object.assign');
@@ -1076,7 +925,7 @@ var PropTypes = assign({}, ReactPropTypes, {
 });
 
 module.exports = PropTypes;
-},{"./Route":14,"react":undefined,"react/lib/Object.assign":47}],13:[function(require,module,exports){
+},{"./Route":13,"react":undefined,"react/lib/Object.assign":46}],12:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -1089,7 +938,7 @@ function Redirect(to, params, query) {
 }
 
 module.exports = Redirect;
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1290,7 +1139,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":11,"react/lib/Object.assign":47,"react/lib/invariant":49,"react/lib/warning":50}],15:[function(require,module,exports){
+},{"./PathUtils":10,"react/lib/Object.assign":46,"react/lib/invariant":48,"react/lib/warning":49}],14:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -1366,7 +1215,7 @@ var ScrollHistory = {
 };
 
 module.exports = ScrollHistory;
-},{"./getWindowScrollPosition":30,"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],16:[function(require,module,exports){
+},{"./getWindowScrollPosition":29,"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],15:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -1441,7 +1290,7 @@ var State = {
 };
 
 module.exports = State;
-},{"./PropTypes":12}],17:[function(require,module,exports){
+},{"./PropTypes":11}],16:[function(require,module,exports){
 /* jshint -W058 */
 
 'use strict';
@@ -1517,7 +1366,7 @@ Transition.to = function (transition, routes, params, query, callback) {
 };
 
 module.exports = Transition;
-},{"./Cancellation":7,"./Redirect":13}],18:[function(require,module,exports){
+},{"./Cancellation":6,"./Redirect":12}],17:[function(require,module,exports){
 /**
  * Actions that modify the URL.
  */
@@ -1543,7 +1392,7 @@ var LocationActions = {
 };
 
 module.exports = LocationActions;
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -1573,7 +1422,7 @@ var ImitateBrowserBehavior = {
 };
 
 module.exports = ImitateBrowserBehavior;
-},{"../actions/LocationActions":18}],20:[function(require,module,exports){
+},{"../actions/LocationActions":17}],19:[function(require,module,exports){
 /**
  * A scroll behavior that always scrolls to the top of the page
  * after a transition.
@@ -1589,7 +1438,7 @@ var ScrollToTopBehavior = {
 };
 
 module.exports = ScrollToTopBehavior;
-},{}],21:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1628,7 +1477,7 @@ var ContextWrapper = (function (_React$Component) {
 })(React.Component);
 
 module.exports = ContextWrapper;
-},{"react":undefined}],22:[function(require,module,exports){
+},{"react":undefined}],21:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1676,7 +1525,7 @@ DefaultRoute.defaultProps = {
 };
 
 module.exports = DefaultRoute;
-},{"../PropTypes":12,"./Route":26,"./RouteHandler":27}],23:[function(require,module,exports){
+},{"../PropTypes":11,"./Route":25,"./RouteHandler":26}],22:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1812,7 +1661,7 @@ Link.defaultProps = {
 };
 
 module.exports = Link;
-},{"../PropTypes":12,"react":undefined,"react/lib/Object.assign":47}],24:[function(require,module,exports){
+},{"../PropTypes":11,"react":undefined,"react/lib/Object.assign":46}],23:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1861,7 +1710,7 @@ NotFoundRoute.defaultProps = {
 };
 
 module.exports = NotFoundRoute;
-},{"../PropTypes":12,"./Route":26,"./RouteHandler":27}],25:[function(require,module,exports){
+},{"../PropTypes":11,"./Route":25,"./RouteHandler":26}],24:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1905,7 +1754,7 @@ Redirect.propTypes = {
 Redirect.defaultProps = {};
 
 module.exports = Redirect;
-},{"../PropTypes":12,"./Route":26}],26:[function(require,module,exports){
+},{"../PropTypes":11,"./Route":25}],25:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1997,7 +1846,7 @@ Route.defaultProps = {
 };
 
 module.exports = Route;
-},{"../PropTypes":12,"./RouteHandler":27,"react":undefined,"react/lib/invariant":49}],27:[function(require,module,exports){
+},{"../PropTypes":11,"./RouteHandler":26,"react":undefined,"react/lib/invariant":48}],26:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -2106,7 +1955,7 @@ RouteHandler.childContextTypes = {
 };
 
 module.exports = RouteHandler;
-},{"../PropTypes":12,"./ContextWrapper":21,"react":undefined,"react/lib/Object.assign":47}],28:[function(require,module,exports){
+},{"../PropTypes":11,"./ContextWrapper":20,"react":undefined,"react/lib/Object.assign":46}],27:[function(require,module,exports){
 (function (process){
 /* jshint -W058 */
 'use strict';
@@ -2623,7 +2472,7 @@ function createRouter(options) {
 
 module.exports = createRouter;
 }).call(this,require('_process'))
-},{"./Cancellation":7,"./History":8,"./Match":9,"./PathUtils":11,"./PropTypes":12,"./Redirect":13,"./Route":14,"./ScrollHistory":15,"./Transition":17,"./actions/LocationActions":18,"./behaviors/ImitateBrowserBehavior":19,"./createRoutesFromReactChildren":29,"./isReactChildren":32,"./locations/HashLocation":33,"./locations/HistoryLocation":34,"./locations/RefreshLocation":35,"./locations/StaticLocation":36,"./supportsHistory":39,"_process":2,"react":undefined,"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49,"react/lib/warning":50}],29:[function(require,module,exports){
+},{"./Cancellation":6,"./History":7,"./Match":8,"./PathUtils":10,"./PropTypes":11,"./Redirect":12,"./Route":13,"./ScrollHistory":14,"./Transition":16,"./actions/LocationActions":17,"./behaviors/ImitateBrowserBehavior":18,"./createRoutesFromReactChildren":28,"./isReactChildren":31,"./locations/HashLocation":32,"./locations/HistoryLocation":33,"./locations/RefreshLocation":34,"./locations/StaticLocation":35,"./supportsHistory":38,"_process":1,"react":undefined,"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48,"react/lib/warning":49}],28:[function(require,module,exports){
 /* jshint -W084 */
 'use strict';
 
@@ -2705,7 +2554,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":14,"./components/DefaultRoute":22,"./components/NotFoundRoute":24,"./components/Redirect":25,"react":undefined,"react/lib/Object.assign":47,"react/lib/warning":50}],30:[function(require,module,exports){
+},{"./Route":13,"./components/DefaultRoute":21,"./components/NotFoundRoute":23,"./components/Redirect":24,"react":undefined,"react/lib/Object.assign":46,"react/lib/warning":49}],29:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -2724,7 +2573,7 @@ function getWindowScrollPosition() {
 }
 
 module.exports = getWindowScrollPosition;
-},{"react/lib/ExecutionEnvironment":46,"react/lib/invariant":49}],31:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],30:[function(require,module,exports){
 'use strict';
 
 exports.DefaultRoute = require('./components/DefaultRoute');
@@ -2756,7 +2605,7 @@ exports.createRoutesFromReactChildren = require('./createRoutesFromReactChildren
 
 exports.create = require('./createRouter');
 exports.run = require('./runRouter');
-},{"./History":8,"./Navigation":10,"./Route":14,"./State":16,"./behaviors/ImitateBrowserBehavior":19,"./behaviors/ScrollToTopBehavior":20,"./components/DefaultRoute":22,"./components/Link":23,"./components/NotFoundRoute":24,"./components/Redirect":25,"./components/Route":26,"./components/RouteHandler":27,"./createRouter":28,"./createRoutesFromReactChildren":29,"./locations/HashLocation":33,"./locations/HistoryLocation":34,"./locations/RefreshLocation":35,"./locations/StaticLocation":36,"./locations/TestLocation":37,"./runRouter":38}],32:[function(require,module,exports){
+},{"./History":7,"./Navigation":9,"./Route":13,"./State":15,"./behaviors/ImitateBrowserBehavior":18,"./behaviors/ScrollToTopBehavior":19,"./components/DefaultRoute":21,"./components/Link":22,"./components/NotFoundRoute":23,"./components/Redirect":24,"./components/Route":25,"./components/RouteHandler":26,"./createRouter":27,"./createRoutesFromReactChildren":28,"./locations/HashLocation":32,"./locations/HistoryLocation":33,"./locations/RefreshLocation":34,"./locations/StaticLocation":35,"./locations/TestLocation":36,"./runRouter":37}],31:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -2770,7 +2619,7 @@ function isReactChildren(object) {
 }
 
 module.exports = isReactChildren;
-},{"react":undefined}],33:[function(require,module,exports){
+},{"react":undefined}],32:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -2882,7 +2731,7 @@ var HashLocation = {
 };
 
 module.exports = HashLocation;
-},{"../History":8,"../actions/LocationActions":18}],34:[function(require,module,exports){
+},{"../History":7,"../actions/LocationActions":17}],33:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -2969,7 +2818,7 @@ var HistoryLocation = {
 };
 
 module.exports = HistoryLocation;
-},{"../History":8,"../actions/LocationActions":18}],35:[function(require,module,exports){
+},{"../History":7,"../actions/LocationActions":17}],34:[function(require,module,exports){
 'use strict';
 
 var HistoryLocation = require('./HistoryLocation');
@@ -3001,7 +2850,7 @@ var RefreshLocation = {
 };
 
 module.exports = RefreshLocation;
-},{"../History":8,"./HistoryLocation":34}],36:[function(require,module,exports){
+},{"../History":7,"./HistoryLocation":33}],35:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -3051,7 +2900,7 @@ StaticLocation.prototype.replace = throwCannotModify;
 StaticLocation.prototype.pop = throwCannotModify;
 
 module.exports = StaticLocation;
-},{"react/lib/invariant":49}],37:[function(require,module,exports){
+},{"react/lib/invariant":48}],36:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -3146,7 +2995,7 @@ var TestLocation = (function () {
 })();
 
 module.exports = TestLocation;
-},{"../History":8,"../actions/LocationActions":18,"react/lib/invariant":49}],38:[function(require,module,exports){
+},{"../History":7,"../actions/LocationActions":17,"react/lib/invariant":48}],37:[function(require,module,exports){
 'use strict';
 
 var createRouter = require('./createRouter');
@@ -3197,7 +3046,7 @@ function runRouter(routes, location, callback) {
 }
 
 module.exports = runRouter;
-},{"./createRouter":28}],39:[function(require,module,exports){
+},{"./createRouter":27}],38:[function(require,module,exports){
 'use strict';
 
 function supportsHistory() {
@@ -3214,7 +3063,7 @@ function supportsHistory() {
 }
 
 module.exports = supportsHistory;
-},{}],40:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -3242,10 +3091,10 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],41:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":42}],42:[function(require,module,exports){
+},{"./lib/":41}],41:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -3262,7 +3111,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":43,"./stringify":44}],43:[function(require,module,exports){
+},{"./parse":42,"./stringify":43}],42:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -3425,7 +3274,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":45}],44:[function(require,module,exports){
+},{"./utils":44}],43:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -3524,7 +3373,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":45}],45:[function(require,module,exports){
+},{"./utils":44}],44:[function(require,module,exports){
 // Load modules
 
 
@@ -3658,7 +3507,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],46:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -3702,7 +3551,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],47:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -3751,7 +3600,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],48:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -3785,7 +3634,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],49:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -3842,7 +3691,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":2}],50:[function(require,module,exports){
+},{"_process":1}],49:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -3905,7 +3754,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":48,"_process":2}],51:[function(require,module,exports){
+},{"./emptyFunction":47,"_process":1}],50:[function(require,module,exports){
 /* global Prism */
 'use strict';
 
@@ -3951,10 +3800,10 @@ var ExampleSource = React.createClass({
 		var codeClass = classNames('code-example__code', 'language-' + this.props.language);
 		return React.createElement(
 			'pre',
-			{ className: 'code-example__pre' },
+			{ className: "code-example__pre" },
 			React.createElement(
 				'code',
-				{ ref: 'code', className: codeClass },
+				{ ref: "code", className: codeClass },
 				this.fixIndentation(this.props.children)
 			)
 		);
@@ -3963,18 +3812,18 @@ var ExampleSource = React.createClass({
 
 module.exports = ExampleSource;
 
-},{"classnames":undefined,"react":undefined}],52:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],51:[function(require,module,exports){
 // Thank you https://gist.github.com/Keeguon/2310008
 'use strict';
 
 module.exports = [{ name: 'Afghanistan', code: 'AF' }, { name: 'Åland Islands', code: 'AX' }, { name: 'Albania', code: 'AL' }, { name: 'Algeria', code: 'DZ' }, { name: 'American Samoa', code: 'AS' }, { name: 'AndorrA', code: 'AD' }, { name: 'Angola', code: 'AO' }, { name: 'Anguilla', code: 'AI' }, { name: 'Antarctica', code: 'AQ' }, { name: 'Antigua and Barbuda', code: 'AG' }, { name: 'Argentina', code: 'AR' }, { name: 'Armenia', code: 'AM' }, { name: 'Aruba', code: 'AW' }, { name: 'Australia', code: 'AU' }, { name: 'Austria', code: 'AT' }, { name: 'Azerbaijan', code: 'AZ' }, { name: 'Bahamas', code: 'BS' }, { name: 'Bahrain', code: 'BH' }, { name: 'Bangladesh', code: 'BD' }, { name: 'Barbados', code: 'BB' }, { name: 'Belarus', code: 'BY' }, { name: 'Belgium', code: 'BE' }, { name: 'Belize', code: 'BZ' }, { name: 'Benin', code: 'BJ' }, { name: 'Bermuda', code: 'BM' }, { name: 'Bhutan', code: 'BT' }, { name: 'Bolivia', code: 'BO' }, { name: 'Bosnia and Herzegovina', code: 'BA' }, { name: 'Botswana', code: 'BW' }, { name: 'Bouvet Island', code: 'BV' }, { name: 'Brazil', code: 'BR' }, { name: 'British Indian Ocean Territory', code: 'IO' }, { name: 'Brunei Darussalam', code: 'BN' }, { name: 'Bulgaria', code: 'BG' }, { name: 'Burkina Faso', code: 'BF' }, { name: 'Burundi', code: 'BI' }, { name: 'Cambodia', code: 'KH' }, { name: 'Cameroon', code: 'CM' }, { name: 'Canada', code: 'CA' }, { name: 'Cape Verde', code: 'CV' }, { name: 'Cayman Islands', code: 'KY' }, { name: 'Central African Republic', code: 'CF' }, { name: 'Chad', code: 'TD' }, { name: 'Chile', code: 'CL' }, { name: 'China', code: 'CN' }, { name: 'Christmas Island', code: 'CX' }, { name: 'Cocos (Keeling) Islands', code: 'CC' }, { name: 'Colombia', code: 'CO' }, { name: 'Comoros', code: 'KM' }, { name: 'Congo', code: 'CG' }, { name: 'Congo, The Democratic Republic of the', code: 'CD' }, { name: 'Cook Islands', code: 'CK' }, { name: 'Costa Rica', code: 'CR' }, { name: 'Cote D\'Ivoire', code: 'CI' }, { name: 'Croatia', code: 'HR' }, { name: 'Cuba', code: 'CU' }, { name: 'Cyprus', code: 'CY' }, { name: 'Czech Republic', code: 'CZ' }, { name: 'Denmark', code: 'DK' }, { name: 'Djibouti', code: 'DJ' }, { name: 'Dominica', code: 'DM' }, { name: 'Dominican Republic', code: 'DO' }, { name: 'Ecuador', code: 'EC' }, { name: 'Egypt', code: 'EG' }, { name: 'El Salvador', code: 'SV' }, { name: 'Equatorial Guinea', code: 'GQ' }, { name: 'Eritrea', code: 'ER' }, { name: 'Estonia', code: 'EE' }, { name: 'Ethiopia', code: 'ET' }, { name: 'Falkland Islands (Malvinas)', code: 'FK' }, { name: 'Faroe Islands', code: 'FO' }, { name: 'Fiji', code: 'FJ' }, { name: 'Finland', code: 'FI' }, { name: 'France', code: 'FR' }, { name: 'French Guiana', code: 'GF' }, { name: 'French Polynesia', code: 'PF' }, { name: 'French Southern Territories', code: 'TF' }, { name: 'Gabon', code: 'GA' }, { name: 'Gambia', code: 'GM' }, { name: 'Georgia', code: 'GE' }, { name: 'Germany', code: 'DE' }, { name: 'Ghana', code: 'GH' }, { name: 'Gibraltar', code: 'GI' }, { name: 'Greece', code: 'GR' }, { name: 'Greenland', code: 'GL' }, { name: 'Grenada', code: 'GD' }, { name: 'Guadeloupe', code: 'GP' }, { name: 'Guam', code: 'GU' }, { name: 'Guatemala', code: 'GT' }, { name: 'Guernsey', code: 'GG' }, { name: 'Guinea', code: 'GN' }, { name: 'Guinea-Bissau', code: 'GW' }, { name: 'Guyana', code: 'GY' }, { name: 'Haiti', code: 'HT' }, { name: 'Heard Island and Mcdonald Islands', code: 'HM' }, { name: 'Holy See (Vatican City State)', code: 'VA' }, { name: 'Honduras', code: 'HN' }, { name: 'Hong Kong', code: 'HK' }, { name: 'Hungary', code: 'HU' }, { name: 'Iceland', code: 'IS' }, { name: 'India', code: 'IN' }, { name: 'Indonesia', code: 'ID' }, { name: 'Iran, Islamic Republic Of', code: 'IR' }, { name: 'Iraq', code: 'IQ' }, { name: 'Ireland', code: 'IE' }, { name: 'Isle of Man', code: 'IM' }, { name: 'Israel', code: 'IL' }, { name: 'Italy', code: 'IT' }, { name: 'Jamaica', code: 'JM' }, { name: 'Japan', code: 'JP' }, { name: 'Jersey', code: 'JE' }, { name: 'Jordan', code: 'JO' }, { name: 'Kazakhstan', code: 'KZ' }, { name: 'Kenya', code: 'KE' }, { name: 'Kiribati', code: 'KI' }, { name: 'Korea, Democratic People\'S Republic of', code: 'KP' }, { name: 'Korea, Republic of', code: 'KR' }, { name: 'Kuwait', code: 'KW' }, { name: 'Kyrgyzstan', code: 'KG' }, { name: 'Lao People\'S Democratic Republic', code: 'LA' }, { name: 'Latvia', code: 'LV' }, { name: 'Lebanon', code: 'LB' }, { name: 'Lesotho', code: 'LS' }, { name: 'Liberia', code: 'LR' }, { name: 'Libyan Arab Jamahiriya', code: 'LY' }, { name: 'Liechtenstein', code: 'LI' }, { name: 'Lithuania', code: 'LT' }, { name: 'Luxembourg', code: 'LU' }, { name: 'Macao', code: 'MO' }, { name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK' }, { name: 'Madagascar', code: 'MG' }, { name: 'Malawi', code: 'MW' }, { name: 'Malaysia', code: 'MY' }, { name: 'Maldives', code: 'MV' }, { name: 'Mali', code: 'ML' }, { name: 'Malta', code: 'MT' }, { name: 'Marshall Islands', code: 'MH' }, { name: 'Martinique', code: 'MQ' }, { name: 'Mauritania', code: 'MR' }, { name: 'Mauritius', code: 'MU' }, { name: 'Mayotte', code: 'YT' }, { name: 'Mexico', code: 'MX' }, { name: 'Micronesia, Federated States of', code: 'FM' }, { name: 'Moldova, Republic of', code: 'MD' }, { name: 'Monaco', code: 'MC' }, { name: 'Mongolia', code: 'MN' }, { name: 'Montserrat', code: 'MS' }, { name: 'Morocco', code: 'MA' }, { name: 'Mozambique', code: 'MZ' }, { name: 'Myanmar', code: 'MM' }, { name: 'Namibia', code: 'NA' }, { name: 'Nauru', code: 'NR' }, { name: 'Nepal', code: 'NP' }, { name: 'Netherlands', code: 'NL' }, { name: 'Netherlands Antilles', code: 'AN' }, { name: 'New Caledonia', code: 'NC' }, { name: 'New Zealand', code: 'NZ' }, { name: 'Nicaragua', code: 'NI' }, { name: 'Niger', code: 'NE' }, { name: 'Nigeria', code: 'NG' }, { name: 'Niue', code: 'NU' }, { name: 'Norfolk Island', code: 'NF' }, { name: 'Northern Mariana Islands', code: 'MP' }, { name: 'Norway', code: 'NO' }, { name: 'Oman', code: 'OM' }, { name: 'Pakistan', code: 'PK' }, { name: 'Palau', code: 'PW' }, { name: 'Palestinian Territory, Occupied', code: 'PS' }, { name: 'Panama', code: 'PA' }, { name: 'Papua New Guinea', code: 'PG' }, { name: 'Paraguay', code: 'PY' }, { name: 'Peru', code: 'PE' }, { name: 'Philippines', code: 'PH' }, { name: 'Pitcairn', code: 'PN' }, { name: 'Poland', code: 'PL' }, { name: 'Portugal', code: 'PT' }, { name: 'Puerto Rico', code: 'PR' }, { name: 'Qatar', code: 'QA' }, { name: 'Reunion', code: 'RE' }, { name: 'Romania', code: 'RO' }, { name: 'Russian Federation', code: 'RU' }, { name: 'RWANDA', code: 'RW' }, { name: 'Saint Helena', code: 'SH' }, { name: 'Saint Kitts and Nevis', code: 'KN' }, { name: 'Saint Lucia', code: 'LC' }, { name: 'Saint Pierre and Miquelon', code: 'PM' }, { name: 'Saint Vincent and the Grenadines', code: 'VC' }, { name: 'Samoa', code: 'WS' }, { name: 'San Marino', code: 'SM' }, { name: 'Sao Tome and Principe', code: 'ST' }, { name: 'Saudi Arabia', code: 'SA' }, { name: 'Senegal', code: 'SN' }, { name: 'Serbia and Montenegro', code: 'CS' }, { name: 'Seychelles', code: 'SC' }, { name: 'Sierra Leone', code: 'SL' }, { name: 'Singapore', code: 'SG' }, { name: 'Slovakia', code: 'SK' }, { name: 'Slovenia', code: 'SI' }, { name: 'Solomon Islands', code: 'SB' }, { name: 'Somalia', code: 'SO' }, { name: 'South Africa', code: 'ZA' }, { name: 'South Georgia and the South Sandwich Islands', code: 'GS' }, { name: 'Spain', code: 'ES' }, { name: 'Sri Lanka', code: 'LK' }, { name: 'Sudan', code: 'SD' }, { name: 'Suriname', code: 'SR' }, { name: 'Svalbard and Jan Mayen', code: 'SJ' }, { name: 'Swaziland', code: 'SZ' }, { name: 'Sweden', code: 'SE' }, { name: 'Switzerland', code: 'CH' }, { name: 'Syrian Arab Republic', code: 'SY' }, { name: 'Taiwan, Province of China', code: 'TW' }, { name: 'Tajikistan', code: 'TJ' }, { name: 'Tanzania, United Republic of', code: 'TZ' }, { name: 'Thailand', code: 'TH' }, { name: 'Timor-Leste', code: 'TL' }, { name: 'Togo', code: 'TG' }, { name: 'Tokelau', code: 'TK' }, { name: 'Tonga', code: 'TO' }, { name: 'Trinidad and Tobago', code: 'TT' }, { name: 'Tunisia', code: 'TN' }, { name: 'Turkey', code: 'TR' }, { name: 'Turkmenistan', code: 'TM' }, { name: 'Turks and Caicos Islands', code: 'TC' }, { name: 'Tuvalu', code: 'TV' }, { name: 'Uganda', code: 'UG' }, { name: 'Ukraine', code: 'UA' }, { name: 'United Arab Emirates', code: 'AE' }, { name: 'United Kingdom', code: 'GB' }, { name: 'United States', code: 'US' }, { name: 'United States Minor Outlying Islands', code: 'UM' }, { name: 'Uruguay', code: 'UY' }, { name: 'Uzbekistan', code: 'UZ' }, { name: 'Vanuatu', code: 'VU' }, { name: 'Venezuela', code: 'VE' }, { name: 'Viet Nam', code: 'VN' }, { name: 'Virgin Islands, British', code: 'VG' }, { name: 'Virgin Islands, U.S.', code: 'VI' }, { name: 'Wallis and Futuna', code: 'WF' }, { name: 'Western Sahara', code: 'EH' }, { name: 'Yemen', code: 'YE' }, { name: 'Zambia', code: 'ZM' }, { name: 'Zimbabwe', code: 'ZW' }];
 
-},{}],53:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 "use strict";
 
 module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismodacfermentum.com", "password": "ZKG57ZFJ9HK", "dob": "Feb 23, 1976", "gender": "female" }, { "name": "Hermione Maddox", "email": "Curabitur.massa@eu.ca", "password": "ECI38CRA9MB", "dob": "Dec 4, 1959", "gender": "female" }, { "name": "Vladimir Rodgers", "email": "diam@ettristiquepellentesque.com", "password": "ESK96WFK9OD", "dob": "May 12, 1979", "gender": "male" }, { "name": "Kelsie Ewing", "email": "rutrum.non@tellus.co.uk", "password": "KVE70PUO5TB", "dob": "Jul 14, 1968", "gender": "female" }, { "name": "Yetta Higgins", "email": "quis.pede@lectusquis.com", "password": "KAE34UXU2QZ", "dob": "Oct 13, 1971", "gender": "female" }, { "name": "Kadeem Montgomery", "email": "facilisis.facilisis@vitaesodalesat.edu", "password": "POX16RXV9HL", "dob": "Oct 13, 1968", "gender": "male" }, { "name": "Martina Dodson", "email": "Cras.lorem@convallis.org", "password": "TIY32LRA7IU", "dob": "Jan 31, 1974", "gender": "female" }, { "name": "Grady Gonzalez", "email": "posuere.cubilia@Aenean.org", "password": "VKN16PHI8PW", "dob": "Jun 22, 1982", "gender": "male" }, { "name": "Lacey Hutchinson", "email": "Maecenas.iaculis@sedpede.net", "password": "LDN67DTE6CC", "dob": "Jul 23, 1986", "gender": "female" }, { "name": "John Santiago", "email": "eleifend.egestas@convallis.ca", "password": "ZEY52DKW3ZZ", "dob": "May 5, 1968", "gender": "male" }, { "name": "Philip Floyd", "email": "Proin@enimnisl.ca", "password": "RZK97GMJ7EK", "dob": "Mar 20, 1952", "gender": "male" }, { "name": "Leslie Chavez", "email": "sociis.natoque.penatibus@porttitor.net", "password": "AKN50QNQ8HK", "dob": "Apr 19, 1947", "gender": "female" }, { "name": "Alisa Allison", "email": "vitae@netusetmalesuada.ca", "password": "XLP00XDR9UW", "dob": "May 23, 1955", "gender": "female" }, { "name": "Joshua Clarke", "email": "mi@quamPellentesque.net", "password": "LSN56SXD3SH", "dob": "Apr 12, 1968", "gender": "male" }, { "name": "Victoria Holden", "email": "magna@pedeac.net", "password": "BUS61XTJ6KI", "dob": "Jan 22, 1990", "gender": "female" }, { "name": "Kibo Goodwin", "email": "est@nec.org", "password": "GWM68BLL8LN", "dob": "Nov 21, 1950", "gender": "male" }, { "name": "Marvin Justice", "email": "Integer@Quisquetincidunt.co.uk", "password": "NRQ89UJQ5FH", "dob": "Dec 8, 1958", "gender": "male" }, { "name": "Justin Rowland", "email": "magna.a.neque@anequeNullam.ca", "password": "JKQ17ZVE3TE", "dob": "May 31, 1994", "gender": "male" }, { "name": "Tiger Blevins", "email": "enim.sit@felisNulla.net", "password": "MLA03EJG4WI", "dob": "Feb 1, 1981", "gender": "male" }, { "name": "Peter Bray", "email": "nascetur@Nullamutnisi.edu", "password": "BAL79WGC4II", "dob": "Dec 22, 1950", "gender": "male" }];
 
-},{}],54:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
@@ -3999,6 +3848,8 @@ var BUTTON_VARIANTS = [{ label: 'Primary', value: 'primary' }, { label: 'Success
 
 var BUTTON_DEFAULT_VARIANTS = [{ label: 'Default Primary', value: 'default-primary' }, { label: 'Default Success', value: 'default-success' }, { label: 'Default Warning', value: 'default-warning' }, { label: 'Default Danger', value: 'default-danger' }];
 
+var BUTTON_HOLLOW_VARIANTS = [{ label: 'Hollow Primary', value: 'hollow-primary' }, { label: 'Hollow Success', value: 'hollow-success' }, { label: 'Hollow Warning', value: 'hollow-warning' }, { label: 'Hollow Danger', value: 'hollow-danger' }];
+
 var BUTTON_LINK_VARIANTS = [{ label: 'Link', value: 'link' }, { label: 'Link Text', value: 'link-text' }, { label: 'Link Cancel', value: 'link-cancel' }, { label: 'Link Delete', value: 'link-delete' }];
 
 var Buttons = React.createClass({
@@ -4015,7 +3866,7 @@ var Buttons = React.createClass({
 		return BUTTON_SIZES.map(function (size) {
 			return React.createElement(
 				'div',
-				{ key: size.value, className: 'code-example__example-element--inline' },
+				{ key: size.value, className: "code-example__example-element--inline" },
 				React.createElement(
 					Button,
 					{ size: size.value },
@@ -4029,7 +3880,7 @@ var Buttons = React.createClass({
 		return variantType.map(function (type) {
 			return React.createElement(
 				'div',
-				{ key: type.value, className: 'code-example__example-element--inline' },
+				{ key: type.value, className: "code-example__example-element--inline" },
 				React.createElement(
 					Button,
 					{ type: type.value },
@@ -4042,7 +3893,7 @@ var Buttons = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'demo-container container' },
+			{ className: "demo-container container" },
 			React.createElement(
 				'h1',
 				null,
@@ -4055,10 +3906,10 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					this.renderButtonSizes()
 				),
 				React.createElement(
@@ -4074,13 +3925,13 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Fill Buttons'
 					),
 					this.renderButtonVariants(BUTTON_VARIANTS)
@@ -4093,13 +3944,13 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Default Button Alternatives'
 					),
 					this.renderButtonVariants(BUTTON_DEFAULT_VARIANTS)
@@ -4112,13 +3963,32 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
+						'Hollow Button Alternatives'
+					),
+					this.renderButtonVariants(BUTTON_HOLLOW_VARIANTS)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Button type="default-primary">Hollow Primary</Button>\n\t\t\t\t\t\t\t<Button type="default-success">Hollow Success</Button>\n\t\t\t\t\t\t\t<Button type="default-warning">Hollow Warning</Button>\n\t\t\t\t\t\t\t<Button type="default-danger">Hollow Danger</Button>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: "code-example" },
+				React.createElement(
+					'div',
+					{ className: "code-example__example" },
+					React.createElement(
+						'div',
+						{ className: "code-example__example__heading" },
 						'Link Style Buttons'
 					),
 					this.renderButtonVariants(BUTTON_LINK_VARIANTS)
@@ -4136,7 +4006,7 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -4176,22 +4046,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'block'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Turns the button into a block-level element which will fill the width of its container'
 							)
 						),
@@ -4200,32 +4070,32 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'href'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'When provided the component will render as an ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'<a>'
 								),
 								' instead of ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'<button>'
 								)
 							)
@@ -4235,38 +4105,38 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'size'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Size of the button - one of: ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'lg'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'sm'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'xs'
 								)
 							)
@@ -4276,26 +4146,26 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'submit'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Applies the ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'submit'
 								),
 								' attribute to the button for use in forms'
@@ -4306,99 +4176,99 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'type'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'default\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'One of:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'default'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'default-primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'default-success'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'default-warning'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'default-danger'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'success'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'warning'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'danger'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'link'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'link-text'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'link-cancel'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'link-delete'
 								)
 							)
@@ -4413,26 +4283,26 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						ButtonGroup,
 						null,
 						React.createElement(
 							Button,
-							{ type: 'default' },
+							{ type: "default" },
 							'Left'
 						),
 						React.createElement(
 							Button,
-							{ type: 'default' },
+							{ type: "default" },
 							'Middle'
 						),
 						React.createElement(
 							Button,
-							{ type: 'default' },
+							{ type: "default" },
 							'Right'
 						)
 					)
@@ -4450,7 +4320,7 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -4490,26 +4360,26 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'children'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'node'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Required. Must use Elemental ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'<Button />'
 								),
 								' components for correct styling'
@@ -4525,11 +4395,11 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
-					React.createElement(Dropdown, { items: DROPDOWN_OPTIONS, buttonLabel: 'Default Trigger', className: 'reallyLongCustomClassNameThatStandsOut' })
+					{ className: "code-example__example" },
+					React.createElement(Dropdown, { items: DROPDOWN_OPTIONS, buttonLabel: "Default Trigger", className: "reallyLongCustomClassNameThatStandsOut" })
 				),
 				React.createElement(
 					ExampleSource,
@@ -4539,18 +4409,18 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Custom Trigger'
 					),
 					React.createElement(
 						Dropdown,
-						{ items: DROPDOWN_OPTIONS, className: 'reallyLongCustomClassNameThatStandsOut' },
+						{ items: DROPDOWN_OPTIONS, className: "reallyLongCustomClassNameThatStandsOut" },
 						React.createElement(
 							'h3',
 							{ style: { marginBottom: 0 } },
@@ -4571,7 +4441,7 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -4611,22 +4481,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'alignRight'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'The dropdown menu is aligned left by default, apply this attribute to right align the dropdown menu'
 							)
 						),
@@ -4635,22 +4505,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'buttonHasDisclosureArrow'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'true'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Display a disclosure arrow along with the label of the button. Ignore if a custom trigger is employed'
 							)
 						),
@@ -4659,22 +4529,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'buttonLabel'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Whatever action the button represents'
 							)
 						),
@@ -4683,22 +4553,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'buttonType'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'See above section on button types'
 							)
 						),
@@ -4707,22 +4577,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'children'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'element'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'A single child, cloned and used as the dropdown\'s trigger element'
 							)
 						),
@@ -4731,22 +4601,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'isOpen'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'The dropdown menu is controlled by user input. Use this if you need to manually toggle the open state of the dropdown menu'
 							)
 						),
@@ -4755,22 +4625,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'items'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'array'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'The list of items to display in the menu formatted'
 							)
 						),
@@ -4779,22 +4649,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'onSelect'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'func'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'function() {}'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'The function that is called on each menu item when clicked'
 							)
 						)
@@ -4807,7 +4677,7 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/ExampleSource":51,"elemental":undefined,"react":undefined}],55:[function(require,module,exports){
+},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
@@ -4870,8 +4740,8 @@ var CSSExamples = React.createClass({
 				{ key: 'header-' + i },
 				React.createElement(
 					'label',
-					{ title: 'Toggle all users' },
-					React.createElement('input', { type: 'checkbox', onChange: self.toggleAllRows })
+					{ title: "Toggle all users" },
+					React.createElement('input', { type: "checkbox", onChange: self.toggleAllRows })
 				)
 			) : React.createElement(
 				'th',
@@ -4897,8 +4767,8 @@ var CSSExamples = React.createClass({
 					null,
 					React.createElement(
 						'label',
-						{ className: 'table-checkbox-label' },
-						React.createElement('input', { id: 'checkbox-' + i, value: i, onChange: self.handleChange, checked: checked, type: 'checkbox', name: 'users' })
+						{ className: "table-checkbox-label" },
+						React.createElement('input', { id: 'checkbox-' + i, value: i, onChange: self.handleChange, checked: checked, type: "checkbox", name: "users" })
 					)
 				),
 				React.createElement(
@@ -4906,7 +4776,7 @@ var CSSExamples = React.createClass({
 					null,
 					React.createElement(
 						'a',
-						{ href: 'javascript:;' },
+						{ href: "javascript:;" },
 						user.name
 					)
 				),
@@ -4925,7 +4795,7 @@ var CSSExamples = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ className: 'demo-container container' },
+			{ className: "demo-container container" },
 			React.createElement(
 				'h1',
 				null,
@@ -4938,10 +4808,10 @@ var CSSExamples = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'h1',
 						null,
@@ -4975,7 +4845,7 @@ var CSSExamples = React.createClass({
 					React.createElement('hr', null),
 					React.createElement(
 						'div',
-						{ className: 'lead' },
+						{ className: "lead" },
 						'This is a page lead, it introduces the proceeding content.'
 					)
 				),
@@ -4992,47 +4862,47 @@ var CSSExamples = React.createClass({
 			),
 			React.createElement(
 				'p',
-				{ className: 'lead' },
+				{ className: "lead" },
 				'Uses the standard Bootstrap grid which is a 12 column responsive layout, with a 20px gutter.'
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Three equal columns'
 					),
 					React.createElement(
 						'div',
-						{ className: 'row' },
+						{ className: "row" },
 						React.createElement(
 							'div',
-							{ className: 'col-sm-4' },
+							{ className: "col-sm-4" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								'.col-sm-4'
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-sm-4' },
+							{ className: "col-sm-4" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								'.col-sm-4'
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-sm-4' },
+							{ className: "col-sm-4" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								'.col-sm-4'
 							)
 						)
@@ -5046,42 +4916,42 @@ var CSSExamples = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Three unequal columns'
 					),
 					React.createElement(
 						'div',
-						{ className: 'row' },
+						{ className: "row" },
 						React.createElement(
 							'div',
-							{ className: 'col-sm-3' },
+							{ className: "col-sm-3" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								'.col-sm-3'
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-sm-6' },
+							{ className: "col-sm-6" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								'.col-sm-6'
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-sm-3' },
+							{ className: "col-sm-3" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								'.col-sm-3'
 							)
 						)
@@ -5095,33 +4965,33 @@ var CSSExamples = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Two unequal columns'
 					),
 					React.createElement(
 						'div',
-						{ className: 'row' },
+						{ className: "row" },
 						React.createElement(
 							'div',
-							{ className: 'col-sm-8' },
+							{ className: "col-sm-8" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								'.col-sm-8'
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-sm-4' },
+							{ className: "col-sm-4" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								'.col-sm-4'
 							)
 						)
@@ -5135,158 +5005,158 @@ var CSSExamples = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Columns on a small device'
 					),
 					React.createElement(
 						'div',
-						{ className: 'row' },
+						{ className: "row" },
 						React.createElement(
 							'div',
-							{ className: 'col-xs-4' },
+							{ className: "col-xs-4" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								React.createElement(
 									'span',
-									{ className: 'visible-xs-inline' },
+									{ className: "visible-xs-inline" },
 									'4'
 								),
 								React.createElement(
 									'span',
-									{ className: 'hidden-xs' },
+									{ className: "hidden-xs" },
 									'.col-xs-4'
 								)
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-xs-4' },
+							{ className: "col-xs-4" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								React.createElement(
 									'span',
-									{ className: 'visible-xs-inline' },
+									{ className: "visible-xs-inline" },
 									'4'
 								),
 								React.createElement(
 									'span',
-									{ className: 'hidden-xs' },
+									{ className: "hidden-xs" },
 									'.col-xs-4'
 								)
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-xs-4' },
+							{ className: "col-xs-4" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								React.createElement(
 									'span',
-									{ className: 'visible-xs-inline' },
+									{ className: "visible-xs-inline" },
 									'4'
 								),
 								React.createElement(
 									'span',
-									{ className: 'hidden-xs' },
+									{ className: "hidden-xs" },
 									'.col-xs-4'
 								)
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-xs-8' },
+							{ className: "col-xs-8" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								React.createElement(
 									'span',
-									{ className: 'visible-xs-inline' },
+									{ className: "visible-xs-inline" },
 									'8'
 								),
 								React.createElement(
 									'span',
-									{ className: 'hidden-xs' },
+									{ className: "hidden-xs" },
 									'.col-xs-8'
 								)
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-xs-4' },
+							{ className: "col-xs-4" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								React.createElement(
 									'span',
-									{ className: 'visible-xs-inline' },
+									{ className: "visible-xs-inline" },
 									'4'
 								),
 								React.createElement(
 									'span',
-									{ className: 'hidden-xs' },
+									{ className: "hidden-xs" },
 									'.col-xs-4'
 								)
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-xs-3' },
+							{ className: "col-xs-3" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								React.createElement(
 									'span',
-									{ className: 'visible-xs-inline' },
+									{ className: "visible-xs-inline" },
 									'3'
 								),
 								React.createElement(
 									'span',
-									{ className: 'hidden-xs' },
+									{ className: "hidden-xs" },
 									'.col-xs-3'
 								)
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-xs-6' },
+							{ className: "col-xs-6" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								React.createElement(
 									'span',
-									{ className: 'visible-xs-inline' },
+									{ className: "visible-xs-inline" },
 									'6'
 								),
 								React.createElement(
 									'span',
-									{ className: 'hidden-xs' },
+									{ className: "hidden-xs" },
 									'.col-xs-6'
 								)
 							)
 						),
 						React.createElement(
 							'div',
-							{ className: 'col-xs-3' },
+							{ className: "col-xs-3" },
 							React.createElement(
 								'div',
-								{ className: 'demo-box u-text-center' },
+								{ className: "demo-box u-text-center" },
 								React.createElement(
 									'span',
-									{ className: 'visible-xs-inline' },
+									{ className: "visible-xs-inline" },
 									'3'
 								),
 								React.createElement(
 									'span',
-									{ className: 'hidden-xs' },
+									{ className: "hidden-xs" },
 									'.col-xs-3'
 								)
 							)
@@ -5306,20 +5176,20 @@ var CSSExamples = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						Table,
 						null,
 						React.createElement(
 							'colgroup',
 							null,
-							React.createElement('col', { width: '50' }),
-							React.createElement('col', { width: '' }),
-							React.createElement('col', { width: '10%' }),
-							React.createElement('col', { width: '10%' })
+							React.createElement('col', { width: "50" }),
+							React.createElement('col', { width: "" }),
+							React.createElement('col', { width: "10%" }),
+							React.createElement('col', { width: "10%" })
 						),
 						React.createElement(
 							'thead',
@@ -5345,7 +5215,7 @@ var CSSExamples = React.createClass({
 
 module.exports = CSSExamples;
 
-},{"../components/ExampleSource":51,"../data/users":53,"classnames":undefined,"elemental":undefined,"moment":undefined,"react/addons":undefined}],56:[function(require,module,exports){
+},{"../components/ExampleSource":50,"../data/users":52,"classnames":undefined,"elemental":undefined,"moment":undefined,"react/addons":undefined}],55:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -5368,7 +5238,7 @@ var DateSelectExamples = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'demo-container container' },
+			{ className: "demo-container container" },
 			React.createElement(
 				'h1',
 				null,
@@ -5376,17 +5246,17 @@ var DateSelectExamples = React.createClass({
 			),
 			React.createElement(
 				'p',
-				{ className: 'lead' },
+				{ className: "lead" },
 				'We built ',
 				React.createElement(
 					'a',
-					{ href: 'http://jedwatson.github.io/react-date-select' },
+					{ href: "http://jedwatson.github.io/react-date-select" },
 					'react-date-select'
 				),
 				' for Elemental, and published it separately to ',
 				React.createElement(
 					'a',
-					{ href: 'https://www.npmjs.com/package/react-date-select' },
+					{ href: "https://www.npmjs.com/package/react-date-select" },
 					'npm'
 				)
 			),
@@ -5453,7 +5323,7 @@ var DateSelectExamples = React.createClass({
 
 module.exports = DateSelectExamples;
 
-},{"elemental":undefined,"react-date-select":3,"react/addons":undefined}],57:[function(require,module,exports){
+},{"elemental":undefined,"react-date-select":2,"react/addons":undefined}],56:[function(require,module,exports){
 /* eslint no-alert: 0 */
 
 'use strict';
@@ -5537,11 +5407,11 @@ var Forms = React.createClass({
 		});
 
 		var checkboxes = [1, 2, 3].map(function (item) {
-			return React.createElement(Checkbox, { key: 'checkbox_' + item, name: 'checkbox_' + item, label: 'Check me out' });
+			return React.createElement(Checkbox, { key: 'checkbox_' + item, name: 'checkbox_' + item, label: "Check me out" });
 		});
 
 		var radios = [1, 2, 3].map(function (item) {
-			return React.createElement(Radio, { key: 'radio_' + item, name: 'supportedControlsRadios', label: 'Pick me' });
+			return React.createElement(Radio, { key: 'radio_' + item, name: "supportedControlsRadios", label: "Pick me" });
 		});
 
 		// Icon Loops
@@ -5549,7 +5419,7 @@ var Forms = React.createClass({
 		var iconContextVariantsColor = COLOR_VARIANTS.map(function (color) {
 			return React.createElement(
 				FormIconField,
-				{ key: color.value, width: 'one-fifth', iconPosition: 'left', iconKey: color.icon, iconColor: color.value },
+				{ key: color.value, width: "one-fifth", iconPosition: "left", iconKey: color.icon, iconColor: color.value },
 				React.createElement(FormInput, { placeholder: color.label, name: 'icon-form-context-variants-color' + color.value })
 			);
 		});
@@ -5557,14 +5427,14 @@ var Forms = React.createClass({
 		var iconContextVariantsFill = COLOR_VARIANTS.map(function (color) {
 			return React.createElement(
 				FormIconField,
-				{ key: color.value, width: 'one-fifth', iconPosition: 'left', iconKey: color.icon, iconFill: color.value },
+				{ key: color.value, width: "one-fifth", iconPosition: "left", iconKey: color.icon, iconFill: color.value },
 				React.createElement(FormInput, { placeholder: color.label, name: 'icon-form-context-variants-color' + color.value })
 			);
 		});
 
 		return React.createElement(
 			'div',
-			{ className: 'demo-container container' },
+			{ className: "demo-container container" },
 			React.createElement(
 				'h1',
 				null,
@@ -5581,56 +5451,56 @@ var Forms = React.createClass({
 				'Individual form controls automatically receive some global styling. All textual ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'<FormInput>'
 				),
 				', and ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'<FormSelect>'
 				),
 				' elements with are set to ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'width: 100%;'
 				),
 				' by default. Wrap controls in ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'<FormField>'
 				),
 				' for optimum spacing.'
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'form',
 						null,
 						React.createElement(
 							FormField,
-							{ label: 'Email address', htmlFor: 'basic-form-input-email' },
-							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'basic-form-input-email' })
+							{ label: "Email address", htmlFor: "basic-form-input-email" },
+							React.createElement(FormInput, { type: "email", placeholder: "Enter email", name: "basic-form-input-email" })
 						),
 						React.createElement(
 							FormField,
-							{ label: 'Password', htmlFor: 'basic-form-input-password' },
-							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'basic-form-input-password' })
+							{ label: "Password", htmlFor: "basic-form-input-password" },
+							React.createElement(FormInput, { type: "password", placeholder: "Password", name: "basic-form-input-password" })
 						),
 						React.createElement(
 							FormField,
 							null,
-							React.createElement(Checkbox, { label: 'Check it' })
+							React.createElement(Checkbox, { label: "Check it" })
 						),
 						React.createElement(
 							Button,
-							{ type: 'default' },
+							{ type: "default" },
 							'Submit'
 						)
 					)
@@ -5652,59 +5522,59 @@ var Forms = React.createClass({
 				'Adding the class ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'.form-horizontal'
 				),
 				' to your wrapper (which doesn\'t have to be a ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'<form>'
 				),
 				' tag) changes the ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'FormField'
 				),
 				' component to behave like a row. The label width can be updated from inside the LESS variables file where it\'s defined as ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'@form-label-width'
 				),
 				'. This only applies to forms within viewports that are at least 768px wide.'
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'form',
-						{ className: 'horizontal-form' },
+						{ className: "horizontal-form" },
 						React.createElement(
 							FormField,
-							{ label: 'Email address', htmlFor: 'horizontal-form-input-email' },
-							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'horizontal-form-input-email' })
+							{ label: "Email address", htmlFor: "horizontal-form-input-email" },
+							React.createElement(FormInput, { type: "email", placeholder: "Enter email", name: "horizontal-form-input-email" })
 						),
 						React.createElement(
 							FormField,
-							{ label: 'Password', htmlFor: 'horizontal-form-input-password' },
-							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'horizontal-form-input-password' })
+							{ label: "Password", htmlFor: "horizontal-form-input-password" },
+							React.createElement(FormInput, { type: "password", placeholder: "Password", name: "horizontal-form-input-password" })
 						),
 						React.createElement(
 							FormField,
 							{ offsetAbsentLabel: true },
-							React.createElement(Checkbox, { label: 'Check it' })
+							React.createElement(Checkbox, { label: "Check it" })
 						),
 						React.createElement(
 							FormField,
 							{ offsetAbsentLabel: true },
 							React.createElement(
 								Button,
-								{ type: 'default' },
+								{ type: "default" },
 								'Submit'
 							)
 						)
@@ -5727,13 +5597,13 @@ var Forms = React.createClass({
 				'Adding the class ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'.form-inline'
 				),
 				' to your wrapper (which doesn\'t have to be a ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'<form>'
 				),
 				' tag)  for left-aligned and inline-block controls. This only applies to forms within viewports that are at least 768px wide.'
@@ -5745,34 +5615,34 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'form',
-						{ className: 'inline-form' },
+						{ className: "inline-form" },
 						React.createElement(
 							FormField,
-							{ label: 'Email address', htmlFor: 'inline-form-input-email' },
-							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'inline-form-input-email' })
+							{ label: "Email address", htmlFor: "inline-form-input-email" },
+							React.createElement(FormInput, { type: "email", placeholder: "Enter email", name: "inline-form-input-email" })
 						),
 						React.createElement(
 							FormField,
-							{ label: 'Password', htmlFor: 'inline-form-input-password' },
-							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'inline-form-input-password' })
+							{ label: "Password", htmlFor: "inline-form-input-password" },
+							React.createElement(FormInput, { type: "password", placeholder: "Password", name: "inline-form-input-password" })
 						),
 						React.createElement(
 							FormField,
 							null,
-							React.createElement(Checkbox, { label: 'Check it' })
+							React.createElement(Checkbox, { label: "Check it" })
 						),
 						React.createElement(
 							FormField,
 							null,
 							React.createElement(
 								Button,
-								{ type: 'default' },
+								{ type: "default" },
 								'Submit'
 							)
 						)
@@ -5791,13 +5661,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Contiguous form elements'
 					),
 					React.createElement(
@@ -5806,7 +5676,7 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
 						),
 						React.createElement(
 							InputGroup.Section,
@@ -5823,17 +5693,17 @@ var Forms = React.createClass({
 						{ contiguous: true },
 						React.createElement(
 							InputGroup.Section,
-							{ type: 'primary' },
+							{ type: "primary" },
 							React.createElement(
 								Button,
 								null,
-								React.createElement('span', { className: 'octicon octicon-pencil' })
+								React.createElement('span', { className: "octicon octicon-pencil" })
 							)
 						),
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
 						)
 					)
 				),
@@ -5845,13 +5715,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Separate when required'
 					),
 					React.createElement(
@@ -5860,14 +5730,14 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
 						),
 						React.createElement(
 							InputGroup.Section,
 							null,
 							React.createElement(
 								Button,
-								{ type: 'primary' },
+								{ type: "primary" },
 								'Button'
 							)
 						)
@@ -5880,14 +5750,14 @@ var Forms = React.createClass({
 							null,
 							React.createElement(
 								Button,
-								{ type: 'primary' },
-								React.createElement('span', { className: 'octicon octicon-pencil' })
+								{ type: "primary" },
+								React.createElement('span', { className: "octicon octicon-pencil" })
 							)
 						),
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
 						)
 					)
 				),
@@ -5899,13 +5769,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'More sophisticated formations'
 					),
 					React.createElement(
@@ -5923,14 +5793,14 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
 						),
 						React.createElement(
 							InputGroup.Section,
 							null,
 							React.createElement(
 								Button,
-								{ type: 'primary' },
+								{ type: "primary" },
 								'Omega'
 							)
 						)
@@ -5941,14 +5811,14 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
+							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
 						),
 						React.createElement(
 							InputGroup.Section,
 							null,
 							React.createElement(
 								Button,
-								{ type: 'primary' },
+								{ type: "primary" },
 								'Primary'
 							)
 						),
@@ -5976,24 +5846,24 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						FormField,
-						{ label: 'Input', htmlFor: 'supported-controls-input' },
-						React.createElement(FormInput, { placeholder: 'Input', name: 'supported-controls-input' })
+						{ label: "Input", htmlFor: "supported-controls-input" },
+						React.createElement(FormInput, { placeholder: "Input", name: "supported-controls-input" })
 					),
 					React.createElement(
 						FormField,
-						{ label: 'Large Input', htmlFor: 'supported-controls-input-lg' },
-						React.createElement(FormInput, { placeholder: 'Large', name: 'supported-controls-input-lg', size: 'lg' })
+						{ label: "Large Input", htmlFor: "supported-controls-input-lg" },
+						React.createElement(FormInput, { placeholder: "Large", name: "supported-controls-input-lg", size: "lg" })
 					),
 					React.createElement(
 						FormField,
-						{ label: 'Small Input', htmlFor: 'supported-controls-input-sm' },
-						React.createElement(FormInput, { placeholder: 'Small', name: 'supported-controls-input-sm', size: 'sm' })
+						{ label: "Small Input", htmlFor: "supported-controls-input-sm" },
+						React.createElement(FormInput, { placeholder: "Small", name: "supported-controls-input-sm", size: "sm" })
 					)
 				),
 				React.createElement(
@@ -6009,11 +5879,11 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
-					React.createElement(FormInput, { placeholder: 'Input' })
+					{ className: "code-example__example" },
+					React.createElement(FormInput, { placeholder: "Input" })
 				),
 				React.createElement(
 					ExampleSource,
@@ -6023,11 +5893,11 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
-					React.createElement(FormInput, { placeholder: 'Textarea', multiline: true })
+					{ className: "code-example__example" },
+					React.createElement(FormInput, { placeholder: "Textarea", multiline: true })
 				),
 				React.createElement(
 					ExampleSource,
@@ -6037,11 +5907,11 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
-					React.createElement(FormSelect, { options: controlOptions, firstOption: 'Select', onChange: updateSelect })
+					{ className: "code-example__example" },
+					React.createElement(FormSelect, { options: controlOptions, firstOption: "Select", onChange: updateSelect })
 				),
 				React.createElement(
 					ExampleSource,
@@ -6051,40 +5921,40 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						FormField,
-						{ label: 'Checkboxes' },
-						React.createElement(Checkbox, { label: 'Check me out' }),
-						React.createElement(Checkbox, { label: 'Check me out' })
+						{ label: "Checkboxes" },
+						React.createElement(Checkbox, { label: "Check me out" }),
+						React.createElement(Checkbox, { label: "Check me out" })
 					),
 					React.createElement(
 						FormField,
-						{ label: 'Radios' },
-						React.createElement(Radio, { name: 'default_radios', label: 'Pick me' }),
-						React.createElement(Radio, { name: 'default_radios', label: 'Pick me' })
+						{ label: "Radios" },
+						React.createElement(Radio, { name: "default_radios", label: "Pick me" }),
+						React.createElement(Radio, { name: "default_radios", label: "Pick me" })
 					),
 					React.createElement(
 						FormField,
-						{ label: 'Inline Checkboxes' },
+						{ label: "Inline Checkboxes" },
 						React.createElement(
 							'div',
-							{ className: 'inline-controls' },
-							React.createElement(Checkbox, { label: 'Check me out' }),
-							React.createElement(Checkbox, { label: 'Check me out' })
+							{ className: "inline-controls" },
+							React.createElement(Checkbox, { label: "Check me out" }),
+							React.createElement(Checkbox, { label: "Check me out" })
 						)
 					),
 					React.createElement(
 						FormField,
-						{ label: 'Inline Radios' },
+						{ label: "Inline Radios" },
 						React.createElement(
 							'div',
-							{ className: 'inline-controls' },
-							React.createElement(Radio, { name: 'inline_radios', label: 'Pick me' }),
-							React.createElement(Radio, { name: 'inline_radios', label: 'Pick me' })
+							{ className: "inline-controls" },
+							React.createElement(Radio, { name: "inline_radios", label: "Pick me" }),
+							React.createElement(Radio, { name: "inline_radios", label: "Pick me" })
 						)
 					)
 				),
@@ -6101,30 +5971,30 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						FormField,
-						{ label: 'Input', htmlFor: 'supported-controls-input-disabled' },
-						React.createElement(FormInput, { placeholder: 'Input', name: 'supported-controls-input-disabled', disabled: true })
+						{ label: "Input", htmlFor: "supported-controls-input-disabled" },
+						React.createElement(FormInput, { placeholder: "Input", name: "supported-controls-input-disabled", disabled: true })
 					),
 					React.createElement(
 						FormField,
-						{ label: 'Textarea', htmlFor: 'supported-controls-textarea' },
-						React.createElement(FormInput, { placeholder: 'Textarea', name: 'supported-controls-textarea-disabled', disabled: true, multiline: true })
+						{ label: "Textarea", htmlFor: "supported-controls-textarea" },
+						React.createElement(FormInput, { placeholder: "Textarea", name: "supported-controls-textarea-disabled", disabled: true, multiline: true })
 					),
-					React.createElement(FormSelect, { label: 'Select', options: controlOptions, onChange: updateSelect, htmlFor: 'supported-conrols-select-disabled', firstOption: 'Select', disabled: true }),
+					React.createElement(FormSelect, { label: "Select", options: controlOptions, onChange: updateSelect, htmlFor: "supported-conrols-select-disabled", firstOption: "Select", disabled: true }),
 					React.createElement(
 						FormField,
-						{ label: 'Checkboxes' },
-						React.createElement(Checkbox, { label: 'Check me out', disabled: true })
+						{ label: "Checkboxes" },
+						React.createElement(Checkbox, { label: "Check me out", disabled: true })
 					),
 					React.createElement(
 						FormField,
-						{ label: 'Radios' },
-						React.createElement(Radio, { name: 'default_radios', label: 'Pick me', disabled: true })
+						{ label: "Radios" },
+						React.createElement(Radio, { name: "default_radios", label: "Pick me", disabled: true })
 					)
 				),
 				React.createElement(
@@ -6140,13 +6010,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						FormField,
-						{ label: 'Input with note' },
+						{ label: "Input with note" },
 						React.createElement(FormInput, null),
 						React.createElement(
 							FormNote,
@@ -6172,40 +6042,40 @@ var Forms = React.createClass({
 				'Wrap any group of ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'<FormField>'
 				),
 				' in the ',
 				React.createElement(
 					'code',
-					{ className: 'inline-code' },
+					{ className: "inline-code" },
 					'<FormRow>'
 				),
 				' component to easily set desired widths.'
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						FormRow,
 						null,
 						React.createElement(
 							FormField,
-							{ width: 'one-half', label: 'Credit Card Number', htmlFor: 'credit-card-number' },
-							React.createElement(FormInput, { pattern: '[0-9]*', placeholder: 'Card Number', name: 'credit-card-number' })
+							{ width: "one-half", label: "Credit Card Number", htmlFor: "credit-card-number" },
+							React.createElement(FormInput, { pattern: "[0-9]*", placeholder: "Card Number", name: "credit-card-number" })
 						),
 						React.createElement(
 							FormField,
-							{ width: 'one-quarter', label: 'Expiration', htmlFor: 'credit-card-expiration' },
-							React.createElement(FormInput, { placeholder: 'MM/YYYY', name: 'credit-card-expiration' })
+							{ width: "one-quarter", label: "Expiration", htmlFor: "credit-card-expiration" },
+							React.createElement(FormInput, { placeholder: "MM/YYYY", name: "credit-card-expiration" })
 						),
 						React.createElement(
 							FormField,
-							{ width: 'one-quarter', label: 'Security Code (CCV)', htmlFor: 'credit-card-security' },
-							React.createElement(FormInput, { pattern: '[0-9]*', placeholder: '123', name: 'credit-card-security' })
+							{ width: "one-quarter", label: "Security Code (CCV)", htmlFor: "credit-card-security" },
+							React.createElement(FormInput, { pattern: "[0-9]*", placeholder: "123", name: "credit-card-security" })
 						)
 					),
 					React.createElement(
@@ -6213,47 +6083,47 @@ var Forms = React.createClass({
 						null,
 						React.createElement(
 							FormField,
-							{ width: 'one-half', label: 'First Name', htmlFor: 'first-name' },
-							React.createElement(FormInput, { placeholder: 'First Name', name: 'first-name' })
+							{ width: "one-half", label: "First Name", htmlFor: "first-name" },
+							React.createElement(FormInput, { placeholder: "First Name", name: "first-name" })
 						),
 						React.createElement(
 							FormField,
-							{ width: 'one-half', label: 'Last Name', htmlFor: 'last-name' },
-							React.createElement(FormInput, { placeholder: 'Last Name', name: 'last-name' })
+							{ width: "one-half", label: "Last Name", htmlFor: "last-name" },
+							React.createElement(FormInput, { placeholder: "Last Name", name: "last-name" })
 						)
 					),
 					React.createElement(
 						FormField,
-						{ label: 'Billing Address', htmlFor: 'address-street1' },
-						React.createElement(FormInput, { placeholder: 'Address Line 1', name: 'address-street1' })
+						{ label: "Billing Address", htmlFor: "address-street1" },
+						React.createElement(FormInput, { placeholder: "Address Line 1", name: "address-street1" })
 					),
 					React.createElement(
 						FormField,
 						null,
-						React.createElement(FormInput, { placeholder: 'Address Line 2', name: 'address-street2' })
+						React.createElement(FormInput, { placeholder: "Address Line 2", name: "address-street2" })
 					),
 					React.createElement(
 						FormRow,
 						null,
 						React.createElement(
 							FormField,
-							{ width: 'two-thirds' },
-							React.createElement(FormInput, { placeholder: 'City', name: 'city' })
+							{ width: "two-thirds" },
+							React.createElement(FormInput, { placeholder: "City", name: "city" })
 						),
 						React.createElement(
 							FormField,
-							{ width: 'one-third' },
-							React.createElement(FormInput, { placeholder: 'State', name: 'state' })
+							{ width: "one-third" },
+							React.createElement(FormInput, { placeholder: "State", name: "state" })
 						),
 						React.createElement(
 							FormField,
-							{ width: 'one-third' },
-							React.createElement(FormInput, { width: 'one-third', placeholder: 'Post Code', name: 'city' })
+							{ width: "one-third" },
+							React.createElement(FormInput, { width: "one-third", placeholder: "Post Code", name: "city" })
 						),
 						React.createElement(
 							FormField,
-							{ width: 'two-thirds' },
-							React.createElement(FormSelect, { options: countryOptions, firstOption: 'Country', onChange: updateSelect })
+							{ width: "two-thirds" },
+							React.createElement(FormSelect, { options: countryOptions, firstOption: "Country", onChange: updateSelect })
 						)
 					)
 				),
@@ -6270,7 +6140,7 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -6323,7 +6193,7 @@ var Forms = React.createClass({
 								null,
 								'\'\''
 							),
-							React.createElement('td', { className: 'usage-table__description' })
+							React.createElement('td', { className: "usage-table__description" })
 						),
 						React.createElement(
 							'tr',
@@ -6343,7 +6213,7 @@ var Forms = React.createClass({
 								null,
 								'false'
 							),
-							React.createElement('td', { className: 'usage-table__description' })
+							React.createElement('td', { className: "usage-table__description" })
 						),
 						React.createElement(
 							'tr',
@@ -6365,102 +6235,102 @@ var Forms = React.createClass({
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Declare a width for your field; must be used inside a ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'<FormRow>'
 								),
 								' component. Possible options:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'one-half'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'two-quarters'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'three-sixths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'one-quarter'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'three-quarters'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'one-third'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'two-sixths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'two-thirds'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'four-sixths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'one-fifth'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'two-fifths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'three-fifths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'four-fifths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'one-sixth'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code inline-code--list-item' },
+									{ className: "inline-code inline-code--list-item" },
 									'five-sixths'
 								)
 							)
@@ -6475,23 +6345,23 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'p',
-				{ className: 'lead' },
+				{ className: "lead" },
 				'Elemental uses the wonderful ',
 				React.createElement(
 					'a',
-					{ href: 'https://octicons.github.com/', target: '_blank' },
+					{ href: "https://octicons.github.com/", target: "_blank" },
 					'Octicons Suite from GitHub'
 				)
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Alignment'
 					),
 					React.createElement(
@@ -6499,13 +6369,13 @@ var Forms = React.createClass({
 						null,
 						React.createElement(
 							FormIconField,
-							{ width: 'one-half', iconPosition: 'left', iconColor: 'default', iconKey: 'star' },
-							React.createElement(FormInput, { placeholder: 'Left Aligned', name: 'icon-alignment-left' })
+							{ width: "one-half", iconPosition: "left", iconColor: "default", iconKey: "star" },
+							React.createElement(FormInput, { placeholder: "Left Aligned", name: "icon-alignment-left" })
 						),
 						React.createElement(
 							FormIconField,
-							{ width: 'one-half', iconPosition: 'right', iconColor: 'default', iconKey: 'star' },
-							React.createElement(FormInput, { placeholder: 'Right Aligned', name: 'icon-alignment-right' })
+							{ width: "one-half", iconPosition: "right", iconColor: "default", iconKey: "star" },
+							React.createElement(FormInput, { placeholder: "Right Aligned", name: "icon-alignment-right" })
 						)
 					)
 				),
@@ -6517,13 +6387,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Context Variants: Color'
 					),
 					React.createElement(
@@ -6540,13 +6410,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Context Variants: Fill'
 					),
 					React.createElement(
@@ -6563,19 +6433,19 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Loading Indicator'
 					),
 					React.createElement(
 						FormIconField,
-						{ iconPosition: 'right', iconKey: 'search', iconColor: 'default', iconIsLoading: this.state.searching },
-						React.createElement(FormInput, { onChange: this.handleSearch, type: 'search', placeholder: 'Search...', name: 'icon-form-search' })
+						{ iconPosition: "right", iconKey: "search", iconColor: "default", iconIsLoading: this.state.searching },
+						React.createElement(FormInput, { onChange: this.handleSearch, type: "search", placeholder: "Search...", name: "icon-form-search" })
 					)
 				),
 				React.createElement(
@@ -6592,10 +6462,10 @@ var Forms = React.createClass({
 			React.createElement(
 				'form',
 				null,
-				React.createElement(RadioGroup, { label: 'Radios', value: this.state.inlineRadioGroup, onChange: updateInlineRadios, options: controlOptions, name: 'inlineRadioGroup', required: true, inline: true }),
-				React.createElement(FormSelect, { label: 'Select', value: this.state.inputSelect, onChange: updateSelect, options: controlOptions, htmlFor: 'inputSelect', required: true, prependEmptyOption: true }),
-				React.createElement(EmailInputGroup, { label: 'Email', value: this.state.inputEmail, onChange: updateEmail, required: true }),
-				React.createElement(PasswordInputGroup, { label: 'Password', value: this.state.inputPassword, onChange: updatePassword, required: true })
+				React.createElement(RadioGroup, { label: "Radios", value: this.state.inlineRadioGroup, onChange: updateInlineRadios, options: controlOptions, name: "inlineRadioGroup", required: true, inline: true }),
+				React.createElement(FormSelect, { label: "Select", value: this.state.inputSelect, onChange: updateSelect, options: controlOptions, htmlFor: "inputSelect", required: true, prependEmptyOption: true }),
+				React.createElement(EmailInputGroup, { label: "Email", value: this.state.inputEmail, onChange: updateEmail, required: true }),
+				React.createElement(PasswordInputGroup, { label: "Password", value: this.state.inputPassword, onChange: updatePassword, required: true })
 			),
 			React.createElement(
 				'h2',
@@ -6604,23 +6474,23 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'form',
-				{ className: 'horizontal-form' },
+				{ className: "horizontal-form" },
 				React.createElement(
 					'div',
-					{ className: 'form-field' },
+					{ className: "form-field" },
 					React.createElement(
 						FormLabel,
-						{ verticalAlign: 'top' },
+						{ verticalAlign: "top" },
 						'Image'
 					),
-					React.createElement(FileUpload, { buttonLabelInitial: 'Upload Image', buttonLabelChange: 'Change Image', accept: 'image/jpg, image/gif, image/png' })
+					React.createElement(FileUpload, { buttonLabelInitial: "Upload Image", buttonLabelChange: "Change Image", accept: "image/jpg, image/gif, image/png" })
 				),
 				React.createElement(
 					'div',
-					{ className: 'form-field' },
+					{ className: "form-field" },
 					React.createElement(
 						FormLabel,
-						{ verticalAlign: 'top' },
+						{ verticalAlign: "top" },
 						'Images'
 					),
 					React.createElement(FileDragAndDrop, { files: this.state.files, onDrop: this.onDrop })
@@ -6632,7 +6502,7 @@ var Forms = React.createClass({
 
 module.exports = Forms;
 
-},{"../components/ExampleSource":51,"../data/countries":52,"elemental":undefined,"react":undefined}],58:[function(require,module,exports){
+},{"../components/ExampleSource":50,"../data/countries":51,"elemental":undefined,"react":undefined}],57:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -6641,6 +6511,7 @@ var Router = require('react-router');
 
 var NavItems = [{ value: 'css', icon: 'paintcan', label: 'CSS' }, { value: 'buttons', icon: 'screen-full', label: 'Buttons' }, { value: 'forms', icon: 'diff-modified', label: 'Forms' }, { value: 'spinner', icon: 'ellipsis', label: 'Spinner' }, { value: 'modal', icon: 'versions', label: 'Modal' }, { value: 'misc', icon: 'code', label: 'Misc' }];
 
+// { value: 'date-picker', icon: 'calendar', label: 'Date' }
 var Home = React.createClass({
 	displayName: 'VIEW_Home',
 
@@ -6648,17 +6519,17 @@ var Home = React.createClass({
 		var menuItems = NavItems.map(function (item) {
 			return React.createElement(
 				'div',
-				{ key: item.label, className: 'demo-banner-nav__col col-xs-4 col-sm-2' },
+				{ key: item.label, className: "demo-banner-nav__col col-xs-4 col-sm-2" },
 				React.createElement(
 					Router.Link,
-					{ key: item.value, className: 'demo-banner-nav__item', onClick: self.toggleMenu, to: item.value },
+					{ key: item.value, className: "demo-banner-nav__item", onClick: self.toggleMenu, to: item.value },
 					React.createElement('span', { className: 'demo-banner-nav__icon octicon octicon-' + item.icon }),
 					React.createElement(
 						'div',
-						{ className: 'demo-banner-nav__label' },
+						{ className: "demo-banner-nav__label" },
 						React.createElement(
 							'span',
-							{ className: 'demo-banner-nav__label-inner' },
+							{ className: "demo-banner-nav__label-inner" },
 							item.label
 						)
 					)
@@ -6670,32 +6541,32 @@ var Home = React.createClass({
 			null,
 			React.createElement(
 				'header',
-				{ className: 'demo-banner demo-banner--primary' },
+				{ className: "demo-banner demo-banner--primary" },
 				React.createElement(
 					'div',
-					{ className: 'demo-container container' },
-					React.createElement('span', { className: 'demo-banner-illustration' }),
+					{ className: "demo-container container" },
+					React.createElement('span', { className: "demo-banner-illustration" }),
 					React.createElement(
 						'h1',
-						{ className: 'demo-banner__heading demo-banner__heading-1' },
+						{ className: "demo-banner__heading demo-banner__heading-1" },
 						'Elemental UI'
 					),
 					React.createElement(
 						'h2',
-						{ className: 'demo-banner__heading demo-banner__heading-2' },
+						{ className: "demo-banner__heading demo-banner__heading-2" },
 						'A UI Toolkit for React.js Websites and Apps'
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-banner__buttons' },
+						{ className: "demo-banner__buttons" },
 						React.createElement(
 							'a',
-							{ className: 'Button Button--demo-primary', href: 'https://twitter.com/elementalui', target: '_blank' },
+							{ className: "Button Button--demo-primary", href: "https://twitter.com/elementalui", target: "_blank" },
 							'Follow @ElementalUI on Twitter'
 						),
 						React.createElement(
 							'a',
-							{ className: 'Button Button--demo-link', href: 'https://github.com/elementalui/elemental', target: '_blank' },
+							{ className: "Button Button--demo-link", href: "https://github.com/elementalui/elemental", target: "_blank" },
 							'View the GitHub Project'
 						)
 					)
@@ -6703,25 +6574,25 @@ var Home = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'demo-banner demo-banner--secondary' },
+				{ className: "demo-banner demo-banner--secondary" },
 				React.createElement(
 					'div',
-					{ className: 'demo-container container' },
+					{ className: "demo-container container" },
 					React.createElement(
 						'h2',
-						{ className: 'demo-banner__heading demo-banner__heading-2' },
+						{ className: "demo-banner__heading demo-banner__heading-2" },
 						'Project Status'
 					),
 					React.createElement(
 						'ul',
-						{ className: 'demo-banner-list' },
+						{ className: "demo-banner-list" },
 						React.createElement(
 							'li',
 							null,
 							'Currently under heavy development, initially for use in ',
 							React.createElement(
 								'a',
-								{ href: 'http://www.keystonejs.com' },
+								{ href: "http://www.keystonejs.com" },
 								'KeystoneJS'
 							)
 						),
@@ -6738,29 +6609,29 @@ var Home = React.createClass({
 					),
 					React.createElement(
 						'h5',
-						{ className: 'demo-banner-divider' },
+						{ className: "demo-banner-divider" },
 						React.createElement(
 							'span',
-							{ className: 'demo-banner-divider-inner' },
+							{ className: "demo-banner-divider-inner" },
 							'Demos'
 						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-banner-nav row' },
+						{ className: "demo-banner-nav row" },
 						menuItems
 					)
 				)
 			),
 			React.createElement(
 				'div',
-				{ className: 'demo-banner demo-banner--tertiary' },
+				{ className: "demo-banner demo-banner--tertiary" },
 				React.createElement(
 					'div',
-					{ className: 'demo-container container' },
+					{ className: "demo-container container" },
 					React.createElement(
 						'h2',
-						{ className: 'demo-banner__heading demo-banner__heading-2' },
+						{ className: "demo-banner__heading demo-banner__heading-2" },
 						'Why build ',
 						React.createElement(
 							'em',
@@ -6775,7 +6646,7 @@ var Home = React.createClass({
 						'At ',
 						React.createElement(
 							'a',
-							{ href: 'http://www.thinkmill.com.au', target: '_blank' },
+							{ href: "http://www.thinkmill.com.au", target: "_blank" },
 							'Thinkmill'
 						),
 						' we are constantly building bespoke web applications for various clients. We noticed that whilst projects vary greatly, we\'re using the same CSS and Component foundations over and over again.'
@@ -6786,7 +6657,7 @@ var Home = React.createClass({
 						'In an effort to keep our projects\' codebases ',
 						React.createElement(
 							'abbr',
-							{ title: 'Don\'t Repeat Yourself' },
+							{ title: "Don't Repeat Yourself" },
 							'DRY'
 						),
 						' we decided it was time to build something to improve our workflow and unify our projects to decrease development time.'
@@ -6797,7 +6668,7 @@ var Home = React.createClass({
 						'All this coupled with a growing need for a re-usable set of React.js UI Components for the Admin UI in ',
 						React.createElement(
 							'a',
-							{ href: 'http://www.keystonejs.com', target: '_blank' },
+							{ href: "http://www.keystonejs.com", target: "_blank" },
 							'KeystoneJS'
 						),
 						', Elemental was born.'
@@ -6809,13 +6680,13 @@ var Home = React.createClass({
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-banner-points' },
+						{ className: "demo-banner-points" },
 						React.createElement(
 							'div',
-							{ className: 'row' },
+							{ className: "row" },
 							React.createElement(
 								'div',
-								{ className: 'col-sm-4' },
+								{ className: "col-sm-4" },
 								React.createElement(
 									'h3',
 									null,
@@ -6829,7 +6700,7 @@ var Home = React.createClass({
 							),
 							React.createElement(
 								'div',
-								{ className: 'col-sm-4' },
+								{ className: "col-sm-4" },
 								React.createElement(
 									'h3',
 									null,
@@ -6843,7 +6714,7 @@ var Home = React.createClass({
 							),
 							React.createElement(
 								'div',
-								{ className: 'col-sm-4' },
+								{ className: "col-sm-4" },
 								React.createElement(
 									'h3',
 									null,
@@ -6865,9 +6736,7 @@ var Home = React.createClass({
 
 module.exports = Home;
 
-// { value: 'date-picker', icon: 'calendar', label: 'Date' }
-
-},{"elemental":undefined,"react":undefined,"react-router":31}],59:[function(require,module,exports){
+},{"elemental":undefined,"react":undefined,"react-router":30}],58:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -6885,7 +6754,7 @@ var Misc = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'demo-container container' },
+			{ className: "demo-container container" },
 			React.createElement(
 				'h1',
 				null,
@@ -6893,7 +6762,7 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'p',
-				{ className: 'lead' },
+				{ className: "lead" },
 				'Some components march to the beat of their own drum…'
 			),
 			React.createElement(
@@ -6903,13 +6772,13 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						Alert,
-						{ type: 'info' },
+						{ type: "info" },
 						React.createElement(
 							'strong',
 							null,
@@ -6919,7 +6788,7 @@ var Misc = React.createClass({
 					),
 					React.createElement(
 						Alert,
-						{ type: 'success' },
+						{ type: "success" },
 						React.createElement(
 							'strong',
 							null,
@@ -6929,7 +6798,7 @@ var Misc = React.createClass({
 					),
 					React.createElement(
 						Alert,
-						{ type: 'warning' },
+						{ type: "warning" },
 						React.createElement(
 							'strong',
 							null,
@@ -6939,7 +6808,7 @@ var Misc = React.createClass({
 					),
 					React.createElement(
 						Alert,
-						{ type: 'danger' },
+						{ type: "danger" },
 						React.createElement(
 							'strong',
 							null,
@@ -6961,7 +6830,7 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -7001,22 +6870,22 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'children'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'node'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Required'
 							)
 						),
@@ -7025,51 +6894,51 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'type'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Required. One of:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'danger'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'info'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'success'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'warning'
 								)
 							)
@@ -7084,15 +6953,15 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
-					React.createElement(Pill, { label: 'Create', type: 'success-inverted' }),
-					React.createElement(Pill, { label: 'First Pill', type: 'primary', showClearButton: true }),
-					React.createElement(Pill, { label: 'Second Pill', type: 'primary', showClearButton: true }),
-					React.createElement(Pill, { label: 'Third Pill', type: 'primary', showClearButton: true }),
-					React.createElement(Pill, { label: 'Clear All' })
+					{ className: "code-example__example" },
+					React.createElement(Pill, { label: "Create", type: "success-inverted" }),
+					React.createElement(Pill, { label: "First Pill", type: "primary", showClearButton: true }),
+					React.createElement(Pill, { label: "Second Pill", type: "primary", showClearButton: true }),
+					React.createElement(Pill, { label: "Third Pill", type: "primary", showClearButton: true }),
+					React.createElement(Pill, { label: "Clear All" })
 				),
 				React.createElement(
 					ExampleSource,
@@ -7107,7 +6976,7 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -7147,22 +7016,22 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'showClearButton'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Display the clear button, rendered beside the label'
 							)
 						),
@@ -7171,22 +7040,22 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'label'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Required. The tag label'
 							)
 						),
@@ -7195,22 +7064,22 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'onClear'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'func'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Run when the user clicks the clear button'
 							)
 						),
@@ -7219,93 +7088,93 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'type'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'default\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'One of:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'danger'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'default'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'info'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'success'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'warning'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'danger-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'default-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'info-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'primary-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'success-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'warning-inverted'
 								)
 							)
@@ -7319,7 +7188,7 @@ var Misc = React.createClass({
 
 module.exports = Misc;
 
-},{"../components/ExampleSource":51,"elemental":undefined,"react":undefined}],60:[function(require,module,exports){
+},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],59:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -7385,17 +7254,17 @@ module.exports = React.createClass({
 		// variable submit button
 		var submitButton = this.state.formProcessing ? React.createElement(
 			Button,
-			{ type: 'primary', disabled: true },
-			React.createElement(Spinner, { type: 'inverted' }),
+			{ type: "primary", disabled: true },
+			React.createElement(Spinner, { type: "inverted" }),
 			'Submitting'
 		) : React.createElement(
 			Button,
-			{ type: 'primary', disabled: !this.state.email || !this.state.password, submit: true },
+			{ type: "primary", disabled: !this.state.email || !this.state.password, submit: true },
 			'Submit'
 		);
 		return React.createElement(
 			'div',
-			{ className: 'demo-container container' },
+			{ className: "demo-container container" },
 			React.createElement(
 				'h1',
 				null,
@@ -7408,14 +7277,14 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'Modal-content' },
-						React.createElement(ModalHeader, { text: 'Modal Header', showCloseButton: true }),
+						{ className: "Modal-content" },
+						React.createElement(ModalHeader, { text: "Modal Header", showCloseButton: true }),
 						React.createElement(
 							ModalBody,
 							null,
@@ -7430,12 +7299,12 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								Button,
-								{ type: 'primary' },
+								{ type: "primary" },
 								'Modal Footer'
 							),
 							React.createElement(
 								Button,
-								{ type: 'link-cancel' },
+								{ type: "link-cancel" },
 								'Button'
 							)
 						)
@@ -7454,10 +7323,10 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						Button,
 						{ onClick: this.toggleModal },
@@ -7492,7 +7361,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -7532,22 +7401,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'backdropClosesModal'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Pass through to make the backdrop available as a target to dismiss the modal.'
 							)
 						),
@@ -7556,22 +7425,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'isOpen'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Managed by state;  this is how to control the visibility of the modal.'
 							)
 						),
@@ -7580,26 +7449,26 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'onCancel'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'func'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'The function used to handle cancel events on the modal; typically sets the open state to ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'false'
 								)
 							)
@@ -7609,22 +7478,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'top'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.'
 							)
 						)
@@ -7638,7 +7507,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -7678,22 +7547,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'children'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'node'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Alternative to using the text attribute, for when you need more control over the content.'
 							)
 						),
@@ -7702,22 +7571,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'showCloseButton'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Allow users to dismiss the modal.'
 							)
 						),
@@ -7726,22 +7595,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'onClose'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'func'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'What to do when the user clicks the close button'
 							)
 						),
@@ -7750,26 +7619,26 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'text'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Creates a title for the modal. We use "text" because ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'title'
 								),
 								' is reserved.'
@@ -7791,22 +7660,22 @@ module.exports = React.createClass({
 			React.createElement(
 				Modal,
 				{ isOpen: this.state.modalIsOpen, onCancel: this.toggleModal, backdropClosesModal: true },
-				React.createElement(ModalHeader, { text: 'Live Demo', showCloseButton: true, onClose: this.toggleModal }),
+				React.createElement(ModalHeader, { text: "Live Demo", showCloseButton: true, onClose: this.toggleModal }),
 				React.createElement(
 					'form',
-					{ action: '#', onSubmit: this.submitForm, noValidate: true },
+					{ action: "#", onSubmit: this.submitForm, noValidate: true },
 					React.createElement(
 						ModalBody,
 						null,
 						React.createElement(
 							FormField,
-							{ label: 'Email' },
-							React.createElement(FormInput, { label: 'Email', type: 'email', name: 'email', ref: 'email', value: this.state.email, onChange: updateInput, required: true })
+							{ label: "Email" },
+							React.createElement(FormInput, { label: "Email", type: "email", name: "email", ref: "email", value: this.state.email, onChange: updateInput, required: true })
 						),
 						React.createElement(
 							FormField,
-							{ label: 'Password' },
-							React.createElement(FormInput, { label: 'Password', type: 'password', name: 'password', ref: 'password', value: this.state.password, onChange: updateInput, required: true })
+							{ label: "Password" },
+							React.createElement(FormInput, { label: "Password", type: "password", name: "password", ref: "password", value: this.state.password, onChange: updateInput, required: true })
 						)
 					),
 					React.createElement(
@@ -7815,7 +7684,7 @@ module.exports = React.createClass({
 						submitButton,
 						React.createElement(
 							Button,
-							{ onClick: this.toggleModal, type: 'link-cancel', disabled: this.state.formProcessing },
+							{ onClick: this.toggleModal, type: "link-cancel", disabled: this.state.formProcessing },
 							'Cancel'
 						)
 					)
@@ -7825,7 +7694,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../components/ExampleSource":51,"elemental":undefined,"react/addons":undefined}],61:[function(require,module,exports){
+},{"../components/ExampleSource":50,"elemental":undefined,"react/addons":undefined}],60:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -7843,7 +7712,7 @@ var Buttons = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'demo-container container' },
+			{ className: "demo-container container" },
 			React.createElement(
 				'h1',
 				null,
@@ -7851,29 +7720,29 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Independent'
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-center code-example__example-element--inline' },
+						{ className: "demo-box u-text-center code-example__example-element--inline" },
 						React.createElement(Spinner, null)
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-center code-example__example-element--inline' },
-						React.createElement(Spinner, { type: 'primary' })
+						{ className: "demo-box u-text-center code-example__example-element--inline" },
+						React.createElement(Spinner, { type: "primary" })
 					),
 					React.createElement(
 						'div',
-						{ className: 'demo-box u-text-center code-example__example-element--inline code-example__example-element--primary-bg' },
-						React.createElement(Spinner, { type: 'inverted' })
+						{ className: "demo-box u-text-center code-example__example-element--inline code-example__example-element--primary-bg" },
+						React.createElement(Spinner, { type: "inverted" })
 					)
 				),
 				React.createElement(
@@ -7884,18 +7753,18 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'code-example' },
+				{ className: "code-example" },
 				React.createElement(
 					'div',
-					{ className: 'code-example__example' },
+					{ className: "code-example__example" },
 					React.createElement(
 						'div',
-						{ className: 'code-example__example__heading' },
+						{ className: "code-example__example__heading" },
 						'Inside Buttons'
 					),
 					React.createElement(
 						'div',
-						{ className: 'code-example__example-element--inline' },
+						{ className: "code-example__example-element--inline" },
 						React.createElement(
 							Button,
 							{ disabled: true },
@@ -7904,21 +7773,21 @@ var Buttons = React.createClass({
 					),
 					React.createElement(
 						'div',
-						{ className: 'code-example__example-element--inline' },
+						{ className: "code-example__example-element--inline" },
 						React.createElement(
 							Button,
 							{ disabled: true },
-							React.createElement(Spinner, { type: 'primary' }),
+							React.createElement(Spinner, { type: "primary" }),
 							'Saving'
 						)
 					),
 					React.createElement(
 						'div',
-						{ className: 'code-example__example-element--inline' },
+						{ className: "code-example__example-element--inline" },
 						React.createElement(
 							Button,
-							{ type: 'primary', disabled: true },
-							React.createElement(Spinner, { type: 'inverted' }),
+							{ type: "primary", disabled: true },
+							React.createElement(Spinner, { type: "inverted" }),
 							'Saving'
 						)
 					)
@@ -7936,7 +7805,7 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'usage-table' },
+				{ className: "usage-table" },
 				React.createElement(
 					Table,
 					null,
@@ -7976,22 +7845,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'size'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								React.createElement(
 									'p',
 									null,
@@ -7999,13 +7868,13 @@ var Buttons = React.createClass({
 									React.createElement('br', null),
 									React.createElement(
 										'code',
-										{ className: 'inline-code' },
+										{ className: "inline-code" },
 										'sm'
 									),
 									' ',
 									React.createElement(
 										'code',
-										{ className: 'inline-code' },
+										{ className: "inline-code" },
 										'lg'
 									)
 								),
@@ -8017,39 +7886,39 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: 'usage-table__prop' },
+								{ className: "usage-table__prop" },
 								'type'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__type' },
+								{ className: "usage-table__type" },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__default' },
+								{ className: "usage-table__default" },
 								'default'
 							),
 							React.createElement(
 								'td',
-								{ className: 'usage-table__description' },
+								{ className: "usage-table__description" },
 								'Declare the colour of the dots in the spinner. Possible options:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'default'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: 'inline-code' },
+									{ className: "inline-code" },
 									'inverted'
 								)
 							)
@@ -8063,4 +7932,155 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/ExampleSource":51,"elemental":undefined,"react":undefined}]},{},[1]);
+},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],61:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Router = require('react-router');
+
+var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
+// { value: 'date-picker', label: 'Date Picker' }
+];
+
+var PageNav = React.createClass({
+	displayName: 'PageNav',
+
+	getInitialState: function getInitialState() {
+		return {
+			mobileMenuIsVisible: false,
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
+		};
+	},
+
+	handleResize: function handleResize(e) {
+		this.setState({
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
+		});
+	},
+
+	componentDidMount: function componentDidMount() {
+		window.addEventListener('resize', this.handleResize);
+	},
+
+	componentWillUnmount: function componentWillUnmount() {
+		window.removeEventListener('resize', this.handleResize);
+	},
+
+	toggleMenu: function toggleMenu() {
+		this.setState({
+			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
+		});
+	},
+
+	render: function render() {
+		var self = this;
+		var height = this.state.windowWidth < 768 ? this.state.windowHeight : 'auto';
+		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
+		var menuItems = NavItems.map(function (item) {
+			return React.createElement(
+				Router.Link,
+				{ key: item.value, className: "primary-nav__item", onClick: self.toggleMenu, to: item.value },
+				React.createElement(
+					'span',
+					{ className: "primary-nav__item-inner" },
+					item.label
+				)
+			);
+		});
+		return React.createElement(
+			'nav',
+			{ className: "primary-nav" },
+			React.createElement(
+				Router.Link,
+				{ to: "home", className: "primary-nav__brand special", title: "Home" },
+				React.createElement('img', { src: "./images/elemental-logo-paths.svg", className: "primary-nav__brand-src" })
+			),
+			React.createElement(
+				'button',
+				{ onClick: this.toggleMenu, className: "primary-nav__item primary-nav-menu-trigger" },
+				React.createElement('span', { className: "primary-nav-menu-trigger-icon octicon octicon-navicon" }),
+				React.createElement(
+					'span',
+					{ className: "primary-nav-menu-trigger-label" },
+					this.state.mobileMenuIsVisible ? 'Close' : 'Menu'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: menuClass, style: { height: height } },
+				React.createElement(
+					'div',
+					{ className: "primary-nav-menu-inner" },
+					menuItems
+				)
+			),
+			React.createElement(
+				'a',
+				{ href: "https://github.com/elementalui/elemental", target: "_blank", title: "View on GitHub", className: "primary-nav__brand right" },
+				React.createElement('img', { src: "./images/github-logo.svg", className: "primary-nav__brand-src" })
+			)
+		);
+	}
+});
+
+var App = React.createClass({
+	displayName: 'App',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: "page-wrapper" },
+			React.createElement(PageNav, null),
+			React.createElement(
+				'div',
+				{ className: "page-body" },
+				React.createElement(Router.RouteHandler, null)
+			),
+			React.createElement(
+				'div',
+				{ className: "page-footer" },
+				React.createElement(
+					'div',
+					{ className: "demo-container container" },
+					'Copyright © 2015 · (MIT) License · Built by ',
+					React.createElement(
+						'a',
+						{ href: "http://www.thinkmill.com.au", target: "_blank" },
+						'Thinkmill'
+					),
+					', initially for integration with ',
+					React.createElement(
+						'a',
+						{ href: "http://www.keystonejs.com", target: "_blank" },
+						'KeystoneJS'
+					)
+				)
+			)
+		);
+	}
+});
+
+var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
+
+var routes = React.createElement(
+	Router.Route,
+	{ name: "app", path: basepath + '/', handler: App },
+	React.createElement(Router.Route, { name: "home", path: basepath + '/', handler: require('./pages/Home') }),
+	React.createElement(Router.Route, { name: "css", path: basepath + '/css', handler: require('./pages/CSS') }),
+	React.createElement(Router.Route, { name: "buttons", path: basepath + '/buttons', handler: require('./pages/Buttons') }),
+	React.createElement(Router.Route, { name: "forms", path: basepath + '/forms', handler: require('./pages/Forms') }),
+	React.createElement(Router.Route, { name: "spinner", path: basepath + '/spinner', handler: require('./pages/Spinner') }),
+	React.createElement(Router.Route, { name: "modal", path: basepath + '/modal', handler: require('./pages/Modal') }),
+	React.createElement(Router.Route, { name: "misc", path: basepath + '/misc', handler: require('./pages/Misc') }),
+	React.createElement(Router.Route, { name: "date-picker", path: basepath + '/date-picker', handler: require('./pages/DatePicker') }),
+	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
+);
+
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+	React.render(React.createElement(Handler, null), document.body);
+});
+/*<Router.Link to="home">Home</Router.Link>*/
+
+},{"./pages/Buttons":53,"./pages/CSS":54,"./pages/DatePicker":55,"./pages/Forms":56,"./pages/Home":57,"./pages/Misc":58,"./pages/Modal":59,"./pages/Spinner":60,"react":undefined,"react-router":30}]},{},[61]);

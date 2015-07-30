@@ -3032,6 +3032,94 @@ h6,
   border-color: #a72424 #bc2929 #d12d2d;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+.Button--hollow-primary {
+  background: none;
+  border-color: #71b5ef;
+  color: #1385e5;
+}
+.Button--hollow-primary:hover,
+.Button--hollow-primary:focus {
+  background-color: #f2f7fc;
+  background-image: none;
+  border-color: #439de9;
+  color: #1385e5;
+  outline: none;
+}
+.Button--hollow-primary:focus,
+.Button--hollow-primary.focus {
+  box-shadow: 0 0 0 3px rgba(113, 181, 239, 0.1);
+}
+.Button--hollow-primary:active {
+  background-color: rgba(113, 181, 239, 0.2);
+  border-color: #1a85df;
+  box-shadow: none;
+}
+.Button--hollow-success {
+  background: none;
+  border-color: #84da8c;
+  color: #34c240;
+}
+.Button--hollow-success:hover,
+.Button--hollow-success:focus {
+  background-color: #f3faf4;
+  background-image: none;
+  border-color: #5dce67;
+  color: #34c240;
+  outline: none;
+}
+.Button--hollow-success:focus,
+.Button--hollow-success.focus {
+  box-shadow: 0 0 0 3px rgba(132, 218, 140, 0.1);
+}
+.Button--hollow-success:active {
+  background-color: rgba(132, 218, 140, 0.2);
+  border-color: #3abe45;
+  box-shadow: none;
+}
+.Button--hollow-warning {
+  background: none;
+  border-color: #fbc590;
+  color: #fa9f47;
+}
+.Button--hollow-warning:hover,
+.Button--hollow-warning:focus {
+  background-color: #fdf8f4;
+  background-image: none;
+  border-color: #faab5e;
+  color: #fa9f47;
+  outline: none;
+}
+.Button--hollow-warning:focus,
+.Button--hollow-warning.focus {
+  box-shadow: 0 0 0 3px rgba(251, 197, 144, 0.1);
+}
+.Button--hollow-warning:active {
+  background-color: rgba(251, 197, 144, 0.2);
+  border-color: #f8912d;
+  box-shadow: none;
+}
+.Button--hollow-danger {
+  background: none;
+  border-color: #e68d8d;
+  color: #d64242;
+}
+.Button--hollow-danger:hover,
+.Button--hollow-danger:focus {
+  background-color: #fbf4f4;
+  background-image: none;
+  border-color: #dc6363;
+  color: #d64242;
+  outline: none;
+}
+.Button--hollow-danger:focus,
+.Button--hollow-danger.focus {
+  box-shadow: 0 0 0 3px rgba(230, 141, 141, 0.1);
+}
+.Button--hollow-danger:active {
+  background-color: rgba(230, 141, 141, 0.2);
+  border-color: #d33939;
+  box-shadow: none;
+}
 .Button--link {
   color: #1385e5;
   font-weight: normal;
@@ -3770,6 +3858,7 @@ textarea.FormInput {
   top: 0;
   width: 100%;
   z-index: 110;
+  transition: top 200ms linear;
 }
 .Modal-dialog-enter {
   -webkit-animation-name: modalDialogEnter;
