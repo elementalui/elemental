@@ -37,13 +37,13 @@ module.exports = React.createClass({
 		reader.readAsDataURL(file);
 
 		reader.onloadstart = function() {
-			console.time('onLoad')
+			console.time('onLoad');
 			self.setState({
 				loading: true
 			});
 		};
 		reader.onloadend = function(upload) {
-			console.timeEnd('onLoad')
+			console.timeEnd('onLoad');
 			self.setState({
 				loading: false,
 				file: file,
@@ -59,10 +59,6 @@ module.exports = React.createClass({
 	},
 
 	render() {
-		// helpers
-		function isEmptyObject(obj) {
-			return Object.keys(obj).length === 0;
-		}
 		var { dataURI, file } = this.state;
 
 

@@ -5,6 +5,9 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormField',
 	propTypes: {
+		className: React.PropTypes.string,
+		htmlFor: React.PropTypes.string,
+		id: React.PropTypes.string,
 		label: React.PropTypes.string,
 		offsetAbsentLabel: React.PropTypes.bool,
 		width: React.PropTypes.oneOf(['one-half', 'two-quarters', 'three-sixths', 'one-quarter', 'three-quarters', 'one-third', 'two-sixths', 'two-thirds', 'four-sixths', 'one-fifth', 'two-fifths', 'three-fifths', 'four-fifths', 'one-sixth', 'five-sixths'])

@@ -8,6 +8,7 @@ module.exports = React.createClass({
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
 		className: React.PropTypes.string,
+		disabled: React.PropTypes.bool,
 		firstOption: React.PropTypes.string,
 		htmlFor: React.PropTypes.string,
 		id: React.PropTypes.string,
@@ -87,7 +88,7 @@ module.exports = React.createClass({
 			'FormSelect__arrows--disabled': this.props.disabled
 		});
 
-		return <span dangerouslySetInnerHTML={{__html: icon}} className={iconClassname} />;
+		return <span dangerouslySetInnerHTML={{ __html: icon }} className={iconClassname} />;
 	},
 
 	render() {
