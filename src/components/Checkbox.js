@@ -4,6 +4,8 @@ var React = require('react/addons');
 
 var Checkbox = React.createClass({
 	propTypes: {
+		className: React.PropTypes.string,
+		disabled: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string
 	},
@@ -13,7 +15,7 @@ var Checkbox = React.createClass({
 			'Checkbox--inline': this.props.inline
 		}, this.props.className);
 		var props = blacklist(this.props, 'className', 'label');
-		
+
 		return (
 			<label className={componentClass}>
 				<input type="checkbox" className="Checkbox__input" {...props} />
