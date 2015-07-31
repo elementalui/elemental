@@ -12,8 +12,8 @@ module.exports = React.createClass({
 		buttonHasDisclosureArrow: React.PropTypes.bool,
 		buttonLabel: React.PropTypes.string,
 		buttonType: React.PropTypes.string,
-		className: React.PropTypes.string,
 		children: React.PropTypes.element,
+		className: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
 		items: React.PropTypes.array.isRequired,
 		onSelect: React.PropTypes.func
