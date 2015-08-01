@@ -1,7 +1,7 @@
 /* eslint no-script-url: 0 */
 
 var React = require('react');
-var { Dropdown, Table, Tooltip, Button, ButtonGroup } = require('elemental');
+var { Dropdown, Table, Button, ButtonGroup } = require('elemental');
 
 var ExampleSource = require('../components/ExampleSource');
 
@@ -205,7 +205,7 @@ var Buttons = React.createClass({
 									<code className="inline-code">primary</code> <code className="inline-code">success</code> <code className="inline-code">warning</code> <code className="inline-code">danger</code>
 									<br />
 									<code className="inline-code">link</code> <code className="inline-code">link-text</code> <code className="inline-code">link-cancel</code> <code className="inline-code">link-delete</code>
-			 					</td>
+								</td>
 							</tr>
 						</tbody>
 					</Table>

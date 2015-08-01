@@ -56,7 +56,7 @@ module.exports = React.createClass({
 			var newState = {};
 			newState[e.target.name] = e.target.value;
 			self.setState(newState);
-		};
+		}
 
 		// variable submit button
 		var submitButton = this.state.formProcessing ? (

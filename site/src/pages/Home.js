@@ -1,5 +1,4 @@
 var React = require('react');
-var Button = require('elemental').Button;
 var Router = require('react-router');
 
 const NavItems = [
@@ -8,7 +7,7 @@ const NavItems = [
 	{ value: 'forms',   icon: 'diff-modified', label: 'Forms' },
 	{ value: 'spinner', icon: 'ellipsis',      label: 'Spinner' },
 	{ value: 'modal',   icon: 'versions',      label: 'Modal' },
-	{ value: 'misc',    icon: 'code',          label: 'Misc' },
+	{ value: 'misc',    icon: 'code',          label: 'Misc' }
 	// { value: 'date-picker', icon: 'calendar', label: 'Date' }
 ];
 

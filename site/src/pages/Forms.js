@@ -90,14 +90,6 @@ var Forms = React.createClass({
 			return { label: country.name, value: country.code };
 		});
 
-		var checkboxes = [1, 2, 3].map(function(item) {
-			return <Checkbox key={'checkbox_' + item} name={'checkbox_' + item} label="Check me out" />;
-		});
-
-		var radios = [1, 2, 3].map(function(item) {
-			return <Radio key={'radio_' + item} name="supportedControlsRadios" label="Pick me" />;
-		});
-
 		// Icon Loops
 
 		var iconContextVariantsColor = COLOR_VARIANTS.map(function(color) {

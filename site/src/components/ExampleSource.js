@@ -4,12 +4,13 @@ var React = require('react');
 
 var ExampleSource = React.createClass({
 	propTypes: {
-		children: React.PropTypes.string.isRequired
+		children: React.PropTypes.string.isRequired,
+		language: React.PropTypes.string
 	},
 	getDefaultProps () {
 		return {
 			language: 'markup'
-		}
+		};
 	},
 	componentDidMount () {
 		this.highlight();
