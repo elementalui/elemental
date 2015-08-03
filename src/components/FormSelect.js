@@ -13,7 +13,12 @@ module.exports = React.createClass({
 		id: React.PropTypes.string,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
-		options: React.PropTypes.array.isRequired,
+		options: React.PropTypes.arrayOf(
+			React.PropTypes.shape({
+				label: React.PropTypes.string,
+				value: React.PropTypes.string
+			})
+		).isRequired,
 		prependEmptyOption: React.PropTypes.bool,
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
