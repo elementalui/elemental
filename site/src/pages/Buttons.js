@@ -133,10 +133,10 @@ var Buttons = React.createClass({
 					</div>
 					<ExampleSource>
 						{`
-							<Button type="default-primary">Hollow Primary</Button>
-							<Button type="default-success">Hollow Success</Button>
-							<Button type="default-warning">Hollow Warning</Button>
-							<Button type="default-danger">Hollow Danger</Button>
+							<Button type="hollow-primary">Hollow Primary</Button>
+							<Button type="hollow-success">Hollow Success</Button>
+							<Button type="hollow-warning">Hollow Warning</Button>
+							<Button type="hollow-danger">Hollow Danger</Button>
 						`}
 					</ExampleSource>
 				</div>
