@@ -4,6 +4,7 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'Spinner',
 	propTypes: {
+		className: React.PropTypes.string,
 		size: React.PropTypes.oneOf(['sm', 'md', 'lg']),
 		type: React.PropTypes.oneOf(['default', 'primary', 'inverted'])
 	},

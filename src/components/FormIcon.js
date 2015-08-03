@@ -11,7 +11,8 @@ module.exports = React.createClass({
 		color: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		icon: React.PropTypes.string,
-		isLoading: React.PropTypes.bool
+		isLoading: React.PropTypes.bool,
+		type: React.PropTypes.string
 	},
 	render() {
 		// classes

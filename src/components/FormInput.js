@@ -7,7 +7,10 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
+		href: React.PropTypes.string,
+		id: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
+		name: React.PropTypes.string,
 		noedit: React.PropTypes.bool,
 		onChange: React.PropTypes.func,
 		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),

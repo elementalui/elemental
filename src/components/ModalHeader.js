@@ -6,6 +6,7 @@ module.exports = React.createClass({
 	propTypes: {
 		children: React.PropTypes.node,
 		className: React.PropTypes.string,
+		onClose: React.PropTypes.func,
 		showCloseButton: React.PropTypes.bool,
 		text: React.PropTypes.string
 	},

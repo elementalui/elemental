@@ -4,6 +4,8 @@ var React = require('react/addons');
 
 var Radio = React.createClass({
 	propTypes: {
+		className: React.PropTypes.string,
+		disabled: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string
 	},
@@ -13,7 +15,7 @@ var Radio = React.createClass({
 			'Radio--inline': this.props.inline
 		}, this.props.className);
 		var props = blacklist(this.props, 'className', 'label');
-		
+
 		return (
 			<label className={componentClass}>
 				<input type="radio" className="Radio__input" {...props} />
