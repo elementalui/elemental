@@ -8,6 +8,7 @@ const {
 	EmailInputGroup,
 	FileDragAndDrop,
 	FileUpload,
+	Form,
 	FormField,
 	FormIconField,
 	FormInput,
@@ -117,7 +118,7 @@ var Forms = React.createClass({
 				<p>Individual form controls automatically receive some global styling. All textual <code className="inline-code">{`<FormInput>`}</code>, and <code className="inline-code">{`<FormSelect>`}</code> elements with are set to <code className="inline-code">width: 100%;</code> by default. Wrap controls in <code className="inline-code">{`<FormField>`}</code> for optimum spacing.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<form>
+						<Form>
 							<FormField label="Email address" htmlFor="basic-form-input-email">
 								<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />
 							</FormField>
@@ -128,11 +129,11 @@ var Forms = React.createClass({
 								<Checkbox label="Check it" />
 							</FormField>
 							<Button type="default">Submit</Button>
-						</form>
+						</Form>
 					</div>
 					<ExampleSource>
 						{`
-							<form>
+							<Form>
 								<FormField label="Email address" htmlFor="basic-form-input-email">
 									<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />
 								</FormField>
@@ -143,7 +144,7 @@ var Forms = React.createClass({
 									<Checkbox label="Check it" />
 								</FormField>
 								<Button type="default">Submit</Button>
-							</form>
+							</Form>
 						`}
 					</ExampleSource>
 				</div>
@@ -151,10 +152,10 @@ var Forms = React.createClass({
 
 
 				<h2>Horizontal Form</h2>
-				<p>Adding the class <code className="inline-code">.form-horizontal</code> to your wrapper (which doesn't have to be a <code className="inline-code">{`<form>`}</code> tag) changes the <code className="inline-code">FormField</code> component to behave like a row. The label width can be updated from inside the LESS variables file where it's defined as <code className="inline-code">@form-label-width</code>. This only applies to forms within viewports that are at least 768px wide.</p>
+				<p>Adding the type <code className="inline-code">horizontal</code> to your <code className="inline-code">{`<Form />`}</code> changes the <code className="inline-code">FormField</code> component to behave like a row. The label width can be updated from inside the LESS variables file where it's defined as <code className="inline-code">@form-label-width</code>. This only applies to forms within viewports that are at least 768px wide.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<form className="horizontal-form">
+						<Form type="horizontal">
 							<FormField label="Email address" htmlFor="horizontal-form-input-email">
 								<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />
 							</FormField>
@@ -167,11 +168,11 @@ var Forms = React.createClass({
 							<FormField offsetAbsentLabel>
 								<Button type="default">Submit</Button>
 							</FormField>
-						</form>
+						</Form>
 					</div>
 					<ExampleSource>
 						{`
-							<form className="horizontal-form">
+							<Form type="horizontal">
 								<FormField label="Email address" htmlFor="horizontal-form-input-email">
 									<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />
 								</FormField>
@@ -184,7 +185,7 @@ var Forms = React.createClass({
 								<FormField offsetAbsentLabel>
 									<Button type="default">Submit</Button>
 								</FormField>
-							</form>
+							</Form>
 						`}
 					</ExampleSource>
 				</div>
@@ -192,11 +193,11 @@ var Forms = React.createClass({
 
 
 				<h2>Inline Form</h2>
-				<p>Adding the class <code className="inline-code">.form-inline</code> to your wrapper (which doesn't have to be a <code className="inline-code">{`<form>`}</code> tag)  for left-aligned and inline-block controls. This only applies to forms within viewports that are at least 768px wide.</p>
+				<p>Add the type <code className="inline-code">inline</code> to your <code className="inline-code">{`<Form />`}</code> for left-aligned and inline-block controls. This only applies to forms within viewports that are at least 768px wide.</p>
 				<p>Note: you should always use labels to improve accessibility - they are only visible to screen readers. Form labels within viewports that are below 768px wide will be rendered regularly to improve usability.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<form className="inline-form">
+						<Form type="inline">
 							<FormField label="Email address" htmlFor="inline-form-input-email">
 								<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />
 							</FormField>
@@ -209,11 +210,11 @@ var Forms = React.createClass({
 							<FormField>
 								<Button type="default">Submit</Button>
 							</FormField>
-						</form>
+						</Form>
 					</div>
 					<ExampleSource>
 						{`
-							<form className="inline-form">
+							<Form type="inline">
 								<FormField label="Email address" htmlFor="inline-form-input-email">
 									<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />
 								</FormField>
@@ -226,7 +227,7 @@ var Forms = React.createClass({
 								<FormField>
 									<Button type="default">Submit</Button>
 								</FormField>
-							</form>
+							</Form>
 						`}
 					</ExampleSource>
 				</div>

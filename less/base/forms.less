@@ -43,7 +43,7 @@
 		min-width: 100%;
 
 		> .form-field {
-			display: block; // override .horizontal-form styles inside .FormRow
+			display: block; // override .Form--horizontal styles inside .FormRow
 			float: left;
 			padding: 0 (@input-padding-horizontal / 2);
 
@@ -190,7 +190,7 @@
 // Horizontal Form
 // ------------------------------
 
-.horizontal-form {
+.Form--horizontal {
 
 	// add spacing above the element when it's stacked
 	// no need to remove at higher break-points because it becomes a table cell (which aren't effected by margin)
@@ -202,7 +202,7 @@
 }
 
 @media (min-width: @screen-sm) {
-	.horizontal-form {
+	.Form--horizontal {
 		// Make the wrapper behave like a table
 		.form-field {
 			display: table;
@@ -227,7 +227,7 @@
 			}
 		}
 
-		// reset styles when using rows inside .horizontal-form
+		// reset styles when using rows inside .Form--horizontal
 		.FormRow > .form-field {
 			display: block;
 			margin-bottom: 0;
@@ -253,7 +253,7 @@
 // ------------------------------
 
 @media (min-width: @screen-sm) {
-	.inline-form {
+	.Form--inline {
 		.Checkbox,
 		.Radio,
 		.form-field {

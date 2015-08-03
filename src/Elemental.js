@@ -6,6 +6,7 @@ exports.Dropdown = require('./components/Dropdown');
 exports.EmailInputGroup = require('./components/EmailInputGroup');
 exports.FileDragAndDrop = require('./components/FileDragAndDrop');
 exports.FileUpload = require('./components/FileUpload');
+exports.Form = require('./components/Form');
 exports.FormField = require('./components/FormField');
 exports.FormIcon = require('./components/FormIcon');
 exports.FormIconField = require('./components/FormIconField');
