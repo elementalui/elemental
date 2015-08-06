@@ -5,6 +5,7 @@ logs
 # Build
 dist
 .publish
+lib
 
 # Dependencies
 node_modules
