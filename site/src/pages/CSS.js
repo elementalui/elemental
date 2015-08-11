@@ -2,7 +2,6 @@
 
 const React = require('react/addons');
 const classNames = require('classnames');
-const moment = require('moment');
 
 const ExampleSource = require('../components/ExampleSource');
 const { Table } = require('elemental');
@@ -61,9 +60,7 @@ var CSSExamples = React.createClass({
 			return row;
 		});
 
-		var tableRows = USERS.map(function(user, i) {
-			var dob = moment(user.dob, 'MMM DD, YYYY');
-			var userAge = moment().diff(dob, 'years');
+		var tableRows = USERS.map(function(user, i) {;
 			var checked = i in self.state.selectedRows;
 			var rowClass = classNames({
 				'row-selected': checked
@@ -79,7 +76,7 @@ var CSSExamples = React.createClass({
 					<td>
 						<a href="javascript:;">{user.name}</a>
 					</td>
-					<td>{userAge}</td>
+					<td>{user.age}</td>
 					<td>{user.gender.substr(0, 1).toUpperCase()}</td>
 				</tr>
 			);

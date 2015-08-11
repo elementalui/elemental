@@ -104,7 +104,7 @@ var routes = (
 		<Router.Route name="spinner" path={basepath + '/spinner'} handler={require('./pages/Spinner')} />
 		<Router.Route name="modal" path={basepath + '/modal'} handler={require('./pages/Modal')} />
 		<Router.Route name="misc" path={basepath + '/misc'} handler={require('./pages/Misc')} />
-		<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />
+		{/*<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />*/}
 		<Router.DefaultRoute handler={require('./pages/Home')} />
 	</Router.Route>
 );
