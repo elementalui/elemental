@@ -7,7 +7,7 @@ module.exports = React.createClass({
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
 		className: React.PropTypes.string,
-		type: React.PropTypes.oneOf(['horizontal', 'inline'])
+		type: React.PropTypes.oneOf(['basic', 'horizontal', 'inline'])
 	},
 	getDefaultProps () {
 		return {
