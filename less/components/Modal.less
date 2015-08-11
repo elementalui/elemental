@@ -35,8 +35,8 @@
 }
 .Modal-dialog-enter {
 	.animation-name( modalDialogEnter );
-	.animation-duration( 280ms );
-	.animation-timing-function( cubic-bezier(0.680, -0.550, 0.265, 1.550) );
+	.animation-duration( 260ms );
+	.animation-timing-function( cubic-bezier(0.500, -0.550, 0.400, 1.550) );
 }
 .Modal-dialog-leave {
 	.animation-duration( 140ms );
@@ -177,11 +177,11 @@
 // modal dialog
 
 @-webkit-keyframes modalDialogEnter {
-	from { opacity: 0; -webkit-transform: scale( .8 ); }
+	from { opacity: 0; -webkit-transform: scale( .96 ); }
 	to { opacity: 1; -webkit-transform: scale( 1 ); }
 }
 @keyframes modalDialogEnter {
-	from { opacity: 0; transform: scale( .8 ); }
+	from { opacity: 0; transform: scale( .96 ); }
 	to { opacity: 1; transform: scale( 1 ); }
 }
 
