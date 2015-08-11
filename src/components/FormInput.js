@@ -22,6 +22,9 @@ module.exports = React.createClass({
 			type: 'text'
 		};
 	},
+	focus() {
+		this.refs.element.focus();
+	},
 	render() {
 		// classes
 		var className = classNames(
@@ -36,7 +39,8 @@ module.exports = React.createClass({
 
 		var props = Object.assign(blacklist(this.props, 'className'), {
 			className: className,
-			id: this.props.id || this.props.name
+			id: this.props.id || this.props.name,
+			ref: 'element'
 		});
 
 		// element
