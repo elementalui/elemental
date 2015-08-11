@@ -1,3 +1,5 @@
+var blacklist = require('blacklist');
+var classnames = require('classnames');
 var React = require('react/addons');
 
 module.exports = React.createClass({
@@ -7,8 +9,16 @@ module.exports = React.createClass({
 		className: React.PropTypes.string,
 		type: React.PropTypes.oneOf(['horizontal', 'inline'])
 	},
+	getDefaultProps () {
+		return {
+			component: 'form',
+			type: 'basic'
+		};
+	},
 	render() {
-		var className = this.props.type ? ('Form--' + this.props.type) : null;
-		return <form {...this.props} className={className} />;
+		var props = blacklist(this.props, 'children', 'type');
+		props.className = classnames('Form', ('Form--' + this.props.type), this.props.className);
+		
+		return React.createElement(this.props.component, props, this.props.children);
 	}
 });
