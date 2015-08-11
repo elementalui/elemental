@@ -35,7 +35,6 @@ module.exports = React.createClass({
 		);
 
 		var props = Object.assign(blacklist(this.props, 'className'), {
-			onBlur: this.handleBlur,
 			className: className,
 			id: this.props.id || this.props.name
 		});
