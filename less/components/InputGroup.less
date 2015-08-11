@@ -6,9 +6,8 @@
 // wrapper
 
 .InputGroup {
-	display: table;
+	.display-flex();
 	margin-bottom: @spacing-md;
-	width: 100%;
 
 	// remove the bottom margin when inside a .form-field
 	// this occurs when using in a .horizontal-form
@@ -21,9 +20,6 @@
 // common
 
 .InputGroup_section {
-	display: table-cell;
-	vertical-align: middle;
-	width: 1%;
 
 	// add gutter to additional elements
 	& + & {
@@ -39,7 +35,7 @@
 // stretch the appropriate element - 1 per input group
 
 .InputGroup_section--grow {
-	width: 100%;
+	.flex(1,1,0);
 }
 
 
