@@ -19,7 +19,7 @@
 // Body reset
 
 html {
-	font-size: 10px;
+	font-size: @font-size-base; // apply here so we can use REMs
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
@@ -27,7 +27,6 @@ body {
 	background-color: @body-bg;
 	color: @text-color;
 	font-family: @font-family-base;
-	font-size: @font-size-base;
 	line-height: @line-height-base;
 }
 
