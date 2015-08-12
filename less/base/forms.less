@@ -158,6 +158,13 @@
 	margin-bottom: .5em;
 }
 
+// fix alignment with checkbox label
+// margin top is innefective on checkboxes
+.Checkbox__input {
+	position: relative;
+	top: -1px;
+}
+
 .Checkbox__label,
 .Radio__label {
 	margin-left: .5em;
@@ -174,6 +181,13 @@
 .Checkbox--disabled,
 .Radio--disabled {
 	color: @control-disabled-color;
+}
+
+@media (min-width: @screen-sm) {
+	.Checkbox,
+	.Radio {
+		line-height: @component-height;
+	}
 }
 
 
