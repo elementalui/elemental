@@ -14,10 +14,10 @@ var Checkbox = React.createClass({
 			'Checkbox--disabled': this.props.disabled,
 			'Checkbox--inline': this.props.inline
 		}, this.props.className);
-		var props = blacklist(this.props, 'className', 'label');
+		var props = blacklist(this.props, 'className', 'label', 'style');
 
 		return (
-			<label className={componentClass}>
+			<label className={componentClass} style={this.props.style}>
 				<input type="checkbox" className="Checkbox__input" {...props} />
 				{this.props.label && <span className="Checkbox__label">{this.props.label}</span>}
 			</label>
