@@ -783,16 +783,14 @@ var Forms = React.createClass({
 
 
 				<h2>File Upload</h2>
-				<form className="horizontal-form">
-					<div className="form-field">
-						<FormLabel verticalAlign="top">Image</FormLabel>
+				<Form type="horizontal">
+					<FormField label="Image">
 						<FileUpload buttonLabelInitial="Upload Image" buttonLabelChange="Change Image" accept="image/jpg, image/gif, image/png" />
-					</div>
-					<div className="form-field">
-						<FormLabel verticalAlign="top">Images</FormLabel>
+					</FormField>
+					<FormField label="Images">
 						<FileDragAndDrop files={this.state.files} onDrop={this.onDrop} />
-					</div>
-				</form>
+					</FormField>
+				</Form>
 			</div>
 		);
 	}
