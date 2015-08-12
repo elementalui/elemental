@@ -339,7 +339,10 @@ var Forms = React.createClass({
 							</InputGroup>
 							<InputGroup>
 								<InputGroup.Section grow>
-									<FormInput type="text" placeholder="Input group field" />
+									<FormInput type="text" placeholder="Input group field 1" />
+								</InputGroup.Section>
+								<InputGroup.Section grow>
+									<FormInput type="text" placeholder="Input group field 2" />
 								</InputGroup.Section>
 								<InputGroup.Section>
 									<Button type="primary">Primary</Button>
