@@ -85,7 +85,7 @@ module.exports = React.createClass({
 		}
 
 		// dynamic elements
-		var componentLabel = this.props.label ? <label className="form-label">{this.props.label}</label> : null;
+		var componentLabel = this.props.label ? <label className="FormLabel">{this.props.label}</label> : null;
 
 		// options
 		var radios = this.props.options.map(function(radio, i) {

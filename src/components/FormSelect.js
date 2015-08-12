@@ -110,7 +110,7 @@ module.exports = React.createClass({
 
 		// dynamic elements
 		let forAndID = this.props.htmlFor || this.props.id;
-		let componentLabel = this.props.label ? <label className="form-label" htmlFor={forAndID}>{this.props.label}</label> : null;
+		let componentLabel = this.props.label ? <label className="FormLabel" htmlFor={forAndID}>{this.props.label}</label> : null;
 
 		// options
 		let options = this.props.options.map(function(opt, i) {

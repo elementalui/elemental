@@ -13,7 +13,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		// classes
-		var className = classNames('form-label', this.props.className);
+		var className = classNames('FormLabel', this.props.className);
 
 
 		// props

@@ -81,7 +81,7 @@ module.exports = React.createClass({
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 
-		var componentLabel = this.props.label ? <label className="form-label" htmlFor="inputPassword">{this.props.label}</label> : null;
+		var componentLabel = this.props.label ? <label className="FormLabel" htmlFor="inputPassword">{this.props.label}</label> : null;
 
 		return (
 			<div className={formGroupClass}>

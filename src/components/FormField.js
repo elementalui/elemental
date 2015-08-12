@@ -25,7 +25,7 @@ module.exports = React.createClass({
 
 		// elements
 		var componentLabel = this.props.label ? (
-			<label className="form-label" htmlFor={this.props.id || this.props.htmlFor}>
+			<label className="FormLabel" htmlFor={this.props.id || this.props.htmlFor}>
 				{this.props.label}
 			</label>
 		) : null;

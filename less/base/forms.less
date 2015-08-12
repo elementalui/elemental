@@ -8,7 +8,7 @@
 // Labels
 // ------------------------------
 
-.form-label {
+.FormLabel {
 	.transition( color @form-animation-duration );
 	color: @form-label-color;
 	display: inline-block;
@@ -112,7 +112,7 @@
 // effects on other elements
 
 .FormField.is-invalid {
-	.form-label {
+	.FormLabel {
 		color: @app-danger;
 	}
 	.FormInput {
@@ -125,7 +125,7 @@
 	}
 }
 .FormField.is-valid {
-	.form-label {
+	.FormLabel {
 		color: @app-success;
 	}
 	.FormInput {
@@ -194,7 +194,7 @@
 
 	// add spacing above the element when it's stacked
 	// no need to remove at higher break-points because it becomes a table cell (which aren't effected by margin)
-	.form-label {
+	.FormLabel {
 		&:not(:first-child) {
 			margin-top: @spacing-md;
 		}
@@ -215,7 +215,7 @@
 		}
 		
 		// Fix the label width to allow the field to stretch
-		.form-label {
+		.FormLabel {
 			display: table-cell;
 			line-height: @component-height;
 			margin-bottom: 0;
@@ -233,7 +233,7 @@
 			margin-bottom: 0;
 			min-width: 0;
 
-			> .form-label {
+			> .FormLabel {
 				display: block;
 			}
 
@@ -270,7 +270,7 @@
 			line-height: 2.4em;
 			margin: 0 @input-padding-horizontal;
 		}
-		.form-label {
+		.FormLabel {
 			.u-hidden-visually();
 		}
 	}
