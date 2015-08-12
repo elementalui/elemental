@@ -23,7 +23,7 @@
 // Groups
 // ------------------------------
 
-.form-field {
+.FormField {
 	margin-bottom: @spacing-md;
 	position: relative;
 }
@@ -42,7 +42,7 @@
 		margin: 0 -(@input-padding-horizontal / 2) @spacing-md;
 		min-width: 100%;
 
-		> .form-field {
+		> .FormField {
 			display: block; // override .Form--horizontal styles inside .FormRow
 			float: left;
 			padding: 0 (@input-padding-horizontal / 2);
@@ -71,7 +71,7 @@
 	}
 
 	// inside a form field
-	.form-field > .FormRow {
+	.FormField > .FormRow {
 		margin-bottom: 0;
 	}
 }
@@ -111,7 +111,7 @@
 
 // effects on other elements
 
-.form-field.is-invalid {
+.FormField.is-invalid {
 	.form-label {
 		color: @app-danger;
 	}
@@ -124,7 +124,7 @@
 		}
 	}
 }
-.form-field.is-valid {
+.FormField.is-valid {
 	.form-label {
 		color: @app-success;
 	}
@@ -204,7 +204,7 @@
 @media (min-width: @screen-sm) {
 	.Form--horizontal {
 		// Make the wrapper behave like a table
-		.form-field {
+		.FormField {
 			display: table;
 			table-layout: fixed;
 			width: 100%;
@@ -228,7 +228,7 @@
 		}
 
 		// reset styles when using rows inside .Form--horizontal
-		.FormRow > .form-field {
+		.FormRow > .FormField {
 			display: block;
 			margin-bottom: 0;
 			min-width: 0;
@@ -256,7 +256,7 @@
 	.Form--inline {
 		.Checkbox,
 		.Radio,
-		.form-field {
+		.FormField {
 			display: inline-block;
 			padding-left: .25em;
 			padding-right: .25em;

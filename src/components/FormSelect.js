@@ -96,7 +96,7 @@ module.exports = React.createClass({
 		let props = blacklist(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className');
 
 		// classes
-		let componentClass = classNames('form-field', {
+		let componentClass = classNames('FormField', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 

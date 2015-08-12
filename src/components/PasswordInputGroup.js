@@ -77,7 +77,7 @@ module.exports = React.createClass({
 				</div>
 			);
 		}
-		var formGroupClass = classNames('form-field', {
+		var formGroupClass = classNames('FormField', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 

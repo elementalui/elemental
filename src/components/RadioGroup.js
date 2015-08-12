@@ -72,7 +72,7 @@ module.exports = React.createClass({
 		var props = blacklist(this.props, 'alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value');
 
 		// classes
-		var componentClass = classNames('form-field', {
+		var componentClass = classNames('FormField', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 

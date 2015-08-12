@@ -14,7 +14,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		// classes
-		var componentClass = classNames('form-field', {
+		var componentClass = classNames('FormField', {
 			'offset-absent-label': this.props.offsetAbsentLabel
 		}, this.props.width, this.props.className);
 
