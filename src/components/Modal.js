@@ -5,6 +5,8 @@ var classNames = require('classnames');
 var ReactInterval = require('react-interval');
 var { shouldComponentUpdate } = require('react/lib/ReactComponentWithPureRenderMixin');
 
+const ESC_KEYCODE = 27;
+
 const safeTop = element => {
 	const { innerHeight, pageYOffset, getComputedStyle } = window;
 	const { clientHeight, offsetTop } = element;
@@ -37,6 +39,21 @@ module.exports = React.createClass({
 	getInitialState() {
 		return { top: typeof this.props.top !== 'undefined' ? this.props.top : window.pageYOffset };
 	},
+	
+	componentDidMount: function() {
+		window.addEventListener('keydown', this.handleKeyDown);
+	},
+	
+	componentWillUnMount: function() {
+		window.removeEventListener('keydown', this.handleKeyDown);
+	},
+	
+	handleKeyDown (e) {
+		if ( e.keyCode == ESC_KEYCODE ) {
+			this.props.onCancel();
+		}
+	},
+	
 	shouldComponentUpdate,
 	updateTop() {
 		const top = safeTop(React.findDOMNode(this.refs.dialog));
