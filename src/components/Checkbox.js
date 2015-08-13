@@ -6,9 +6,23 @@ var Checkbox = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
+		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string
 	},
+	
+	componentDidMount () {
+		this.setIndeterminate(this.props.indeterminate);
+	},
+	
+	componentWillReceiveProps (nextProps) {
+		this.setIndeterminate(nextProps.indeterminate);
+	},
+	
+	setIndeterminate (value) {
+		this.refs.target.getDOMNode().indeterminate = value;
+	},
+	
 	render() {
 		var componentClass = classNames('Checkbox', {
 			'Checkbox--disabled': this.props.disabled,
@@ -18,7 +32,7 @@ var Checkbox = React.createClass({
 
 		return (
 			<label className={componentClass} style={this.props.style}>
-				<input type="checkbox" className="Checkbox__input" {...props} />
+				<input ref="target" type="checkbox" className="Checkbox__input" {...props} />
 				{this.props.label && <span className="Checkbox__label">{this.props.label}</span>}
 			</label>
 		);
