@@ -1,7 +1,7 @@
 @-webkit-keyframes modalDialogEnter {
   from {
     opacity: 0;
-    -webkit-transform: scale(0.8);
+    -webkit-transform: scale(0.96);
   }
   to {
     opacity: 1;
@@ -11,7 +11,7 @@
 @keyframes modalDialogEnter {
   from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
@@ -113,7 +113,7 @@
 @-webkit-keyframes popoutEnter {
   from {
     opacity: 0;
-    -webkit-transform: translate3d(0, 10%, 0);
+    -webkit-transform: translate3d(0, 10px, 0);
   }
   to {
     opacity: 1;
@@ -123,7 +123,7 @@
 @keyframes popoutEnter {
   from {
     opacity: 0;
-    transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 10px, 0);
   }
   to {
     opacity: 1;
@@ -137,7 +137,7 @@
   }
   to {
     opacity: 0;
-    -webkit-transform: translate3d(0, 10%, 0);
+    -webkit-transform: translate3d(0, 20px, 0);
   }
 }
 @keyframes popoutLeave {
@@ -147,7 +147,7 @@
   }
   to {
     opacity: 0;
-    transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 20px, 0);
   }
 }
 @-webkit-keyframes fadeIn {
@@ -216,65 +216,81 @@
 }
 @-webkit-keyframes slideInFromLeft {
   from {
+    opacity: 0;
     -webkit-transform: translate3d(-100%, 0, 0);
   }
   to {
+    opacity: 1;
     -webkit-transform: none;
   }
 }
 @keyframes slideInFromLeft {
   from {
+    opacity: 0;
     transform: translate3d(-100%, 0, 0);
   }
   to {
+    opacity: 1;
     transform: none;
   }
 }
 @-webkit-keyframes slideInFromRight {
   from {
+    opacity: 0;
     -webkit-transform: translate3d(100%, 0, 0);
   }
   to {
+    opacity: 1;
     -webkit-transform: none;
   }
 }
 @keyframes slideInFromRight {
   from {
+    opacity: 0;
     transform: translate3d(100%, 0, 0);
   }
   to {
+    opacity: 1;
     transform: none;
   }
 }
 @-webkit-keyframes slideOutToLeft {
   from {
+    opacity: 1;
     -webkit-transform: none;
   }
   to {
+    opacity: 0;
     -webkit-transform: translate3d(-100%, 0, 0);
   }
 }
 @keyframes slideOutToLeft {
   from {
+    opacity: 1;
     transform: none;
   }
   to {
+    opacity: 0;
     transform: translate3d(-100%, 0, 0);
   }
 }
 @-webkit-keyframes slideOutToRight {
   from {
+    opacity: 1;
     -webkit-transform: none;
   }
   to {
+    opacity: 0;
     -webkit-transform: translate3d(100%, 0, 0);
   }
 }
 @keyframes slideOutToRight {
   from {
+    opacity: 1;
     transform: none;
   }
   to {
+    opacity: 0;
     transform: translate3d(100%, 0, 0);
   }
 }
@@ -337,17 +353,15 @@
 .octicon + .disclosure-arrow {
   margin-left: 0;
 }
-.form-label {
+.FormLabel {
   -webkit-transition: color 280ms;
   -o-transition: color 280ms;
   transition: color 280ms;
   color: #777777;
   display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
   margin-bottom: 0.5em;
 }
-.form-field {
+.FormField {
   margin-bottom: 1em;
   position: relative;
 }
@@ -356,49 +370,49 @@
     margin: 0 -0.375em 1em;
     min-width: 100%;
   }
-  .FormRow > .form-field {
+  .FormRow > .FormField {
     display: block;
     float: left;
     padding: 0 0.375em;
   }
-  .FormRow > .form-field.one-half,
-  .FormRow > .form-field.two-quarters,
-  .FormRow > .form-field.three-sixths {
+  .FormRow > .FormField.one-half,
+  .FormRow > .FormField.two-quarters,
+  .FormRow > .FormField.three-sixths {
     width: 50%;
   }
-  .FormRow > .form-field.one-quarter {
+  .FormRow > .FormField.one-quarter {
     width: 25%;
   }
-  .FormRow > .form-field.three-quarters {
+  .FormRow > .FormField.three-quarters {
     width: 75%;
   }
-  .FormRow > .form-field.one-third,
-  .FormRow > .form-field.two-sixths {
+  .FormRow > .FormField.one-third,
+  .FormRow > .FormField.two-sixths {
     width: 33.333%;
   }
-  .FormRow > .form-field.two-thirds,
-  .FormRow > .form-field.four-sixths {
+  .FormRow > .FormField.two-thirds,
+  .FormRow > .FormField.four-sixths {
     width: 66.666%;
   }
-  .FormRow > .form-field.one-fifth {
+  .FormRow > .FormField.one-fifth {
     width: 20%;
   }
-  .FormRow > .form-field.two-fifths {
+  .FormRow > .FormField.two-fifths {
     width: 40%;
   }
-  .FormRow > .form-field.three-fifths {
+  .FormRow > .FormField.three-fifths {
     width: 60%;
   }
-  .FormRow > .form-field.four-fifths {
+  .FormRow > .FormField.four-fifths {
     width: 80%;
   }
-  .FormRow > .form-field.one-sixth {
+  .FormRow > .FormField.one-sixth {
     width: 16.666%;
   }
-  .FormRow > .form-field.five-sixths {
+  .FormRow > .FormField.five-sixths {
     width: 83.333%;
   }
-  .form-field > .FormRow {
+  .FormField > .FormRow {
     margin-bottom: 0;
   }
 }
@@ -406,7 +420,7 @@
   -webkit-animation: formValidationMessage 280ms ease;
   -o-animation: formValidationMessage 280ms ease;
   animation: formValidationMessage 280ms ease;
-  font-size: 10px;
+  font-size: 0.8rem;
   margin-top: .5em;
   overflow: hidden;
 }
@@ -436,23 +450,23 @@
     opacity: 1;
   }
 }
-.form-field.is-invalid .form-label {
+.FormField.is-invalid .FormLabel {
   color: #d64242;
 }
-.form-field.is-invalid .FormInput {
+.FormField.is-invalid .FormInput {
   border-color: #d64242;
 }
-.form-field.is-invalid .FormInput:focus {
+.FormField.is-invalid .FormInput:focus {
   border-color: #d64242;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(214, 66, 66, 0.1);
 }
-.form-field.is-valid .form-label {
+.FormField.is-valid .FormLabel {
   color: #34c240;
 }
-.form-field.is-valid .FormInput {
+.FormField.is-valid .FormInput {
   border-color: #34c240;
 }
-.form-field.is-valid .FormInput:focus {
+.FormField.is-valid .FormInput:focus {
   border-color: #34c240;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(52, 194, 64, 0.1);
 }
@@ -460,6 +474,10 @@
 .Radio {
   display: block;
   margin-bottom: .5em;
+}
+.Checkbox__input {
+  position: relative;
+  top: -1px;
 }
 .Checkbox__label,
 .Radio__label {
@@ -476,66 +494,72 @@
 .Radio--disabled {
   color: #999999;
 }
-.horizontal-form .form-label:not(:first-child) {
+@media (min-width: 768px) {
+  .Checkbox,
+  .Radio {
+    line-height: 2.4em;
+  }
+}
+.Form--horizontal .FormLabel:not(:first-child) {
   margin-top: 1em;
 }
 @media (min-width: 768px) {
-  .horizontal-form .form-field {
+  .Form--horizontal .FormField {
     display: table;
     table-layout: fixed;
     width: 100%;
   }
-  .horizontal-form .form-field.offset-absent-label {
+  .Form--horizontal .FormField.offset-absent-label {
     padding-left: 180px;
   }
-  .horizontal-form .form-label {
+  .Form--horizontal .FormLabel {
     display: table-cell;
     line-height: 2.4em;
     margin-bottom: 0;
     vertical-align: top;
     width: 180px;
   }
-  .horizontal-form .form-label:not(:first-child) {
+  .Form--horizontal .FormLabel:not(:first-child) {
     padding-left: 20px;
   }
-  .horizontal-form .FormRow > .form-field {
+  .Form--horizontal .FormRow > .FormField {
     display: block;
     margin-bottom: 0;
     min-width: 0;
   }
-  .horizontal-form .FormRow > .form-field > .form-label {
+  .Form--horizontal .FormRow > .FormField > .FormLabel {
     display: block;
   }
-  .horizontal-form .FormRow > .form-field .FormInput {
+  .Form--horizontal .FormRow > .FormField .FormInput {
     margin: 0;
     width: 100%;
   }
 }
 @media (min-width: 768px) {
-  .inline-form .Checkbox,
-  .inline-form .Radio,
-  .inline-form .form-field {
+  .Form--inline .Checkbox,
+  .Form--inline .Radio,
+  .Form--inline .FormField {
     display: inline-block;
     padding-left: .25em;
     padding-right: .25em;
     vertical-align: top;
   }
-  .inline-form .Checkbox:first-child,
-  .inline-form .Radio:first-child,
-  .inline-form .form-field:first-child {
+  .Form--inline .Checkbox:first-child,
+  .Form--inline .Radio:first-child,
+  .Form--inline .FormField:first-child {
     padding-left: 0;
   }
-  .inline-form .Checkbox:last-child,
-  .inline-form .Radio:last-child,
-  .inline-form .form-field:last-child {
+  .Form--inline .Checkbox:last-child,
+  .Form--inline .Radio:last-child,
+  .Form--inline .FormField:last-child {
     padding-right: 0;
   }
-  .inline-form .Checkbox,
-  .inline-form .Radio {
+  .Form--inline .Checkbox,
+  .Form--inline .Radio {
     line-height: 2.4em;
     margin: 0 0.75em;
   }
-  .inline-form .form-label {
+  .Form--inline .FormLabel {
     position: absolute !important;
     overflow: hidden !important;
     width: 1px !important;
@@ -2356,14 +2380,13 @@ th {
   box-sizing: border-box;
 }
 html {
-  font-size: 10px;
+  font-size: 14px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
   background-color: #fdfdfd;
   color: #333333;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
   line-height: 1.4;
 }
 input,
@@ -2460,7 +2483,7 @@ table {
 .Table-section {
   background-color: #fafafa;
   color: #666666;
-  font-size: 12px;
+  font-size: 0.9rem;
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -2569,7 +2592,7 @@ h6,
 }
 .lead {
   color: #666666;
-  font-size: 18px;
+  font-size: 1.25rem;
   font-weight: 300;
   margin-top: 2em;
 }
@@ -3294,13 +3317,13 @@ fieldset[disabled] .Button--link-delete {
   color: white;
 }
 .Button--lg {
-  font-size: 18px;
+  font-size: 1.25rem;
 }
 .Button--sm {
-  font-size: 12px;
+  font-size: 0.9rem;
 }
 .Button--xs {
-  font-size: 10px;
+  font-size: 0.8rem;
   line-height: 1.9;
   padding-left: .66em;
   padding-right: .66em;
@@ -3421,7 +3444,7 @@ fieldset[disabled] .Button--link-delete {
 .Dropdown-menu__header {
   color: #999999;
   display: block;
-  font-size: 12px;
+  font-size: 0.9rem;
   font-weight: 500;
   line-height: 1.4;
   margin-top: 1em;
@@ -3533,9 +3556,6 @@ fieldset[disabled] .Button--link-delete {
   display: inline-block;
   margin-bottom: 1em;
 }
-.FileUpload__content {
-  overflow: hidden;
-}
 .FormInput {
   -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
@@ -3577,13 +3597,13 @@ fieldset[disabled] .Button--link-delete {
   outline: 0;
 }
 .FormInput--lg {
-  font-size: 18px;
+  font-size: 1.25rem;
 }
 .FormInput--sm {
-  font-size: 12px;
+  font-size: 0.9rem;
 }
 .FormInput--xs {
-  font-size: 10px;
+  font-size: 0.8rem;
   line-height: 1.9;
   padding-left: .66em;
   padding-right: .66em;
@@ -3598,6 +3618,7 @@ fieldset[disabled] .Button--link-delete {
   font-size: 14px;
   line-height: 2.3em;
   height: 2.4em;
+  min-width: 180px;
   padding: 0 0.75em;
   vertical-align: middle;
   width: auto;
@@ -3660,7 +3681,7 @@ textarea.FormInput {
   fill: #999999;
 }
 .FormNote {
-  font-size: 12px;
+  font-size: 0.9rem;
   margin-bottom: 0.5em;
   margin-top: 0.5em;
 }
@@ -3799,17 +3820,13 @@ textarea.FormInput {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(250, 159, 71, 0.1);
 }
 .InputGroup {
-  display: table;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   margin-bottom: 1em;
-  width: 100%;
 }
-.form-field > .InputGroup {
+.FormField > .InputGroup {
   margin-bottom: 0;
-}
-.InputGroup_section {
-  display: table-cell;
-  vertical-align: middle;
-  width: 1%;
 }
 .InputGroup_section + .InputGroup_section {
   padding-left: .5em;
@@ -3818,7 +3835,9 @@ textarea.FormInput {
   padding-left: 0;
 }
 .InputGroup_section--grow {
-  width: 100%;
+  -webkit-flex: 1 1 0;
+  -ms-flex: 1 1 0;
+  flex: 1 1 0;
 }
 .InputGroup_section > .FormInput,
 .InputGroup_section > .Button {
@@ -3863,10 +3882,10 @@ textarea.FormInput {
 .Modal-dialog-enter {
   -webkit-animation-name: modalDialogEnter;
   animation-name: modalDialogEnter;
-  -webkit-animation-duration: 280ms;
-  animation-duration: 280ms;
-  -webkit-animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-animation-duration: 260ms;
+  animation-duration: 260ms;
+  -webkit-animation-timing-function: cubic-bezier(0.5, -0.55, 0.4, 1.55);
+  animation-timing-function: cubic-bezier(0.5, -0.55, 0.4, 1.55);
 }
 .Modal-dialog-leave {
   -webkit-animation-duration: 140ms;
@@ -3963,78 +3982,6 @@ textarea.FormInput {
   animation-delay: 240ms;
   -webkit-animation-name: modalBackdropLeave;
   animation-name: modalBackdropLeave;
-}
-@-webkit-keyframes modalDialogEnter {
-  from {
-    opacity: 0;
-    -webkit-transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: scale(1);
-  }
-}
-@keyframes modalDialogEnter {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-@-webkit-keyframes modalDialogLeave {
-  from {
-    opacity: 1;
-    -webkit-transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: scale(0.8);
-  }
-}
-@keyframes modalDialogLeave {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-}
-@-webkit-keyframes modalBackdropEnter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes modalBackdropEnter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes modalBackdropLeave {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes modalBackdropLeave {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
 }
 .Pagination {
   color: #999999;
@@ -4324,8 +4271,7 @@ textarea.FormInput {
   border: 1px solid #cccccc;
   border-radius: 5px;
   display: table;
-  font-size: 12px;
-  margin-bottom: 1em;
+  font-size: 0.9rem;
   width: 100%;
 }
 .SegmentedControl--equal-widths {
@@ -4551,14 +4497,23 @@ textarea.FormInput {
 .u-clearfix:after,
 .FormRow:before,
 .FormRow:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
 .row:before,
-.row:after {
+.row:after,
+.FileUpload__content:before,
+.FileUpload__content:after {
   content: " ";
   display: table;
 }
 .u-clearfix:after,
 .FormRow:after,
-.row:after {
+.container:after,
+.container-fluid:after,
+.row:after,
+.FileUpload__content:after {
   clear: both;
 }
 /**
@@ -4699,570 +4654,6 @@ textarea.FormInput {
   word-wrap: normal !important;
   /* 2 */
 }
-.DateSelect {
-  font-size: 14px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-.DateSelect * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.DateSelect button,
-.DateSelect input,
-.DateSelect select {
-  font-size: inherit;
-  font-family: inherit;
-  margin: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-.DateSelect-dialog {
-  left: 0;
-  margin-left: auto;
-  margin-right: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-  z-index: 110;
-}
-.modal-dialog-enter {
-  -webkit-animation-name: modalDialogEnter;
-  animation-name: modalDialogEnter;
-  -webkit-animation-duration: 280ms;
-  animation-duration: 280ms;
-  -webkit-animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-.modal-dialog-leave {
-  -webkit-animation-duration: 140ms;
-  animation-duration: 140ms;
-  -webkit-animation-name: modalDialogLeave;
-  animation-name: modalDialogLeave;
-}
-.DateSelect-content {
-  background-color: #fafafa;
-  outline: none;
-  position: relative;
-}
-.DateSelectCalendar__legend:before,
-.DateSelectCalendar__month:before,
-.DateSelectCalendar__legend:after,
-.DateSelectCalendar__month:after {
-  content: " ";
-  display: table;
-}
-.DateSelectCalendar__legend:after,
-.DateSelectCalendar__month:after {
-  clear: both;
-}
-.DateSelectCalendar__legend {
-  padding: 8px 8px 0;
-}
-.DateSelectCalendar__month {
-  padding: 0 8px 8px;
-}
-.DateSelectCalendar__legend__day,
-.DateSelectCalendar__month__day {
-  float: left;
-  font-size: inherit;
-  line-height: 1;
-  padding: 10px 2px;
-  position: relative;
-  text-align: center;
-  width: 14.286%;
-}
-.DateSelectCalendar__toolbar {
-  border-bottom: 1px solid #d4d4d4;
-  position: relative;
-  text-align: center;
-}
-.DateSelectCalendar__toolbar__select {
-  background: none;
-  border: none;
-  display: inline-block;
-  font-size: inherit;
-  font-weight: 500;
-  line-height: 30px;
-  padding-left: .5em;
-  padding-right: .5em;
-}
-.DateSelectCalendar__toolbar__select:focus {
-  color: #1385e5;
-  outline: none;
-}
-.DateSelectCalendar__toolbar__button {
-  background-color: transparent;
-  background-image: none;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 20px 30px;
-  border: none;
-  display: inline-block;
-  height: 30px;
-  opacity: .6;
-  overflow: hidden;
-  position: absolute;
-  text-indent: -9999px;
-  top: 0;
-  white-space: nowrap;
-  width: 36px;
-}
-.DateSelectCalendar__toolbar__button:hover {
-  opacity: 1;
-}
-.DateSelectCalendar__toolbar__button--prev {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA8CAYAAAAUufjgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjBBQkU4NjZENUM5MTFFNEI1MkFDNEUxMUIxMzU3NDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjBBQkU4NjdENUM5MTFFNEI1MkFDNEUxMUIxMzU3NDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMEFCRTg2NEQ1QzkxMUU0QjUyQUM0RTExQjEzNTc0MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMEFCRTg2NUQ1QzkxMUU0QjUyQUM0RTExQjEzNTc0MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp2znPUAAAD9SURBVHja7JnBCQIxEEUzkgZsQkuwAW3GfrQRj+rdFkwRNuAhTiCBIARNMnFH9g989rLsPObzk+wuee+N5loY5QVAAAIQgAAEIAABCMB5A9qam4mouVHryX32FgeHDl1PCKP/VpW1ZJ1Di9o+ueygya1Yp3hVZ/GWdZOAG2HxnvWMtuZqtlgKMIXBFzQpYB4GcUCrJQwjQiIbBuGQlMIgbnHrBMn8qjpCsmM9Rk+wN8VrltNocao7a8O6arT4faE+al2o/2Kr+xQeVYBph3EaQlIqF8Nz0XbcKh75WydINY3xVtf7XjzFXyl8+gAgAAEIQAACEIAABKDqegkwAHr84FvNdKczAAAAAElFTkSuQmCC");
-  left: 0;
-}
-.DateSelectCalendar__toolbar__button--next {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA8CAYAAAAUufjgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0UyMTVBRTNENUNBMTFFNEI1MkFDNEUxMUIxMzU3NDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0UyMTVBRTRENUNBMTFFNEI1MkFDNEUxMUIxMzU3NDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMEFCRTg2OEQ1QzkxMUU0QjUyQUM0RTExQjEzNTc0MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozRTIxNUFFMkQ1Q0ExMUU0QjUyQUM0RTExQjEzNTc0MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgHkmaEAAAEASURBVHja7JnRDYIwEIapYQGHkBVcAN90EfeRZdR3VhB3YAEf6jWpiRDBpj3gT/gv+R9Lv9z1b6/UWGsz5Nhk4EFAAhKQgAQkIAEJSMB1A+Ypg40x0WNDO/lVlLhKrcTfVMfq8wnRVbSdYl4tQKdGVGgDaq7BnagWHRBL/K2X6IxY4r4uY+ZBABw1Dwqg0+OXeZYwyVAU3jwlikmG1DEPUgY7xzdqBtv+/hg6Rz5D1p6ikzcLXD94F+1j4aYucYW6UUMfdW1os7CESZwZjr7tgrs03bwZGnWbKZQ4quUPncOkvJPwVpd6G5vjlYq/PghIQAISkIAEJCABCQgdbwEGAOhL4l/o/UvgAAAAAElFTkSuQmCC");
-  right: 0;
-}
-.DateSelectCalendar__legend {
-  color: #999999;
-  font-weight: 500;
-}
-.DateSelectCalendar__legend__day {
-  border-bottom: none;
-  cursor: default;
-}
-.DateSelectCalendar__month__day {
-  background: none;
-  border: none;
-  border-radius: 0.25em;
-  outline: none;
-}
-.DateSelectCalendar__month__day:hover {
-  background-color: #e3eef8;
-}
-.DateSelectCalendar__month__day:focus {
-  box-shadow: 0 0 0 1px #fafafa, 0 0 0 3px rgba(19, 133, 229, 0.15);
-  color: #1385e5;
-  outline: 0;
-}
-.DateSelectCalendar__month__day:active {
-  background-color: #1177cd;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  color: white;
-}
-.DateSelectCalendar__month__day.is-current-day {
-  background-color: #f2f2f2;
-  box-shadow: inset 0 0 0 1px #d4d4d4;
-}
-.DateSelectCalendar__month__day.is-current-day.is-selected {
-  box-shadow: none;
-}
-.DateSelectCalendar__month__day.is-current-day.is-selected:focus {
-  box-shadow: 0 0 0 1px #fafafa, 0 0 0 3px rgba(19, 133, 229, 0.15);
-  outline: 0;
-}
-.DateSelectCalendar__month__day.is-selected {
-  background-color: #1385e5;
-  color: white;
-}
-.multi-picker .DateSelectCalendar:first-child .DateSelectCalendar__month__day.is-selected::after,
-.multi-picker .DateSelectCalendar:last-child .DateSelectCalendar__month__day.is-selected::after {
-  border-bottom: 5px solid transparent;
-  border-top: 5px solid transparent;
-  content: "";
-  height: 0;
-  margin-top: -5px;
-  position: absolute;
-  top: 50%;
-  width: 0;
-  z-index: 1;
-}
-.multi-picker .DateSelectCalendar:first-child .DateSelectCalendar__month__day.is-selected::after {
-  border-left: 5px solid #1385e5;
-  right: -5px;
-}
-.multi-picker .DateSelectCalendar:last-child .DateSelectCalendar__month__day.is-selected::after {
-  border-right: 5px solid #1385e5;
-  left: -5px;
-}
-.multi-picker .DateSelectCalendar:first-child .is-after-selected-day {
-  border-radius: 0;
-  background-color: #eef4f9;
-  color: #235c8c;
-}
-.multi-picker .DateSelectCalendar:last-child .is-before-selected-day {
-  border-radius: 0;
-  background-color: #eef4f9;
-  color: #235c8c;
-}
-.DateSelectHeader {
-  background-image: -webkit-linear-gradient(top, #2c8ee0 0%, #1d79c7 100%);
-  background-image: -o-linear-gradient(top, #2c8ee0 0%, #1d79c7 100%);
-  background-image: linear-gradient(to bottom, #2c8ee0 0%, #1d79c7 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2c8ee0', endColorstr='#ff1d79c7', GradientType=0);
-  background-color: #1f84d9;
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 white;
-  color: white;
-  display: block;
-  text-align: center;
-}
-.DateSelectHeader--expanded {
-  line-height: 1;
-}
-.DateSelectHeader--expanded > .DateSelectHeader {
-  display: block;
-  font-weight: 300;
-}
-.DateSelectHeader--expanded > .DateSelectHeader__dow {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-top-right-radius: 0.33em;
-  border-top-left-radius: 0.33em;
-  display: block;
-  font-size: .85em;
-  padding: 5px;
-}
-.DateSelectHeader--expanded > .DateSelectHeader__month {
-  display: block;
-  padding-top: 10px;
-  text-transform: uppercase;
-}
-.DateSelectHeader--expanded > .DateSelectHeader__day {
-  display: block;
-  font-size: 4em;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-.DateSelectHeader--expanded > .DateSelectHeader__year {
-  color: rgba(255, 255, 255, 0.75);
-  display: block;
-  padding-bottom: 10px;
-}
-.DateSelectHeader--condensed {
-  font-weight: bold;
-  letter-spacing: 0.0125em;
-  padding: 8px;
-}
-.DateSelectHeader--condensed > .DateSelectHeader,
-.DateSelectHeader--condensed > .DateSelectHeader__dow,
-.DateSelectHeader--condensed > .DateSelectHeader__month,
-.DateSelectHeader--condensed > .DateSelectHeader__day,
-.DateSelectHeader--condensed > .DateSelectHeader__year {
-  display: inline-block;
-  margin-left: .15em;
-  margin-right: .15em;
-}
-.DateSelectHeader--condensed > .DateSelectHeader__dow {
-  opacity: .75;
-  display: block;
-  font-size: .75em;
-  font-weight: 500;
-  margin: 0;
-  text-transform: uppercase;
-  -webkit-font-smoothing: antialiased;
-}
-.DateSelect__range {
-  border-top: 1px solid #d4d4d4;
-  display: table;
-  font-size: .85em;
-  position: relative;
-  text-align: center;
-  width: 100%;
-}
-.DateSelect__range:hover {
-  color: #666666;
-}
-.DateSelect__range__item {
-  -webkit-transition: color 200ms;
-  -o-transition: color 200ms;
-  transition: color 200ms;
-  background-color: transparent;
-  background-image: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  display: inline-block;
-  outline: none;
-  padding: 8px;
-  position: relative;
-  text-align: center;
-}
-.DateSelect__range__item:hover {
-  color: #000000;
-}
-.DateSelect__range__item.active,
-.DateSelect__range__item:focus {
-  box-shadow: 0 1px 0 #666666;
-  color: #000000;
-}
-.DateSelect__range__item.active:after,
-.DateSelect__range__item:focus:after {
-  border-bottom: 4px solid #666666;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  bottom: 0;
-  content: "";
-  display: inline-block;
-  height: 0;
-  left: 50%;
-  margin-left: -4px;
-  position: absolute;
-  width: 0;
-}
-.DateSelectFooter {
-  background-color: #ededed;
-  border-top: 1px solid #d4d4d4;
-  border-bottom-right-radius: 0.33em;
-  border-bottom-left-radius: 0.33em;
-}
-.DateSelectFooter:before,
-.DateSelectFooter:after {
-  content: " ";
-  display: table;
-}
-.DateSelectFooter:after {
-  clear: both;
-}
-.DateSelectFooter__button {
-  background-color: transparent;
-  background-image: none;
-  border: none;
-  border-radius: 0;
-  color: #666666;
-  float: left;
-  font-size: inherit;
-  outline: none;
-  padding: 8px;
-  text-align: center;
-  width: 50%;
-}
-.DateSelectFooter__button:last-child {
-  border-left: 1px solid #d4d4d4;
-}
-.DateSelectFooter__button--primary {
-  color: #1385e5;
-  font-weight: 500;
-}
-.single-picker .DateSelectFooter__button:hover,
-.single-picker .DateSelectFooter__button:focus {
-  background-color: rgba(255, 255, 255, 0.66);
-}
-.single-picker .DateSelectFooter__button:active {
-  background-color: rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-}
-.single-picker .DateSelectFooter__button:first-child {
-  border-bottom-left-radius: 0.33em;
-}
-.single-picker .DateSelectFooter__button:last-child {
-  border-bottom-right-radius: 0.33em;
-}
-.multi-picker .DateSelectFooter {
-  padding: 12px 16px;
-}
-.multi-picker .DateSelectFooter__button {
-  background: none;
-  border-radius: .25em;
-  border: 0;
-  border: 1px solid transparent;
-  cursor: pointer;
-  display: inline-block;
-  float: none;
-  font-size: inherit;
-  font-weight: 500;
-  height: 2.4em;
-  line-height: 2.3em;
-  margin-bottom: 0;
-  overflow: hidden;
-  padding: 0 1em;
-  text-align: center;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 80px;
-}
-.multi-picker .DateSelectFooter__button:hover,
-.multi-picker .DateSelectFooter__button:focus,
-.multi-picker .DateSelectFooter__button.focus {
-  color: #1385e5;
-  text-decoration: none;
-}
-.multi-picker .DateSelectFooter__button:active,
-.multi-picker .DateSelectFooter__button.active {
-  background-image: none;
-  outline: 0;
-}
-.multi-picker .DateSelectFooter__button.disabled,
-.multi-picker .DateSelectFooter__button[disabled] {
-  opacity: .4;
-  pointer-events: none;
-}
-.multi-picker .DateSelectFooter__button--primary {
-  background-image: -webkit-linear-gradient(top, #208fec 0%, #117ad2 100%);
-  background-image: -o-linear-gradient(top, #208fec 0%, #117ad2 100%);
-  background-image: linear-gradient(to bottom, #208fec 0%, #117ad2 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff208fec', endColorstr='#ff117ad2', GradientType=0);
-  background-color: #1385e5;
-  color: white;
-}
-.multi-picker .DateSelectFooter__button--primary:hover,
-.multi-picker .DateSelectFooter__button--primary:focus,
-.multi-picker .DateSelectFooter__button--primary.focus {
-  background-image: -webkit-linear-gradient(top, #3398ee 0%, #1385e5 100%);
-  background-image: -o-linear-gradient(top, #3398ee 0%, #1385e5 100%);
-  background-image: linear-gradient(to bottom, #3398ee 0%, #1385e5 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3398ee', endColorstr='#ff1385e5', GradientType=0);
-  color: white;
-  outline: none;
-}
-.multi-picker .DateSelectFooter__button--primary:focus,
-.multi-picker .DateSelectFooter__button--primary.focus {
-  box-shadow: 0 0 0 3px rgba(19, 133, 229, 0.25);
-}
-.multi-picker .DateSelectFooter__button--primary:active,
-.multi-picker .DateSelectFooter__button--primary.active {
-  background-color: #1177cd;
-  background-image: none;
-  box-shadow: none;
-}
-@media (min-width: 768px) {
-  .DateSelect-dialog {
-    margin-bottom: 100px;
-    margin-top: 100px;
-    width: 280px;
-  }
-  .DateSelect-content {
-    border-radius: 0.33em;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.175), 0 3px 8px rgba(0, 0, 0, 0.175);
-  }
-  .DateSelectHeader {
-    border-top-right-radius: 0.33em;
-    border-top-left-radius: 0.33em;
-  }
-  .multi-picker .DateSelect-body:before,
-  .multi-picker .DateSelect-body:after {
-    content: " ";
-    display: table;
-  }
-  .multi-picker .DateSelect-body:after {
-    clear: both;
-  }
-  .multi-picker .DateSelect-dialog {
-    width: 560px;
-  }
-  .multi-picker .DateSelectHeader {
-    border-radius: 0;
-    box-shadow: -1px 0 0 #1969ac;
-  }
-  .multi-picker .DateSelectCalendar {
-    border-left: 1px solid #d4d4d4;
-    float: left;
-    width: 50%;
-  }
-  .multi-picker .DateSelectCalendar:first-child {
-    border-left: none;
-  }
-  .multi-picker .DateSelectCalendar:first-child .DateSelectHeader {
-    border-top-left-radius: 0.33em;
-    box-shadow: none;
-  }
-  .multi-picker .DateSelectCalendar:last-child .DateSelectHeader {
-    border-top-right-radius: 0.33em;
-  }
-}
-.DateSelect-backdrop {
-  -webkit-animation-duration: 140ms;
-  animation-duration: 140ms;
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 109;
-}
-.modal-backdrop-enter {
-  -webkit-animation-name: modalBackdropEnter;
-  animation-name: modalBackdropEnter;
-}
-.modal-backdrop-leave {
-  -webkit-animation-delay: 240ms;
-  animation-delay: 240ms;
-  -webkit-animation-name: modalBackdropLeave;
-  animation-name: modalBackdropLeave;
-}
-@-webkit-keyframes modalDialogEnter {
-  from {
-    opacity: 0;
-    -webkit-transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    -webkit-transform: scale(1);
-  }
-}
-@keyframes modalDialogEnter {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-@-webkit-keyframes modalDialogLeave {
-  from {
-    opacity: 1;
-    -webkit-transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    -webkit-transform: scale(0.8);
-  }
-}
-@keyframes modalDialogLeave {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-}
-@-webkit-keyframes modalBackdropEnter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes modalBackdropEnter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes modalBackdropLeave {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes modalBackdropLeave {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
 .demo-container p {
   margin-bottom: 1em;
   margin-top: 0;
@@ -5272,6 +4663,10 @@ textarea.FormInput {
 }
 .demo-container > h3 {
   margin-top: 3em;
+}
+.FormLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 .demo-container {
   max-width: 768px;
@@ -5301,7 +4696,7 @@ textarea.FormInput {
   transform: translate3d(0, 0, 0);
   background-color: rgba(253, 253, 253, 0.95);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.17);
-  font-size: 12px;
+  font-size: 0.9rem;
   line-height: 50px;
   height: 50px;
   position: fixed;
@@ -5751,7 +5146,7 @@ a.Button--demo-link:focus {
 .code-example__example__heading {
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   color: #999999;
-  font-size: 12px;
+  font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 20px;
   padding-bottom: 20px;

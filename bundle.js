@@ -213,8 +213,8 @@ var ALERT_TYPES = ['danger', 'info', 'primary', 'success', 'warning'];
 module.exports = React.createClass({
 	displayName: 'ElementalAlert',
 	propTypes: {
-		className: React.PropTypes.string,
 		children: React.PropTypes.node.isRequired,
+		className: React.PropTypes.string,
 		type: React.PropTypes.oneOf(ALERT_TYPES).isRequired
 	},
 	render: function render() {
@@ -309,20 +309,40 @@ var Checkbox = React.createClass({
 	displayName: 'Checkbox',
 
 	propTypes: {
+		className: React.PropTypes.string,
+		disabled: React.PropTypes.bool,
+		focusOnMount: React.PropTypes.bool,
+		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string
 	},
+
+	componentDidMount: function componentDidMount() {
+		if (this.props.focusOnMount) {
+			this.refs.target.getDOMNode().focus();
+		}
+		this.setIndeterminate(this.props.indeterminate);
+	},
+
+	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+		this.setIndeterminate(nextProps.indeterminate);
+	},
+
+	setIndeterminate: function setIndeterminate(value) {
+		this.refs.target.getDOMNode().indeterminate = value;
+	},
+
 	render: function render() {
 		var componentClass = classNames('Checkbox', {
 			'Checkbox--disabled': this.props.disabled,
 			'Checkbox--inline': this.props.inline
 		}, this.props.className);
-		var props = blacklist(this.props, 'className', 'label');
+		var props = blacklist(this.props, 'className', 'label', 'style');
 
 		return React.createElement(
 			'label',
-			{ className: componentClass },
-			React.createElement('input', _extends({ type: "checkbox", className: "Checkbox__input" }, props)),
+			{ className: componentClass, style: this.props.style },
+			React.createElement('input', _extends({ ref: "target", type: "checkbox", className: "Checkbox__input" }, props)),
 			this.props.label && React.createElement(
 				'span',
 				{ className: "Checkbox__label" },
@@ -353,8 +373,8 @@ module.exports = React.createClass({
 		buttonHasDisclosureArrow: React.PropTypes.bool,
 		buttonLabel: React.PropTypes.string,
 		buttonType: React.PropTypes.string,
-		className: React.PropTypes.string,
 		children: React.PropTypes.element,
+		className: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
 		items: React.PropTypes.array.isRequired,
 		onSelect: React.PropTypes.func
@@ -552,13 +572,13 @@ module.exports = React.createClass({
 				this.props.value.length ? this.props.invalidMessage : this.props.requiredMessage
 			);
 		}
-		var formGroupClass = classNames('form-field', {
+		var formGroupClass = classNames('FormField', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 
 		var componentLabel = this.props.label ? React.createElement(
 			'label',
-			{ className: "form-label", htmlFor: "inputEmail" },
+			{ className: "FormLabel", htmlFor: "inputEmail" },
 			this.props.label
 		) : null;
 
@@ -731,10 +751,6 @@ module.exports = React.createClass({
 	},
 
 	render: function render() {
-		// helpers
-		function isEmptyObject(obj) {
-			return Object.keys(obj).length === 0;
-		}
 		var _state = this.state;
 
 		// props
@@ -798,7 +814,35 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Button":7,"./Spinner":34,"blacklist":undefined,"react/addons":undefined}],14:[function(require,module,exports){
+},{"./Button":7,"./Spinner":35,"blacklist":undefined,"react/addons":undefined}],14:[function(require,module,exports){
+'use strict';
+
+var blacklist = require('blacklist');
+var classnames = require('classnames');
+var React = require('react/addons');
+
+module.exports = React.createClass({
+	displayName: 'Form',
+	propTypes: {
+		children: React.PropTypes.node.isRequired,
+		className: React.PropTypes.string,
+		type: React.PropTypes.oneOf(['basic', 'horizontal', 'inline'])
+	},
+	getDefaultProps: function getDefaultProps() {
+		return {
+			component: 'form',
+			type: 'basic'
+		};
+	},
+	render: function render() {
+		var props = blacklist(this.props, 'children', 'type');
+		props.className = classnames('Form', 'Form--' + this.props.type, this.props.className);
+
+		return React.createElement(this.props.component, props, this.props.children);
+	}
+});
+
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],15:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -810,13 +854,16 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormField',
 	propTypes: {
+		className: React.PropTypes.string,
+		htmlFor: React.PropTypes.string,
+		id: React.PropTypes.string,
 		label: React.PropTypes.string,
 		offsetAbsentLabel: React.PropTypes.bool,
 		width: React.PropTypes.oneOf(['one-half', 'two-quarters', 'three-sixths', 'one-quarter', 'three-quarters', 'one-third', 'two-sixths', 'two-thirds', 'four-sixths', 'one-fifth', 'two-fifths', 'three-fifths', 'four-fifths', 'one-sixth', 'five-sixths'])
 	},
 	render: function render() {
 		// classes
-		var componentClass = classNames('form-field', {
+		var componentClass = classNames('FormField', {
 			'offset-absent-label': this.props.offsetAbsentLabel
 		}, this.props.width, this.props.className);
 
@@ -826,7 +873,7 @@ module.exports = React.createClass({
 		// elements
 		var componentLabel = this.props.label ? React.createElement(
 			'label',
-			{ className: "form-label", htmlFor: this.props.id || this.props.htmlFor },
+			{ className: "FormLabel", htmlFor: this.props.id || this.props.htmlFor },
 			this.props.label
 		) : null;
 
@@ -839,7 +886,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],15:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],16:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -855,7 +902,8 @@ module.exports = React.createClass({
 		color: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
 		icon: React.PropTypes.string,
-		isLoading: React.PropTypes.bool
+		isLoading: React.PropTypes.bool,
+		type: React.PropTypes.string
 	},
 	render: function render() {
 		// classes
@@ -867,7 +915,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":5,"./Spinner":34,"classnames":undefined,"react/addons":undefined}],16:[function(require,module,exports){
+},{"../Octicons":5,"./Spinner":35,"classnames":undefined,"react/addons":undefined}],17:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -922,7 +970,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":5,"./FormField":14,"./Spinner":34,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],17:[function(require,module,exports){
+},{"../Octicons":5,"./FormField":15,"./Spinner":35,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -936,7 +984,10 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
+		href: React.PropTypes.string,
+		id: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
+		name: React.PropTypes.string,
 		noedit: React.PropTypes.bool,
 		onChange: React.PropTypes.func,
 		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
@@ -948,6 +999,9 @@ module.exports = React.createClass({
 			type: 'text'
 		};
 	},
+	focus: function focus() {
+		this.refs.element.focus();
+	},
 	render: function render() {
 		// classes
 		var className = classNames({
@@ -957,9 +1011,9 @@ module.exports = React.createClass({
 		}, this.props.size ? 'FormInput--' + this.props.size : null, this.props.className);
 
 		var props = _extends(blacklist(this.props, 'className'), {
-			onBlur: this.handleBlur,
 			className: className,
-			id: this.props.id || this.props.name
+			id: this.props.id || this.props.name,
+			ref: 'element'
 		});
 
 		// element
@@ -978,7 +1032,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],19:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -998,7 +1052,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		// classes
-		var className = classNames('form-label', this.props.className);
+		var className = classNames('FormLabel', this.props.className);
 
 		// props
 		var props = blacklist(this.props, 'htmlFor', 'id', 'className', 'style');
@@ -1019,7 +1073,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],19:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],20:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1058,7 +1112,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],20:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1066,6 +1120,9 @@ var classNames = require('classnames');
 
 module.exports = React.createClass({
 	displayName: 'FormRow',
+	propTypes: {
+		className: React.PropTypes.string
+	},
 	render: function render() {
 		var className = classNames('FormRow', this.props.className);
 
@@ -1077,7 +1134,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],22:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1105,12 +1162,16 @@ module.exports = _reactAddons2['default'].createClass({
 	propTypes: {
 		alwaysValidate: _reactAddons2['default'].PropTypes.bool,
 		className: _reactAddons2['default'].PropTypes.string,
+		disabled: _reactAddons2['default'].PropTypes.bool,
 		firstOption: _reactAddons2['default'].PropTypes.string,
 		htmlFor: _reactAddons2['default'].PropTypes.string,
 		id: _reactAddons2['default'].PropTypes.string,
 		label: _reactAddons2['default'].PropTypes.string,
 		onChange: _reactAddons2['default'].PropTypes.func.isRequired,
-		options: _reactAddons2['default'].PropTypes.array.isRequired,
+		options: _reactAddons2['default'].PropTypes.arrayOf(_reactAddons2['default'].PropTypes.shape({
+			label: _reactAddons2['default'].PropTypes.string,
+			value: _reactAddons2['default'].PropTypes.string
+		})).isRequired,
 		prependEmptyOption: _reactAddons2['default'].PropTypes.bool,
 		required: _reactAddons2['default'].PropTypes.bool,
 		requiredMessage: _reactAddons2['default'].PropTypes.string,
@@ -1187,7 +1248,7 @@ module.exports = _reactAddons2['default'].createClass({
 		var props = (0, _blacklist2['default'])(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className');
 
 		// classes
-		var componentClass = (0, _classnames2['default'])('form-field', {
+		var componentClass = (0, _classnames2['default'])('FormField', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 
@@ -1205,7 +1266,7 @@ module.exports = _reactAddons2['default'].createClass({
 		var forAndID = this.props.htmlFor || this.props.id;
 		var componentLabel = this.props.label ? _reactAddons2['default'].createElement(
 			'label',
-			{ className: "form-label", htmlFor: forAndID },
+			{ className: "FormLabel", htmlFor: forAndID },
 			this.props.label
 		) : null;
 
@@ -1240,7 +1301,7 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"../icons":36,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],22:[function(require,module,exports){
+},{"../icons":37,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],23:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1275,7 +1336,7 @@ module.exports = React.createClass({
 // expose the child to the top level export
 module.exports.Section = require('./InputGroupSection');
 
-},{"./InputGroupSection":23,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],23:[function(require,module,exports){
+},{"./InputGroupSection":24,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],24:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1306,7 +1367,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],24:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],25:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1417,7 +1478,7 @@ module.exports.Body = require('./ModalBody');
 module.exports.Footer = require('./ModalFooter');
 module.exports.Header = require('./ModalHeader');
 
-},{"./ModalBody":25,"./ModalFooter":26,"./ModalHeader":27,"blacklist":undefined,"classnames":undefined,"react-interval":2,"react/addons":undefined,"react/lib/ReactComponentWithPureRenderMixin":3}],25:[function(require,module,exports){
+},{"./ModalBody":26,"./ModalFooter":27,"./ModalHeader":28,"blacklist":undefined,"classnames":undefined,"react-interval":2,"react/addons":undefined,"react/lib/ReactComponentWithPureRenderMixin":3}],26:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1437,7 +1498,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],26:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],27:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1457,7 +1518,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],27:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],28:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1470,6 +1531,7 @@ module.exports = React.createClass({
 	propTypes: {
 		children: React.PropTypes.node,
 		className: React.PropTypes.string,
+		onClose: React.PropTypes.func,
 		showCloseButton: React.PropTypes.bool,
 		text: React.PropTypes.string
 	},
@@ -1493,7 +1555,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],28:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],29:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1568,7 +1630,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],29:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],30:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1650,13 +1712,13 @@ module.exports = React.createClass({
 				this.props.value.length ? this.props.invalidMessage : this.props.requiredMessage
 			);
 		}
-		var formGroupClass = classNames('form-field', {
+		var formGroupClass = classNames('FormField', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 
 		var componentLabel = this.props.label ? React.createElement(
 			'label',
-			{ className: "form-label", htmlFor: "inputPassword" },
+			{ className: "FormLabel", htmlFor: "inputPassword" },
 			this.props.label
 		) : null;
 
@@ -1670,7 +1732,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],30:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],31:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1721,7 +1783,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],31:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],32:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1734,6 +1796,8 @@ var Radio = React.createClass({
 	displayName: 'Radio',
 
 	propTypes: {
+		className: React.PropTypes.string,
+		disabled: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string
 	},
@@ -1759,7 +1823,7 @@ var Radio = React.createClass({
 
 module.exports = Radio;
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],32:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],33:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1838,7 +1902,7 @@ module.exports = React.createClass({
 		var props = blacklist(this.props, 'alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value');
 
 		// classes
-		var componentClass = classNames('form-field', {
+		var componentClass = classNames('FormField', {
 			'is-invalid': !this.state.isValid
 		}, this.props.className);
 
@@ -1855,7 +1919,7 @@ module.exports = React.createClass({
 		// dynamic elements
 		var componentLabel = this.props.label ? React.createElement(
 			'label',
-			{ className: "form-label" },
+			{ className: "FormLabel" },
 			this.props.label
 		) : null;
 
@@ -1890,7 +1954,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],33:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],34:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -1957,7 +2021,7 @@ module.exports = _react2['default'].createClass({
 	}
 });
 
-},{"classnames":undefined,"react":undefined}],34:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],35:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1966,6 +2030,7 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'Spinner',
 	propTypes: {
+		className: React.PropTypes.string,
 		size: React.PropTypes.oneOf(['sm', 'md', 'lg']),
 		type: React.PropTypes.oneOf(['default', 'primary', 'inverted'])
 	},
@@ -1987,7 +2052,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],35:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],36:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -2019,14 +2084,14 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],36:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],37:[function(require,module,exports){
 'use strict';
 
 module.exports = {
 	selectArrows: require('./selectArrows')
 };
 
-},{"./selectArrows":37}],37:[function(require,module,exports){
+},{"./selectArrows":38}],38:[function(require,module,exports){
 'use strict';
 
 module.exports = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' + '<svg width="7px" height="11px" viewBox="0 0 7 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' + '<path d="M3.5,0 L7,4 L0,4 L3.5,0 Z M3.5,11 L7,7 L0,7 L3.5,11 Z" />' + '</svg>';
@@ -2042,6 +2107,7 @@ exports.Dropdown = require('./components/Dropdown');
 exports.EmailInputGroup = require('./components/EmailInputGroup');
 exports.FileDragAndDrop = require('./components/FileDragAndDrop');
 exports.FileUpload = require('./components/FileUpload');
+exports.Form = require('./components/Form');
 exports.FormField = require('./components/FormField');
 exports.FormIcon = require('./components/FormIcon');
 exports.FormIconField = require('./components/FormIconField');
@@ -2065,4 +2131,4 @@ exports.SegmentedControl = require('./components/SegmentedControl');
 exports.Spinner = require('./components/Spinner');
 exports.Table = require('./components/Table');
 
-},{"./components/Alert":6,"./components/Button":7,"./components/ButtonGroup":8,"./components/Checkbox":9,"./components/Dropdown":10,"./components/EmailInputGroup":11,"./components/FileDragAndDrop":12,"./components/FileUpload":13,"./components/FormField":14,"./components/FormIcon":15,"./components/FormIconField":16,"./components/FormInput":17,"./components/FormLabel":18,"./components/FormNote":19,"./components/FormRow":20,"./components/FormSelect":21,"./components/InputGroup":22,"./components/InputGroupSection":23,"./components/Modal":24,"./components/ModalBody":25,"./components/ModalFooter":26,"./components/ModalHeader":27,"./components/Pagination":28,"./components/PasswordInputGroup":29,"./components/Pill":30,"./components/Radio":31,"./components/RadioGroup":32,"./components/SegmentedControl":33,"./components/Spinner":34,"./components/Table":35}]},{},[]);
+},{"./components/Alert":6,"./components/Button":7,"./components/ButtonGroup":8,"./components/Checkbox":9,"./components/Dropdown":10,"./components/EmailInputGroup":11,"./components/FileDragAndDrop":12,"./components/FileUpload":13,"./components/Form":14,"./components/FormField":15,"./components/FormIcon":16,"./components/FormIconField":17,"./components/FormInput":18,"./components/FormLabel":19,"./components/FormNote":20,"./components/FormRow":21,"./components/FormSelect":22,"./components/InputGroup":23,"./components/InputGroupSection":24,"./components/Modal":25,"./components/ModalBody":26,"./components/ModalFooter":27,"./components/ModalHeader":28,"./components/Pagination":29,"./components/PasswordInputGroup":30,"./components/Pill":31,"./components/Radio":32,"./components/RadioGroup":33,"./components/SegmentedControl":34,"./components/Spinner":35,"./components/Table":36}]},{},[]);

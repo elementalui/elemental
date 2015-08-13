@@ -91,467 +91,6 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],2:[function(require,module,exports){
-'use strict';
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var blacklist = require('blacklist');
-var moment = require('moment');
-var React = require('react');
-
-var DateSelectDialog = require('./DateSelectDialog');
-
-var DEFAULT_RANGES = [{ value: moment().subtract(1, 'weeks'), label: 'Past week' }, { value: moment().subtract(1, 'months'), label: 'Past month' }, { value: moment().subtract(3, 'months'), label: 'Past 3 months' }, { value: moment().subtract(6, 'months'), label: 'Past 6 months' }, { value: moment().subtract(12, 'months'), label: 'Past 12 months' }];
-
-var DateSelect = React.createClass({
-	displayName: 'DateSelect',
-
-	propTypes: {
-		backdropClosesDateSelect: React.PropTypes.bool,
-		dialogClassName: React.PropTypes.string,
-		isExpanded: React.PropTypes.bool,
-		isHeaderless: React.PropTypes.bool,
-		isInstant: React.PropTypes.bool,
-		isMulti: React.PropTypes.bool,
-		predefinedRangeOptions: React.PropTypes.array,
-		showPredefinedRanges: React.PropTypes.bool,
-		value: React.PropTypes.any
-	},
-	getDefaultProps: function getDefaultProps() {
-		return {
-			buttonLabel: 'Launch Date Select',
-			predefinedRangeOptions: DEFAULT_RANGES
-		};
-	},
-	getInitialState: function getInitialState() {
-		return {
-			isOpen: false
-		};
-	},
-	openDateSelect: function openDateSelect() {
-		this.setState({ isOpen: true });
-	},
-	closeDateSelect: function closeDateSelect() {
-		this.setState({ isOpen: false });
-	},
-	renderDateSelect: function renderDateSelect() {
-		// if (!this.state.isOpen) return;
-		var dialogProps = blacklist(this.props, 'dialogClassName');
-		dialogProps.className = this.props.dialogClassName;
-		dialogProps.onCancel = this.closeDateSelect;
-		dialogProps.onSelect = this.closeDateSelect;
-		return React.createElement(DateSelectDialog, _extends({ isOpen: this.state.isOpen }, dialogProps));
-	},
-	renderChildren: function renderChildren() {
-		var _this = this;
-
-		return React.Children.map(this.props.children, function (child) {
-			return React.cloneElement(child, { onClick: _this.openDateSelect });
-		});
-	},
-	renderButton: function renderButton() {
-		return React.createElement(
-			'button',
-			{ onClick: this.openDateSelect, type: 'button', className: this.props.buttonClassName },
-			this.props.buttonLabel
-		);
-	},
-	render: function render() {
-		return React.createElement(
-			'span',
-			null,
-			React.Children.count(this.props.children) ? this.renderChildren() : this.renderButton(),
-			this.renderDateSelect()
-		);
-	}
-});
-
-module.exports = DateSelect;
-},{"./DateSelectDialog":4,"blacklist":undefined,"moment":undefined,"react":undefined}],3:[function(require,module,exports){
-'use strict';
-
-var React = require('react/addons');
-var moment = require('moment');
-var classNames = require('classnames');
-
-var DateSelectHeader = require('./DateSelectHeader');
-
-module.exports = React.createClass({
-	displayName: 'DateSelectCalendar',
-	propTypes: {
-		isExpanded: React.PropTypes.bool,
-		isHeaderless: React.PropTypes.bool,
-		isInstant: React.PropTypes.bool,
-		selectedDate: React.PropTypes.string,
-		weekStartsOn: React.PropTypes.string,
-		yearRange: React.PropTypes.arrayOf(React.PropTypes.number)
-	},
-	getDefaultProps: function getDefaultProps() {
-		var yearRange = [];
-		yearRange.push(parseInt(moment().subtract(10, 'years').format('YYYY')));
-		yearRange.push(parseInt(moment().add(10, 'years').format('YYYY')));
-
-		return {
-			weekStartsOn: 'Monday',
-			yearRange: yearRange
-		};
-	},
-	getInitialState: function getInitialState() {
-		return {
-			selectedDate: this.props.selectedDate
-		};
-	},
-
-	handleDaySelection: function handleDaySelection(day) {
-		this.setState({ selectedDate: day });
-	},
-
-	render: function render() {
-		var self = this;
-		var firstDayOfMonth = moment().startOf('month').format('D');
-		var lastDayOfMonth = moment().endOf('month').format('D');
-		var currentDayOfMonth = moment().format('D');
-
-		var calendarClass = classNames('DateSelectCalendar', {
-			'DateSelectCalendar--start': this.props.startDate,
-			'DateSelectCalendar--end': this.props.endDate
-		});
-
-		// variables
-		var currentMonth = moment().format('MMMM');
-		var currentYear = moment().format('YYYY');
-		var years = [];
-		var months = ['January', 'February', 'March', 'April', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-		var daysOfTheMonth = [];
-		var daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-		for (var i = firstDayOfMonth; i < lastDayOfMonth; i++) {
-			daysOfTheMonth.push(i);
-		}
-		for (var j = this.props.yearRange[0]; j < this.props.yearRange[1]; j++) {
-			years.push(j);
-		}
-
-		// elements
-
-		var weekDays = daysOfTheWeek.map(function (day, i) {
-			return React.createElement(
-				'abbr',
-				{ key: 'day' + i, className: 'DateSelectCalendar__legend__day', title: day },
-				day.slice(0, 1)
-			);
-		});
-		var monthDays = daysOfTheMonth.map(function (day) {
-			var dayClass = classNames('DateSelectCalendar__month__day', {
-				'is-current-day': day === currentDayOfMonth,
-				'is-selected': day === self.state.selectedDate,
-				'is-before-selected-day': self.state.selectedDate && day < self.state.selectedDate,
-				'is-after-selected-day': self.state.selectedDate && day > self.state.selectedDate
-			});
-			return React.createElement(
-				'button',
-				{ key: 'day' + day, onClick: self.handleDaySelection.bind(self, day), className: dayClass },
-				day
-			);
-		});
-
-		var titleMonths = months.map(function (month, i) {
-			return React.createElement(
-				'option',
-				{ key: 'month' + i, value: month },
-				month.slice(0, 3)
-			);
-		});
-		var titleYears = years.map(function (year, i) {
-			return React.createElement(
-				'option',
-				{ key: 'year' + i, value: year },
-				year
-			);
-		});
-
-		var calendar = React.createElement(
-			'div',
-			{ className: calendarClass },
-			!this.props.isHeaderless && React.createElement(DateSelectHeader, { selectedDate: this.state.selectedDate, isExpanded: this.props.isExpanded }),
-			React.createElement(
-				'div',
-				{ className: 'DateSelectCalendar__toolbar' },
-				React.createElement(
-					'button',
-					{ className: 'DateSelectCalendar__toolbar__button DateSelectCalendar__toolbar__button--prev' },
-					'Previous Month'
-				),
-				React.createElement(
-					'select',
-					{ className: 'DateSelectCalendar__toolbar__select', defaultValue: currentMonth },
-					titleMonths
-				),
-				React.createElement(
-					'select',
-					{ className: 'DateSelectCalendar__toolbar__select', defaultValue: currentYear },
-					titleYears
-				),
-				React.createElement(
-					'button',
-					{ className: 'DateSelectCalendar__toolbar__button DateSelectCalendar__toolbar__button--next' },
-					'Next Month'
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: 'DateSelectCalendar__legend' },
-				weekDays
-			),
-			React.createElement(
-				'div',
-				{ className: 'DateSelectCalendar__month' },
-				monthDays
-			)
-		);
-
-		return calendar;
-	}
-});
-},{"./DateSelectHeader":5,"classnames":undefined,"moment":undefined,"react/addons":undefined}],4:[function(require,module,exports){
-'use strict';
-
-var React = require('react/addons');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-var moment = require('moment');
-var classNames = require('classnames');
-
-var DateSelectCalendar = require('./DateSelectCalendar');
-
-module.exports = React.createClass({
-	displayName: 'DateSelectDialog',
-	propTypes: {
-		backdropClosesDateSelect: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		isExpanded: React.PropTypes.bool,
-		isHeaderless: React.PropTypes.bool,
-		isInstant: React.PropTypes.bool,
-		isMulti: React.PropTypes.bool,
-		onCancel: React.PropTypes.func,
-		onSelect: React.PropTypes.func,
-		predefinedRangeOptions: React.PropTypes.array,
-		showPredefinedRanges: React.PropTypes.bool
-	},
-	getInitialState: function getInitialState() {
-		return {
-			startDate: '',
-			endDate: ''
-		};
-	},
-	renderDialog: function renderDialog() {
-		if (!this.props.isOpen) return null;
-		return React.createElement(
-			'div',
-			{ className: 'DateSelect-dialog' },
-			React.createElement(
-				'div',
-				{ className: 'DateSelect-content' },
-				React.createElement(
-					'div',
-					{ className: 'DateSelect-body' },
-					React.createElement(DateSelectCalendar, { selectedDate: this.state.startDate, isHeaderless: this.props.isHeaderless, isInstant: this.props.isInstant }),
-					this.props.isMulti && React.createElement(DateSelectCalendar, { selectedDate: this.state.endDate, isHeaderless: this.props.isHeaderless })
-				),
-				this.renderRanges(),
-				!this.props.isInstant && React.createElement(
-					'div',
-					{ className: 'DateSelectFooter' },
-					React.createElement(
-						'button',
-						{ onClick: this.props.onSelect, className: 'DateSelectFooter__button DateSelectFooter__button--primary' },
-						'Confirm'
-					),
-					React.createElement(
-						'button',
-						{ onClick: this.props.onCancel, className: 'DateSelectFooter__button DateSelectFooter__button--link' },
-						'Cancel'
-					)
-				)
-			)
-		);
-	},
-	renderRanges: function renderRanges() {
-		if (!this.props.showPredefinedRanges) return null;
-		var self = this;
-		var rangeItems = this.props.predefinedRangeOptions.map(function (r, i) {
-			function action() {
-				self.setState({
-					startDate: moment().format('D'),
-					endDate: r.value.format('D')
-				});
-			}
-			return React.createElement(
-				'button',
-				{ key: 'range-button' + i, onClick: action, className: 'DateSelect__range__item' },
-				r.label
-			);
-		});
-		return React.createElement(
-			'div',
-			{ className: 'DateSelect__range' },
-			rangeItems
-		);
-	},
-	renderBackdrop: function renderBackdrop() {
-		if (!this.props.isOpen) return null;
-		return React.createElement('div', { className: 'DateSelect-backdrop', onClick: this.props.backdropClosesDateSelect ? this.props.onCancel : null });
-	},
-	render: function render() {
-		// classes
-		var componentClass = classNames('DateSelect', {
-			'single-picker': !this.props.isMulti,
-			'multi-picker': this.props.isMulti,
-			'range-picker': this.props.showPredefinedRanges
-		}, this.props.className);
-
-		// build the components
-		return React.createElement(
-			'div',
-			{ className: componentClass },
-			React.createElement(
-				ReactCSSTransitionGroup,
-				{ transitionName: 'modal-dialog', component: 'div' },
-				this.renderDialog()
-			),
-			React.createElement(
-				ReactCSSTransitionGroup,
-				{ transitionName: 'modal-backdrop', component: 'div' },
-				this.renderBackdrop()
-			)
-		);
-	}
-});
-},{"./DateSelectCalendar":3,"classnames":undefined,"moment":undefined,"react/addons":undefined}],5:[function(require,module,exports){
-'use strict';
-
-var React = require('react/addons');
-var moment = require('moment');
-var classNames = require('classnames');
-
-module.exports = React.createClass({
-	displayName: 'DateSelectHeader',
-	propTypes: {
-		expanded: React.PropTypes.bool,
-		date: React.PropTypes.object
-	},
-	render: function render() {
-		// helpers
-		var date = moment(this.props.date);
-
-		// classes
-		var componentClass = classNames('DateSelectHeader', {
-			'DateSelectHeader--expanded': this.props.expanded,
-			'DateSelectHeader--condensed': !this.props.expanded,
-			'no-date': !this.props.date
-		});
-
-		// elements
-		var header = this.props.expanded ? React.createElement(
-			'div',
-			{ className: componentClass },
-			React.createElement(
-				'span',
-				{ className: 'DateSelectHeader__dow' },
-				date.format('dddd')
-			),
-			React.createElement(
-				'span',
-				{ className: 'DateSelectHeader__month' },
-				date.format('MMMM')
-			),
-			React.createElement(
-				'span',
-				{ className: 'DateSelectHeader__day' },
-				date.format('D')
-			),
-			React.createElement(
-				'span',
-				{ className: 'DateSelectHeader__year' },
-				date.format('YYYY')
-			)
-		) : React.createElement(
-			'div',
-			{ className: componentClass },
-			React.createElement(
-				'span',
-				{ className: 'DateSelectHeader__dow' },
-				date.format('dddd')
-			),
-			React.createElement(
-				'span',
-				{ className: 'DateSelectHeader__day' },
-				date.format('Do')
-			),
-			React.createElement(
-				'span',
-				{ className: 'DateSelectHeader__month' },
-				date.format('MMMM')
-			),
-			React.createElement(
-				'span',
-				{ className: 'DateSelectHeader__year' },
-				date.format('YYYY')
-			)
-		);
-
-		if (this.props.date) {
-			header = this.props.expanded ? React.createElement(
-				'div',
-				{ className: componentClass },
-				React.createElement(
-					'span',
-					{ className: 'DateSelectHeader__dow' },
-					date.format('dddd')
-				),
-				React.createElement(
-					'span',
-					{ className: 'DateSelectHeader__month' },
-					date.format('MMMM')
-				),
-				React.createElement(
-					'span',
-					{ className: 'DateSelectHeader__day' },
-					date.format('D')
-				),
-				React.createElement(
-					'span',
-					{ className: 'DateSelectHeader__year' },
-					date.format('YYYY')
-				)
-			) : React.createElement(
-				'div',
-				{ className: componentClass },
-				React.createElement(
-					'span',
-					{ className: 'DateSelectHeader__dow' },
-					date.format('dddd')
-				),
-				React.createElement(
-					'span',
-					{ className: 'DateSelectHeader__day' },
-					date.format('Do')
-				),
-				React.createElement(
-					'span',
-					{ className: 'DateSelectHeader__month' },
-					date.format('MMMM')
-				),
-				React.createElement(
-					'span',
-					{ className: 'DateSelectHeader__year' },
-					date.format('YYYY')
-				)
-			);
-		}
-
-		return header;
-	}
-});
-},{"classnames":undefined,"moment":undefined,"react/addons":undefined}],6:[function(require,module,exports){
 /**
  * Represents a cancellation caused by navigating away
  * before the previous transition has fully resolved.
@@ -561,7 +100,7 @@ module.exports = React.createClass({
 function Cancellation() {}
 
 module.exports = Cancellation;
-},{}],7:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -592,7 +131,7 @@ var History = {
 };
 
 module.exports = History;
-},{"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],8:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":41,"react/lib/invariant":44}],4:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -668,7 +207,7 @@ var Match = (function () {
 })();
 
 module.exports = Match;
-},{"./PathUtils":10}],9:[function(require,module,exports){
+},{"./PathUtils":6}],5:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -739,7 +278,7 @@ var Navigation = {
 };
 
 module.exports = Navigation;
-},{"./PropTypes":11}],10:[function(require,module,exports){
+},{"./PropTypes":7}],6:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -893,7 +432,7 @@ var PathUtils = {
 };
 
 module.exports = PathUtils;
-},{"object-assign":39,"qs":40,"react/lib/invariant":48}],11:[function(require,module,exports){
+},{"object-assign":35,"qs":36,"react/lib/invariant":44}],7:[function(require,module,exports){
 'use strict';
 
 var assign = require('react/lib/Object.assign');
@@ -925,7 +464,7 @@ var PropTypes = assign({}, ReactPropTypes, {
 });
 
 module.exports = PropTypes;
-},{"./Route":13,"react":undefined,"react/lib/Object.assign":46}],12:[function(require,module,exports){
+},{"./Route":9,"react":undefined,"react/lib/Object.assign":42}],8:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -938,7 +477,7 @@ function Redirect(to, params, query) {
 }
 
 module.exports = Redirect;
-},{}],13:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1139,7 +678,7 @@ var Route = (function () {
 })();
 
 module.exports = Route;
-},{"./PathUtils":10,"react/lib/Object.assign":46,"react/lib/invariant":48,"react/lib/warning":49}],14:[function(require,module,exports){
+},{"./PathUtils":6,"react/lib/Object.assign":42,"react/lib/invariant":44,"react/lib/warning":45}],10:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -1215,7 +754,7 @@ var ScrollHistory = {
 };
 
 module.exports = ScrollHistory;
-},{"./getWindowScrollPosition":29,"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],15:[function(require,module,exports){
+},{"./getWindowScrollPosition":25,"react/lib/ExecutionEnvironment":41,"react/lib/invariant":44}],11:[function(require,module,exports){
 'use strict';
 
 var PropTypes = require('./PropTypes');
@@ -1290,7 +829,7 @@ var State = {
 };
 
 module.exports = State;
-},{"./PropTypes":11}],16:[function(require,module,exports){
+},{"./PropTypes":7}],12:[function(require,module,exports){
 /* jshint -W058 */
 
 'use strict';
@@ -1366,7 +905,7 @@ Transition.to = function (transition, routes, params, query, callback) {
 };
 
 module.exports = Transition;
-},{"./Cancellation":6,"./Redirect":12}],17:[function(require,module,exports){
+},{"./Cancellation":2,"./Redirect":8}],13:[function(require,module,exports){
 /**
  * Actions that modify the URL.
  */
@@ -1392,7 +931,7 @@ var LocationActions = {
 };
 
 module.exports = LocationActions;
-},{}],18:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -1422,7 +961,7 @@ var ImitateBrowserBehavior = {
 };
 
 module.exports = ImitateBrowserBehavior;
-},{"../actions/LocationActions":17}],19:[function(require,module,exports){
+},{"../actions/LocationActions":13}],15:[function(require,module,exports){
 /**
  * A scroll behavior that always scrolls to the top of the page
  * after a transition.
@@ -1438,7 +977,7 @@ var ScrollToTopBehavior = {
 };
 
 module.exports = ScrollToTopBehavior;
-},{}],20:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1477,7 +1016,7 @@ var ContextWrapper = (function (_React$Component) {
 })(React.Component);
 
 module.exports = ContextWrapper;
-},{"react":undefined}],21:[function(require,module,exports){
+},{"react":undefined}],17:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1525,7 +1064,7 @@ DefaultRoute.defaultProps = {
 };
 
 module.exports = DefaultRoute;
-},{"../PropTypes":11,"./Route":25,"./RouteHandler":26}],22:[function(require,module,exports){
+},{"../PropTypes":7,"./Route":21,"./RouteHandler":22}],18:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1661,7 +1200,7 @@ Link.defaultProps = {
 };
 
 module.exports = Link;
-},{"../PropTypes":11,"react":undefined,"react/lib/Object.assign":46}],23:[function(require,module,exports){
+},{"../PropTypes":7,"react":undefined,"react/lib/Object.assign":42}],19:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1710,7 +1249,7 @@ NotFoundRoute.defaultProps = {
 };
 
 module.exports = NotFoundRoute;
-},{"../PropTypes":11,"./Route":25,"./RouteHandler":26}],24:[function(require,module,exports){
+},{"../PropTypes":7,"./Route":21,"./RouteHandler":22}],20:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1754,7 +1293,7 @@ Redirect.propTypes = {
 Redirect.defaultProps = {};
 
 module.exports = Redirect;
-},{"../PropTypes":11,"./Route":25}],25:[function(require,module,exports){
+},{"../PropTypes":7,"./Route":21}],21:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1846,7 +1385,7 @@ Route.defaultProps = {
 };
 
 module.exports = Route;
-},{"../PropTypes":11,"./RouteHandler":26,"react":undefined,"react/lib/invariant":48}],26:[function(require,module,exports){
+},{"../PropTypes":7,"./RouteHandler":22,"react":undefined,"react/lib/invariant":44}],22:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -1955,7 +1494,7 @@ RouteHandler.childContextTypes = {
 };
 
 module.exports = RouteHandler;
-},{"../PropTypes":11,"./ContextWrapper":20,"react":undefined,"react/lib/Object.assign":46}],27:[function(require,module,exports){
+},{"../PropTypes":7,"./ContextWrapper":16,"react":undefined,"react/lib/Object.assign":42}],23:[function(require,module,exports){
 (function (process){
 /* jshint -W058 */
 'use strict';
@@ -2472,7 +2011,7 @@ function createRouter(options) {
 
 module.exports = createRouter;
 }).call(this,require('_process'))
-},{"./Cancellation":6,"./History":7,"./Match":8,"./PathUtils":10,"./PropTypes":11,"./Redirect":12,"./Route":13,"./ScrollHistory":14,"./Transition":16,"./actions/LocationActions":17,"./behaviors/ImitateBrowserBehavior":18,"./createRoutesFromReactChildren":28,"./isReactChildren":31,"./locations/HashLocation":32,"./locations/HistoryLocation":33,"./locations/RefreshLocation":34,"./locations/StaticLocation":35,"./supportsHistory":38,"_process":1,"react":undefined,"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48,"react/lib/warning":49}],28:[function(require,module,exports){
+},{"./Cancellation":2,"./History":3,"./Match":4,"./PathUtils":6,"./PropTypes":7,"./Redirect":8,"./Route":9,"./ScrollHistory":10,"./Transition":12,"./actions/LocationActions":13,"./behaviors/ImitateBrowserBehavior":14,"./createRoutesFromReactChildren":24,"./isReactChildren":27,"./locations/HashLocation":28,"./locations/HistoryLocation":29,"./locations/RefreshLocation":30,"./locations/StaticLocation":31,"./supportsHistory":34,"_process":1,"react":undefined,"react/lib/ExecutionEnvironment":41,"react/lib/invariant":44,"react/lib/warning":45}],24:[function(require,module,exports){
 /* jshint -W084 */
 'use strict';
 
@@ -2554,7 +2093,7 @@ function createRoutesFromReactChildren(children) {
 }
 
 module.exports = createRoutesFromReactChildren;
-},{"./Route":13,"./components/DefaultRoute":21,"./components/NotFoundRoute":23,"./components/Redirect":24,"react":undefined,"react/lib/Object.assign":46,"react/lib/warning":49}],29:[function(require,module,exports){
+},{"./Route":9,"./components/DefaultRoute":17,"./components/NotFoundRoute":19,"./components/Redirect":20,"react":undefined,"react/lib/Object.assign":42,"react/lib/warning":45}],25:[function(require,module,exports){
 'use strict';
 
 var invariant = require('react/lib/invariant');
@@ -2573,7 +2112,7 @@ function getWindowScrollPosition() {
 }
 
 module.exports = getWindowScrollPosition;
-},{"react/lib/ExecutionEnvironment":45,"react/lib/invariant":48}],30:[function(require,module,exports){
+},{"react/lib/ExecutionEnvironment":41,"react/lib/invariant":44}],26:[function(require,module,exports){
 'use strict';
 
 exports.DefaultRoute = require('./components/DefaultRoute');
@@ -2605,7 +2144,7 @@ exports.createRoutesFromReactChildren = require('./createRoutesFromReactChildren
 
 exports.create = require('./createRouter');
 exports.run = require('./runRouter');
-},{"./History":7,"./Navigation":9,"./Route":13,"./State":15,"./behaviors/ImitateBrowserBehavior":18,"./behaviors/ScrollToTopBehavior":19,"./components/DefaultRoute":21,"./components/Link":22,"./components/NotFoundRoute":23,"./components/Redirect":24,"./components/Route":25,"./components/RouteHandler":26,"./createRouter":27,"./createRoutesFromReactChildren":28,"./locations/HashLocation":32,"./locations/HistoryLocation":33,"./locations/RefreshLocation":34,"./locations/StaticLocation":35,"./locations/TestLocation":36,"./runRouter":37}],31:[function(require,module,exports){
+},{"./History":3,"./Navigation":5,"./Route":9,"./State":11,"./behaviors/ImitateBrowserBehavior":14,"./behaviors/ScrollToTopBehavior":15,"./components/DefaultRoute":17,"./components/Link":18,"./components/NotFoundRoute":19,"./components/Redirect":20,"./components/Route":21,"./components/RouteHandler":22,"./createRouter":23,"./createRoutesFromReactChildren":24,"./locations/HashLocation":28,"./locations/HistoryLocation":29,"./locations/RefreshLocation":30,"./locations/StaticLocation":31,"./locations/TestLocation":32,"./runRouter":33}],27:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -2619,7 +2158,7 @@ function isReactChildren(object) {
 }
 
 module.exports = isReactChildren;
-},{"react":undefined}],32:[function(require,module,exports){
+},{"react":undefined}],28:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -2731,7 +2270,7 @@ var HashLocation = {
 };
 
 module.exports = HashLocation;
-},{"../History":7,"../actions/LocationActions":17}],33:[function(require,module,exports){
+},{"../History":3,"../actions/LocationActions":13}],29:[function(require,module,exports){
 'use strict';
 
 var LocationActions = require('../actions/LocationActions');
@@ -2818,7 +2357,7 @@ var HistoryLocation = {
 };
 
 module.exports = HistoryLocation;
-},{"../History":7,"../actions/LocationActions":17}],34:[function(require,module,exports){
+},{"../History":3,"../actions/LocationActions":13}],30:[function(require,module,exports){
 'use strict';
 
 var HistoryLocation = require('./HistoryLocation');
@@ -2850,7 +2389,7 @@ var RefreshLocation = {
 };
 
 module.exports = RefreshLocation;
-},{"../History":7,"./HistoryLocation":33}],35:[function(require,module,exports){
+},{"../History":3,"./HistoryLocation":29}],31:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -2900,7 +2439,7 @@ StaticLocation.prototype.replace = throwCannotModify;
 StaticLocation.prototype.pop = throwCannotModify;
 
 module.exports = StaticLocation;
-},{"react/lib/invariant":48}],36:[function(require,module,exports){
+},{"react/lib/invariant":44}],32:[function(require,module,exports){
 'use strict';
 
 var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
@@ -2995,7 +2534,7 @@ var TestLocation = (function () {
 })();
 
 module.exports = TestLocation;
-},{"../History":7,"../actions/LocationActions":17,"react/lib/invariant":48}],37:[function(require,module,exports){
+},{"../History":3,"../actions/LocationActions":13,"react/lib/invariant":44}],33:[function(require,module,exports){
 'use strict';
 
 var createRouter = require('./createRouter');
@@ -3046,7 +2585,7 @@ function runRouter(routes, location, callback) {
 }
 
 module.exports = runRouter;
-},{"./createRouter":27}],38:[function(require,module,exports){
+},{"./createRouter":23}],34:[function(require,module,exports){
 'use strict';
 
 function supportsHistory() {
@@ -3063,7 +2602,7 @@ function supportsHistory() {
 }
 
 module.exports = supportsHistory;
-},{}],39:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -3091,10 +2630,10 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],40:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 module.exports = require('./lib/');
 
-},{"./lib/":41}],41:[function(require,module,exports){
+},{"./lib/":37}],37:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -3111,7 +2650,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":42,"./stringify":43}],42:[function(require,module,exports){
+},{"./parse":38,"./stringify":39}],38:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -3274,7 +2813,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":44}],43:[function(require,module,exports){
+},{"./utils":40}],39:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -3373,7 +2912,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":44}],44:[function(require,module,exports){
+},{"./utils":40}],40:[function(require,module,exports){
 // Load modules
 
 
@@ -3507,7 +3046,7 @@ exports.isBuffer = function (obj) {
         obj.constructor.isBuffer(obj));
 };
 
-},{}],45:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -3551,7 +3090,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],46:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -3600,7 +3139,7 @@ function assign(target, sources) {
 
 module.exports = assign;
 
-},{}],47:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -3634,7 +3173,7 @@ emptyFunction.thatReturnsArgument = function(arg) { return arg; };
 
 module.exports = emptyFunction;
 
-},{}],48:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -3691,7 +3230,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":1}],49:[function(require,module,exports){
+},{"_process":1}],45:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -3754,7 +3293,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"./emptyFunction":47,"_process":1}],50:[function(require,module,exports){
+},{"./emptyFunction":43,"_process":1}],46:[function(require,module,exports){
 /* global Prism */
 'use strict';
 
@@ -3765,7 +3304,8 @@ var ExampleSource = React.createClass({
 	displayName: 'ExampleSource',
 
 	propTypes: {
-		children: React.PropTypes.string.isRequired
+		children: React.PropTypes.string.isRequired,
+		language: React.PropTypes.string
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -3812,18 +3352,18 @@ var ExampleSource = React.createClass({
 
 module.exports = ExampleSource;
 
-},{"classnames":undefined,"react":undefined}],51:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],47:[function(require,module,exports){
 // Thank you https://gist.github.com/Keeguon/2310008
 'use strict';
 
 module.exports = [{ name: 'Afghanistan', code: 'AF' }, { name: 'Åland Islands', code: 'AX' }, { name: 'Albania', code: 'AL' }, { name: 'Algeria', code: 'DZ' }, { name: 'American Samoa', code: 'AS' }, { name: 'AndorrA', code: 'AD' }, { name: 'Angola', code: 'AO' }, { name: 'Anguilla', code: 'AI' }, { name: 'Antarctica', code: 'AQ' }, { name: 'Antigua and Barbuda', code: 'AG' }, { name: 'Argentina', code: 'AR' }, { name: 'Armenia', code: 'AM' }, { name: 'Aruba', code: 'AW' }, { name: 'Australia', code: 'AU' }, { name: 'Austria', code: 'AT' }, { name: 'Azerbaijan', code: 'AZ' }, { name: 'Bahamas', code: 'BS' }, { name: 'Bahrain', code: 'BH' }, { name: 'Bangladesh', code: 'BD' }, { name: 'Barbados', code: 'BB' }, { name: 'Belarus', code: 'BY' }, { name: 'Belgium', code: 'BE' }, { name: 'Belize', code: 'BZ' }, { name: 'Benin', code: 'BJ' }, { name: 'Bermuda', code: 'BM' }, { name: 'Bhutan', code: 'BT' }, { name: 'Bolivia', code: 'BO' }, { name: 'Bosnia and Herzegovina', code: 'BA' }, { name: 'Botswana', code: 'BW' }, { name: 'Bouvet Island', code: 'BV' }, { name: 'Brazil', code: 'BR' }, { name: 'British Indian Ocean Territory', code: 'IO' }, { name: 'Brunei Darussalam', code: 'BN' }, { name: 'Bulgaria', code: 'BG' }, { name: 'Burkina Faso', code: 'BF' }, { name: 'Burundi', code: 'BI' }, { name: 'Cambodia', code: 'KH' }, { name: 'Cameroon', code: 'CM' }, { name: 'Canada', code: 'CA' }, { name: 'Cape Verde', code: 'CV' }, { name: 'Cayman Islands', code: 'KY' }, { name: 'Central African Republic', code: 'CF' }, { name: 'Chad', code: 'TD' }, { name: 'Chile', code: 'CL' }, { name: 'China', code: 'CN' }, { name: 'Christmas Island', code: 'CX' }, { name: 'Cocos (Keeling) Islands', code: 'CC' }, { name: 'Colombia', code: 'CO' }, { name: 'Comoros', code: 'KM' }, { name: 'Congo', code: 'CG' }, { name: 'Congo, The Democratic Republic of the', code: 'CD' }, { name: 'Cook Islands', code: 'CK' }, { name: 'Costa Rica', code: 'CR' }, { name: 'Cote D\'Ivoire', code: 'CI' }, { name: 'Croatia', code: 'HR' }, { name: 'Cuba', code: 'CU' }, { name: 'Cyprus', code: 'CY' }, { name: 'Czech Republic', code: 'CZ' }, { name: 'Denmark', code: 'DK' }, { name: 'Djibouti', code: 'DJ' }, { name: 'Dominica', code: 'DM' }, { name: 'Dominican Republic', code: 'DO' }, { name: 'Ecuador', code: 'EC' }, { name: 'Egypt', code: 'EG' }, { name: 'El Salvador', code: 'SV' }, { name: 'Equatorial Guinea', code: 'GQ' }, { name: 'Eritrea', code: 'ER' }, { name: 'Estonia', code: 'EE' }, { name: 'Ethiopia', code: 'ET' }, { name: 'Falkland Islands (Malvinas)', code: 'FK' }, { name: 'Faroe Islands', code: 'FO' }, { name: 'Fiji', code: 'FJ' }, { name: 'Finland', code: 'FI' }, { name: 'France', code: 'FR' }, { name: 'French Guiana', code: 'GF' }, { name: 'French Polynesia', code: 'PF' }, { name: 'French Southern Territories', code: 'TF' }, { name: 'Gabon', code: 'GA' }, { name: 'Gambia', code: 'GM' }, { name: 'Georgia', code: 'GE' }, { name: 'Germany', code: 'DE' }, { name: 'Ghana', code: 'GH' }, { name: 'Gibraltar', code: 'GI' }, { name: 'Greece', code: 'GR' }, { name: 'Greenland', code: 'GL' }, { name: 'Grenada', code: 'GD' }, { name: 'Guadeloupe', code: 'GP' }, { name: 'Guam', code: 'GU' }, { name: 'Guatemala', code: 'GT' }, { name: 'Guernsey', code: 'GG' }, { name: 'Guinea', code: 'GN' }, { name: 'Guinea-Bissau', code: 'GW' }, { name: 'Guyana', code: 'GY' }, { name: 'Haiti', code: 'HT' }, { name: 'Heard Island and Mcdonald Islands', code: 'HM' }, { name: 'Holy See (Vatican City State)', code: 'VA' }, { name: 'Honduras', code: 'HN' }, { name: 'Hong Kong', code: 'HK' }, { name: 'Hungary', code: 'HU' }, { name: 'Iceland', code: 'IS' }, { name: 'India', code: 'IN' }, { name: 'Indonesia', code: 'ID' }, { name: 'Iran, Islamic Republic Of', code: 'IR' }, { name: 'Iraq', code: 'IQ' }, { name: 'Ireland', code: 'IE' }, { name: 'Isle of Man', code: 'IM' }, { name: 'Israel', code: 'IL' }, { name: 'Italy', code: 'IT' }, { name: 'Jamaica', code: 'JM' }, { name: 'Japan', code: 'JP' }, { name: 'Jersey', code: 'JE' }, { name: 'Jordan', code: 'JO' }, { name: 'Kazakhstan', code: 'KZ' }, { name: 'Kenya', code: 'KE' }, { name: 'Kiribati', code: 'KI' }, { name: 'Korea, Democratic People\'S Republic of', code: 'KP' }, { name: 'Korea, Republic of', code: 'KR' }, { name: 'Kuwait', code: 'KW' }, { name: 'Kyrgyzstan', code: 'KG' }, { name: 'Lao People\'S Democratic Republic', code: 'LA' }, { name: 'Latvia', code: 'LV' }, { name: 'Lebanon', code: 'LB' }, { name: 'Lesotho', code: 'LS' }, { name: 'Liberia', code: 'LR' }, { name: 'Libyan Arab Jamahiriya', code: 'LY' }, { name: 'Liechtenstein', code: 'LI' }, { name: 'Lithuania', code: 'LT' }, { name: 'Luxembourg', code: 'LU' }, { name: 'Macao', code: 'MO' }, { name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK' }, { name: 'Madagascar', code: 'MG' }, { name: 'Malawi', code: 'MW' }, { name: 'Malaysia', code: 'MY' }, { name: 'Maldives', code: 'MV' }, { name: 'Mali', code: 'ML' }, { name: 'Malta', code: 'MT' }, { name: 'Marshall Islands', code: 'MH' }, { name: 'Martinique', code: 'MQ' }, { name: 'Mauritania', code: 'MR' }, { name: 'Mauritius', code: 'MU' }, { name: 'Mayotte', code: 'YT' }, { name: 'Mexico', code: 'MX' }, { name: 'Micronesia, Federated States of', code: 'FM' }, { name: 'Moldova, Republic of', code: 'MD' }, { name: 'Monaco', code: 'MC' }, { name: 'Mongolia', code: 'MN' }, { name: 'Montserrat', code: 'MS' }, { name: 'Morocco', code: 'MA' }, { name: 'Mozambique', code: 'MZ' }, { name: 'Myanmar', code: 'MM' }, { name: 'Namibia', code: 'NA' }, { name: 'Nauru', code: 'NR' }, { name: 'Nepal', code: 'NP' }, { name: 'Netherlands', code: 'NL' }, { name: 'Netherlands Antilles', code: 'AN' }, { name: 'New Caledonia', code: 'NC' }, { name: 'New Zealand', code: 'NZ' }, { name: 'Nicaragua', code: 'NI' }, { name: 'Niger', code: 'NE' }, { name: 'Nigeria', code: 'NG' }, { name: 'Niue', code: 'NU' }, { name: 'Norfolk Island', code: 'NF' }, { name: 'Northern Mariana Islands', code: 'MP' }, { name: 'Norway', code: 'NO' }, { name: 'Oman', code: 'OM' }, { name: 'Pakistan', code: 'PK' }, { name: 'Palau', code: 'PW' }, { name: 'Palestinian Territory, Occupied', code: 'PS' }, { name: 'Panama', code: 'PA' }, { name: 'Papua New Guinea', code: 'PG' }, { name: 'Paraguay', code: 'PY' }, { name: 'Peru', code: 'PE' }, { name: 'Philippines', code: 'PH' }, { name: 'Pitcairn', code: 'PN' }, { name: 'Poland', code: 'PL' }, { name: 'Portugal', code: 'PT' }, { name: 'Puerto Rico', code: 'PR' }, { name: 'Qatar', code: 'QA' }, { name: 'Reunion', code: 'RE' }, { name: 'Romania', code: 'RO' }, { name: 'Russian Federation', code: 'RU' }, { name: 'RWANDA', code: 'RW' }, { name: 'Saint Helena', code: 'SH' }, { name: 'Saint Kitts and Nevis', code: 'KN' }, { name: 'Saint Lucia', code: 'LC' }, { name: 'Saint Pierre and Miquelon', code: 'PM' }, { name: 'Saint Vincent and the Grenadines', code: 'VC' }, { name: 'Samoa', code: 'WS' }, { name: 'San Marino', code: 'SM' }, { name: 'Sao Tome and Principe', code: 'ST' }, { name: 'Saudi Arabia', code: 'SA' }, { name: 'Senegal', code: 'SN' }, { name: 'Serbia and Montenegro', code: 'CS' }, { name: 'Seychelles', code: 'SC' }, { name: 'Sierra Leone', code: 'SL' }, { name: 'Singapore', code: 'SG' }, { name: 'Slovakia', code: 'SK' }, { name: 'Slovenia', code: 'SI' }, { name: 'Solomon Islands', code: 'SB' }, { name: 'Somalia', code: 'SO' }, { name: 'South Africa', code: 'ZA' }, { name: 'South Georgia and the South Sandwich Islands', code: 'GS' }, { name: 'Spain', code: 'ES' }, { name: 'Sri Lanka', code: 'LK' }, { name: 'Sudan', code: 'SD' }, { name: 'Suriname', code: 'SR' }, { name: 'Svalbard and Jan Mayen', code: 'SJ' }, { name: 'Swaziland', code: 'SZ' }, { name: 'Sweden', code: 'SE' }, { name: 'Switzerland', code: 'CH' }, { name: 'Syrian Arab Republic', code: 'SY' }, { name: 'Taiwan, Province of China', code: 'TW' }, { name: 'Tajikistan', code: 'TJ' }, { name: 'Tanzania, United Republic of', code: 'TZ' }, { name: 'Thailand', code: 'TH' }, { name: 'Timor-Leste', code: 'TL' }, { name: 'Togo', code: 'TG' }, { name: 'Tokelau', code: 'TK' }, { name: 'Tonga', code: 'TO' }, { name: 'Trinidad and Tobago', code: 'TT' }, { name: 'Tunisia', code: 'TN' }, { name: 'Turkey', code: 'TR' }, { name: 'Turkmenistan', code: 'TM' }, { name: 'Turks and Caicos Islands', code: 'TC' }, { name: 'Tuvalu', code: 'TV' }, { name: 'Uganda', code: 'UG' }, { name: 'Ukraine', code: 'UA' }, { name: 'United Arab Emirates', code: 'AE' }, { name: 'United Kingdom', code: 'GB' }, { name: 'United States', code: 'US' }, { name: 'United States Minor Outlying Islands', code: 'UM' }, { name: 'Uruguay', code: 'UY' }, { name: 'Uzbekistan', code: 'UZ' }, { name: 'Vanuatu', code: 'VU' }, { name: 'Venezuela', code: 'VE' }, { name: 'Viet Nam', code: 'VN' }, { name: 'Virgin Islands, British', code: 'VG' }, { name: 'Virgin Islands, U.S.', code: 'VI' }, { name: 'Wallis and Futuna', code: 'WF' }, { name: 'Western Sahara', code: 'EH' }, { name: 'Yemen', code: 'YE' }, { name: 'Zambia', code: 'ZM' }, { name: 'Zimbabwe', code: 'ZW' }];
 
-},{}],52:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 "use strict";
 
-module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismodacfermentum.com", "password": "ZKG57ZFJ9HK", "dob": "Feb 23, 1976", "gender": "female" }, { "name": "Hermione Maddox", "email": "Curabitur.massa@eu.ca", "password": "ECI38CRA9MB", "dob": "Dec 4, 1959", "gender": "female" }, { "name": "Vladimir Rodgers", "email": "diam@ettristiquepellentesque.com", "password": "ESK96WFK9OD", "dob": "May 12, 1979", "gender": "male" }, { "name": "Kelsie Ewing", "email": "rutrum.non@tellus.co.uk", "password": "KVE70PUO5TB", "dob": "Jul 14, 1968", "gender": "female" }, { "name": "Yetta Higgins", "email": "quis.pede@lectusquis.com", "password": "KAE34UXU2QZ", "dob": "Oct 13, 1971", "gender": "female" }, { "name": "Kadeem Montgomery", "email": "facilisis.facilisis@vitaesodalesat.edu", "password": "POX16RXV9HL", "dob": "Oct 13, 1968", "gender": "male" }, { "name": "Martina Dodson", "email": "Cras.lorem@convallis.org", "password": "TIY32LRA7IU", "dob": "Jan 31, 1974", "gender": "female" }, { "name": "Grady Gonzalez", "email": "posuere.cubilia@Aenean.org", "password": "VKN16PHI8PW", "dob": "Jun 22, 1982", "gender": "male" }, { "name": "Lacey Hutchinson", "email": "Maecenas.iaculis@sedpede.net", "password": "LDN67DTE6CC", "dob": "Jul 23, 1986", "gender": "female" }, { "name": "John Santiago", "email": "eleifend.egestas@convallis.ca", "password": "ZEY52DKW3ZZ", "dob": "May 5, 1968", "gender": "male" }, { "name": "Philip Floyd", "email": "Proin@enimnisl.ca", "password": "RZK97GMJ7EK", "dob": "Mar 20, 1952", "gender": "male" }, { "name": "Leslie Chavez", "email": "sociis.natoque.penatibus@porttitor.net", "password": "AKN50QNQ8HK", "dob": "Apr 19, 1947", "gender": "female" }, { "name": "Alisa Allison", "email": "vitae@netusetmalesuada.ca", "password": "XLP00XDR9UW", "dob": "May 23, 1955", "gender": "female" }, { "name": "Joshua Clarke", "email": "mi@quamPellentesque.net", "password": "LSN56SXD3SH", "dob": "Apr 12, 1968", "gender": "male" }, { "name": "Victoria Holden", "email": "magna@pedeac.net", "password": "BUS61XTJ6KI", "dob": "Jan 22, 1990", "gender": "female" }, { "name": "Kibo Goodwin", "email": "est@nec.org", "password": "GWM68BLL8LN", "dob": "Nov 21, 1950", "gender": "male" }, { "name": "Marvin Justice", "email": "Integer@Quisquetincidunt.co.uk", "password": "NRQ89UJQ5FH", "dob": "Dec 8, 1958", "gender": "male" }, { "name": "Justin Rowland", "email": "magna.a.neque@anequeNullam.ca", "password": "JKQ17ZVE3TE", "dob": "May 31, 1994", "gender": "male" }, { "name": "Tiger Blevins", "email": "enim.sit@felisNulla.net", "password": "MLA03EJG4WI", "dob": "Feb 1, 1981", "gender": "male" }, { "name": "Peter Bray", "email": "nascetur@Nullamutnisi.edu", "password": "BAL79WGC4II", "dob": "Dec 22, 1950", "gender": "male" }];
+module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismodacfermentum.com", "password": "ZKG57ZFJ9HK", "age": 39, "gender": "female" }, { "name": "Hermione Maddox", "email": "Curabitur.massa@eu.ca", "password": "ECI38CRA9MB", "age": 55, "gender": "female" }, { "name": "Vladimir Rodgers", "email": "diam@ettristiquepellentesque.com", "password": "ESK96WFK9OD", "age": 36, "gender": "male" }, { "name": "Kelsie Ewing", "email": "rutrum.non@tellus.co.uk", "password": "KVE70PUO5TB", "age": 47, "gender": "female" }, { "name": "Yetta Higgins", "email": "quis.pede@lectusquis.com", "password": "KAE34UXU2QZ", "age": 43, "gender": "female" }, { "name": "Kadeem Montgomery", "email": "facilisis.facilisis@vitaesodalesat.edu", "password": "POX16RXV9HL", "age": 46, "gender": "male" }, { "name": "Martina Dodson", "email": "Cras.lorem@convallis.org", "password": "TIY32LRA7IU", "age": 41, "gender": "female" }, { "name": "Grady Gonzalez", "email": "posuere.cubilia@Aenean.org", "password": "VKN16PHI8PW", "age": 33, "gender": "male" }, { "name": "Lacey Hutchinson", "email": "Maecenas.iaculis@sedpede.net", "password": "LDN67DTE6CC", "age": 29, "gender": "female" }, { "name": "John Santiago", "email": "eleifend.egestas@convallis.ca", "password": "ZEY52DKW3ZZ", "age": 47, "gender": "male" }, { "name": "Philip Floyd", "email": "Proin@enimnisl.ca", "password": "RZK97GMJ7EK", "age": 63, "gender": "male" }, { "name": "Leslie Chavez", "email": "sociis.natoque.penatibus@porttitor.net", "password": "AKN50QNQ8HK", "age": 68, "gender": "female" }, { "name": "Alisa Allison", "email": "vitae@netusetmalesuada.ca", "password": "XLP00XDR9UW", "age": 60, "gender": "female" }, { "name": "Joshua Clarke", "email": "mi@quamPellentesque.net", "password": "LSN56SXD3SH", "age": 47, "gender": "male" }, { "name": "Victoria Holden", "email": "magna@pedeac.net", "password": "BUS61XTJ6KI", "age": 25, "gender": "female" }, { "name": "Kibo Goodwin", "email": "est@nec.org", "password": "GWM68BLL8LN", "age": 64, "gender": "male" }, { "name": "Marvin Justice", "email": "Integer@Quisquetincidunt.co.uk", "password": "NRQ89UJQ5FH", "age": 56, "gender": "male" }, { "name": "Justin Rowland", "email": "magna.a.neque@anequeNullam.ca", "password": "JKQ17ZVE3TE", "age": 21, "gender": "male" }, { "name": "Tiger Blevins", "email": "enim.sit@felisNulla.net", "password": "MLA03EJG4WI", "age": 34, "gender": "male" }, { "name": "Peter Bray", "email": "nascetur@Nullamutnisi.edu", "password": "BAL79WGC4II", "age": 64, "gender": "male" }];
 
-},{}],53:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
@@ -3834,7 +3374,6 @@ var _require = require('elemental');
 
 var Dropdown = _require.Dropdown;
 var Table = _require.Table;
-var Tooltip = _require.Tooltip;
 var Button = _require.Button;
 var ButtonGroup = _require.ButtonGroup;
 
@@ -3977,7 +3516,7 @@ var Buttons = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Button type="default-primary">Hollow Primary</Button>\n\t\t\t\t\t\t\t<Button type="default-success">Hollow Success</Button>\n\t\t\t\t\t\t\t<Button type="default-warning">Hollow Warning</Button>\n\t\t\t\t\t\t\t<Button type="default-danger">Hollow Danger</Button>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Button type="hollow-primary">Hollow Primary</Button>\n\t\t\t\t\t\t\t<Button type="hollow-success">Hollow Success</Button>\n\t\t\t\t\t\t\t<Button type="hollow-warning">Hollow Warning</Button>\n\t\t\t\t\t\t\t<Button type="hollow-danger">Hollow Danger</Button>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -4677,14 +4216,13 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
+},{"../components/ExampleSource":46,"elemental":undefined,"react":undefined}],50:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
 
 var React = require('react/addons');
 var classNames = require('classnames');
-var moment = require('moment');
 
 var ExampleSource = require('../components/ExampleSource');
 
@@ -4752,8 +4290,7 @@ var CSSExamples = React.createClass({
 		});
 
 		var tableRows = USERS.map(function (user, i) {
-			var dob = moment(user.dob, 'MMM DD, YYYY');
-			var userAge = moment().diff(dob, 'years');
+			;
 			var checked = (i in self.state.selectedRows);
 			var rowClass = classNames({
 				'row-selected': checked
@@ -4783,7 +4320,7 @@ var CSSExamples = React.createClass({
 				React.createElement(
 					'td',
 					null,
-					userAge
+					user.age
 				),
 				React.createElement(
 					'td',
@@ -5215,115 +4752,7 @@ var CSSExamples = React.createClass({
 
 module.exports = CSSExamples;
 
-},{"../components/ExampleSource":50,"../data/users":52,"classnames":undefined,"elemental":undefined,"moment":undefined,"react/addons":undefined}],55:[function(require,module,exports){
-'use strict';
-
-var React = require('react/addons');
-var Button = require('elemental').Button;
-var DateSelect = require('react-date-select');
-
-var DateSelectExamples = React.createClass({
-	displayName: 'DateSelectExamples',
-
-	getInitialState: function getInitialState() {
-		return {
-			singleDateValue: new Date(),
-			multiDateValue1: [new Date(), new Date()],
-			multiDateValue2: [new Date(), new Date()]
-		};
-	},
-	onDateChange: function onDateChange(key, value) {
-		this.setState({ key: value });
-	},
-	render: function render() {
-		return React.createElement(
-			'div',
-			{ className: "demo-container container" },
-			React.createElement(
-				'h1',
-				null,
-				'Date Picker'
-			),
-			React.createElement(
-				'p',
-				{ className: "lead" },
-				'We built ',
-				React.createElement(
-					'a',
-					{ href: "http://jedwatson.github.io/react-date-select" },
-					'react-date-select'
-				),
-				' for Elemental, and published it separately to ',
-				React.createElement(
-					'a',
-					{ href: "https://www.npmjs.com/package/react-date-select" },
-					'npm'
-				)
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Day Picker'
-			),
-			React.createElement(
-				'p',
-				null,
-				'Pick a single date'
-			),
-			React.createElement(
-				DateSelect,
-				{ value: this.state.singleDateValue, onChange: this.onDateChange.bind(this, 'singleDateValue') },
-				React.createElement(
-					Button,
-					null,
-					'Open date picker'
-				)
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Multi Picker'
-			),
-			React.createElement(
-				'p',
-				null,
-				'Pick a start and end date'
-			),
-			React.createElement(
-				DateSelect,
-				{ value: this.state.multiDateValue1, onChange: this.onDateChange.bind(this, 'multiDateValue1'), isMulti: true },
-				React.createElement(
-					Button,
-					null,
-					'Open range picker'
-				)
-			),
-			React.createElement(
-				'h2',
-				null,
-				'Multi Picker with Ranges'
-			),
-			React.createElement(
-				'p',
-				null,
-				'Pick a start and end date, with the option to use predefined ranges.'
-			),
-			React.createElement(
-				DateSelect,
-				{ value: this.state.multiDateValue2, onChange: this.onDateChange.bind(this, 'multiDateValue2'), isMulti: true, showPredefinedRanges: true },
-				React.createElement(
-					Button,
-					null,
-					'Launch range picker (with default ranges)'
-				)
-			)
-		);
-	}
-});
-
-module.exports = DateSelectExamples;
-
-},{"elemental":undefined,"react-date-select":2,"react/addons":undefined}],56:[function(require,module,exports){
+},{"../components/ExampleSource":46,"../data/users":48,"classnames":undefined,"elemental":undefined,"react/addons":undefined}],51:[function(require,module,exports){
 /* eslint no-alert: 0 */
 
 'use strict';
@@ -5337,6 +4766,7 @@ var Checkbox = _require.Checkbox;
 var EmailInputGroup = _require.EmailInputGroup;
 var FileDragAndDrop = _require.FileDragAndDrop;
 var FileUpload = _require.FileUpload;
+var Form = _require.Form;
 var FormField = _require.FormField;
 var FormIconField = _require.FormIconField;
 var FormInput = _require.FormInput;
@@ -5406,14 +4836,6 @@ var Forms = React.createClass({
 			return { label: country.name, value: country.code };
 		});
 
-		var checkboxes = [1, 2, 3].map(function (item) {
-			return React.createElement(Checkbox, { key: 'checkbox_' + item, name: 'checkbox_' + item, label: "Check me out" });
-		});
-
-		var radios = [1, 2, 3].map(function (item) {
-			return React.createElement(Radio, { key: 'radio_' + item, name: "supportedControlsRadios", label: "Pick me" });
-		});
-
 		// Icon Loops
 
 		var iconContextVariantsColor = COLOR_VARIANTS.map(function (color) {
@@ -5481,7 +4903,7 @@ var Forms = React.createClass({
 					'div',
 					{ className: "code-example__example" },
 					React.createElement(
-						'form',
+						Form,
 						null,
 						React.createElement(
 							FormField,
@@ -5508,7 +4930,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -5519,19 +4941,19 @@ var Forms = React.createClass({
 			React.createElement(
 				'p',
 				null,
-				'Adding the class ',
+				'Adding the type ',
 				React.createElement(
 					'code',
 					{ className: "inline-code" },
-					'.form-horizontal'
+					'horizontal'
 				),
-				' to your wrapper (which doesn\'t have to be a ',
+				' to your ',
 				React.createElement(
 					'code',
 					{ className: "inline-code" },
-					'<form>'
+					'<Form />'
 				),
-				' tag) changes the ',
+				' changes the ',
 				React.createElement(
 					'code',
 					{ className: "inline-code" },
@@ -5552,8 +4974,8 @@ var Forms = React.createClass({
 					'div',
 					{ className: "code-example__example" },
 					React.createElement(
-						'form',
-						{ className: "horizontal-form" },
+						Form,
+						{ type: "horizontal" },
 						React.createElement(
 							FormField,
 							{ label: "Email address", htmlFor: "horizontal-form-input-email" },
@@ -5583,7 +5005,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<form className="horizontal-form">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="horizontal-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="horizontal-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="horizontal-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Form type="horizontal">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="horizontal-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="horizontal-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="horizontal-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -5594,19 +5016,19 @@ var Forms = React.createClass({
 			React.createElement(
 				'p',
 				null,
-				'Adding the class ',
+				'Add the type ',
 				React.createElement(
 					'code',
 					{ className: "inline-code" },
-					'.form-inline'
+					'inline'
 				),
-				' to your wrapper (which doesn\'t have to be a ',
+				' to your ',
 				React.createElement(
 					'code',
 					{ className: "inline-code" },
-					'<form>'
+					'<Form />'
 				),
-				' tag)  for left-aligned and inline-block controls. This only applies to forms within viewports that are at least 768px wide.'
+				' for left-aligned and inline-block controls. This only applies to forms within viewports that are at least 768px wide.'
 			),
 			React.createElement(
 				'p',
@@ -5620,8 +5042,8 @@ var Forms = React.createClass({
 					'div',
 					{ className: "code-example__example" },
 					React.createElement(
-						'form',
-						{ className: "inline-form" },
+						Form,
+						{ type: "inline" },
 						React.createElement(
 							FormField,
 							{ label: "Email address", htmlFor: "inline-form-input-email" },
@@ -5651,7 +5073,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<form className="inline-form">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="inline-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="inline-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="inline-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Form type="inline">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="inline-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="inline-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="inline-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -5811,7 +5233,12 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
+							React.createElement(FormInput, { type: "text", placeholder: "Input group field 1" })
+						),
+						React.createElement(
+							InputGroup.Section,
+							{ grow: true },
+							React.createElement(FormInput, { type: "text", placeholder: "Input group field 2" })
 						),
 						React.createElement(
 							InputGroup.Section,
@@ -6473,26 +5900,16 @@ var Forms = React.createClass({
 				'File Upload'
 			),
 			React.createElement(
-				'form',
-				{ className: "horizontal-form" },
+				Form,
+				{ type: "horizontal" },
 				React.createElement(
-					'div',
-					{ className: "form-field" },
-					React.createElement(
-						FormLabel,
-						{ verticalAlign: "top" },
-						'Image'
-					),
+					FormField,
+					{ label: "Image" },
 					React.createElement(FileUpload, { buttonLabelInitial: "Upload Image", buttonLabelChange: "Change Image", accept: "image/jpg, image/gif, image/png" })
 				),
 				React.createElement(
-					'div',
-					{ className: "form-field" },
-					React.createElement(
-						FormLabel,
-						{ verticalAlign: "top" },
-						'Images'
-					),
+					FormField,
+					{ label: "Images" },
 					React.createElement(FileDragAndDrop, { files: this.state.files, onDrop: this.onDrop })
 				)
 			)
@@ -6502,16 +5919,16 @@ var Forms = React.createClass({
 
 module.exports = Forms;
 
-},{"../components/ExampleSource":50,"../data/countries":51,"elemental":undefined,"react":undefined}],57:[function(require,module,exports){
+},{"../components/ExampleSource":46,"../data/countries":47,"elemental":undefined,"react":undefined}],52:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var Button = require('elemental').Button;
 var Router = require('react-router');
 
-var NavItems = [{ value: 'css', icon: 'paintcan', label: 'CSS' }, { value: 'buttons', icon: 'screen-full', label: 'Buttons' }, { value: 'forms', icon: 'diff-modified', label: 'Forms' }, { value: 'spinner', icon: 'ellipsis', label: 'Spinner' }, { value: 'modal', icon: 'versions', label: 'Modal' }, { value: 'misc', icon: 'code', label: 'Misc' }];
-
+var NavItems = [{ value: 'css', icon: 'paintcan', label: 'CSS' }, { value: 'buttons', icon: 'screen-full', label: 'Buttons' }, { value: 'forms', icon: 'diff-modified', label: 'Forms' }, { value: 'spinner', icon: 'ellipsis', label: 'Spinner' }, { value: 'modal', icon: 'versions', label: 'Modal' }, { value: 'misc', icon: 'code', label: 'Misc' }
 // { value: 'date-picker', icon: 'calendar', label: 'Date' }
+];
+
 var Home = React.createClass({
 	displayName: 'VIEW_Home',
 
@@ -6736,7 +6153,7 @@ var Home = React.createClass({
 
 module.exports = Home;
 
-},{"elemental":undefined,"react":undefined,"react-router":30}],58:[function(require,module,exports){
+},{"react":undefined,"react-router":26}],53:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -7188,7 +6605,7 @@ var Misc = React.createClass({
 
 module.exports = Misc;
 
-},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],59:[function(require,module,exports){
+},{"../components/ExampleSource":46,"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -7249,7 +6666,7 @@ module.exports = React.createClass({
 			var newState = {};
 			newState[e.target.name] = e.target.value;
 			self.setState(newState);
-		};
+		}
 
 		// variable submit button
 		var submitButton = this.state.formProcessing ? React.createElement(
@@ -7694,7 +7111,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../components/ExampleSource":50,"elemental":undefined,"react/addons":undefined}],60:[function(require,module,exports){
+},{"../components/ExampleSource":46,"elemental":undefined,"react/addons":undefined}],55:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -7932,7 +7349,7 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/ExampleSource":50,"elemental":undefined,"react":undefined}],61:[function(require,module,exports){
+},{"../components/ExampleSource":46,"elemental":undefined,"react":undefined}],56:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -7953,19 +7370,19 @@ var PageNav = React.createClass({
 		};
 	},
 
-	handleResize: function handleResize(e) {
-		this.setState({
-			windowHeight: window.innerHeight,
-			windowWidth: window.innerWidth
-		});
-	},
-
 	componentDidMount: function componentDidMount() {
 		window.addEventListener('resize', this.handleResize);
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
 		window.removeEventListener('resize', this.handleResize);
+	},
+
+	handleResize: function handleResize() {
+		this.setState({
+			windowHeight: window.innerHeight,
+			windowWidth: window.innerWidth
+		});
 	},
 
 	toggleMenu: function toggleMenu() {
@@ -8074,13 +7491,12 @@ var routes = React.createElement(
 	React.createElement(Router.Route, { name: "spinner", path: basepath + '/spinner', handler: require('./pages/Spinner') }),
 	React.createElement(Router.Route, { name: "modal", path: basepath + '/modal', handler: require('./pages/Modal') }),
 	React.createElement(Router.Route, { name: "misc", path: basepath + '/misc', handler: require('./pages/Misc') }),
-	React.createElement(Router.Route, { name: "date-picker", path: basepath + '/date-picker', handler: require('./pages/DatePicker') }),
 	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
 );
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
 	React.render(React.createElement(Handler, null), document.body);
 });
-/*<Router.Link to="home">Home</Router.Link>*/
+/*<Router.Link to="home">Home</Router.Link>*/ /*<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />*/
 
-},{"./pages/Buttons":53,"./pages/CSS":54,"./pages/DatePicker":55,"./pages/Forms":56,"./pages/Home":57,"./pages/Misc":58,"./pages/Modal":59,"./pages/Spinner":60,"react":undefined,"react-router":30}]},{},[61]);
+},{"./pages/Buttons":49,"./pages/CSS":50,"./pages/Forms":51,"./pages/Home":52,"./pages/Misc":53,"./pages/Modal":54,"./pages/Spinner":55,"react":undefined,"react-router":26}]},{},[56]);
