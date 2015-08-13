@@ -6,12 +6,16 @@ var Checkbox = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
+		focusOnMount: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string
 	},
 	
 	componentDidMount () {
+		if (this.props.focusOnMount) {
+			this.refs.target.getDOMNode().focus();
+		}
 		this.setIndeterminate(this.props.indeterminate);
 	},
 	
