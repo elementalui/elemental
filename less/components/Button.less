@@ -78,11 +78,18 @@
 		color: @text-color;
 		outline: none;
 	}
+	&.is-active,
 	&:active {
 		background: #e6e6e6;
 		border-color: darken(@input-border-color, 10%);
 		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 		color: @text-color;
+	}
+	
+	// yuck...
+	&.is-active:focus:not(:active) {
+		border-color: @app-primary;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 0 3px fade(@app-primary, 10%);
 	}
 
 	&.disabled,

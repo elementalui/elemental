@@ -30,6 +30,7 @@ module.exports = React.createClass({
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		href: React.PropTypes.string,
+		isActive: React.PropTypes.bool,
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(BUTTON_TYPES)
@@ -46,7 +47,8 @@ module.exports = React.createClass({
 			'Button--' + this.props.type,
 			(this.props.size ? 'Button--' + this.props.size : null),
 			{
-				'Button--block': this.props.block
+				'Button--block': this.props.block,
+				'is-active': this.props.isActive
 			},
 			this.props.className
 		);
