@@ -9,7 +9,7 @@ module.exports = React.createClass({
 		equalWidthSegments: React.PropTypes.bool,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.array.isRequired,
-		type: React.PropTypes.oneOf('default', 'muted', 'danger', 'info', 'primary', 'success', 'warning'),
+		type: React.PropTypes.oneOf(['default', 'muted', 'danger', 'info', 'primary', 'success', 'warning']),
 		value: React.PropTypes.string
 	},
 
