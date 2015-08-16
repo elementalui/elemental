@@ -62,7 +62,7 @@ module.exports = React.createClass({
 		var newState = {
 			isValid: true
 		};
-		if ((value.length && !validatePassword(value)) || (!value.length && this.props.required)) {
+		if ((value.length && !this.props.validatePassword(value)) || (!value.length && this.props.required)) {
 			newState.isValid = false;
 		}
 		if (!newState.isValid) {
