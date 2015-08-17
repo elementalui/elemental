@@ -23,8 +23,9 @@ module.exports = React.createClass({
 		};
 	},
 	focus() {
-		this.refs.element.focus();
+		React.findDOMNode(this.refs.target).focus();
 	},
+	
 	render() {
 		// classes
 		var className = classNames(
@@ -40,7 +41,7 @@ module.exports = React.createClass({
 		var props = Object.assign(blacklist(this.props, 'className'), {
 			className: className,
 			id: this.props.id || this.props.name,
-			ref: 'element'
+			ref: 'target'
 		});
 
 		// element
