@@ -40,12 +40,12 @@ module.exports = React.createClass({
 		return { top: typeof this.props.top !== 'undefined' ? this.props.top : window.pageYOffset };
 	},
 	
-	componentDidMount: function() {
-		window.addEventListener('keydown', this.handleKeyDown);
-	},
-	
-	componentWillUnMount: function() {
-		window.removeEventListener('keydown', this.handleKeyDown);
+	componentWillReceiveProps: function(nextProps) {
+		if (nextProps.isOpen) {
+			window.addEventListener('keydown', this.handleKeyDown);
+		} else {
+			window.removeEventListener('keydown', this.handleKeyDown);
+		}
 	},
 	
 	handleKeyDown (e) {
