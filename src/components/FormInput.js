@@ -60,9 +60,11 @@ module.exports = React.createClass({
 		if (this.props.noedit && this.props.href) {
 			componentElement = 'a';
 			props.type = null;
+			props.children = props.children || props.value;
 		} else if (this.props.noedit) {
 			componentElement = 'div';
 			props.type = null;
+			props.children = props.children || props.value;
 		} else if (this.props.multiline) {
 			componentElement = 'textarea';
 		}
