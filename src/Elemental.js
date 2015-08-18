@@ -1,4 +1,5 @@
 exports.Alert = require('./components/Alert');
+exports.BlankState = require('./components/BlankState');
 exports.Button = require('./components/Button');
 exports.ButtonGroup = require('./components/ButtonGroup');
 exports.Checkbox = require('./components/Checkbox');
