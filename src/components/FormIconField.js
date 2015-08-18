@@ -25,7 +25,7 @@ module.exports = React.createClass({
 	},
 	render() {
 		// props
-		var props = blacklist(this.props, 'className', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading');
+		var props = blacklist(this.props, 'children', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading');
 
 
 		// classes
@@ -41,8 +41,7 @@ module.exports = React.createClass({
 			'IconField__icon',
 			(this.props.iconFill ? 'IconField__icon-fill--' + this.props.iconFill : null),
 			(this.props.iconColor ? 'IconField__icon-color--' + this.props.iconColor : null),
-			icons[this.props.iconKey].className,
-			this.props.className
+			icons[this.props.iconKey].className
 		);
 
 		var icon = this.props.iconIsLoading ? (
