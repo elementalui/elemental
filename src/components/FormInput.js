@@ -16,7 +16,10 @@ module.exports = React.createClass({
 		onChange: React.PropTypes.func,
 		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
 		type: React.PropTypes.string,
-		value: React.PropTypes.string
+		value: React.PropTypes.oneOfType([
+			React.PropTypes.number,
+			React.PropTypes.string
+		]),
 	},
 	
 	getDefaultProps() {
