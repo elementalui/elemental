@@ -10,7 +10,8 @@ module.exports = React.createClass({
 	},
 	getDefaultProps() {
 		return {
-			type: 'default'
+			type: 'default',
+			size: 'sm'
 		};
 	},
 	render() {
