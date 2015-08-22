@@ -19,15 +19,15 @@ module.exports = React.createClass({
 		value: React.PropTypes.oneOfType([
 			React.PropTypes.number,
 			React.PropTypes.string
-		]),
+		])
 	},
-	
+
 	getDefaultProps() {
 		return {
 			type: 'text'
 		};
 	},
-	
+
 	componentDidMount () {
 		if (this.props.focusOnMount) {
 			setTimeout(() => {
@@ -35,11 +35,11 @@ module.exports = React.createClass({
 			}, 10);
 		}
 	},
-	
+
 	focus() {
 		React.findDOMNode(this.refs.target).focus();
 	},
-	
+
 	render() {
 		// classes
 		var className = classNames(

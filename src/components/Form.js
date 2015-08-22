@@ -7,6 +7,10 @@ module.exports = React.createClass({
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
 		className: React.PropTypes.string,
+		component: React.PropTypes.oneOfType([
+			React.PropTypes.element,
+			React.PropTypes.string
+		]),
 		type: React.PropTypes.oneOf(['basic', 'horizontal', 'inline'])
 	},
 	getDefaultProps () {
@@ -18,7 +22,7 @@ module.exports = React.createClass({
 	render() {
 		var props = blacklist(this.props, 'children', 'type');
 		props.className = classnames('Form', ('Form--' + this.props.type), this.props.className);
-		
+
 		return React.createElement(this.props.component, props, this.props.children);
 	}
 });

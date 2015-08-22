@@ -39,7 +39,6 @@ module.exports = React.createClass({
 	getInitialState() {
 		return { top: typeof this.props.top !== 'undefined' ? this.props.top : window.pageYOffset };
 	},
-	
 	componentWillReceiveProps: function(nextProps) {
 		if (nextProps.isOpen) {
 			window.addEventListener('keydown', this.handleKeyDown);
@@ -47,14 +46,12 @@ module.exports = React.createClass({
 			window.removeEventListener('keydown', this.handleKeyDown);
 		}
 	},
-	
+	shouldComponentUpdate,
 	handleKeyDown (e) {
-		if ( e.keyCode == ESC_KEYCODE ) {
+		if (e.keyCode === ESC_KEYCODE) {
 			this.props.onCancel();
 		}
 	},
-	
-	shouldComponentUpdate,
 	updateTop() {
 		const top = safeTop(React.findDOMNode(this.refs.dialog));
 		if (top !== false) {

@@ -60,7 +60,7 @@ var CSSExamples = React.createClass({
 			return row;
 		});
 
-		var tableRows = USERS.map(function(user, i) {;
+		var tableRows = USERS.map(function(user, i) {
 			var checked = i in self.state.selectedRows;
 			var rowClass = classNames({
 				'row-selected': checked

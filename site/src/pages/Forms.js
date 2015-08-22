@@ -12,7 +12,6 @@ const {
 	FormField,
 	FormIconField,
 	FormInput,
-	FormLabel,
 	FormNote,
 	FormRow,
 	FormSelect,

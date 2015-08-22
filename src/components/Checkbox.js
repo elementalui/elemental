@@ -9,24 +9,26 @@ var Checkbox = React.createClass({
 		focusOnMount: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
-		label: React.PropTypes.string
+		label: React.PropTypes.string,
+		style: React.PropTypes.object,
+		title: React.PropTypes.string
 	},
-	
+
 	componentDidMount () {
 		if (this.props.focusOnMount) {
 			this.refs.target.getDOMNode().focus();
 		}
 		this.setIndeterminate(this.props.indeterminate);
 	},
-	
+
 	componentWillReceiveProps (nextProps) {
 		this.setIndeterminate(nextProps.indeterminate);
 	},
-	
+
 	setIndeterminate (value) {
 		this.refs.target.getDOMNode().indeterminate = value;
 	},
-	
+
 	render() {
 		var componentClass = classNames('Checkbox', {
 			'Checkbox--disabled': this.props.disabled,
@@ -44,4 +46,3 @@ var Checkbox = React.createClass({
 });
 
 module.exports = Checkbox;
-

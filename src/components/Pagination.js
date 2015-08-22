@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -12,7 +11,7 @@ module.exports = React.createClass({
 		plural: React.PropTypes.string,
 		singular: React.PropTypes.string,
 		style: React.PropTypes.object,
-		total: React.PropTypes.number.isRequired,
+		total: React.PropTypes.number.isRequired
 	},
 	renderCount () {
 		let count = '';
@@ -65,5 +64,5 @@ module.exports = React.createClass({
 				{this.renderPages()}
 			</div>
 		);
-	},
+	}
 });
