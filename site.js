@@ -4290,7 +4290,6 @@ var CSSExamples = React.createClass({
 		});
 
 		var tableRows = USERS.map(function (user, i) {
-			;
 			var checked = (i in self.state.selectedRows);
 			var rowClass = classNames({
 				'row-selected': checked
@@ -4770,7 +4769,6 @@ var Form = _require.Form;
 var FormField = _require.FormField;
 var FormIconField = _require.FormIconField;
 var FormInput = _require.FormInput;
-var FormLabel = _require.FormLabel;
 var FormNote = _require.FormNote;
 var FormRow = _require.FormRow;
 var FormSelect = _require.FormSelect;

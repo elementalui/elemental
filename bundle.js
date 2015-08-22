@@ -343,7 +343,9 @@ var Checkbox = React.createClass({
 		focusOnMount: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
-		label: React.PropTypes.string
+		label: React.PropTypes.string,
+		style: React.PropTypes.object,
+		title: React.PropTypes.string
 	},
 
 	componentDidMount: function componentDidMount() {
@@ -855,6 +857,7 @@ module.exports = React.createClass({
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
 		className: React.PropTypes.string,
+		component: React.PropTypes.oneOfType([React.PropTypes.element, React.PropTypes.string]),
 		type: React.PropTypes.oneOf(['basic', 'horizontal', 'inline'])
 	},
 	getDefaultProps: function getDefaultProps() {
@@ -1022,7 +1025,7 @@ module.exports = React.createClass({
 		onChange: React.PropTypes.func,
 		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
 		type: React.PropTypes.string,
-		value: React.PropTypes.string
+		value: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
 	},
 
 	getDefaultProps: function getDefaultProps() {
@@ -1468,7 +1471,6 @@ module.exports = React.createClass({
 	getInitialState: function getInitialState() {
 		return { top: typeof this.props.top !== 'undefined' ? this.props.top : window.pageYOffset };
 	},
-
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		if (nextProps.isOpen) {
 			window.addEventListener('keydown', this.handleKeyDown);
@@ -1476,14 +1478,12 @@ module.exports = React.createClass({
 			window.removeEventListener('keydown', this.handleKeyDown);
 		}
 	},
-
+	shouldComponentUpdate: shouldComponentUpdate,
 	handleKeyDown: function handleKeyDown(e) {
-		if (e.keyCode == ESC_KEYCODE) {
+		if (e.keyCode === ESC_KEYCODE) {
 			this.props.onCancel();
 		}
 	},
-
-	shouldComponentUpdate: shouldComponentUpdate,
 	updateTop: function updateTop() {
 		var top = safeTop(React.findDOMNode(this.refs.dialog));
 		if (top !== false) {
@@ -1621,53 +1621,71 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react/addons');
-var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
 	displayName: 'Pagination',
 	propTypes: {
 		className: React.PropTypes.string,
-		onClick: React.PropTypes.func,
-		pagination: React.PropTypes.shape({
-			currentPage: React.PropTypes.number,
-			first: React.PropTypes.number,
-			last: React.PropTypes.number,
-			next: React.PropTypes.bool,
-			pages: React.PropTypes.array,
-			previous: React.PropTypes.bool,
-			total: React.PropTypes.number,
-			totalPages: React.PropTypes.number
-		})
+		currentPage: React.PropTypes.number.isRequired,
+		onPageSelect: React.PropTypes.func,
+		pageSize: React.PropTypes.number.isRequired,
+		plural: React.PropTypes.string,
+		singular: React.PropTypes.string,
+		style: React.PropTypes.object,
+		total: React.PropTypes.number.isRequired
 	},
 	renderCount: function renderCount() {
-		var count = this.props.pagination;
+		var count = '';
+		var _props = this.props;
+		var currentPage = _props.currentPage;
+		var pageSize = _props.pageSize;
+		var plural = _props.plural;
+		var singular = _props.singular;
+		var total = _props.total;
+
+		if (!total) {
+			count = 'No ' + (plural || 'records');
+		} else if (total > pageSize) {
+			var start = pageSize * currentPage;
+			var end = Math.min(start + pageSize, total);
+			count = 'Showing ' + start + ' to ' + end + ' of ' + total;
+		} else {
+			count = 'Showing ' + total;
+			if (total > 1 && plural) {
+				count += ' ' + plural;
+			} else if (total === 1 && singular) {
+				count += ' ' + singular;
+			}
+		}
 		return React.createElement(
 			'div',
 			{ className: "Pagination__count" },
-			'Showing ',
-			count.first,
-			' to ',
-			count.last,
-			' of ',
-			count.total
+			count
 		);
 	},
-	renderList: function renderList() {
-		if (!this.props.pagination.pages) return 'No pages...';
+	renderPages: function renderPages() {
+		if (this.props.total <= this.props.pageSize) return null;
 
-		var self = this;
+		var pages = [];
+		var _props2 = this.props;
+		var currentPage = _props2.currentPage;
+		var onPageSelect = _props2.onPageSelect;
+		var pageSize = _props2.pageSize;
+		var total = _props2.total;
 
-		var pages = this.props.pagination.pages.map(function (page) {
+		for (var i = 0; i < Math.ceil(total / pageSize); i++) {
+			var page = i + 1;
+			var current = page === currentPage;
 			var className = classNames('Pagination__list__item', {
-				'is-selected': self.props.pagination.currentPage === page
+				'is-selected': current
 			});
-			return React.createElement(
+			pages.push(React.createElement(
 				'button',
-				{ key: 'page_' + page, className: className, onClick: self.props.onClick },
+				{ key: 'page_' + page, className: className, onClick: onPageSelect },
 				page
-			);
-		});
+			));
+		}
 
 		return React.createElement(
 			'div',
@@ -1676,23 +1694,17 @@ module.exports = React.createClass({
 		);
 	},
 	render: function render() {
-		// props
-		var props = blacklist(this.props, 'className');
-
-		// classes
-		var componentClass = classNames('Pagination', this.props.className);
-		props.className = componentClass;
-
+		var className = classNames('Pagination', this.props.className);
 		return React.createElement(
 			'div',
-			props,
+			{ className: className, style: this.props.style },
 			this.renderCount(),
-			this.renderList()
+			this.renderPages()
 		);
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],31:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],31:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -2098,7 +2110,8 @@ module.exports = React.createClass({
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
-			type: 'default'
+			type: 'default',
+			size: 'sm'
 		};
 	},
 	render: function render() {
