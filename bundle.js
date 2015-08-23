@@ -1664,17 +1664,22 @@ module.exports = React.createClass({
 			count
 		);
 	},
+	onPageSelect: function onPageSelect(i) {
+		if (!this.props.onPageSelect) return;
+		this.props.onPageSelect(i);
+	},
 	renderPages: function renderPages() {
+		var _this = this;
+
 		if (this.props.total <= this.props.pageSize) return null;
 
 		var pages = [];
 		var _props2 = this.props;
 		var currentPage = _props2.currentPage;
-		var onPageSelect = _props2.onPageSelect;
 		var pageSize = _props2.pageSize;
 		var total = _props2.total;
 
-		for (var i = 0; i < Math.ceil(total / pageSize); i++) {
+		var _loop = function (i) {
 			var page = i + 1;
 			var current = page === currentPage;
 			var className = classNames('Pagination__list__item', {
@@ -1682,9 +1687,15 @@ module.exports = React.createClass({
 			});
 			pages.push(React.createElement(
 				'button',
-				{ key: 'page_' + page, className: className, onClick: onPageSelect },
+				{ key: 'page_' + page, className: className, onClick: function () {
+						return _this.onPageSelect(page);
+					} },
 				page
 			));
+		};
+
+		for (var i = 0; i < Math.ceil(total / pageSize); i++) {
+			_loop(i);
 		}
 
 		return React.createElement(
