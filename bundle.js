@@ -1647,8 +1647,9 @@ module.exports = React.createClass({
 		if (!total) {
 			count = 'No ' + (plural || 'records');
 		} else if (total > pageSize) {
-			var start = pageSize * currentPage;
-			var end = Math.min(start + pageSize, total);
+			var start = pageSize * (currentPage - 1) + 1;
+			var end = Math.min(start + pageSize - 1, total);
+			console.log(start, end);
 			count = 'Showing ' + start + ' to ' + end + ' of ' + total;
 		} else {
 			count = 'Showing ' + total;
