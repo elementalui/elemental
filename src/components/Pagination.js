@@ -34,11 +34,15 @@ module.exports = React.createClass({
 			<div className="Pagination__count">{count}</div>
 		);
 	},
+	onPageSelect (i) {
+		if (!this.props.onPageSelect) return;
+		this.props.onPageSelect(i);
+	},
 	renderPages () {
 		if (this.props.total <= this.props.pageSize) return null;
 
 		let pages = [];
-		let { currentPage, onPageSelect, pageSize, total } = this.props;
+		let { currentPage, pageSize, total } = this.props;
 
 		for (let i = 0; i < Math.ceil(total / pageSize); i++) {
 			let page = i + 1;
@@ -46,7 +50,7 @@ module.exports = React.createClass({
 			let className = classNames('Pagination__list__item', {
 				'is-selected': current
 			});
-			pages.push(<button key={'page_' + page} className={className} onClick={onPageSelect}>{page}</button>);
+			pages.push(<button key={'page_' + page} className={className} onClick={() => this.onPageSelect(page)}>{page}</button>);
 		}
 
 		return (
