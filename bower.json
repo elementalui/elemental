@@ -1,0 +1,10 @@
+{
+  "name": "elementalui",
+  "homepage": "https://github.com/elementalui/elemental",
+  "description": "A flexible and beautiful UI framework for React.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ]
+}
