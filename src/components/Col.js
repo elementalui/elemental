@@ -41,8 +41,6 @@ module.exports = React.createClass({
 		let { basis, gutter, xs, sm, md, lg } = this.props;
 		let { windowWidth } = this.state;
 
-		console.log(this.props.basis);
-
 		let columnStyle = {
 			minHeight: 1,
 			paddingLeft: (gutter / 2),
