@@ -57,7 +57,7 @@ module.exports = React.createClass({
 			columnStyle['flex'] = 1;
 			columnStyle['flexBasis'] = basis;
 		} else if (windowWidth < E.breakpoint.xs) {
-			columnStyle['width'] = xs;
+			columnStyle['width'] = xs || '100%';
 		} else if (windowWidth < E.breakpoint.sm) {
 			columnStyle['width'] = sm || xs;
 		} else if (windowWidth < E.breakpoint.md) {
