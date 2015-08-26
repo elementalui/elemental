@@ -24,7 +24,8 @@ module.exports = React.createClass({
 			password: ''
 		};
 	},
-	toggleModal() {
+	toggleModal(e) {
+		e.preventDefault();
 		var self = this;
 		this.setState({
 			modalIsOpen: !this.state.modalIsOpen
