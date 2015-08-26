@@ -28,6 +28,7 @@ exports.Pagination = require('./components/Pagination');
 exports.PasswordInputGroup = require('./components/PasswordInputGroup');
 exports.Pill = require('./components/Pill');
 exports.Radio = require('./components/Radio');
+exports.ResponsiveText = require('./components/ResponsiveText');
 exports.Row = require('./components/Row');
 exports.RadioGroup = require('./components/RadioGroup');
 exports.SegmentedControl = require('./components/SegmentedControl');
