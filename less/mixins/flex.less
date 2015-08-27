@@ -1,4 +1,4 @@
-// 
+//
 // Flexbox Mixins
 // ==============================
 
@@ -38,14 +38,17 @@
 }
 .align-items(@value: stretch) {
 	-webkit-align-items: @value;
+		 -ms-flex-align: @value;
 			align-items: @value;
 }
 .align-content(@value: stretch) {
 	-webkit-align-content: @value;
+	   -ms-flex-line-pack: @value;
 			align-content: @value;
 }
 .justify-content(@value: stretch) {
 	-webkit-justify-content: @value;
+			  -ms-flex-pack: @value;
 			justify-content: @value;
 }
 
@@ -74,4 +77,3 @@
 	-webkit-align-self: @value;
 			align-self: @value;
 }
-

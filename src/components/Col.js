@@ -49,13 +49,16 @@ module.exports = React.createClass({
 
 		// if no width control is provided fill available space
 		if (!basis && !xs && !sm && !md && !lg) {
-			columnStyle['flex'] = 1;
+			columnStyle['flex'] = '1 1 auto';
+			columnStyle['msFlex'] = '1 1 auto';
+			columnStyle['WebkitFlex'] = '1 1 auto';
 		}
 
 		// set widths / flex-basis
 		if (basis) {
-			columnStyle['flex'] = 1;
-			columnStyle['flexBasis'] = basis;
+			columnStyle['flex'] = '1 0 ' + basis;
+			columnStyle['msFlex'] = '1 0 ' + basis;
+			columnStyle['WebkitFlex'] = '1 0 ' + basis;
 		} else if (windowWidth < E.breakpoint.xs) {
 			columnStyle['width'] = xs || '100%';
 		} else if (windowWidth < E.breakpoint.sm) {

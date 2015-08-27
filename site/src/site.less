@@ -30,14 +30,15 @@
 // Type
 // ------------------------------
 
-.demo-container {
-	p {
-		margin-bottom: 1em;
-		margin-top: 0;
-	}
-	> h2 { margin-top: 3em; }
-	> h3 { margin-top: 3em; }
+p {
+	margin-bottom: 1em;
+	margin-top: 0;
 }
+h2 { margin-top: 3em; }
+h2 + .lead {
+	margin-top: 0;
+}
+h3 { margin-top: 3em; }
 
 
 
@@ -49,22 +50,6 @@
 .FormLabel {
 	font-size: @font-size-sm;
 	font-weight: @font-weight-bold;
-}
-
-
-
-
-// Container
-// ------------------------------
-
-.demo-container {
-	max-width: @demo-container-width;
-
-	// healthy padding on mobile
-	@media (max-width: @screen-sm-max) {
-		padding-left: 20px;
-		padding-right: 20px;
-	}
 }
 
 

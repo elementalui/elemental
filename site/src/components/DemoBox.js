@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import E from '../../../src/constants';
 
 const ALIGN_TRANSFORM = {
@@ -23,14 +24,17 @@ var DemoBox = React.createClass({
 			borderRadius: 4,
 			display: 'flex',
 			justifyContent: ALIGN_TRANSFORM[this.props.align],
+			msFlexPack: ALIGN_TRANSFORM[this.props.align],
+			WebkitJustifyContent: ALIGN_TRANSFORM[this.props.align],
 			marginBottom: E.width.gutter,
 			padding: '.66em 1.5em',
 		};
 		if (this.props.inverted) {
 			style[backgroundColor] = E.color.appPrimary;
 		}
+		let className = classnames('DemoBox', this.props.className);
 
-		return <div style={Object.assign(boxStyle, this.props.style)} {...this.props} />;
+		return <div style={Object.assign(boxStyle, this.props.style)} className={className} {...this.props} />;
 	}
 });
 
