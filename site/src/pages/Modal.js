@@ -2,6 +2,7 @@ const React = require('react/addons');
 
 const {
 	Button,
+	Container,
 	FormField,
 	FormInput,
 	Modal,
@@ -69,7 +70,7 @@ module.exports = React.createClass({
 			<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>
 		);
 		return (
-			<div className="demo-container container">
+			<Container maxWidth={800} className="demo-container">
 				<h1>Modal</h1>
 
 				<h2>Static Example</h2>
@@ -248,7 +249,7 @@ module.exports = React.createClass({
 						</ModalFooter>
 					</form>
 				</Modal>
-			</div>
+			</Container>
 		);
 	}
 });

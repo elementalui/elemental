@@ -30,11 +30,11 @@ var DemoBox = React.createClass({
 			padding: '.66em 1.5em',
 		};
 		if (this.props.inverted) {
-			style[backgroundColor] = E.color.appPrimary;
+			boxStyle['backgroundColor'] = E.color.appPrimary;
 		}
 		let className = classnames('DemoBox', this.props.className);
 
-		return <div style={Object.assign(boxStyle, this.props.style)} className={className} {...this.props} />;
+		return <div {...this.props} style={Object.assign({}, boxStyle, this.props.style)} className={className} />;
 	}
 });
 

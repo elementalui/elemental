@@ -10,7 +10,7 @@ const ExampleSource = require('../components/ExampleSource');
 var GridExample = React.createClass({
 	render() {
 		return (
-			<div className="demo-container container">
+			<Container maxWidth={800} className="demo-container">
 				<h1>Grid</h1>
 
 				<h2>Let's start simple</h2>
@@ -252,7 +252,8 @@ var GridExample = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
-			</div>
+				<p>With the release of React.js 0.14.x we'll be able to use the more agreeable syntax <span className="inline-code">&lt;Row basis="X"&gt;...&lt;/Row&gt;</span> through parent-based context.</p>
+			</Container>
 		);
 	}
 });

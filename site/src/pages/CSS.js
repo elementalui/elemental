@@ -4,7 +4,7 @@ const React = require('react/addons');
 const classNames = require('classnames');
 
 const ExampleSource = require('../components/ExampleSource');
-const { Table } = require('elemental');
+const { Container, Table } = require('elemental');
 
 const USERS = require('../data/users');
 const TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
@@ -83,7 +83,7 @@ var CSSExamples = React.createClass({
 		});
 
 		return (
-			<div className="demo-container container">
+			<Container maxWidth={800} className="demo-container">
 				<h1>CSS</h1>
 
 				<h2>Typography</h2>
@@ -171,7 +171,7 @@ var CSSExamples = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
-			</div>
+			</Container>
 		);
 	}
 });

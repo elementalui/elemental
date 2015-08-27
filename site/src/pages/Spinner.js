@@ -6,7 +6,7 @@ var Buttons = React.createClass({
 	displayName: 'VIEW_Spinner',
 	render () {
 		return (
-			<div className="demo-container container">
+			<Container maxWidth={800} className="demo-container">
 				<h1>Spinner</h1>
 				<div className="code-example">
 					<div className="code-example__example">
@@ -87,7 +87,7 @@ var Buttons = React.createClass({
 						</tbody>
 					</Table>
 				</div>
-			</div>
+			</Container>
 		);
 	}
 });

@@ -1,7 +1,7 @@
 /* eslint no-script-url: 0 */
 
 var React = require('react');
-var { Dropdown, Table, Button, ButtonGroup } = require('elemental');
+var { Button, ButtonGroup, Container, Dropdown, Table } = require('elemental');
 
 var ExampleSource = require('../components/ExampleSource');
 
@@ -80,7 +80,7 @@ var Buttons = React.createClass({
 
 	render () {
 		return (
-			<div className="demo-container container">
+			<Container maxWidth={800} className="demo-container">
 				<h1>Buttons</h1>
 				<h2>Sizes</h2>
 				<div className="code-example">
@@ -181,7 +181,7 @@ var Buttons = React.createClass({
 							</tr>
 							<tr>
 								<td className="usage-table__prop">size</td>
-								<td className="usage-table__type">string</td>
+								<td className="usage-table__type">enum</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Size of the button - one of: <code className="inline-code">lg</code> <code className="inline-code">sm</code> <code className="inline-code">xs</code></td>
 							</tr>
@@ -193,7 +193,7 @@ var Buttons = React.createClass({
 							</tr>
 							<tr>
 								<td className="usage-table__prop">type</td>
-								<td className="usage-table__type">string</td>
+								<td className="usage-table__type">enum</td>
 								<td className="usage-table__default">'default'</td>
 								<td className="usage-table__description">
 									One of:
@@ -310,7 +310,7 @@ var Buttons = React.createClass({
 							</tr>
 							<tr>
 								<td className="usage-table__prop">buttonType</td>
-								<td className="usage-table__type">string</td>
+								<td className="usage-table__type">enum</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">See above section on button types</td>
 							</tr>
@@ -341,7 +341,7 @@ var Buttons = React.createClass({
 						</tbody>
 					</Table>
 				</div>
-			</div>
+			</Container>
 		);
 	}
 });

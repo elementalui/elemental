@@ -1,13 +1,13 @@
 const React = require('react');
 const ExampleSource = require('../components/ExampleSource');
-const { Alert, Pill, Table } = require('elemental');
+const { Alert, Container, Pill, Table } = require('elemental');
 
 var Misc = React.createClass({
 	displayName: 'VIEW_Misc',
 
 	render() {
 		return (
-			<div className="demo-container container">
+			<Container maxWidth={800} className="demo-container">
 				<h1>Miscellaneous</h1>
 				<p className="lead">Some components march to the beat of their own drum&hellip;</p>
 
@@ -48,7 +48,7 @@ var Misc = React.createClass({
 							</tr>
 							<tr>
 								<td className="usage-table__prop">type</td>
-								<td className="usage-table__type">string</td>
+								<td className="usage-table__type">enum</td>
 								<td className="usage-table__default">''</td>
 								<td className="usage-table__description">Required.
 									One of:
@@ -111,7 +111,7 @@ var Misc = React.createClass({
 							</tr>
 							<tr>
 								<td className="usage-table__prop">type</td>
-								<td className="usage-table__type">string</td>
+								<td className="usage-table__type">enum</td>
 								<td className="usage-table__default">'default'</td>
 								<td className="usage-table__description">
 									One of:
@@ -124,7 +124,7 @@ var Misc = React.createClass({
 						</tbody>
 					</Table>
 				</div>
-			</div>
+			</Container>
 		);
 	}
 });
