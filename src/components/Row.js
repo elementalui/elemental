@@ -28,7 +28,7 @@ module.exports = React.createClass({
 		let props = blacklist(this.props, 'className', 'gutter', 'style');
 
 		return (
-			<div style={Object.assign(rowStyle, this.props.style)} className={className} {...props} />
+			<div {...props} style={Object.assign(rowStyle, this.props.style)} className={className} />
 		);
 	}
 });
