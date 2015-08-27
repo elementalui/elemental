@@ -252,6 +252,7 @@ var GridExample = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
+				<p>Using columns without declaring a width or basis will NOT WRAP but evenly distribute their width using the available horizontal space of the row. Be careful with this one.</p>
 				<p>With the release of React.js 0.14.x we'll be able to use the more agreeable syntax <span className="inline-code">&lt;Row basis="X"&gt;...&lt;/Row&gt;</span> through parent-based context.</p>
 			</Container>
 		);
