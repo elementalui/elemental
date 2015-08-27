@@ -14,19 +14,19 @@ var GridExample = React.createClass({
 				<h1>Grid</h1>
 
 				<h2>Let's start simple</h2>
-				<p className="lead">Elemental uses its own component-based grid system</p>
+				<p className="lead">Elemental uses its own component-based grid system. You can specify column widths in pixels, percentages or fractions (between 1/2 and 1/20).</p>
 
 				<div className="code-example">
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Equal Columns</div>
 						<Row>
-							<Col sm="33.333%">
+							<Col sm="1/3">
 								<DemoBox>One Third</DemoBox>
 							</Col>
-							<Col sm="33.333%">
+							<Col sm="1/3">
 								<DemoBox>One Third</DemoBox>
 							</Col>
-							<Col sm="33.333%">
+							<Col sm="1/3">
 								<DemoBox>One Third</DemoBox>
 							</Col>
 						</Row>
@@ -34,13 +34,13 @@ var GridExample = React.createClass({
 					<ExampleSource>
 						{`
 							<Row>
-								<Col sm="33.333%">
+								<Col sm="1/3">
 									<DemoBox>One Third</DemoBox>
 								</Col>
-								<Col sm="33.333%">
+								<Col sm="1/3">
 									<DemoBox>One Third</DemoBox>
 								</Col>
-								<Col sm="33.333%">
+								<Col sm="1/3">
 									<DemoBox>One Third</DemoBox>
 								</Col>
 							</Row>
@@ -52,19 +52,19 @@ var GridExample = React.createClass({
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Unequal Columns</div>
 						<Row>
-							<Col sm="25%">
+							<Col sm="1/4">
 								<DemoBox>One Quarter</DemoBox>
 							</Col>
-							<Col sm="50%">
+							<Col sm="1/2">
 								<DemoBox>One Half</DemoBox>
 							</Col>
-							<Col sm="25%">
+							<Col sm="1/4">
 								<DemoBox>One Quarter</DemoBox>
 							</Col>
-							<Col sm="66.667%">
+							<Col sm="2/3">
 								<DemoBox>Two Thirds</DemoBox>
 							</Col>
-							<Col sm="33.333%">
+							<Col sm="1/3">
 								<DemoBox>One Third</DemoBox>
 							</Col>
 						</Row>
@@ -72,19 +72,19 @@ var GridExample = React.createClass({
 					<ExampleSource>
 						{`
 							<Row>
-								<Col sm="25%">
+								<Col sm="1/4">
 									<DemoBox>One Quarter</DemoBox>
 								</Col>
-								<Col sm="50%">
+								<Col sm="1/2">
 									<DemoBox>One Half</DemoBox>
 								</Col>
-								<Col sm="25%">
+								<Col sm="1/4">
 									<DemoBox>One Quarter</DemoBox>
 								</Col>
-								<Col sm="66.667%">
+								<Col sm="2/3">
 									<DemoBox>Two Thirds</DemoBox>
 								</Col>
-								<Col sm="33.333%">
+								<Col sm="1/3">
 									<DemoBox>One Third</DemoBox>
 								</Col>
 							</Row>
