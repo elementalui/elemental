@@ -21,7 +21,6 @@ module.exports = React.createClass({
 		} else if (total > pageSize) {
 			let start = (pageSize * (currentPage - 1)) + 1;
 			let end = Math.min(start + pageSize - 1, total);
-			console.log(start, end);
 			count = `Showing ${start} to ${end} of ${total}`;
 		} else {
 			count = 'Showing ' + total;
