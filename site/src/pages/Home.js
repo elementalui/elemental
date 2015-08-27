@@ -19,7 +19,7 @@ var Home = React.createClass({
 	render () {
 		var menuItems = NavItems.map(function(item) {
 			return (
-				<Col xs="33.333%" sm="16.6666667%" key={item.label} className="demo-banner-nav__col col-xs-4 col-sm-2">
+				<Col xs="1/3" sm="1/6" key={item.label} className="demo-banner-nav__col col-xs-4 col-sm-2">
 					<Router.Link key={item.value} className="demo-banner-nav__item" onClick={self.toggleMenu} to={item.value}>
 						<span className={'demo-banner-nav__icon octicon octicon-' + item.icon} />
 						<div className="demo-banner-nav__label">
@@ -68,15 +68,15 @@ var Home = React.createClass({
 
 						<div className="demo-banner-points">
 							<Row>
-								<Col sm="33.333%">
+								<Col sm="1/3">
 									<h3>Open Source</h3>
 									<p>Available for use under the MIT license,  built on foundations of React.js, LESS, Babel and Gulp, and inspired by other great projects.</p>
 								</Col>
-								<Col sm="33.333%">
+								<Col sm="1/3">
 									<h3>Modern Workflows</h3>
 									<p>Elemental is designed to be installed from npm and built into your project with browserify or webpack. You can customise it by including our LESS too.</p>
 								</Col>
-								<Col sm="33.333%">
+								<Col sm="1/3">
 									<h3>Made by Thinkmill</h3>
 									<p>Elemental UI is the cornerstone of Thinkmill's development suite, made by people who share a passion for HTML, CSS and JavaScript.</p>
 								</Col>
