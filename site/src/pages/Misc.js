@@ -1,6 +1,7 @@
 const React = require('react');
+const DemoBox = require('../components/DemoBox');
 const ExampleSource = require('../components/ExampleSource');
-const { Alert, Container, FormField, FormInput, InputGroup, Pagination, Pill, Table } = require('elemental');
+const { Alert, Card, Col, Container, FormField, FormInput, InputGroup, Pagination, Pill, Row, Table } = require('elemental');
 
 const MAX_PAGESIZE = 100;
 const MAX_RECORDS = 1000;
@@ -100,6 +101,61 @@ var Misc = React.createClass({
 									<br />
 									<code className="inline-code">danger</code> <code className="inline-code">info</code> <code className="inline-code">primary</code> <code className="inline-code">success</code> <code className="inline-code">warning</code>
 								</td>
+							</tr>
+						</tbody>
+					</Table>
+				</div>
+
+				<h2>Cards</h2>
+				<div className="code-example">
+					<div className="code-example__example">
+						<Card>Hi there, I'm a card! I'm pretty simple, but with a little imagination I can be really awesome :)</Card>
+						<Row>
+							<Col><Card>Use</Card></Col>
+							<Col><Card>me</Card></Col>
+							<Col><Card>in</Card></Col>
+							<Col><Card>a</Card></Col>
+							<Col><Card>grid</Card></Col>
+						</Row>
+						<Card>
+							<h3 style={{ marginTop: 0 }}>Alternatively</h3>
+							<DemoBox style={{ color: '#999', paddingBottom: 40, paddingTop: 40 }}>
+								<span className="mega-octicon octicon-file-media" />
+							</DemoBox>
+							<div>As part of more complete and sophisticated component. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis maximus nisi, non feugiat ipsum. Vestibulum condimentum massa nec tempus tincidunt.</div>
+						</Card>
+					</div>
+					<ExampleSource>
+						{`
+							<Card>Hi there, I'm a card! I'm pretty simple, but with a little imagination I can be really awesome :)</Card>
+							<Row>
+								<Col><Card>Use</Card></Col>
+								<Col><Card>me</Card></Col>
+								<Col><Card>in</Card></Col>
+								<Col><Card>a</Card></Col>
+								<Col><Card>grid</Card></Col>
+							</Row>
+							<Card>...</Card>
+						`}
+					</ExampleSource>
+				</div>
+				<h3>Usage</h3>
+				<div className="usage-table">
+					<Table>
+						<thead>
+							<tr>
+								<th>Prop</th>
+								<th>Type</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td className="usage-table__prop">children</td>
+								<td className="usage-table__type">node</td>
+								<td className="usage-table__default">undefined</td>
+								<td className="usage-table__description">Required</td>
 							</tr>
 						</tbody>
 					</Table>
