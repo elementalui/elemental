@@ -21,4 +21,4 @@ For now that means:
 - Chrome (mobile and desktop)
 - Safari (mobile and desktop)
 - Firefox
-- Internet Explorer 9 and up
+- Internet Explorer 10 and up
