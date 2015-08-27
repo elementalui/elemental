@@ -10,11 +10,11 @@ var Misc = React.createClass({
 
 	getInitialState () {
 		return {
-			currentPage: 1,
-			pageSize: 1,
+			currentPage: 2,
+			pageSize: 25,
 			plural: 'Potatoes',
 			singular: 'Potato',
-			total: 1,
+			total: 123,
 		};
 	},
 
