@@ -8,19 +8,30 @@ exports.breakpoint = {
 
 // border radii
 exports.borderRadius = {
-	small:     5,
-	medium:   10,
-	large:    20,
+	xs:                2,
+	sm:                4,
+	md:                8,
+	lg:               16,
+	xl:               32,
 };
 
 // color
 exports.color = {
-	appDanger:              '#d64242',
-	appInfo:                '#56cdfc',
-	appPrimary:             '#1385e5',
-	appSuccess:             '#34c240',
-	appWarning:             '#fa9f47',
-	brandPrimary:           '#31adb8',
+	appDanger:        '#d64242',
+	appInfo:          '#56cdfc',
+	appPrimary:       '#1385e5',
+	appSuccess:       '#34c240',
+	appWarning:       '#fa9f47',
+	brandPrimary:     '#31adb8',
+};
+
+// spacing
+exports.spacing = {
+	xs:                 5,
+	sm:                10,
+	md:                20,
+	lg:                40,
+	xl:                80,
 };
 
 // widths
