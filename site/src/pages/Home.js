@@ -32,7 +32,7 @@ var Home = React.createClass({
 		return (
 			<div>
 				<header className="demo-banner demo-banner--primary">
-					<Container className="demo-container">
+					<Container maxWidth={800} className="demo-container">
 						<span className="demo-banner-illustration" />
 						<h1 className="demo-banner__heading demo-banner__heading-1">Elemental UI</h1>
 						<h2 className="demo-banner__heading demo-banner__heading-2">A UI Toolkit for React.js Websites and Apps</h2>
@@ -43,7 +43,7 @@ var Home = React.createClass({
 					</Container>
 				</header>
 				<div className="demo-banner demo-banner--secondary">
-					<Container className="demo-container">
+					<Container maxWidth={800} className="demo-container">
 						<h2 className="demo-banner__heading demo-banner__heading-2">Project Status</h2>
 						<ul className="demo-banner-list">
 							<li>Currently under heavy development, initially for use in <a href="http://www.keystonejs.com">KeystoneJS</a></li>
@@ -59,7 +59,7 @@ var Home = React.createClass({
 					</Container>
 				</div>
 				<div className="demo-banner demo-banner--tertiary">
-					<Container className="demo-container">
+					<Container maxWidth={800} className="demo-container">
 						<h2 className="demo-banner__heading demo-banner__heading-2">Why build <em>another</em> UI kit?</h2>
 						<p>At <a href="http://www.thinkmill.com.au" target="_blank">Thinkmill</a> we are constantly building bespoke web applications for various clients. We noticed that whilst projects vary greatly, we're using the same CSS and Component foundations over and over again.</p>
 						<p>In an effort to keep our projects' codebases <abbr title="Don't Repeat Yourself">DRY</abbr> we decided it was time to build something to improve our workflow and unify our projects to decrease development time.</p>
