@@ -1,9 +1,19 @@
+// breakpoints
 exports.breakpoint = {
 	xs:                      480,
 	sm:                      768,
 	md:                      992,
 	lg:                     1200,
 };
+
+// border radii
+exports.borderRadius = {
+	small:     5,
+	medium:   10,
+	large:    20,
+};
+
+// color
 exports.color = {
 	appDanger:              '#d64242',
 	appInfo:                '#56cdfc',
@@ -13,6 +23,7 @@ exports.color = {
 	brandPrimary:           '#31adb8',
 };
 
+// widths
 exports.width = {
 	container:               1170,
 	gutter:                    20,
