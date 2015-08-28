@@ -6,12 +6,15 @@ const ALIGN_TRANSFORM = {
 	'center': 'center',
 	'left': 'flex-start',
 	'right': 'flex-end',
-}
+};
 
 var DemoBox = React.createClass({
 	propTypes: {
 		align: React.PropTypes.oneOf(['center', 'left', 'right']),
 		children: React.PropTypes.node.isRequired,
+		className: React.PropTypes.string,
+		inverted: React.PropTypes.bool,
+		style: React.PropTypes.object,
 	},
 	getDefaultProps () {
 		return {
@@ -30,7 +33,7 @@ var DemoBox = React.createClass({
 			padding: '.66em 1.5em',
 		};
 		if (this.props.inverted) {
-			boxStyle['backgroundColor'] = E.color.appPrimary;
+			boxStyle.backgroundColor = E.color.appPrimary;
 		}
 		let className = classnames('DemoBox', this.props.className);
 
