@@ -43,7 +43,7 @@ var Buttons = React.createClass({
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Inside Buttons</div>
 						<div className="code-example__example-element--inline">
-							<Button disabled>
+							<Button>
 								<Spinner />
 							</Button>
 						</div>
@@ -54,7 +54,7 @@ var Buttons = React.createClass({
 							</Button>
 						</div>
 						<div className="code-example__example-element--inline">
-							<Button type="primary" disabled>
+							<Button type="primary">
 								<Spinner type="inverted" />
 								Submitting
 							</Button>
@@ -62,9 +62,9 @@ var Buttons = React.createClass({
 					</div>
 					<ExampleSource>
 						{`
-						<Button disabled><Spinner /></Button>
+						<Button><Spinner /></Button>
 						<Button disabled><Spinner type="primary" />Saving</Button>
-						<Button type="primary" disabled><Spinner type="inverted" />Submitting</Button>
+						<Button type="primary"><Spinner type="inverted" />Submitting</Button>
 						`}
 					</ExampleSource>
 				</div>
