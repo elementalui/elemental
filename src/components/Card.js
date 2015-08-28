@@ -5,6 +5,7 @@ module.exports = React.createClass({
 	displayName: 'Card',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
+		style: React.PropTypes.object,
 	},
 	render() {
 		let style = {

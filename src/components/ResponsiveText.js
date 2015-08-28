@@ -5,30 +5,30 @@ import E from '../constants';
 module.exports = React.createClass({
 	displayName: 'ResponsiveText',
 	propTypes: {
-		hiddenXS: React.PropTypes.string,
-		hiddenSM: React.PropTypes.string,
-		hiddenMD: React.PropTypes.string,
 		hiddenLG: React.PropTypes.string,
-		visibleXS: React.PropTypes.string,
-		visibleSM: React.PropTypes.string,
-		visibleMD: React.PropTypes.string,
+		hiddenMD: React.PropTypes.string,
+		hiddenSM: React.PropTypes.string,
+		hiddenXS: React.PropTypes.string,
 		visibleLG: React.PropTypes.string,
+		visibleMD: React.PropTypes.string,
+		visibleSM: React.PropTypes.string,
+		visibleXS: React.PropTypes.string,
 	},
 	getInitialState: function() {
 		return {
 			windowWidth: window.innerWidth
 		};
 	},
-	handleResize: function(e) {
-		this.setState({
-			windowWidth: window.innerWidth
-		});
-	},
 	componentDidMount: function() {
 		window.addEventListener('resize', this.handleResize);
 	},
 	componentWillUnmount: function() {
 		window.removeEventListener('resize', this.handleResize);
+	},
+	handleResize: function() {
+		this.setState({
+			windowWidth: window.innerWidth
+		});
 	},
 	render() {
 		let { hiddenXS, hiddenSM, hiddenMD, hiddenLG, visibleXS, visibleSM, visibleMD, visibleLG } = this.props;

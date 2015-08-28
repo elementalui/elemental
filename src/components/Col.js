@@ -5,16 +5,19 @@ import E from '../constants';
 module.exports = React.createClass({
 	displayName: 'Col',
 	propTypes: {
+		/* eslint-disable react/jsx-sort-prop-types */
 		basis: React.PropTypes.oneOfType([
 			React.PropTypes.number, // allow pixels
 			React.PropTypes.string, // allow percentage
 		]),
 		children: React.PropTypes.node.isRequired,
 		gutter: React.PropTypes.number,
-		xs: React.PropTypes.string, // width as a percentage
-		sm: React.PropTypes.string, // width as a percentage
-		md: React.PropTypes.string, // width as a percentage
+		style: React.PropTypes.object,
 		lg: React.PropTypes.string, // width as a percentage
+		md: React.PropTypes.string, // width as a percentage
+		sm: React.PropTypes.string, // width as a percentage
+		xs: React.PropTypes.string, // width as a percentage
+		/* eslint-enable */
 	},
 	getDefaultProps () {
 		return {
@@ -26,16 +29,16 @@ module.exports = React.createClass({
 			windowWidth: window.innerWidth
 		};
 	},
-	handleResize: function(e) {
-		this.setState({
-			windowWidth: window.innerWidth
-		});
-	},
 	componentDidMount: function() {
 		window.addEventListener('resize', this.handleResize);
 	},
 	componentWillUnmount: function() {
 		window.removeEventListener('resize', this.handleResize);
+	},
+	handleResize: function() {
+		this.setState({
+			windowWidth: window.innerWidth
+		});
 	},
 	render() {
 		let { basis, gutter, xs, sm, md, lg } = this.props;

@@ -50,7 +50,9 @@ module.exports = React.createClass({
 			let className = classNames('Pagination__list__item', {
 				'is-selected': current
 			});
+			/* eslint-disable no-loop-func */
 			pages.push(<button key={'page_' + page} className={className} onClick={() => this.onPageSelect(page)}>{page}</button>);
+			/* eslint-enable */
 		}
 
 		return (

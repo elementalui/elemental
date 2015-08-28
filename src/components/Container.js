@@ -8,6 +8,7 @@ module.exports = React.createClass({
 		children: React.PropTypes.node.isRequired,
 		gutter: React.PropTypes.number,
 		maxWidth: React.PropTypes.number,
+		style: React.PropTypes.object,
 	},
 	getDefaultProps () {
 		return {

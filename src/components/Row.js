@@ -7,7 +7,9 @@ module.exports = React.createClass({
 	displayName: 'Row',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
+		className: React.PropTypes.string,
 		gutter: React.PropTypes.number,
+		style: React.PropTypes.object,
 	},
 	getDefaultProps () {
 		return {
