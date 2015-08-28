@@ -46,9 +46,9 @@ var Home = React.createClass({
 					<Container maxWidth={768} className="demo-container">
 						<h2 className="demo-banner__heading demo-banner__heading-2">Project Status</h2>
 						<ul className="demo-banner-list">
-							<li>Currently under heavy development, initially for use in <a href="http://www.keystonejs.com">KeystoneJS</a></li>
-							<li>The CSS is functionally complete, with some tweaks and browser testing yet to be done</li>
-							<li>The React components are currently prototypes, their structure and functionality is WIP</li>
+							<li>Currently under development, initially for use in <a href="http://www.keystonejs.com">KeystoneJS</a></li>
+							<li>We are experimenting with Component APIs</li>
+							<li>Potentially, we'll transition from stylesheets to more inline styles, and would love feedback</li>
 						</ul>
 						<h5 className="demo-banner-divider">
 							<span className="demo-banner-divider-inner">Demos</span>
