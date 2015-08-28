@@ -3294,6 +3294,68 @@ module.exports = warning;
 
 }).call(this,require('_process'))
 },{"./emptyFunction":43,"_process":1}],46:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _srcConstants = require('../../../src/constants');
+
+var _srcConstants2 = _interopRequireDefault(_srcConstants);
+
+var ALIGN_TRANSFORM = {
+	'center': 'center',
+	'left': 'flex-start',
+	'right': 'flex-end'
+};
+
+var DemoBox = _react2['default'].createClass({
+	displayName: 'DemoBox',
+
+	propTypes: {
+		align: _react2['default'].PropTypes.oneOf(['center', 'left', 'right']),
+		children: _react2['default'].PropTypes.node.isRequired,
+		className: _react2['default'].PropTypes.string,
+		inverted: _react2['default'].PropTypes.bool,
+		style: _react2['default'].PropTypes.object
+	},
+	getDefaultProps: function getDefaultProps() {
+		return {
+			align: 'center'
+		};
+	},
+	render: function render() {
+		var boxStyle = {
+			backgroundColor: 'rgba(0,0,0,0.05)',
+			borderRadius: 4,
+			display: 'flex',
+			justifyContent: ALIGN_TRANSFORM[this.props.align],
+			msFlexPack: ALIGN_TRANSFORM[this.props.align],
+			WebkitJustifyContent: ALIGN_TRANSFORM[this.props.align],
+			marginBottom: _srcConstants2['default'].width.gutter,
+			padding: '.66em 1.5em'
+		};
+		if (this.props.inverted) {
+			boxStyle.backgroundColor = _srcConstants2['default'].color.appPrimary;
+		}
+		var className = (0, _classnames2['default'])('DemoBox', this.props.className);
+
+		return _react2['default'].createElement('div', _extends({}, this.props, { style: _extends({}, boxStyle, this.props.style), className: className }));
+	}
+});
+
+module.exports = DemoBox;
+
+},{"../../../src/constants":59,"classnames":undefined,"react":undefined}],47:[function(require,module,exports){
 /* global Prism */
 'use strict';
 
@@ -3340,10 +3402,10 @@ var ExampleSource = React.createClass({
 		var codeClass = classNames('code-example__code', 'language-' + this.props.language);
 		return React.createElement(
 			'pre',
-			{ className: "code-example__pre" },
+			{ className: 'code-example__pre' },
 			React.createElement(
 				'code',
-				{ ref: "code", className: codeClass },
+				{ ref: 'code', className: codeClass },
 				this.fixIndentation(this.props.children)
 			)
 		);
@@ -3352,18 +3414,18 @@ var ExampleSource = React.createClass({
 
 module.exports = ExampleSource;
 
-},{"classnames":undefined,"react":undefined}],47:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],48:[function(require,module,exports){
 // Thank you https://gist.github.com/Keeguon/2310008
 'use strict';
 
 module.exports = [{ name: 'Afghanistan', code: 'AF' }, { name: 'Åland Islands', code: 'AX' }, { name: 'Albania', code: 'AL' }, { name: 'Algeria', code: 'DZ' }, { name: 'American Samoa', code: 'AS' }, { name: 'AndorrA', code: 'AD' }, { name: 'Angola', code: 'AO' }, { name: 'Anguilla', code: 'AI' }, { name: 'Antarctica', code: 'AQ' }, { name: 'Antigua and Barbuda', code: 'AG' }, { name: 'Argentina', code: 'AR' }, { name: 'Armenia', code: 'AM' }, { name: 'Aruba', code: 'AW' }, { name: 'Australia', code: 'AU' }, { name: 'Austria', code: 'AT' }, { name: 'Azerbaijan', code: 'AZ' }, { name: 'Bahamas', code: 'BS' }, { name: 'Bahrain', code: 'BH' }, { name: 'Bangladesh', code: 'BD' }, { name: 'Barbados', code: 'BB' }, { name: 'Belarus', code: 'BY' }, { name: 'Belgium', code: 'BE' }, { name: 'Belize', code: 'BZ' }, { name: 'Benin', code: 'BJ' }, { name: 'Bermuda', code: 'BM' }, { name: 'Bhutan', code: 'BT' }, { name: 'Bolivia', code: 'BO' }, { name: 'Bosnia and Herzegovina', code: 'BA' }, { name: 'Botswana', code: 'BW' }, { name: 'Bouvet Island', code: 'BV' }, { name: 'Brazil', code: 'BR' }, { name: 'British Indian Ocean Territory', code: 'IO' }, { name: 'Brunei Darussalam', code: 'BN' }, { name: 'Bulgaria', code: 'BG' }, { name: 'Burkina Faso', code: 'BF' }, { name: 'Burundi', code: 'BI' }, { name: 'Cambodia', code: 'KH' }, { name: 'Cameroon', code: 'CM' }, { name: 'Canada', code: 'CA' }, { name: 'Cape Verde', code: 'CV' }, { name: 'Cayman Islands', code: 'KY' }, { name: 'Central African Republic', code: 'CF' }, { name: 'Chad', code: 'TD' }, { name: 'Chile', code: 'CL' }, { name: 'China', code: 'CN' }, { name: 'Christmas Island', code: 'CX' }, { name: 'Cocos (Keeling) Islands', code: 'CC' }, { name: 'Colombia', code: 'CO' }, { name: 'Comoros', code: 'KM' }, { name: 'Congo', code: 'CG' }, { name: 'Congo, The Democratic Republic of the', code: 'CD' }, { name: 'Cook Islands', code: 'CK' }, { name: 'Costa Rica', code: 'CR' }, { name: 'Cote D\'Ivoire', code: 'CI' }, { name: 'Croatia', code: 'HR' }, { name: 'Cuba', code: 'CU' }, { name: 'Cyprus', code: 'CY' }, { name: 'Czech Republic', code: 'CZ' }, { name: 'Denmark', code: 'DK' }, { name: 'Djibouti', code: 'DJ' }, { name: 'Dominica', code: 'DM' }, { name: 'Dominican Republic', code: 'DO' }, { name: 'Ecuador', code: 'EC' }, { name: 'Egypt', code: 'EG' }, { name: 'El Salvador', code: 'SV' }, { name: 'Equatorial Guinea', code: 'GQ' }, { name: 'Eritrea', code: 'ER' }, { name: 'Estonia', code: 'EE' }, { name: 'Ethiopia', code: 'ET' }, { name: 'Falkland Islands (Malvinas)', code: 'FK' }, { name: 'Faroe Islands', code: 'FO' }, { name: 'Fiji', code: 'FJ' }, { name: 'Finland', code: 'FI' }, { name: 'France', code: 'FR' }, { name: 'French Guiana', code: 'GF' }, { name: 'French Polynesia', code: 'PF' }, { name: 'French Southern Territories', code: 'TF' }, { name: 'Gabon', code: 'GA' }, { name: 'Gambia', code: 'GM' }, { name: 'Georgia', code: 'GE' }, { name: 'Germany', code: 'DE' }, { name: 'Ghana', code: 'GH' }, { name: 'Gibraltar', code: 'GI' }, { name: 'Greece', code: 'GR' }, { name: 'Greenland', code: 'GL' }, { name: 'Grenada', code: 'GD' }, { name: 'Guadeloupe', code: 'GP' }, { name: 'Guam', code: 'GU' }, { name: 'Guatemala', code: 'GT' }, { name: 'Guernsey', code: 'GG' }, { name: 'Guinea', code: 'GN' }, { name: 'Guinea-Bissau', code: 'GW' }, { name: 'Guyana', code: 'GY' }, { name: 'Haiti', code: 'HT' }, { name: 'Heard Island and Mcdonald Islands', code: 'HM' }, { name: 'Holy See (Vatican City State)', code: 'VA' }, { name: 'Honduras', code: 'HN' }, { name: 'Hong Kong', code: 'HK' }, { name: 'Hungary', code: 'HU' }, { name: 'Iceland', code: 'IS' }, { name: 'India', code: 'IN' }, { name: 'Indonesia', code: 'ID' }, { name: 'Iran, Islamic Republic Of', code: 'IR' }, { name: 'Iraq', code: 'IQ' }, { name: 'Ireland', code: 'IE' }, { name: 'Isle of Man', code: 'IM' }, { name: 'Israel', code: 'IL' }, { name: 'Italy', code: 'IT' }, { name: 'Jamaica', code: 'JM' }, { name: 'Japan', code: 'JP' }, { name: 'Jersey', code: 'JE' }, { name: 'Jordan', code: 'JO' }, { name: 'Kazakhstan', code: 'KZ' }, { name: 'Kenya', code: 'KE' }, { name: 'Kiribati', code: 'KI' }, { name: 'Korea, Democratic People\'S Republic of', code: 'KP' }, { name: 'Korea, Republic of', code: 'KR' }, { name: 'Kuwait', code: 'KW' }, { name: 'Kyrgyzstan', code: 'KG' }, { name: 'Lao People\'S Democratic Republic', code: 'LA' }, { name: 'Latvia', code: 'LV' }, { name: 'Lebanon', code: 'LB' }, { name: 'Lesotho', code: 'LS' }, { name: 'Liberia', code: 'LR' }, { name: 'Libyan Arab Jamahiriya', code: 'LY' }, { name: 'Liechtenstein', code: 'LI' }, { name: 'Lithuania', code: 'LT' }, { name: 'Luxembourg', code: 'LU' }, { name: 'Macao', code: 'MO' }, { name: 'Macedonia, The Former Yugoslav Republic of', code: 'MK' }, { name: 'Madagascar', code: 'MG' }, { name: 'Malawi', code: 'MW' }, { name: 'Malaysia', code: 'MY' }, { name: 'Maldives', code: 'MV' }, { name: 'Mali', code: 'ML' }, { name: 'Malta', code: 'MT' }, { name: 'Marshall Islands', code: 'MH' }, { name: 'Martinique', code: 'MQ' }, { name: 'Mauritania', code: 'MR' }, { name: 'Mauritius', code: 'MU' }, { name: 'Mayotte', code: 'YT' }, { name: 'Mexico', code: 'MX' }, { name: 'Micronesia, Federated States of', code: 'FM' }, { name: 'Moldova, Republic of', code: 'MD' }, { name: 'Monaco', code: 'MC' }, { name: 'Mongolia', code: 'MN' }, { name: 'Montserrat', code: 'MS' }, { name: 'Morocco', code: 'MA' }, { name: 'Mozambique', code: 'MZ' }, { name: 'Myanmar', code: 'MM' }, { name: 'Namibia', code: 'NA' }, { name: 'Nauru', code: 'NR' }, { name: 'Nepal', code: 'NP' }, { name: 'Netherlands', code: 'NL' }, { name: 'Netherlands Antilles', code: 'AN' }, { name: 'New Caledonia', code: 'NC' }, { name: 'New Zealand', code: 'NZ' }, { name: 'Nicaragua', code: 'NI' }, { name: 'Niger', code: 'NE' }, { name: 'Nigeria', code: 'NG' }, { name: 'Niue', code: 'NU' }, { name: 'Norfolk Island', code: 'NF' }, { name: 'Northern Mariana Islands', code: 'MP' }, { name: 'Norway', code: 'NO' }, { name: 'Oman', code: 'OM' }, { name: 'Pakistan', code: 'PK' }, { name: 'Palau', code: 'PW' }, { name: 'Palestinian Territory, Occupied', code: 'PS' }, { name: 'Panama', code: 'PA' }, { name: 'Papua New Guinea', code: 'PG' }, { name: 'Paraguay', code: 'PY' }, { name: 'Peru', code: 'PE' }, { name: 'Philippines', code: 'PH' }, { name: 'Pitcairn', code: 'PN' }, { name: 'Poland', code: 'PL' }, { name: 'Portugal', code: 'PT' }, { name: 'Puerto Rico', code: 'PR' }, { name: 'Qatar', code: 'QA' }, { name: 'Reunion', code: 'RE' }, { name: 'Romania', code: 'RO' }, { name: 'Russian Federation', code: 'RU' }, { name: 'RWANDA', code: 'RW' }, { name: 'Saint Helena', code: 'SH' }, { name: 'Saint Kitts and Nevis', code: 'KN' }, { name: 'Saint Lucia', code: 'LC' }, { name: 'Saint Pierre and Miquelon', code: 'PM' }, { name: 'Saint Vincent and the Grenadines', code: 'VC' }, { name: 'Samoa', code: 'WS' }, { name: 'San Marino', code: 'SM' }, { name: 'Sao Tome and Principe', code: 'ST' }, { name: 'Saudi Arabia', code: 'SA' }, { name: 'Senegal', code: 'SN' }, { name: 'Serbia and Montenegro', code: 'CS' }, { name: 'Seychelles', code: 'SC' }, { name: 'Sierra Leone', code: 'SL' }, { name: 'Singapore', code: 'SG' }, { name: 'Slovakia', code: 'SK' }, { name: 'Slovenia', code: 'SI' }, { name: 'Solomon Islands', code: 'SB' }, { name: 'Somalia', code: 'SO' }, { name: 'South Africa', code: 'ZA' }, { name: 'South Georgia and the South Sandwich Islands', code: 'GS' }, { name: 'Spain', code: 'ES' }, { name: 'Sri Lanka', code: 'LK' }, { name: 'Sudan', code: 'SD' }, { name: 'Suriname', code: 'SR' }, { name: 'Svalbard and Jan Mayen', code: 'SJ' }, { name: 'Swaziland', code: 'SZ' }, { name: 'Sweden', code: 'SE' }, { name: 'Switzerland', code: 'CH' }, { name: 'Syrian Arab Republic', code: 'SY' }, { name: 'Taiwan, Province of China', code: 'TW' }, { name: 'Tajikistan', code: 'TJ' }, { name: 'Tanzania, United Republic of', code: 'TZ' }, { name: 'Thailand', code: 'TH' }, { name: 'Timor-Leste', code: 'TL' }, { name: 'Togo', code: 'TG' }, { name: 'Tokelau', code: 'TK' }, { name: 'Tonga', code: 'TO' }, { name: 'Trinidad and Tobago', code: 'TT' }, { name: 'Tunisia', code: 'TN' }, { name: 'Turkey', code: 'TR' }, { name: 'Turkmenistan', code: 'TM' }, { name: 'Turks and Caicos Islands', code: 'TC' }, { name: 'Tuvalu', code: 'TV' }, { name: 'Uganda', code: 'UG' }, { name: 'Ukraine', code: 'UA' }, { name: 'United Arab Emirates', code: 'AE' }, { name: 'United Kingdom', code: 'GB' }, { name: 'United States', code: 'US' }, { name: 'United States Minor Outlying Islands', code: 'UM' }, { name: 'Uruguay', code: 'UY' }, { name: 'Uzbekistan', code: 'UZ' }, { name: 'Vanuatu', code: 'VU' }, { name: 'Venezuela', code: 'VE' }, { name: 'Viet Nam', code: 'VN' }, { name: 'Virgin Islands, British', code: 'VG' }, { name: 'Virgin Islands, U.S.', code: 'VI' }, { name: 'Wallis and Futuna', code: 'WF' }, { name: 'Western Sahara', code: 'EH' }, { name: 'Yemen', code: 'YE' }, { name: 'Zambia', code: 'ZM' }, { name: 'Zimbabwe', code: 'ZW' }];
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 "use strict";
 
 module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismodacfermentum.com", "password": "ZKG57ZFJ9HK", "age": 39, "gender": "female" }, { "name": "Hermione Maddox", "email": "Curabitur.massa@eu.ca", "password": "ECI38CRA9MB", "age": 55, "gender": "female" }, { "name": "Vladimir Rodgers", "email": "diam@ettristiquepellentesque.com", "password": "ESK96WFK9OD", "age": 36, "gender": "male" }, { "name": "Kelsie Ewing", "email": "rutrum.non@tellus.co.uk", "password": "KVE70PUO5TB", "age": 47, "gender": "female" }, { "name": "Yetta Higgins", "email": "quis.pede@lectusquis.com", "password": "KAE34UXU2QZ", "age": 43, "gender": "female" }, { "name": "Kadeem Montgomery", "email": "facilisis.facilisis@vitaesodalesat.edu", "password": "POX16RXV9HL", "age": 46, "gender": "male" }, { "name": "Martina Dodson", "email": "Cras.lorem@convallis.org", "password": "TIY32LRA7IU", "age": 41, "gender": "female" }, { "name": "Grady Gonzalez", "email": "posuere.cubilia@Aenean.org", "password": "VKN16PHI8PW", "age": 33, "gender": "male" }, { "name": "Lacey Hutchinson", "email": "Maecenas.iaculis@sedpede.net", "password": "LDN67DTE6CC", "age": 29, "gender": "female" }, { "name": "John Santiago", "email": "eleifend.egestas@convallis.ca", "password": "ZEY52DKW3ZZ", "age": 47, "gender": "male" }, { "name": "Philip Floyd", "email": "Proin@enimnisl.ca", "password": "RZK97GMJ7EK", "age": 63, "gender": "male" }, { "name": "Leslie Chavez", "email": "sociis.natoque.penatibus@porttitor.net", "password": "AKN50QNQ8HK", "age": 68, "gender": "female" }, { "name": "Alisa Allison", "email": "vitae@netusetmalesuada.ca", "password": "XLP00XDR9UW", "age": 60, "gender": "female" }, { "name": "Joshua Clarke", "email": "mi@quamPellentesque.net", "password": "LSN56SXD3SH", "age": 47, "gender": "male" }, { "name": "Victoria Holden", "email": "magna@pedeac.net", "password": "BUS61XTJ6KI", "age": 25, "gender": "female" }, { "name": "Kibo Goodwin", "email": "est@nec.org", "password": "GWM68BLL8LN", "age": 64, "gender": "male" }, { "name": "Marvin Justice", "email": "Integer@Quisquetincidunt.co.uk", "password": "NRQ89UJQ5FH", "age": 56, "gender": "male" }, { "name": "Justin Rowland", "email": "magna.a.neque@anequeNullam.ca", "password": "JKQ17ZVE3TE", "age": 21, "gender": "male" }, { "name": "Tiger Blevins", "email": "enim.sit@felisNulla.net", "password": "MLA03EJG4WI", "age": 34, "gender": "male" }, { "name": "Peter Bray", "email": "nascetur@Nullamutnisi.edu", "password": "BAL79WGC4II", "age": 64, "gender": "male" }];
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
@@ -3372,10 +3434,11 @@ var React = require('react');
 
 var _require = require('elemental');
 
-var Dropdown = _require.Dropdown;
-var Table = _require.Table;
 var Button = _require.Button;
 var ButtonGroup = _require.ButtonGroup;
+var Container = _require.Container;
+var Dropdown = _require.Dropdown;
+var Table = _require.Table;
 
 var ExampleSource = require('../components/ExampleSource');
 
@@ -3405,7 +3468,7 @@ var Buttons = React.createClass({
 		return BUTTON_SIZES.map(function (size) {
 			return React.createElement(
 				'div',
-				{ key: size.value, className: "code-example__example-element--inline" },
+				{ key: size.value, className: 'code-example__example-element--inline' },
 				React.createElement(
 					Button,
 					{ size: size.value },
@@ -3419,7 +3482,7 @@ var Buttons = React.createClass({
 		return variantType.map(function (type) {
 			return React.createElement(
 				'div',
-				{ key: type.value, className: "code-example__example-element--inline" },
+				{ key: type.value, className: 'code-example__example-element--inline' },
 				React.createElement(
 					Button,
 					{ type: type.value },
@@ -3431,8 +3494,8 @@ var Buttons = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			'div',
-			{ className: "demo-container container" },
+			Container,
+			{ maxWidth: 800, className: 'demo-container' },
 			React.createElement(
 				'h1',
 				null,
@@ -3445,10 +3508,10 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					this.renderButtonSizes()
 				),
 				React.createElement(
@@ -3464,13 +3527,13 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Fill Buttons'
 					),
 					this.renderButtonVariants(BUTTON_VARIANTS)
@@ -3483,13 +3546,13 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Default Button Alternatives'
 					),
 					this.renderButtonVariants(BUTTON_DEFAULT_VARIANTS)
@@ -3502,13 +3565,13 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Hollow Button Alternatives'
 					),
 					this.renderButtonVariants(BUTTON_HOLLOW_VARIANTS)
@@ -3521,13 +3584,13 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Link Style Buttons'
 					),
 					this.renderButtonVariants(BUTTON_LINK_VARIANTS)
@@ -3545,7 +3608,7 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -3585,22 +3648,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'block'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Turns the button into a block-level element which will fill the width of its container'
 							)
 						),
@@ -3609,32 +3672,32 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'href'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'When provided the component will render as an ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'<a>'
 								),
 								' instead of ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'<button>'
 								)
 							)
@@ -3644,38 +3707,38 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'size'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
-								'string'
+								{ className: 'usage-table__type' },
+								'enum'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Size of the button - one of: ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'lg'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'sm'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'xs'
 								)
 							)
@@ -3685,26 +3748,26 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'submit'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Applies the ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'submit'
 								),
 								' attribute to the button for use in forms'
@@ -3715,99 +3778,99 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'type'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
-								'string'
+								{ className: 'usage-table__type' },
+								'enum'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'default\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'One of:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'default'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'default-primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'default-success'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'default-warning'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'default-danger'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'success'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'warning'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'danger'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'link'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'link-text'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'link-cancel'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'link-delete'
 								)
 							)
@@ -3822,26 +3885,26 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						ButtonGroup,
 						null,
 						React.createElement(
 							Button,
-							{ type: "default" },
+							{ type: 'default' },
 							'Left'
 						),
 						React.createElement(
 							Button,
-							{ type: "default" },
+							{ type: 'default' },
 							'Middle'
 						),
 						React.createElement(
 							Button,
-							{ type: "default" },
+							{ type: 'default' },
 							'Right'
 						)
 					)
@@ -3859,7 +3922,7 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -3899,26 +3962,26 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'children'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'node'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Required. Must use Elemental ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'<Button />'
 								),
 								' components for correct styling'
@@ -3934,11 +3997,11 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
-					React.createElement(Dropdown, { items: DROPDOWN_OPTIONS, buttonLabel: "Default Trigger", className: "reallyLongCustomClassNameThatStandsOut" })
+					{ className: 'code-example__example' },
+					React.createElement(Dropdown, { items: DROPDOWN_OPTIONS, buttonLabel: 'Default Trigger', className: 'reallyLongCustomClassNameThatStandsOut' })
 				),
 				React.createElement(
 					ExampleSource,
@@ -3948,18 +4011,18 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Custom Trigger'
 					),
 					React.createElement(
 						Dropdown,
-						{ items: DROPDOWN_OPTIONS, className: "reallyLongCustomClassNameThatStandsOut" },
+						{ items: DROPDOWN_OPTIONS, className: 'reallyLongCustomClassNameThatStandsOut' },
 						React.createElement(
 							'h3',
 							{ style: { marginBottom: 0 } },
@@ -3980,7 +4043,7 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -4020,22 +4083,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'alignRight'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'The dropdown menu is aligned left by default, apply this attribute to right align the dropdown menu'
 							)
 						),
@@ -4044,22 +4107,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'buttonHasDisclosureArrow'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'true'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Display a disclosure arrow along with the label of the button. Ignore if a custom trigger is employed'
 							)
 						),
@@ -4068,22 +4131,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'buttonLabel'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Whatever action the button represents'
 							)
 						),
@@ -4092,22 +4155,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'buttonType'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
-								'string'
+								{ className: 'usage-table__type' },
+								'enum'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'See above section on button types'
 							)
 						),
@@ -4116,22 +4179,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'children'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'element'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'A single child, cloned and used as the dropdown\'s trigger element'
 							)
 						),
@@ -4140,22 +4203,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'isOpen'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'The dropdown menu is controlled by user input. Use this if you need to manually toggle the open state of the dropdown menu'
 							)
 						),
@@ -4164,22 +4227,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'items'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'array'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'The list of items to display in the menu formatted'
 							)
 						),
@@ -4188,22 +4251,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'onSelect'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'func'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'function() {}'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'The function that is called on each menu item when clicked'
 							)
 						)
@@ -4216,7 +4279,7 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/ExampleSource":46,"elemental":undefined,"react":undefined}],50:[function(require,module,exports){
+},{"../components/ExampleSource":47,"elemental":undefined,"react":undefined}],51:[function(require,module,exports){
 /* eslint no-script-url: 0 */
 
 'use strict';
@@ -4228,6 +4291,7 @@ var ExampleSource = require('../components/ExampleSource');
 
 var _require = require('elemental');
 
+var Container = _require.Container;
 var Table = _require.Table;
 
 var USERS = require('../data/users');
@@ -4278,8 +4342,8 @@ var CSSExamples = React.createClass({
 				{ key: 'header-' + i },
 				React.createElement(
 					'label',
-					{ title: "Toggle all users" },
-					React.createElement('input', { type: "checkbox", onChange: self.toggleAllRows })
+					{ title: 'Toggle all users' },
+					React.createElement('input', { type: 'checkbox', onChange: self.toggleAllRows })
 				)
 			) : React.createElement(
 				'th',
@@ -4303,8 +4367,8 @@ var CSSExamples = React.createClass({
 					null,
 					React.createElement(
 						'label',
-						{ className: "table-checkbox-label" },
-						React.createElement('input', { id: 'checkbox-' + i, value: i, onChange: self.handleChange, checked: checked, type: "checkbox", name: "users" })
+						{ className: 'table-checkbox-label' },
+						React.createElement('input', { id: 'checkbox-' + i, value: i, onChange: self.handleChange, checked: checked, type: 'checkbox', name: 'users' })
 					)
 				),
 				React.createElement(
@@ -4312,7 +4376,7 @@ var CSSExamples = React.createClass({
 					null,
 					React.createElement(
 						'a',
-						{ href: "javascript:;" },
+						{ href: 'javascript:;' },
 						user.name
 					)
 				),
@@ -4330,8 +4394,8 @@ var CSSExamples = React.createClass({
 		});
 
 		return React.createElement(
-			'div',
-			{ className: "demo-container container" },
+			Container,
+			{ maxWidth: 800, className: 'demo-container' },
 			React.createElement(
 				'h1',
 				null,
@@ -4344,10 +4408,10 @@ var CSSExamples = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'h1',
 						null,
@@ -4381,7 +4445,7 @@ var CSSExamples = React.createClass({
 					React.createElement('hr', null),
 					React.createElement(
 						'div',
-						{ className: "lead" },
+						{ className: 'lead' },
 						'This is a page lead, it introduces the proceeding content.'
 					)
 				),
@@ -4394,338 +4458,24 @@ var CSSExamples = React.createClass({
 			React.createElement(
 				'h2',
 				null,
-				'Grid'
-			),
-			React.createElement(
-				'p',
-				{ className: "lead" },
-				'Uses the standard Bootstrap grid which is a 12 column responsive layout, with a 20px gutter.'
-			),
-			React.createElement(
-				'div',
-				{ className: "code-example" },
-				React.createElement(
-					'div',
-					{ className: "code-example__example" },
-					React.createElement(
-						'div',
-						{ className: "code-example__example__heading" },
-						'Three equal columns'
-					),
-					React.createElement(
-						'div',
-						{ className: "row" },
-						React.createElement(
-							'div',
-							{ className: "col-sm-4" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								'.col-sm-4'
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-sm-4" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								'.col-sm-4'
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-sm-4" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								'.col-sm-4'
-							)
-						)
-					)
-				),
-				React.createElement(
-					ExampleSource,
-					null,
-					'\n\t\t\t\t\t\t\t<div className="row">\n\t\t\t\t\t\t\t\t<div className="col-sm-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-4</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-4</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-4</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t'
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: "code-example" },
-				React.createElement(
-					'div',
-					{ className: "code-example__example" },
-					React.createElement(
-						'div',
-						{ className: "code-example__example__heading" },
-						'Three unequal columns'
-					),
-					React.createElement(
-						'div',
-						{ className: "row" },
-						React.createElement(
-							'div',
-							{ className: "col-sm-3" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								'.col-sm-3'
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-sm-6" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								'.col-sm-6'
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-sm-3" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								'.col-sm-3'
-							)
-						)
-					)
-				),
-				React.createElement(
-					ExampleSource,
-					null,
-					'\n\t\t\t\t\t\t\t<div className="row">\n\t\t\t\t\t\t\t\t<div className="col-sm-3">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-3</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-6">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-6</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-3">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-3</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t'
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: "code-example" },
-				React.createElement(
-					'div',
-					{ className: "code-example__example" },
-					React.createElement(
-						'div',
-						{ className: "code-example__example__heading" },
-						'Two unequal columns'
-					),
-					React.createElement(
-						'div',
-						{ className: "row" },
-						React.createElement(
-							'div',
-							{ className: "col-sm-8" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								'.col-sm-8'
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-sm-4" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								'.col-sm-4'
-							)
-						)
-					)
-				),
-				React.createElement(
-					ExampleSource,
-					null,
-					'\n\t\t\t\t\t\t\t<div className="row">\n\t\t\t\t\t\t\t\t<div className="col-sm-8">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-8</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-sm-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">.col-sm-4</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t'
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: "code-example" },
-				React.createElement(
-					'div',
-					{ className: "code-example__example" },
-					React.createElement(
-						'div',
-						{ className: "code-example__example__heading" },
-						'Columns on a small device'
-					),
-					React.createElement(
-						'div',
-						{ className: "row" },
-						React.createElement(
-							'div',
-							{ className: "col-xs-4" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								React.createElement(
-									'span',
-									{ className: "visible-xs-inline" },
-									'4'
-								),
-								React.createElement(
-									'span',
-									{ className: "hidden-xs" },
-									'.col-xs-4'
-								)
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-xs-4" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								React.createElement(
-									'span',
-									{ className: "visible-xs-inline" },
-									'4'
-								),
-								React.createElement(
-									'span',
-									{ className: "hidden-xs" },
-									'.col-xs-4'
-								)
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-xs-4" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								React.createElement(
-									'span',
-									{ className: "visible-xs-inline" },
-									'4'
-								),
-								React.createElement(
-									'span',
-									{ className: "hidden-xs" },
-									'.col-xs-4'
-								)
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-xs-8" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								React.createElement(
-									'span',
-									{ className: "visible-xs-inline" },
-									'8'
-								),
-								React.createElement(
-									'span',
-									{ className: "hidden-xs" },
-									'.col-xs-8'
-								)
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-xs-4" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								React.createElement(
-									'span',
-									{ className: "visible-xs-inline" },
-									'4'
-								),
-								React.createElement(
-									'span',
-									{ className: "hidden-xs" },
-									'.col-xs-4'
-								)
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-xs-3" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								React.createElement(
-									'span',
-									{ className: "visible-xs-inline" },
-									'3'
-								),
-								React.createElement(
-									'span',
-									{ className: "hidden-xs" },
-									'.col-xs-3'
-								)
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-xs-6" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								React.createElement(
-									'span',
-									{ className: "visible-xs-inline" },
-									'6'
-								),
-								React.createElement(
-									'span',
-									{ className: "hidden-xs" },
-									'.col-xs-6'
-								)
-							)
-						),
-						React.createElement(
-							'div',
-							{ className: "col-xs-3" },
-							React.createElement(
-								'div',
-								{ className: "demo-box u-text-center" },
-								React.createElement(
-									'span',
-									{ className: "visible-xs-inline" },
-									'3'
-								),
-								React.createElement(
-									'span',
-									{ className: "hidden-xs" },
-									'.col-xs-3'
-								)
-							)
-						)
-					)
-				),
-				React.createElement(
-					ExampleSource,
-					null,
-					'\n\t\t\t\t\t\t\t<div className="row">\n\t\t\t\t\t\t\t\t<div className="col-xs-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">4</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-4</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">4</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-4</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">4</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-4</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-8">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">8</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-8</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-4">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">4</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-4</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-3">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">3</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-3</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-6">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">6</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-6</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div className="col-xs-3">\n\t\t\t\t\t\t\t\t\t<div className="demo-box u-text-center">\n\t\t\t\t\t\t\t\t\t\t<span className="visible-xs-inline">3</span>\n\t\t\t\t\t\t\t\t\t\t<span className="hidden-xs">.col-xs-3</span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t'
-				)
-			),
-			React.createElement(
-				'h2',
-				null,
 				'Tables'
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						Table,
 						null,
 						React.createElement(
 							'colgroup',
 							null,
-							React.createElement('col', { width: "50" }),
-							React.createElement('col', { width: "" }),
-							React.createElement('col', { width: "10%" }),
-							React.createElement('col', { width: "10%" })
+							React.createElement('col', { width: '50' }),
+							React.createElement('col', { width: '' }),
+							React.createElement('col', { width: '10%' }),
+							React.createElement('col', { width: '10%' })
 						),
 						React.createElement(
 							'thead',
@@ -4751,7 +4501,7 @@ var CSSExamples = React.createClass({
 
 module.exports = CSSExamples;
 
-},{"../components/ExampleSource":46,"../data/users":48,"classnames":undefined,"elemental":undefined,"react/addons":undefined}],51:[function(require,module,exports){
+},{"../components/ExampleSource":47,"../data/users":49,"classnames":undefined,"elemental":undefined,"react/addons":undefined}],52:[function(require,module,exports){
 /* eslint no-alert: 0 */
 
 'use strict';
@@ -4762,6 +4512,7 @@ var _require = require('elemental');
 
 var Button = _require.Button;
 var Checkbox = _require.Checkbox;
+var Container = _require.Container;
 var EmailInputGroup = _require.EmailInputGroup;
 var FileDragAndDrop = _require.FileDragAndDrop;
 var FileUpload = _require.FileUpload;
@@ -4839,7 +4590,7 @@ var Forms = React.createClass({
 		var iconContextVariantsColor = COLOR_VARIANTS.map(function (color) {
 			return React.createElement(
 				FormIconField,
-				{ key: color.value, width: "one-fifth", iconPosition: "left", iconKey: color.icon, iconColor: color.value },
+				{ key: color.value, width: 'one-fifth', iconPosition: 'left', iconKey: color.icon, iconColor: color.value },
 				React.createElement(FormInput, { placeholder: color.label, name: 'icon-form-context-variants-color' + color.value })
 			);
 		});
@@ -4847,14 +4598,14 @@ var Forms = React.createClass({
 		var iconContextVariantsFill = COLOR_VARIANTS.map(function (color) {
 			return React.createElement(
 				FormIconField,
-				{ key: color.value, width: "one-fifth", iconPosition: "left", iconKey: color.icon, iconFill: color.value },
+				{ key: color.value, width: 'one-fifth', iconPosition: 'left', iconKey: color.icon, iconFill: color.value },
 				React.createElement(FormInput, { placeholder: color.label, name: 'icon-form-context-variants-color' + color.value })
 			);
 		});
 
 		return React.createElement(
-			'div',
-			{ className: "demo-container container" },
+			Container,
+			{ maxWidth: 800, className: 'demo-container' },
 			React.createElement(
 				'h1',
 				null,
@@ -4871,56 +4622,56 @@ var Forms = React.createClass({
 				'Individual form controls automatically receive some global styling. All textual ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'<FormInput>'
 				),
 				', and ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'<FormSelect>'
 				),
 				' elements with are set to ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'width: 100%;'
 				),
 				' by default. Wrap controls in ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'<FormField>'
 				),
 				' for optimum spacing.'
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						Form,
 						null,
 						React.createElement(
 							FormField,
-							{ label: "Email address", htmlFor: "basic-form-input-email" },
-							React.createElement(FormInput, { type: "email", placeholder: "Enter email", name: "basic-form-input-email" })
+							{ label: 'Email address', htmlFor: 'basic-form-input-email' },
+							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'basic-form-input-email' })
 						),
 						React.createElement(
 							FormField,
-							{ label: "Password", htmlFor: "basic-form-input-password" },
-							React.createElement(FormInput, { type: "password", placeholder: "Password", name: "basic-form-input-password" })
+							{ label: 'Password', htmlFor: 'basic-form-input-password' },
+							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'basic-form-input-password' })
 						),
 						React.createElement(
 							FormField,
 							null,
-							React.createElement(Checkbox, { label: "Check it" })
+							React.createElement(Checkbox, { label: 'Check it' })
 						),
 						React.createElement(
 							Button,
-							{ type: "default" },
+							{ type: 'default' },
 							'Submit'
 						)
 					)
@@ -4942,59 +4693,59 @@ var Forms = React.createClass({
 				'Adding the type ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'horizontal'
 				),
 				' to your ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'<Form />'
 				),
 				' changes the ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'FormField'
 				),
 				' component to behave like a row. The label width can be updated from inside the LESS variables file where it\'s defined as ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'@form-label-width'
 				),
 				'. This only applies to forms within viewports that are at least 768px wide.'
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						Form,
-						{ type: "horizontal" },
+						{ type: 'horizontal' },
 						React.createElement(
 							FormField,
-							{ label: "Email address", htmlFor: "horizontal-form-input-email" },
-							React.createElement(FormInput, { type: "email", placeholder: "Enter email", name: "horizontal-form-input-email" })
+							{ label: 'Email address', htmlFor: 'horizontal-form-input-email' },
+							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'horizontal-form-input-email' })
 						),
 						React.createElement(
 							FormField,
-							{ label: "Password", htmlFor: "horizontal-form-input-password" },
-							React.createElement(FormInput, { type: "password", placeholder: "Password", name: "horizontal-form-input-password" })
+							{ label: 'Password', htmlFor: 'horizontal-form-input-password' },
+							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'horizontal-form-input-password' })
 						),
 						React.createElement(
 							FormField,
 							{ offsetAbsentLabel: true },
-							React.createElement(Checkbox, { label: "Check it" })
+							React.createElement(Checkbox, { label: 'Check it' })
 						),
 						React.createElement(
 							FormField,
 							{ offsetAbsentLabel: true },
 							React.createElement(
 								Button,
-								{ type: "default" },
+								{ type: 'default' },
 								'Submit'
 							)
 						)
@@ -5017,13 +4768,13 @@ var Forms = React.createClass({
 				'Add the type ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'inline'
 				),
 				' to your ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'<Form />'
 				),
 				' for left-aligned and inline-block controls. This only applies to forms within viewports that are at least 768px wide.'
@@ -5035,34 +4786,34 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						Form,
-						{ type: "inline" },
+						{ type: 'inline' },
 						React.createElement(
 							FormField,
-							{ label: "Email address", htmlFor: "inline-form-input-email" },
-							React.createElement(FormInput, { type: "email", placeholder: "Enter email", name: "inline-form-input-email" })
+							{ label: 'Email address', htmlFor: 'inline-form-input-email' },
+							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'inline-form-input-email' })
 						),
 						React.createElement(
 							FormField,
-							{ label: "Password", htmlFor: "inline-form-input-password" },
-							React.createElement(FormInput, { type: "password", placeholder: "Password", name: "inline-form-input-password" })
+							{ label: 'Password', htmlFor: 'inline-form-input-password' },
+							React.createElement(FormInput, { type: 'password', placeholder: 'Password', name: 'inline-form-input-password' })
 						),
 						React.createElement(
 							FormField,
 							null,
-							React.createElement(Checkbox, { label: "Check it" })
+							React.createElement(Checkbox, { label: 'Check it' })
 						),
 						React.createElement(
 							FormField,
 							null,
 							React.createElement(
 								Button,
-								{ type: "default" },
+								{ type: 'default' },
 								'Submit'
 							)
 						)
@@ -5081,13 +4832,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Contiguous form elements'
 					),
 					React.createElement(
@@ -5096,7 +4847,7 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
 						),
 						React.createElement(
 							InputGroup.Section,
@@ -5113,17 +4864,17 @@ var Forms = React.createClass({
 						{ contiguous: true },
 						React.createElement(
 							InputGroup.Section,
-							{ type: "primary" },
+							{ type: 'primary' },
 							React.createElement(
 								Button,
 								null,
-								React.createElement('span', { className: "octicon octicon-pencil" })
+								React.createElement('span', { className: 'octicon octicon-pencil' })
 							)
 						),
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
 						)
 					)
 				),
@@ -5135,13 +4886,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Separate when required'
 					),
 					React.createElement(
@@ -5150,14 +4901,14 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
 						),
 						React.createElement(
 							InputGroup.Section,
 							null,
 							React.createElement(
 								Button,
-								{ type: "primary" },
+								{ type: 'primary' },
 								'Button'
 							)
 						)
@@ -5170,14 +4921,14 @@ var Forms = React.createClass({
 							null,
 							React.createElement(
 								Button,
-								{ type: "primary" },
-								React.createElement('span', { className: "octicon octicon-pencil" })
+								{ type: 'primary' },
+								React.createElement('span', { className: 'octicon octicon-pencil' })
 							)
 						),
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
 						)
 					)
 				),
@@ -5189,13 +4940,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'More sophisticated formations'
 					),
 					React.createElement(
@@ -5213,14 +4964,14 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: "text", placeholder: "Input group field" })
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field' })
 						),
 						React.createElement(
 							InputGroup.Section,
 							null,
 							React.createElement(
 								Button,
-								{ type: "primary" },
+								{ type: 'primary' },
 								'Omega'
 							)
 						)
@@ -5231,19 +4982,19 @@ var Forms = React.createClass({
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: "text", placeholder: "Input group field 1" })
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field 1' })
 						),
 						React.createElement(
 							InputGroup.Section,
 							{ grow: true },
-							React.createElement(FormInput, { type: "text", placeholder: "Input group field 2" })
+							React.createElement(FormInput, { type: 'text', placeholder: 'Input group field 2' })
 						),
 						React.createElement(
 							InputGroup.Section,
 							null,
 							React.createElement(
 								Button,
-								{ type: "primary" },
+								{ type: 'primary' },
 								'Primary'
 							)
 						),
@@ -5271,24 +5022,24 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						FormField,
-						{ label: "Input", htmlFor: "supported-controls-input" },
-						React.createElement(FormInput, { placeholder: "Input", name: "supported-controls-input" })
+						{ label: 'Input', htmlFor: 'supported-controls-input' },
+						React.createElement(FormInput, { placeholder: 'Input', name: 'supported-controls-input' })
 					),
 					React.createElement(
 						FormField,
-						{ label: "Large Input", htmlFor: "supported-controls-input-lg" },
-						React.createElement(FormInput, { placeholder: "Large", name: "supported-controls-input-lg", size: "lg" })
+						{ label: 'Large Input', htmlFor: 'supported-controls-input-lg' },
+						React.createElement(FormInput, { placeholder: 'Large', name: 'supported-controls-input-lg', size: 'lg' })
 					),
 					React.createElement(
 						FormField,
-						{ label: "Small Input", htmlFor: "supported-controls-input-sm" },
-						React.createElement(FormInput, { placeholder: "Small", name: "supported-controls-input-sm", size: "sm" })
+						{ label: 'Small Input', htmlFor: 'supported-controls-input-sm' },
+						React.createElement(FormInput, { placeholder: 'Small', name: 'supported-controls-input-sm', size: 'sm' })
 					)
 				),
 				React.createElement(
@@ -5304,11 +5055,11 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
-					React.createElement(FormInput, { placeholder: "Input" })
+					{ className: 'code-example__example' },
+					React.createElement(FormInput, { placeholder: 'Input' })
 				),
 				React.createElement(
 					ExampleSource,
@@ -5318,11 +5069,11 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
-					React.createElement(FormInput, { placeholder: "Textarea", multiline: true })
+					{ className: 'code-example__example' },
+					React.createElement(FormInput, { placeholder: 'Textarea', multiline: true })
 				),
 				React.createElement(
 					ExampleSource,
@@ -5332,11 +5083,11 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
-					React.createElement(FormSelect, { options: controlOptions, firstOption: "Select", onChange: updateSelect })
+					{ className: 'code-example__example' },
+					React.createElement(FormSelect, { options: controlOptions, firstOption: 'Select', onChange: updateSelect })
 				),
 				React.createElement(
 					ExampleSource,
@@ -5346,40 +5097,40 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						FormField,
-						{ label: "Checkboxes" },
-						React.createElement(Checkbox, { label: "Check me out" }),
-						React.createElement(Checkbox, { label: "Check me out" })
+						{ label: 'Checkboxes' },
+						React.createElement(Checkbox, { label: 'Check me out' }),
+						React.createElement(Checkbox, { label: 'Check me out' })
 					),
 					React.createElement(
 						FormField,
-						{ label: "Radios" },
-						React.createElement(Radio, { name: "default_radios", label: "Pick me" }),
-						React.createElement(Radio, { name: "default_radios", label: "Pick me" })
+						{ label: 'Radios' },
+						React.createElement(Radio, { name: 'default_radios', label: 'Pick me' }),
+						React.createElement(Radio, { name: 'default_radios', label: 'Pick me' })
 					),
 					React.createElement(
 						FormField,
-						{ label: "Inline Checkboxes" },
+						{ label: 'Inline Checkboxes' },
 						React.createElement(
 							'div',
-							{ className: "inline-controls" },
-							React.createElement(Checkbox, { label: "Check me out" }),
-							React.createElement(Checkbox, { label: "Check me out" })
+							{ className: 'inline-controls' },
+							React.createElement(Checkbox, { label: 'Check me out' }),
+							React.createElement(Checkbox, { label: 'Check me out' })
 						)
 					),
 					React.createElement(
 						FormField,
-						{ label: "Inline Radios" },
+						{ label: 'Inline Radios' },
 						React.createElement(
 							'div',
-							{ className: "inline-controls" },
-							React.createElement(Radio, { name: "inline_radios", label: "Pick me" }),
-							React.createElement(Radio, { name: "inline_radios", label: "Pick me" })
+							{ className: 'inline-controls' },
+							React.createElement(Radio, { name: 'inline_radios', label: 'Pick me' }),
+							React.createElement(Radio, { name: 'inline_radios', label: 'Pick me' })
 						)
 					)
 				),
@@ -5396,30 +5147,30 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						FormField,
-						{ label: "Input", htmlFor: "supported-controls-input-disabled" },
-						React.createElement(FormInput, { placeholder: "Input", name: "supported-controls-input-disabled", disabled: true })
+						{ label: 'Input', htmlFor: 'supported-controls-input-disabled' },
+						React.createElement(FormInput, { placeholder: 'Input', name: 'supported-controls-input-disabled', disabled: true })
 					),
 					React.createElement(
 						FormField,
-						{ label: "Textarea", htmlFor: "supported-controls-textarea" },
-						React.createElement(FormInput, { placeholder: "Textarea", name: "supported-controls-textarea-disabled", disabled: true, multiline: true })
+						{ label: 'Textarea', htmlFor: 'supported-controls-textarea' },
+						React.createElement(FormInput, { placeholder: 'Textarea', name: 'supported-controls-textarea-disabled', disabled: true, multiline: true })
 					),
-					React.createElement(FormSelect, { label: "Select", options: controlOptions, onChange: updateSelect, htmlFor: "supported-conrols-select-disabled", firstOption: "Select", disabled: true }),
+					React.createElement(FormSelect, { label: 'Select', options: controlOptions, onChange: updateSelect, htmlFor: 'supported-conrols-select-disabled', firstOption: 'Select', disabled: true }),
 					React.createElement(
 						FormField,
-						{ label: "Checkboxes" },
-						React.createElement(Checkbox, { label: "Check me out", disabled: true })
+						{ label: 'Checkboxes' },
+						React.createElement(Checkbox, { label: 'Check me out', disabled: true })
 					),
 					React.createElement(
 						FormField,
-						{ label: "Radios" },
-						React.createElement(Radio, { name: "default_radios", label: "Pick me", disabled: true })
+						{ label: 'Radios' },
+						React.createElement(Radio, { name: 'default_radios', label: 'Pick me', disabled: true })
 					)
 				),
 				React.createElement(
@@ -5435,13 +5186,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						FormField,
-						{ label: "Input with note" },
+						{ label: 'Input with note' },
 						React.createElement(FormInput, null),
 						React.createElement(
 							FormNote,
@@ -5467,40 +5218,40 @@ var Forms = React.createClass({
 				'Wrap any group of ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'<FormField>'
 				),
 				' in the ',
 				React.createElement(
 					'code',
-					{ className: "inline-code" },
+					{ className: 'inline-code' },
 					'<FormRow>'
 				),
 				' component to easily set desired widths.'
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						FormRow,
 						null,
 						React.createElement(
 							FormField,
-							{ width: "one-half", label: "Credit Card Number", htmlFor: "credit-card-number" },
-							React.createElement(FormInput, { pattern: "[0-9]*", placeholder: "Card Number", name: "credit-card-number" })
+							{ width: 'one-half', label: 'Credit Card Number', htmlFor: 'credit-card-number' },
+							React.createElement(FormInput, { pattern: '[0-9]*', placeholder: 'Card Number', name: 'credit-card-number' })
 						),
 						React.createElement(
 							FormField,
-							{ width: "one-quarter", label: "Expiration", htmlFor: "credit-card-expiration" },
-							React.createElement(FormInput, { placeholder: "MM/YYYY", name: "credit-card-expiration" })
+							{ width: 'one-quarter', label: 'Expiration', htmlFor: 'credit-card-expiration' },
+							React.createElement(FormInput, { placeholder: 'MM/YYYY', name: 'credit-card-expiration' })
 						),
 						React.createElement(
 							FormField,
-							{ width: "one-quarter", label: "Security Code (CCV)", htmlFor: "credit-card-security" },
-							React.createElement(FormInput, { pattern: "[0-9]*", placeholder: "123", name: "credit-card-security" })
+							{ width: 'one-quarter', label: 'Security Code (CCV)', htmlFor: 'credit-card-security' },
+							React.createElement(FormInput, { pattern: '[0-9]*', placeholder: '123', name: 'credit-card-security' })
 						)
 					),
 					React.createElement(
@@ -5508,47 +5259,47 @@ var Forms = React.createClass({
 						null,
 						React.createElement(
 							FormField,
-							{ width: "one-half", label: "First Name", htmlFor: "first-name" },
-							React.createElement(FormInput, { placeholder: "First Name", name: "first-name" })
+							{ width: 'one-half', label: 'First Name', htmlFor: 'first-name' },
+							React.createElement(FormInput, { placeholder: 'First Name', name: 'first-name' })
 						),
 						React.createElement(
 							FormField,
-							{ width: "one-half", label: "Last Name", htmlFor: "last-name" },
-							React.createElement(FormInput, { placeholder: "Last Name", name: "last-name" })
+							{ width: 'one-half', label: 'Last Name', htmlFor: 'last-name' },
+							React.createElement(FormInput, { placeholder: 'Last Name', name: 'last-name' })
 						)
 					),
 					React.createElement(
 						FormField,
-						{ label: "Billing Address", htmlFor: "address-street1" },
-						React.createElement(FormInput, { placeholder: "Address Line 1", name: "address-street1" })
+						{ label: 'Billing Address', htmlFor: 'address-street1' },
+						React.createElement(FormInput, { placeholder: 'Address Line 1', name: 'address-street1' })
 					),
 					React.createElement(
 						FormField,
 						null,
-						React.createElement(FormInput, { placeholder: "Address Line 2", name: "address-street2" })
+						React.createElement(FormInput, { placeholder: 'Address Line 2', name: 'address-street2' })
 					),
 					React.createElement(
 						FormRow,
 						null,
 						React.createElement(
 							FormField,
-							{ width: "two-thirds" },
-							React.createElement(FormInput, { placeholder: "City", name: "city" })
+							{ width: 'two-thirds' },
+							React.createElement(FormInput, { placeholder: 'City', name: 'city' })
 						),
 						React.createElement(
 							FormField,
-							{ width: "one-third" },
-							React.createElement(FormInput, { placeholder: "State", name: "state" })
+							{ width: 'one-third' },
+							React.createElement(FormInput, { placeholder: 'State', name: 'state' })
 						),
 						React.createElement(
 							FormField,
-							{ width: "one-third" },
-							React.createElement(FormInput, { width: "one-third", placeholder: "Post Code", name: "city" })
+							{ width: 'one-third' },
+							React.createElement(FormInput, { width: 'one-third', placeholder: 'Post Code', name: 'city' })
 						),
 						React.createElement(
 							FormField,
-							{ width: "two-thirds" },
-							React.createElement(FormSelect, { options: countryOptions, firstOption: "Country", onChange: updateSelect })
+							{ width: 'two-thirds' },
+							React.createElement(FormSelect, { options: countryOptions, firstOption: 'Country', onChange: updateSelect })
 						)
 					)
 				),
@@ -5565,7 +5316,7 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -5618,7 +5369,7 @@ var Forms = React.createClass({
 								null,
 								'\'\''
 							),
-							React.createElement('td', { className: "usage-table__description" })
+							React.createElement('td', { className: 'usage-table__description' })
 						),
 						React.createElement(
 							'tr',
@@ -5638,7 +5389,7 @@ var Forms = React.createClass({
 								null,
 								'false'
 							),
-							React.createElement('td', { className: "usage-table__description" })
+							React.createElement('td', { className: 'usage-table__description' })
 						),
 						React.createElement(
 							'tr',
@@ -5660,102 +5411,102 @@ var Forms = React.createClass({
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Declare a width for your field; must be used inside a ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'<FormRow>'
 								),
 								' component. Possible options:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'one-half'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'two-quarters'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'three-sixths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'one-quarter'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'three-quarters'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'one-third'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'two-sixths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'two-thirds'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'four-sixths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'one-fifth'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'two-fifths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'three-fifths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'four-fifths'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'one-sixth'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code inline-code--list-item" },
+									{ className: 'inline-code inline-code--list-item' },
 									'five-sixths'
 								)
 							)
@@ -5770,23 +5521,23 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'p',
-				{ className: "lead" },
+				{ className: 'lead' },
 				'Elemental uses the wonderful ',
 				React.createElement(
 					'a',
-					{ href: "https://octicons.github.com/", target: "_blank" },
+					{ href: 'https://octicons.github.com/', target: '_blank' },
 					'Octicons Suite from GitHub'
 				)
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Alignment'
 					),
 					React.createElement(
@@ -5794,13 +5545,13 @@ var Forms = React.createClass({
 						null,
 						React.createElement(
 							FormIconField,
-							{ width: "one-half", iconPosition: "left", iconColor: "default", iconKey: "star" },
-							React.createElement(FormInput, { placeholder: "Left Aligned", name: "icon-alignment-left" })
+							{ width: 'one-half', iconPosition: 'left', iconColor: 'default', iconKey: 'star' },
+							React.createElement(FormInput, { placeholder: 'Left Aligned', name: 'icon-alignment-left' })
 						),
 						React.createElement(
 							FormIconField,
-							{ width: "one-half", iconPosition: "right", iconColor: "default", iconKey: "star" },
-							React.createElement(FormInput, { placeholder: "Right Aligned", name: "icon-alignment-right" })
+							{ width: 'one-half', iconPosition: 'right', iconColor: 'default', iconKey: 'star' },
+							React.createElement(FormInput, { placeholder: 'Right Aligned', name: 'icon-alignment-right' })
 						)
 					)
 				),
@@ -5812,13 +5563,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Context Variants: Color'
 					),
 					React.createElement(
@@ -5835,13 +5586,13 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Context Variants: Fill'
 					),
 					React.createElement(
@@ -5858,19 +5609,19 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Loading Indicator'
 					),
 					React.createElement(
 						FormIconField,
-						{ iconPosition: "right", iconKey: "search", iconColor: "default", iconIsLoading: this.state.searching },
-						React.createElement(FormInput, { onChange: this.handleSearch, type: "search", placeholder: "Search...", name: "icon-form-search" })
+						{ iconPosition: 'right', iconKey: 'search', iconColor: 'default', iconIsLoading: this.state.searching },
+						React.createElement(FormInput, { onChange: this.handleSearch, type: 'search', placeholder: 'Search...', name: 'icon-form-search' })
 					)
 				),
 				React.createElement(
@@ -5887,10 +5638,10 @@ var Forms = React.createClass({
 			React.createElement(
 				'form',
 				null,
-				React.createElement(RadioGroup, { label: "Radios", value: this.state.inlineRadioGroup, onChange: updateInlineRadios, options: controlOptions, name: "inlineRadioGroup", required: true, inline: true }),
-				React.createElement(FormSelect, { label: "Select", value: this.state.inputSelect, onChange: updateSelect, options: controlOptions, htmlFor: "inputSelect", required: true, prependEmptyOption: true }),
-				React.createElement(EmailInputGroup, { label: "Email", value: this.state.inputEmail, onChange: updateEmail, required: true }),
-				React.createElement(PasswordInputGroup, { label: "Password", value: this.state.inputPassword, onChange: updatePassword, required: true })
+				React.createElement(RadioGroup, { label: 'Radios', value: this.state.inlineRadioGroup, onChange: updateInlineRadios, options: controlOptions, name: 'inlineRadioGroup', required: true, inline: true }),
+				React.createElement(FormSelect, { label: 'Select', value: this.state.inputSelect, onChange: updateSelect, options: controlOptions, htmlFor: 'inputSelect', required: true, prependEmptyOption: true }),
+				React.createElement(EmailInputGroup, { label: 'Email', value: this.state.inputEmail, onChange: updateEmail, required: true }),
+				React.createElement(PasswordInputGroup, { label: 'Password', value: this.state.inputPassword, onChange: updatePassword, required: true })
 			),
 			React.createElement(
 				'h2',
@@ -5899,15 +5650,15 @@ var Forms = React.createClass({
 			),
 			React.createElement(
 				Form,
-				{ type: "horizontal" },
+				{ type: 'horizontal' },
 				React.createElement(
 					FormField,
-					{ label: "Image" },
-					React.createElement(FileUpload, { buttonLabelInitial: "Upload Image", buttonLabelChange: "Change Image", accept: "image/jpg, image/gif, image/png" })
+					{ label: 'Image' },
+					React.createElement(FileUpload, { buttonLabelInitial: 'Upload Image', buttonLabelChange: 'Change Image', accept: 'image/jpg, image/gif, image/png' })
 				),
 				React.createElement(
 					FormField,
-					{ label: "Images" },
+					{ label: 'Images' },
 					React.createElement(FileDragAndDrop, { files: this.state.files, onDrop: this.onDrop })
 				)
 			)
@@ -5917,7 +5668,481 @@ var Forms = React.createClass({
 
 module.exports = Forms;
 
-},{"../components/ExampleSource":46,"../data/countries":47,"elemental":undefined,"react":undefined}],52:[function(require,module,exports){
+},{"../components/ExampleSource":47,"../data/countries":48,"elemental":undefined,"react":undefined}],53:[function(require,module,exports){
+/* eslint no-script-url: 0 */
+
+'use strict';
+
+var React = require('react/addons');
+
+var _require = require('elemental');
+
+var Col = _require.Col;
+var Container = _require.Container;
+var Row = _require.Row;
+var ResponsiveText = _require.ResponsiveText;
+
+var DemoBox = require('../components/DemoBox');
+var ExampleSource = require('../components/ExampleSource');
+
+var GridExample = React.createClass({
+	displayName: 'GridExample',
+
+	render: function render() {
+		return React.createElement(
+			Container,
+			{ maxWidth: 800, className: 'demo-container' },
+			React.createElement(
+				'h1',
+				null,
+				'Grid'
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Let\'s start simple'
+			),
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'Elemental uses its own component-based grid system. You can specify column widths in pixels, percentages or fractions (between 1/2 and 1/20).'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Equal Columns'
+					),
+					React.createElement(
+						Row,
+						null,
+						React.createElement(
+							Col,
+							{ sm: '1/3' },
+							React.createElement(
+								DemoBox,
+								null,
+								'One Third'
+							)
+						),
+						React.createElement(
+							Col,
+							{ sm: '1/3' },
+							React.createElement(
+								DemoBox,
+								null,
+								'One Third'
+							)
+						),
+						React.createElement(
+							Col,
+							{ sm: '1/3' },
+							React.createElement(
+								DemoBox,
+								null,
+								'One Third'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t\t<Col sm="1/3">\n\t\t\t\t\t\t\t\t\t<DemoBox>One Third</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col sm="1/3">\n\t\t\t\t\t\t\t\t\t<DemoBox>One Third</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col sm="1/3">\n\t\t\t\t\t\t\t\t\t<DemoBox>One Third</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Unequal Columns'
+					),
+					React.createElement(
+						Row,
+						null,
+						React.createElement(
+							Col,
+							{ sm: '1/4' },
+							React.createElement(
+								DemoBox,
+								null,
+								'One Quarter'
+							)
+						),
+						React.createElement(
+							Col,
+							{ sm: '1/2' },
+							React.createElement(
+								DemoBox,
+								null,
+								'One Half'
+							)
+						),
+						React.createElement(
+							Col,
+							{ sm: '1/4' },
+							React.createElement(
+								DemoBox,
+								null,
+								'One Quarter'
+							)
+						),
+						React.createElement(
+							Col,
+							{ sm: '2/3' },
+							React.createElement(
+								DemoBox,
+								null,
+								'Two Thirds'
+							)
+						),
+						React.createElement(
+							Col,
+							{ sm: '1/3' },
+							React.createElement(
+								DemoBox,
+								null,
+								'One Third'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t\t<Col sm="1/4">\n\t\t\t\t\t\t\t\t\t<DemoBox>One Quarter</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col sm="1/2">\n\t\t\t\t\t\t\t\t\t<DemoBox>One Half</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col sm="1/4">\n\t\t\t\t\t\t\t\t\t<DemoBox>One Quarter</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col sm="2/3">\n\t\t\t\t\t\t\t\t\t<DemoBox>Two Thirds</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col sm="1/3">\n\t\t\t\t\t\t\t\t\t<DemoBox>One Third</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Resize your window'
+			),
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'We\'ve made sure you can accomodate even the trickiest design combinations'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Columns on a small device'
+					),
+					React.createElement(
+						Row,
+						null,
+						React.createElement(
+							Col,
+							{ xs: '33%', sm: '25%', lg: '33.333%' },
+							React.createElement(
+								DemoBox,
+								null,
+								React.createElement(ResponsiveText, { visibleXS: '⅓', visibleSM: 'Quarter', visibleMD: 'One Quarter', visibleLG: 'One Third' })
+							)
+						),
+						React.createElement(
+							Col,
+							{ xs: '33%', sm: '50%', lg: '33.333%' },
+							React.createElement(
+								DemoBox,
+								null,
+								React.createElement(ResponsiveText, { visibleXS: '⅓', visibleSM: 'One Half', visibleMD: 'One Half', visibleLG: 'One Third' })
+							)
+						),
+						React.createElement(
+							Col,
+							{ xs: '33%', sm: '25%', lg: '33.333%' },
+							React.createElement(
+								DemoBox,
+								null,
+								React.createElement(ResponsiveText, { visibleXS: '⅓', visibleSM: 'Quarter', visibleMD: 'One Quarter', visibleLG: 'One Third' })
+							)
+						),
+						React.createElement(
+							Col,
+							{ xs: '50%', sm: '33.333%', md: '66.667%', lg: '20%' },
+							React.createElement(
+								DemoBox,
+								null,
+								React.createElement(ResponsiveText, { visibleXS: '½', visibleSM: 'One Third', visibleMD: 'Two Thirds', visibleLG: 'One Fifth' })
+							)
+						),
+						React.createElement(
+							Col,
+							{ xs: '50%', sm: '66.667%', md: '33.333%', lg: '60%' },
+							React.createElement(
+								DemoBox,
+								null,
+								React.createElement(ResponsiveText, { visibleXS: '½', visibleSM: 'Two Thirds', visibleMD: 'One Third', visibleLG: 'Three Fifths' })
+							)
+						),
+						React.createElement(
+							Col,
+							{ xs: '100%', sm: '33.333%', md: '25%', lg: '20%' },
+							React.createElement(
+								DemoBox,
+								null,
+								React.createElement(ResponsiveText, { visibleXS: '1', visibleSM: 'One Third', visibleMD: 'One Quarter', visibleLG: 'One Fifth' })
+							)
+						),
+						React.createElement(
+							Col,
+							{ xs: '50%', sm: '33.333%', md: '50%', lg: '50%' },
+							React.createElement(
+								DemoBox,
+								null,
+								React.createElement(ResponsiveText, { visibleXS: '½', visibleSM: 'One Third', visibleMD: 'One Half', visibleLG: 'One Half' })
+							)
+						),
+						React.createElement(
+							Col,
+							{ xs: '50%', sm: '33.333%', md: '25%', lg: '50%' },
+							React.createElement(
+								DemoBox,
+								null,
+								React.createElement(ResponsiveText, { visibleXS: '½', visibleSM: 'One Third', visibleMD: 'One Quarter', visibleLG: 'One Half' })
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t\t<Col xs="33%" sm="25%" lg="33.333%">\n\t\t\t\t\t\t\t\t\t<DemoBox>\n\t\t\t\t\t\t\t\t\t\t<ResponsiveText visibleXS="⅓" visibleSM="One Quarter" visibleMD="One Quarter" visibleLG="One Third" />\n\t\t\t\t\t\t\t\t\t</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col xs="33%" sm="50%" lg="33.333%">\n\t\t\t\t\t\t\t\t\t<DemoBox>\n\t\t\t\t\t\t\t\t\t\t<ResponsiveText visibleXS="⅓" visibleSM="One Half" visibleMD="One Half" visibleLG="One Third" />\n\t\t\t\t\t\t\t\t\t</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col xs="33%" sm="25%" lg="33.333%">\n\t\t\t\t\t\t\t\t\t<DemoBox>\n\t\t\t\t\t\t\t\t\t\t<ResponsiveText visibleXS="⅓" visibleSM="One Quarter" visibleMD="One Quarter" visibleLG="One Third" />\n\t\t\t\t\t\t\t\t\t</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col xs="50%" sm="33.333%" md="66.667%" lg="20%">\n\t\t\t\t\t\t\t\t\t<DemoBox>\n\t\t\t\t\t\t\t\t\t\t<ResponsiveText visibleXS="½" visibleSM="One Third" visibleMD="Two Thirds" visibleLG="One Fifth" />\n\t\t\t\t\t\t\t\t\t</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col xs="50%" sm="66.667%" md="33.333%" lg="60%">\n\t\t\t\t\t\t\t\t\t<DemoBox>\n\t\t\t\t\t\t\t\t\t\t<ResponsiveText visibleXS="½" visibleSM="Two Thirds" visibleMD="One Third" visibleLG="Three Fifths" />\n\t\t\t\t\t\t\t\t\t</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col xs="100%" sm="33.333%" md="25%" lg="20%">\n\t\t\t\t\t\t\t\t\t<DemoBox>\n\t\t\t\t\t\t\t\t\t\t<ResponsiveText visibleXS="1" visibleSM="One Third" visibleMD="One Quarter" visibleLG="One Fifth" />\n\t\t\t\t\t\t\t\t\t</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col xs="50%" sm="33.333%" md="50%" lg="50%">\n\t\t\t\t\t\t\t\t\t<DemoBox>\n\t\t\t\t\t\t\t\t\t\t<ResponsiveText visibleXS="½" visibleSM="One Third" visibleMD="One Half" visibleLG="One Half" />\n\t\t\t\t\t\t\t\t\t</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t\t<Col xs="50%" sm="33.333%" md="25%" lg="50%">\n\t\t\t\t\t\t\t\t\t<DemoBox>\n\t\t\t\t\t\t\t\t\t\t<ResponsiveText visibleXS="½" visibleSM="One Third" visibleMD="One Quarter" visibleLG="One Half" />\n\t\t\t\t\t\t\t\t\t</DemoBox>\n\t\t\t\t\t\t\t\t</Col>\n\t\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Something completely different'
+			),
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'What\'s that you say, a grid that lays itself out? I\'ll eat my hat!'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Columns without attributes'
+					),
+					React.createElement(
+						Row,
+						null,
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						)
+					),
+					React.createElement(
+						Row,
+						null,
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Columns with a basis'
+					),
+					React.createElement(
+						Row,
+						null,
+						React.createElement(
+							Col,
+							{ basis: '25%' },
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							{ basis: '25%' },
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							{ basis: '25%' },
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							{ basis: '25%' },
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							{ basis: '25%' },
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						),
+						React.createElement(
+							Col,
+							{ basis: '25%' },
+							React.createElement(
+								DemoBox,
+								null,
+								'♥'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t<Col basis="25%"><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col basis="25%"><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col basis="25%"><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col basis="25%"><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col basis="25%"><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col basis="25%"><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'p',
+				null,
+				'Using columns without declaring a width or basis will NOT WRAP but evenly distribute their width using the available horizontal space of the row. Be careful with this one.'
+			),
+			React.createElement(
+				'p',
+				null,
+				'With the release of React.js 0.14.x we\'ll be able to use the more agreeable syntax ',
+				React.createElement(
+					'span',
+					{ className: 'inline-code' },
+					'<Row basis="X">...</Row>'
+				),
+				' through parent-based context.'
+			)
+		);
+	}
+});
+
+module.exports = GridExample;
+
+},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react/addons":undefined}],54:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -5927,24 +6152,30 @@ var NavItems = [{ value: 'css', icon: 'paintcan', label: 'CSS' }, { value: 'butt
 // { value: 'date-picker', icon: 'calendar', label: 'Date' }
 ];
 
+var _require = require('elemental');
+
+var Col = _require.Col;
+var Container = _require.Container;
+var Row = _require.Row;
+
 var Home = React.createClass({
 	displayName: 'VIEW_Home',
 
 	render: function render() {
 		var menuItems = NavItems.map(function (item) {
 			return React.createElement(
-				'div',
-				{ key: item.label, className: "demo-banner-nav__col col-xs-4 col-sm-2" },
+				Col,
+				{ xs: '1/3', sm: '1/6', key: item.label, className: 'demo-banner-nav__col col-xs-4 col-sm-2' },
 				React.createElement(
 					Router.Link,
-					{ key: item.value, className: "demo-banner-nav__item", onClick: self.toggleMenu, to: item.value },
+					{ key: item.value, className: 'demo-banner-nav__item', onClick: self.toggleMenu, to: item.value },
 					React.createElement('span', { className: 'demo-banner-nav__icon octicon octicon-' + item.icon }),
 					React.createElement(
 						'div',
-						{ className: "demo-banner-nav__label" },
+						{ className: 'demo-banner-nav__label' },
 						React.createElement(
 							'span',
-							{ className: "demo-banner-nav__label-inner" },
+							{ className: 'demo-banner-nav__label-inner' },
 							item.label
 						)
 					)
@@ -5956,32 +6187,32 @@ var Home = React.createClass({
 			null,
 			React.createElement(
 				'header',
-				{ className: "demo-banner demo-banner--primary" },
+				{ className: 'demo-banner demo-banner--primary' },
 				React.createElement(
-					'div',
-					{ className: "demo-container container" },
-					React.createElement('span', { className: "demo-banner-illustration" }),
+					Container,
+					{ maxWidth: 768, className: 'demo-container' },
+					React.createElement('span', { className: 'demo-banner-illustration' }),
 					React.createElement(
 						'h1',
-						{ className: "demo-banner__heading demo-banner__heading-1" },
+						{ className: 'demo-banner__heading demo-banner__heading-1' },
 						'Elemental UI'
 					),
 					React.createElement(
 						'h2',
-						{ className: "demo-banner__heading demo-banner__heading-2" },
+						{ className: 'demo-banner__heading demo-banner__heading-2' },
 						'A UI Toolkit for React.js Websites and Apps'
 					),
 					React.createElement(
 						'div',
-						{ className: "demo-banner__buttons" },
+						{ className: 'demo-banner__buttons' },
 						React.createElement(
 							'a',
-							{ className: "Button Button--demo-primary", href: "https://twitter.com/elementalui", target: "_blank" },
+							{ className: 'Button Button--demo-primary', href: 'https://twitter.com/elementalui', target: '_blank' },
 							'Follow @ElementalUI on Twitter'
 						),
 						React.createElement(
 							'a',
-							{ className: "Button Button--demo-link", href: "https://github.com/elementalui/elemental", target: "_blank" },
+							{ className: 'Button Button--demo-link', href: 'https://github.com/elementalui/elemental', target: '_blank' },
 							'View the GitHub Project'
 						)
 					)
@@ -5989,64 +6220,64 @@ var Home = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "demo-banner demo-banner--secondary" },
+				{ className: 'demo-banner demo-banner--secondary' },
 				React.createElement(
-					'div',
-					{ className: "demo-container container" },
+					Container,
+					{ maxWidth: 768, className: 'demo-container' },
 					React.createElement(
 						'h2',
-						{ className: "demo-banner__heading demo-banner__heading-2" },
+						{ className: 'demo-banner__heading demo-banner__heading-2' },
 						'Project Status'
 					),
 					React.createElement(
 						'ul',
-						{ className: "demo-banner-list" },
+						{ className: 'demo-banner-list' },
 						React.createElement(
 							'li',
 							null,
-							'Currently under heavy development, initially for use in ',
+							'Currently under development, initially for use in ',
 							React.createElement(
 								'a',
-								{ href: "http://www.keystonejs.com" },
+								{ href: 'http://www.keystonejs.com' },
 								'KeystoneJS'
 							)
 						),
 						React.createElement(
 							'li',
 							null,
-							'The CSS is functionally complete, with some tweaks and browser testing yet to be done'
+							'We are experimenting with Component APIs'
 						),
 						React.createElement(
 							'li',
 							null,
-							'The React components are currently prototypes, their structure and functionality is WIP'
+							'Potentially, we\'ll transition from stylesheets to more inline styles, and would love feedback'
 						)
 					),
 					React.createElement(
 						'h5',
-						{ className: "demo-banner-divider" },
+						{ className: 'demo-banner-divider' },
 						React.createElement(
 							'span',
-							{ className: "demo-banner-divider-inner" },
+							{ className: 'demo-banner-divider-inner' },
 							'Demos'
 						)
 					),
 					React.createElement(
-						'div',
-						{ className: "demo-banner-nav row" },
+						Row,
+						{ className: 'demo-banner-nav' },
 						menuItems
 					)
 				)
 			),
 			React.createElement(
 				'div',
-				{ className: "demo-banner demo-banner--tertiary" },
+				{ className: 'demo-banner demo-banner--tertiary' },
 				React.createElement(
-					'div',
-					{ className: "demo-container container" },
+					Container,
+					{ maxWidth: 768, className: 'demo-container' },
 					React.createElement(
 						'h2',
-						{ className: "demo-banner__heading demo-banner__heading-2" },
+						{ className: 'demo-banner__heading demo-banner__heading-2' },
 						'Why build ',
 						React.createElement(
 							'em',
@@ -6058,50 +6289,43 @@ var Home = React.createClass({
 					React.createElement(
 						'p',
 						null,
-						'At ',
-						React.createElement(
-							'a',
-							{ href: "http://www.thinkmill.com.au", target: "_blank" },
-							'Thinkmill'
-						),
-						' we are constantly building bespoke web applications for various clients. We noticed that whilst projects vary greatly, we\'re using the same CSS and Component foundations over and over again.'
+						'We believe there is a need for a high quality, modular set of UI scaffolding components and controls for React that are built from the outset to natively implement React patterns.'
 					),
 					React.createElement(
 						'p',
 						null,
-						'In an effort to keep our projects\' codebases ',
 						React.createElement(
-							'abbr',
-							{ title: "Don't Repeat Yourself" },
-							'DRY'
+							'strong',
+							null,
+							'Elemental UI'
 						),
-						' we decided it was time to build something to improve our workflow and unify our projects to decrease development time.'
-					),
-					React.createElement(
-						'p',
-						null,
-						'All this coupled with a growing need for a re-usable set of React.js UI Components for the Admin UI in ',
+						' has been born to solve real-world requirements in projects we work on, and for use in the node.js content management platform ',
 						React.createElement(
 							'a',
-							{ href: "http://www.keystonejs.com", target: "_blank" },
+							{ href: 'http://www.keystonejs.com', target: '_blank' },
 							'KeystoneJS'
 						),
-						', Elemental was born.'
+						'.'
 					),
 					React.createElement(
 						'p',
 						null,
-						'While there are many other great UI Libraries available (including for React), our goal with Elemental is to develop a light-weight, unopinionated, modular framework that we can use across all our web projects.'
+						'Our goal is to create a set of functional and unopinionated components that are useful on their own or together, with an unobtrusive default style and flexible theme capabilities.'
+					),
+					React.createElement(
+						'p',
+						null,
+						'Thanks and credit go to the many other great CSS Component libraries that have been developed and whose shoulders we stand on, especially Bootstrap.'
 					),
 					React.createElement(
 						'div',
-						{ className: "demo-banner-points" },
+						{ className: 'demo-banner-points' },
 						React.createElement(
-							'div',
-							{ className: "row" },
+							Row,
+							null,
 							React.createElement(
-								'div',
-								{ className: "col-sm-4" },
+								Col,
+								{ sm: '1/3' },
 								React.createElement(
 									'h3',
 									null,
@@ -6114,8 +6338,8 @@ var Home = React.createClass({
 								)
 							),
 							React.createElement(
-								'div',
-								{ className: "col-sm-4" },
+								Col,
+								{ sm: '1/3' },
 								React.createElement(
 									'h3',
 									null,
@@ -6128,8 +6352,8 @@ var Home = React.createClass({
 								)
 							),
 							React.createElement(
-								'div',
-								{ className: "col-sm-4" },
+								Col,
+								{ sm: '1/3' },
 								React.createElement(
 									'h3',
 									null,
@@ -6151,25 +6375,79 @@ var Home = React.createClass({
 
 module.exports = Home;
 
-},{"react":undefined,"react-router":26}],53:[function(require,module,exports){
+},{"elemental":undefined,"react":undefined,"react-router":26}],55:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
+var DemoBox = require('../components/DemoBox');
 var ExampleSource = require('../components/ExampleSource');
 
 var _require = require('elemental');
 
 var Alert = _require.Alert;
+var Card = _require.Card;
+var Col = _require.Col;
+var Container = _require.Container;
+var FormField = _require.FormField;
+var FormInput = _require.FormInput;
+var InputGroup = _require.InputGroup;
+var Pagination = _require.Pagination;
 var Pill = _require.Pill;
+var Row = _require.Row;
 var Table = _require.Table;
+
+var MAX_PAGESIZE = 100;
+var MAX_RECORDS = 1000;
 
 var Misc = React.createClass({
 	displayName: 'VIEW_Misc',
 
+	getInitialState: function getInitialState() {
+		return {
+			currentPage: 2,
+			pageSize: 25,
+			plural: 'Potatoes',
+			singular: 'Potato',
+			total: 123
+		};
+	},
+
+	handlePaginationValueChange: function handlePaginationValueChange(e) {
+		var newState = {};
+		var fieldName = e.target.name;
+		var newValue = e.target.value;
+
+		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total') {
+			newValue = parseInt(newValue);
+
+			if (isNaN(newValue) || newValue < 0) {
+				newValue = 0;
+			}
+			if (fieldName !== 'total' && newValue < 1) {
+				newValue = 1;
+			}
+			if (fieldName === 'pageSize' && newValue > MAX_PAGESIZE) {
+				newValue = MAX_PAGESIZE;
+			}
+			if (fieldName === 'total' && newValue > MAX_RECORDS) {
+				newValue = MAX_RECORDS;
+			}
+		}
+
+		newState[fieldName] = newValue;
+		this.setState(newState);
+	},
+
+	handlePageSelect: function handlePageSelect(page) {
+		this.setState({
+			currentPage: page
+		});
+	},
+
 	render: function render() {
 		return React.createElement(
-			'div',
-			{ className: "demo-container container" },
+			Container,
+			{ maxWidth: 800, className: 'demo-container' },
 			React.createElement(
 				'h1',
 				null,
@@ -6177,7 +6455,7 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'p',
-				{ className: "lead" },
+				{ className: 'lead' },
 				'Some components march to the beat of their own drum…'
 			),
 			React.createElement(
@@ -6187,13 +6465,13 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						Alert,
-						{ type: "info" },
+						{ type: 'info' },
 						React.createElement(
 							'strong',
 							null,
@@ -6203,7 +6481,7 @@ var Misc = React.createClass({
 					),
 					React.createElement(
 						Alert,
-						{ type: "success" },
+						{ type: 'success' },
 						React.createElement(
 							'strong',
 							null,
@@ -6213,7 +6491,7 @@ var Misc = React.createClass({
 					),
 					React.createElement(
 						Alert,
-						{ type: "warning" },
+						{ type: 'warning' },
 						React.createElement(
 							'strong',
 							null,
@@ -6223,7 +6501,7 @@ var Misc = React.createClass({
 					),
 					React.createElement(
 						Alert,
-						{ type: "danger" },
+						{ type: 'danger' },
 						React.createElement(
 							'strong',
 							null,
@@ -6245,7 +6523,7 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -6285,22 +6563,22 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'children'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'node'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Required'
 							)
 						),
@@ -6309,53 +6587,478 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'type'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
-								'string'
+								{ className: 'usage-table__type' },
+								'enum'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Required. One of:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'danger'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'info'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'success'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'warning'
 								)
+							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Cards'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						Card,
+						null,
+						'Hi there, I\'m a card! I\'m pretty simple, but with a little imagination I can be really awesome :)'
+					),
+					React.createElement(
+						Row,
+						null,
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								Card,
+								null,
+								'Use'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								Card,
+								null,
+								'me'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								Card,
+								null,
+								'in'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								Card,
+								null,
+								'a'
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								Card,
+								null,
+								'grid'
+							)
+						)
+					),
+					React.createElement(
+						Card,
+						null,
+						React.createElement(
+							'h3',
+							{ style: { marginTop: 0 } },
+							'Alternatively'
+						),
+						React.createElement(
+							DemoBox,
+							{ style: { color: '#999', paddingBottom: 40, paddingTop: 40 } },
+							React.createElement('span', { className: 'mega-octicon octicon-file-media' })
+						),
+						React.createElement(
+							'div',
+							null,
+							'As part of more complete and sophisticated component. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis maximus nisi, non feugiat ipsum. Vestibulum condimentum massa nec tempus tincidunt.'
+						)
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Card>Hi there, I\'m a card! I\'m pretty simple, but with a little imagination I can be really awesome :)</Card>\n\t\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t\t<Col><Card>Use</Card></Col>\n\t\t\t\t\t\t\t\t<Col><Card>me</Card></Col>\n\t\t\t\t\t\t\t\t<Col><Card>in</Card></Col>\n\t\t\t\t\t\t\t\t<Col><Card>a</Card></Col>\n\t\t\t\t\t\t\t\t<Col><Card>grid</Card></Col>\n\t\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t\t<Card>...</Card>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Usage'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					Table,
+					null,
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'children'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'node'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Required'
+							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Pagination'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(Pagination, {
+						currentPage: this.state.currentPage,
+						onPageSelect: this.handlePageSelect,
+						pageSize: this.state.pageSize,
+						plural: this.state.plural,
+						singular: this.state.singular,
+						style: { lineHeight: '34px', marginBottom: 0, minHeight: 34 },
+						total: this.state.total
+					})
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Pagination\n\t\t\t\t\t\t\t\tcurrentPage={this.state.currentPage}\n\t\t\t\t\t\t\t\tonPageSelect={this.handlePageSelect}\n\t\t\t\t\t\t\t\tpageSize={this.state.pageSize}\n\t\t\t\t\t\t\t\tplural={this.state.plural}\n\t\t\t\t\t\t\t\tsingular={this.state.singular}\n\t\t\t\t\t\t\t\ttotal={this.state.total}\n\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				InputGroup,
+				null,
+				React.createElement(
+					InputGroup.Section,
+					{ grow: true },
+					React.createElement(
+						FormField,
+						{ label: 'Current page' },
+						React.createElement(FormInput, { name: 'currentPage', type: 'number', value: this.state.currentPage, onChange: this.handlePaginationValueChange, placeholder: 'Current page' })
+					)
+				),
+				React.createElement(
+					InputGroup.Section,
+					{ grow: true },
+					React.createElement(
+						FormField,
+						{ label: 'Page size' },
+						React.createElement(FormInput, { name: 'pageSize', type: 'number', value: this.state.pageSize, onChange: this.handlePaginationValueChange, placeholder: 'Page size' })
+					)
+				),
+				React.createElement(
+					InputGroup.Section,
+					{ grow: true },
+					React.createElement(
+						FormField,
+						{ label: 'Plural' },
+						React.createElement(FormInput, { name: 'plural', type: 'text', value: this.state.plural, onChange: this.handlePaginationValueChange, placeholder: 'Plural' })
+					)
+				),
+				React.createElement(
+					InputGroup.Section,
+					{ grow: true },
+					React.createElement(
+						FormField,
+						{ label: 'Singular' },
+						React.createElement(FormInput, { name: 'singular', type: 'text', value: this.state.singular, onChange: this.handlePaginationValueChange, placeholder: 'Singular' })
+					)
+				),
+				React.createElement(
+					InputGroup.Section,
+					{ grow: true },
+					React.createElement(
+						FormField,
+						{ label: 'Total records' },
+						React.createElement(FormInput, { name: 'total', type: 'number', value: this.state.total, onChange: this.handlePaginationValueChange, placeholder: 'Total records' })
+					)
+				)
+			),
+			React.createElement(
+				'h3',
+				null,
+				'Usage'
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					Table,
+					null,
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'currentPage'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'number'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'none (required)'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The current page number.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'onPageSelect'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'func'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'none (required)'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'How you want to handle page selection by the user.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'pageSize'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'number'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'none (required)'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The number of records to display per page.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'plural'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'none'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Displayed when there are no records "No Items", or the total number of records is less than the records per page "Showing 10 Items".'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'singular'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'none'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Displayed when there is a single record "Showing 1 Item".'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'total'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'number'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'none (required)'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The total number of records.'
 							)
 						)
 					)
@@ -6368,15 +7071,15 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
-					React.createElement(Pill, { label: "Create", type: "success-inverted" }),
-					React.createElement(Pill, { label: "First Pill", type: "primary", showClearButton: true }),
-					React.createElement(Pill, { label: "Second Pill", type: "primary", showClearButton: true }),
-					React.createElement(Pill, { label: "Third Pill", type: "primary", showClearButton: true }),
-					React.createElement(Pill, { label: "Clear All" })
+					{ className: 'code-example__example' },
+					React.createElement(Pill, { label: 'Create', type: 'success-inverted' }),
+					React.createElement(Pill, { label: 'First Pill', type: 'primary', showClearButton: true }),
+					React.createElement(Pill, { label: 'Second Pill', type: 'primary', showClearButton: true }),
+					React.createElement(Pill, { label: 'Third Pill', type: 'primary', showClearButton: true }),
+					React.createElement(Pill, { label: 'Clear All' })
 				),
 				React.createElement(
 					ExampleSource,
@@ -6391,7 +7094,7 @@ var Misc = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -6431,22 +7134,22 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'showClearButton'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Display the clear button, rendered beside the label'
 							)
 						),
@@ -6455,22 +7158,22 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'label'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Required. The tag label'
 							)
 						),
@@ -6479,22 +7182,22 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'onClear'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'func'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Run when the user clicks the clear button'
 							)
 						),
@@ -6503,93 +7206,93 @@ var Misc = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'type'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
-								'string'
+								{ className: 'usage-table__type' },
+								'enum'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'default\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'One of:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'danger'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'default'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'info'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'success'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'warning'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'danger-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'default-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'info-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'primary-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'success-inverted'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'warning-inverted'
 								)
 							)
@@ -6603,7 +7306,7 @@ var Misc = React.createClass({
 
 module.exports = Misc;
 
-},{"../components/ExampleSource":46,"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
+},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react":undefined}],56:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -6611,6 +7314,7 @@ var React = require('react/addons');
 var _require = require('elemental');
 
 var Button = _require.Button;
+var Container = _require.Container;
 var FormField = _require.FormField;
 var FormInput = _require.FormInput;
 var Modal = _require.Modal;
@@ -6632,7 +7336,8 @@ module.exports = React.createClass({
 			password: ''
 		};
 	},
-	toggleModal: function toggleModal() {
+	toggleModal: function toggleModal(e) {
+		e.preventDefault();
 		var self = this;
 		this.setState({
 			modalIsOpen: !this.state.modalIsOpen
@@ -6669,17 +7374,17 @@ module.exports = React.createClass({
 		// variable submit button
 		var submitButton = this.state.formProcessing ? React.createElement(
 			Button,
-			{ type: "primary", disabled: true },
-			React.createElement(Spinner, { type: "inverted" }),
+			{ type: 'primary', disabled: true },
+			React.createElement(Spinner, { type: 'inverted' }),
 			'Submitting'
 		) : React.createElement(
 			Button,
-			{ type: "primary", disabled: !this.state.email || !this.state.password, submit: true },
+			{ type: 'primary', disabled: !this.state.email || !this.state.password, submit: true },
 			'Submit'
 		);
 		return React.createElement(
-			'div',
-			{ className: "demo-container container" },
+			Container,
+			{ maxWidth: 800, className: 'demo-container' },
 			React.createElement(
 				'h1',
 				null,
@@ -6692,14 +7397,14 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "Modal-content" },
-						React.createElement(ModalHeader, { text: "Modal Header", showCloseButton: true }),
+						{ className: 'Modal-content' },
+						React.createElement(ModalHeader, { text: 'Modal Header', showCloseButton: true }),
 						React.createElement(
 							ModalBody,
 							null,
@@ -6714,12 +7419,12 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								Button,
-								{ type: "primary" },
+								{ type: 'primary' },
 								'Modal Footer'
 							),
 							React.createElement(
 								Button,
-								{ type: "link-cancel" },
+								{ type: 'link-cancel' },
 								'Button'
 							)
 						)
@@ -6738,10 +7443,10 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						Button,
 						{ onClick: this.toggleModal },
@@ -6776,7 +7481,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -6816,22 +7521,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'backdropClosesModal'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Pass through to make the backdrop available as a target to dismiss the modal.'
 							)
 						),
@@ -6840,22 +7545,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'isOpen'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Managed by state;  this is how to control the visibility of the modal.'
 							)
 						),
@@ -6864,26 +7569,26 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'onCancel'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'func'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'The function used to handle cancel events on the modal; typically sets the open state to ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'false'
 								)
 							)
@@ -6893,22 +7598,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'top'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.'
 							)
 						)
@@ -6922,7 +7627,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -6962,22 +7667,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'children'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'node'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Alternative to using the text attribute, for when you need more control over the content.'
 							)
 						),
@@ -6986,22 +7691,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'showCloseButton'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'bool'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'false'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Allow users to dismiss the modal.'
 							)
 						),
@@ -7010,22 +7715,22 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'onClose'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'func'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'undefined'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'What to do when the user clicks the close button'
 							)
 						),
@@ -7034,26 +7739,26 @@ module.exports = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'text'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
+								{ className: 'usage-table__type' },
 								'string'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'\'\''
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Creates a title for the modal. We use "text" because ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'title'
 								),
 								' is reserved.'
@@ -7075,22 +7780,22 @@ module.exports = React.createClass({
 			React.createElement(
 				Modal,
 				{ isOpen: this.state.modalIsOpen, onCancel: this.toggleModal, backdropClosesModal: true },
-				React.createElement(ModalHeader, { text: "Live Demo", showCloseButton: true, onClose: this.toggleModal }),
+				React.createElement(ModalHeader, { text: 'Live Demo', showCloseButton: true, onClose: this.toggleModal }),
 				React.createElement(
 					'form',
-					{ action: "#", onSubmit: this.submitForm, noValidate: true },
+					{ action: '#', onSubmit: this.submitForm, noValidate: true },
 					React.createElement(
 						ModalBody,
 						null,
 						React.createElement(
 							FormField,
-							{ label: "Email" },
-							React.createElement(FormInput, { label: "Email", type: "email", name: "email", ref: "email", value: this.state.email, onChange: updateInput, required: true })
+							{ label: 'Email' },
+							React.createElement(FormInput, { label: 'Email', type: 'email', name: 'email', ref: 'email', value: this.state.email, onChange: updateInput, required: true })
 						),
 						React.createElement(
 							FormField,
-							{ label: "Password" },
-							React.createElement(FormInput, { label: "Password", type: "password", name: "password", ref: "password", value: this.state.password, onChange: updateInput, required: true })
+							{ label: 'Password' },
+							React.createElement(FormInput, { label: 'Password', type: 'password', name: 'password', ref: 'password', value: this.state.password, onChange: updateInput, required: true })
 						)
 					),
 					React.createElement(
@@ -7099,7 +7804,7 @@ module.exports = React.createClass({
 						submitButton,
 						React.createElement(
 							Button,
-							{ onClick: this.toggleModal, type: "link-cancel", disabled: this.state.formProcessing },
+							{ onClick: this.toggleModal, type: 'link-cancel', disabled: this.state.formProcessing },
 							'Cancel'
 						)
 					)
@@ -7109,7 +7814,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../components/ExampleSource":46,"elemental":undefined,"react/addons":undefined}],55:[function(require,module,exports){
+},{"../components/ExampleSource":47,"elemental":undefined,"react/addons":undefined}],57:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -7117,100 +7822,148 @@ var React = require('react');
 var _require = require('elemental');
 
 var Button = _require.Button;
+var Col = _require.Col;
+var Container = _require.Container;
+var Row = _require.Row;
 var Spinner = _require.Spinner;
 var Table = _require.Table;
 
+var DemoBox = require('../components/DemoBox');
 var ExampleSource = require('../components/ExampleSource');
 
 var Buttons = React.createClass({
 	displayName: 'VIEW_Spinner',
 	render: function render() {
 		return React.createElement(
-			'div',
-			{ className: "demo-container container" },
+			Container,
+			{ maxWidth: 800, className: 'demo-container' },
 			React.createElement(
 				'h1',
 				null,
 				'Spinner'
 			),
 			React.createElement(
+				'h2',
+				null,
+				'Common use cases'
+			),
+			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
-						'Independent'
+						{ className: 'code-example__example__heading' },
+						'Page Element'
 					),
 					React.createElement(
-						'div',
-						{ className: "demo-box u-text-center code-example__example-element--inline" },
-						React.createElement(Spinner, null)
-					),
-					React.createElement(
-						'div',
-						{ className: "demo-box u-text-center code-example__example-element--inline" },
-						React.createElement(Spinner, { type: "primary" })
-					),
-					React.createElement(
-						'div',
-						{ className: "demo-box u-text-center code-example__example-element--inline code-example__example-element--primary-bg" },
-						React.createElement(Spinner, { type: "inverted" })
+						Row,
+						null,
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								{ style: { paddingBottom: 20, paddingTop: 20 } },
+								React.createElement(Spinner, { size: 'md' })
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								{ style: { paddingBottom: 20, paddingTop: 20 } },
+								React.createElement(Spinner, { size: 'md', type: 'primary' })
+							)
+						),
+						React.createElement(
+							Col,
+							null,
+							React.createElement(
+								DemoBox,
+								{ style: { paddingBottom: 20, paddingTop: 20 }, inverted: true },
+								React.createElement(Spinner, { size: 'md', type: 'inverted' })
+							)
+						)
 					)
 				),
 				React.createElement(
 					ExampleSource,
 					null,
-					'<Spinner />\n<Spinner type="primary" />\n<Spinner type="inverted" />'
+					'\n\t\t\t\t\t\t<Spinner size="md" />\n\t\t\t\t\t\t<Spinner size="md" type="primary" />\n\t\t\t\t\t\t<Spinner size="md" type="inverted" />\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
 				'div',
-				{ className: "code-example" },
+				{ className: 'code-example' },
 				React.createElement(
 					'div',
-					{ className: "code-example__example" },
+					{ className: 'code-example__example' },
 					React.createElement(
 						'div',
-						{ className: "code-example__example__heading" },
+						{ className: 'code-example__example__heading' },
 						'Inside Buttons'
 					),
 					React.createElement(
 						'div',
-						{ className: "code-example__example-element--inline" },
+						{ className: 'code-example__example-element--inline' },
 						React.createElement(
 							Button,
-							{ disabled: true },
+							null,
 							React.createElement(Spinner, null)
 						)
 					),
 					React.createElement(
 						'div',
-						{ className: "code-example__example-element--inline" },
+						{ className: 'code-example__example-element--inline' },
 						React.createElement(
 							Button,
 							{ disabled: true },
-							React.createElement(Spinner, { type: "primary" }),
+							React.createElement(Spinner, { type: 'primary' }),
 							'Saving'
 						)
 					),
 					React.createElement(
 						'div',
-						{ className: "code-example__example-element--inline" },
+						{ className: 'code-example__example-element--inline' },
 						React.createElement(
 							Button,
-							{ type: "primary", disabled: true },
-							React.createElement(Spinner, { type: "inverted" }),
-							'Saving'
+							{ type: 'primary' },
+							React.createElement(Spinner, { type: 'inverted' }),
+							'Submitting'
 						)
 					)
 				),
 				React.createElement(
 					ExampleSource,
 					null,
-					'<Button disabled><Spinner /></Button>\n<Button disabled><Spinner type="primary" />Saving</Button>\n<Button type="primary" disabled><Spinner type="inverted" />Saving</Button>'
+					'\n\t\t\t\t\t\t<Button><Spinner /></Button>\n\t\t\t\t\t\t<Button disabled><Spinner type="primary" />Saving</Button>\n\t\t\t\t\t\t<Button type="primary"><Spinner type="inverted" />Submitting</Button>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Full Page Load'
+					),
+					React.createElement(
+						'div',
+						{ style: { paddingBottom: 60, paddingTop: 60, textAlign: 'center' } },
+						React.createElement(Spinner, { size: 'lg' })
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t<Spinner size="lg" />\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -7220,7 +7973,7 @@ var Buttons = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: "usage-table" },
+				{ className: 'usage-table' },
 				React.createElement(
 					Table,
 					null,
@@ -7260,22 +8013,22 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'size'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
-								'string'
+								{ className: 'usage-table__type' },
+								'enum'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
-								'\'\''
+								{ className: 'usage-table__default' },
+								'sm'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								React.createElement(
 									'p',
 									null,
@@ -7283,13 +8036,19 @@ var Buttons = React.createClass({
 									React.createElement('br', null),
 									React.createElement(
 										'code',
-										{ className: "inline-code" },
+										{ className: 'inline-code' },
 										'sm'
 									),
 									' ',
 									React.createElement(
 										'code',
-										{ className: "inline-code" },
+										{ className: 'inline-code' },
+										'md'
+									),
+									' ',
+									React.createElement(
+										'code',
+										{ className: 'inline-code' },
 										'lg'
 									)
 								),
@@ -7301,39 +8060,39 @@ var Buttons = React.createClass({
 							null,
 							React.createElement(
 								'td',
-								{ className: "usage-table__prop" },
+								{ className: 'usage-table__prop' },
 								'type'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__type" },
-								'string'
+								{ className: 'usage-table__type' },
+								'enum'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__default" },
+								{ className: 'usage-table__default' },
 								'default'
 							),
 							React.createElement(
 								'td',
-								{ className: "usage-table__description" },
+								{ className: 'usage-table__description' },
 								'Declare the colour of the dots in the spinner. Possible options:',
 								React.createElement('br', null),
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'default'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'primary'
 								),
 								' ',
 								React.createElement(
 									'code',
-									{ className: "inline-code" },
+									{ className: 'inline-code' },
 									'inverted'
 								)
 							)
@@ -7347,13 +8106,13 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/ExampleSource":46,"elemental":undefined,"react":undefined}],56:[function(require,module,exports){
+},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react":undefined}],58:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Router = require('react-router');
 
-var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
+var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'grid', label: 'Grid' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
 // { value: 'date-picker', label: 'Date Picker' }
 ];
 
@@ -7396,29 +8155,29 @@ var PageNav = React.createClass({
 		var menuItems = NavItems.map(function (item) {
 			return React.createElement(
 				Router.Link,
-				{ key: item.value, className: "primary-nav__item", onClick: self.toggleMenu, to: item.value },
+				{ key: item.value, className: 'primary-nav__item', onClick: self.toggleMenu, to: item.value },
 				React.createElement(
 					'span',
-					{ className: "primary-nav__item-inner" },
+					{ className: 'primary-nav__item-inner' },
 					item.label
 				)
 			);
 		});
 		return React.createElement(
 			'nav',
-			{ className: "primary-nav" },
+			{ className: 'primary-nav' },
 			React.createElement(
 				Router.Link,
-				{ to: "home", className: "primary-nav__brand special", title: "Home" },
-				React.createElement('img', { src: "./images/elemental-logo-paths.svg", className: "primary-nav__brand-src" })
+				{ to: 'home', className: 'primary-nav__brand special', title: 'Home' },
+				React.createElement('img', { src: './images/elemental-logo-paths.svg', className: 'primary-nav__brand-src' })
 			),
 			React.createElement(
 				'button',
-				{ onClick: this.toggleMenu, className: "primary-nav__item primary-nav-menu-trigger" },
-				React.createElement('span', { className: "primary-nav-menu-trigger-icon octicon octicon-navicon" }),
+				{ onClick: this.toggleMenu, className: 'primary-nav__item primary-nav-menu-trigger' },
+				React.createElement('span', { className: 'primary-nav-menu-trigger-icon octicon octicon-navicon' }),
 				React.createElement(
 					'span',
-					{ className: "primary-nav-menu-trigger-label" },
+					{ className: 'primary-nav-menu-trigger-label' },
 					this.state.mobileMenuIsVisible ? 'Close' : 'Menu'
 				)
 			),
@@ -7427,14 +8186,14 @@ var PageNav = React.createClass({
 				{ className: menuClass, style: { height: height } },
 				React.createElement(
 					'div',
-					{ className: "primary-nav-menu-inner" },
+					{ className: 'primary-nav-menu-inner' },
 					menuItems
 				)
 			),
 			React.createElement(
 				'a',
-				{ href: "https://github.com/elementalui/elemental", target: "_blank", title: "View on GitHub", className: "primary-nav__brand right" },
-				React.createElement('img', { src: "./images/github-logo.svg", className: "primary-nav__brand-src" })
+				{ href: 'https://github.com/elementalui/elemental', target: '_blank', title: 'View on GitHub', className: 'primary-nav__brand right' },
+				React.createElement('img', { src: './images/github-logo.svg', className: 'primary-nav__brand-src' })
 			)
 		);
 	}
@@ -7446,29 +8205,29 @@ var App = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: "page-wrapper" },
+			{ className: 'page-wrapper' },
 			React.createElement(PageNav, null),
 			React.createElement(
 				'div',
-				{ className: "page-body" },
+				{ className: 'page-body' },
 				React.createElement(Router.RouteHandler, null)
 			),
 			React.createElement(
 				'div',
-				{ className: "page-footer" },
+				{ className: 'page-footer' },
 				React.createElement(
 					'div',
-					{ className: "demo-container container" },
+					{ className: 'demo-container container' },
 					'Copyright © 2015 · (MIT) License · Built by ',
 					React.createElement(
 						'a',
-						{ href: "http://www.thinkmill.com.au", target: "_blank" },
+						{ href: 'http://www.thinkmill.com.au', target: '_blank' },
 						'Thinkmill'
 					),
 					', initially for integration with ',
 					React.createElement(
 						'a',
-						{ href: "http://www.keystonejs.com", target: "_blank" },
+						{ href: 'http://www.keystonejs.com', target: '_blank' },
 						'KeystoneJS'
 					)
 				)
@@ -7481,14 +8240,15 @@ var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemen
 
 var routes = React.createElement(
 	Router.Route,
-	{ name: "app", path: basepath + '/', handler: App },
-	React.createElement(Router.Route, { name: "home", path: basepath + '/', handler: require('./pages/Home') }),
-	React.createElement(Router.Route, { name: "css", path: basepath + '/css', handler: require('./pages/CSS') }),
-	React.createElement(Router.Route, { name: "buttons", path: basepath + '/buttons', handler: require('./pages/Buttons') }),
-	React.createElement(Router.Route, { name: "forms", path: basepath + '/forms', handler: require('./pages/Forms') }),
-	React.createElement(Router.Route, { name: "spinner", path: basepath + '/spinner', handler: require('./pages/Spinner') }),
-	React.createElement(Router.Route, { name: "modal", path: basepath + '/modal', handler: require('./pages/Modal') }),
-	React.createElement(Router.Route, { name: "misc", path: basepath + '/misc', handler: require('./pages/Misc') }),
+	{ name: 'app', path: basepath + '/', handler: App },
+	React.createElement(Router.Route, { name: 'home', path: basepath + '/', handler: require('./pages/Home') }),
+	React.createElement(Router.Route, { name: 'css', path: basepath + '/css', handler: require('./pages/CSS') }),
+	React.createElement(Router.Route, { name: 'grid', path: basepath + '/grid', handler: require('./pages/Grid') }),
+	React.createElement(Router.Route, { name: 'buttons', path: basepath + '/buttons', handler: require('./pages/Buttons') }),
+	React.createElement(Router.Route, { name: 'forms', path: basepath + '/forms', handler: require('./pages/Forms') }),
+	React.createElement(Router.Route, { name: 'spinner', path: basepath + '/spinner', handler: require('./pages/Spinner') }),
+	React.createElement(Router.Route, { name: 'modal', path: basepath + '/modal', handler: require('./pages/Modal') }),
+	React.createElement(Router.Route, { name: 'misc', path: basepath + '/misc', handler: require('./pages/Misc') }),
 	React.createElement(Router.DefaultRoute, { handler: require('./pages/Home') })
 );
 
@@ -7497,4 +8257,69 @@ Router.run(routes, Router.HistoryLocation, function (Handler) {
 });
 /*<Router.Link to="home">Home</Router.Link>*/ /*<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />*/
 
-},{"./pages/Buttons":49,"./pages/CSS":50,"./pages/Forms":51,"./pages/Home":52,"./pages/Misc":53,"./pages/Modal":54,"./pages/Spinner":55,"react":undefined,"react-router":26}]},{},[56]);
+},{"./pages/Buttons":50,"./pages/CSS":51,"./pages/Forms":52,"./pages/Grid":53,"./pages/Home":54,"./pages/Misc":55,"./pages/Modal":56,"./pages/Spinner":57,"react":undefined,"react-router":26}],59:[function(require,module,exports){
+// breakpoints
+'use strict';
+
+exports.breakpoint = {
+	xs: 480,
+	sm: 768,
+	md: 992,
+	lg: 1200
+};
+
+// border radii
+exports.borderRadius = {
+	xs: 2,
+	sm: 4,
+	md: 8,
+	lg: 16,
+	xl: 32
+};
+
+// color
+exports.color = {
+	appDanger: '#d64242',
+	appInfo: '#56cdfc',
+	appPrimary: '#1385e5',
+	appSuccess: '#34c240',
+	appWarning: '#fa9f47',
+	brandPrimary: '#31adb8'
+};
+
+// spacing
+exports.spacing = {
+	xs: 5,
+	sm: 10,
+	md: 20,
+	lg: 40,
+	xl: 80
+};
+
+// widths
+exports.width = {
+	container: 1170,
+	gutter: 20
+};
+
+// fractions (for col widths)
+
+function perc(n) {
+	return n * 100 + '%';
+}
+
+function denominators(n) {
+	for (var d = 2; d <= 20; d++) {
+		if (n < d) {
+			exports.fractions[n + '/' + d] = perc(n / d);
+		}
+	}
+}
+
+exports.fractions = {};
+
+for (var numerator = 1; numerator <= 19; numerator++) {
+	denominators(numerator);
+}
+
+},{}]},{},[58]);
