@@ -61,11 +61,10 @@ var Home = React.createClass({
 				<div className="demo-banner demo-banner--tertiary">
 					<Container maxWidth={768} className="demo-container">
 						<h2 className="demo-banner__heading demo-banner__heading-2">Why build <em>another</em> UI kit?</h2>
-						<p>At <a href="http://www.thinkmill.com.au" target="_blank">Thinkmill</a> we are constantly building bespoke web applications for various clients. We noticed that whilst projects vary greatly, we're using the same CSS and Component foundations over and over again.</p>
-						<p>In an effort to keep our projects' codebases <abbr title="Don't Repeat Yourself">DRY</abbr> we decided it was time to build something to improve our workflow and unify our projects to decrease development time.</p>
-						<p>All this coupled with a growing need for a re-usable set of React.js UI Components for the Admin UI in <a href="http://www.keystonejs.com" target="_blank">KeystoneJS</a>, Elemental was born.</p>
-						<p>While there are many other great UI Libraries available (including for React), our goal with Elemental is to develop a light-weight, unopinionated, modular framework that we can use across all our web projects.</p>
-
+						<p>We believe there is a need for a high quality, modular set of UI scaffolding components and controls for React that are built from the outset to natively implement React patterns.</p>
+						<p><strong>Elemental UI</strong> has been born to solve real-world requirements in projects we work on, and for use in the node.js content management platform <a href="http://www.keystonejs.com" target="_blank">KeystoneJS</a>.</p>
+						<p>Our goal is to create a set of functional and unopinionated components that are useful on their own or together, with an unobtrusive default style and flexible theme capabilities.</p>
+						<p>Thanks and credit go to the many other great CSS Component libraries that have been developed and whose shoulders we stand on, especially Bootstrap.</p>
 						<div className="demo-banner-points">
 							<Row>
 								<Col sm="1/3">
