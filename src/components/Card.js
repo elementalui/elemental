@@ -10,7 +10,7 @@ module.exports = React.createClass({
 		let style = {
 			backgroundColor: 'white',
 			borderRadius: E.borderRadius.sm,
-			boxShadow: '0 1px 4px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.1)',
+			boxShadow: '0 2px 3px rgba(0, 0, 0, 0.075), 0 0 0 1px rgba(0,0,0,0.1)',
 			marginBottom: E.spacing.md,
 			padding: E.spacing.md,
 		};
