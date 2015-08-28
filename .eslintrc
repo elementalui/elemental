@@ -11,6 +11,7 @@
 		"react"
 	],
 	"rules": {
+		"comma-dangle": 0,
 		"curly": [2, "multi-line"],
 		"quotes": [2, "single", "avoid-escape"],
 		"key-spacing": 0,
