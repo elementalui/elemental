@@ -47,7 +47,8 @@ var Forms = React.createClass({
 	getInitialState () {
 		return {
 			'inputEmail': '',
-			'inputPassword': ''
+			'inputPassword': '',
+			'inputConfirm': ''
 		};
 	},
 
@@ -84,6 +85,12 @@ var Forms = React.createClass({
 		}
 		function updatePassword(e) {
 			self.setState({ inputPassword: e.target.value });
+		}
+		function updateConfirm(e) {
+			self.setState({ inputConfirm: e.target.value });
+		}
+		function validateConfirm(value) {
+			return value === self.state.inputPassword;
 		}
 
 		// elements
@@ -782,6 +789,7 @@ var Forms = React.createClass({
 					<FormSelect         label="Select"   value={this.state.inputSelect}      onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
 					<EmailInputGroup    label="Email"    value={this.state.inputEmail}       onChange={updateEmail}    required />
 					<PasswordInputGroup label="Password" value={this.state.inputPassword}    onChange={updatePassword} required />
+					<PasswordInputGroup label="Confirm"  value={this.state.inputConfirm}     onChange={updateConfirm}  required validatePassword={validateConfirm} invalidMessage="Password confirmation doesn't match password" />
 				</form>
 
 

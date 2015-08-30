@@ -10,6 +10,7 @@ module.exports = React.createClass({
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
 		className: React.PropTypes.string,
+		validatePassword: React.PropTypes.func,
 		invalidMessage: React.PropTypes.string,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func,
@@ -19,6 +20,7 @@ module.exports = React.createClass({
 	},
 	getDefaultProps() {
 		return {
+			validatePassword,
 			requiredMessage: 'Password is required',
 			invalidMessage: 'Password must be at least 8 characters in length'
 		};
@@ -60,7 +62,7 @@ module.exports = React.createClass({
 		var newState = {
 			isValid: true
 		};
-		if ((value.length && !validatePassword(value)) || (!value.length && this.props.required)) {
+		if ((value.length && !this.props.validatePassword(value)) || (!value.length && this.props.required)) {
 			newState.isValid = false;
 		}
 		if (!newState.isValid) {
