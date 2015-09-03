@@ -6,6 +6,7 @@ module.exports = React.createClass({
 	displayName: 'Container',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
+		clearfix: React.PropTypes.bool,
 		gutter: React.PropTypes.number,
 		maxWidth: React.PropTypes.number,
 		style: React.PropTypes.object,
@@ -25,8 +26,17 @@ module.exports = React.createClass({
 			paddingRight: gutter,
 			maxWidth: maxWidth,
 		};
+		let clearfixStyle = { clear: 'both', display: 'table' };
 		let props = blacklist(this.props, 'gutter', 'maxWidth', 'style');
 
-		return <div style={Object.assign(containerStyle, this.props.style)} {...props} />;
+		return this.props.clearfix ? (
+			<div style={Object.assign(containerStyle, this.props.style)} {...props}>
+				<span style={clearfixStyle} />
+				{this.props.children}
+				<span style={clearfixStyle} />
+			</div>
+		) : (
+			<div style={Object.assign(containerStyle, this.props.style)} {...props} />
+		);
 	}
 });
