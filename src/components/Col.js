@@ -13,19 +13,15 @@ module.exports = React.createClass({
 		children: React.PropTypes.node.isRequired,
 		gutter: React.PropTypes.number,
 		style: React.PropTypes.object,
-		lg: React.PropTypes.string, // width as a percentage
-		md: React.PropTypes.string, // width as a percentage
-		sm: React.PropTypes.string, // width as a percentage
-		xs: React.PropTypes.string, // width as a percentage
+		lg: React.PropTypes.string, // width as a percentage or fraction
+		md: React.PropTypes.string, // width as a percentage or fraction
+		sm: React.PropTypes.string, // width as a percentage or fraction
+		xs: React.PropTypes.string, // width as a percentage or fraction
 		/* eslint-enable */
 	},
 	getDefaultProps () {
 		return {
 			gutter: E.width.gutter,
-			lg: '100%',
-			md: '100%',
-			sm: '100%',
-			xs: '100%',
 		};
 	},
 	getInitialState: function() {
@@ -74,6 +70,10 @@ module.exports = React.createClass({
 			columnStyle.width = md || sm || xs;
 		} else {
 			columnStyle.width = lg || md || sm || xs;
+		}
+
+		if (!columnStyle.width) {
+			columnStyle.width = '100%';
 		}
 
 		if (columnStyle.width in E.fractions) {
