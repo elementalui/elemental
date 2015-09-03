@@ -1,5 +1,0 @@
-.publish
-dist
-lib
-node_modules
-*.log

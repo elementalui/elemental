@@ -445,11 +445,11 @@ module.exports = _reactAddons2['default'].createClass({
 		children: _reactAddons2['default'].PropTypes.node.isRequired,
 		gutter: _reactAddons2['default'].PropTypes.number,
 		style: _reactAddons2['default'].PropTypes.object,
-		lg: _reactAddons2['default'].PropTypes.string, // width as a percentage
-		md: _reactAddons2['default'].PropTypes.string, // width as a percentage
-		sm: _reactAddons2['default'].PropTypes.string, // width as a percentage
+		lg: _reactAddons2['default'].PropTypes.string, // width as a percentage or fraction
+		md: _reactAddons2['default'].PropTypes.string, // width as a percentage or fraction
+		sm: _reactAddons2['default'].PropTypes.string, // width as a percentage or fraction
 		xs: _reactAddons2['default'].PropTypes.string },
-	// width as a percentage
+	// width as a percentage or fraction
 	/* eslint-enable */
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -501,13 +501,17 @@ module.exports = _reactAddons2['default'].createClass({
 			columnStyle.msFlex = '1 0 ' + basis;
 			columnStyle.WebkitFlex = '1 0 ' + basis;
 		} else if (windowWidth < _constants2['default'].breakpoint.xs) {
-			columnStyle.width = xs || '100%';
+			columnStyle.width = xs;
 		} else if (windowWidth < _constants2['default'].breakpoint.sm) {
 			columnStyle.width = sm || xs;
 		} else if (windowWidth < _constants2['default'].breakpoint.md) {
 			columnStyle.width = md || sm || xs;
 		} else {
 			columnStyle.width = lg || md || sm || xs;
+		}
+
+		if (!columnStyle.width) {
+			columnStyle.width = '100%';
 		}
 
 		if (columnStyle.width in _constants2['default'].fractions) {
@@ -1915,6 +1919,7 @@ module.exports = React.createClass({
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
 		className: React.PropTypes.string,
+		validatePassword: React.PropTypes.func,
 		invalidMessage: React.PropTypes.string,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func,
@@ -1924,6 +1929,7 @@ module.exports = React.createClass({
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
+			validatePassword: validatePassword,
 			requiredMessage: 'Password is required',
 			invalidMessage: 'Password must be at least 8 characters in length'
 		};
@@ -1965,7 +1971,7 @@ module.exports = React.createClass({
 		var newState = {
 			isValid: true
 		};
-		if (value.length && !validatePassword(value) || !value.length && this.props.required) {
+		if (value.length && !this.props.validatePassword(value) || !value.length && this.props.required) {
 			newState.isValid = false;
 		}
 		if (!newState.isValid) {

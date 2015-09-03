@@ -402,7 +402,7 @@
   .FormRow > .FormField.five-sixths {
     width: 83.333%;
   }
-  .FormField > .FormRow {
+  .FormField .FormRow {
     margin-bottom: 0;
   }
 }
@@ -1774,30 +1774,9 @@ table {
 .Table th:first-child {
   padding-left: 0;
 }
-.Table td:first-child > a,
-.Table th:first-child > a {
-  margin-left: 0;
-  padding-left: 0;
-}
 .Table td:last-child,
 .Table th:last-child {
   padding-right: 0;
-}
-.Table td:last-child > a,
-.Table th:last-child > a {
-  margin-right: 0;
-  padding-right: 0;
-}
-.Table td > a {
-  color: #333333;
-  display: inline-block;
-  margin: -0.66em;
-  padding: 0.66em;
-}
-.Table td > a:hover,
-.Table td > a:focus {
-  color: #333333;
-  outline: none;
 }
 .Table th {
   border-bottom: 2px solid rgba(0, 0, 0, 0.06);
@@ -3171,11 +3150,11 @@ textarea.FormInput {
   display: flex;
   margin-bottom: 1em;
 }
-.FormField > .InputGroup {
+.FormField .InputGroup {
   margin-bottom: 0;
 }
 .InputGroup_section + .InputGroup_section {
-  padding-left: .5em;
+  padding-left: 0.75em;
 }
 .InputGroup--contiguous .InputGroup_section {
   padding-left: 0;
@@ -3333,7 +3312,7 @@ textarea.FormInput {
   color: #999999;
   display: block;
   font-size: 14px;
-  line-height: 1;
+  line-height: 32px;
   margin-bottom: 2em;
 }
 .Pagination__count {
@@ -3353,9 +3332,8 @@ textarea.FormInput {
   cursor: pointer;
   display: inline-block;
   float: left;
-  line-height: 1.3;
   margin-right: .25em;
-  padding: .5em .7em;
+  padding: 0 .7em;
   position: relative;
   text-decoration: none;
   -webkit-appearance: none;

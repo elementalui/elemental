@@ -4541,7 +4541,8 @@ var Forms = React.createClass({
 	getInitialState: function getInitialState() {
 		return {
 			'inputEmail': '',
-			'inputPassword': ''
+			'inputPassword': '',
+			'inputConfirm': ''
 		};
 	},
 
@@ -4578,6 +4579,12 @@ var Forms = React.createClass({
 		}
 		function updatePassword(e) {
 			self.setState({ inputPassword: e.target.value });
+		}
+		function updateConfirm(e) {
+			self.setState({ inputConfirm: e.target.value });
+		}
+		function validateConfirm(value) {
+			return value === self.state.inputPassword;
 		}
 
 		// elements
@@ -5641,7 +5648,8 @@ var Forms = React.createClass({
 				React.createElement(RadioGroup, { label: 'Radios', value: this.state.inlineRadioGroup, onChange: updateInlineRadios, options: controlOptions, name: 'inlineRadioGroup', required: true, inline: true }),
 				React.createElement(FormSelect, { label: 'Select', value: this.state.inputSelect, onChange: updateSelect, options: controlOptions, htmlFor: 'inputSelect', required: true, prependEmptyOption: true }),
 				React.createElement(EmailInputGroup, { label: 'Email', value: this.state.inputEmail, onChange: updateEmail, required: true }),
-				React.createElement(PasswordInputGroup, { label: 'Password', value: this.state.inputPassword, onChange: updatePassword, required: true })
+				React.createElement(PasswordInputGroup, { label: 'Password', value: this.state.inputPassword, onChange: updatePassword, required: true }),
+				React.createElement(PasswordInputGroup, { label: 'Confirm', value: this.state.inputConfirm, onChange: updateConfirm, required: true, validatePassword: validateConfirm, invalidMessage: 'Password confirmation doesn\'t match password' })
 			),
 			React.createElement(
 				'h2',
