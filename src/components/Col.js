@@ -22,6 +22,10 @@ module.exports = React.createClass({
 	getDefaultProps () {
 		return {
 			gutter: E.width.gutter,
+			lg: '100%',
+			md: '100%',
+			sm: '100%',
+			xs: '100%',
 		};
 	},
 	getInitialState: function() {
@@ -63,7 +67,7 @@ module.exports = React.createClass({
 			columnStyle.msFlex = '1 0 ' + basis;
 			columnStyle.WebkitFlex = '1 0 ' + basis;
 		} else if (windowWidth < E.breakpoint.xs) {
-			columnStyle.width = xs || '100%';
+			columnStyle.width = xs;
 		} else if (windowWidth < E.breakpoint.sm) {
 			columnStyle.width = sm || xs;
 		} else if (windowWidth < E.breakpoint.md) {
