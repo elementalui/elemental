@@ -771,7 +771,7 @@ th {
 }
 @font-face {
   font-family: 'octicons';
-  src: url('https://cdnjs.cloudflare.com/ajax/libs/octicons/2.2.2/octicons.eot?#iefix&v=675c3211eac589bbda193fdb306ce567a2c4569f') format('embedded-opentype'), url('https://cdnjs.cloudflare.com/ajax/libs/octicons/2.2.2/octicons.woff?v=675c3211eac589bbda193fdb306ce567a2c4569f') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/octicons/2.2.2/octicons.ttf?v=675c3211eac589bbda193fdb306ce567a2c4569f') format('truetype'), url('https://cdnjs.cloudflare.com/ajax/libs/octicons/2.2.2/octicons.svg?v=675c3211eac589bbda193fdb306ce567a2c4569f#octicons') format('svg');
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.eot?#iefix&v=396334ee3da78f4302d25c758ae3e3ce5dc3c97d') format('embedded-opentype'), url('https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.woff?v=396334ee3da78f4302d25c758ae3e3ce5dc3c97d') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.ttf?v=396334ee3da78f4302d25c758ae3e3ce5dc3c97d') format('truetype'), url('https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.svg?v=396334ee3da78f4302d25c758ae3e3ce5dc3c97d#octicons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -795,18 +795,6 @@ th {
   content: '\f02d';
 }
 /*  */
-.octicon-alignment-align:before {
-  content: '\f08a';
-}
-/*  */
-.octicon-alignment-aligned-to:before {
-  content: '\f08e';
-}
-/*  */
-.octicon-alignment-unalign:before {
-  content: '\f08b';
-}
-/*  */
 .octicon-arrow-down:before {
   content: '\f03f';
 }
@@ -839,10 +827,15 @@ th {
   content: '\f03d';
 }
 /*  */
-.octicon-beer:before {
-  content: '\f069';
+.octicon-microscope:before,
+.octicon-beaker:before {
+  content: '\f0dd';
 }
-/*  */
+/*  */
+.octicon-bell:before {
+  content: '\f0de';
+}
+/*  */
 .octicon-book:before {
   content: '\f007';
 }
@@ -952,6 +945,11 @@ th {
   content: '\f096';
 }
 /*  */
+.octicon-clone:before,
+.octicon-desktop-download:before {
+  content: '\f0dc';
+}
+/*  */
 .octicon-device-camera:before {
   content: '\f056';
 }
@@ -1113,10 +1111,6 @@ th {
   content: '\f070';
 }
 /*  */
-.octicon-hourglass:before {
-  content: '\f09e';
-}
-/*  */
 .octicon-hubot:before {
   content: '\f09d';
 }
@@ -1145,22 +1139,6 @@ th {
   content: '\f019';
 }
 /*  */
-.octicon-jump-down:before {
-  content: '\f072';
-}
-/*  */
-.octicon-jump-left:before {
-  content: '\f0a5';
-}
-/*  */
-.octicon-jump-right:before {
-  content: '\f0a6';
-}
-/*  */
-.octicon-jump-up:before {
-  content: '\f073';
-}
-/*  */
 .octicon-key:before {
   content: '\f049';
 }
@@ -1236,10 +1214,6 @@ th {
   content: '\f0be';
 }
 /*  */
-.octicon-microscope:before {
-  content: '\f089';
-}
-/*  */
 .octicon-milestone:before {
   content: '\f075';
 }
@@ -1253,22 +1227,6 @@ th {
   content: '\f0d7';
 }
 /*  */
-.octicon-move-down:before {
-  content: '\f0a8';
-}
-/*  */
-.octicon-move-left:before {
-  content: '\f074';
-}
-/*  */
-.octicon-move-right:before {
-  content: '\f0a9';
-}
-/*  */
-.octicon-move-up:before {
-  content: '\f0a7';
-}
-/*  */
 .octicon-mute:before {
   content: '\f080';
 }
@@ -1307,22 +1265,6 @@ th {
   content: '\f041';
 }
 /*  */
-.octicon-playback-fast-forward:before {
-  content: '\f0bd';
-}
-/*  */
-.octicon-playback-pause:before {
-  content: '\f0bb';
-}
-/*  */
-.octicon-playback-play:before {
-  content: '\f0bf';
-}
-/*  */
-.octicon-playback-rewind:before {
-  content: '\f0bc';
-}
-/*  */
 .octicon-plug:before {
   content: '\f0d4';
 }
@@ -1335,10 +1277,6 @@ th {
   content: '\f05d';
 }
 /*  */
-.octicon-podium:before {
-  content: '\f0af';
-}
-/*  */
 .octicon-primitive-dot:before {
   content: '\f052';
 }
@@ -1351,10 +1289,6 @@ th {
   content: '\f085';
 }
 /*  */
-.octicon-puzzle:before {
-  content: '\f0c0';
-}
-/*  */
 .octicon-question:before {
   content: '\f02c';
 }
@@ -1426,6 +1360,10 @@ th {
   content: '\f07c';
 }
 /*  */
+.octicon-shield:before {
+  content: '\f0e1';
+}
+/*  */
 .octicon-log-in:before,
 .octicon-sign-in:before {
   content: '\f036';
@@ -1436,10 +1374,6 @@ th {
   content: '\f032';
 }
 /*  */
-.octicon-split:before {
-  content: '\f0c6';
-}
-/*  */
 .octicon-squirrel:before {
   content: '\f0b2';
 }
@@ -1450,10 +1384,6 @@ th {
   content: '\f02a';
 }
 /*  */
-.octicon-steps:before {
-  content: '\f0c7';
-}
-/*  */
 .octicon-stop:before {
   content: '\f08f';
 }
@@ -1525,6 +1455,10 @@ th {
   content: '\f064';
 }
 /*  */
+.octicon-watch:before {
+  content: '\f0e0';
+}
+/*  */
 .octicon-remove-close:before,
 .octicon-x:before {
   content: '\f081';
@@ -1962,15 +1896,18 @@ h6,
 .Alert--warning .alert-link {
   color: #f98515;
 }
-.Alert--danger {
+.Alert--danger,
+.Alert--error {
   background-color: rgba(214, 66, 66, 0.1);
   border-color: rgba(214, 66, 66, 0.05);
   color: #d64242;
 }
-.Alert--danger hr {
+.Alert--danger hr,
+.Alert--error hr {
   border-top-color: #d12d2d;
 }
-.Alert--danger .alert-link {
+.Alert--danger .alert-link,
+.Alert--error .alert-link {
   color: #bc2929;
 }
 .BlankState {

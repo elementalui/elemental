@@ -5936,123 +5936,6 @@ var GridExample = React.createClass({
 				)
 			),
 			React.createElement(
-				'h2',
-				null,
-				'Something completely different'
-			),
-			React.createElement(
-				'p',
-				{ className: 'lead' },
-				'What\'s that you say, a grid that lays itself out? I\'ll eat my hat!'
-			),
-			React.createElement(
-				'div',
-				{ className: 'code-example' },
-				React.createElement(
-					'div',
-					{ className: 'code-example__example' },
-					React.createElement(
-						'div',
-						{ className: 'code-example__example__heading' },
-						'Columns without attributes'
-					),
-					React.createElement(
-						Row,
-						null,
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						),
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						),
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						)
-					),
-					React.createElement(
-						Row,
-						null,
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						),
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						),
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						),
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						),
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						),
-						React.createElement(
-							Col,
-							null,
-							React.createElement(
-								DemoBox,
-								null,
-								'♥'
-							)
-						)
-					)
-				),
-				React.createElement(
-					ExampleSource,
-					null,
-					'\n\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t<Row>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t\t<Col><DemoBox>♥</DemoBox></Col>\n\t\t\t\t\t\t</Row>\n\t\t\t\t\t\t'
-				)
-			),
-			React.createElement(
 				'div',
 				{ className: 'code-example' },
 				React.createElement(
@@ -6149,6 +6032,46 @@ var GridExample = React.createClass({
 });
 
 module.exports = GridExample;
+/*
+@jossmac - this isn't working like it used to...
+<h2>Something completely different</h2>
+<p className="lead">What's that you say, a grid that lays itself out? I'll eat my hat!</p>
+<div className="code-example">
+<div className="code-example__example">
+	<div className="code-example__example__heading">Columns without attributes</div>
+	<Row>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+	</Row>
+	<Row>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+	</Row>
+</div>
+<ExampleSource>
+	{`
+	<Row>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+	</Row>
+	<Row>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+		<Col><DemoBox>♥</DemoBox></Col>
+	</Row>
+	`}
+</ExampleSource>
+</div>
+*/
 
 },{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react/addons":undefined}],54:[function(require,module,exports){
 'use strict';
@@ -6668,7 +6591,7 @@ var Misc = React.createClass({
 						null,
 						React.createElement(
 							Col,
-							null,
+							{ xs: '1/3' },
 							React.createElement(
 								Card,
 								null,
@@ -6677,7 +6600,7 @@ var Misc = React.createClass({
 						),
 						React.createElement(
 							Col,
-							null,
+							{ xs: '1/3' },
 							React.createElement(
 								Card,
 								null,
@@ -6686,16 +6609,20 @@ var Misc = React.createClass({
 						),
 						React.createElement(
 							Col,
-							null,
+							{ xs: '1/3' },
 							React.createElement(
 								Card,
 								null,
 								'in'
 							)
-						),
+						)
+					),
+					React.createElement(
+						Row,
+						null,
 						React.createElement(
 							Col,
-							null,
+							{ xs: '1/2' },
 							React.createElement(
 								Card,
 								null,
@@ -6704,7 +6631,7 @@ var Misc = React.createClass({
 						),
 						React.createElement(
 							Col,
-							null,
+							{ xs: '1/2' },
 							React.createElement(
 								Card,
 								null,
