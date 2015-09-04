@@ -111,11 +111,13 @@ var Misc = React.createClass({
 					<div className="code-example__example">
 						<Card>Hi there, I'm a card! I'm pretty simple, but with a little imagination I can be really awesome :)</Card>
 						<Row>
-							<Col><Card>Use</Card></Col>
-							<Col><Card>me</Card></Col>
-							<Col><Card>in</Card></Col>
-							<Col><Card>a</Card></Col>
-							<Col><Card>grid</Card></Col>
+							<Col xs="1/3"><Card>Use</Card></Col>
+							<Col xs="1/3"><Card>me</Card></Col>
+							<Col xs="1/3"><Card>in</Card></Col>
+						</Row>
+						<Row>
+							<Col xs="1/2"><Card>a</Card></Col>
+							<Col xs="1/2"><Card>grid</Card></Col>
 						</Row>
 						<Card>
 							<h3 style={{ marginTop: 0 }}>Alternatively</h3>
