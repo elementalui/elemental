@@ -1,12 +1,13 @@
-var React = require('react/addons');
-var blacklist = require('blacklist');
-var classNames = require('classnames');
+const React = require('react/addons');
+const blacklist = require('blacklist');
+const classNames = require('classnames');
 
-var FormField = require('./FormField');
-var Spinner = require('./Spinner');
-var icons = require('../Octicons').map;
+const FormField = require('./FormField');
+const Spinner = require('./Spinner');
 
-var COLOR_VARIANTS = ['danger', 'default', 'primary', 'success', 'warning'];
+const ICON_MAP = require('../Octicons').map;
+const ICON_KEYS = require('../Octicons').keys;
+const COLOR_VARIANTS = ['danger', 'default', 'primary', 'success', 'warning'];
 
 module.exports = React.createClass({
 	displayName: 'FormIconField',
@@ -15,7 +16,7 @@ module.exports = React.createClass({
 		iconColor: React.PropTypes.oneOf(COLOR_VARIANTS),
 		iconFill: React.PropTypes.oneOf(COLOR_VARIANTS),
 		iconIsLoading: React.PropTypes.bool,
-		iconKey: React.PropTypes.string.isRequired,
+		iconKey: React.PropTypes.oneOf(ICON_KEYS).isRequired,
 		iconPosition: React.PropTypes.oneOf(['left', 'right'])
 	},
 	getDefaultProps() {
@@ -41,7 +42,7 @@ module.exports = React.createClass({
 			'IconField__icon',
 			(this.props.iconFill ? 'IconField__icon-fill--' + this.props.iconFill : null),
 			(this.props.iconColor ? 'IconField__icon-color--' + this.props.iconColor : null),
-			icons[this.props.iconKey].className
+			ICON_MAP[this.props.iconKey].className
 		);
 
 		var icon = this.props.iconIsLoading ? (
