@@ -3,6 +3,7 @@ var classNames = require('classnames');
 
 var ALERT_TYPES = [
 	'danger',
+	'error', // alias for danger
 	'info',
 	'primary',
 	'success',
