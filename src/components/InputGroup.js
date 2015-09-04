@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -9,19 +8,13 @@ module.exports = React.createClass({
 		contiguous: React.PropTypes.bool
 	},
 	render() {
-		// props
-		var props = blacklist(this.props, 'className');
-
-
 		// classes
 		var className = classNames('InputGroup', {
 			'InputGroup--contiguous': this.props.contiguous
 		}, this.props.className);
 
 		return (
-			<div className={className} {...props}>
-				{this.props.children}
-			</div>
+			<div {...this.props} className={className} />
 		);
 	}
 });
