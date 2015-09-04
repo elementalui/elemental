@@ -188,6 +188,8 @@ var GridExample = React.createClass({
 					</ExampleSource>
 				</div>
 
+				{/*
+				@jossmac - this isn't working like it used to...
 				<h2>Something completely different</h2>
 				<p className="lead">What's that you say, a grid that lays itself out? I'll eat my hat!</p>
 
@@ -226,6 +228,8 @@ var GridExample = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
+				*/}
+
 				<div className="code-example">
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Columns with a basis</div>
