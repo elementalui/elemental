@@ -75,6 +75,7 @@
 // Use an exclusive class, not a modifier as they are distinctly different
 
 /*div*/.FormInput-noedit {
+	.u-text-truncate();
 	background-color: darken(@body-bg, 2%);
 	border-radius: @border-radius-base;
 	border: 1px solid darken(@body-bg, 8%);
@@ -96,7 +97,7 @@
 		margin-right: 5px;
 		min-width: 0;
 		text-decoration: none;
-		
+
 		&:hover,
 		&:focus {
 			background-color: fade(@link-color, 10%);
@@ -111,6 +112,7 @@
 	line-height: 1.3;
 	height: auto;
 	padding: .5em @input-padding-horizontal;
+	white-space: normal;
 }
 
 // not sure why this was here. remove when confirm/deny
@@ -177,11 +179,3 @@ textarea.FormInput {
 .FormSelect__arrows--disabled > svg {
 	fill: @gray-light;
 }
-
-
-
-
-
-
-
-
