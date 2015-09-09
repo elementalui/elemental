@@ -490,6 +490,9 @@
     line-height: 2.4em;
   }
 }
+.Form--horizontal .FormLabel {
+  display: block;
+}
 .Form--horizontal .FormLabel:not(:first-child) {
   margin-top: 1em;
 }
@@ -2592,6 +2595,8 @@ fieldset[disabled] .Button--link-delete {
 }
 .Button--block {
   display: block;
+  padding-left: 0;
+  padding-right: 0;
   width: 100%;
 }
 .ButtonGroup {
@@ -2872,6 +2877,13 @@ fieldset[disabled] .Button--link-delete {
 }
 /*div*/
 .FormInput-noedit {
+  max-width: 100%;
+  /* 1 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  /* 2 */
   background-color: #f8f8f8;
   border-radius: 0.3em;
   border: 1px solid #e9e9e9;
@@ -2905,6 +2917,7 @@ a.FormInput-noedit:focus {
   line-height: 1.3;
   height: auto;
   padding: 0.5em 0.75em;
+  white-space: normal;
 }
 textarea.FormInput {
   overflow: auto;
@@ -3900,10 +3913,10 @@ textarea.FormInput {
 .u-text-truncate {
   max-width: 100%;
   /* 1 */
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  word-wrap: normal !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
   /* 2 */
 }
 p {
