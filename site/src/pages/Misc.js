@@ -25,7 +25,7 @@ var Misc = React.createClass({
 		var fieldName = e.target.name;
 		var newValue = e.target.value;
 
-		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total') {
+		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total' || fieldName === 'limit') {
 			newValue = parseInt(newValue);
 
 			if (isNaN(newValue) || newValue < 0) {
