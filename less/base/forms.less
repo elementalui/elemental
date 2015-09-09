@@ -202,13 +202,17 @@
 // Horizontal Form
 // ------------------------------
 
-.Form--horizontal {
+// 1. ensure stacking on mobile
+// 2. add spacing above the element when it's stacked. no need to remove at
+//    higher break-points because it becomes a table cell, which aren't
+//    effected by margin
 
-	// add spacing above the element when it's stacked
-	// no need to remove at higher break-points because it becomes a table cell (which aren't effected by margin)
+.Form--horizontal {
 	.FormLabel {
+		display: block; // 1
+
 		&:not(:first-child) {
-			margin-top: @spacing-md;
+			margin-top: @spacing-md; // 2
 		}
 	}
 }
@@ -225,7 +229,7 @@
 				padding-left: @form-label-width;
 			}
 		}
-		
+
 		// Fix the label width to allow the field to stretch
 		.FormLabel {
 			display: table-cell;
@@ -287,13 +291,3 @@
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
