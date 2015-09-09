@@ -1,5 +1,13 @@
 # Elemental
 
+## v0.4.3 / 2015-09-09
+
+* fixed; `.u-text-truncate` no longer applies !important
+* fixed; multiline no-edit inputs no longer truncate tex...
+* fixed; block images
+* fixed; horizontal form stacking on mobile
+* added; `@thumbnail-gutter-width` variable
+
 ## v0.4.2 / 2015-09-04
 
 * improved; Container: provide a way to clear floated children without hiding overflow
