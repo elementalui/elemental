@@ -10,7 +10,7 @@ module.exports = React.createClass({
 			React.PropTypes.number, // allow pixels
 			React.PropTypes.string, // allow percentage
 		]),
-		children: React.PropTypes.node.isRequired,
+		children: React.PropTypes.node,
 		gutter: React.PropTypes.number,
 		style: React.PropTypes.object,
 		lg: React.PropTypes.string, // width as a percentage or fraction
