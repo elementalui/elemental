@@ -449,7 +449,7 @@ module.exports = _reactAddons2['default'].createClass({
 		basis: _reactAddons2['default'].PropTypes.oneOfType([_reactAddons2['default'].PropTypes.number, // allow pixels
 		_reactAddons2['default'].PropTypes.string]),
 		// allow percentage
-		children: _reactAddons2['default'].PropTypes.node.isRequired,
+		children: _reactAddons2['default'].PropTypes.node,
 		gutter: _reactAddons2['default'].PropTypes.number,
 		style: _reactAddons2['default'].PropTypes.object,
 		lg: _reactAddons2['default'].PropTypes.string, // width as a percentage or fraction
@@ -2025,7 +2025,6 @@ module.exports = React.createClass({
 		label: React.PropTypes.string.isRequired,
 		onClear: React.PropTypes.func,
 		onClick: React.PropTypes.func,
-		showClearButton: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(ALERT_TYPES)
 	},
 	getDefaultProps: function getDefaultProps() {
@@ -2034,17 +2033,17 @@ module.exports = React.createClass({
 		};
 	},
 	renderClearButton: function renderClearButton() {
-		if (!this.props.showClearButton) return null;
+		if (!this.props.onClear) return null;
 		return React.createElement(
 			'button',
-			{ onClick: this.props.onClear, className: 'Pill__clear' },
+			{ type: 'button', onClick: this.props.onClear, className: 'Pill__clear' },
 			'×'
 		);
 	},
 	render: function render() {
 		var componentClass = classNames('Pill', 'Pill--' + this.props.type, this.props.className);
 
-		var props = blacklist(this.props, 'className', 'showClearButton', 'label', 'onClear', 'onClick', 'type');
+		var props = blacklist(this.props, 'className', 'label', 'onClear', 'onClick', 'type');
 		props.className = componentClass;
 
 		return React.createElement(
@@ -2052,7 +2051,7 @@ module.exports = React.createClass({
 			props,
 			React.createElement(
 				'button',
-				{ onClick: this.props.onClick, className: 'Pill__label' },
+				{ type: 'button', onClick: this.props.onClick, className: 'Pill__label' },
 				this.props.label
 			),
 			this.renderClearButton()

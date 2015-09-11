@@ -3315,11 +3315,9 @@ textarea.FormInput {
   display: inline-block;
   font-size: .85em;
   font-weight: 500;
+  margin-right: .5em;
   overflow: hidden;
   line-height: 2.2em;
-}
-.Pill + .Pill {
-  margin-left: .5em;
 }
 .Pill__label,
 .Pill__clear {
