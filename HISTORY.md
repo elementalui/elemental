@@ -1,5 +1,11 @@
 # Elemental
 
+## v0.4.4 / 2015-09-11
+
+* fixed; Col component is allowed to have no children, thanks [Christian Legnitto](https://github.com/LegNeato)
+* fixed; Pill buttons are now of type `button` so they don’t submit forms
+* improved; Reduced Pill props by relying on a clear function to show the clear button
+
 ## v0.4.3 / 2015-09-09
 
 * fixed; `.u-text-truncate` no longer applies !important
