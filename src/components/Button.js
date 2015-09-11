@@ -30,6 +30,7 @@ module.exports = React.createClass({
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		href: React.PropTypes.string,
+		component: React.PropTypes.node,
 		isActive: React.PropTypes.bool,
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,
@@ -54,8 +55,12 @@ module.exports = React.createClass({
 		);
 
 		// props
-		var props = blacklist(this.props, 'type', 'size', 'className');
+		var props = blacklist(this.props, 'type', 'size', 'component', 'className');
 		props.className = componentClass;
+
+		if (this.props.component) {
+			return React.cloneElement(this.props.component, props);
+		}
 
 		var tag = 'button';
 		props.type = this.props.submit ? 'submit' : 'button';

@@ -180,6 +180,12 @@ var Buttons = React.createClass({
 								<td className="usage-table__description">When provided the component will render as an <code className="inline-code">&lt;a&gt;</code> instead of <code className="inline-code">&lt;button&gt;</code></td>
 							</tr>
 							<tr>
+								<td className="usage-table__prop">component</td>
+								<td className="usage-table__type">element</td>
+								<td className="usage-table__default">undefined</td>
+								<td className="usage-table__description">When provided, <code className="inline-code">&lt;Button&gt;</code> will render the passed in component with the proper styles instead of creating its own. This is useful when integrating with React Router's <code className="inline-code">&lt;Link&gt;</code> or using your own custom component</td>
+							</tr>
+							<tr>
 								<td className="usage-table__prop">size</td>
 								<td className="usage-table__type">enum</td>
 								<td className="usage-table__default">''</td>
