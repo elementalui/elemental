@@ -24,7 +24,7 @@
     "react-router": "^0.13.3"
   },
   "peerDependencies": {
-    "react": "^0.13.0 || 0.14.0-beta3"
+    "react": "^0.13.0 || 0.14.0-rc1"
   },
   "browserify-shim": {
     "react": "global:React"
