@@ -25,7 +25,11 @@ module.exports = React.createClass({
 			loading: false
 		};
 	},
-
+        componentDidMount () {
+               this.refs.fileInput.getDOMNode().addEventListener('click', function () {
+                       this.value = '';
+               },   false);
+        },
 	triggerFileBrowser() {
 		this.refs.fileInput.getDOMNode().click();
 	},
