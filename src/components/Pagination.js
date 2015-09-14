@@ -48,15 +48,18 @@ module.exports = React.createClass({
 		let minPage = 0;
 		let maxPage = totalPages;
 
-		if(limit && (limit * 2 + 1 < totalPages)) {
+		if (limit && (limit < totalPages)) {
+			limit = Math.floor(limit / 2);
 			minPage = currentPage - limit - 1;
 			maxPage = currentPage + limit;
-			
+
 			if (minPage < 0) {
 				maxPage = maxPage - minPage;
 				minPage = 0;
-			} else if (maxPage >= totalPages) {
-				minPage = totalPages - 2 * limit;
+			}
+
+			if (maxPage > totalPages) {
+				minPage = totalPages - 2 * limit - 1;
 				maxPage = totalPages;
 			}
 		}
