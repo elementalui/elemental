@@ -64,6 +64,10 @@ module.exports = React.createClass({
 			}
 		}
 
+		if (minPage > 0) {
+			pages.push(<button key={'page_start'} className={'Pagination__list__item'} onClick={() => this.onPageSelect(1)}>...</button>);
+		}
+
 		for (let i = minPage; i < maxPage; i++) {
 			let page = i + 1;
 			let current = (page === currentPage);
@@ -73,6 +77,10 @@ module.exports = React.createClass({
 			/* eslint-disable no-loop-func */
 			pages.push(<button key={'page_' + page} className={className} onClick={() => this.onPageSelect(page)}>{page}</button>);
 			/* eslint-enable */
+		}
+
+		if (maxPage < totalPages) {
+			pages.push(<button key={'page_end'} className={'Pagination__list__item'} onClick={() => this.onPageSelect(totalPages)}>...</button>);
 		}
 
 		return (
