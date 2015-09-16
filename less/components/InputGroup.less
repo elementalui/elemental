@@ -1,4 +1,4 @@
-// 
+//
 // Input Group
 // ==============================
 
@@ -55,11 +55,15 @@
 
 //  Contiguous fields/buttons
 // ------------------------------
-	
-
-// remove the border radius initially
 
 .InputGroup--contiguous > .InputGroup_section {
+	// pull subsequent children over their sibling's border
+	margin-left: -1px;
+	&:first-child {
+		margin-left: 0;
+	}
+
+	// remove the border radius initially
 	> .FormInput,
 	> .Button {
 		border-radius: 0;
@@ -74,21 +78,4 @@
 	&:last-child > .Button {
 		.border-right-radius(@border-radius-base);
 	}
-
-	// pull the button on top of the input's border
-	&:first-child > .Button {
-		margin-right: -2px;
-	}
-	&:last-child > .Button {
-		margin-left: -2px;
-	}
 }
-
-
-
-
-
-
-
-
-
