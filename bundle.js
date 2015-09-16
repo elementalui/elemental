@@ -1496,7 +1496,7 @@ module.exports = _reactAddons2['default'].createClass({
 
 	render: function render() {
 		// props
-		var props = (0, _blacklist2['default'])(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'className');
+		var props = (0, _blacklist2['default'])(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'className');
 
 		// classes
 		var componentClass = (0, _classnames2['default'])('FormField', {
