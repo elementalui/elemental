@@ -11,7 +11,8 @@ module.exports = React.createClass({
 		plural: React.PropTypes.string,
 		singular: React.PropTypes.string,
 		style: React.PropTypes.object,
-		total: React.PropTypes.number.isRequired
+		total: React.PropTypes.number.isRequired,
+		limit: React.PropTypes.number
 	},
 	renderCount () {
 		let count = '';
@@ -42,9 +43,32 @@ module.exports = React.createClass({
 		if (this.props.total <= this.props.pageSize) return null;
 
 		let pages = [];
-		let { currentPage, pageSize, total } = this.props;
+		let { currentPage, pageSize, total, limit } = this.props;
+		let totalPages = Math.ceil(total / pageSize);
+		let minPage = 0;
+		let maxPage = totalPages;
 
-		for (let i = 0; i < Math.ceil(total / pageSize); i++) {
+		if (limit && (limit < totalPages)) {
+			limit = Math.floor(limit / 2);
+			minPage = currentPage - limit - 1;
+			maxPage = currentPage + limit;
+
+			if (minPage < 0) {
+				maxPage = maxPage - minPage;
+				minPage = 0;
+			}
+
+			if (maxPage > totalPages) {
+				minPage = totalPages - 2 * limit - 1;
+				maxPage = totalPages;
+			}
+		}
+
+		if (minPage > 0) {
+			pages.push(<button key={'page_start'} className={'Pagination__list__item'} onClick={() => this.onPageSelect(1)}>...</button>);
+		}
+
+		for (let i = minPage; i < maxPage; i++) {
 			let page = i + 1;
 			let current = (page === currentPage);
 			let className = classNames('Pagination__list__item', {
@@ -53,6 +77,10 @@ module.exports = React.createClass({
 			/* eslint-disable no-loop-func */
 			pages.push(<button key={'page_' + page} className={className} onClick={() => this.onPageSelect(page)}>{page}</button>);
 			/* eslint-enable */
+		}
+
+		if (maxPage < totalPages) {
+			pages.push(<button key={'page_end'} className={'Pagination__list__item'} onClick={() => this.onPageSelect(totalPages)}>...</button>);
 		}
 
 		return (

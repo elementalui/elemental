@@ -16,6 +16,7 @@ var Misc = React.createClass({
 			plural: 'Potatoes',
 			singular: 'Potato',
 			total: 123,
+			limit: 5
 		};
 	},
 
@@ -24,7 +25,7 @@ var Misc = React.createClass({
 		var fieldName = e.target.name;
 		var newValue = e.target.value;
 
-		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total') {
+		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total' || fieldName === 'limit') {
 			newValue = parseInt(newValue);
 
 			if (isNaN(newValue) || newValue < 0) {
@@ -174,6 +175,7 @@ var Misc = React.createClass({
 							singular={this.state.singular}
 							style={{ lineHeight: '34px', marginBottom: 0, minHeight: 34 }}
 							total={this.state.total}
+							limit={this.state.limit}
 							/>
 					</div>
 					<ExampleSource>
@@ -185,6 +187,7 @@ var Misc = React.createClass({
 								plural={this.state.plural}
 								singular={this.state.singular}
 								total={this.state.total}
+								limit={this.state.limit}
 								/>
 						`}
 					</ExampleSource>
@@ -213,6 +216,11 @@ var Misc = React.createClass({
 					<InputGroup.Section grow>
 						<FormField label="Total records">
 							<FormInput name="total" type="number" value={this.state.total} onChange={this.handlePaginationValueChange} placeholder="Total records" />
+						</FormField>
+					</InputGroup.Section>
+					<InputGroup.Section grow>
+						<FormField label="Limit">
+							<FormInput name="limit" type="number" value={this.state.limit} onChange={this.handlePaginationValueChange} placeholder="Limit" />
 						</FormField>
 					</InputGroup.Section>
 				</InputGroup>
@@ -263,6 +271,12 @@ var Misc = React.createClass({
 								<td className="usage-table__type">number</td>
 								<td className="usage-table__default">none&nbsp;(required)</td>
 								<td className="usage-table__description">The total number of records.</td>
+							</tr>
+							<tr>
+								<td className="usage-table__prop">limit</td>
+								<td className="usage-table__type">number</td>
+								<td className="usage-table__default">none</td>
+								<td className="usage-table__description">The number of pages to show in pagination.</td>
 							</tr>
 						</tbody>
 					</Table>
