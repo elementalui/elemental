@@ -1,5 +1,12 @@
 # Elemental
 
+## v0.4.6 / 2015-09-17
+
+* fixed; InputGroup: contiguous section's border behaviour
+* fixed; Dropdown: return value from onSelect (not label)
+* fixed; Dropdown: escape closes menu
+* added; Pagination: new limit prop to limit total number of pages displayed, thanks [Shmavon](https://github.com/MunGell)
+
 ## v0.4.5 / 2015-09-16
 
 * fixed; React dependency allows any version of 0.14 beta or rc
