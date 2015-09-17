@@ -1,9 +1,10 @@
-var React = require('react/addons');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-var blacklist = require('blacklist');
-var classNames = require('classnames');
+const React = require('react/addons');
+const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+const blacklist = require('blacklist');
+const classNames = require('classnames');
+const Button = require('./Button');
 
-var Button = require('./Button');
+const ESC_KEYCODE = 27;
 
 module.exports = React.createClass({
 	displayName: 'Dropdown',
@@ -34,6 +35,19 @@ module.exports = React.createClass({
 	},
 	closeDropdown () {
 		this.setState({ isOpen: false });
+	},
+	componentWillUpdate (nextProps, nextState) {
+		if (nextState.isOpen) {
+			window.addEventListener('keydown', this.handleKeyDown);
+		} else {
+			window.removeEventListener('keydown', this.handleKeyDown);
+		}
+	},
+	handleKeyDown (e) {
+		console.log(e);
+		if (e.keyCode === ESC_KEYCODE) {
+			this.closeDropdown();
+		}
 	},
 
 	renderChildren () {
