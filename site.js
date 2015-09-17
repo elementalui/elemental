@@ -6340,7 +6340,8 @@ var Misc = React.createClass({
 			pageSize: 25,
 			plural: 'Potatoes',
 			singular: 'Potato',
-			total: 123
+			total: 123,
+			limit: 5
 		};
 	},
 
@@ -6349,7 +6350,7 @@ var Misc = React.createClass({
 		var fieldName = e.target.name;
 		var newValue = e.target.value;
 
-		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total') {
+		if (fieldName === 'currentPage' || fieldName === 'pageSize' || fieldName === 'total' || fieldName === 'limit') {
 			newValue = parseInt(newValue);
 
 			if (isNaN(newValue) || newValue < 0) {
@@ -6753,13 +6754,14 @@ var Misc = React.createClass({
 						plural: this.state.plural,
 						singular: this.state.singular,
 						style: { lineHeight: '34px', marginBottom: 0, minHeight: 34 },
-						total: this.state.total
+						total: this.state.total,
+						limit: this.state.limit
 					})
 				),
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Pagination\n\t\t\t\t\t\t\t\tcurrentPage={this.state.currentPage}\n\t\t\t\t\t\t\t\tonPageSelect={this.handlePageSelect}\n\t\t\t\t\t\t\t\tpageSize={this.state.pageSize}\n\t\t\t\t\t\t\t\tplural={this.state.plural}\n\t\t\t\t\t\t\t\tsingular={this.state.singular}\n\t\t\t\t\t\t\t\ttotal={this.state.total}\n\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Pagination\n\t\t\t\t\t\t\t\tcurrentPage={this.state.currentPage}\n\t\t\t\t\t\t\t\tonPageSelect={this.handlePageSelect}\n\t\t\t\t\t\t\t\tpageSize={this.state.pageSize}\n\t\t\t\t\t\t\t\tplural={this.state.plural}\n\t\t\t\t\t\t\t\tsingular={this.state.singular}\n\t\t\t\t\t\t\t\ttotal={this.state.total}\n\t\t\t\t\t\t\t\tlimit={this.state.limit}\n\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -6808,6 +6810,15 @@ var Misc = React.createClass({
 						FormField,
 						{ label: 'Total records' },
 						React.createElement(FormInput, { name: 'total', type: 'number', value: this.state.total, onChange: this.handlePaginationValueChange, placeholder: 'Total records' })
+					)
+				),
+				React.createElement(
+					InputGroup.Section,
+					{ grow: true },
+					React.createElement(
+						FormField,
+						{ label: 'Limit' },
+						React.createElement(FormInput, { name: 'limit', type: 'number', value: this.state.limit, onChange: this.handlePaginationValueChange, placeholder: 'Limit' })
 					)
 				)
 			),
@@ -6995,6 +7006,30 @@ var Misc = React.createClass({
 								'td',
 								{ className: 'usage-table__description' },
 								'The total number of records.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'limit'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'number'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'none'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'The number of pages to show in pagination.'
 							)
 						)
 					)

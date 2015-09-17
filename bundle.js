@@ -599,8 +599,9 @@ var React = require('react/addons');
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var blacklist = require('blacklist');
 var classNames = require('classnames');
-
 var Button = require('./Button');
+
+var ESC_KEYCODE = 27;
 
 module.exports = React.createClass({
 	displayName: 'Dropdown',
@@ -631,6 +632,19 @@ module.exports = React.createClass({
 	},
 	closeDropdown: function closeDropdown() {
 		this.setState({ isOpen: false });
+	},
+	componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
+		if (nextState.isOpen) {
+			window.addEventListener('keydown', this.handleKeyDown);
+		} else {
+			window.removeEventListener('keydown', this.handleKeyDown);
+		}
+	},
+	handleKeyDown: function handleKeyDown(e) {
+		console.log(e);
+		if (e.keyCode === ESC_KEYCODE) {
+			this.closeDropdown();
+		}
 	},
 
 	renderChildren: function renderChildren() {
@@ -681,7 +695,7 @@ module.exports = React.createClass({
 					{ key: 'item-' + i, className: 'Dropdown-menu__item' },
 					React.createElement(
 						'span',
-						{ className: 'Dropdown-menu__action', onClick: self.onClick.bind(self, item.label) },
+						{ className: 'Dropdown-menu__action', onClick: self.onClick.bind(self, item.value) },
 						item.label
 					)
 				);
@@ -1821,7 +1835,8 @@ module.exports = React.createClass({
 		plural: React.PropTypes.string,
 		singular: React.PropTypes.string,
 		style: React.PropTypes.object,
-		total: React.PropTypes.number.isRequired
+		total: React.PropTypes.number.isRequired,
+		limit: React.PropTypes.number
 	},
 	renderCount: function renderCount() {
 		var count = '';
@@ -1866,6 +1881,37 @@ module.exports = React.createClass({
 		var currentPage = _props2.currentPage;
 		var pageSize = _props2.pageSize;
 		var total = _props2.total;
+		var limit = _props2.limit;
+
+		var totalPages = Math.ceil(total / pageSize);
+		var minPage = 0;
+		var maxPage = totalPages;
+
+		if (limit && limit < totalPages) {
+			limit = Math.floor(limit / 2);
+			minPage = currentPage - limit - 1;
+			maxPage = currentPage + limit;
+
+			if (minPage < 0) {
+				maxPage = maxPage - minPage;
+				minPage = 0;
+			}
+
+			if (maxPage > totalPages) {
+				minPage = totalPages - 2 * limit - 1;
+				maxPage = totalPages;
+			}
+		}
+
+		if (minPage > 0) {
+			pages.push(React.createElement(
+				'button',
+				{ key: 'page_start', className: 'Pagination__list__item', onClick: function () {
+						return _this.onPageSelect(1);
+					} },
+				'...'
+			));
+		}
 
 		var _loop = function (i) {
 			var page = i + 1;
@@ -1884,8 +1930,18 @@ module.exports = React.createClass({
 			/* eslint-enable */
 		};
 
-		for (var i = 0; i < Math.ceil(total / pageSize); i++) {
+		for (var i = minPage; i < maxPage; i++) {
 			_loop(i);
+		}
+
+		if (maxPage < totalPages) {
+			pages.push(React.createElement(
+				'button',
+				{ key: 'page_end', className: 'Pagination__list__item', onClick: function () {
+						return _this.onPageSelect(totalPages);
+					} },
+				'...'
+			));
 		}
 
 		return React.createElement(
