@@ -286,17 +286,17 @@ var Misc = React.createClass({
 				<div className="code-example">
 					<div className="code-example__example">
 						<Pill label="Create" type="success-inverted" />
-						<Pill label="First Pill" type="primary" showClearButton />
-						<Pill label="Second Pill" type="primary" showClearButton />
-						<Pill label="Third Pill" type="primary" showClearButton />
+						<Pill label="First Pill" type="primary" onClear={() => {}} />
+						<Pill label="Second Pill" type="primary" onClear={() => {}} />
+						<Pill label="Third Pill" type="primary" onClear={() => {}} />
 						<Pill label="Clear All" />
 					</div>
 					<ExampleSource>
 						{`
 							<Pill label="Create" type="success-inverted" />
-							<Pill label="First Pill" type="primary" showClearButton />
-							<Pill label="Second Pill" type="primary" showClearButton />
-							<Pill label="Third Pill" type="primary" showClearButton />
+							<Pill label="First Pill" type="primary" onClear={this.handleClear} />
+							<Pill label="Second Pill" type="primary" onClear={this.handleClear} />
+							<Pill label="Third Pill" type="primary" onClear={this.handleClear} />
 							<Pill label="Clear All" />
 						`}
 					</ExampleSource>
@@ -314,12 +314,6 @@ var Misc = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-								<td className="usage-table__prop">showClearButton</td>
-								<td className="usage-table__type">bool</td>
-								<td className="usage-table__default">false</td>
-								<td className="usage-table__description">Display the clear button, rendered beside the label</td>
-							</tr>
-							<tr>
 								<td className="usage-table__prop">label</td>
 								<td className="usage-table__type">string</td>
 								<td className="usage-table__default">false</td>
@@ -329,7 +323,7 @@ var Misc = React.createClass({
 								<td className="usage-table__prop">onClear</td>
 								<td className="usage-table__type">func</td>
 								<td className="usage-table__default">undefined</td>
-								<td className="usage-table__description">Run when the user clicks the clear button</td>
+								<td className="usage-table__description">Handle clear events on the pill. The clear button is rendered when this is supplied</td>
 							</tr>
 							<tr>
 								<td className="usage-table__prop">type</td>
