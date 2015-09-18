@@ -1,5 +1,9 @@
 # Elemental
 
+## v0.4.7 / 2015-09-18
+
+* fixed; Modal position is now fixed with CSS, and addresses previously janky scrolling behaviour
+
 ## v0.4.6 / 2015-09-17
 
 * fixed; InputGroup: contiguous section's border behaviour
