@@ -7301,58 +7301,15 @@ module.exports = React.createClass({
 	displayName: 'VIEW_Modal',
 	getInitialState: function getInitialState() {
 		return {
-			formProcessing: false,
-			modalIsOpen: false,
-			email: '',
-			password: ''
+			modalIsOpen: false
 		};
 	},
-	toggleModal: function toggleModal(e) {
-		e.preventDefault();
-		var self = this;
+	toggleModal: function toggleModal(visible) {
 		this.setState({
-			modalIsOpen: !this.state.modalIsOpen
-		}, function () {
-			if (self.state.modalIsOpen) {
-				self.refs.email.getDOMNode().focus();
-			}
+			modalIsOpen: visible
 		});
 	},
-	submitForm: function submitForm(e) {
-		e.preventDefault();
-		var self = this;
-		this.setState({ formProcessing: true });
-
-		setTimeout(function () {
-			self.setState({
-				formProcessing: false,
-				modalIsOpen: false,
-				email: '',
-				password: ''
-			});
-		}, 3000);
-	},
 	render: function render() {
-		var self = this;
-
-		// handle form input
-		function updateInput(e) {
-			var newState = {};
-			newState[e.target.name] = e.target.value;
-			self.setState(newState);
-		}
-
-		// variable submit button
-		var submitButton = this.state.formProcessing ? React.createElement(
-			Button,
-			{ type: 'primary', disabled: true },
-			React.createElement(Spinner, { type: 'inverted' }),
-			'Submitting'
-		) : React.createElement(
-			Button,
-			{ type: 'primary', disabled: !this.state.email || !this.state.password, submit: true },
-			'Submit'
-		);
 		return React.createElement(
 			Container,
 			{ maxWidth: 800, className: 'demo-container' },
@@ -7375,14 +7332,19 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'Modal-content' },
-						React.createElement(ModalHeader, { text: 'Modal Header', showCloseButton: true }),
+						React.createElement(ModalHeader, { text: 'Modal Header' }),
 						React.createElement(
 							ModalBody,
 							null,
 							React.createElement(
-								'p',
-								null,
-								'Content and controls go in the Modal Body.'
+								FormField,
+								{ label: 'Email' },
+								React.createElement(FormInput, { label: 'Email', type: 'email', name: 'email', ref: 'email', placeholder: 'name@example.com', onChange: this.updateInput, required: true })
+							),
+							React.createElement(
+								FormField,
+								{ label: 'Password' },
+								React.createElement(FormInput, { label: 'Password', type: 'password', name: 'password', ref: 'password', placeholder: 'min. 8 chars', onChange: this.updateInput, required: true })
 							)
 						),
 						React.createElement(
@@ -7391,12 +7353,12 @@ module.exports = React.createClass({
 							React.createElement(
 								Button,
 								{ type: 'primary' },
-								'Modal Footer'
+								'Submit'
 							),
 							React.createElement(
 								Button,
 								{ type: 'link-cancel' },
-								'Button'
+								'Cancel'
 							)
 						)
 					)
@@ -7404,7 +7366,7 @@ module.exports = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Modal>\n\t\t\t\t\t\t\t\t<ModalHeader text="Modal Header" showCloseButton />\n\t\t\t\t\t\t\t\t<ModalBody>\n\t\t\t\t\t\t\t\t\t<p>Content and controls go in the Modal Body.</p>\n\t\t\t\t\t\t\t\t</ModalBody>\n\t\t\t\t\t\t\t\t<ModalFooter>\n\t\t\t\t\t\t\t\t\t<Button type="primary">Modal Footer</Button>\n\t\t\t\t\t\t\t\t\t<Button type="link-cancel">Button</Button>\n\t\t\t\t\t\t\t\t</ModalFooter>\n\t\t\t\t\t\t\t</Modal>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Modal>\n\t\t\t\t\t\t\t\t<ModalHeader text="Modal Header" />\n\t\t\t\t\t\t\t\t<ModalBody>\n\t\t\t\t\t\t\t\t\t<form>[...]</form>\n\t\t\t\t\t\t\t\t</ModalBody>\n\t\t\t\t\t\t\t\t<ModalFooter>\n\t\t\t\t\t\t\t\t\t<Button type="primary">Modal Footer</Button>\n\t\t\t\t\t\t\t\t\t<Button type="link-cancel">Button</Button>\n\t\t\t\t\t\t\t\t</ModalFooter>\n\t\t\t\t\t\t\t</Modal>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -7420,7 +7382,7 @@ module.exports = React.createClass({
 					{ className: 'code-example__example' },
 					React.createElement(
 						Button,
-						{ onClick: this.toggleModal },
+						{ onClick: this.toggleModal.bind(this, true) },
 						'Launch Modal'
 					)
 				),
@@ -7432,12 +7394,7 @@ module.exports = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>\n\t\t\t\t\t\t\t\t<ModalHeader text="Live Demo" showCloseButton onClose={this.toggleModal} />\n\t\t\t\t\t\t\t\t<form action="#" onSubmit={this.submitForm} noValidate>\n\t\t\t\t\t\t\t\t\t<ModalBody>\n\t\t\t\t\t\t\t\t\t\t<FormField label="Email">\n\t\t\t\t\t\t\t\t\t\t\t<FormInput label="Email" type="email" name="email" ref="email" value={this.state.email} onChange={updateInput} required />\n\t\t\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t\t\t<FormField label="Password">\n\t\t\t\t\t\t\t\t\t\t\t<FormInput label="Password" type="password" name="password" ref="password" value={this.state.password} onChange={updateInput} required />\n\t\t\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t\t</ModalBody>\n\t\t\t\t\t\t\t\t\t<ModalFooter>\n\t\t\t\t\t\t\t\t\t\t{submitButton}\n\t\t\t\t\t\t\t\t\t\t<Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>\n\t\t\t\t\t\t\t\t\t</ModalFooter>\n\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t</Modal>\n\t\t\t\t\t\t'
-				),
-				React.createElement(
-					ExampleSource,
-					null,
-					'\n\t\t\t\t\t\t\tvar submitButton = this.state.formProcessing ? (\n\t\t\t\t\t\t\t\t<Button type="primary" disabled>\n\t\t\t\t\t\t\t\t\t<Spinner type="inverted" />\n\t\t\t\t\t\t\t\t\tSubmitting\n\t\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t\t<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>\n\t\t\t\t\t\t\t);\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>\n\t\t\t\t\t\t\t\t<ModalHeader text="Lots of text to show scroll behavior" showCloseButton onClose={this.toggleModal} />\n\t\t\t\t\t\t\t\t<ModalBody>[...]</ModalBody>\n\t\t\t\t\t\t\t\t<ModalFooter>\n\t\t\t\t\t\t\t\t\t<Button type="primary" onClick={this.toggleModal}>Close modal</Button>\n\t\t\t\t\t\t\t\t\t<Button type="link-cancel" onClick={this.toggleModal}>Also closes modal</Button>\n\t\t\t\t\t\t\t\t</ModalFooter>\n\t\t\t\t\t\t\t</Modal>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -7750,34 +7707,79 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				Modal,
-				{ isOpen: this.state.modalIsOpen, onCancel: this.toggleModal, backdropClosesModal: true },
-				React.createElement(ModalHeader, { text: 'Live Demo', showCloseButton: true, onClose: this.toggleModal }),
+				{ isOpen: this.state.modalIsOpen, onCancel: this.toggleModal.bind(this, false), backdropClosesModal: true },
+				React.createElement(ModalHeader, { text: 'Lots of text to show scroll behavior', showCloseButton: true, onClose: this.toggleModal.bind(this, false) }),
 				React.createElement(
-					'form',
-					{ action: '#', onSubmit: this.submitForm, noValidate: true },
+					ModalBody,
+					null,
 					React.createElement(
-						ModalBody,
-						null,
+						'p',
+						{ style: { color: '#999', fontSize: '.85em' } },
+						'From the Wikipedia article ',
 						React.createElement(
-							FormField,
-							{ label: 'Email' },
-							React.createElement(FormInput, { label: 'Email', type: 'email', name: 'email', ref: 'email', value: this.state.email, onChange: updateInput, required: true })
-						),
-						React.createElement(
-							FormField,
-							{ label: 'Password' },
-							React.createElement(FormInput, { label: 'Password', type: 'password', name: 'password', ref: 'password', value: this.state.password, onChange: updateInput, required: true })
+							'a',
+							{ href: 'https://en.wikipedia.org/wiki/Elemental', target: '_blank' },
+							'https://en.wikipedia.org/wiki/Elemental'
 						)
 					),
 					React.createElement(
-						ModalFooter,
+						'p',
 						null,
-						submitButton,
-						React.createElement(
-							Button,
-							{ onClick: this.toggleModal, type: 'link-cancel', disabled: this.state.formProcessing },
-							'Cancel'
-						)
+						'An elemental is a mythic being described in occult and alchemical works from around the time of the European Renaissance and particularly elaborated in the 16th century works of Paracelsus.'
+					),
+					React.createElement(
+						'p',
+						null,
+						'There are four elemental categories: gnomes, undines, sylphs, and salamanders. These correspond to the Classical elements of antiquity: earth, water, air and fire. Aether (quintessence) was not assigned an elemental.'
+					),
+					React.createElement(
+						'p',
+						null,
+						'Terms employed for beings associated with alchemical elements vary by source and gloss.'
+					),
+					React.createElement(
+						'h2',
+						null,
+						'History'
+					),
+					React.createElement(
+						'p',
+						null,
+						'The Paracelsian concept of elementals draws from several much older traditions in mythology and religion. Common threads can be found in folklore, animism, and anthropomorphism. Examples of creatures such as the Pygmy were taken from Greek mythology.'
+					),
+					React.createElement(
+						'p',
+						null,
+						'The elements of earth, water, air, and fire, were classed as the fundamental building blocks of nature. This system prevailed in the Classical world and was highly influential in medieval natural philosophy. Although Paracelsus uses these foundations and the popular preexisting names of elemental creatures, he is doing so to present new ideas which expand on his own philosophical system. The homunculus is another example of a Paracelsian idea with roots in earlier alchemical, scientific, and folklore traditions.'
+					),
+					React.createElement(
+						'h3',
+						null,
+						'Paracelsus'
+					),
+					React.createElement(
+						'p',
+						null,
+						'In his 16th-century alchemical work Liber de Nymphis, sylphis, pygmaeis et salamandris et de caeteris spiritibus, Paracelsus identified mythological beings as belonging to one of the four elements. Part of the Philosophia Magna, this book was first printed in 1566 after Paracelsus\' death. He wrote the book to "describe the creatures that are outside the cognizance of the light of nature, how they are to be understood, what marvellous works God has created". He states that there is more bliss in describing these "divine objects" than in describing fencing, court etiquette, cavalry, and other worldly pursuits.'
+					),
+					React.createElement(
+						'p',
+						null,
+						'The concept of elementals seems to have been conceived by Paracelsus in the 16th century, though he did not in fact use the term "elemental" or a German equivalent.[5] He regarded them not so much as spirits but as beings between creatures and spirits, generally being invisible to mankind but having physical and commonly humanoid bodies, as well as eating, sleeping, and wearing clothes like humans. Paracelsus gave common names for the elemental types, as well as correct names, which he seems to have considered somewhat more proper, "recht namen". He also referred to them by purely German terms which are roughly equivalent to "water people," "mountain people," and so on, using all the different forms interchangeably.'
+					)
+				),
+				React.createElement(
+					ModalFooter,
+					null,
+					React.createElement(
+						Button,
+						{ type: 'primary', onClick: this.toggleModal.bind(this, false) },
+						'Close modal'
+					),
+					React.createElement(
+						Button,
+						{ type: 'link-cancel', onClick: this.toggleModal.bind(this, false) },
+						'Also closes modal'
 					)
 				)
 			)

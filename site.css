@@ -3142,17 +3142,33 @@ textarea.FormInput {
   border-bottom-right-radius: 0.3em;
   border-top-right-radius: 0.3em;
 }
-.Modal-dialog {
+.Modal {
+  -webkit-transition: visibility 140ms;
+  -o-transition: visibility 140ms;
+  transition: visibility 140ms;
+  bottom: 0;
   left: 0;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 10px;
-  position: absolute;
+  outline: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
   right: 0;
   top: 0;
-  width: 100%;
+  visibility: hidden;
   z-index: 110;
-  transition: top 200ms linear;
+  -webkit-overflow-scrolling: touch;
+}
+.Modal.is-open {
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+  visibility: visible;
+}
+.Modal-dialog {
+  padding: 10px;
+  position: relative;
+  width: auto;
+  z-index: 2;
 }
 .Modal-dialog-enter {
   -webkit-animation-name: modalDialogEnter;
@@ -3177,8 +3193,7 @@ textarea.FormInput {
 }
 @media (min-width: 768px) {
   .Modal-dialog {
-    margin-bottom: 100px;
-    margin-top: 100px;
+    margin: 80px auto;
     width: 768px;
   }
 }
