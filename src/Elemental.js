@@ -19,6 +19,7 @@ exports.FormLabel = require('./components/FormLabel');
 exports.FormNote = require('./components/FormNote');
 exports.FormRow = require('./components/FormRow');
 exports.FormSelect = require('./components/FormSelect');
+exports.Glyph = require('./components/Glyph');
 exports.InputGroup = require('./components/InputGroup');
 exports.InputGroupSection = require('./components/InputGroupSection');
 exports.Modal = require('./components/Modal');
