@@ -174,7 +174,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../constants":39,"react/addons":undefined}],7:[function(require,module,exports){
+},{"../constants":40,"react/addons":undefined}],7:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -342,7 +342,7 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"../constants":39,"blacklist":undefined,"react/addons":undefined}],9:[function(require,module,exports){
+},{"../constants":40,"blacklist":undefined,"react/addons":undefined}],9:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -401,7 +401,7 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"../constants":39,"blacklist":undefined,"react/addons":undefined}],10:[function(require,module,exports){
+},{"../constants":40,"blacklist":undefined,"react/addons":undefined}],10:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -778,7 +778,11 @@ module.exports = React.createClass({
 			loading: false
 		};
 	},
-
+	componentDidMount: function componentDidMount() {
+		this.refs.fileInput.getDOMNode().addEventListener('click', function () {
+			this.value = '';
+		}, false);
+	},
 	triggerFileBrowser: function triggerFileBrowser() {
 		this.refs.fileInput.getDOMNode().click();
 	},
@@ -875,7 +879,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Button":4,"./Spinner":37,"blacklist":undefined,"react/addons":undefined}],14:[function(require,module,exports){
+},{"./Button":4,"./Spinner":38,"blacklist":undefined,"react/addons":undefined}],14:[function(require,module,exports){
 'use strict';
 
 var blacklist = require('blacklist');
@@ -977,7 +981,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"./Spinner":37,"classnames":undefined,"react/addons":undefined}],17:[function(require,module,exports){
+},{"../Octicons":1,"./Spinner":38,"classnames":undefined,"react/addons":undefined}],17:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1033,7 +1037,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"./FormField":15,"./Spinner":37,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
+},{"../Octicons":1,"./FormField":15,"./Spinner":38,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1377,7 +1381,33 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"../icons":40,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],23:[function(require,module,exports){
+},{"../icons":41,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],23:[function(require,module,exports){
+'use strict';
+
+var React = require('react/addons');
+var classNames = require('classnames');
+
+var icons = require('../Octicons').map;
+var validNames = require('../Octicons').keys;
+
+var Glyph = React.createClass({
+	displayName: 'Glyph',
+	propTypes: {
+		className: React.PropTypes.string,
+		icon: React.PropTypes.oneOf(validNames),
+		type: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning'])
+	},
+	render: function render() {
+		// classes
+		var className = classNames('Glyph__icon', icons[this.props.icon].className, this.props.type ? 'IconField__icon-color--' + this.props.type : null, this.props.className);
+		return React.createElement('i', { className: className });
+	}
+});
+
+module.exports = Glyph;
+module.exports.names = validNames;
+
+},{"../Octicons":1,"classnames":undefined,"react/addons":undefined}],24:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1404,7 +1434,7 @@ module.exports = React.createClass({
 // expose the child to the top level export
 module.exports.Section = require('./InputGroupSection');
 
-},{"./InputGroupSection":24,"classnames":undefined,"react/addons":undefined}],24:[function(require,module,exports){
+},{"./InputGroupSection":25,"classnames":undefined,"react/addons":undefined}],25:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1428,7 +1458,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],25:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],26:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1545,7 +1575,7 @@ module.exports.Body = require('./ModalBody');
 module.exports.Footer = require('./ModalFooter');
 module.exports.Header = require('./ModalHeader');
 
-},{"./ModalBody":26,"./ModalFooter":27,"./ModalHeader":28,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],26:[function(require,module,exports){
+},{"./ModalBody":27,"./ModalFooter":28,"./ModalHeader":29,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],27:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1565,7 +1595,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],27:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],28:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1585,7 +1615,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],28:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],29:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1622,7 +1652,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],29:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],30:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1764,7 +1794,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],30:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],31:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1868,7 +1898,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],31:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],32:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -1918,7 +1948,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],32:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],33:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1958,7 +1988,7 @@ var Radio = React.createClass({
 
 module.exports = Radio;
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],33:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],34:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -2089,7 +2119,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],34:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],35:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -2178,7 +2208,7 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"../constants":39,"blacklist":undefined,"react/addons":undefined}],35:[function(require,module,exports){
+},{"../constants":40,"blacklist":undefined,"react/addons":undefined}],36:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -2232,7 +2262,7 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"../constants":39,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],36:[function(require,module,exports){
+},{"../constants":40,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],37:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -2299,7 +2329,7 @@ module.exports = _react2['default'].createClass({
 	}
 });
 
-},{"classnames":undefined,"react":undefined}],37:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],38:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -2331,7 +2361,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],38:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],39:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -2363,7 +2393,7 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],39:[function(require,module,exports){
+},{"classnames":undefined,"react/addons":undefined}],40:[function(require,module,exports){
 // breakpoints
 'use strict';
 
@@ -2428,14 +2458,14 @@ for (var numerator = 1; numerator <= 19; numerator++) {
 	denominators(numerator);
 }
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
 module.exports = {
 	selectArrows: require('./selectArrows')
 };
 
-},{"./selectArrows":41}],41:[function(require,module,exports){
+},{"./selectArrows":42}],42:[function(require,module,exports){
 'use strict';
 
 module.exports = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' + '<svg width="7px" height="11px" viewBox="0 0 7 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' + '<path d="M3.5,0 L7,4 L0,4 L3.5,0 Z M3.5,11 L7,7 L0,7 L3.5,11 Z" />' + '</svg>';
@@ -2464,6 +2494,7 @@ exports.FormLabel = require('./components/FormLabel');
 exports.FormNote = require('./components/FormNote');
 exports.FormRow = require('./components/FormRow');
 exports.FormSelect = require('./components/FormSelect');
+exports.Glyph = require('./components/Glyph');
 exports.InputGroup = require('./components/InputGroup');
 exports.InputGroupSection = require('./components/InputGroupSection');
 exports.Modal = require('./components/Modal');
@@ -2481,4 +2512,4 @@ exports.SegmentedControl = require('./components/SegmentedControl');
 exports.Spinner = require('./components/Spinner');
 exports.Table = require('./components/Table');
 
-},{"./components/Alert":2,"./components/BlankState":3,"./components/Button":4,"./components/ButtonGroup":5,"./components/Card":6,"./components/Checkbox":7,"./components/Col":8,"./components/Container":9,"./components/Dropdown":10,"./components/EmailInputGroup":11,"./components/FileDragAndDrop":12,"./components/FileUpload":13,"./components/Form":14,"./components/FormField":15,"./components/FormIcon":16,"./components/FormIconField":17,"./components/FormInput":18,"./components/FormLabel":19,"./components/FormNote":20,"./components/FormRow":21,"./components/FormSelect":22,"./components/InputGroup":23,"./components/InputGroupSection":24,"./components/Modal":25,"./components/ModalBody":26,"./components/ModalFooter":27,"./components/ModalHeader":28,"./components/Pagination":29,"./components/PasswordInputGroup":30,"./components/Pill":31,"./components/Radio":32,"./components/RadioGroup":33,"./components/ResponsiveText":34,"./components/Row":35,"./components/SegmentedControl":36,"./components/Spinner":37,"./components/Table":38}]},{},[]);
+},{"./components/Alert":2,"./components/BlankState":3,"./components/Button":4,"./components/ButtonGroup":5,"./components/Card":6,"./components/Checkbox":7,"./components/Col":8,"./components/Container":9,"./components/Dropdown":10,"./components/EmailInputGroup":11,"./components/FileDragAndDrop":12,"./components/FileUpload":13,"./components/Form":14,"./components/FormField":15,"./components/FormIcon":16,"./components/FormIconField":17,"./components/FormInput":18,"./components/FormLabel":19,"./components/FormNote":20,"./components/FormRow":21,"./components/FormSelect":22,"./components/Glyph":23,"./components/InputGroup":24,"./components/InputGroupSection":25,"./components/Modal":26,"./components/ModalBody":27,"./components/ModalFooter":28,"./components/ModalHeader":29,"./components/Pagination":30,"./components/PasswordInputGroup":31,"./components/Pill":32,"./components/Radio":33,"./components/RadioGroup":34,"./components/ResponsiveText":35,"./components/Row":36,"./components/SegmentedControl":37,"./components/Spinner":38,"./components/Table":39}]},{},[]);

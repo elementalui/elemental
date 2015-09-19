@@ -3356,7 +3356,7 @@ var DemoBox = _react2['default'].createClass({
 
 module.exports = DemoBox;
 
-},{"../../../src/constants":59,"classnames":undefined,"react":undefined}],47:[function(require,module,exports){
+},{"../../../src/constants":60,"classnames":undefined,"react":undefined}],47:[function(require,module,exports){
 /* global Prism */
 'use strict';
 
@@ -5682,6 +5682,357 @@ module.exports = Forms;
 
 'use strict';
 
+var React = require('react');
+
+var _require = require('elemental');
+
+var Glyph = _require.Glyph;
+var Container = _require.Container;
+var Table = _require.Table;
+var Col = _require.Col;
+var Row = _require.Row;
+var Card = _require.Card;
+var Button = _require.Button;
+
+var ExampleSource = require('../components/ExampleSource');
+
+var GLYPH_COLOR_TYPES = ['danger', 'default', 'muted', 'primary', 'success', 'warning'];
+
+var Glyphs = React.createClass({
+	displayName: 'VIEW_Glyphs',
+	renderGlyphColorTypes: function renderGlyphColorTypes() {
+		return GLYPH_COLOR_TYPES.map(function (color) {
+			return React.createElement(
+				'span',
+				null,
+				React.createElement(
+					'code',
+					{ className: 'inline-code' },
+					color
+				),
+				' '
+			);
+		});
+	},
+	renderGlyphColors: function renderGlyphColors(icon) {
+		return GLYPH_COLOR_TYPES.map(function (color) {
+			return React.createElement(
+				'div',
+				{ key: color + icon, className: 'code-example__example-element--inline' },
+				React.createElement(Glyph, { icon: icon, type: color }),
+				' ',
+				color
+			);
+		});
+	},
+	renderGlyphColorsExample: function renderGlyphColorsExample(icon) {
+		var stringRep = '';
+		GLYPH_COLOR_TYPES.forEach(function (color) {
+			stringRep += '<Glyph icon=\'' + icon + '\' type=\'' + color + '\' />\n';
+		});
+		return stringRep;
+	},
+	renderGlyphGrid: function renderGlyphGrid(perRow) {
+		var rows = [];
+		var colSize = '1/' + perRow;
+
+		var row = [];
+		Glyph.names.forEach(function (glyph, index) {
+			if (index % perRow === 0) {
+				rows.push(row);
+				row = [];
+			}
+			row.push(glyph);
+		});
+
+		return rows.map(function (row, index) {
+			var cols = row.map(function (glyph) {
+				return React.createElement(
+					Col,
+					{ key: 'col_' + glyph, sm: colSize },
+					React.createElement(
+						Card,
+						{ className: 'code-example--glyph__icon' },
+						React.createElement(Glyph, { key: glyph, icon: glyph }),
+						React.createElement(
+							'div',
+							{ className: 'code-example--glyph__icon-name' },
+							glyph
+						)
+					)
+				);
+			});
+			return React.createElement(
+				Row,
+				{ key: 'row_' + index },
+				cols
+			);
+		});
+	},
+	render: function render() {
+		return React.createElement(
+			Container,
+			{ maxWidth: 800, className: 'demo-container' },
+			React.createElement(
+				'h1',
+				null,
+				'Glyphs'
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Basic Example'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(Glyph, { icon: 'thumbsup' })
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Glyph icon="thumbsup" />\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'usage-table' },
+				React.createElement(
+					Table,
+					null,
+					React.createElement(
+						'thead',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'th',
+								null,
+								'Prop'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Type'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Default'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Description'
+							)
+						)
+					),
+					React.createElement(
+						'tbody',
+						null,
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'icon'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'string'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'Required. Icon name from Octicons.'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
+								'type'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'enum'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'\'default\''
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'One of:',
+								React.createElement('br', null),
+								this.renderGlyphColorTypes()
+							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Icons'
+			),
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'Elemental uses the wonderful ',
+				React.createElement(
+					'a',
+					{ href: 'https://octicons.github.com/', target: '_blank' },
+					'Octicons Suite from GitHub'
+				)
+			),
+			this.renderGlyphGrid(6),
+			React.createElement(
+				'h2',
+				null,
+				'Colors'
+			),
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'Glyph colors can be customized.'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Glyph colors'
+					),
+					this.renderGlyphColors('heart')
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					this.renderGlyphColorsExample('heart')
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Buttons'
+			),
+			React.createElement(
+				'p',
+				{ className: 'lead' },
+				'Glyphs work well with ',
+				React.createElement(
+					'a',
+					{ href: '/buttons' },
+					'Buttons'
+				),
+				'.'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Buttons'
+					),
+					React.createElement(
+						Button,
+						{ type: 'primary' },
+						React.createElement(Glyph, { icon: 'beaker' })
+					),
+					' ',
+					React.createElement(
+						Button,
+						{ type: 'danger' },
+						React.createElement(Glyph, { icon: 'flame' })
+					),
+					' ',
+					React.createElement(
+						Button,
+						{ type: 'success' },
+						React.createElement(Glyph, { icon: 'squirrel' })
+					),
+					' ',
+					React.createElement(
+						Button,
+						{ type: 'warning' },
+						React.createElement(Glyph, { icon: 'beaker' })
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Button type="primary"><Glyph icon="beaker" /></Button>\n\t\t\t\t\t\t\t<Button type="danger"><Glyph icon="flame" /></Button>\n\t\t\t\t\t\t\t<Button type="success"><Glyph icon="squirrel" /></Button>\n\t\t\t\t\t\t\t<Button type="warning"><Glyph icon="beaker" /></Button>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						'div',
+						{ className: 'code-example__example__heading' },
+						'Link Buttons'
+					),
+					React.createElement(
+						Button,
+						{ type: 'link' },
+						React.createElement(Glyph, { icon: 'bug' })
+					),
+					React.createElement(
+						Button,
+						{ type: 'link' },
+						React.createElement(Glyph, { icon: 'squirrel', type: 'danger' })
+					),
+					React.createElement(
+						Button,
+						{ type: 'link-delete' },
+						React.createElement(Glyph, { icon: 'circle-slash' })
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Button type="link"><Glyph icon="bug" /></Button>\n\t\t\t\t\t\t\t<Button type="link"><Glyph icon="squirrel" type="danger" /></Button>\n\t\t\t\t\t\t\t<Button type="link-delete"><Glyph icon="delete" /></Button>\n\t\t\t\t\t\t'
+				)
+			)
+		);
+	}
+});
+
+module.exports = Glyphs;
+
+},{"../components/ExampleSource":47,"elemental":undefined,"react":undefined}],54:[function(require,module,exports){
+/* eslint no-script-url: 0 */
+
+'use strict';
+
 var React = require('react/addons');
 
 var _require = require('elemental');
@@ -6074,7 +6425,7 @@ module.exports = GridExample;
 </div>
 */
 
-},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react/addons":undefined}],54:[function(require,module,exports){
+},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react/addons":undefined}],55:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -6307,7 +6658,7 @@ var Home = React.createClass({
 
 module.exports = Home;
 
-},{"elemental":undefined,"react":undefined,"react-router":26}],55:[function(require,module,exports){
+},{"elemental":undefined,"react":undefined,"react-router":26}],56:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -7047,15 +7398,15 @@ var Misc = React.createClass({
 					'div',
 					{ className: 'code-example__example' },
 					React.createElement(Pill, { label: 'Create', type: 'success-inverted' }),
-					React.createElement(Pill, { label: 'First Pill', type: 'primary', showClearButton: true }),
-					React.createElement(Pill, { label: 'Second Pill', type: 'primary', showClearButton: true }),
-					React.createElement(Pill, { label: 'Third Pill', type: 'primary', showClearButton: true }),
+					React.createElement(Pill, { label: 'First Pill', type: 'primary', onClear: function () {} }),
+					React.createElement(Pill, { label: 'Second Pill', type: 'primary', onClear: function () {} }),
+					React.createElement(Pill, { label: 'Third Pill', type: 'primary', onClear: function () {} }),
 					React.createElement(Pill, { label: 'Clear All' })
 				),
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Pill label="Create" type="success-inverted" />\n\t\t\t\t\t\t\t<Pill label="First Pill" type="primary" showClearButton />\n\t\t\t\t\t\t\t<Pill label="Second Pill" type="primary" showClearButton />\n\t\t\t\t\t\t\t<Pill label="Third Pill" type="primary" showClearButton />\n\t\t\t\t\t\t\t<Pill label="Clear All" />\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Pill label="Create" type="success-inverted" />\n\t\t\t\t\t\t\t<Pill label="First Pill" type="primary" onClear={this.handleClear} />\n\t\t\t\t\t\t\t<Pill label="Second Pill" type="primary" onClear={this.handleClear} />\n\t\t\t\t\t\t\t<Pill label="Third Pill" type="primary" onClear={this.handleClear} />\n\t\t\t\t\t\t\t<Pill label="Clear All" />\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -7106,30 +7457,6 @@ var Misc = React.createClass({
 							React.createElement(
 								'td',
 								{ className: 'usage-table__prop' },
-								'showClearButton'
-							),
-							React.createElement(
-								'td',
-								{ className: 'usage-table__type' },
-								'bool'
-							),
-							React.createElement(
-								'td',
-								{ className: 'usage-table__default' },
-								'false'
-							),
-							React.createElement(
-								'td',
-								{ className: 'usage-table__description' },
-								'Display the clear button, rendered beside the label'
-							)
-						),
-						React.createElement(
-							'tr',
-							null,
-							React.createElement(
-								'td',
-								{ className: 'usage-table__prop' },
 								'label'
 							),
 							React.createElement(
@@ -7169,7 +7496,7 @@ var Misc = React.createClass({
 							React.createElement(
 								'td',
 								{ className: 'usage-table__description' },
-								'Run when the user clicks the clear button'
+								'Handle clear events on the pill. The clear button is rendered when this is supplied'
 							)
 						),
 						React.createElement(
@@ -7277,7 +7604,7 @@ var Misc = React.createClass({
 
 module.exports = Misc;
 
-},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react":undefined}],56:[function(require,module,exports){
+},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react":undefined}],57:[function(require,module,exports){
 'use strict';
 
 var React = require('react/addons');
@@ -7787,7 +8114,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../components/ExampleSource":47,"elemental":undefined,"react/addons":undefined}],57:[function(require,module,exports){
+},{"../components/ExampleSource":47,"elemental":undefined,"react/addons":undefined}],58:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -8079,13 +8406,13 @@ var Buttons = React.createClass({
 
 module.exports = Buttons;
 
-},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react":undefined}],58:[function(require,module,exports){
+},{"../components/DemoBox":46,"../components/ExampleSource":47,"elemental":undefined,"react":undefined}],59:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Router = require('react-router');
 
-var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'grid', label: 'Grid' }, { value: 'buttons', label: 'Buttons' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
+var NavItems = [{ value: 'css', label: 'CSS' }, { value: 'grid', label: 'Grid' }, { value: 'buttons', label: 'Buttons' }, { value: 'glyphs', label: 'Glyphs' }, { value: 'forms', label: 'Forms' }, { value: 'spinner', label: 'Spinner' }, { value: 'modal', label: 'Modal' }, { value: 'misc', label: 'Misc' }
 // { value: 'date-picker', label: 'Date Picker' }
 ];
 
@@ -8218,6 +8545,7 @@ var routes = React.createElement(
 	React.createElement(Router.Route, { name: 'css', path: basepath + '/css', handler: require('./pages/CSS') }),
 	React.createElement(Router.Route, { name: 'grid', path: basepath + '/grid', handler: require('./pages/Grid') }),
 	React.createElement(Router.Route, { name: 'buttons', path: basepath + '/buttons', handler: require('./pages/Buttons') }),
+	React.createElement(Router.Route, { name: 'glyphs', path: basepath + '/glyphs', handler: require('./pages/Glyphs') }),
 	React.createElement(Router.Route, { name: 'forms', path: basepath + '/forms', handler: require('./pages/Forms') }),
 	React.createElement(Router.Route, { name: 'spinner', path: basepath + '/spinner', handler: require('./pages/Spinner') }),
 	React.createElement(Router.Route, { name: 'modal', path: basepath + '/modal', handler: require('./pages/Modal') }),
@@ -8230,7 +8558,7 @@ Router.run(routes, Router.HistoryLocation, function (Handler) {
 });
 /*<Router.Link to="home">Home</Router.Link>*/ /*<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />*/
 
-},{"./pages/Buttons":50,"./pages/CSS":51,"./pages/Forms":52,"./pages/Grid":53,"./pages/Home":54,"./pages/Misc":55,"./pages/Modal":56,"./pages/Spinner":57,"react":undefined,"react-router":26}],59:[function(require,module,exports){
+},{"./pages/Buttons":50,"./pages/CSS":51,"./pages/Forms":52,"./pages/Glyphs":53,"./pages/Grid":54,"./pages/Home":55,"./pages/Misc":56,"./pages/Modal":57,"./pages/Spinner":58,"react":undefined,"react-router":26}],60:[function(require,module,exports){
 // breakpoints
 'use strict';
 
@@ -8295,4 +8623,4 @@ for (var numerator = 1; numerator <= 19; numerator++) {
 	denominators(numerator);
 }
 
-},{}]},{},[58]);
+},{}]},{},[59]);

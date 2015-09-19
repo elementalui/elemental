@@ -4462,6 +4462,13 @@ a.Button--demo-link:focus {
   display: inline-block;
   margin-top: 4px;
 }
+.code-example--glyph__icon {
+  text-align: center;
+}
+.code-example--glyph__icon-name {
+  font-size: 10px;
+  text-overflow: ellipsis;
+}
 .usage-table {
   min-height: 1px;
   overflow-x: auto;
