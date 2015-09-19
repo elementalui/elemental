@@ -1,5 +1,10 @@
 # Elemental
 
+## v0.4.8 / 2015-09-19
+
+* added; New `Glyph` component, thanks to [Christian Legnitto](https://github.com/LegNeato)
+* fixed; FileUpload: onChange isn't always triggered correctly, thanks [Jinks](https://github.com/JinksPeng)
+
 ## v0.4.7 / 2015-09-18
 
 * fixed; Modal position is now fixed with CSS, and addresses previously janky scrolling behaviour
