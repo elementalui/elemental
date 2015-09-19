@@ -5,6 +5,7 @@ const NavItems = [
 	{ value: 'css',         label: 'CSS' },
 	{ value: 'grid',        label: 'Grid' },
 	{ value: 'buttons',     label: 'Buttons' },
+	{ value: 'glyphs',      label: 'Glyphs' },
 	{ value: 'forms',       label: 'Forms' },
 	{ value: 'spinner',     label: 'Spinner' },
 	{ value: 'modal',       label: 'Modal' },
@@ -102,6 +103,7 @@ var routes = (
 		<Router.Route name="css" path={basepath + '/css'} handler={require('./pages/CSS')} />
 		<Router.Route name="grid" path={basepath + '/grid'} handler={require('./pages/Grid')} />
 		<Router.Route name="buttons" path={basepath + '/buttons'} handler={require('./pages/Buttons')} />
+		<Router.Route name="glyphs" path={basepath + '/glyphs'} handler={require('./pages/Glyphs')} />
 		<Router.Route name="forms" path={basepath + '/forms'} handler={require('./pages/Forms')} />
 		<Router.Route name="spinner" path={basepath + '/spinner'} handler={require('./pages/Spinner')} />
 		<Router.Route name="modal" path={basepath + '/modal'} handler={require('./pages/Modal')} />
