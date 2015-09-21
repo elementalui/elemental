@@ -5,6 +5,12 @@ import Pagination from '../../lib/components/Pagination';
 
 describe('Component: Pagination', function () {
 
+  let children = (component) => {
+    return component.props.children.map(child => {
+      return child.props.children;
+    });
+  };
+
   describe('Feature: Basics', function () {
 
     it('renders correct number of pages', function () {
@@ -18,7 +24,7 @@ describe('Component: Pagination', function () {
 
     it('adds appropriate class to current page element', function () {
 
-      let classFilter = function (el) {
+      let classFilter = (el) => {
         return el.props.className.includes('is-selected');
       };
 
@@ -33,11 +39,7 @@ describe('Component: Pagination', function () {
       Test(<Pagination currentPage={1} pageSize={10} total={45}/>)
       .find('.Pagination__list')
       .test(({Pagination__list}) => {
-        let values = Pagination__list.props.children.map(child=>{
-          return child.props.children
-        })
-
-        expect(values).to.eql([1, 2, 3, 4, 5]);
+        expect(children(Pagination__list)).to.eql([1, 2, 3, 4, 5]);
       });
     });
 
@@ -49,11 +51,7 @@ describe('Component: Pagination', function () {
       Test(<Pagination currentPage={1} pageSize={10} total={100} limit={6} />)
       .find('.Pagination__list')
       .test(({Pagination__list}) => {
-        let values = Pagination__list.props.children.map(child=>{
-          return child.props.children
-        })
-
-        expect(values).to.eql([1, 2, 3, 4, 5, 6, 7, '...']);
+        expect(children(Pagination__list)).to.eql([1, 2, 3, 4, 5, 6, 7, '...']);
       });
 
     });
@@ -62,11 +60,7 @@ describe('Component: Pagination', function () {
       Test(<Pagination currentPage={10} pageSize={10} total={100} limit={6} />)
       .find('.Pagination__list')
       .test(({Pagination__list}) => {
-        let values = Pagination__list.props.children.map(child=>{
-          return child.props.children
-        })
-
-        expect(values).to.eql(['...', 4, 5, 6, 7, 8, 9, 10]);
+        expect(children(Pagination__list)).to.eql(['...', 4, 5, 6, 7, 8, 9, 10]);
       });
     });
 
@@ -74,11 +68,7 @@ describe('Component: Pagination', function () {
       Test(<Pagination currentPage={111} pageSize={10} total={105} limit={6} />)
       .find('.Pagination__list')
       .test(({Pagination__list}) => {
-        let values = Pagination__list.props.children.map(child=>{
-          return child.props.children
-        })
-
-        expect(values).to.eql(['...', 5, 6, 7, 8, 9, 10, 11]);
+        expect(children(Pagination__list)).to.eql(['...', 5, 6, 7, 8, 9, 10, 11]);
       });
     });
 
@@ -86,11 +76,7 @@ describe('Component: Pagination', function () {
       Test(<Pagination currentPage={10} pageSize={25} total={1000} limit={5} />)
       .find('.Pagination__list')
       .test(({Pagination__list}) => {
-        let values = Pagination__list.props.children.map(child=>{
-          return child.props.children
-        })
-
-        expect(values).to.eql(['...', 8, 9, 10, 11, 12, '...']);
+        expect(children(Pagination__list)).to.eql(['...', 8, 9, 10, 11, 12, '...']);
       });
     });
 
@@ -98,11 +84,7 @@ describe('Component: Pagination', function () {
       Test(<Pagination currentPage={10} pageSize={25} total={1000} limit={4} />)
       .find('.Pagination__list')
       .test(({Pagination__list}) => {
-        let values = Pagination__list.props.children.map(child=>{
-          return child.props.children
-        })
-
-        expect(values).to.eql(['...', 8, 9, 10, 11, 12, '...']);
+        expect(children(Pagination__list)).to.eql(['...', 8, 9, 10, 11, 12, '...']);
       });
     });
 
@@ -110,11 +92,7 @@ describe('Component: Pagination', function () {
       Test(<Pagination currentPage={4} pageSize={36} total={130} limit={2} />)
       .find('.Pagination__list')
       .test(({Pagination__list}) => {
-        let values = Pagination__list.props.children.map(child=>{
-          return child.props.children
-        })
-
-        expect(values).to.eql(['...', 2, 3, 4]);
+        expect(children(Pagination__list)).to.eql(['...', 2, 3, 4]);
       });
     });
 
