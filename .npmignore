@@ -1,3 +1,5 @@
+/coverage/
+/test/
 .*
 dist
 public
