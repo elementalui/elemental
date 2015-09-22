@@ -9,3 +9,6 @@ lib
 
 # Dependencies
 node_modules
+
+# Editor files
+*.swp
