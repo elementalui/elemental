@@ -358,6 +358,16 @@ var Forms = React.createClass({
 									<Button>Default</Button>
 								</InputGroup.Section>
 							</InputGroup>
+							<InputGroup contiguous>
+								<InputGroup.Section grow>
+									<FormIconField width="one-half" iconPosition="left" iconColor="default" iconKey="mail">
+										<FormInput placeholder="Email address" name="icon-alignment-left" />
+									</FormIconField>
+								</InputGroup.Section>
+								<InputGroup.Section>
+									<Button type="primary">Send</Button>
+								</InputGroup.Section>
+							</InputGroup>
 					</div>
 					<ExampleSource>
 						{`
@@ -381,6 +391,16 @@ var Forms = React.createClass({
 								</InputGroup.Section>
 								<InputGroup.Section>
 									<Button>Default</Button>
+								</InputGroup.Section>
+							</InputGroup>
+							<InputGroup contiguous>
+								<InputGroup.Section grow>
+									<FormIconField width="one-half" iconPosition="left" iconColor="default" iconKey="mail">
+										<FormInput placeholder="Email address" name="icon-alignment-left" />
+									</FormIconField>
+								</InputGroup.Section>
+								<InputGroup.Section>
+									<Button type="primary">Send</Button>
 								</InputGroup.Section>
 							</InputGroup>
 						`}
