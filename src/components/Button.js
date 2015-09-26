@@ -1,6 +1,8 @@
 var React = require('react');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
+var useSheet = require('../jss').useSheet;
+var style = require('../styles/button');
 
 const BUTTON_SIZES = ['lg', 'sm', 'xs'];
 
@@ -24,7 +26,7 @@ const BUTTON_TYPES = [
 	'link-delete'
 ];
 
-module.exports = React.createClass({
+var Button = React.createClass({
 	displayName: 'Button',
 	propTypes: {
 		block: React.PropTypes.bool,
@@ -42,15 +44,13 @@ module.exports = React.createClass({
 		};
 	},
 	render() {
+		var classes = this.props.sheet.classes;
 		// classes
 		var componentClass = classNames(
-			'Button',
-			'Button--' + this.props.type,
-			(this.props.size ? 'Button--' + this.props.size : null),
-			{
-				'Button--block': this.props.block,
-				'is-active': this.props.isActive
-			},
+			classes[this.props.type],
+			classes[this.props.size],
+			this.props.block ? classes.block : null,
+			this.props.isActive ? classes.active : null,
 			this.props.className
 		);
 
@@ -73,3 +73,5 @@ module.exports = React.createClass({
 		return React.createElement(tag, props, this.props.children);
 	}
 });
+
+module.exports = useSheet(Button, style);
