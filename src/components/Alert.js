@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 var ALERT_TYPES = [

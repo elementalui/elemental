@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
@@ -37,6 +37,7 @@ module.exports = React.createClass({
 	},
 
 	focus() {
+		// If used in the future, will need to import ReactDOM from 'react-dom' to use findDOMNode().
 		// React.findDOMNode(this.refs.target).focus();
 	},
 
