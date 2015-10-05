@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 /*
@@ -60,7 +60,7 @@ var Dropzone = React.createClass({
 	},
 
 	onClick: function () {
-		this.refs.fileInput.getDOMNode().click();
+		this.refs.fileInput.click();
 	},
 
 	render: function() {

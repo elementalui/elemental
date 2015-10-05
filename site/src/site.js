@@ -1,15 +1,17 @@
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, Link, IndexRoute } from'react-router';
+import { createHistory, useBasename } from 'history';
 
 const NavItems = [
-	{ value: 'css',         label: 'CSS' },
-	{ value: 'grid',        label: 'Grid' },
-	{ value: 'buttons',     label: 'Buttons' },
-	{ value: 'glyphs',      label: 'Glyphs' },
-	{ value: 'forms',       label: 'Forms' },
-	{ value: 'spinner',     label: 'Spinner' },
-	{ value: 'modal',       label: 'Modal' },
-	{ value: 'misc',        label: 'Misc' }
+	{ value: '/css',         label: 'CSS' },
+	{ value: '/grid',        label: 'Grid' },
+	{ value: '/buttons',     label: 'Buttons' },
+	{ value: '/glyphs',      label: 'Glyphs' },
+	{ value: '/forms',       label: 'Forms' },
+	{ value: '/spinner',     label: 'Spinner' },
+	{ value: '/modal',       label: 'Modal' },
+	{ value: '/misc',        label: 'Misc' }
 	// { value: 'date-picker', label: 'Date Picker' }
 ];
 
@@ -49,17 +51,17 @@ var PageNav = React.createClass({
 		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
 		var menuItems = NavItems.map(function(item) {
 			return (
-				<Router.Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>
+				<Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>
 					<span className="primary-nav__item-inner">{item.label}</span>
-				</Router.Link>
+				</Link>
 			);
 		});
 		return (
 			<nav className="primary-nav">
-				<Router.Link to="home" className="primary-nav__brand special" title="Home">
+				<Link to="/home" className="primary-nav__brand special" title="Home">
 					<img src="./images/elemental-logo-paths.svg" className="primary-nav__brand-src" />
-				</Router.Link>
-				{/*<Router.Link to="home">Home</Router.Link>*/}
+				</Link>
+				{/*<Link to="home">Home</Link>*/}
 				<button onClick={this.toggleMenu} className="primary-nav__item primary-nav-menu-trigger">
 					<span className="primary-nav-menu-trigger-icon octicon octicon-navicon" />
 					<span className="primary-nav-menu-trigger-label">{this.state.mobileMenuIsVisible ? 'Close' : 'Menu'}</span>
@@ -83,7 +85,7 @@ var App = React.createClass({
 			<div className="page-wrapper">
 				<PageNav />
 				<div className="page-body">
-					<Router.RouteHandler/>
+					{this.props.children}
 				</div>
 				<div className="page-footer">
 					<div className="demo-container container">
@@ -98,21 +100,27 @@ var App = React.createClass({
 var basepath = (window.location.pathname.slice(0, 10) === '/elemental') ? '/elemental' : '';
 
 var routes = (
-	<Router.Route name="app" path={basepath + '/'} handler={App}>
-		<Router.Route name="home" path={basepath + '/'} handler={require('./pages/Home')} />
-		<Router.Route name="css" path={basepath + '/css'} handler={require('./pages/CSS')} />
-		<Router.Route name="grid" path={basepath + '/grid'} handler={require('./pages/Grid')} />
-		<Router.Route name="buttons" path={basepath + '/buttons'} handler={require('./pages/Buttons')} />
-		<Router.Route name="glyphs" path={basepath + '/glyphs'} handler={require('./pages/Glyphs')} />
-		<Router.Route name="forms" path={basepath + '/forms'} handler={require('./pages/Forms')} />
-		<Router.Route name="spinner" path={basepath + '/spinner'} handler={require('./pages/Spinner')} />
-		<Router.Route name="modal" path={basepath + '/modal'} handler={require('./pages/Modal')} />
-		<Router.Route name="misc" path={basepath + '/misc'} handler={require('./pages/Misc')} />
-		{/*<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />*/}
-		<Router.DefaultRoute handler={require('./pages/Home')} />
-	</Router.Route>
+	<Route path="/" component={App}>
+		<IndexRoute component={require('./pages/Home')} />
+		<Route path="home" component={require('./pages/Home')} />
+		<Route path="css" component={require('./pages/CSS')} />
+		<Route path="grid" component={require('./pages/Grid')} />
+		<Route path="buttons" component={require('./pages/Buttons')} />
+		<Route path="glyphs" component={require('./pages/Glyphs')} />
+		<Route path="forms" component={require('./pages/Forms')} />
+		<Route path="spinner" component={require('./pages/Spinner')} />
+		<Route path="modal" component={require('./pages/Modal')} />
+		<Route path="misc" component={require('./pages/Misc')} />
+		<Route path="*" component={require('./pages/Home')} />
+	</Route>
 );
 
-Router.run(routes, Router.HistoryLocation, function (Handler) {
-	React.render(<Handler/>, document.body);
-});
+//{/*<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />*/}
+
+//Router.run(routes, Router.HistoryLocation, function (Handler) {
+//	React.render(<Handler/>, document.body);
+//});
+
+let history = createHistory();
+
+ReactDOM.render(<Router history={history}>{routes}</Router>, document.body);

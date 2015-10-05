@@ -1,8 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import blacklist from 'blacklist';
 import classNames from 'classnames';
 
-const Transition = React.addons.CSSTransitionGroup;
+const Transition = CSSTransitionGroup;
 const TransitionPortal = React.createClass({
 	displayName: 'TransitionPortal',
 	portalElement: null,
@@ -17,7 +19,7 @@ const TransitionPortal = React.createClass({
 		document.body.removeChild(this.portalElement);
 	},
 	componentDidUpdate() {
-		React.render(<Transition {...this.props}>{this.props.children}</Transition>, this.portalElement);
+		ReactDOM.render(<Transition {...this.props}>{this.props.children}</Transition>, this.portalElement);
 	}
 });
 

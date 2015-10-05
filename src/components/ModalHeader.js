@@ -1,5 +1,5 @@
 var classnames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'ModalHeader',
