@@ -19,14 +19,14 @@
     "eslint": "^1.6.0",
     "eslint-plugin-react": "^3.5.1",
     "gulp": "^3.9.0",
-    "react": ">=0.14.0-rc1",
-    "react-dom": ">=0.14.0-rc1",
-    "react-addons-css-transition-group": "^0.14.0-rc1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-addons-css-transition-group": "^0.14.0",
     "react-component-gulp-tasks": "^0.7.6",
     "react-router": "1.0.0-rc1"
   },
   "peerDependencies": {
-    "react": "^0.13.0 || 0.14.0-rc1"
+    "react": "^0.13.0 || ^0.14.0"
   },
   "browserify-shim": {
     "react": "global:React"
