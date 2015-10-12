@@ -123,4 +123,4 @@ var routes = (
 
 let history = createHistory();
 
-ReactDOM.render(<Router history={history}>{routes}</Router>, document.body);
+ReactDOM.render(<Router history={history}>{routes}</Router>, document.getElementById('app'));
