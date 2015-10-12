@@ -1,6 +1,6 @@
 /* eslint no-script-url: 0 */
 
-const React = require('react/addons');
+const React = require('react');
 const classNames = require('classnames');
 
 const ExampleSource = require('../components/ExampleSource');
@@ -123,7 +123,9 @@ var CSSExamples = React.createClass({
 								<col width="10%" />
 							</colgroup>
 							<thead>
-								{tableHeaderCols}
+								<tr>
+									{tableHeaderCols}
+								</tr>
 							</thead>
 							<tbody>
 								{tableRows}

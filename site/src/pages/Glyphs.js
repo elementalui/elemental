@@ -18,7 +18,7 @@ var Glyphs = React.createClass({
 	displayName: 'VIEW_Glyphs',
 	renderGlyphColorTypes() {
 		return GLYPH_COLOR_TYPES.map(color => {
-			return <span><code className="inline-code">{color}</code>{' '}</span>;
+			return <span key={'color_'+color}><code className="inline-code">{color}</code>{' '}</span>;
 		});
 	},
 	renderGlyphColors(icon) {

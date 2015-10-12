@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+const React = require('react');
+const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 const blacklist = require('blacklist');
 const classNames = require('classnames');
 const Button = require('./Button');

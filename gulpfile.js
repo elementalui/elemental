@@ -10,7 +10,8 @@ var taskConfig = {
 			'blacklist',
 			'classnames',
 			'react',
-			'react/addons'
+			'react-dom',
+			'react-addons-css-transition-group'
 		],
 		less: {
 			path: 'less',

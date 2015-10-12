@@ -19,7 +19,7 @@ var ExampleSource = React.createClass({
 		this.highlight();
 	},
 	highlight () {
-		Prism.highlightElement(this.refs.code.getDOMNode(), true);
+		Prism.highlightElement(this.refs.code, true);
 	},
 	fixIndentation (children) {
 		if (typeof children !== 'string') return children;
