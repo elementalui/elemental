@@ -18,7 +18,7 @@
     "eslint": "^1.6.0",
     "eslint-plugin-react": "^3.5.1",
     "gulp": "^3.9.0",
-    "history": "^1.12.5",
+    "history": "^1.12.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-addons-css-transition-group": "^0.14.0",
