@@ -1,5 +1,9 @@
 # Elemental
 
+## v0.5.0 / 2015-10-12
+
+Elemental UI is updated for React 0.14. If you're still using React 0.13, please continue to use `elemental@0.4.x`. There are no functional differences between v0.5.0 and v0.4.8.
+
 ## v0.4.8 / 2015-09-19
 
 * added; New `Glyph` component, thanks to [Christian Legnitto](https://github.com/LegNeato)
