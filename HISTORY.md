@@ -1,5 +1,10 @@
 # Elemental
 
+## v0.5.1 / 2015-10-16
+
+* fixed; arrow positioning on `FormSelect` thanks to [NogsMPLS](https://github.com/NogsMPLS)
+* added; setting custom widths on `Modal`, explicitly set a numeric width or provide one of three sizes; 'small', 'medium', 'large' - 320px, 640px, 960px respectively.
+
 ## v0.5.0 / 2015-10-12
 
 Elemental UI is updated for React 0.14. If you're still using React 0.13, please continue to use `elemental@0.4.x`. There are no functional differences between v0.5.0 and v0.4.8.
