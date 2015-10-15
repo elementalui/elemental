@@ -72,8 +72,11 @@
 @media (min-width: @screen-sm) {
 	.Modal-dialog {
 		margin: 80px auto;
-		width: @screen-sm;
+		max-width: 100%;
 	}
+	.Modal-dialog--small  { width: 320px; }
+	.Modal-dialog--medium { width: 640px; }
+	.Modal-dialog--large  { width: 960px; }
 }
 
 

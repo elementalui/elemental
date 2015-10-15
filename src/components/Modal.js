@@ -29,6 +29,15 @@ module.exports = React.createClass({
 		className: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
 		onCancel: React.PropTypes.func,
+		width: React.PropTypes.oneOfType([
+			React.PropTypes.oneOf(['small', 'medium', 'large']),
+			React.PropTypes.number,
+		]),
+	},
+	getDefaultProps () {
+		return {
+			width: 'medium'
+		};
 	},
 	componentWillReceiveProps: function(nextProps) {
 		if (nextProps.isOpen) {
@@ -51,8 +60,12 @@ module.exports = React.createClass({
 	renderDialog() {
 		if (!this.props.isOpen) return;
 
+		let dialogClassname = classNames('Modal-dialog', (this.props.width && isNaN(this.props.width)) ? (
+			'Modal-dialog--' + this.props.width
+		) : null);
+
 		return (
-			<div className="Modal-dialog">
+			<div className={dialogClassname} style={(this.props.width && !isNaN(this.props.width)) ? { width: this.props.width } : null}>
 				<div className="Modal-content">
 					{this.props.children}
 				</div>
