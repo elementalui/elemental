@@ -22,7 +22,7 @@ module.exports = {
 },{}],2:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 var ALERT_TYPES = ['danger', 'error', // alias for danger
@@ -46,12 +46,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],3:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],3:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'BlankState',
@@ -73,10 +73,10 @@ module.exports.Heading = React.createClass({
 	}
 });
 
-},{"react/addons":undefined}],4:[function(require,module,exports){
+},{"react":undefined}],4:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
 
@@ -123,13 +123,13 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],5:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],5:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var classnames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'ButtonGroup',
@@ -143,7 +143,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],6:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],6:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -154,7 +154,7 @@ var _constants = require('../constants');
 
 var _constants2 = _interopRequireDefault(_constants);
 
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'Card',
@@ -174,14 +174,14 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../constants":40,"react/addons":undefined}],7:[function(require,module,exports){
+},{"../constants":40,"react":undefined}],7:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var blacklist = require('blacklist');
 var classNames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 var Checkbox = React.createClass({
 	displayName: 'Checkbox',
@@ -199,7 +199,7 @@ var Checkbox = React.createClass({
 
 	componentDidMount: function componentDidMount() {
 		if (this.props.focusOnMount) {
-			this.refs.target.getDOMNode().focus();
+			this.refs.target.focus();
 		}
 		this.setIndeterminate(this.props.indeterminate);
 	},
@@ -209,7 +209,7 @@ var Checkbox = React.createClass({
 	},
 
 	setIndeterminate: function setIndeterminate(value) {
-		this.refs.target.getDOMNode().indeterminate = value;
+		this.refs.target.indeterminate = value;
 	},
 
 	render: function render() {
@@ -234,16 +234,16 @@ var Checkbox = React.createClass({
 
 module.exports = Checkbox;
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],8:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],8:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _reactAddons = require('react/addons');
+var _react = require('react');
 
-var _reactAddons2 = _interopRequireDefault(_reactAddons);
+var _react2 = _interopRequireDefault(_react);
 
 var _blacklist = require('blacklist');
 
@@ -253,20 +253,20 @@ var _constants = require('../constants');
 
 var _constants2 = _interopRequireDefault(_constants);
 
-module.exports = _reactAddons2['default'].createClass({
+module.exports = _react2['default'].createClass({
 	displayName: 'Col',
 	propTypes: {
 		/* eslint-disable react/jsx-sort-prop-types */
-		basis: _reactAddons2['default'].PropTypes.oneOfType([_reactAddons2['default'].PropTypes.number, // allow pixels
-		_reactAddons2['default'].PropTypes.string]),
+		basis: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.number, // allow pixels
+		_react2['default'].PropTypes.string]),
 		// allow percentage
-		children: _reactAddons2['default'].PropTypes.node,
-		gutter: _reactAddons2['default'].PropTypes.number,
-		style: _reactAddons2['default'].PropTypes.object,
-		lg: _reactAddons2['default'].PropTypes.string, // width as a percentage or fraction
-		md: _reactAddons2['default'].PropTypes.string, // width as a percentage or fraction
-		sm: _reactAddons2['default'].PropTypes.string, // width as a percentage or fraction
-		xs: _reactAddons2['default'].PropTypes.string },
+		children: _react2['default'].PropTypes.node,
+		gutter: _react2['default'].PropTypes.number,
+		style: _react2['default'].PropTypes.object,
+		lg: _react2['default'].PropTypes.string, // width as a percentage or fraction
+		md: _react2['default'].PropTypes.string, // width as a percentage or fraction
+		sm: _react2['default'].PropTypes.string, // width as a percentage or fraction
+		xs: _react2['default'].PropTypes.string },
 	// width as a percentage or fraction
 	/* eslint-enable */
 	getDefaultProps: function getDefaultProps() {
@@ -338,20 +338,20 @@ module.exports = _reactAddons2['default'].createClass({
 
 		var props = (0, _blacklist2['default'])(this.props, 'basis', 'gutter', 'style', 'xs', 'sm', 'md', 'lg');
 
-		return _reactAddons2['default'].createElement('div', _extends({ style: _extends(columnStyle, this.props.style) }, props));
+		return _react2['default'].createElement('div', _extends({ style: _extends(columnStyle, this.props.style) }, props));
 	}
 });
 
-},{"../constants":40,"blacklist":undefined,"react/addons":undefined}],9:[function(require,module,exports){
+},{"../constants":40,"blacklist":undefined,"react":undefined}],9:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _reactAddons = require('react/addons');
+var _react = require('react');
 
-var _reactAddons2 = _interopRequireDefault(_reactAddons);
+var _react2 = _interopRequireDefault(_react);
 
 var _blacklist = require('blacklist');
 
@@ -361,14 +361,14 @@ var _constants = require('../constants');
 
 var _constants2 = _interopRequireDefault(_constants);
 
-module.exports = _reactAddons2['default'].createClass({
+module.exports = _react2['default'].createClass({
 	displayName: 'Container',
 	propTypes: {
-		children: _reactAddons2['default'].PropTypes.node.isRequired,
-		clearfix: _reactAddons2['default'].PropTypes.bool,
-		gutter: _reactAddons2['default'].PropTypes.number,
-		maxWidth: _reactAddons2['default'].PropTypes.number,
-		style: _reactAddons2['default'].PropTypes.object
+		children: _react2['default'].PropTypes.node.isRequired,
+		clearfix: _react2['default'].PropTypes.bool,
+		gutter: _react2['default'].PropTypes.number,
+		maxWidth: _react2['default'].PropTypes.number,
+		style: _react2['default'].PropTypes.object
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -391,23 +391,23 @@ module.exports = _reactAddons2['default'].createClass({
 		var clearfixStyle = { clear: 'both', display: 'table' };
 		var props = (0, _blacklist2['default'])(this.props, 'gutter', 'maxWidth', 'style');
 
-		return this.props.clearfix ? _reactAddons2['default'].createElement(
+		return this.props.clearfix ? _react2['default'].createElement(
 			'div',
 			_extends({ style: _extends(containerStyle, this.props.style) }, props),
-			_reactAddons2['default'].createElement('span', { style: clearfixStyle }),
+			_react2['default'].createElement('span', { style: clearfixStyle }),
 			this.props.children,
-			_reactAddons2['default'].createElement('span', { style: clearfixStyle })
-		) : _reactAddons2['default'].createElement('div', _extends({ style: _extends(containerStyle, this.props.style) }, props));
+			_react2['default'].createElement('span', { style: clearfixStyle })
+		) : _react2['default'].createElement('div', _extends({ style: _extends(containerStyle, this.props.style) }, props));
 	}
 });
 
-},{"../constants":40,"blacklist":undefined,"react/addons":undefined}],10:[function(require,module,exports){
+},{"../constants":40,"blacklist":undefined,"react":undefined}],10:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var React = require('react');
+var Transition = require('react-addons-css-transition-group');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 var Button = require('./Button');
@@ -452,7 +452,6 @@ module.exports = React.createClass({
 		}
 	},
 	handleKeyDown: function handleKeyDown(e) {
-		console.log(e);
 		if (e.keyCode === ESC_KEYCODE) {
 			this.closeDropdown();
 		}
@@ -540,8 +539,8 @@ module.exports = React.createClass({
 			_extends({ className: dropdownClass }, props),
 			React.Children.count(this.props.children) ? this.renderChildren() : this.renderButton(),
 			React.createElement(
-				ReactCSSTransitionGroup,
-				{ transitionName: 'Dropdown-menu' },
+				Transition,
+				{ transitionName: 'Dropdown-menu', transitionEnterTimeout: 100, transitionLeaveTimeout: 100 },
 				this.renderDropdownMenu()
 			),
 			this.renderDropdownMenuBackground()
@@ -549,10 +548,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Button":4,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],11:[function(require,module,exports){
+},{"./Button":4,"blacklist":undefined,"classnames":undefined,"react":undefined,"react-addons-css-transition-group":undefined}],11:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 var REGEXP_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -653,10 +652,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],12:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],12:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 /*
@@ -720,7 +719,7 @@ var Dropzone = React.createClass({
 	},
 
 	onClick: function onClick() {
-		this.refs.fileInput.getDOMNode().click();
+		this.refs.fileInput.click();
 	},
 
 	render: function render() {
@@ -746,12 +745,12 @@ var Dropzone = React.createClass({
 
 module.exports = Dropzone;
 
-},{"classnames":undefined,"react/addons":undefined}],13:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],13:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 
 var Button = require('./Button');
@@ -779,12 +778,12 @@ module.exports = React.createClass({
 		};
 	},
 	componentDidMount: function componentDidMount() {
-		this.refs.fileInput.getDOMNode().addEventListener('click', function () {
+		this.refs.fileInput.addEventListener('click', function () {
 			this.value = '';
 		}, false);
 	},
 	triggerFileBrowser: function triggerFileBrowser() {
-		this.refs.fileInput.getDOMNode().click();
+		this.refs.fileInput.click();
 	},
 	handleChange: function handleChange(e) {
 		var self = this;
@@ -879,12 +878,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Button":4,"./Spinner":38,"blacklist":undefined,"react/addons":undefined}],14:[function(require,module,exports){
+},{"./Button":4,"./Spinner":38,"blacklist":undefined,"react":undefined}],14:[function(require,module,exports){
 'use strict';
 
 var blacklist = require('blacklist');
 var classnames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'Form',
@@ -908,12 +907,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],15:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],15:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
@@ -952,10 +951,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],16:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],16:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 var Spinner = require('./Spinner');
 
@@ -981,10 +980,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"./Spinner":38,"classnames":undefined,"react/addons":undefined}],17:[function(require,module,exports){
+},{"../Octicons":1,"./Spinner":38,"classnames":undefined,"react":undefined}],17:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
@@ -1037,12 +1036,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../Octicons":1,"./FormField":15,"./Spinner":38,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],18:[function(require,module,exports){
+},{"../Octicons":1,"./FormField":15,"./Spinner":38,"blacklist":undefined,"classnames":undefined,"react":undefined}],18:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
@@ -1078,6 +1077,7 @@ module.exports = React.createClass({
 	},
 
 	focus: function focus() {
+		// If used in the future, will need to import ReactDOM from 'react-dom' to use findDOMNode().
 		// React.findDOMNode(this.refs.target).focus();
 	},
 
@@ -1112,12 +1112,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],19:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],19:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
@@ -1153,12 +1153,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],20:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],20:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
@@ -1192,10 +1192,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],21:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],21:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1214,7 +1214,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],22:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],22:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1229,33 +1229,33 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _reactAddons = require('react/addons');
+var _react = require('react');
 
-var _reactAddons2 = _interopRequireDefault(_reactAddons);
+var _react2 = _interopRequireDefault(_react);
 
 var _icons = require('../icons');
 
 var _icons2 = _interopRequireDefault(_icons);
 
-module.exports = _reactAddons2['default'].createClass({
+module.exports = _react2['default'].createClass({
 	displayName: 'FormSelect',
 	propTypes: {
-		alwaysValidate: _reactAddons2['default'].PropTypes.bool,
-		className: _reactAddons2['default'].PropTypes.string,
-		disabled: _reactAddons2['default'].PropTypes.bool,
-		firstOption: _reactAddons2['default'].PropTypes.string,
-		htmlFor: _reactAddons2['default'].PropTypes.string,
-		id: _reactAddons2['default'].PropTypes.string,
-		label: _reactAddons2['default'].PropTypes.string,
-		onChange: _reactAddons2['default'].PropTypes.func.isRequired,
-		options: _reactAddons2['default'].PropTypes.arrayOf(_reactAddons2['default'].PropTypes.shape({
-			label: _reactAddons2['default'].PropTypes.string,
-			value: _reactAddons2['default'].PropTypes.string
+		alwaysValidate: _react2['default'].PropTypes.bool,
+		className: _react2['default'].PropTypes.string,
+		disabled: _react2['default'].PropTypes.bool,
+		firstOption: _react2['default'].PropTypes.string,
+		htmlFor: _react2['default'].PropTypes.string,
+		id: _react2['default'].PropTypes.string,
+		label: _react2['default'].PropTypes.string,
+		onChange: _react2['default'].PropTypes.func.isRequired,
+		options: _react2['default'].PropTypes.arrayOf(_react2['default'].PropTypes.shape({
+			label: _react2['default'].PropTypes.string,
+			value: _react2['default'].PropTypes.string
 		})).isRequired,
-		prependEmptyOption: _reactAddons2['default'].PropTypes.bool,
-		required: _reactAddons2['default'].PropTypes.bool,
-		requiredMessage: _reactAddons2['default'].PropTypes.string,
-		value: _reactAddons2['default'].PropTypes.string
+		prependEmptyOption: _react2['default'].PropTypes.bool,
+		required: _react2['default'].PropTypes.bool,
+		requiredMessage: _react2['default'].PropTypes.string,
+		value: _react2['default'].PropTypes.string
 	},
 
 	getDefaultProps: function getDefaultProps() {
@@ -1320,7 +1320,7 @@ module.exports = _reactAddons2['default'].createClass({
 			'FormSelect__arrows--disabled': this.props.disabled
 		});
 
-		return _reactAddons2['default'].createElement('span', { dangerouslySetInnerHTML: { __html: icon }, className: iconClassname });
+		return _react2['default'].createElement('span', { dangerouslySetInnerHTML: { __html: icon }, className: iconClassname });
 	},
 
 	render: function render() {
@@ -1335,7 +1335,7 @@ module.exports = _reactAddons2['default'].createClass({
 		// validation message
 		var validationMessage = undefined;
 		if (!this.state.isValid) {
-			validationMessage = _reactAddons2['default'].createElement(
+			validationMessage = _react2['default'].createElement(
 				'div',
 				{ className: 'form-validation is-invalid' },
 				this.props.requiredMessage
@@ -1344,7 +1344,7 @@ module.exports = _reactAddons2['default'].createClass({
 
 		// dynamic elements
 		var forAndID = this.props.htmlFor || this.props.id;
-		var componentLabel = this.props.label ? _reactAddons2['default'].createElement(
+		var componentLabel = this.props.label ? _react2['default'].createElement(
 			'label',
 			{ className: 'FormLabel', htmlFor: forAndID },
 			this.props.label
@@ -1352,39 +1352,43 @@ module.exports = _reactAddons2['default'].createClass({
 
 		// options
 		var options = this.props.options.map(function (opt, i) {
-			return _reactAddons2['default'].createElement(
+			return _react2['default'].createElement(
 				'option',
 				{ key: 'option-' + i, value: opt.value },
 				opt.label
 			);
 		});
 		if (this.props.prependEmptyOption || this.props.firstOption) {
-			options.unshift(_reactAddons2['default'].createElement(
+			options.unshift(_react2['default'].createElement(
 				'option',
 				{ key: 'option-blank', value: '' },
 				this.props.firstOption ? this.props.firstOption : 'Select...'
 			));
 		}
 
-		return _reactAddons2['default'].createElement(
+		return _react2['default'].createElement(
 			'div',
 			{ className: componentClass },
 			componentLabel,
-			_reactAddons2['default'].createElement(
-				'select',
-				_extends({ className: 'FormInput FormSelect', id: forAndID, onChange: this.handleChange, onBlur: this.handleBlur }, props),
-				options
+			_react2['default'].createElement(
+				'div',
+				{ className: 'u-pos-relative' },
+				_react2['default'].createElement(
+					'select',
+					_extends({ className: 'FormInput FormSelect', id: forAndID, onChange: this.handleChange, onBlur: this.handleBlur }, props),
+					options
+				),
+				this.renderIcon(_icons2['default'].selectArrows)
 			),
-			this.renderIcon(_icons2['default'].selectArrows),
 			validationMessage
 		);
 	}
 });
 
-},{"../icons":41,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],23:[function(require,module,exports){
+},{"../icons":41,"blacklist":undefined,"classnames":undefined,"react":undefined}],23:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 var icons = require('../Octicons').map;
@@ -1407,12 +1411,12 @@ var Glyph = React.createClass({
 module.exports = Glyph;
 module.exports.names = validNames;
 
-},{"../Octicons":1,"classnames":undefined,"react/addons":undefined}],24:[function(require,module,exports){
+},{"../Octicons":1,"classnames":undefined,"react":undefined}],24:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1434,12 +1438,12 @@ module.exports = React.createClass({
 // expose the child to the top level export
 module.exports.Section = require('./InputGroupSection');
 
-},{"./InputGroupSection":25,"classnames":undefined,"react/addons":undefined}],25:[function(require,module,exports){
+},{"./InputGroupSection":25,"classnames":undefined,"react":undefined}],25:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1458,16 +1462,24 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],26:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],26:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _reactAddons = require('react/addons');
+var _react = require('react');
 
-var _reactAddons2 = _interopRequireDefault(_reactAddons);
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
+
+var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
 var _blacklist = require('blacklist');
 
@@ -1477,8 +1489,7 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var Transition = _reactAddons2['default'].addons.CSSTransitionGroup;
-var TransitionPortal = _reactAddons2['default'].createClass({
+var TransitionPortal = _react2['default'].createClass({
 	displayName: 'TransitionPortal',
 	portalElement: null,
 	render: function render() {
@@ -1494,21 +1505,27 @@ var TransitionPortal = _reactAddons2['default'].createClass({
 		document.body.removeChild(this.portalElement);
 	},
 	componentDidUpdate: function componentDidUpdate() {
-		_reactAddons2['default'].render(_reactAddons2['default'].createElement(
-			Transition,
+		_reactDom2['default'].render(_react2['default'].createElement(
+			_reactAddonsCssTransitionGroup2['default'],
 			this.props,
 			this.props.children
 		), this.portalElement);
 	}
 });
 
-module.exports = _reactAddons2['default'].createClass({
+module.exports = _react2['default'].createClass({
 	displayName: 'Modal',
 	propTypes: {
-		backdropClosesModal: _reactAddons2['default'].PropTypes.bool,
-		className: _reactAddons2['default'].PropTypes.string,
-		isOpen: _reactAddons2['default'].PropTypes.bool,
-		onCancel: _reactAddons2['default'].PropTypes.func
+		backdropClosesModal: _react2['default'].PropTypes.bool,
+		className: _react2['default'].PropTypes.string,
+		isOpen: _react2['default'].PropTypes.bool,
+		onCancel: _react2['default'].PropTypes.func,
+		width: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.oneOf(['small', 'medium', 'large']), _react2['default'].PropTypes.number])
+	},
+	getDefaultProps: function getDefaultProps() {
+		return {
+			width: 'medium'
+		};
 	},
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		if (nextProps.isOpen) {
@@ -1531,10 +1548,12 @@ module.exports = _reactAddons2['default'].createClass({
 	renderDialog: function renderDialog() {
 		if (!this.props.isOpen) return;
 
-		return _reactAddons2['default'].createElement(
+		var dialogClassname = (0, _classnames2['default'])('Modal-dialog', this.props.width && isNaN(this.props.width) ? 'Modal-dialog--' + this.props.width : null);
+
+		return _react2['default'].createElement(
 			'div',
-			{ className: 'Modal-dialog' },
-			_reactAddons2['default'].createElement(
+			{ className: dialogClassname, style: this.props.width && !isNaN(this.props.width) ? { width: this.props.width } : null },
+			_react2['default'].createElement(
 				'div',
 				{ className: 'Modal-content' },
 				this.props.children
@@ -1544,7 +1563,7 @@ module.exports = _reactAddons2['default'].createClass({
 	renderBackdrop: function renderBackdrop() {
 		if (!this.props.isOpen) return;
 
-		return _reactAddons2['default'].createElement('div', { className: 'Modal-backdrop', onClick: this.props.backdropClosesModal ? this.props.onCancel : null });
+		return _react2['default'].createElement('div', { className: 'Modal-backdrop', onClick: this.props.backdropClosesModal ? this.props.onCancel : null });
 	},
 	render: function render() {
 		var className = (0, _classnames2['default'])('Modal', {
@@ -1553,17 +1572,17 @@ module.exports = _reactAddons2['default'].createClass({
 
 		var props = (0, _blacklist2['default'])(this.props, 'backdropClosesModal', 'className', 'isOpen', 'onCancel');
 
-		return _reactAddons2['default'].createElement(
+		return _react2['default'].createElement(
 			'div',
 			null,
-			_reactAddons2['default'].createElement(
+			_react2['default'].createElement(
 				TransitionPortal,
-				_extends({}, props, { 'data-modal': 'true', className: className, onClick: this.handleModalClick, transitionName: 'Modal-dialog', component: 'div' }),
+				_extends({}, props, { 'data-modal': 'true', className: className, onClick: this.handleModalClick, transitionName: 'Modal-dialog', transitionEnterTimeout: 260, transitionLeaveTimeout: 140, component: 'div' }),
 				this.renderDialog()
 			),
-			_reactAddons2['default'].createElement(
+			_react2['default'].createElement(
 				TransitionPortal,
-				{ transitionName: 'Modal-background', component: 'div' },
+				{ transitionName: 'Modal-background', transitionEnterTimeout: 140, transitionLeaveTimeout: 240, component: 'div' },
 				this.renderBackdrop()
 			)
 		);
@@ -1575,13 +1594,13 @@ module.exports.Body = require('./ModalBody');
 module.exports.Footer = require('./ModalFooter');
 module.exports.Header = require('./ModalHeader');
 
-},{"./ModalBody":27,"./ModalFooter":28,"./ModalHeader":29,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],27:[function(require,module,exports){
+},{"./ModalBody":27,"./ModalFooter":28,"./ModalHeader":29,"blacklist":undefined,"classnames":undefined,"react":undefined,"react-addons-css-transition-group":undefined,"react-dom":undefined}],27:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var classnames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'ModalBody',
@@ -1595,13 +1614,13 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],28:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],28:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var classnames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'ModalFooter',
@@ -1615,13 +1634,13 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],29:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],29:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var classnames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'ModalHeader',
@@ -1652,10 +1671,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],30:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],30:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -1794,10 +1813,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],31:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],31:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 function validatePassword(value) {
@@ -1898,10 +1917,10 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],32:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],32:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
@@ -1948,14 +1967,14 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],33:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],33:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var blacklist = require('blacklist');
 var classNames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 var Radio = React.createClass({
 	displayName: 'Radio',
@@ -1988,12 +2007,12 @@ var Radio = React.createClass({
 
 module.exports = Radio;
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],34:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],34:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var React = require('react/addons');
+var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
@@ -2119,14 +2138,14 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],35:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined}],35:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _reactAddons = require('react/addons');
+var _react = require('react');
 
-var _reactAddons2 = _interopRequireDefault(_reactAddons);
+var _react2 = _interopRequireDefault(_react);
 
 var _blacklist = require('blacklist');
 
@@ -2136,17 +2155,17 @@ var _constants = require('../constants');
 
 var _constants2 = _interopRequireDefault(_constants);
 
-module.exports = _reactAddons2['default'].createClass({
+module.exports = _react2['default'].createClass({
 	displayName: 'ResponsiveText',
 	propTypes: {
-		hiddenLG: _reactAddons2['default'].PropTypes.string,
-		hiddenMD: _reactAddons2['default'].PropTypes.string,
-		hiddenSM: _reactAddons2['default'].PropTypes.string,
-		hiddenXS: _reactAddons2['default'].PropTypes.string,
-		visibleLG: _reactAddons2['default'].PropTypes.string,
-		visibleMD: _reactAddons2['default'].PropTypes.string,
-		visibleSM: _reactAddons2['default'].PropTypes.string,
-		visibleXS: _reactAddons2['default'].PropTypes.string
+		hiddenLG: _react2['default'].PropTypes.string,
+		hiddenMD: _react2['default'].PropTypes.string,
+		hiddenSM: _react2['default'].PropTypes.string,
+		hiddenXS: _react2['default'].PropTypes.string,
+		visibleLG: _react2['default'].PropTypes.string,
+		visibleMD: _react2['default'].PropTypes.string,
+		visibleSM: _react2['default'].PropTypes.string,
+		visibleXS: _react2['default'].PropTypes.string
 	},
 	getInitialState: function getInitialState() {
 		return {
@@ -2200,7 +2219,7 @@ module.exports = _reactAddons2['default'].createClass({
 			'visibleLG': true
 		});
 
-		return _reactAddons2['default'].createElement(
+		return _react2['default'].createElement(
 			'span',
 			props,
 			text
@@ -2208,16 +2227,16 @@ module.exports = _reactAddons2['default'].createClass({
 	}
 });
 
-},{"../constants":40,"blacklist":undefined,"react/addons":undefined}],36:[function(require,module,exports){
+},{"../constants":40,"blacklist":undefined,"react":undefined}],36:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _reactAddons = require('react/addons');
+var _react = require('react');
 
-var _reactAddons2 = _interopRequireDefault(_reactAddons);
+var _react2 = _interopRequireDefault(_react);
 
 var _blacklist = require('blacklist');
 
@@ -2231,13 +2250,13 @@ var _constants = require('../constants');
 
 var _constants2 = _interopRequireDefault(_constants);
 
-module.exports = _reactAddons2['default'].createClass({
+module.exports = _react2['default'].createClass({
 	displayName: 'Row',
 	propTypes: {
-		children: _reactAddons2['default'].PropTypes.node.isRequired,
-		className: _reactAddons2['default'].PropTypes.string,
-		gutter: _reactAddons2['default'].PropTypes.number,
-		style: _reactAddons2['default'].PropTypes.object
+		children: _react2['default'].PropTypes.node.isRequired,
+		className: _react2['default'].PropTypes.string,
+		gutter: _react2['default'].PropTypes.number,
+		style: _react2['default'].PropTypes.object
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -2258,11 +2277,11 @@ module.exports = _reactAddons2['default'].createClass({
 		var className = (0, _classnames2['default'])('Row', this.props.className);
 		var props = (0, _blacklist2['default'])(this.props, 'className', 'gutter', 'style');
 
-		return _reactAddons2['default'].createElement('div', _extends({}, props, { style: _extends(rowStyle, this.props.style), className: className }));
+		return _react2['default'].createElement('div', _extends({}, props, { style: _extends(rowStyle, this.props.style), className: className }));
 	}
 });
 
-},{"../constants":40,"blacklist":undefined,"classnames":undefined,"react/addons":undefined}],37:[function(require,module,exports){
+},{"../constants":40,"blacklist":undefined,"classnames":undefined,"react":undefined}],37:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -2332,7 +2351,7 @@ module.exports = _react2['default'].createClass({
 },{"classnames":undefined,"react":undefined}],38:[function(require,module,exports){
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
 var classNames = require('classnames');
 
 module.exports = React.createClass({
@@ -2361,7 +2380,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],39:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],39:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -2372,16 +2391,16 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _reactAddons = require('react/addons');
+var _react = require('react');
 
-var _reactAddons2 = _interopRequireDefault(_reactAddons);
+var _react2 = _interopRequireDefault(_react);
 
-module.exports = _reactAddons2['default'].createClass({
+module.exports = _react2['default'].createClass({
 	displayName: 'Table',
 
 	propTypes: {
-		children: _reactAddons2['default'].PropTypes.any,
-		className: _reactAddons2['default'].PropTypes.string
+		children: _react2['default'].PropTypes.any,
+		className: _react2['default'].PropTypes.string
 	},
 
 	render: function render() {
@@ -2389,11 +2408,11 @@ module.exports = _reactAddons2['default'].createClass({
 		var className = (0, _classnames2['default'])('Table', this.props.className);
 
 		// render table element
-		return _reactAddons2['default'].createElement('table', _extends({ className: className }, this.props));
+		return _react2['default'].createElement('table', _extends({ className: className }, this.props));
 	}
 });
 
-},{"classnames":undefined,"react/addons":undefined}],40:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],40:[function(require,module,exports){
 // breakpoints
 'use strict';
 
