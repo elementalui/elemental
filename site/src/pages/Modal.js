@@ -27,6 +27,12 @@ module.exports = React.createClass({
 			modalIsOpen: visible
 		});
 	},
+	toggleSizedModal(visible, size) {
+		this.setState({
+			sizedModalIsOpen: visible,
+			modalSize: size,
+		});
+	},
 	render() {
 		return (
 			<Container maxWidth={800} className="demo-container">
@@ -91,6 +97,22 @@ module.exports = React.createClass({
 					</ExampleSource>
 				</div>
 
+				<h2>Sizes</h2>
+				<div className="code-example">
+					<div className="code-example__example">
+						<Button onClick={() => this.toggleSizedModal(true, 'small')} style={{ marginRight: 10 }}>Small</Button>
+						<Button onClick={() => this.toggleSizedModal(true, 'large')} style={{ marginRight: 10 }}>Large</Button>
+						<Button onClick={() => this.toggleSizedModal(true, 768)}>768px</Button>
+					</div>
+					<ExampleSource>
+						{`
+							<Modal ... size="small">...</Modal>
+							<Modal ... size="large">...</Modal>
+							<Modal ... size={768}>...</Modal>
+						`}
+					</ExampleSource>
+				</div>
+
 				<h2>Usage</h2>
 				<h3>Modal</h3>
 				<div className="usage-table">
@@ -123,10 +145,10 @@ module.exports = React.createClass({
 								<td className="usage-table__description">The function used to handle cancel events on the modal; typically sets the open state to <code className="inline-code">false</code></td>
 							</tr>
 							<tr>
-								<td className="usage-table__prop">top</td>
-								<td className="usage-table__type">string</td>
-								<td className="usage-table__default">''</td>
-								<td className="usage-table__description">Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.</td>
+								<td className="usage-table__prop">width</td>
+								<td className="usage-table__type">number/enum</td>
+								<td className="usage-table__default">'medium'</td>
+								<td className="usage-table__description">Explicitly set a numeric width or provide one of three sizes; 'small', 'medium', 'large' - 320px, 640px, 960px respectively.</td>
 							</tr>
 						</tbody>
 					</Table>
@@ -193,6 +215,12 @@ module.exports = React.createClass({
 						<Button type="primary" onClick={this.toggleModal.bind(this, false)}>Close modal</Button>
 						<Button type="link-cancel" onClick={this.toggleModal.bind(this, false)}>Also closes modal</Button>
 					</ModalFooter>
+				</Modal>
+				<Modal isOpen={this.state.sizedModalIsOpen} onCancel={() => this.toggleSizedModal(false, null)} backdropClosesModal width={this.state.modalSize}>
+					<ModalHeader text={this.state.modalSize} showCloseButton onClose={() => this.toggleSizedModal(false, null)} />
+					<ModalBody>
+						<p>&hellip;</p>
+					</ModalBody>
 				</Modal>
 			</Container>
 		);

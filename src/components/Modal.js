@@ -65,7 +65,7 @@ module.exports = React.createClass({
 		) : null);
 
 		return (
-			<div className={dialogClassname} style={(this.props.width && !isNaN(this.props.width)) ? { width: this.props.width } : null}>
+			<div className={dialogClassname} style={(this.props.width && !isNaN(this.props.width)) ? { width: this.props.width + 20 } : null}>
 				<div className="Modal-content">
 					{this.props.children}
 				</div>
