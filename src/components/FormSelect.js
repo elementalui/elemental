@@ -123,10 +123,12 @@ module.exports = React.createClass({
 		return (
 			<div className={componentClass}>
 				{componentLabel}
-				<select className="FormInput FormSelect" id={forAndID} onChange={this.handleChange} onBlur={this.handleBlur} {...props}>
-					{options}
-				</select>
-				{this.renderIcon(icons.selectArrows)}
+				<div className="u-pos-relative">
+					<select className="FormInput FormSelect" id={forAndID} onChange={this.handleChange} onBlur={this.handleBlur} {...props}>
+						{options}
+					</select>
+					{this.renderIcon(icons.selectArrows)}
+				</div>
 				{validationMessage}
 			</div>
 		);
