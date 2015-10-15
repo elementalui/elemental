@@ -4366,7 +4366,15 @@ module.exports = React.createClass({
 			modalIsOpen: visible
 		});
 	},
+	toggleSizedModal: function toggleSizedModal(visible, size) {
+		this.setState({
+			sizedModalIsOpen: visible,
+			modalSize: size
+		});
+	},
 	render: function render() {
+		var _this = this;
+
 		return React.createElement(
 			Container,
 			{ maxWidth: 800, className: 'demo-container' },
@@ -4452,6 +4460,45 @@ module.exports = React.createClass({
 					ExampleSource,
 					null,
 					'\n\t\t\t\t\t\t\t<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>\n\t\t\t\t\t\t\t\t<ModalHeader text="Lots of text to show scroll behavior" showCloseButton onClose={this.toggleModal} />\n\t\t\t\t\t\t\t\t<ModalBody>[...]</ModalBody>\n\t\t\t\t\t\t\t\t<ModalFooter>\n\t\t\t\t\t\t\t\t\t<Button type="primary" onClick={this.toggleModal}>Close modal</Button>\n\t\t\t\t\t\t\t\t\t<Button type="link-cancel" onClick={this.toggleModal}>Also closes modal</Button>\n\t\t\t\t\t\t\t\t</ModalFooter>\n\t\t\t\t\t\t\t</Modal>\n\t\t\t\t\t\t'
+				)
+			),
+			React.createElement(
+				'h2',
+				null,
+				'Sizes'
+			),
+			React.createElement(
+				'div',
+				{ className: 'code-example' },
+				React.createElement(
+					'div',
+					{ className: 'code-example__example' },
+					React.createElement(
+						Button,
+						{ onClick: function () {
+								return _this.toggleSizedModal(true, 'small');
+							}, style: { marginRight: 10 } },
+						'Small'
+					),
+					React.createElement(
+						Button,
+						{ onClick: function () {
+								return _this.toggleSizedModal(true, 'large');
+							}, style: { marginRight: 10 } },
+						'Large'
+					),
+					React.createElement(
+						Button,
+						{ onClick: function () {
+								return _this.toggleSizedModal(true, 768);
+							} },
+						'768px'
+					)
+				),
+				React.createElement(
+					ExampleSource,
+					null,
+					'\n\t\t\t\t\t\t\t<Modal ... size="small">...</Modal>\n\t\t\t\t\t\t\t<Modal ... size="large">...</Modal>\n\t\t\t\t\t\t\t<Modal ... size={768}>...</Modal>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -4584,22 +4631,22 @@ module.exports = React.createClass({
 							React.createElement(
 								'td',
 								{ className: 'usage-table__prop' },
-								'top'
+								'width'
 							),
 							React.createElement(
 								'td',
 								{ className: 'usage-table__type' },
-								'string'
+								'number/enum'
 							),
 							React.createElement(
 								'td',
 								{ className: 'usage-table__default' },
-								'\'\''
+								'\'medium\''
 							),
 							React.createElement(
 								'td',
 								{ className: 'usage-table__description' },
-								'Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.'
+								'Explicitly set a numeric width or provide one of three sizes; \'small\', \'medium\', \'large\' - 320px, 640px, 960px respectively.'
 							)
 						)
 					)
@@ -4837,6 +4884,24 @@ module.exports = React.createClass({
 						Button,
 						{ type: 'link-cancel', onClick: this.toggleModal.bind(this, false) },
 						'Also closes modal'
+					)
+				)
+			),
+			React.createElement(
+				Modal,
+				{ isOpen: this.state.sizedModalIsOpen, onCancel: function () {
+						return _this.toggleSizedModal(false, null);
+					}, backdropClosesModal: true, width: this.state.modalSize },
+				React.createElement(ModalHeader, { text: this.state.modalSize, showCloseButton: true, onClose: function () {
+						return _this.toggleSizedModal(false, null);
+					} }),
+				React.createElement(
+					ModalBody,
+					null,
+					React.createElement(
+						'p',
+						null,
+						'…'
 					)
 				)
 			)

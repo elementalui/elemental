@@ -3168,6 +3168,7 @@ textarea.FormInput {
   visibility: visible;
 }
 .Modal-dialog {
+  max-width: 100%;
   padding: 10px;
   position: relative;
   width: auto;
@@ -3197,7 +3198,6 @@ textarea.FormInput {
 @media (min-width: 768px) {
   .Modal-dialog {
     margin: 80px auto;
-    max-width: 100%;
   }
   .Modal-dialog--small {
     width: 320px;

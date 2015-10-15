@@ -1552,7 +1552,7 @@ module.exports = _react2['default'].createClass({
 
 		return _react2['default'].createElement(
 			'div',
-			{ className: dialogClassname, style: this.props.width && !isNaN(this.props.width) ? { width: this.props.width } : null },
+			{ className: dialogClassname, style: this.props.width && !isNaN(this.props.width) ? { width: this.props.width + 20 } : null },
 			_react2['default'].createElement(
 				'div',
 				{ className: 'Modal-content' },
