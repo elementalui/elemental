@@ -67,13 +67,9 @@ module.exports = React.createClass({
 
 		if (props.href) {
 			tag = 'a';
-			props.type = null;
+			delete props.type;
 		}
 
-		return React.createElement(
-			tag,
-			props,
-			this.props.children
-		);
+		return React.createElement(tag, props, this.props.children);
 	}
 });
