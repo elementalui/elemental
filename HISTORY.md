@@ -1,5 +1,9 @@
 # Elemental
 
+## v0.5.2 / 2015-10-16
+
+* added; Button: `component` prop to provide custom components for buttons, e.g. enables use of react-router's `Router.Link`, thanks [Christian Legnitto](https://github.com/LegNeato)
+
 ## v0.5.1 / 2015-10-16
 
 * fixed; arrow positioning on `FormSelect` thanks to [NogsMPLS](https://github.com/NogsMPLS)
