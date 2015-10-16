@@ -2,7 +2,7 @@
   "name": "elemental",
   "version": "0.5.1",
   "description": "React UI Framework",
-  "main": "lib/Elemental.js",
+  "main": "src/Elemental.js",
   "author": "Jed Watson",
   "license": "MIT",
   "repository": {
