@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/elementalui/elemental.git"
+    "url": "https://github.com/gamesalad/elemental.git"
   },
   "dependencies": {
     "blacklist": "^1.1.2",
