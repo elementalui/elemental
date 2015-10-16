@@ -413,6 +413,42 @@ var Buttons = React.createClass({
 							React.createElement(
 								'td',
 								{ className: 'usage-table__prop' },
+								'component'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__type' },
+								'element'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__default' },
+								'undefined'
+							),
+							React.createElement(
+								'td',
+								{ className: 'usage-table__description' },
+								'When provided, ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'<Button>'
+								),
+								' will render the passed in component with the proper styles instead of creating its own. This is useful when integrating with React Router\'s ',
+								React.createElement(
+									'code',
+									{ className: 'inline-code' },
+									'<Link>'
+								),
+								' or using your own custom component'
+							)
+						),
+						React.createElement(
+							'tr',
+							null,
+							React.createElement(
+								'td',
+								{ className: 'usage-table__prop' },
 								'size'
 							),
 							React.createElement(
