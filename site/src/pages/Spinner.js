@@ -14,17 +14,17 @@ var Buttons = React.createClass({
 					<div className="code-example__example">
 						<div className="code-example__example__heading">Page Element</div>
 						<Row>
-							<Col>
+							<Col sm="1/3">
 								<DemoBox style={{ paddingBottom: 20, paddingTop: 20 }}>
 									<Spinner size="md" />
 								</DemoBox>
 							</Col>
-							<Col>
+							<Col sm="1/3">
 								<DemoBox style={{ paddingBottom: 20, paddingTop: 20 }}>
 									<Spinner size="md" type="primary" />
 								</DemoBox>
 							</Col>
-							<Col>
+							<Col sm="1/3">
 								<DemoBox style={{ paddingBottom: 20, paddingTop: 20 }} inverted >
 									<Spinner size="md" type="inverted" />
 								</DemoBox>
