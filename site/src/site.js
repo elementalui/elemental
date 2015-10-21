@@ -101,7 +101,7 @@ const basepath = (window.location.pathname.slice(0, 10) === '/elemental') ? '/el
 const history = createHistory();
 
 ReactDOM.render(
-	<Router history={history}>
+	<Router history={history} onUpdate={() => window.scrollTo(0, 0)}>
 		<Route path="/" component={App}>
 			<IndexRoute component={require('./pages/Home')} />
 			<Route path="home" component={require('./pages/Home')} />
