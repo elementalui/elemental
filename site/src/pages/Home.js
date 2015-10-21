@@ -20,7 +20,7 @@ var Home = React.createClass({
 		var menuItems = NavItems.map(function(item) {
 			return (
 				<Col xs="1/3" sm="1/6" key={item.label} className="demo-banner-nav__col col-xs-4 col-sm-2">
-					<Router.Link key={item.value} className="demo-banner-nav__item" onClick={self.toggleMenu} to={'/' + item.value}>
+					<Router.Link key={item.value} className="demo-banner-nav__item" to={'/' + item.value}>
 						<span className={'demo-banner-nav__icon octicon octicon-' + item.icon} />
 						<div className="demo-banner-nav__label">
 							<span className="demo-banner-nav__label-inner">{item.label}</span>
