@@ -3217,7 +3217,7 @@ var Home = React.createClass({
 				{ xs: '1/3', sm: '1/6', key: item.label, className: 'demo-banner-nav__col col-xs-4 col-sm-2' },
 				React.createElement(
 					Router.Link,
-					{ key: item.value, className: 'demo-banner-nav__item', onClick: self.toggleMenu, to: item.value },
+					{ key: item.value, className: 'demo-banner-nav__item', to: '/' + item.value },
 					React.createElement('span', { className: 'demo-banner-nav__icon octicon octicon-' + item.icon }),
 					React.createElement(
 						'div',
@@ -5268,28 +5268,23 @@ var PageNav = _react2['default'].createClass({
 			windowWidth: window.innerWidth
 		};
 	},
-
 	componentDidMount: function componentDidMount() {
 		window.addEventListener('resize', this.handleResize);
 	},
-
 	componentWillUnmount: function componentWillUnmount() {
 		window.removeEventListener('resize', this.handleResize);
 	},
-
 	handleResize: function handleResize() {
 		this.setState({
 			windowHeight: window.innerHeight,
 			windowWidth: window.innerWidth
 		});
 	},
-
 	toggleMenu: function toggleMenu() {
 		this.setState({
 			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
 		});
 	},
-
 	render: function render() {
 		var self = this;
 		var height = this.state.windowWidth < 768 ? this.state.windowHeight : 'auto';
@@ -5297,7 +5292,7 @@ var PageNav = _react2['default'].createClass({
 		var menuItems = NavItems.map(function (item) {
 			return _react2['default'].createElement(
 				_reactRouter.Link,
-				{ key: item.value, className: 'primary-nav__item', onClick: self.toggleMenu, to: item.value },
+				{ key: item.value, className: 'primary-nav__item', activeClassName: 'active', onClick: self.toggleMenu, to: item.value },
 				_react2['default'].createElement(
 					'span',
 					{ className: 'primary-nav__item-inner' },
@@ -5379,35 +5374,28 @@ var App = _react2['default'].createClass({
 });
 
 var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
-
-var routes = _react2['default'].createElement(
-	_reactRouter.Route,
-	{ path: '/', component: App },
-	_react2['default'].createElement(_reactRouter.IndexRoute, { component: require('./pages/Home') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'home', component: require('./pages/Home') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'css', component: require('./pages/CSS') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'grid', component: require('./pages/Grid') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'buttons', component: require('./pages/Buttons') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'glyphs', component: require('./pages/Glyphs') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'forms', component: require('./pages/Forms') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'spinner', component: require('./pages/Spinner') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'modal', component: require('./pages/Modal') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: 'misc', component: require('./pages/Misc') }),
-	_react2['default'].createElement(_reactRouter.Route, { path: '*', component: require('./pages/Home') })
-);
-
-//{/*<Router.Route name="date-picker" path={basepath + '/date-picker'} handler={require('./pages/DatePicker')} />*/}
-
-//Router.run(routes, Router.HistoryLocation, function (Handler) {
-//	React.render(<Handler/>, document.body);
-//});
-
 var history = (0, _history.createHistory)();
 
 _reactDom2['default'].render(_react2['default'].createElement(
 	_reactRouter.Router,
-	{ history: history },
-	routes
+	{ history: history, onUpdate: function () {
+			return window.scrollTo(0, 0);
+		} },
+	_react2['default'].createElement(
+		_reactRouter.Route,
+		{ path: '/', component: App },
+		_react2['default'].createElement(_reactRouter.IndexRoute, { component: require('./pages/Home') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'home', component: require('./pages/Home') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'css', component: require('./pages/CSS') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'grid', component: require('./pages/Grid') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'buttons', component: require('./pages/Buttons') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'glyphs', component: require('./pages/Glyphs') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'forms', component: require('./pages/Forms') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'spinner', component: require('./pages/Spinner') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'modal', component: require('./pages/Modal') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: 'misc', component: require('./pages/Misc') }),
+		_react2['default'].createElement(_reactRouter.Route, { path: '*', component: require('./pages/Home') })
+	)
 ), document.getElementById('app'));
 /*<Link to="home">Home</Link>*/
 
