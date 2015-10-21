@@ -23,35 +23,30 @@ const PageNav = React.createClass({
 			windowWidth: window.innerWidth
 		};
 	},
-
 	componentDidMount () {
 		window.addEventListener('resize', this.handleResize);
 	},
-
 	componentWillUnmount () {
 		window.removeEventListener('resize', this.handleResize);
 	},
-
 	handleResize () {
 		this.setState({
 			windowHeight: window.innerHeight,
 			windowWidth: window.innerWidth
 		});
 	},
-
 	toggleMenu () {
 		this.setState({
 			mobileMenuIsVisible: !this.state.mobileMenuIsVisible
 		});
 	},
-
 	render () {
 		var self = this;
 		var height = (this.state.windowWidth < 768) ? this.state.windowHeight : 'auto';
 		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
 		var menuItems = NavItems.map(function(item) {
 			return (
-				<Link key={item.value} className="primary-nav__item" onClick={self.toggleMenu} to={item.value}>
+				<Link key={item.value} className="primary-nav__item" activeClassName="active" onClick={self.toggleMenu} to={item.value}>
 					<span className="primary-nav__item-inner">{item.label}</span>
 				</Link>
 			);
