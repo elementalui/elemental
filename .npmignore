@@ -6,3 +6,5 @@ src
 gulpfile.js
 npm-debug.log
 package.json
+/scripts/
+/bower.json

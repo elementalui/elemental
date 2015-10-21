@@ -42,6 +42,7 @@
     "publish:npm": "gulp publish:npm",
     "publish:site": "gulp publish:examples",
     "publish:tag": "gulp publish:tag",
+    "publish:bower": "./scripts/bower.sh",
     "release": "gulp release",
     "site": "gulp dev:server",
     "start": "gulp dev",
