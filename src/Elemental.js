@@ -1,3 +1,4 @@
+require('babel/register');
 exports.Alert = require('./components/Alert');
 exports.BlankState = require('./components/BlankState');
 exports.Button = require('./components/Button');

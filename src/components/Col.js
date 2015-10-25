@@ -1,6 +1,7 @@
 import React from 'react';
 import blacklist from 'blacklist';
 import E from '../constants';
+import root from 'window-or-global';
 
 module.exports = React.createClass({
 	displayName: 'Col',
@@ -26,18 +27,18 @@ module.exports = React.createClass({
 	},
 	getInitialState: function() {
 		return {
-			windowWidth: window.innerWidth
+			windowWidth: root.innerWidth
 		};
 	},
 	componentDidMount: function() {
-		window.addEventListener('resize', this.handleResize);
+		root.addEventListener('resize', this.handleResize);
 	},
 	componentWillUnmount: function() {
-		window.removeEventListener('resize', this.handleResize);
+		root.removeEventListener('resize', this.handleResize);
 	},
 	handleResize: function() {
 		this.setState({
-			windowWidth: window.innerWidth
+			windowWidth: root.innerWidth
 		});
 	},
 	render() {
