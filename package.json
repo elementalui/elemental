@@ -11,7 +11,15 @@
   },
   "dependencies": {
     "blacklist": "^1.1.2",
-    "classnames": "^2.1.5"
+    "classnames": "^2.1.5",
+    "color": "^0.10.1",
+    "jss": "^3.0.0",
+    "jss-camel-case": "^1.0.0",
+    "jss-extend": "^1.0.0",
+    "jss-nested": "^1.0.1",
+    "jss-px": "^1.0.0",
+    "jss-vendor-prefixer": "^1.0.0",
+    "react-jss": "^2.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",
