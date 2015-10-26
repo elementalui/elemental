@@ -1,38 +1,6 @@
 var constants = require('../constants');
 var color = require('color');
 
-var base = {
-	userSelect: 'none',
-	background: 'none',
-	border: '1px solid transparent',
-	borderRadius: constants.relBorderRadius.base,
-	cursor: 'pointer',
-	display: 'inline-block',
-	fontWeight: constants.button.fontWeight,
-	lineHeight: constants.component.lineHeight,
-	height: constants.component.height,
-	marginBottom: 0,
-	overflow: 'hidden', // contain gradient on IE9
-	padding: '0 ' + constants.button.horizontalPadding,
-	textAlign: 'center',
-	touchAction: 'manipulation',
-	verticalAlign: 'middle',
-	whiteSpace: 'nowrap',
-	WebkitAppearance: 'none',
-	'&:hover, &:focus': {
-		color: constants.button.defaultColor,
-		textDecoration: 'none'
-	},
-	'&:active': {
-		backgroundImage: 'none',
-		outline: 'none'
-	},
-	'&[disabled]': {
-		opacity: 0.4,
-		pointerEvents: 'none'
-	}
-};
-
 var active = {
 	background: '#e6e6e6',
 	borderColor: color(constants.input.borderColor).darken(0.1).rgbaString(),
@@ -41,8 +9,39 @@ var active = {
 };
 
 module.exports = {
+	base: {
+		userSelect: 'none',
+		background: 'none',
+		border: '1px solid transparent',
+		borderRadius: constants.relBorderRadius.base,
+		cursor: 'pointer',
+		display: 'inline-block',
+		fontWeight: constants.button.fontWeight,
+		lineHeight: constants.component.lineHeight,
+		height: constants.component.height,
+		marginBottom: 0,
+		overflow: 'hidden', // contain gradient on IE9
+		padding: '0 ' + constants.button.horizontalPadding,
+		textAlign: 'center',
+		touchAction: 'manipulation',
+		verticalAlign: 'middle',
+		whiteSpace: 'nowrap',
+		WebkitAppearance: 'none',
+		'&:hover, &:focus': {
+			color: constants.button.defaultColor,
+			textDecoration: 'none'
+		},
+		'&:active': {
+			backgroundImage: 'none',
+			outline: 'none'
+		},
+		'&[disabled]': {
+			opacity: 0.4,
+			pointerEvents: 'none'
+		}
+	},
 	default: {
-		extend: base,
+		// gradient .vertical(#fafafa, #eaeaea);
 		border: '1px solid ' + constants.input.borderColor,
 		borderColor: [
 			constants.input.borderColor,
@@ -52,6 +51,7 @@ module.exports = {
 		color: constants.color.textColor,
 		textShadow: '0 1px 0 white',
 		'&:hover': {
+			// gradient .vertical(#fafafa, #eaeaea);
 			borderColor: [
 				color(constants.input.borderColor).darken(0.05).rgbaString(),
 				color(constants.input.borderColor).darken(0.05).rgbaString(),

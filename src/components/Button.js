@@ -34,7 +34,7 @@ var Button = React.createClass({
 		href: React.PropTypes.string,
 		component: React.PropTypes.node,
 		isActive: React.PropTypes.bool,
-		sheet: React.PropTypes.instanceOf(jss.constructor),
+		sheet: React.PropTypes.object,
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(BUTTON_TYPES)
@@ -48,6 +48,7 @@ var Button = React.createClass({
 		var classes = this.props.sheet.classes;
 		// classes
 		var componentClass = classNames(
+			classes.base,
 			classes[this.props.type],
 			classes[this.props.size],
 			this.props.block ? classes.block : null,
