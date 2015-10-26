@@ -1,14 +1,15 @@
-var constants = require('../constants');
-var color = require('color');
+import constants from '../constants';
+import color from 'color';
+import * as gradients from './gradients'
 
-var active = {
+const active = {
 	background: '#e6e6e6',
 	borderColor: color(constants.input.borderColor).darken(0.1).rgbaString(),
 	boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.1)',
 	color: constants.color.textColor
 };
 
-module.exports = {
+export default {
 	base: {
 		userSelect: 'none',
 		background: 'none',
@@ -41,7 +42,7 @@ module.exports = {
 		}
 	},
 	default: {
-		// gradient .vertical(#fafafa, #eaeaea);
+		extend: gradients.vertical('#fafafa', '#eaeaea'),
 		border: '1px solid ' + constants.input.borderColor,
 		borderColor: [
 			constants.input.borderColor,
@@ -51,7 +52,7 @@ module.exports = {
 		color: constants.color.textColor,
 		textShadow: '0 1px 0 white',
 		'&:hover': {
-			// gradient .vertical(#fafafa, #eaeaea);
+			extend: gradients.vertical('#fff', '#eee'),
 			borderColor: [
 				color(constants.input.borderColor).darken(0.05).rgbaString(),
 				color(constants.input.borderColor).darken(0.05).rgbaString(),
