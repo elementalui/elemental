@@ -1,7 +1,7 @@
 var React = require('react/addons');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
-var useSheet = require('../jss').useSheet;
+var jss = require('../jss');
 var style = require('../styles/button');
 
 const BUTTON_SIZES = ['lg', 'sm', 'xs'];
@@ -33,6 +33,7 @@ var Button = React.createClass({
 		className: React.PropTypes.string,
 		href: React.PropTypes.string,
 		isActive: React.PropTypes.bool,
+		sheet: React.PropTypes.instanceOf(jss.constructor),
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,
 		type: React.PropTypes.oneOf(BUTTON_TYPES)
@@ -73,4 +74,4 @@ var Button = React.createClass({
 	}
 });
 
-module.exports = useSheet(Button, style);
+module.exports = jss.useSheet(Button, style);
