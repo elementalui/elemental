@@ -20,7 +20,7 @@ exports.borderRadius = {
 // border radii in em
 exports.relBorderRadius = {
 	base: '0.3em',
-}
+};
 
 // color
 var colors = {

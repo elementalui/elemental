@@ -47,7 +47,7 @@ module.exports = {
 		borderColor: [
 			constants.input.borderColor,
 			color(constants.input.borderColor).darken(0.06).rgbaString(),
-			color(constants.input.borderColor).darken(0,12).rgbaString()
+			color(constants.input.borderColor).darken(0.12).rgbaString()
 		].join(' '),
 		color: constants.color.textColor,
 		textShadow: '0 1px 0 white',
