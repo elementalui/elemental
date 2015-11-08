@@ -5,9 +5,9 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormInput',
 	propTypes: {
+		autofocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
-		focusOnMount: React.PropTypes.bool,
 		href: React.PropTypes.string,
 		id: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
@@ -19,59 +19,50 @@ module.exports = React.createClass({
 		value: React.PropTypes.oneOfType([
 			React.PropTypes.number,
 			React.PropTypes.string
-		])
+		]),
 	},
 
 	getDefaultProps() {
 		return {
-			type: 'text'
+			type: 'text',
 		};
 	},
 
 	componentDidMount () {
-		// if (this.props.focusOnMount) {
-		// 	setTimeout(() => {
-		// 		this.focus();
-		// 	}, 10);
-		// }
+		if (this.props.autofocus) {
+			this.focus();
+		}
 	},
 
 	focus() {
-		// If used in the future, will need to import ReactDOM from 'react-dom' to use findDOMNode().
-		// React.findDOMNode(this.refs.target).focus();
+		this.refs.input.focus();
 	},
 
 	render() {
 		// classes
-		var className = classNames(
+		let className = classNames(
 			{
 				'FormInput-noedit': this.props.noedit,
 				'FormInput-noedit--multiline': this.props.noedit && this.props.multiline,
 				'FormInput': !this.props.noedit
 			},
 			(this.props.size ? ('FormInput--' + this.props.size) : null),
-			this.props.className
+			this.props.className,
 		);
-
-		var props = Object.assign(blacklist(this.props, 'className'), {
-			className: className,
-			id: this.props.id || this.props.name
-		});
-
-		// element
-		var componentElement = 'input';
+		let props = { ...this.props, className, ref: 'input' };
+		let Element = 'input';
 		if (this.props.noedit && this.props.href) {
-			componentElement = 'a';
+			Element = 'a';
 			props.type = null;
 			props.children = props.children || props.value;
 		} else if (this.props.noedit) {
-			componentElement = 'div';
+			Element = 'div';
 			props.type = null;
 			props.children = props.children || props.value;
 		} else if (this.props.multiline) {
-			componentElement = 'textarea';
+			Element = 'textarea';
 		}
 
-		return React.createElement(componentElement, props);
+		return <Element {...props} />;
 	}
 });
