@@ -1,21 +1,21 @@
-var blacklist = require('blacklist');
-var classNames = require('classnames');
-var React = require('react');
+const blacklist = require('blacklist');
+const classNames = require('classnames');
+const React = require('react');
 
-var Checkbox = React.createClass({
+const Checkbox = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
-		focusOnMount: React.PropTypes.bool,
+		autofocus: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		style: React.PropTypes.object,
-		title: React.PropTypes.string
+		title: React.PropTypes.string,
 	},
 
 	componentDidMount () {
-		if (this.props.focusOnMount) {
+		if (this.props.autofocus) {
 			this.refs.target.focus();
 		}
 		this.setIndeterminate(this.props.indeterminate);
@@ -30,12 +30,11 @@ var Checkbox = React.createClass({
 	},
 
 	render() {
-		var componentClass = classNames('Checkbox', {
+		let componentClass = classNames('Checkbox', {
 			'Checkbox--disabled': this.props.disabled,
-			'Checkbox--inline': this.props.inline
+			'Checkbox--inline': this.props.inline,
 		}, this.props.className);
-		var props = blacklist(this.props, 'className', 'label', 'style', 'title');
-
+		let props = blacklist(this.props, 'className', 'label', 'style', 'title');
 		return (
 			<label className={componentClass} style={this.props.style} title={this.props.title}>
 				<input ref="target" type="checkbox" className="Checkbox__input" {...props} />
