@@ -1300,6 +1300,7 @@ var Forms = React.createClass({
 			files: files
 		});
 	},
+
 	handleSearch: function handleSearch() {
 		var self = this;
 		self.setState({ searching: true });
@@ -1409,7 +1410,7 @@ var Forms = React.createClass({
 						React.createElement(
 							FormField,
 							{ label: 'Email address', htmlFor: 'basic-form-input-email' },
-							React.createElement(FormInput, { type: 'email', placeholder: 'Enter email', name: 'basic-form-input-email' })
+							React.createElement(FormInput, { autofocus: true, type: 'email', placeholder: 'Enter email', name: 'basic-form-input-email' })
 						),
 						React.createElement(
 							FormField,
@@ -1431,7 +1432,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(

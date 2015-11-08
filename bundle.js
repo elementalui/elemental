@@ -194,7 +194,7 @@ var Checkbox = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
-		focusOnMount: React.PropTypes.bool,
+		autofocus: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string,
@@ -203,7 +203,7 @@ var Checkbox = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
-		if (this.props.focusOnMount) {
+		if (this.props.autofocus) {
 			this.refs.target.focus();
 		}
 		this.setIndeterminate(this.props.indeterminate);
@@ -223,7 +223,6 @@ var Checkbox = React.createClass({
 			'Checkbox--inline': this.props.inline
 		}, this.props.className);
 		var props = blacklist(this.props, 'className', 'label', 'style', 'title');
-
 		return React.createElement(
 			'label',
 			{ className: componentClass, style: this.props.style, title: this.props.title },
@@ -1053,9 +1052,9 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormInput',
 	propTypes: {
+		autofocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
-		focusOnMount: React.PropTypes.bool,
 		href: React.PropTypes.string,
 		id: React.PropTypes.string,
 		multiline: React.PropTypes.bool,
@@ -1074,16 +1073,13 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
-		// if (this.props.focusOnMount) {
-		// 	setTimeout(() => {
-		// 		this.focus();
-		// 	}, 10);
-		// }
+		if (this.props.autofocus) {
+			this.focus();
+		}
 	},
 
 	focus: function focus() {
-		// If used in the future, will need to import ReactDOM from 'react-dom' to use findDOMNode().
-		// React.findDOMNode(this.refs.target).focus();
+		this.refs.input.focus();
 	},
 
 	render: function render() {
@@ -1093,27 +1089,21 @@ module.exports = React.createClass({
 			'FormInput-noedit--multiline': this.props.noedit && this.props.multiline,
 			'FormInput': !this.props.noedit
 		}, this.props.size ? 'FormInput--' + this.props.size : null, this.props.className);
-
-		var props = _extends(blacklist(this.props, 'className'), {
-			className: className,
-			id: this.props.id || this.props.name
-		});
-
-		// element
-		var componentElement = 'input';
+		var props = _extends({}, this.props, { className: className, ref: 'input' });
+		var Element = 'input';
 		if (this.props.noedit && this.props.href) {
-			componentElement = 'a';
+			Element = 'a';
 			props.type = null;
 			props.children = props.children || props.value;
 		} else if (this.props.noedit) {
-			componentElement = 'div';
+			Element = 'div';
 			props.type = null;
 			props.children = props.children || props.value;
 		} else if (this.props.multiline) {
-			componentElement = 'textarea';
+			Element = 'textarea';
 		}
 
-		return React.createElement(componentElement, props);
+		return React.createElement(Element, props);
 	}
 });
 
