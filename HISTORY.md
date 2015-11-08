@@ -1,5 +1,10 @@
 # Elemental
 
+## v0.5.4 / 2015-11-08
+
+* fixed; `input.focus()` works again
+* changed; `focusOnMount` prop on Input and Checkbox components has become `autofocus` and is now working again
+
 ## v0.5.3 / 2015-10-18
 
 * fixed; `react-dom` and `react-addons-*` need to be declared as peerDependencies
