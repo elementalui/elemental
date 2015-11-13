@@ -41,10 +41,10 @@ module.exports = React.createClass({
 	},
 	componentWillReceiveProps: function(nextProps) {
 		if (nextProps.isOpen) {
-			window.addEventListener('keydown', this.handleKeyDown);
+			if (typeof window !== 'undefined') window.addEventListener('keydown', this.handleKeyDown);
 			document.body.style.overflow = 'hidden';
 		} else {
-			window.removeEventListener('keydown', this.handleKeyDown);
+			if (typeof window !== 'undefined') window.removeEventListener('keydown', this.handleKeyDown);
 			document.body.style.overflow = null;
 		}
 	},

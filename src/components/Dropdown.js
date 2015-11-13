@@ -37,6 +37,7 @@ module.exports = React.createClass({
 		this.setState({ isOpen: false });
 	},
 	componentWillUpdate (nextProps, nextState) {
+		if (typeof window === 'undefined') return;		
 		if (nextState.isOpen) {
 			window.addEventListener('keydown', this.handleKeyDown);
 		} else {
