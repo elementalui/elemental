@@ -47,7 +47,7 @@ module.exports = React.createClass({
 				'FormInput': !this.props.noedit
 			},
 			(this.props.size ? ('FormInput--' + this.props.size) : null),
-			this.props.className,
+			this.props.className
 		);
 		let props = { ...this.props, className, ref: 'input' };
 		let Element = 'input';
