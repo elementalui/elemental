@@ -61,14 +61,14 @@ var Misc = React.createClass({
 				<h2>Alerts</h2>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Alert type="info"><strong>Info:</strong> This could be something helpful, better read it just to make sure.</Alert>
+						<Alert type="info"><strong>Info:</strong> Alerts can contain <a href="/misc">Anchor Tags</a></Alert>
 						<Alert type="success"><strong>Success:</strong> Nothing to worry about, everything is going great!</Alert>
 						<Alert type="warning"><strong>Warning:</strong> Pay attention to me, things are not going according to plan.</Alert>
 						<Alert type="danger"><strong>Error:</strong> You need to take action, something has gone terribly wrong!</Alert>
 					</div>
 					<ExampleSource>
 						{`
-							<Alert type="info"><strong>Info:</strong> This could be something helpful, better read it just to make sure.</Alert>
+							<Alert type="info"><strong>Info:</strong> Alerts can contain <a href="/misc">Anchor Tags</a></Alert>
 							<Alert type="success"><strong>Success:</strong> Nothing to worry about, everything is going great!</Alert>
 							<Alert type="warning"><strong>Warning:</strong> Pay attention to me, things are not going according to plan.</Alert>
 							<Alert type="danger"><strong>Error:</strong> You need to take action, something has gone terribly wrong!</Alert>
