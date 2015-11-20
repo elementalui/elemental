@@ -1874,19 +1874,19 @@ h6,
 .Alert--success hr {
   border-top-color: #2fae39;
 }
-.Alert--success .alert-link {
+.Alert--success a {
   color: #299a33;
 }
 .Alert--info {
-  background-color: rgba(86, 205, 252, 0.1);
-  border-color: rgba(86, 205, 252, 0.05);
-  color: #56cdfc;
+  background-color: rgba(0, 144, 224, 0.1);
+  border-color: rgba(0, 144, 224, 0.05);
+  color: #0090e0;
 }
 .Alert--info hr {
-  border-top-color: #3dc6fc;
+  border-top-color: #0080c7;
 }
-.Alert--info .alert-link {
-  color: #24befb;
+.Alert--info a {
+  color: #006fad;
 }
 .Alert--warning {
   background-color: rgba(250, 159, 71, 0.1);
@@ -1896,7 +1896,7 @@ h6,
 .Alert--warning hr {
   border-top-color: #f9922e;
 }
-.Alert--warning .alert-link {
+.Alert--warning a {
   color: #f98515;
 }
 .Alert--danger,
@@ -1909,8 +1909,8 @@ h6,
 .Alert--error hr {
   border-top-color: #d12d2d;
 }
-.Alert--danger .alert-link,
-.Alert--error .alert-link {
+.Alert--danger a,
+.Alert--error a {
   color: #bc2929;
 }
 .BlankState {
@@ -2970,7 +2970,7 @@ textarea.FormInput {
   color: #34c240;
 }
 .FormNote--info {
-  color: #56cdfc;
+  color: #0090e0;
 }
 .FormNote--warning {
   color: #fa9f47;
@@ -3110,9 +3110,9 @@ textarea.FormInput {
   padding-left: 0;
 }
 .InputGroup_section--grow {
-  -webkit-flex: 1 1 0;
-  -ms-flex: 1 1 0;
-  flex: 1 1 0;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 .InputGroup_section > .FormInput,
 .InputGroup_section > .Button {
@@ -3408,19 +3408,19 @@ textarea.FormInput {
 }
 .Pill--info > .Pill__label,
 .Pill--info > .Pill__clear {
-  background-color: #ecf8fd;
-  color: #56cdfc;
+  background-color: #e4f2fa;
+  color: #0090e0;
 }
 .Pill--info > .Pill__label:hover,
 .Pill--info > .Pill__clear:hover,
 .Pill--info > .Pill__label:focus,
 .Pill--info > .Pill__clear:focus {
-  background-color: #daf2fb;
+  background-color: #d2eaf7;
   outline: none;
 }
 .Pill--info > .Pill__label:active,
 .Pill--info > .Pill__clear:active {
-  background-color: #c8ebf9;
+  background-color: #c1e2f4;
 }
 .Pill--success > .Pill__label,
 .Pill--success > .Pill__clear {
@@ -3504,19 +3504,19 @@ textarea.FormInput {
 }
 .Pill--info-inverted > .Pill__label,
 .Pill--info-inverted > .Pill__clear {
-  background-color: #56cdfc;
+  background-color: #0090e0;
   color: white;
 }
 .Pill--info-inverted > .Pill__label:hover,
 .Pill--info-inverted > .Pill__clear:hover,
 .Pill--info-inverted > .Pill__label:focus,
 .Pill--info-inverted > .Pill__clear:focus {
-  background-color: #6fd4fc;
+  background-color: #00a0fa;
   outline: none;
 }
 .Pill--info-inverted > .Pill__label:active,
 .Pill--info-inverted > .Pill__clear:active {
-  background-color: #3dc6fc;
+  background-color: #0080c7;
 }
 .Pill--success-inverted > .Pill__label,
 .Pill--success-inverted > .Pill__clear {
@@ -3627,10 +3627,10 @@ textarea.FormInput {
   color: white;
 }
 .SegmentedControl--info .SegmentedControl__button {
-  color: #56cdfc;
+  color: #0090e0;
 }
 .SegmentedControl--info .SegmentedControl__button.is-selected {
-  background-color: #56cdfc;
+  background-color: #0090e0;
   color: white;
 }
 .SegmentedControl--primary .SegmentedControl__button {
@@ -3879,7 +3879,7 @@ textarea.FormInput {
   color: #1385e5 !important;
 }
 .u-text-info {
-  color: #56cdfc !important;
+  color: #0090e0 !important;
 }
 .u-text-warning {
   color: #fa9f47 !important;

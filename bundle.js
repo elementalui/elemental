@@ -77,6 +77,7 @@ module.exports.Heading = React.createClass({
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
 
@@ -101,6 +102,9 @@ module.exports = React.createClass({
 			type: 'default'
 		};
 	},
+	focus: function focus() {
+		ReactDOM.findDOMNode(this.refs.button).focus();
+	},
 	render: function render() {
 		// classes
 		var componentClass = classNames('Button', 'Button--' + this.props.type, this.props.size ? 'Button--' + this.props.size : null, {
@@ -111,6 +115,7 @@ module.exports = React.createClass({
 		// props
 		var props = blacklist(this.props, 'type', 'size', 'component', 'className');
 		props.className = componentClass;
+		props.ref = 'button';
 
 		if (this.props.component) {
 			return React.cloneElement(this.props.component, props);
@@ -128,7 +133,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"blacklist":undefined,"classnames":undefined,"react":undefined}],5:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":undefined,"react":undefined,"react-dom":undefined}],5:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -280,18 +285,18 @@ module.exports = _react2['default'].createClass({
 	},
 	getInitialState: function getInitialState() {
 		return {
-			windowWidth: window.innerWidth
+			windowWidth: typeof window !== 'undefined' ? window.innerWidth : 0
 		};
 	},
 	componentDidMount: function componentDidMount() {
-		window.addEventListener('resize', this.handleResize);
+		if (typeof window !== 'undefined') window.addEventListener('resize', this.handleResize);
 	},
 	componentWillUnmount: function componentWillUnmount() {
-		window.removeEventListener('resize', this.handleResize);
+		if (typeof window !== 'undefined') window.removeEventListener('resize', this.handleResize);
 	},
 	handleResize: function handleResize() {
 		this.setState({
-			windowWidth: window.innerWidth
+			windowWidth: typeof window !== 'undefined' ? window.innerWidth : 0
 		});
 	},
 	render: function render() {
@@ -449,6 +454,7 @@ module.exports = React.createClass({
 		this.setState({ isOpen: false });
 	},
 	componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
+		if (typeof window === 'undefined') return;
 		if (nextState.isOpen) {
 			window.addEventListener('keydown', this.handleKeyDown);
 		} else {
@@ -1524,10 +1530,10 @@ module.exports = _react2['default'].createClass({
 	},
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		if (nextProps.isOpen) {
-			window.addEventListener('keydown', this.handleKeyDown);
+			if (typeof window !== 'undefined') window.addEventListener('keydown', this.handleKeyDown);
 			document.body.style.overflow = 'hidden';
 		} else {
-			window.removeEventListener('keydown', this.handleKeyDown);
+			if (typeof window !== 'undefined') window.removeEventListener('keydown', this.handleKeyDown);
 			document.body.style.overflow = null;
 		}
 	},
@@ -2164,18 +2170,18 @@ module.exports = _react2['default'].createClass({
 	},
 	getInitialState: function getInitialState() {
 		return {
-			windowWidth: window.innerWidth
+			windowWidth: typeof window !== 'undefined' ? window.innerWidth : 0
 		};
 	},
 	componentDidMount: function componentDidMount() {
-		window.addEventListener('resize', this.handleResize);
+		if (typeof window !== 'undefined') window.addEventListener('resize', this.handleResize);
 	},
 	componentWillUnmount: function componentWillUnmount() {
-		window.removeEventListener('resize', this.handleResize);
+		if (typeof window !== 'undefined') window.removeEventListener('resize', this.handleResize);
 	},
 	handleResize: function handleResize() {
 		this.setState({
-			windowWidth: window.innerWidth
+			windowWidth: typeof window !== 'undefined' ? window.innerWidth : 0
 		});
 	},
 	render: function render() {

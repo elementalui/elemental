@@ -166,6 +166,14 @@ var Buttons = React.createClass({
 			dropdownOpen: false
 		};
 	},
+	componentDidMount: function componentDidMount() {
+		var _this = this;
+
+		console.log('x');
+		setTimeout(function () {
+			_this.refs.size_lg.focus();
+		}, 1000);
+	},
 	toggleDropdown: function toggleDropdown() {
 		this.setState({ dropdownOpen: !this.state.dropdownOpen });
 	},
@@ -173,7 +181,7 @@ var Buttons = React.createClass({
 		return BUTTON_SIZES.map(function (size) {
 			return React.createElement(
 				'div',
-				{ key: size.value, className: 'code-example__example-element--inline' },
+				{ ref: 'size_' + size.value, key: size.value, className: 'code-example__example-element--inline' },
 				React.createElement(
 					Button,
 					{ size: size.value },
@@ -3528,7 +3536,12 @@ var Misc = React.createClass({
 							null,
 							'Info:'
 						),
-						' This could be something helpful, better read it just to make sure.'
+						' Alerts can contain ',
+						React.createElement(
+							'a',
+							{ href: '/misc' },
+							'Anchor Tags'
+						)
 					),
 					React.createElement(
 						Alert,
@@ -3564,7 +3577,7 @@ var Misc = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Alert type="info"><strong>Info:</strong> This could be something helpful, better read it just to make sure.</Alert>\n\t\t\t\t\t\t\t<Alert type="success"><strong>Success:</strong> Nothing to worry about, everything is going great!</Alert>\n\t\t\t\t\t\t\t<Alert type="warning"><strong>Warning:</strong> Pay attention to me, things are not going according to plan.</Alert>\n\t\t\t\t\t\t\t<Alert type="danger"><strong>Error:</strong> You need to take action, something has gone terribly wrong!</Alert>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Alert type="info"><strong>Info:</strong> Alerts can contain <a href="/misc">Anchor Tags</a></Alert>\n\t\t\t\t\t\t\t<Alert type="success"><strong>Success:</strong> Nothing to worry about, everything is going great!</Alert>\n\t\t\t\t\t\t\t<Alert type="warning"><strong>Warning:</strong> Pay attention to me, things are not going according to plan.</Alert>\n\t\t\t\t\t\t\t<Alert type="danger"><strong>Error:</strong> You need to take action, something has gone terribly wrong!</Alert>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -4995,7 +5008,7 @@ var Buttons = React.createClass({
 						null,
 						React.createElement(
 							Col,
-							null,
+							{ sm: '1/3' },
 							React.createElement(
 								DemoBox,
 								{ style: { paddingBottom: 20, paddingTop: 20 } },
@@ -5004,7 +5017,7 @@ var Buttons = React.createClass({
 						),
 						React.createElement(
 							Col,
-							null,
+							{ sm: '1/3' },
 							React.createElement(
 								DemoBox,
 								{ style: { paddingBottom: 20, paddingTop: 20 } },
@@ -5013,7 +5026,7 @@ var Buttons = React.createClass({
 						),
 						React.createElement(
 							Col,
-							null,
+							{ sm: '1/3' },
 							React.createElement(
 								DemoBox,
 								{ style: { paddingBottom: 20, paddingTop: 20 }, inverted: true },
