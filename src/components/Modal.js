@@ -45,11 +45,10 @@ module.exports = React.createClass({
 			setTimeout(() => this.handleAccessibility());
 			document.body.style.overflow = 'hidden';
 		} else {
-			setTimeout(() => this.removeAccessibilityHandles());
 			document.body.style.overflow = null;
+			setTimeout(() => this.removeAccessibilityHandlers());
 		}
 	},
-
 	handleAccessibility () {
 		// Remember the element that was focused before we opened the modal
 		// so we can return focus to it once we close the modal.
@@ -96,8 +95,7 @@ module.exports = React.createClass({
 			escape: this.props.onCancel,
 		});
 	},
-
-	removeAccessibilityHandles () {
+	removeAccessibilityHandlers () {
 		// undo listening to keyboard
 		this.keyHandle && this.keyHandle.disengage();
 
@@ -110,7 +108,6 @@ module.exports = React.createClass({
 		// return focus to where it was before we opened the modal
 		this.focusedElementBeforeModalOpened && this.focusedElementBeforeModalOpened.focus();
 	},
-
 	handleModalClick (event) {
 		if (event.target.dataset.modal) this.props.onCancel();
 	},
