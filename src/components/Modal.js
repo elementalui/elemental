@@ -45,7 +45,6 @@ module.exports = React.createClass({
 			setTimeout(() => this.handleAccessibility());
 			document.body.style.overflow = 'hidden';
 		} else {
-			document.body.style.overflow = null;
 			setTimeout(() => this.removeAccessibilityHandlers());
 		}
 	},
@@ -92,7 +91,7 @@ module.exports = React.createClass({
 
 		// React to escape keys as mandated by ARIA Practices
 		this.keyHandle = ally.when.key({
-			escape: this.props.onCancel,
+			escape: this.handleClose,
 		});
 	},
 	removeAccessibilityHandlers () {
@@ -109,7 +108,11 @@ module.exports = React.createClass({
 		this.focusedElementBeforeModalOpened && this.focusedElementBeforeModalOpened.focus();
 	},
 	handleModalClick (event) {
-		if (event.target.dataset.modal) this.props.onCancel();
+		if (event.target.dataset.modal) this.handleClose();
+	},
+	handleClose () {
+		document.body.style.overflow = null;
+		this.props.onCancel();
 	},
 	renderDialog() {
 		if (!this.props.isOpen) return;
@@ -129,7 +132,7 @@ module.exports = React.createClass({
 	renderBackdrop() {
 		if (!this.props.isOpen) return;
 
-		return <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.props.onCancel : null} />;
+		return <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.handleClose : null} />;
 	},
 	render() {
 		var className = classNames('Modal', {
