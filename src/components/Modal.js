@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Transition from 'react-addons-css-transition-group';
 import blacklist from 'blacklist';
 import classNames from 'classnames';
+import ally from 'ally.js';
 
 const TransitionPortal = React.createClass({
 	displayName: 'TransitionPortal',
@@ -41,19 +42,75 @@ module.exports = React.createClass({
 	},
 	componentWillReceiveProps: function(nextProps) {
 		if (nextProps.isOpen) {
-			if (typeof window !== 'undefined') window.addEventListener('keydown', this.handleKeyDown);
+			setTimeout(() => this.handleAccessibility());
 			document.body.style.overflow = 'hidden';
 		} else {
-			if (typeof window !== 'undefined') window.removeEventListener('keydown', this.handleKeyDown);
+			setTimeout(() => this.removeAccessibilityHandles());
 			document.body.style.overflow = null;
 		}
 	},
 
-	handleKeyDown (event) {
-		if (event.keyCode === 27) {
-			this.props.onCancel();
-		}
+	handleAccessibility () {
+		// Remember the element that was focused before we opened the modal
+		// so we can return focus to it once we close the modal.
+		this.focusedElementBeforeModalOpened = document.activeElement;
+
+		// We're using a transition to reveal the modal,
+		// so wait until the element is visible, before
+		// finding the first keyboard focusable element
+		// and passing focus to it, otherwise the browser
+		// might scroll the document to reveal the element
+		// receiving focus
+		ally.when.visibleArea({
+			context: this.modalElement,
+			callback: function(context) {
+				// the modal is visible on screen, so find the first
+				// keyboard focusable element (giving any element with
+				// autofocus attribute precendence). If the modal does
+				// not contain any keyboard focusabe elements, focus will
+				// be given to the modal itself.
+				var element = ally.query.firstTabbable({
+					context: context,
+					defaultToContext: true,
+				});
+				element.focus();
+			},
+		});
+
+		// Make sure that no element outside of the modal
+		// can be interacted with while the modal is visible.
+		this.disabledHandle = ally.maintain.disabled({
+			filter: this.modalElement,
+		});
+
+		// Make sure that no element outside of the modal
+		// is exposed via the Accessibility Tree, to prevent
+		// screen readers from navigating to content it shouldn't
+		// be seeing while the modal is open.
+		this.hiddenHandle = ally.maintain.hidden({
+			filter: this.modalElement,
+		});
+
+		// React to escape keys as mandated by ARIA Practices
+		this.keyHandle = ally.when.key({
+			escape: this.props.onCancel,
+		});
 	},
+
+	removeAccessibilityHandles () {
+		// undo listening to keyboard
+		this.keyHandle && this.keyHandle.disengage();
+
+		// undo hiding elements outside of the modal
+		this.hiddenHandle && this.hiddenHandle.disengage();
+
+		// undo disabling elements outside of the modal
+		this.disabledHandle && this.disabledHandle.disengage();
+
+		// return focus to where it was before we opened the modal
+		this.focusedElementBeforeModalOpened && this.focusedElementBeforeModalOpened.focus();
+	},
+
 	handleModalClick (event) {
 		if (event.target.dataset.modal) this.props.onCancel();
 	},
@@ -66,7 +123,7 @@ module.exports = React.createClass({
 
 		return (
 			<div className={dialogClassname} style={(this.props.width && !isNaN(this.props.width)) ? { width: this.props.width + 20 } : null}>
-				<div className="Modal-content">
+				<div ref={ref => { this.modalElement = ref; }} className="Modal-content">
 					{this.props.children}
 				</div>
 			</div>

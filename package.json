@@ -10,6 +10,7 @@
     "url": "https://github.com/elementalui/elemental.git"
   },
   "dependencies": {
+    "ally.js": "^1.0.1",
     "blacklist": "^1.1.2",
     "classnames": "^2.2.0"
   },
