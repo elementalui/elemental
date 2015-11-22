@@ -20,6 +20,7 @@ module.exports = React.createClass({
 	getInitialState() {
 		return {
 			modalIsOpen: false,
+			sizedModalIsOpen: false,
 		};
 	},
 	toggleModal(visible) {
