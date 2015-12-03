@@ -8,3 +8,4 @@ npm-debug.log
 package.json
 /scripts/
 /bower.json
+/test/
