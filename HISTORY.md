@@ -1,5 +1,16 @@
 # Elemental
 
+## v0.5.7 / 2015-12-07
+
+* fixed; Pagination component works with even page limits, thanks [Shmavon Gazanchyan](https://github.com/MunGell)
+* added; Accessibility fixes for the `Modal` component, thanks [Jonathan Persson](https://github.com/jonathanp)
+* fixed; Safari style bug in the dropdown component, thanks [Jonathan Persson](https://github.com/jonathanp)
+
+## v0.5.6 / 2015-11-18
+
+* changed; default info colour darkened slightly for better legibility
+* fixed; anchor text colour in alerts
+
 ## v0.5.5 / 2015-11-14
 
 * fixed; Server-side rendering issues with the `Col` component, thanks [Daniil Pokrovsky](https://github.com/danii1)
@@ -40,7 +51,7 @@ Elemental UI is updated for React 0.14. If you're still using React 0.13, please
 * fixed; InputGroup: contiguous section's border behaviour
 * fixed; Dropdown: return value from onSelect (not label)
 * fixed; Dropdown: escape closes menu
-* added; Pagination: new limit prop to limit total number of pages displayed, thanks [Shmavon](https://github.com/MunGell)
+* added; Pagination: new limit prop to limit total number of pages displayed, thanks [Shmavon Gazanchyan](https://github.com/MunGell)
 
 ## v0.4.5 / 2015-09-16
 
