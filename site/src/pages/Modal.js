@@ -1,4 +1,4 @@
-const React = require('react/addons');
+const React = require('react');
 
 const {
 	Button,
@@ -19,56 +19,22 @@ module.exports = React.createClass({
 	displayName: 'VIEW_Modal',
 	getInitialState() {
 		return {
-			formProcessing: false,
 			modalIsOpen: false,
-			email: '',
-			password: ''
+			sizedModalIsOpen: false,
 		};
 	},
-	toggleModal(e) {
-		e.preventDefault();
-		var self = this;
+	toggleModal(visible) {
 		this.setState({
-			modalIsOpen: !this.state.modalIsOpen
-		}, function () {
-			if (self.state.modalIsOpen) {
-				self.refs.email.getDOMNode().focus();
-			}
+			modalIsOpen: visible
 		});
 	},
-	submitForm(e) {
-		e.preventDefault();
-		var self = this;
-		this.setState({ formProcessing: true });
-
-		setTimeout(function() {
-			self.setState({
-				formProcessing: false,
-				modalIsOpen: false,
-				email: '',
-				password: ''
-			});
-		}, 3000);
+	toggleSizedModal(visible, size) {
+		this.setState({
+			sizedModalIsOpen: visible,
+			modalSize: size,
+		});
 	},
 	render() {
-		var self = this;
-
-		// handle form input
-		function updateInput(e) {
-			var newState = {};
-			newState[e.target.name] = e.target.value;
-			self.setState(newState);
-		}
-
-		// variable submit button
-		var submitButton = this.state.formProcessing ? (
-			<Button type="primary" disabled>
-				<Spinner type="inverted" />
-				Submitting
-			</Button>
-		) : (
-			<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>
-		);
 		return (
 			<Container maxWidth={800} className="demo-container">
 				<h1>Modal</h1>
@@ -77,22 +43,27 @@ module.exports = React.createClass({
 				<div className="code-example">
 					<div className="code-example__example">
 						<div className="Modal-content">
-							<ModalHeader text="Modal Header" showCloseButton />
+							<ModalHeader text="Modal Header" />
 							<ModalBody>
-								<p>Content and controls go in the Modal Body.</p>
+								<FormField label="Email">
+									<FormInput label="Email" type="email" name="email" ref="email" placeholder="name@example.com" onChange={this.updateInput} required />
+								</FormField>
+								<FormField label="Password">
+									<FormInput label="Password" type="password" name="password" ref="password" placeholder="min. 8 chars" onChange={this.updateInput} required />
+								</FormField>
 							</ModalBody>
 							<ModalFooter>
-								<Button type="primary">Modal Footer</Button>
-								<Button type="link-cancel">Button</Button>
+								<Button type="primary">Submit</Button>
+								<Button type="link-cancel">Cancel</Button>
 							</ModalFooter>
 						</div>
 					</div>
 					<ExampleSource>
 						{`
 							<Modal>
-								<ModalHeader text="Modal Header" showCloseButton />
+								<ModalHeader text="Modal Header" />
 								<ModalBody>
-									<p>Content and controls go in the Modal Body.</p>
+									<form>[...]</form>
 								</ModalBody>
 								<ModalFooter>
 									<Button type="primary">Modal Footer</Button>
@@ -106,7 +77,7 @@ module.exports = React.createClass({
 				<h2>Live Demo</h2>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Button onClick={this.toggleModal}>Launch Modal</Button>
+						<Button onClick={this.toggleModal.bind(this, true)}>Launch Modal</Button>
 					</div>
 					<ExampleSource>
 						{`
@@ -116,34 +87,29 @@ module.exports = React.createClass({
 					<ExampleSource>
 						{`
 							<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>
-								<ModalHeader text="Live Demo" showCloseButton onClose={this.toggleModal} />
-								<form action="#" onSubmit={this.submitForm} noValidate>
-									<ModalBody>
-										<FormField label="Email">
-											<FormInput label="Email" type="email" name="email" ref="email" value={this.state.email} onChange={updateInput} required />
-										</FormField>
-										<FormField label="Password">
-											<FormInput label="Password" type="password" name="password" ref="password" value={this.state.password} onChange={updateInput} required />
-										</FormField>
-									</ModalBody>
-									<ModalFooter>
-										{submitButton}
-										<Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>
-									</ModalFooter>
-								</form>
+								<ModalHeader text="Lots of text to show scroll behavior" showCloseButton onClose={this.toggleModal} />
+								<ModalBody>[...]</ModalBody>
+								<ModalFooter>
+									<Button type="primary" onClick={this.toggleModal}>Close modal</Button>
+									<Button type="link-cancel" onClick={this.toggleModal}>Also closes modal</Button>
+								</ModalFooter>
 							</Modal>
 						`}
 					</ExampleSource>
+				</div>
+
+				<h2>Sizes</h2>
+				<div className="code-example">
+					<div className="code-example__example">
+						<Button onClick={() => this.toggleSizedModal(true, 'small')} style={{ marginRight: 10 }}>Small</Button>
+						<Button onClick={() => this.toggleSizedModal(true, 'large')} style={{ marginRight: 10 }}>Large</Button>
+						<Button onClick={() => this.toggleSizedModal(true, 768)}>768px</Button>
+					</div>
 					<ExampleSource>
 						{`
-							var submitButton = this.state.formProcessing ? (
-								<Button type="primary" disabled>
-									<Spinner type="inverted" />
-									Submitting
-								</Button>
-							) : (
-								<Button type="primary" disabled={!this.state.email || !this.state.password} submit>Submit</Button>
-							);
+							<Modal ... size="small">...</Modal>
+							<Modal ... size="large">...</Modal>
+							<Modal ... size={768}>...</Modal>
 						`}
 					</ExampleSource>
 				</div>
@@ -180,10 +146,10 @@ module.exports = React.createClass({
 								<td className="usage-table__description">The function used to handle cancel events on the modal; typically sets the open state to <code className="inline-code">false</code></td>
 							</tr>
 							<tr>
-								<td className="usage-table__prop">top</td>
-								<td className="usage-table__type">string</td>
-								<td className="usage-table__default">''</td>
-								<td className="usage-table__description">Optionally pass through a distance from top. If omitted (recommended) the modal will automatically calculate the correct distance.</td>
+								<td className="usage-table__prop">width</td>
+								<td className="usage-table__type">number/enum</td>
+								<td className="usage-table__default">'medium'</td>
+								<td className="usage-table__description">Explicitly set a numeric width or provide one of three sizes; 'small', 'medium', 'large' - 320px, 640px, 960px respectively.</td>
 							</tr>
 						</tbody>
 					</Table>
@@ -232,22 +198,30 @@ module.exports = React.createClass({
 				<h3>Modal Body/Footer</h3>
 				<p>These are simple wrappers to abstract the classnames, they may become more functional in the future.</p>
 
-				<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal} backdropClosesModal>
-					<ModalHeader text="Live Demo" showCloseButton onClose={this.toggleModal} />
-					<form action="#" onSubmit={this.submitForm} noValidate>
-						<ModalBody>
-							<FormField label="Email">
-								<FormInput label="Email" type="email" name="email" ref="email" value={this.state.email} onChange={updateInput} required />
-							</FormField>
-							<FormField label="Password">
-								<FormInput label="Password" type="password" name="password" ref="password" value={this.state.password} onChange={updateInput} required />
-							</FormField>
-						</ModalBody>
-						<ModalFooter>
-							{submitButton}
-							<Button onClick={this.toggleModal} type="link-cancel" disabled={this.state.formProcessing}>Cancel</Button>
-						</ModalFooter>
-					</form>
+				<Modal isOpen={this.state.modalIsOpen} onCancel={this.toggleModal.bind(this, false)} backdropClosesModal>
+					<ModalHeader text="Lots of text to show scroll behavior" showCloseButton onClose={this.toggleModal.bind(this, false)} />
+					<ModalBody>
+						<p style={{ color: '#999', fontSize: '.85em' }}>From the Wikipedia article <a href="https://en.wikipedia.org/wiki/Elemental" target="_blank">https://en.wikipedia.org/wiki/Elemental</a></p>
+						<p>An elemental is a mythic being described in occult and alchemical works from around the time of the European Renaissance and particularly elaborated in the 16th century works of Paracelsus.</p>
+						<p>There are four elemental categories: gnomes, undines, sylphs, and salamanders. These correspond to the Classical elements of antiquity: earth, water, air and fire. Aether (quintessence) was not assigned an elemental.</p>
+						<p>Terms employed for beings associated with alchemical elements vary by source and gloss.</p>
+						<h2>History</h2>
+						<p>The Paracelsian concept of elementals draws from several much older traditions in mythology and religion. Common threads can be found in folklore, animism, and anthropomorphism. Examples of creatures such as the Pygmy were taken from Greek mythology.</p>
+						<p>The elements of earth, water, air, and fire, were classed as the fundamental building blocks of nature. This system prevailed in the Classical world and was highly influential in medieval natural philosophy. Although Paracelsus uses these foundations and the popular preexisting names of elemental creatures, he is doing so to present new ideas which expand on his own philosophical system. The homunculus is another example of a Paracelsian idea with roots in earlier alchemical, scientific, and folklore traditions.</p>
+						<h3>Paracelsus</h3>
+						<p>In his 16th-century alchemical work Liber de Nymphis, sylphis, pygmaeis et salamandris et de caeteris spiritibus, Paracelsus identified mythological beings as belonging to one of the four elements. Part of the Philosophia Magna, this book was first printed in 1566 after Paracelsus' death. He wrote the book to "describe the creatures that are outside the cognizance of the light of nature, how they are to be understood, what marvellous works God has created". He states that there is more bliss in describing these "divine objects" than in describing fencing, court etiquette, cavalry, and other worldly pursuits.</p>
+						<p>The concept of elementals seems to have been conceived by Paracelsus in the 16th century, though he did not in fact use the term "elemental" or a German equivalent.[5] He regarded them not so much as spirits but as beings between creatures and spirits, generally being invisible to mankind but having physical and commonly humanoid bodies, as well as eating, sleeping, and wearing clothes like humans. Paracelsus gave common names for the elemental types, as well as correct names, which he seems to have considered somewhat more proper, "recht namen". He also referred to them by purely German terms which are roughly equivalent to "water people," "mountain people," and so on, using all the different forms interchangeably.</p>
+					</ModalBody>
+					<ModalFooter>
+						<Button type="primary" onClick={this.toggleModal.bind(this, false)}>Close modal</Button>
+						<Button type="link-cancel" onClick={this.toggleModal.bind(this, false)}>Also closes modal</Button>
+					</ModalFooter>
+				</Modal>
+				<Modal isOpen={this.state.sizedModalIsOpen} onCancel={() => this.toggleSizedModal(false, null)} backdropClosesModal width={this.state.modalSize}>
+					<ModalHeader text={this.state.modalSize} showCloseButton onClose={() => this.toggleSizedModal(false, null)} />
+					<ModalBody>
+						<p>&hellip;</p>
+					</ModalBody>
 				</Modal>
 			</Container>
 		);

@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import blacklist from 'blacklist';
 import E from '../constants';
 
@@ -26,18 +26,18 @@ module.exports = React.createClass({
 	},
 	getInitialState: function() {
 		return {
-			windowWidth: window.innerWidth
+			windowWidth: (typeof window !== 'undefined') ? window.innerWidth : 0
 		};
 	},
 	componentDidMount: function() {
-		window.addEventListener('resize', this.handleResize);
+		if (typeof window !== 'undefined') window.addEventListener('resize', this.handleResize);
 	},
 	componentWillUnmount: function() {
-		window.removeEventListener('resize', this.handleResize);
+		if (typeof window !== 'undefined') window.removeEventListener('resize', this.handleResize);
 	},
 	handleResize: function() {
 		this.setState({
-			windowWidth: window.innerWidth
+			windowWidth: (typeof window !== 'undefined') ? window.innerWidth : 0
 		});
 	},
 	render() {

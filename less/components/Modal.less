@@ -10,7 +10,25 @@
 // Wrapper
 // ------------------------------
 
-.Modal {}
+.Modal {
+	.transition( visibility 140ms );
+	bottom: 0;
+	left: 0;
+	outline: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	right: 0;
+	top: 0;
+	visibility: hidden;
+	z-index: @zindex-modal;
+	-webkit-overflow-scrolling: touch;
+
+	&.is-open {
+		.transition( none );
+		visibility: visible;
+	}
+}
 
 
 
@@ -22,16 +40,11 @@
 
 // shell div to position the modal
 .Modal-dialog {
-	left: 0;
-	margin-left: auto;
-	margin-right: auto;
-	padding: @grid-gutter-width / 2;
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 100%;
-	z-index: @zindex-modal;
-	transition: top 200ms linear;
+	max-width: 100%;
+	padding: 10px;
+	position: relative;
+	width: auto;
+	z-index: 2;
 }
 .Modal-dialog-enter {
 	.animation-name( modalDialogEnter );
@@ -59,10 +72,11 @@
 
 @media (min-width: @screen-sm) {
 	.Modal-dialog {
-		margin-bottom: 100px;
-		margin-top: 100px;
-		width: @screen-sm;
+		margin: 80px auto;
 	}
+	.Modal-dialog--small  { width: @modal-width-small; }
+	.Modal-dialog--medium { width: @modal-width-medium; }
+	.Modal-dialog--large  { width: @modal-width-large; }
 }
 
 
@@ -104,7 +118,7 @@
 	cursor: pointer;
 	line-height: 1ex; // get it? ;)
 	margin: 0;
-	
+
 	// style and position
 	opacity: .4;
 	font-size: 24px;
@@ -163,15 +177,6 @@
 	.animation-name( modalBackdropEnter );
 }
 .Modal-background-leave {
-	.animation-delay( 240ms );
+	.animation-duration( 240ms );
 	.animation-name( modalBackdropLeave );
 }
-
-
-
-
-
-
-
-
-

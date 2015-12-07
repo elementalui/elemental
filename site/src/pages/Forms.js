@@ -61,6 +61,7 @@ var Forms = React.createClass({
 			files: files
 		});
 	},
+
 	handleSearch () {
 		var self = this;
 		self.setState({ searching: true });
@@ -127,7 +128,7 @@ var Forms = React.createClass({
 					<div className="code-example__example">
 						<Form>
 							<FormField label="Email address" htmlFor="basic-form-input-email">
-								<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />
+								<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 							</FormField>
 							<FormField label="Password" htmlFor="basic-form-input-password">
 								<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
@@ -142,7 +143,7 @@ var Forms = React.createClass({
 						{`
 							<Form>
 								<FormField label="Email address" htmlFor="basic-form-input-email">
-									<FormInput type="email" placeholder="Enter email" name="basic-form-input-email" />
+									<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 								</FormField>
 								<FormField label="Password" htmlFor="basic-form-input-password">
 									<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
@@ -358,6 +359,16 @@ var Forms = React.createClass({
 									<Button>Default</Button>
 								</InputGroup.Section>
 							</InputGroup>
+							<InputGroup contiguous>
+								<InputGroup.Section grow>
+									<FormIconField width="one-half" iconPosition="left" iconColor="default" iconKey="mail">
+										<FormInput placeholder="Email address" name="icon-alignment-left" />
+									</FormIconField>
+								</InputGroup.Section>
+								<InputGroup.Section>
+									<Button type="primary">Send</Button>
+								</InputGroup.Section>
+							</InputGroup>
 					</div>
 					<ExampleSource>
 						{`
@@ -381,6 +392,16 @@ var Forms = React.createClass({
 								</InputGroup.Section>
 								<InputGroup.Section>
 									<Button>Default</Button>
+								</InputGroup.Section>
+							</InputGroup>
+							<InputGroup contiguous>
+								<InputGroup.Section grow>
+									<FormIconField width="one-half" iconPosition="left" iconColor="default" iconKey="mail">
+										<FormInput placeholder="Email address" name="icon-alignment-left" />
+									</FormIconField>
+								</InputGroup.Section>
+								<InputGroup.Section>
+									<Button type="primary">Send</Button>
 								</InputGroup.Section>
 							</InputGroup>
 						`}

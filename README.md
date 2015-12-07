@@ -1,3 +1,6 @@
+[![npm package](https://img.shields.io/npm/v/elemental.svg?style=flat)](https://www.npmjs.org/package/elemental)
+[![elemental channel on slack](https://img.shields.io/badge/slack-elemental@reactiflux-61DAFB.svg?style=flat)](http://www.reactiflux.com)
+
 <p align="center">
 	<img src="http://elemental-ui.com/images/elemental-logo-paths.svg" width="174" height="154" alt="Elemental Logo" />
 </p>

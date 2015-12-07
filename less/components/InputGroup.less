@@ -35,7 +35,7 @@
 // stretch the appropriate element - 1 per input group
 
 .InputGroup_section--grow {
-	.flex(1,1,0);
+	.flex(1,1,auto);
 }
 
 
@@ -65,17 +65,20 @@
 
 	// remove the border radius initially
 	> .FormInput,
-	> .Button {
+	> .Button,
+	> .FormField .FormInput {
 		border-radius: 0;
 	}
 
 	// reapply where appropriate
 	&:first-child > .FormInput,
-	&:first-child > .Button {
+	&:first-child > .Button,
+	&:first-child > .FormField .FormInput {
 		.border-left-radius(@border-radius-base);
 	}
 	&:last-child > .FormInput,
-	&:last-child > .Button {
+	&:last-child > .Button,
+	&:last-child > .FormField .FormInput {
 		.border-right-radius(@border-radius-base);
 	}
 }

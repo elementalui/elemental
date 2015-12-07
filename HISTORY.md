@@ -1,5 +1,47 @@
 # Elemental
 
+## v0.5.5 / 2015-11-14
+
+* fixed; Server-side rendering issues with the `Col` component, thanks [Daniil Pokrovsky](https://github.com/danii1)
+
+## v0.5.4 / 2015-11-08
+
+* fixed; `input.focus()` works again
+* changed; `focusOnMount` prop on Input and Checkbox components has become `autofocus` and is now working again
+
+## v0.5.3 / 2015-10-18
+
+* fixed; `react-dom` and `react-addons-*` need to be declared as peerDependencies
+
+## v0.5.2 / 2015-10-16
+
+* added; Button: `component` prop to provide custom components for buttons, e.g. enables use of react-router's `Router.Link`, thanks [Christian Legnitto](https://github.com/LegNeato)
+
+## v0.5.1 / 2015-10-16
+
+* fixed; arrow positioning on `FormSelect` thanks to [NogsMPLS](https://github.com/NogsMPLS)
+* added; setting custom widths on `Modal`, explicitly set a numeric width or provide one of three sizes; 'small', 'medium', 'large' - 320px, 640px, 960px respectively.
+
+## v0.5.0 / 2015-10-12
+
+Elemental UI is updated for React 0.14. If you're still using React 0.13, please continue to use `elemental@0.4.x`. There are no functional differences between v0.5.0 and v0.4.8.
+
+## v0.4.8 / 2015-09-19
+
+* added; New `Glyph` component, thanks to [Christian Legnitto](https://github.com/LegNeato)
+* fixed; FileUpload: onChange isn't always triggered correctly, thanks [Jinks](https://github.com/JinksPeng)
+
+## v0.4.7 / 2015-09-18
+
+* fixed; Modal position is now fixed with CSS, and addresses previously janky scrolling behaviour
+
+## v0.4.6 / 2015-09-17
+
+* fixed; InputGroup: contiguous section's border behaviour
+* fixed; Dropdown: return value from onSelect (not label)
+* fixed; Dropdown: escape closes menu
+* added; Pagination: new limit prop to limit total number of pages displayed, thanks [Shmavon](https://github.com/MunGell)
+
 ## v0.4.5 / 2015-09-16
 
 * fixed; React dependency allows any version of 0.14 beta or rc

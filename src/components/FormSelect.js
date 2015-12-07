@@ -1,6 +1,6 @@
 import blacklist from 'blacklist';
 import classNames from 'classnames';
-import React from 'react/addons';
+import React from 'react';
 import icons from '../icons';
 
 module.exports = React.createClass({
@@ -123,10 +123,12 @@ module.exports = React.createClass({
 		return (
 			<div className={componentClass}>
 				{componentLabel}
-				<select className="FormInput FormSelect" id={forAndID} onChange={this.handleChange} onBlur={this.handleBlur} {...props}>
-					{options}
-				</select>
-				{this.renderIcon(icons.selectArrows)}
+				<div className="u-pos-relative">
+					<select className="FormInput FormSelect" id={forAndID} onChange={this.handleChange} onBlur={this.handleBlur} {...props}>
+						{options}
+					</select>
+					{this.renderIcon(icons.selectArrows)}
+				</div>
 				{validationMessage}
 			</div>
 		);

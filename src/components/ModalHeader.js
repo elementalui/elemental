@@ -1,5 +1,5 @@
 var classnames = require('classnames');
-var React = require('react/addons');
+var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'ModalHeader',
@@ -10,11 +10,15 @@ module.exports = React.createClass({
 		showCloseButton: React.PropTypes.bool,
 		text: React.PropTypes.string
 	},
+	handleClose () {
+		document.body.style.overflow = null;
+		this.props.onClose();
+	},
 	render() {
 
 		// elements
 		var className = classnames('Modal__header', this.props.className);
-		var close = this.props.showCloseButton ? <button type="button" onClick={this.props.onClose} className="Modal__header__close" /> : null;
+		var close = this.props.showCloseButton ? <button type="button" onClick={this.handleClose} className="Modal__header__close" /> : null;
 		var text = this.props.text ? <h4 className="Modal__header__text">{this.props.text}</h4> : null;
 		return (
 			<div {...this.props} className={className}>

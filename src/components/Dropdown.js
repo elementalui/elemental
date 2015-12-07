@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+const React = require('react');
+const Transition = require('react-addons-css-transition-group');
 const blacklist = require('blacklist');
 const classNames = require('classnames');
 const Button = require('./Button');
@@ -37,6 +37,7 @@ module.exports = React.createClass({
 		this.setState({ isOpen: false });
 	},
 	componentWillUpdate (nextProps, nextState) {
+		if (typeof window === 'undefined') return;		
 		if (nextState.isOpen) {
 			window.addEventListener('keydown', this.handleKeyDown);
 		} else {
@@ -44,7 +45,6 @@ module.exports = React.createClass({
 		}
 	},
 	handleKeyDown (e) {
-		console.log(e);
 		if (e.keyCode === ESC_KEYCODE) {
 			this.closeDropdown();
 		}
@@ -120,9 +120,9 @@ module.exports = React.createClass({
 		return (
 			<span className={dropdownClass} {...props}>
 				{React.Children.count(this.props.children) ? this.renderChildren() : this.renderButton()}
-				<ReactCSSTransitionGroup transitionName="Dropdown-menu">
+				<Transition transitionName="Dropdown-menu" transitionEnterTimeout={100} transitionLeaveTimeout={100}>
 					{this.renderDropdownMenu()}
-				</ReactCSSTransitionGroup>
+				</Transition>
 				{this.renderDropdownMenuBackground()}
 			</span>
 		);

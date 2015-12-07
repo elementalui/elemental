@@ -1,6 +1,6 @@
 /* eslint no-script-url: 0 */
 
-const React = require('react/addons');
+const React = require('react');
 const { Col, Container, Row, ResponsiveText } = require('elemental');
 
 const DemoBox = require('../components/DemoBox');
