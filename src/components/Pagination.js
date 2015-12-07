@@ -45,31 +45,32 @@ module.exports = React.createClass({
 		let pages = [];
 		let { currentPage, pageSize, total, limit } = this.props;
 		let totalPages = Math.ceil(total / pageSize);
-		let minPage = 0;
+		let minPage = 1;
 		let maxPage = totalPages;
 
 		if (limit && (limit < totalPages)) {
-			limit = Math.floor(limit / 2);
-			minPage = currentPage - limit - 1;
-			maxPage = currentPage + limit;
+			let rightLimit = Math.floor(limit / 2);
+			let leftLimit =  rightLimit + (limit % 2) - 1;
 
-			if (minPage < 0) {
-				maxPage = maxPage - minPage;
-				minPage = 0;
+			minPage = currentPage - leftLimit;
+			maxPage = currentPage + rightLimit;
+
+			if (minPage < 1) {
+				maxPage = limit;
+				minPage = 1;
 			}
 
 			if (maxPage > totalPages) {
-				minPage = totalPages - 2 * limit - 1;
+				minPage = totalPages - limit + 1;
 				maxPage = totalPages;
 			}
 		}
 
-		if (minPage > 0) {
+		if (minPage > 1) {
 			pages.push(<button key={'page_start'} className={'Pagination__list__item'} onClick={() => this.onPageSelect(1)}>...</button>);
 		}
 
-		for (let i = minPage; i < maxPage; i++) {
-			let page = i + 1;
+		for (let page = minPage; page <= maxPage; page++) {
 			let current = (page === currentPage);
 			let className = classNames('Pagination__list__item', {
 				'is-selected': current
