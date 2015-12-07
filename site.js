@@ -166,14 +166,6 @@ var Buttons = React.createClass({
 			dropdownOpen: false
 		};
 	},
-	componentDidMount: function componentDidMount() {
-		var _this = this;
-
-		console.log('x');
-		setTimeout(function () {
-			_this.refs.size_lg.focus();
-		}, 1000);
-	},
 	toggleDropdown: function toggleDropdown() {
 		this.setState({ dropdownOpen: !this.state.dropdownOpen });
 	},
@@ -181,7 +173,7 @@ var Buttons = React.createClass({
 		return BUTTON_SIZES.map(function (size) {
 			return React.createElement(
 				'div',
-				{ ref: 'size_' + size.value, key: size.value, className: 'code-example__example-element--inline' },
+				{ key: size.value, className: 'code-example__example-element--inline' },
 				React.createElement(
 					Button,
 					{ size: size.value },
@@ -4408,7 +4400,8 @@ module.exports = React.createClass({
 	displayName: 'VIEW_Modal',
 	getInitialState: function getInitialState() {
 		return {
-			modalIsOpen: false
+			modalIsOpen: false,
+			sizedModalIsOpen: false
 		};
 	},
 	toggleModal: function toggleModal(visible) {
