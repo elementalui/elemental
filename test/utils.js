@@ -15,7 +15,7 @@ export default {
 	},
 
 	getDOMNodeWithClass: function (Component, props, className) {
-		return this.getDOMWithClass(Component, props, className).getDOMNode();
+		return this.getDOMWithClass(Component, props, className);
 	},
 
 	getInnerHTML: function (dom) {
