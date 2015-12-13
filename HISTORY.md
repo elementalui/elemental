@@ -1,5 +1,10 @@
 # Elemental
 
+## v0.5.8 / 2015-12-14
+
+* fixed; Accessibility handlers in the Modal component are only bound when the `isOpen` prop changes
+* changed; The `Modal` component will only focus the first element when you tell it to, with the new `autofocusFirstElement` prop
+
 ## v0.5.7 / 2015-12-07
 
 * fixed; Pagination component works with even page limits, thanks [Shmavon Gazanchyan](https://github.com/MunGell)
