@@ -41,11 +41,13 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillReceiveProps: function(nextProps) {
-		if (nextProps.isOpen) {
-			setTimeout(() => this.handleAccessibility());
-			document.body.style.overflow = 'hidden';
-		} else {
-			setTimeout(() => this.removeAccessibilityHandlers());
+		if (nextProps.isOpen !== this.props.isOpen) {
+			if (nextProps.isOpen) {
+				setTimeout(() => this.handleAccessibility());
+				document.body.style.overflow = 'hidden';
+			} else {
+				setTimeout(() => this.removeAccessibilityHandlers());
+			}
 		}
 	},
 	handleAccessibility () {
