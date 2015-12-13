@@ -41,39 +41,19 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillReceiveProps: function(nextProps) {
-		if (nextProps.isOpen) {
-			setTimeout(() => this.handleAccessibility());
-			document.body.style.overflow = 'hidden';
-		} else {
-			setTimeout(() => this.removeAccessibilityHandlers());
+		if (nextProps.isOpen !== this.props.isOpen) {
+			if (nextProps.isOpen) {
+				setTimeout(() => this.handleAccessibility());
+				document.body.style.overflow = 'hidden';
+			} else {
+				setTimeout(() => this.removeAccessibilityHandlers());
+			}
 		}
 	},
 	handleAccessibility () {
 		// Remember the element that was focused before we opened the modal
 		// so we can return focus to it once we close the modal.
 		this.focusedElementBeforeModalOpened = document.activeElement;
-
-		// We're using a transition to reveal the modal,
-		// so wait until the element is visible, before
-		// finding the first keyboard focusable element
-		// and passing focus to it, otherwise the browser
-		// might scroll the document to reveal the element
-		// receiving focus
-		ally.when.visibleArea({
-			context: this.modalElement,
-			callback: function(context) {
-				// the modal is visible on screen, so find the first
-				// keyboard focusable element (giving any element with
-				// autofocus attribute precendence). If the modal does
-				// not contain any keyboard focusabe elements, focus will
-				// be given to the modal itself.
-				var element = ally.query.firstTabbable({
-					context: context,
-					defaultToContext: true,
-				});
-				element.focus();
-			},
-		});
 
 		// Make sure that no element outside of the modal
 		// can be interacted with while the modal is visible.
