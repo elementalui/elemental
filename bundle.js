@@ -1526,6 +1526,7 @@ var TransitionPortal = _react2['default'].createClass({
 module.exports = _react2['default'].createClass({
 	displayName: 'Modal',
 	propTypes: {
+		autofocusFirstElement: _react2['default'].PropTypes.bool,
 		backdropClosesModal: _react2['default'].PropTypes.bool,
 		className: _react2['default'].PropTypes.string,
 		isOpen: _react2['default'].PropTypes.bool,
@@ -1540,12 +1541,12 @@ module.exports = _react2['default'].createClass({
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		var _this = this;
 
-		if (nextProps.isOpen) {
+		if (!this.props.isOpen && nextProps.isOpen) {
 			setTimeout(function () {
 				return _this.handleAccessibility();
 			});
 			document.body.style.overflow = 'hidden';
-		} else {
+		} else if (this.props.isOpen && !nextProps.isOpen) {
 			setTimeout(function () {
 				return _this.removeAccessibilityHandlers();
 			});
@@ -1562,21 +1563,23 @@ module.exports = _react2['default'].createClass({
 		// and passing focus to it, otherwise the browser
 		// might scroll the document to reveal the element
 		// receiving focus
-		_allyJs2['default'].when.visibleArea({
-			context: this.modalElement,
-			callback: function callback(context) {
-				// the modal is visible on screen, so find the first
-				// keyboard focusable element (giving any element with
-				// autofocus attribute precendence). If the modal does
-				// not contain any keyboard focusabe elements, focus will
-				// be given to the modal itself.
-				var element = _allyJs2['default'].query.firstTabbable({
-					context: context,
-					defaultToContext: true
-				});
-				element.focus();
-			}
-		});
+		if (this.props.autofocusFirstElement) {
+			_allyJs2['default'].when.visibleArea({
+				context: this.modalElement,
+				callback: function callback(context) {
+					// the modal is visible on screen, so find the first
+					// keyboard focusable element (giving any element with
+					// autofocus attribute precendence). If the modal does
+					// not contain any keyboard focusabe elements, focus will
+					// be given to the modal itself.
+					var element = _allyJs2['default'].query.firstTabbable({
+						context: context,
+						defaultToContext: true
+					});
+					element.focus();
+				}
+			});
+		}
 
 		// Make sure that no element outside of the modal
 		// can be interacted with while the modal is visible.
