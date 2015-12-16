@@ -1,3 +1,10 @@
+var canUseDOM = !!(
+	(typeof window !== 'undefined' &&
+	window.document && window.document.createElement)
+);
+
+exports.canUseDOM = canUseDOM;
+
 // breakpoints
 exports.breakpoint = {
 	xs:              480,
