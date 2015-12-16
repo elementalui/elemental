@@ -5,20 +5,25 @@ import blacklist from 'blacklist';
 import classNames from 'classnames';
 import ally from 'ally.js';
 
+import { canUseDOM } from '../constants';
+
 const TransitionPortal = React.createClass({
 	displayName: 'TransitionPortal',
 	portalElement: null,
 	render: () => null,
 	componentDidMount() {
+		if (!canUseDOM) return;
 		let p = document.createElement('div');
 		document.body.appendChild(p);
 		this.portalElement = p;
 		this.componentDidUpdate();
 	},
 	componentWillUnmount() {
+		if (!canUseDOM) return;
 		document.body.removeChild(this.portalElement);
 	},
 	componentDidUpdate() {
+		if (!canUseDOM) return;
 		ReactDOM.render(<Transition {...this.props}>{this.props.children}</Transition>, this.portalElement);
 	}
 });
@@ -42,6 +47,7 @@ module.exports = React.createClass({
 		};
 	},
 	componentWillReceiveProps: function(nextProps) {
+		if (!canUseDOM) return;
 		if (!this.props.isOpen && nextProps.isOpen) {
 			setTimeout(() => this.handleAccessibility());
 			document.body.style.overflow = 'hidden';
