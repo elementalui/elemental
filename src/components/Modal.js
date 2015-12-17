@@ -53,6 +53,7 @@ module.exports = React.createClass({
 			document.body.style.overflow = 'hidden';
 		} else if (this.props.isOpen && !nextProps.isOpen) {
 			setTimeout(() => this.removeAccessibilityHandlers());
+			document.body.style.overflow = null;
 		}
 	},
 	handleAccessibility () {
@@ -120,7 +121,6 @@ module.exports = React.createClass({
 		if (event.target.dataset.modal) this.handleClose();
 	},
 	handleClose () {
-		document.body.style.overflow = null;
 		this.props.onCancel();
 	},
 	renderDialog() {
