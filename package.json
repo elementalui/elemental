@@ -1,6 +1,6 @@
 {
   "name": "elemental",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "description": "React UI Framework",
   "main": "lib/Elemental.js",
   "author": "Jed Watson",
