@@ -1,5 +1,10 @@
 # Elemental
 
+## v0.5.9 / 2015-12-18
+
+* fixed: Modal component nulls document overflow on close
+* fixed; The Modal component _should_ be safe for server-side rendering
+
 ## v0.5.8 / 2015-12-14
 
 * fixed; Accessibility handlers in the Modal component are only bound when the `isOpen` prop changes
