@@ -1499,6 +1499,8 @@ var _allyJs = require('ally.js');
 
 var _allyJs2 = _interopRequireDefault(_allyJs);
 
+var _constants = require('../constants');
+
 var TransitionPortal = _react2['default'].createClass({
 	displayName: 'TransitionPortal',
 	portalElement: null,
@@ -1506,15 +1508,18 @@ var TransitionPortal = _react2['default'].createClass({
 		return null;
 	},
 	componentDidMount: function componentDidMount() {
+		if (!_constants.canUseDOM) return;
 		var p = document.createElement('div');
 		document.body.appendChild(p);
 		this.portalElement = p;
 		this.componentDidUpdate();
 	},
 	componentWillUnmount: function componentWillUnmount() {
+		if (!_constants.canUseDOM) return;
 		document.body.removeChild(this.portalElement);
 	},
 	componentDidUpdate: function componentDidUpdate() {
+		if (!_constants.canUseDOM) return;
 		_reactDom2['default'].render(_react2['default'].createElement(
 			_reactAddonsCssTransitionGroup2['default'],
 			this.props,
@@ -1541,6 +1546,7 @@ module.exports = _react2['default'].createClass({
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		var _this = this;
 
+		if (!_constants.canUseDOM) return;
 		if (!this.props.isOpen && nextProps.isOpen) {
 			setTimeout(function () {
 				return _this.handleAccessibility();
@@ -1550,6 +1556,7 @@ module.exports = _react2['default'].createClass({
 			setTimeout(function () {
 				return _this.removeAccessibilityHandlers();
 			});
+			document.body.style.overflow = null;
 		}
 	},
 	handleAccessibility: function handleAccessibility() {
@@ -1617,7 +1624,6 @@ module.exports = _react2['default'].createClass({
 		if (event.target.dataset.modal) this.handleClose();
 	},
 	handleClose: function handleClose() {
-		document.body.style.overflow = null;
 		this.props.onCancel();
 	},
 	renderDialog: function renderDialog() {
@@ -1673,7 +1679,7 @@ module.exports.Body = require('./ModalBody');
 module.exports.Footer = require('./ModalFooter');
 module.exports.Header = require('./ModalHeader');
 
-},{"./ModalBody":28,"./ModalFooter":29,"./ModalHeader":30,"ally.js":1,"blacklist":undefined,"classnames":undefined,"react":undefined,"react-addons-css-transition-group":undefined,"react-dom":undefined}],28:[function(require,module,exports){
+},{"../constants":41,"./ModalBody":28,"./ModalFooter":29,"./ModalHeader":30,"ally.js":1,"blacklist":undefined,"classnames":undefined,"react":undefined,"react-addons-css-transition-group":undefined,"react-dom":undefined}],28:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -2497,9 +2503,13 @@ module.exports = _react2['default'].createClass({
 });
 
 },{"classnames":undefined,"react":undefined}],41:[function(require,module,exports){
-// breakpoints
 'use strict';
 
+var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+exports.canUseDOM = canUseDOM;
+
+// breakpoints
 exports.breakpoint = {
 	xs: 480,
 	sm: 768,

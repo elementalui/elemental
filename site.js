@@ -5407,9 +5407,13 @@ _reactDom2['default'].render(_react2['default'].createElement(
 /*<Link to="home">Home</Link>*/
 
 },{"./pages/Buttons":5,"./pages/CSS":6,"./pages/Forms":7,"./pages/Glyphs":8,"./pages/Grid":9,"./pages/Home":10,"./pages/Misc":11,"./pages/Modal":12,"./pages/Spinner":13,"history":undefined,"react":undefined,"react-dom":undefined,"react-router":undefined}],15:[function(require,module,exports){
-// breakpoints
 'use strict';
 
+var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+exports.canUseDOM = canUseDOM;
+
+// breakpoints
 exports.breakpoint = {
 	xs: 480,
 	sm: 768,
