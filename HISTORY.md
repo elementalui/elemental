@@ -1,5 +1,9 @@
 # Elemental
 
+## v0.5.10 / 2015-12-22
+
+* fixed? Updated ally.js dependency, next attempt to fix server-side rendering
+
 ## v0.5.9 / 2015-12-18
 
 * fixed: Modal component nulls document overflow on close
