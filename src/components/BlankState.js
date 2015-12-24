@@ -3,19 +3,19 @@ var React = require('react');
 module.exports = React.createClass({
 	displayName: 'BlankState',
 	propTypes: {
-		children: React.PropTypes.node.isRequired
+		children: React.PropTypes.node.isRequired,
 	},
-	render() {
+	render () {
 		return <div className="BlankState" {...this.props} />;
-	}
+	},
 });
 
 module.exports.Heading = React.createClass({
 	displayName: 'BlankStateHeading',
 	propTypes: {
-		children: React.PropTypes.node.isRequired
+		children: React.PropTypes.node.isRequired,
 	},
-	render() {
+	render () {
 		return <h2 className="BlankState__heading" {...this.props} />;
-	}
+	},
 });

@@ -7,7 +7,7 @@ module.exports = React.createClass({
 		children: React.PropTypes.node.isRequired,
 		style: React.PropTypes.object,
 	},
-	render() {
+	render () {
 		let style = {
 			backgroundColor: 'white',
 			borderRadius: E.borderRadius.sm,
@@ -16,5 +16,5 @@ module.exports = React.createClass({
 			padding: E.spacing.md,
 		};
 		return <div {...this.props} style={Object.assign(style, this.props.style)} />;
-	}
+	},
 });

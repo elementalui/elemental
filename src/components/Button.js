@@ -21,7 +21,7 @@ const BUTTON_TYPES = [
 	'link',
 	'link-text',
 	'link-cancel',
-	'link-delete'
+	'link-delete',
 ];
 
 module.exports = React.createClass({
@@ -34,14 +34,14 @@ module.exports = React.createClass({
 		isActive: React.PropTypes.bool,
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,
-		type: React.PropTypes.oneOf(BUTTON_TYPES)
+		type: React.PropTypes.oneOf(BUTTON_TYPES),
 	},
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
-			type: 'default'
+			type: 'default',
 		};
 	},
-	render() {
+	render () {
 		// classes
 		var componentClass = classNames(
 			'Button',
@@ -71,5 +71,5 @@ module.exports = React.createClass({
 		}
 
 		return React.createElement(tag, props, this.props.children);
-	}
+	},
 });

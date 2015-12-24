@@ -83,5 +83,5 @@ module.exports = React.createClass({
 		let props = blacklist(this.props, 'basis', 'gutter', 'style', 'xs', 'sm', 'md', 'lg');
 
 		return <div style={Object.assign(columnStyle, this.props.style)} {...props} />;
-	}
+	},
 });
