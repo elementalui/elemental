@@ -1,4 +1,4 @@
-import {test} from 'tape';
+import { test } from 'tape';
 import Pagination from '../../lib/components/Pagination';
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
