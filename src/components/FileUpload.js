@@ -34,19 +34,18 @@ module.exports = React.createClass({
 		this.refs.fileInput.click();
 	},
 	handleChange (e) {
-		var self = this;
 		var reader = new FileReader();
 		var file = e.target.files[0];
 
 		reader.readAsDataURL(file);
 
-		reader.onloadstart = function () {
-			self.setState({
+		reader.onloadstart = () => {
+			this.setState({
 				loading: true,
 			});
 		};
-		reader.onloadend = function (upload) {
-			self.setState({
+		reader.onloadend = (upload) => {
+			this.setState({
 				loading: false,
 				file: file,
 				dataURI: upload.target.result,
@@ -64,29 +63,30 @@ module.exports = React.createClass({
 		// props
 		let props = blacklist(this.props, 'buttonClassChange', 'buttonClassInitial', 'buttonLabelChange', 'buttonLabelInitial', 'disabled', 'file', 'onChange');
 		// elements
-		let component = <Button onClick={this.triggerFileBrowser} disabled={this.props.disabled || this.state.loading}>{this.state.loading && <Spinner />}{this.props.buttonLabelInitial}</Button>;
-
-		if (dataURI) {
-			component = (
-				<div className="FileUpload">
-					<div className="FileUpload__image">
-						<img className="FileUpload__image-src" src={dataURI} />
+		let component = dataURI ? (
+			<div className="FileUpload">
+				<div className="FileUpload__image">
+					<img className="FileUpload__image-src" src={dataURI} />
+				</div>
+				<div className="FileUpload__content">
+					<div className="FileUpload__message">
+						{file.name} ({Math.round(file.size / 1024)}Kb)
 					</div>
-					<div className="FileUpload__content">
-						<div className="FileUpload__message">
-							{file.name} ({Math.round(file.size / 1024)}Kb)
-						</div>
-						<div className="FileUpload__buttons">
-							<Button onClick={this.triggerFileBrowser} disabled={this.state.loading}>
-								{this.state.loading && <Spinner />}
-								{this.props.buttonLabelChange}
-							</Button>
-							<Button onClick={this.cancelUpload} type="link-cancel" disabled={this.state.loading}>Cancel</Button>
-						</div>
+					<div className="FileUpload__buttons">
+						<Button onClick={this.triggerFileBrowser} disabled={this.state.loading}>
+							{this.state.loading && <Spinner />}
+							{this.props.buttonLabelChange}
+						</Button>
+						<Button onClick={this.cancelUpload} type="link-cancel" disabled={this.state.loading}>Cancel</Button>
 					</div>
 				</div>
-			);
-		}
+			</div>
+		) : (
+			<Button onClick={this.triggerFileBrowser} disabled={this.props.disabled || this.state.loading}>
+				{this.state.loading ? <Spinner /> : null}
+				{this.props.buttonLabelInitial}
+			</Button>;
+		);
 
 		return (
 			<div>
