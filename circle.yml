@@ -1,0 +1,7 @@
+machine:
+  node:
+    version: v5.2.0
+
+test:
+  override:
+    - ./node_modules/.bin/eslint --debug . --format tap | ./node_modules/.bin/tap-xunit > ${CIRCLE_TEST_REPORTS}/lint.xml && test ${PIPESTATUS[0]} -eq 0
