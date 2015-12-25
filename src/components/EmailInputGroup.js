@@ -3,7 +3,7 @@ var classNames = require('classnames');
 
 var REGEXP_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-function validateEmail(value) {
+function validateEmail (value) {
 	return REGEXP_EMAIL.test(value);
 }
 
@@ -17,42 +17,42 @@ module.exports = React.createClass({
 		onChange: React.PropTypes.func,
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string
+		value: React.PropTypes.string,
 	},
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
 			requiredMessage: 'Email address is required',
-			invalidMessage: 'Please enter a valid email address'
+			invalidMessage: 'Please enter a valid email address',
 		};
 	},
-	getInitialState() {
+	getInitialState () {
 		return {
 			isValid: true,
-			validationIsActive: this.props.alwaysValidate
+			validationIsActive: this.props.alwaysValidate,
 		};
 	},
-	componentDidMount() {
+	componentDidMount () {
 		if (this.state.validationIsActive) {
 			this.validateInput(this.props.value);
 		}
 	},
-	componentWillReceiveProps(newProps) {
+	componentWillReceiveProps (newProps) {
 		if (this.state.validationIsActive) {
 			if (newProps.value !== this.props.value && newProps.value !== this._lastChangeValue && !newProps.alwaysValidate) {
 				// reset validation state if the value was changed outside the component
 				return this.setState({
 					isValid: true,
-					validationIsActive: false
+					validationIsActive: false,
 				});
 			}
 			this.validateInput(newProps.value);
 		}
 	},
-	handleChange(e) {
+	handleChange (e) {
 		this._lastChangeValue = e.target.value;
 		if (this.props.onChange) this.props.onChange(e);
 	},
-	handleBlur() {
+	handleBlur () {
 		if (!this.props.alwaysValidate) {
 			this.setState({ validationIsActive: false });
 		}
@@ -60,7 +60,7 @@ module.exports = React.createClass({
 	},
 	validateInput(value) {
 		var newState = {
-			isValid: true
+			isValid: true,
 		};
 		if ((value.length && !validateEmail(value)) || (!value.length && this.props.required)) {
 			newState.isValid = false;
@@ -70,7 +70,7 @@ module.exports = React.createClass({
 		}
 		this.setState(newState);
 	},
-	render() {
+	render () {
 		var validationMessage;
 		if (!this.state.isValid) {
 			validationMessage = (
@@ -80,7 +80,7 @@ module.exports = React.createClass({
 			);
 		}
 		var formGroupClass = classNames('FormField', {
-			'is-invalid': !this.state.isValid
+			'is-invalid': !this.state.isValid,
 		}, this.props.className);
 
 		var componentLabel = this.props.label ? <label className="FormLabel" htmlFor="inputEmail">{this.props.label}</label> : null;
@@ -92,5 +92,5 @@ module.exports = React.createClass({
 				{validationMessage}
 			</div>
 		);
-	}
+	},
 });

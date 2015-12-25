@@ -10,40 +10,36 @@ var Dropzone = React.createClass({
 		className: React.PropTypes.string,
 		label: React.PropTypes.string,
 		labelActive: React.PropTypes.string,
-		onDrop: React.PropTypes.func.isRequired
+		onDrop: React.PropTypes.func.isRequired,
 	},
-	getDefaultProps: function() {
+	getDefaultProps () {
 		return {
 			label: 'Drag Files Here',
-			labelActive: 'Drop to Upload'
+			labelActive: 'Drop to Upload',
 		};
 	},
-	getInitialState: function() {
+	getInitialState () {
 		return {
-			isDragActive: false
+			isDragActive: false,
 		};
 	},
-
-	onDragLeave: function() {
+	onDragLeave () {
 		this.setState({
-			isDragActive: false
+			isDragActive: false,
 		});
 	},
-
-	onDragOver: function(e) {
+	onDragOver (e) {
 		e.preventDefault();
 		e.dataTransfer.dropEffect = 'copy';
-
 		this.setState({
-			isDragActive: true
+			isDragActive: true,
 		});
 	},
-
-	onDrop: function(e) {
+	onDrop (e) {
 		e.preventDefault();
 
 		this.setState({
-			isDragActive: false
+			isDragActive: false,
 		});
 
 		var files;
@@ -58,17 +54,13 @@ var Dropzone = React.createClass({
 			this.props.onDrop(files);
 		}
 	},
-
-	onClick: function () {
+	onClick () {
 		this.refs.fileInput.click();
 	},
-
-	render: function() {
-
-		var className = classNames('FileDragAndDrop', {
-			'active': this.state.isDragActive
+	render () {
+		let className = classNames('FileDragAndDrop', {
+			'active': this.state.isDragActive,
 		}, this.props.className);
-
 		return (
 			<button className={className} onClick={this.onClick} onDragLeave={this.onDragLeave} onDragOver={this.onDragOver} onDrop={this.onDrop}>
 				<input style={{ display: 'none' }} type='file' multiple ref='fileInput' onChange={this.onDrop} />
@@ -76,8 +68,7 @@ var Dropzone = React.createClass({
 				{this.props.children}
 			</button>
 		);
-	}
-
+	},
 });
 
 module.exports = Dropzone;

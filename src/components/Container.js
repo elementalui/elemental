@@ -38,5 +38,5 @@ module.exports = React.createClass({
 		) : (
 			<div style={Object.assign(containerStyle, this.props.style)} {...props} />
 		);
-	}
+	},
 });
