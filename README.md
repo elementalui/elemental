@@ -1,3 +1,6 @@
+[![Circle CI](https://img.shields.io/circleci/project/elementalui/elemental.svg)](https://circleci.com/gh/elementalui/elemental)
+
+
 [![npm package](https://img.shields.io/npm/v/elemental.svg?style=flat)](https://www.npmjs.org/package/elemental)
 [![elemental channel on slack](https://img.shields.io/badge/slack-elemental@reactiflux-61DAFB.svg?style=flat)](http://www.reactiflux.com)
 
