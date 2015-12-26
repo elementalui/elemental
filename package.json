@@ -24,12 +24,13 @@
     "history": "^1.17.0",
     "isparta": "^3.0.4",
     "react": "^0.14.0",
-    "react-dom": "^0.14.0",
     "react-addons-css-transition-group": "^0.14.0",
     "react-component-gulp-tasks": "^0.7.7",
+    "react-dom": "^0.14.0",
     "react-router": "1.0.2",
     "rimraf": "^2.4.3",
-    "tape": "^4.2.0"
+    "tape": "^4.2.0",
+    "teaspoon": "^5.0.1"
   },
   "peerDependencies": {
     "react": "^0.14.0",
