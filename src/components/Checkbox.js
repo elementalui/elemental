@@ -4,9 +4,9 @@ const React = require('react');
 
 const Checkbox = React.createClass({
 	propTypes: {
+		autofocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
-		autofocus: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
 		label: React.PropTypes.string,

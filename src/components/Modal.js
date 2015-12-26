@@ -9,8 +9,6 @@ import { canUseDOM } from '../constants';
 
 const TransitionPortal = React.createClass({
 	displayName: 'TransitionPortal',
-	portalElement: null,
-	render: () => null,
 	componentDidMount() {
 		if (!canUseDOM) return;
 		let p = document.createElement('div');
@@ -18,14 +16,16 @@ const TransitionPortal = React.createClass({
 		this.portalElement = p;
 		this.componentDidUpdate();
 	},
+	componentDidUpdate() {
+		if (!canUseDOM) return;
+		ReactDOM.render(<Transition {...this.props}>{this.props.children}</Transition>, this.portalElement);
+	},
 	componentWillUnmount() {
 		if (!canUseDOM) return;
 		document.body.removeChild(this.portalElement);
 	},
-	componentDidUpdate() {
-		if (!canUseDOM) return;
-		ReactDOM.render(<Transition {...this.props}>{this.props.children}</Transition>, this.portalElement);
-	}
+	portalElement: null,
+	render: () => null,
 });
 
 module.exports = React.createClass({
