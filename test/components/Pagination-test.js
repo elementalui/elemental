@@ -1,6 +1,6 @@
 import { test } from 'tape';
 import Pagination from '../../lib/components/Pagination';
-import React from 'react/addons';
+import React from 'react';
 import $ from 'teaspoon';
 
 
