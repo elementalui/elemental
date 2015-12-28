@@ -17,7 +17,7 @@ module.exports = React.createClass({
 			maxWidth: E.width.container,
 		};
 	},
-	render() {
+	render () {
 		let { gutter, maxWidth } = this.props;
 		let containerStyle = {
 			marginLeft: 'auto',

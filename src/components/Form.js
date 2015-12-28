@@ -19,10 +19,10 @@ module.exports = React.createClass({
 			type: 'basic'
 		};
 	},
-	render() {
+	render () {
 		var props = blacklist(this.props, 'children', 'type');
 		props.className = classnames('Form', ('Form--' + this.props.type), this.props.className);
 
 		return React.createElement(this.props.component, props, this.props.children);
-	}
+	},
 });
