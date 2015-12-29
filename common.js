@@ -24173,7 +24173,7 @@ module.exports = function blacklist (src) {
   return copy
 }
 
-},{}],"classnames":[function(require,module,exports){
+},{}],"classNames":[function(require,module,exports){
 /*!
   Copyright (c) 2015 Jed Watson.
   Licensed under the MIT License (MIT), see
