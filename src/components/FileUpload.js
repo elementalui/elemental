@@ -85,7 +85,7 @@ module.exports = React.createClass({
 			<Button onClick={this.triggerFileBrowser} disabled={this.props.disabled || this.state.loading}>
 				{this.state.loading ? <Spinner /> : null}
 				{this.props.buttonLabelInitial}
-			</Button>;
+			</Button>
 		);
 
 		return (

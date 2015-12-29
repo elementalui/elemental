@@ -6,13 +6,13 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		currentPage: React.PropTypes.number.isRequired,
+		limit: React.PropTypes.number,
 		onPageSelect: React.PropTypes.func,
 		pageSize: React.PropTypes.number.isRequired,
 		plural: React.PropTypes.string,
 		singular: React.PropTypes.string,
 		style: React.PropTypes.object,
 		total: React.PropTypes.number.isRequired,
-		limit: React.PropTypes.number
 	},
 	renderCount () {
 		let count = '';

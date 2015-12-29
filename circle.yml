@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: v5.2.0
+
+test:
+  override:
+    - ./node_modules/.bin/eslint --debug . --format tap | ./node_modules/.bin/tap-xunit > ${CIRCLE_TEST_REPORTS}/lint.xml && test ${PIPESTATUS[0]} -eq 0
+    - ./node_modules/.bin/babel-node test | ./node_modules/.bin/tap-xunit > ${CIRCLE_TEST_REPORTS}/test.xml && test ${PIPESTATUS[0]} -eq 0
+    - ./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover --report text --report lcov --verbose --dir ${CIRCLE_ARTIFACTS}/coverage  --include '**/!(*-test).js' test/index.js

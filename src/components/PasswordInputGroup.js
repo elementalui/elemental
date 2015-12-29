@@ -10,13 +10,13 @@ module.exports = React.createClass({
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,
 		className: React.PropTypes.string,
-		validatePassword: React.PropTypes.func,
 		invalidMessage: React.PropTypes.string,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func,
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string
+		validatePassword: React.PropTypes.func,
+		value: React.PropTypes.string,
 	},
 	getDefaultProps() {
 		return {

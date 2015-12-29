@@ -10,5 +10,7 @@ lib
 # Dependencies
 node_modules
 
+/coverage/
+
 # Editor files
 *.swp

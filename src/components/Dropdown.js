@@ -31,12 +31,6 @@ module.exports = React.createClass({
 			isOpen: this.props.isOpen || false,
 		};
 	},
-	openDropdown () {
-		this.setState({ isOpen: true });
-	},
-	closeDropdown () {
-		this.setState({ isOpen: false });
-	},
 	componentWillUpdate (nextProps, nextState) {
 		if (typeof window === 'undefined') return;
 		if (nextState.isOpen) {
@@ -45,12 +39,17 @@ module.exports = React.createClass({
 			window.removeEventListener('keydown', this.handleKeyDown);
 		}
 	},
+	openDropdown () {
+		this.setState({ isOpen: true });
+	},
+	closeDropdown () {
+		this.setState({ isOpen: false });
+	},
 	handleKeyDown (e) {
 		if (e.keyCode === ESC_KEYCODE) {
 			this.closeDropdown();
 		}
 	},
-
 	renderChildren () {
 		return React.Children.map(this.props.children, (child) => {
 			return React.cloneElement(child, {

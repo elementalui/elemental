@@ -56,9 +56,9 @@ var Glyphs = React.createClass({
 				var cols = row.map(glyph => {
 					return (
 						<Col key={'col_'+glyph} sm={colSize}>
-							<Card className='code-example--glyph__icon'>
+							<Card className="code-example--glyph__icon">
 								<Glyph key={glyph} icon={glyph} />
-								<div className='code-example--glyph__icon-name'>
+								<div className="code-example--glyph__icon-name">
 									{glyph}
 								</div>
 							</Card>

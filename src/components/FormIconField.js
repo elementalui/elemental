@@ -17,17 +17,16 @@ module.exports = React.createClass({
 		iconFill: React.PropTypes.oneOf(COLOR_VARIANTS),
 		iconIsLoading: React.PropTypes.bool,
 		iconKey: React.PropTypes.oneOf(ICON_KEYS).isRequired,
-		iconPosition: React.PropTypes.oneOf(['left', 'right'])
+		iconPosition: React.PropTypes.oneOf(['left', 'right']),
 	},
 	getDefaultProps() {
 		return {
-			iconPosition: 'left'
+			iconPosition: 'left',
 		};
 	},
 	render() {
 		// props
 		var props = blacklist(this.props, 'children', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading');
-
 
 		// classes
 		var fieldClass = classNames('IconField', {
@@ -59,5 +58,5 @@ module.exports = React.createClass({
 				</div>
 			</FormField>
 		);
-	}
+	},
 });

@@ -29,8 +29,8 @@ module.exports = React.createClass({
 	propTypes: {
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
-		href: React.PropTypes.string,
 		component: React.PropTypes.node,
+		href: React.PropTypes.string,
 		isActive: React.PropTypes.bool,
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
 		submit: React.PropTypes.bool,

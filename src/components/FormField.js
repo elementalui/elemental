@@ -10,18 +10,32 @@ module.exports = React.createClass({
 		id: React.PropTypes.string,
 		label: React.PropTypes.string,
 		offsetAbsentLabel: React.PropTypes.bool,
-		width: React.PropTypes.oneOf(['one-half', 'two-quarters', 'three-sixths', 'one-quarter', 'three-quarters', 'one-third', 'two-sixths', 'two-thirds', 'four-sixths', 'one-fifth', 'two-fifths', 'three-fifths', 'four-fifths', 'one-sixth', 'five-sixths'])
+		width: React.PropTypes.oneOf([
+			'one-half',
+			'two-quarters',
+			'three-sixths',
+			'one-quarter',
+			'three-quarters',
+			'one-third',
+			'two-sixths',
+			'two-thirds',
+			'four-sixths',
+			'one-fifth',
+			'two-fifths',
+			'three-fifths',
+			'four-fifths',
+			'one-sixth',
+			'five-sixths',
+		]),
 	},
-	render() {
+	render () {
 		// classes
 		var componentClass = classNames('FormField', {
 			'offset-absent-label': this.props.offsetAbsentLabel
 		}, this.props.width, this.props.className);
 
-
 		// props
 		var props = blacklist(this.props, 'className', 'label', 'offsetAbsentLabel', 'width');
-
 
 		// elements
 		var componentLabel = this.props.label ? (
@@ -36,5 +50,5 @@ module.exports = React.createClass({
 				{this.props.children}
 			</div>
 		);
-	}
+	},
 });

@@ -18,7 +18,7 @@ module.exports = React.createClass({
 		type: React.PropTypes.string,
 		value: React.PropTypes.oneOfType([
 			React.PropTypes.number,
-			React.PropTypes.string
+			React.PropTypes.string,
 		]),
 	},
 
@@ -44,7 +44,7 @@ module.exports = React.createClass({
 			{
 				'FormInput-noedit': this.props.noedit,
 				'FormInput-noedit--multiline': this.props.noedit && this.props.multiline,
-				'FormInput': !this.props.noedit
+				'FormInput': !this.props.noedit,
 			},
 			(this.props.size ? ('FormInput--' + this.props.size) : null),
 			this.props.className
@@ -64,5 +64,5 @@ module.exports = React.createClass({
 		}
 
 		return <Element {...props} />;
-	}
+	},
 });
