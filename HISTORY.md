@@ -1,5 +1,9 @@
 # Elemental
 
+## v0.5.11 / 2015-12-29
+
+Accessibility features provided by `ally.js` have been removed from the Modal component for now; they've caused several issues and need a comprehensive review and possibly a different implementation before being reintroduced to the stable version.
+
 ## v0.5.10 / 2015-12-22
 
 * fixed? Updated ally.js dependency, next attempt to fix server-side rendering
