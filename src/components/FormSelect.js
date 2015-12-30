@@ -17,62 +17,57 @@ module.exports = React.createClass({
 		options: React.PropTypes.arrayOf(
 			React.PropTypes.shape({
 				label: React.PropTypes.string,
-				value: React.PropTypes.string
+				value: React.PropTypes.string,
 			})
 		).isRequired,
 		prependEmptyOption: React.PropTypes.bool,
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string
+		value: React.PropTypes.string,
 	},
-
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
-			requiredMessage: 'This field is required'
+			requiredMessage: 'This field is required',
 		};
 	},
-
-	getInitialState() {
+	getInitialState () {
 		return {
 			isValid: true,
-			validationIsActive: this.props.alwaysValidate
+			validationIsActive: this.props.alwaysValidate,
 		};
 	},
-
-	componentDidMount() {
+	componentDidMount () {
 		if (this.state.validationIsActive) {
 			this.validateInput(this.props.value);
 		}
 	},
-
-	componentWillReceiveProps(newProps) {
+	componentWillReceiveProps (newProps) {
 		if (this.state.validationIsActive) {
 			if (newProps.value !== this.props.value && newProps.value !== this._lastChangeValue && !newProps.alwaysValidate) {
 				// reset validation state if the value was changed outside the component
 				return this.setState({
 					isValid: true,
-					validationIsActive: false
+					validationIsActive: false,
 				});
 			}
 			this.validateInput(newProps.value);
 		}
 	},
-
-	handleChange(e) {
+	handleChange (e) {
 		this._lastChangeValue = e.target.value;
 		if (this.props.onChange) this.props.onChange(e.target.value);
 	},
-
-	handleBlur() {
+	handleBlur () {
 		if (!this.props.alwaysValidate) {
-			this.setState({ validationIsActive: false });
+			this.setState({
+				validationIsActive: false,
+			});
 		}
 		this.validateInput(this.props.value);
 	},
-
-	validateInput(value) {
+	validateInput (value) {
 		let newState = {
-			isValid: true
+			isValid: true,
 		};
 		if (this.props.required && (!value || (value && !value.length))) {
 			newState.isValid = false;
@@ -82,22 +77,19 @@ module.exports = React.createClass({
 		}
 		this.setState(newState);
 	},
-
 	renderIcon (icon) {
 		let iconClassname = classNames('FormSelect__arrows', {
-			'FormSelect__arrows--disabled': this.props.disabled
+			'FormSelect__arrows--disabled': this.props.disabled,
 		});
-
 		return <span dangerouslySetInnerHTML={{ __html: icon }} className={iconClassname} />;
 	},
-
-	render() {
+	render () {
 		// props
 		let props = blacklist(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'className');
 
 		// classes
 		let componentClass = classNames('FormField', {
-			'is-invalid': !this.state.isValid
+			'is-invalid': !this.state.isValid,
 		}, this.props.className);
 
 		// validation message
@@ -114,10 +106,12 @@ module.exports = React.createClass({
 
 		// options
 		let options = this.props.options.map(function(opt, i) {
-			return ( <option key={'option-' + i} value={opt.value}>{opt.label}</option> );
+			return <option key={'option-' + i} value={opt.value}>{opt.label}</option>;
 		});
 		if (this.props.prependEmptyOption || this.props.firstOption) {
-			options.unshift( <option key="option-blank" value="">{this.props.firstOption ? this.props.firstOption : 'Select...'}</option> );
+			options.unshift(
+				<option key="option-blank" value="">{this.props.firstOption ? this.props.firstOption : 'Select...'}</option>
+			);
 		}
 
 		return (
@@ -132,5 +126,5 @@ module.exports = React.createClass({
 				{validationMessage}
 			</div>
 		);
-	}
+	},
 });

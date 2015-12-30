@@ -9,9 +9,16 @@ var Glyph = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		icon: React.PropTypes.oneOf(validNames),
-		type: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning'])
+		type: React.PropTypes.oneOf([
+			'danger',
+			'default',
+			'muted',
+			'primary',
+			'success',
+			'warning',
+		]),
 	},
-	render() {
+	render () {
 		// classes
 		var className = classNames(
 			'Glyph__icon',
@@ -20,7 +27,7 @@ var Glyph = React.createClass({
 			this.props.className
 		);
 		return <i className={className} />;
-	}
+	},
 });
 
 module.exports = Glyph;

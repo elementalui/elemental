@@ -4,9 +4,9 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormRow',
 	propTypes: {
-		className: React.PropTypes.string
+		className: React.PropTypes.string,
 	},
-	render() {
+	render () {
 		var className = classNames('FormRow', this.props.className);
 
 		return (
@@ -14,5 +14,5 @@ module.exports = React.createClass({
 				{this.props.children}
 			</div>
 		);
-	}
+	},
 });

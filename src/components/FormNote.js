@@ -7,7 +7,7 @@ var NOTE_TYPES = [
 	'primary',
 	'success',
 	'warning',
-	'danger'
+	'danger',
 ];
 
 module.exports = React.createClass({
@@ -15,14 +15,14 @@ module.exports = React.createClass({
 	propTypes: {
 		className: React.PropTypes.string,
 		note: React.PropTypes.string,
-		type: React.PropTypes.oneOf(NOTE_TYPES)
+		type: React.PropTypes.oneOf(NOTE_TYPES),
 	},
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
-			type: 'default'
+			type: 'default',
 		};
 	},
-	render() {
+	render () {
 		// classes
 		var componentClass = classNames(
 			'FormNote',
@@ -30,10 +30,8 @@ module.exports = React.createClass({
 			this.props.className
 		);
 
-
 		// props
 		var props = blacklist(this.props, 'className', 'note', 'type');
-
 
 		// allow users to pass through the note as an attribute or as children
 		return (
@@ -41,5 +39,5 @@ module.exports = React.createClass({
 				{this.props.children}
 			</div>
 		);
-	}
+	},
 });
