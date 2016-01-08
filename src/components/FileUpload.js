@@ -51,7 +51,7 @@ module.exports = React.createClass({
 				dataURI: upload.target.result
 			});
 			if (typeof this.props.onChange === 'function') {
-				this.props.onChange({
+				this.props.onChange(e, {
 					file: file,
 					dataURI: upload.target.result
 				});
