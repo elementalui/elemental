@@ -48,8 +48,14 @@ module.exports = React.createClass({
 			this.setState({
 				loading: false,
 				file: file,
-				dataURI: upload.target.result,
+				dataURI: upload.target.result
 			});
+			if (typeof this.props.onChange === 'function') {
+				this.props.onChange(e, {
+					file: file,
+					dataURI: upload.target.result
+				});
+			}
 		};
 	},
 	cancelUpload () {
