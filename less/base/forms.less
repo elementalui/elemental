@@ -88,7 +88,7 @@
 	font-size: @font-size-xs;
 	margin-top: .5em;
 	overflow: hidden;
-
+	
 	.is-invalid & {
 		color: @app-danger;
 	}
@@ -109,7 +109,8 @@
 
 // effects on other elements
 
-.FormField.is-invalid {
+.FormField.is-invalid,
+.FormField--invalid {
 	.FormLabel {
 		color: @app-danger;
 	}
@@ -122,7 +123,8 @@
 		}
 	}
 }
-.FormField.is-valid {
+.FormField.is-valid,
+.FormField--valid {
 	.FormLabel {
 		color: @app-success;
 	}
