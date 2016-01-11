@@ -126,7 +126,7 @@ var Forms = React.createClass({
 				<p>Individual form controls automatically receive some global styling. All textual <code className="inline-code">{`<FormInput>`}</code>, and <code className="inline-code">{`<FormSelect>`}</code> elements with are set to <code className="inline-code">width: 100%;</code> by default. Wrap controls in <code className="inline-code">{`<FormField>`}</code> for optimum spacing.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Form>
+						<Form action="javascript:;">
 							<FormField label="Email address" htmlFor="basic-form-input-email">
 								<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 							</FormField>
@@ -136,7 +136,7 @@ var Forms = React.createClass({
 							<FormField>
 								<Checkbox label="Check it" />
 							</FormField>
-							<Button type="default">Submit</Button>
+							<Button submit>Submit</Button>
 						</Form>
 					</div>
 					<ExampleSource>
@@ -151,7 +151,7 @@ var Forms = React.createClass({
 								<FormField>
 									<Checkbox label="Check it" />
 								</FormField>
-								<Button type="default">Submit</Button>
+								<Button submit>Submit</Button>
 							</Form>
 						`}
 					</ExampleSource>
@@ -163,7 +163,7 @@ var Forms = React.createClass({
 				<p>Adding the type <code className="inline-code">horizontal</code> to your <code className="inline-code">{`<Form />`}</code> changes the <code className="inline-code">FormField</code> component to behave like a row. The label width can be updated from inside the LESS variables file where it's defined as <code className="inline-code">@form-label-width</code>. This only applies to forms within viewports that are at least 768px wide.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Form type="horizontal">
+						<Form type="horizontal" action="javascript:;">
 							<FormField label="Email address" htmlFor="horizontal-form-input-email">
 								<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />
 							</FormField>
@@ -174,7 +174,7 @@ var Forms = React.createClass({
 								<Checkbox label="Check it" />
 							</FormField>
 							<FormField offsetAbsentLabel>
-								<Button type="default">Submit</Button>
+								<Button submit>Submit</Button>
 							</FormField>
 						</Form>
 					</div>
@@ -191,7 +191,7 @@ var Forms = React.createClass({
 									<Checkbox label="Check it" />
 								</FormField>
 								<FormField offsetAbsentLabel>
-									<Button type="default">Submit</Button>
+									<Button submit>Submit</Button>
 								</FormField>
 							</Form>
 						`}
@@ -205,7 +205,7 @@ var Forms = React.createClass({
 				<p>Note: you should always use labels to improve accessibility - they are only visible to screen readers. Form labels within viewports that are below 768px wide will be rendered regularly to improve usability.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Form type="inline">
+						<Form type="inline" action="javascript:;">
 							<FormField label="Email address" htmlFor="inline-form-input-email">
 								<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />
 							</FormField>
@@ -216,7 +216,7 @@ var Forms = React.createClass({
 								<Checkbox label="Check it" />
 							</FormField>
 							<FormField>
-								<Button type="default">Submit</Button>
+								<Button submit>Submit</Button>
 							</FormField>
 						</Form>
 					</div>
@@ -233,7 +233,7 @@ var Forms = React.createClass({
 									<Checkbox label="Check it" />
 								</FormField>
 								<FormField>
-									<Button type="default">Submit</Button>
+									<Button submit>Submit</Button>
 								</FormField>
 							</Form>
 						`}
@@ -805,6 +805,7 @@ var Forms = React.createClass({
 
 
 				<h2>Validation</h2>
+				<p>Validation is a work in progress, please use caution</p>
 				<form>
 					<RadioGroup         label="Radios"   value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />
 					<FormSelect         label="Select"   value={this.state.inputSelect}      onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
