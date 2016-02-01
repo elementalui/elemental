@@ -21,7 +21,7 @@ module.exports = React.createClass({
 		var componentClass = classNames(
 			'Alert',
 			'Alert--' + this.props.type,
-			this.props.className,
+			this.props.className
 		);
 
 		return <div className={componentClass}>{this.props.children}</div>;

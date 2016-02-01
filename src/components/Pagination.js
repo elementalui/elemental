@@ -5,9 +5,10 @@ const Page = React.createClass({
 	displayName: 'Page',
 	propTypes: {
 		children: React.PropTypes.node,
-		selected: React.PropTypes.bool,
+		label: React.PropTypes.string,
 		onSelect: React.PropTypes.func,
 		page: React.PropTypes.number,
+		selected: React.PropTypes.bool,
 	},
 	onSelect () {
 		this.props.onSelect(this.props.page);
@@ -78,7 +79,7 @@ module.exports = React.createClass({
 			let leftLimit =  rightLimit + (limit % 2) - 1;
 			minPage = currentPage - leftLimit;
 			maxPage = currentPage + rightLimit;
-			
+
 			if (minPage < 1) {
 				maxPage = limit;
 				minPage = 1;
