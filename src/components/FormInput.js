@@ -6,6 +6,7 @@ module.exports = React.createClass({
 	displayName: 'FormInput',
 	propTypes: {
 		autofocus: React.PropTypes.bool,
+		autoComplete: React.PropTypes.string,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
 		href: React.PropTypes.string,
@@ -25,6 +26,7 @@ module.exports = React.createClass({
 	getDefaultProps() {
 		return {
 			type: 'text',
+			autoComplete: 'off'
 		};
 	},
 
