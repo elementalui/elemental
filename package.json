@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "babel": "^5.8.23",
-    "babel-eslint": "^4.1.3",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.16.1",
     "glob": "^5.0.14",
@@ -44,7 +43,7 @@
     "build": "gulp build",
     "build:lib": "gulp build:lib",
     "bump": "gulp bump",
-    "lint": "eslint ./",
+    "lint": "eslint .",
     "prepublish": "npm run build:lib",
     "publish:npm": "gulp publish:npm",
     "publish:site": "gulp publish:examples",
