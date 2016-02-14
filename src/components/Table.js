@@ -18,7 +18,7 @@ module.exports = React.createClass({
 
 		// render table element
 		return (
-			<table className={className} {...this.props} />
+			<table {...this.props} className={className} />
 		);
 	}
 });
