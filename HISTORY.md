@@ -1,5 +1,14 @@
 # Elemental
 
+## v0.5.12 / 2016-02-16
+
+* fixed; Table className is correctly retained, thanks [Rafee Memon](https://github.com/rafeememon)
+* cleanup; Pagination is now two components (internal)
+* fixed; Pagination: reference error
+* fixed; Button: component propType is element
+* added; Col: now accepts `1` for `100%` width, thanks [Nathan Smith](https://github.com/NogsMPLS)
+* fixed; FileInput: `onChange` prop fires with data, thanks [Cameron Roe](https://github.com/cameronjroe)
+
 ## v0.5.11 / 2015-12-29
 
 Accessibility features provided by `ally.js` have been removed from the Modal component for now; they've caused several issues and need a comprehensive review and possibly a different implementation before being reintroduced to the stable version.
