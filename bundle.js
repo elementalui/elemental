@@ -1,6 +1,6 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*!
-  Copyright (c) 2015 Jed Watson.
+  Copyright (c) 2016 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
@@ -12,7 +12,7 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 	var hasOwn = {}.hasOwnProperty;
 
 	function classNames () {
-		var classes = '';
+		var classes = [];
 
 		for (var i = 0; i < arguments.length; i++) {
 			var arg = arguments[i];
@@ -21,19 +21,19 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 			var argType = typeof arg;
 
 			if (argType === 'string' || argType === 'number') {
-				classes += ' ' + arg;
+				classes.push(arg);
 			} else if (Array.isArray(arg)) {
-				classes += ' ' + classNames.apply(null, arg);
+				classes.push(classNames.apply(null, arg));
 			} else if (argType === 'object') {
 				for (var key in arg) {
 					if (hasOwn.call(arg, key) && arg[key]) {
-						classes += ' ' + key;
+						classes.push(key);
 					}
 				}
 			}
 		}
 
-		return classes.substr(1);
+		return classes.join(' ');
 	}
 
 	if (typeof module !== 'undefined' && module.exports) {
@@ -139,7 +139,7 @@ module.exports = React.createClass({
 	propTypes: {
 		block: React.PropTypes.bool,
 		className: React.PropTypes.string,
-		component: React.PropTypes.node,
+		component: React.PropTypes.element,
 		href: React.PropTypes.string,
 		isActive: React.PropTypes.bool,
 		size: React.PropTypes.oneOf(BUTTON_SIZES),
@@ -845,6 +845,12 @@ module.exports = React.createClass({
 				file: file,
 				dataURI: upload.target.result
 			});
+			if (typeof _this.props.onChange === 'function') {
+				_this.props.onChange(e, {
+					file: file,
+					dataURI: upload.target.result
+				});
+			}
 		};
 	},
 	cancelUpload: function cancelUpload() {
@@ -1156,10 +1162,8 @@ module.exports = React.createClass({
 	render: function render() {
 		// classes
 		var className = classNames('FormLabel', this.props.className);
-
 		// props
 		var props = blacklist(this.props, 'htmlFor', 'id', 'className', 'style');
-
 		// style
 		var style;
 		if (this.props.verticalAlign) {
@@ -1167,7 +1171,6 @@ module.exports = React.createClass({
 				verticalAlign: this.props.verticalAlign
 			};
 		}
-
 		return React.createElement(
 			'label',
 			_extends({ className: className, htmlFor: this.props.htmlFor || this.props.id, style: style || this.props.style }, props),
@@ -1280,26 +1283,22 @@ module.exports = _react2['default'].createClass({
 		requiredMessage: _react2['default'].PropTypes.string,
 		value: _react2['default'].PropTypes.string
 	},
-
 	getDefaultProps: function getDefaultProps() {
 		return {
 			requiredMessage: 'This field is required'
 		};
 	},
-
 	getInitialState: function getInitialState() {
 		return {
 			isValid: true,
 			validationIsActive: this.props.alwaysValidate
 		};
 	},
-
 	componentDidMount: function componentDidMount() {
 		if (this.state.validationIsActive) {
 			this.validateInput(this.props.value);
 		}
 	},
-
 	componentWillReceiveProps: function componentWillReceiveProps(newProps) {
 		if (this.state.validationIsActive) {
 			if (newProps.value !== this.props.value && newProps.value !== this._lastChangeValue && !newProps.alwaysValidate) {
@@ -1312,19 +1311,18 @@ module.exports = _react2['default'].createClass({
 			this.validateInput(newProps.value);
 		}
 	},
-
 	handleChange: function handleChange(e) {
 		this._lastChangeValue = e.target.value;
 		if (this.props.onChange) this.props.onChange(e.target.value);
 	},
-
 	handleBlur: function handleBlur() {
 		if (!this.props.alwaysValidate) {
-			this.setState({ validationIsActive: false });
+			this.setState({
+				validationIsActive: false
+			});
 		}
 		this.validateInput(this.props.value);
 	},
-
 	validateInput: function validateInput(value) {
 		var newState = {
 			isValid: true
@@ -1337,15 +1335,12 @@ module.exports = _react2['default'].createClass({
 		}
 		this.setState(newState);
 	},
-
 	renderIcon: function renderIcon(icon) {
 		var iconClassname = (0, _classnames2['default'])('FormSelect__arrows', {
 			'FormSelect__arrows--disabled': this.props.disabled
 		});
-
 		return _react2['default'].createElement('span', { dangerouslySetInnerHTML: { __html: icon }, className: iconClassname });
 	},
-
 	render: function render() {
 		// props
 		var props = (0, _blacklist2['default'])(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'className');
@@ -1763,6 +1758,35 @@ module.exports = React.createClass({
 var React = require('react');
 var classNames = require('classnames');
 
+var Page = React.createClass({
+	displayName: 'Page',
+	propTypes: {
+		children: React.PropTypes.node,
+		label: React.PropTypes.string,
+		onSelect: React.PropTypes.func,
+		page: React.PropTypes.number,
+		selected: React.PropTypes.bool
+	},
+	onSelect: function onSelect() {
+		this.props.onSelect(this.props.page);
+	},
+	render: function render() {
+		var _props = this.props;
+		var children = _props.children;
+		var selected = _props.selected;
+		var label = _props.label;
+
+		var className = classNames('Pagination__list__item', {
+			'is-selected': selected
+		});
+		return React.createElement(
+			'button',
+			{ className: className, onClick: this.onSelect },
+			children
+		);
+	}
+});
+
 module.exports = React.createClass({
 	displayName: 'Pagination',
 	propTypes: {
@@ -1778,12 +1802,12 @@ module.exports = React.createClass({
 	},
 	renderCount: function renderCount() {
 		var count = '';
-		var _props = this.props;
-		var currentPage = _props.currentPage;
-		var pageSize = _props.pageSize;
-		var plural = _props.plural;
-		var singular = _props.singular;
-		var total = _props.total;
+		var _props2 = this.props;
+		var currentPage = _props2.currentPage;
+		var pageSize = _props2.pageSize;
+		var plural = _props2.plural;
+		var singular = _props2.singular;
+		var total = _props2.total;
 
 		if (!total) {
 			count = 'No ' + (plural || 'records');
@@ -1805,21 +1829,20 @@ module.exports = React.createClass({
 			count
 		);
 	},
-	onPageSelect: function onPageSelect(i) {
-		if (!this.props.onPageSelect) return;
-		this.props.onPageSelect(i);
+	onPageSelect: function onPageSelect(page) {
+		if (this.props.onPageSelect) {
+			this.props.onPageSelect(page);
+		}
 	},
 	renderPages: function renderPages() {
-		var _this = this;
-
 		if (this.props.total <= this.props.pageSize) return null;
 
 		var pages = [];
-		var _props2 = this.props;
-		var currentPage = _props2.currentPage;
-		var pageSize = _props2.pageSize;
-		var total = _props2.total;
-		var limit = _props2.limit;
+		var _props3 = this.props;
+		var currentPage = _props3.currentPage;
+		var pageSize = _props3.pageSize;
+		var total = _props3.total;
+		var limit = _props3.limit;
 
 		var totalPages = Math.ceil(total / pageSize);
 		var minPage = 1;
@@ -1828,7 +1851,6 @@ module.exports = React.createClass({
 		if (limit && limit < totalPages) {
 			var rightLimit = Math.floor(limit / 2);
 			var leftLimit = rightLimit + limit % 2 - 1;
-
 			minPage = currentPage - leftLimit;
 			maxPage = currentPage + rightLimit;
 
@@ -1836,53 +1858,35 @@ module.exports = React.createClass({
 				maxPage = limit;
 				minPage = 1;
 			}
-
 			if (maxPage > totalPages) {
 				minPage = totalPages - limit + 1;
 				maxPage = totalPages;
 			}
 		}
-
 		if (minPage > 1) {
 			pages.push(React.createElement(
-				'button',
-				{ key: 'page_start', className: 'Pagination__list__item', onClick: function () {
-						return _this.onPageSelect(1);
-					} },
+				Page,
+				{ key: 'page_start', onSelect: this.onPageSelect },
 				'...'
 			));
 		}
-
-		var _loop = function (page) {
-			var current = page === currentPage;
-			var className = classNames('Pagination__list__item', {
-				'is-selected': current
-			});
+		for (var page = minPage; page <= maxPage; page++) {
+			var selected = page === currentPage;
 			/* eslint-disable no-loop-func */
 			pages.push(React.createElement(
-				'button',
-				{ key: 'page_' + page, className: className, onClick: function () {
-						return _this.onPageSelect(page);
-					} },
+				Page,
+				{ key: 'page_' + page, selected: selected, onSelect: this.onPageSelect, page: page },
 				page
 			));
 			/* eslint-enable */
-		};
-
-		for (var page = minPage; page <= maxPage; page++) {
-			_loop(page);
 		}
-
 		if (maxPage < totalPages) {
 			pages.push(React.createElement(
-				'button',
-				{ key: 'page_end', className: 'Pagination__list__item', onClick: function () {
-						return _this.onPageSelect(totalPages);
-					} },
+				Page,
+				{ key: 'page_end', onSelect: this.onPageSelect, page: totalPages },
 				'...'
 			));
 		}
-
 		return React.createElement(
 			'div',
 			{ className: 'Pagination__list' },
@@ -2495,7 +2499,7 @@ module.exports = _react2['default'].createClass({
 		var className = (0, _classnames2['default'])('Table', this.props.className);
 
 		// render table element
-		return _react2['default'].createElement('table', _extends({ className: className }, this.props));
+		return _react2['default'].createElement('table', _extends({}, this.props, { className: className }));
 	}
 });
 
@@ -2562,7 +2566,9 @@ function denominators(n) {
 	}
 }
 
-exports.fractions = {};
+exports.fractions = {
+	'1': '100%'
+};
 
 for (var numerator = 1; numerator <= 19; numerator++) {
 	denominators(numerator);

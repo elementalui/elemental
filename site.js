@@ -1,6 +1,6 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*!
-  Copyright (c) 2015 Jed Watson.
+  Copyright (c) 2016 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
@@ -12,7 +12,7 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 	var hasOwn = {}.hasOwnProperty;
 
 	function classNames () {
-		var classes = '';
+		var classes = [];
 
 		for (var i = 0; i < arguments.length; i++) {
 			var arg = arguments[i];
@@ -21,19 +21,19 @@ require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof requ
 			var argType = typeof arg;
 
 			if (argType === 'string' || argType === 'number') {
-				classes += ' ' + arg;
+				classes.push(arg);
 			} else if (Array.isArray(arg)) {
-				classes += ' ' + classNames.apply(null, arg);
+				classes.push(classNames.apply(null, arg));
 			} else if (argType === 'object') {
 				for (var key in arg) {
 					if (hasOwn.call(arg, key) && arg[key]) {
-						classes += ' ' + key;
+						classes.push(key);
 					}
 				}
 			}
 		}
 
-		return classes.substr(1);
+		return classes.join(' ');
 	}
 
 	if (typeof module !== 'undefined' && module.exports) {
@@ -1456,7 +1456,7 @@ var Forms = React.createClass({
 					{ className: 'code-example__example' },
 					React.createElement(
 						Form,
-						null,
+						{ action: 'javascript:;' },
 						React.createElement(
 							FormField,
 							{ label: 'Email address', htmlFor: 'basic-form-input-email' },
@@ -1474,7 +1474,7 @@ var Forms = React.createClass({
 						),
 						React.createElement(
 							Button,
-							{ type: 'default' },
+							{ submit: true },
 							'Submit'
 						)
 					)
@@ -1482,7 +1482,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button submit>Submit</Button>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -1527,7 +1527,7 @@ var Forms = React.createClass({
 					{ className: 'code-example__example' },
 					React.createElement(
 						Form,
-						{ type: 'horizontal' },
+						{ type: 'horizontal', action: 'javascript:;' },
 						React.createElement(
 							FormField,
 							{ label: 'Email address', htmlFor: 'horizontal-form-input-email' },
@@ -1548,7 +1548,7 @@ var Forms = React.createClass({
 							{ offsetAbsentLabel: true },
 							React.createElement(
 								Button,
-								{ type: 'default' },
+								{ submit: true },
 								'Submit'
 							)
 						)
@@ -1557,7 +1557,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Form type="horizontal">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="horizontal-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="horizontal-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="horizontal-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Form type="horizontal">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="horizontal-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="horizontal-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="horizontal-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField offsetAbsentLabel>\n\t\t\t\t\t\t\t\t\t<Button submit>Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -1595,7 +1595,7 @@ var Forms = React.createClass({
 					{ className: 'code-example__example' },
 					React.createElement(
 						Form,
-						{ type: 'inline' },
+						{ type: 'inline', action: 'javascript:;' },
 						React.createElement(
 							FormField,
 							{ label: 'Email address', htmlFor: 'inline-form-input-email' },
@@ -1616,7 +1616,7 @@ var Forms = React.createClass({
 							null,
 							React.createElement(
 								Button,
-								{ type: 'default' },
+								{ submit: true },
 								'Submit'
 							)
 						)
@@ -1625,7 +1625,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Form type="inline">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="inline-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="inline-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="inline-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Button type="default">Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Form type="inline">\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="inline-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="inline-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="inline-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Button submit>Submit</Button>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -2461,6 +2461,11 @@ var Forms = React.createClass({
 				'Validation'
 			),
 			React.createElement(
+				'p',
+				null,
+				'Validation is a work in progress, please use caution'
+			),
+			React.createElement(
 				'form',
 				null,
 				React.createElement(RadioGroup, { label: 'Radios', value: this.state.inlineRadioGroup, onChange: updateInlineRadios, options: controlOptions, name: 'inlineRadioGroup', required: true, inline: true }),
@@ -2480,7 +2485,9 @@ var Forms = React.createClass({
 				React.createElement(
 					FormField,
 					{ label: 'Image' },
-					React.createElement(FileUpload, { buttonLabelInitial: 'Upload Image', buttonLabelChange: 'Change Image', accept: 'image/jpg, image/gif, image/png' })
+					React.createElement(FileUpload, { buttonLabelInitial: 'Upload Image', buttonLabelChange: 'Change Image', accept: 'image/jpg, image/gif, image/png', onChange: function (e, data) {
+							return console.log(e, data);
+						} })
 				),
 				React.createElement(
 					FormField,
@@ -4591,7 +4598,7 @@ module.exports = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Modal ... size="small">...</Modal>\n\t\t\t\t\t\t\t<Modal ... size="large">...</Modal>\n\t\t\t\t\t\t\t<Modal ... size={768}>...</Modal>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Modal ... width="small">...</Modal>\n\t\t\t\t\t\t\t<Modal ... width="large">...</Modal>\n\t\t\t\t\t\t\t<Modal ... width={768}>...</Modal>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -5309,8 +5316,6 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouter = require('react-router');
 
-var _history = require('history');
-
 var NavItems = [{ value: '/css', label: 'CSS' }, { value: '/grid', label: 'Grid' }, { value: '/buttons', label: 'Buttons' }, { value: '/glyphs', label: 'Glyphs' }, { value: '/forms', label: 'Forms' }, { value: '/spinner', label: 'Spinner' }, { value: '/modal', label: 'Modal' }, { value: '/misc', label: 'Misc' }
 // { value: 'date-picker', label: 'Date Picker' }
 ];
@@ -5412,7 +5417,7 @@ var App = _react2['default'].createClass({
 				_react2['default'].createElement(
 					'div',
 					{ className: 'demo-container container' },
-					'Copyright © 2015 · (MIT) License · Built by ',
+					'Copyright © 2016 · (MIT) License · Built by ',
 					_react2['default'].createElement(
 						'a',
 						{ href: 'http://www.thinkmill.com.au', target: '_blank' },
@@ -5431,11 +5436,10 @@ var App = _react2['default'].createClass({
 });
 
 var basepath = window.location.pathname.slice(0, 10) === '/elemental' ? '/elemental' : '';
-var history = (0, _history.createHistory)();
 
 _reactDom2['default'].render(_react2['default'].createElement(
 	_reactRouter.Router,
-	{ history: history, onUpdate: function () {
+	{ history: _reactRouter.browserHistory, onUpdate: function () {
 			return window.scrollTo(0, 0);
 		} },
 	_react2['default'].createElement(
@@ -5456,7 +5460,7 @@ _reactDom2['default'].render(_react2['default'].createElement(
 ), document.getElementById('app'));
 /*<Link to="home">Home</Link>*/
 
-},{"./pages/Buttons":6,"./pages/CSS":7,"./pages/Forms":8,"./pages/Glyphs":9,"./pages/Grid":10,"./pages/Home":11,"./pages/Misc":12,"./pages/Modal":13,"./pages/Spinner":14,"history":undefined,"react":undefined,"react-dom":undefined,"react-router":undefined}],16:[function(require,module,exports){
+},{"./pages/Buttons":6,"./pages/CSS":7,"./pages/Forms":8,"./pages/Glyphs":9,"./pages/Grid":10,"./pages/Home":11,"./pages/Misc":12,"./pages/Modal":13,"./pages/Spinner":14,"react":undefined,"react-dom":undefined,"react-router":undefined}],16:[function(require,module,exports){
 'use strict';
 
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
@@ -5519,7 +5523,9 @@ function denominators(n) {
 	}
 }
 
-exports.fractions = {};
+exports.fractions = {
+	'1': '100%'
+};
 
 for (var numerator = 1; numerator <= 19; numerator++) {
 	denominators(numerator);
