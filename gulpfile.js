@@ -9,7 +9,6 @@ var taskConfig = {
 		dependencies: [
 			'blacklist',
 			'classNames',
-			'history',
 			'react',
 			'react-addons-css-transition-group',
 			'react-dom',

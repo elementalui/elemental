@@ -19,7 +19,6 @@
     "eslint-plugin-react": "^3.16.1",
     "glob": "^7.0.0",
     "gulp": "^3.9.1",
-    "history": "^2.0.0",
     "isparta": "^4.0.0",
     "react": "^0.14.0",
     "react-addons-css-transition-group": "^0.14.0",
