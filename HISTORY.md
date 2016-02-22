@@ -1,5 +1,9 @@
 # Elemental
 
+## v0.5.13 / 2016-02-22
+
+* fixed; FileInput: `onChange` prop fires when file selection is cancelled
+
 ## v0.5.12 / 2016-02-16
 
 * fixed; Table className is correctly retained, thanks [Rafee Memon](https://github.com/rafeememon)
