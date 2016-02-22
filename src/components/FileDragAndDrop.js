@@ -62,7 +62,7 @@ var Dropzone = React.createClass({
 			'active': this.state.isDragActive,
 		}, this.props.className);
 		return (
-			<button className={className} onClick={this.onClick} onDragLeave={this.onDragLeave} onDragOver={this.onDragOver} onDrop={this.onDrop}>
+			<button className={className} type="button" onClick={this.onClick} onDragLeave={this.onDragLeave} onDragOver={this.onDragOver} onDrop={this.onDrop}>
 				<input style={{ display: 'none' }} type="file" multiple ref="fileInput" onChange={this.onDrop} />
 				<div className="FileDragAndDrop__label">{this.state.isDragActive ? this.props.labelActive : this.props.label}</div>
 				{this.props.children}
