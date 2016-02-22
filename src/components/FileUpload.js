@@ -21,6 +21,7 @@ module.exports = React.createClass({
 	},
 	getInitialState () {
 		return {
+			dataURI: null,
 			file: {},
 			loading: false,
 		};
@@ -58,11 +59,12 @@ module.exports = React.createClass({
 			}
 		};
 	},
-	cancelUpload () {
+	cancelUpload (e) {
 		this.setState({
-			dataURI: false,
+			dataURI: null,
 			file: {},
 		});
+		this.props.onChange(e, null);
 	},
 	render () {
 		let { dataURI, file } = this.state;
