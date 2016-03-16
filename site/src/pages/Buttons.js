@@ -81,7 +81,7 @@ var Buttons = React.createClass({
 			);
 		});
 	},
-	renderButtonSource(variantType) {
+	renderButtonVariantsSource(variantType) {
 		var parts = variantType.map(type => {
 			return `<Button type="${type.value}">${type.label}</Button>`;
 		});
@@ -114,12 +114,7 @@ var Buttons = React.createClass({
 						{this.renderButtonVariants(BUTTON_VARIANTS)}
 					</div>
 					<ExampleSource>
-						{`
-							<Button type="primary">Primary</Button>
-							<Button type="success">Success</Button>
-							<Button type="warning">Warning</Button>
-							<Button type="danger">Danger</Button>
-						`}
+						{this.renderButtonVariantsSource(BUTTON_VARIANTS)}
 					</ExampleSource>
 				</div>
 				<div className="code-example">
@@ -128,12 +123,7 @@ var Buttons = React.createClass({
 						{this.renderButtonVariants(BUTTON_DEFAULT_VARIANTS)}
 					</div>
 					<ExampleSource>
-						{`
-							<Button type="default-primary">Default Primary</Button>
-							<Button type="default-success">Default Success</Button>
-							<Button type="default-warning">Default Warning</Button>
-							<Button type="default-danger">Default Danger</Button>
-						`}
+						{this.renderButtonVariantsSource(BUTTON_DEFAULT_VARIANTS)}
 					</ExampleSource>
 				</div>
 				<div className="code-example">
@@ -142,12 +132,7 @@ var Buttons = React.createClass({
 						{this.renderButtonVariants(BUTTON_HOLLOW_VARIANTS)}
 					</div>
 					<ExampleSource>
-						{`
-							<Button type="hollow-primary">Hollow Primary</Button>
-							<Button type="hollow-success">Hollow Success</Button>
-							<Button type="hollow-warning">Hollow Warning</Button>
-							<Button type="hollow-danger">Hollow Danger</Button>
-						`}
+						{this.renderButtonVariantsSource(BUTTON_HOLLOW_VARIANTS)}
 					</ExampleSource>
 				</div>
 				<div className="code-example">
@@ -156,7 +141,7 @@ var Buttons = React.createClass({
 						{this.renderButtonVariants(BUTTON_LINK_VARIANTS)}
 					</div>
 					<ExampleSource>
-						{this.renderButtonSource(BUTTON_LINK_VARIANTS)}
+						{this.renderButtonVariantsSource(BUTTON_LINK_VARIANTS)}
 					</ExampleSource>
 				</div>
 
