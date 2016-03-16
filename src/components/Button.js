@@ -20,6 +20,10 @@ const BUTTON_TYPES = [
 	'danger',
 	'link',
 	'link-text',
+	'link-primary',
+	'link-success',
+	'link-warning',
+	'link-danger',
 	'link-cancel',
 	'link-delete',
 ];

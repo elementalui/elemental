@@ -1,4 +1,4 @@
-// 
+//
 // Button variants
 // ==============================
 
@@ -102,5 +102,36 @@
 		background-color: fade(@border, 20%);
 		border-color: darken(@border, 20%);
 		box-shadow: none;
+	}
+}
+
+
+
+// Link
+
+.button-link-variant(@color; @hover-color; @hover-decoration) {
+	color: @color;
+	font-weight: normal;
+
+	&,
+	&:active,
+	&.active,
+	&[disabled],
+	fieldset[disabled] & {
+		.box-shadow(none);
+		background-color: transparent;
+	}
+	&,
+	&:hover,
+	&:focus,
+	&:active {
+		border-color: transparent;
+		outline: none;
+	}
+	&:hover,
+	&:focus {
+		background-color: transparent;
+		color: @hover-color;
+		text-decoration: @hover-decoration;
 	}
 }
