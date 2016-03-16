@@ -45,6 +45,10 @@ const BUTTON_HOLLOW_VARIANTS = [
 const BUTTON_LINK_VARIANTS = [
 	{ label: 'Link',             value: 'link' },
 	{ label: 'Link Text',        value: 'link-text' },
+	{ label: 'Link Primary',     value: 'link-primary' },
+	{ label: 'Link Success',     value: 'link-success' },
+	{ label: 'Link Warning',     value: 'link-warning' },
+	{ label: 'Link Danger',      value: 'link-danger' },
 	{ label: 'Link Cancel',      value: 'link-cancel' },
 	{ label: 'Link Delete',      value: 'link-delete' }
 ];
@@ -76,6 +80,12 @@ var Buttons = React.createClass({
 				</div>
 			);
 		});
+	},
+	renderButtonSource(variantType) {
+		var parts = variantType.map(type => {
+			return `<Button type="${type.value}">${type.label}</Button>`;
+		});
+		return parts.join('\n');
 	},
 
 	render () {
@@ -146,12 +156,7 @@ var Buttons = React.createClass({
 						{this.renderButtonVariants(BUTTON_LINK_VARIANTS)}
 					</div>
 					<ExampleSource>
-						{`
-							<Button type="link">Link</Button>
-							<Button type="link-text">Link Text</Button>
-							<Button type="link-cancel">Link Cancel</Button>
-							<Button type="link-delete">Link Delete</Button>
-						`}
+						{this.renderButtonSource(BUTTON_LINK_VARIANTS)}
 					</ExampleSource>
 				</div>
 
