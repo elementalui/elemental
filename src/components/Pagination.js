@@ -90,7 +90,7 @@ module.exports = React.createClass({
 			}
 		}
 		if (minPage > 1) {
-			pages.push(<Page key="page_start" onSelect={this.onPageSelect}>...</Page>);
+			pages.push(<Page key="page_start" onSelect={this.onPageSelect} page={1}>...</Page>);
 		}
 		for (let page = minPage; page <= maxPage; page++) {
 			let selected = (page === currentPage);
