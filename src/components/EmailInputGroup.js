@@ -72,7 +72,7 @@ module.exports = React.createClass({
 	},
 	render () {
 		var validationMessage;
-		if (!this.state.isValid) {
+		if (!this.state.isValid || !this.props.isValid) {
 			validationMessage = (
 				<div className="form-validation is-invalid">
 					{this.props.value.length ? this.props.invalidMessage : this.props.requiredMessage}
@@ -80,7 +80,7 @@ module.exports = React.createClass({
 			);
 		}
 		var formGroupClass = classNames('FormField', {
-			'is-invalid': !this.state.isValid,
+			'is-invalid': !this.state.isValid || !this.props.isValid,
 		}, this.props.className);
 
 		var componentLabel = this.props.label ? <label className="FormLabel" htmlFor="inputEmail">{this.props.label}</label> : null;
