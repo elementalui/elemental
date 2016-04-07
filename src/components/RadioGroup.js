@@ -8,6 +8,7 @@ module.exports = React.createClass({
 		alwaysValidate: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		inline: React.PropTypes.bool,
+		isValid: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.array.isRequired,

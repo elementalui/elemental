@@ -11,6 +11,7 @@ module.exports = React.createClass({
 		alwaysValidate: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		invalidMessage: React.PropTypes.string,
+		isValid: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func,
 		required: React.PropTypes.bool,

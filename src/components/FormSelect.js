@@ -12,6 +12,7 @@ module.exports = React.createClass({
 		firstOption: React.PropTypes.string,
 		htmlFor: React.PropTypes.string,
 		id: React.PropTypes.string,
+		isValid: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.arrayOf(
