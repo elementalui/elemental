@@ -2435,9 +2435,8 @@ fieldset[disabled] .Button--link {
   text-decoration: underline;
 }
 .Button--link-text {
-  color: #1385e5;
-  font-weight: normal;
   color: #333;
+  font-weight: normal;
 }
 .Button--link-text,
 .Button--link-text:active,
@@ -2458,50 +2457,38 @@ fieldset[disabled] .Button--link-text {
 .Button--link-text:hover,
 .Button--link-text:focus {
   background-color: transparent;
-  color: #3c9def;
+  color: #1385e5;
   text-decoration: underline;
 }
-.Button--link-text:hover,
-.Button--link-text:focus {
-  color: #1385e5;
-  outline: none;
-}
-.Button--link-cancel {
+.Button--link-primary {
   color: #1385e5;
   font-weight: normal;
-  color: #999;
 }
-.Button--link-cancel,
-.Button--link-cancel:active,
-.Button--link-cancel.active,
-.Button--link-cancel[disabled],
-fieldset[disabled] .Button--link-cancel {
+.Button--link-primary,
+.Button--link-primary:active,
+.Button--link-primary.active,
+.Button--link-primary[disabled],
+fieldset[disabled] .Button--link-primary {
   -webkit-box-shadow: none;
   box-shadow: none;
   background-color: transparent;
 }
-.Button--link-cancel,
-.Button--link-cancel:hover,
-.Button--link-cancel:focus,
-.Button--link-cancel:active {
+.Button--link-primary,
+.Button--link-primary:hover,
+.Button--link-primary:focus,
+.Button--link-primary:active {
   border-color: transparent;
   outline: none;
 }
-.Button--link-cancel:hover,
-.Button--link-cancel:focus {
+.Button--link-primary:hover,
+.Button--link-primary:focus {
   background-color: transparent;
-  color: #3c9def;
+  color: #1385e5;
   text-decoration: underline;
 }
-.Button--link-cancel:hover,
-.Button--link-cancel:focus {
-  color: #d64242;
-  outline: none;
-}
 .Button--link-success {
-  color: #1385e5;
-  font-weight: normal;
   color: #34c240;
+  font-weight: normal;
 }
 .Button--link-success,
 .Button--link-success:active,
@@ -2522,18 +2509,90 @@ fieldset[disabled] .Button--link-success {
 .Button--link-success:hover,
 .Button--link-success:focus {
   background-color: transparent;
-  color: #3c9def;
+  color: #34c240;
   text-decoration: underline;
 }
-.Button--link-success:hover,
-.Button--link-success:focus {
-  color: #34c240;
+.Button--link-warning {
+  color: #fa9f47;
+  font-weight: normal;
+}
+.Button--link-warning,
+.Button--link-warning:active,
+.Button--link-warning.active,
+.Button--link-warning[disabled],
+fieldset[disabled] .Button--link-warning {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.Button--link-warning,
+.Button--link-warning:hover,
+.Button--link-warning:focus,
+.Button--link-warning:active {
+  border-color: transparent;
   outline: none;
 }
-.Button--link-delete {
-  color: #1385e5;
+.Button--link-warning:hover,
+.Button--link-warning:focus {
+  background-color: transparent;
+  color: #fa9f47;
+  text-decoration: underline;
+}
+.Button--link-danger {
+  color: #d64242;
   font-weight: normal;
+}
+.Button--link-danger,
+.Button--link-danger:active,
+.Button--link-danger.active,
+.Button--link-danger[disabled],
+fieldset[disabled] .Button--link-danger {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.Button--link-danger,
+.Button--link-danger:hover,
+.Button--link-danger:focus,
+.Button--link-danger:active {
+  border-color: transparent;
+  outline: none;
+}
+.Button--link-danger:hover,
+.Button--link-danger:focus {
+  background-color: transparent;
+  color: #d64242;
+  text-decoration: underline;
+}
+.Button--link-cancel {
   color: #999;
+  font-weight: normal;
+}
+.Button--link-cancel,
+.Button--link-cancel:active,
+.Button--link-cancel.active,
+.Button--link-cancel[disabled],
+fieldset[disabled] .Button--link-cancel {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.Button--link-cancel,
+.Button--link-cancel:hover,
+.Button--link-cancel:focus,
+.Button--link-cancel:active {
+  border-color: transparent;
+  outline: none;
+}
+.Button--link-cancel:hover,
+.Button--link-cancel:focus {
+  background-color: transparent;
+  color: #d64242;
+  text-decoration: underline;
+}
+.Button--link-delete {
+  color: #999;
+  font-weight: normal;
 }
 .Button--link-delete,
 .Button--link-delete:active,
@@ -2554,7 +2613,7 @@ fieldset[disabled] .Button--link-delete {
 .Button--link-delete:hover,
 .Button--link-delete:focus {
   background-color: transparent;
-  color: #3c9def;
+  color: #d64242;
   text-decoration: underline;
 }
 .Button--link-delete:hover,
@@ -2635,6 +2694,13 @@ fieldset[disabled] .Button--link-delete {
 .Button > .octicon:only-child {
   margin-left: 0;
   margin-right: 0;
+}
+.Card {
+  background-color: white;
+  border-radius: 0.125em;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.075), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1em;
+  padding: 1em;
 }
 .Dropdown {
   display: inline-block;

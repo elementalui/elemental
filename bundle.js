@@ -132,7 +132,7 @@ var blacklist = require('blacklist');
 
 var BUTTON_SIZES = ['lg', 'sm', 'xs'];
 
-var BUTTON_TYPES = ['default', 'default-primary', 'default-success', 'default-warning', 'default-danger', 'hollow-primary', 'hollow-success', 'hollow-warning', 'hollow-danger', 'primary', 'success', 'warning', 'danger', 'link', 'link-text', 'link-cancel', 'link-delete'];
+var BUTTON_TYPES = ['default', 'default-primary', 'default-success', 'default-warning', 'default-danger', 'hollow-primary', 'hollow-success', 'hollow-warning', 'hollow-danger', 'primary', 'success', 'warning', 'danger', 'link', 'link-text', 'link-primary', 'link-success', 'link-warning', 'link-danger', 'link-cancel', 'link-delete'];
 
 module.exports = React.createClass({
 	displayName: 'Button',
@@ -203,33 +203,23 @@ module.exports = React.createClass({
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _constants = require('../constants');
-
-var _constants2 = _interopRequireDefault(_constants);
-
 var React = require('react');
+var classNames = require('classnames');
 
 module.exports = React.createClass({
 	displayName: 'Card',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
-		style: React.PropTypes.object
+		className: React.PropTypes.string
 	},
 	render: function render() {
-		var style = {
-			backgroundColor: 'white',
-			borderRadius: _constants2['default'].borderRadius.sm,
-			boxShadow: '0 2px 3px rgba(0, 0, 0, 0.075), 0 0 0 1px rgba(0,0,0,0.1)',
-			marginBottom: _constants2['default'].spacing.md,
-			padding: _constants2['default'].spacing.md
-		};
-		return React.createElement('div', _extends({}, this.props, { style: _extends(style, this.props.style) }));
+		var className = classNames('Card', this.props.className);
+
+		return React.createElement('div', _extends({}, this.props, { className: className }));
 	}
 });
 
-},{"../constants":41,"react":undefined}],8:[function(require,module,exports){
+},{"classnames":1,"react":undefined}],8:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -772,7 +762,7 @@ var Dropzone = React.createClass({
 		}, this.props.className);
 		return React.createElement(
 			'button',
-			{ className: className, onClick: this.onClick, onDragLeave: this.onDragLeave, onDragOver: this.onDragOver, onDrop: this.onDrop },
+			{ className: className, type: 'button', onClick: this.onClick, onDragLeave: this.onDragLeave, onDragOver: this.onDragOver, onDrop: this.onDrop },
 			React.createElement('input', { style: { display: 'none' }, type: 'file', multiple: true, ref: 'fileInput', onChange: this.onDrop }),
 			React.createElement(
 				'div',
@@ -814,6 +804,7 @@ module.exports = React.createClass({
 	},
 	getInitialState: function getInitialState() {
 		return {
+			dataURI: null,
 			file: {},
 			loading: false
 		};
@@ -853,11 +844,12 @@ module.exports = React.createClass({
 			}
 		};
 	},
-	cancelUpload: function cancelUpload() {
+	cancelUpload: function cancelUpload(e) {
 		this.setState({
-			dataURI: false,
+			dataURI: null,
 			file: {}
 		});
+		this.props.onChange(e, null);
 	},
 	render: function render() {
 		var _state = this.state;
@@ -1866,7 +1858,7 @@ module.exports = React.createClass({
 		if (minPage > 1) {
 			pages.push(React.createElement(
 				Page,
-				{ key: 'page_start', onSelect: this.onPageSelect },
+				{ key: 'page_start', onSelect: this.onPageSelect, page: 1 },
 				'...'
 			));
 		}

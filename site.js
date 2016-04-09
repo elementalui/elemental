@@ -207,7 +207,7 @@ var BUTTON_DEFAULT_VARIANTS = [{ label: 'Default Primary', value: 'default-prima
 
 var BUTTON_HOLLOW_VARIANTS = [{ label: 'Hollow Primary', value: 'hollow-primary' }, { label: 'Hollow Success', value: 'hollow-success' }, { label: 'Hollow Warning', value: 'hollow-warning' }, { label: 'Hollow Danger', value: 'hollow-danger' }];
 
-var BUTTON_LINK_VARIANTS = [{ label: 'Link', value: 'link' }, { label: 'Link Text', value: 'link-text' }, { label: 'Link Cancel', value: 'link-cancel' }, { label: 'Link Delete', value: 'link-delete' }];
+var BUTTON_LINK_VARIANTS = [{ label: 'Link', value: 'link' }, { label: 'Link Text', value: 'link-text' }, { label: 'Link Primary', value: 'link-primary' }, { label: 'Link Success', value: 'link-success' }, { label: 'Link Warning', value: 'link-warning' }, { label: 'Link Danger', value: 'link-danger' }, { label: 'Link Cancel', value: 'link-cancel' }, { label: 'Link Delete', value: 'link-delete' }];
 
 var Buttons = React.createClass({
 	displayName: 'VIEW_Buttons',
@@ -245,6 +245,12 @@ var Buttons = React.createClass({
 				)
 			);
 		});
+	},
+	renderButtonVariantsSource: function renderButtonVariantsSource(variantType) {
+		var parts = variantType.map(function (type) {
+			return '<Button type="' + type.value + '">' + type.label + '</Button>';
+		});
+		return parts.join('\n');
 	},
 
 	render: function render() {
@@ -296,7 +302,7 @@ var Buttons = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Button type="primary">Primary</Button>\n\t\t\t\t\t\t\t<Button type="success">Success</Button>\n\t\t\t\t\t\t\t<Button type="warning">Warning</Button>\n\t\t\t\t\t\t\t<Button type="danger">Danger</Button>\n\t\t\t\t\t\t'
+					this.renderButtonVariantsSource(BUTTON_VARIANTS)
 				)
 			),
 			React.createElement(
@@ -315,7 +321,7 @@ var Buttons = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Button type="default-primary">Default Primary</Button>\n\t\t\t\t\t\t\t<Button type="default-success">Default Success</Button>\n\t\t\t\t\t\t\t<Button type="default-warning">Default Warning</Button>\n\t\t\t\t\t\t\t<Button type="default-danger">Default Danger</Button>\n\t\t\t\t\t\t'
+					this.renderButtonVariantsSource(BUTTON_DEFAULT_VARIANTS)
 				)
 			),
 			React.createElement(
@@ -334,7 +340,7 @@ var Buttons = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Button type="hollow-primary">Hollow Primary</Button>\n\t\t\t\t\t\t\t<Button type="hollow-success">Hollow Success</Button>\n\t\t\t\t\t\t\t<Button type="hollow-warning">Hollow Warning</Button>\n\t\t\t\t\t\t\t<Button type="hollow-danger">Hollow Danger</Button>\n\t\t\t\t\t\t'
+					this.renderButtonVariantsSource(BUTTON_HOLLOW_VARIANTS)
 				)
 			),
 			React.createElement(
@@ -353,7 +359,7 @@ var Buttons = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Button type="link">Link</Button>\n\t\t\t\t\t\t\t<Button type="link-text">Link Text</Button>\n\t\t\t\t\t\t\t<Button type="link-cancel">Link Cancel</Button>\n\t\t\t\t\t\t\t<Button type="link-delete">Link Delete</Button>\n\t\t\t\t\t\t'
+					this.renderButtonVariantsSource(BUTTON_LINK_VARIANTS)
 				)
 			),
 			React.createElement(
