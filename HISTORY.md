@@ -1,5 +1,14 @@
 # Elemental
 
+## v0.5.14 / 2016-04-10
+
+Elemental is now compatible with React 15.x.x
+
+* added; Card: CSS is now actual CSS
+* fixed; Pagination: First page appears correctly, thanks [Nuno Campos](https://github.com/nfcampos)
+* fixed; Button: link button variants match other buttons, thanks [Christian Legnitto](https://github.com/LegNeato)
+* fixed; FileDragAndDrop: button now always specifies `type="button"`, thanks [Jinks](https://github.com/JinksPeng)
+
 ## v0.5.13 / 2016-02-22
 
 * fixed; FileInput: `onChange` prop fires when file selection is cancelled
