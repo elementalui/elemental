@@ -1,13 +1,13 @@
 var React = require('react');
 var classNames = require('classnames');
+var utils = require('../utils');
 
 var ALERT_TYPES = [
 	'danger',
 	'error', // alias for danger
 	'info',
-	'primary',
 	'success',
-	'warning',
+	'warning'
 ];
 
 module.exports = React.createClass({
@@ -15,12 +15,27 @@ module.exports = React.createClass({
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
 		className: React.PropTypes.string,
-		type: React.PropTypes.oneOf(ALERT_TYPES).isRequired,
+		theme: utils.getThemeValidator({
+			classes: ALERT_TYPES
+		}),
+		type: React.PropTypes.oneOf(ALERT_TYPES).isRequired
+	},
+	getDefaultProps () {
+		return {
+			theme: {
+				classes: {
+					danger: 'Alert Alert--danger',
+					error: 'Alert Alert--danger',
+					info: 'Alert Alert--info',
+					success: 'Alert Alert--success',
+					warning: 'Alert Alert--warning'
+				}
+			}
+		};
 	},
 	render () {
 		var componentClass = classNames(
-			'Alert',
-			'Alert--' + this.props.type,
+			this.props.theme.classes[this.props.type],
 			this.props.className
 		);
 
