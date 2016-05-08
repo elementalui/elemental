@@ -541,7 +541,30 @@ a.Button--demo-link {
 }
 
 
+// Note
+// ------------------------------
 
+.note:before {
+    content: "Note";
+    color: #ccc;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    position: absolute;
+    top: 0;
+    text-transform: uppercase;
+}
+
+.note {
+	border-left: 3px solid #eee;
+  color: #777;
+	font-size: 12px;
+  margin-bottom: 2em;
+  margin-top: 2em;
+  padding-left: 1em;
+  padding-top: 20px;
+  position: relative;
+}
 
 // Code examples
 // ------------------------------
@@ -554,6 +577,29 @@ a.Button--demo-link {
 	margin-top: 2em;
 }
 
+.highlight {
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #c7254e;
+	background-color: #f9f2f4;
+	white-space: nowrap;
+	border-radius: 4px;
+}
+
+.circle-number {
+	box-shadow: 0 0 0 1px #ddd;
+	width: 22px;
+	height: 22px;
+	background-color: #fff;
+	border-radius: 50%;
+	color: #999;
+	display: inline-block;
+	font-size: .75em;
+	font-weight: 500;
+	line-height: 22px;
+	margin-right: 10px;
+	text-align: center;
+}
 
 // common
 
@@ -589,6 +635,12 @@ a.Button--demo-link {
 	text-transform: uppercase;
 }
 
+.code-example__example__heading--no-rule {
+	color: @gray-light;
+	font-size: @font-size-sm;
+	font-weight: 500;
+	text-transform: uppercase;
+}
 
 // format and present the code
 
