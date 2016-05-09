@@ -12,6 +12,7 @@ const NavItems = [
 ];
 
 const { Col, Container, Row } = require('elemental');
+const ExampleSource = require('../components/ExampleSource');
 
 var Home = React.createClass({
 	displayName: 'VIEW_Home',
@@ -57,6 +58,47 @@ var Home = React.createClass({
 							{menuItems}
 						</Row>
 					</Container>
+				</div>
+				<div className="demo-banner demo-banner--tertiary">
+					<Container maxWidth={768} className="demo-container">
+						<h2 className="demo-banner__heading demo-banner__heading-2">Getting Started</h2>
+						<p>To quickly get up and running with <strong>Elemental UI</strong> follow these three simple steps.</p>
+						<div className="code-example">
+							<div className="code-example__example">
+								<div className="code-example__example__heading--no-rule"><span className="circle-number">1</span>Install</div>
+							</div>
+							<ExampleSource>
+								<code>{`npm install elemental --save \n`}</code>
+							</ExampleSource>
+						</div>
+						<div className="code-example">
+							<div className="code-example__example">
+								<div className="code-example__example__heading--no-rule"><span className="circle-number">2</span>Import styles</div>
+							</div>
+							<ExampleSource>
+								<code>@import './node_modules/elemental/less/elemental.less'</code>
+							</ExampleSource>
+						</div>
+						<div className="code-example">
+							<div className="code-example__example">
+								<div className="code-example__example__heading--no-rule"><span className="circle-number">3</span>Import the elements</div>
+							</div>
+							<ExampleSource>
+								<code>{`import { Button, Alert, Spinner } from 'elemental' \n`}</code>
+							</ExampleSource>
+						</div>
+						<p className="note">Elemental styling is currently written in LESS so you will need a LESS compiler in your build process. If you are looking to get started quickly you can compile styles from the command line.</p>
+						<div className="code-example">
+							<div className="code-example__example">
+								<div className="code-example__example__heading--no-rule">Compile less with the command line</div>
+							</div>
+							<ExampleSource>
+								<code>{`npm install -g less \n`}</code>
+								<code>{`lessc --clean-css ./node_modules/elemental/less/elemental.less styles.min.css \n`}</code>
+							</ExampleSource>
+						</div>
+					</Container>
+
 				</div>
 				<div className="demo-banner demo-banner--tertiary">
 					<Container maxWidth={768} className="demo-container">
