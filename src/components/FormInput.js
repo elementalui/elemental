@@ -38,6 +38,10 @@ module.exports = React.createClass({
 		this.refs.input.focus();
 	},
 
+	select() {
+		this.refs.input.select();
+	},
+
 	render() {
 		// classes
 		let className = classNames(
