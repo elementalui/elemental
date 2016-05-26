@@ -14,6 +14,7 @@ module.exports = React.createClass({
 		buttonHasDisclosureArrow: React.PropTypes.bool,
 		buttonLabel: React.PropTypes.string,
 		buttonType: React.PropTypes.string,
+		buttonSize: React.PropTypes.string,
 		children: React.PropTypes.element,
 		className: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
@@ -62,7 +63,7 @@ module.exports = React.createClass({
 		var disclosureArrow = this.props.buttonHasDisclosureArrow ? <span className="disclosure-arrow" /> : null;
 
 		return (
-			<Button type={this.props.buttonType} onClick={this.state.isOpen ? this.closeDropdown : this.openDropdown} className="Dropdown-toggle">
+			<Button type={this.props.buttonType} size={this.props.buttonSize} onClick={this.state.isOpen ? this.closeDropdown : this.openDropdown} className="Dropdown-toggle">
 				{this.props.buttonLabel}
 				{disclosureArrow}
 			</Button>
