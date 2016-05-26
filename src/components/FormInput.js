@@ -37,6 +37,10 @@ module.exports = React.createClass({
 	focus() {
 		this.refs.input.focus();
 	},
+	
+	select() {
+		this.refs.input.select();
+	},
 
 	render() {
 		// classes
