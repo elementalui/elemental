@@ -37,7 +37,11 @@ var DemoBox = React.createClass({
 		}
 		let className = classnames('DemoBox', this.props.className);
 
-		return <div {...this.props} style={Object.assign({}, boxStyle, this.props.style)} className={className} />;
+		return (
+			<div style={Object.assign({}, boxStyle, this.props.style)} className={className}>
+				{ this.props.children }
+			</div>
+		);
 	}
 });
 

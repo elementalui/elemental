@@ -41,7 +41,7 @@ module.exports = React.createClass({
 	render() {
 		const {noedit, multiline, size, className, autofocus, ...rest} = this.props;
 		// classes
-		let className = classNames(
+		let newClassName = classNames(
 			{
 				'FormInput-noedit': noedit,
 				'FormInput-noedit--multiline': noedit && multiline,
@@ -50,7 +50,7 @@ module.exports = React.createClass({
 			(size ? ('FormInput--' + size) : null),
 			className
 		);
-		let props = { ...rest, className, ref: 'input' };
+		let props = { ...rest, className: newClassName, ref: 'input' };
 		let Element = 'input';
 		if (noedit && this.props.href) {
 			Element = 'a';

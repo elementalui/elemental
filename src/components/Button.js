@@ -59,7 +59,7 @@ module.exports = React.createClass({
 		);
 
 		// props
-		var props = blacklist(this.props, 'type', 'size', 'component', 'className');
+		var props = blacklist(this.props, 'type', 'size', 'component', 'className', 'submit');
 		props.className = componentClass;
 
 		if (this.props.component) {
