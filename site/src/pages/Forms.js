@@ -128,7 +128,7 @@ var Forms = React.createClass({
 					<div className="code-example__example">
 						<Form action="javascript:;">
 							<FormField label="Email address" htmlFor="basic-form-input-email">
-								<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
+								<FormInput autoFocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 							</FormField>
 							<FormField label="Password" htmlFor="basic-form-input-password">
 								<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
@@ -143,7 +143,7 @@ var Forms = React.createClass({
 						{`
 							<Form>
 								<FormField label="Email address" htmlFor="basic-form-input-email">
-									<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
+									<FormInput autoFocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 								</FormField>
 								<FormField label="Password" htmlFor="basic-form-input-password">
 									<FormInput type="password" placeholder="Password" name="basic-form-input-password" />

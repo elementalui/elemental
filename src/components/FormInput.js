@@ -5,7 +5,7 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormInput',
 	propTypes: {
-		autofocus: React.PropTypes.bool,
+		autoFocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
 		href: React.PropTypes.string,
@@ -29,7 +29,7 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount () {
-		if (this.props.autofocus) {
+		if (this.props.autoFocus) {
 			this.focus();
 		}
 	},
@@ -39,7 +39,7 @@ module.exports = React.createClass({
 	},
 
 	render() {
-		const {noedit, multiline, size, className, autofocus, ...rest} = this.props;
+		const { noedit, multiline, size, className, ...rest } = this.props;
 		// classes
 		let newClassName = classNames(
 			{
