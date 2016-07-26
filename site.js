@@ -104,7 +104,11 @@ var DemoBox = _react2['default'].createClass({
 		}
 		var className = (0, _classnames2['default'])('DemoBox', this.props.className);
 
-		return _react2['default'].createElement('div', _extends({}, this.props, { style: _extends({}, boxStyle, this.props.style), className: className }));
+		return _react2['default'].createElement(
+			'div',
+			{ style: _extends({}, boxStyle, this.props.style), className: className },
+			this.props.children
+		);
 	}
 });
 
@@ -1466,7 +1470,7 @@ var Forms = React.createClass({
 						React.createElement(
 							FormField,
 							{ label: 'Email address', htmlFor: 'basic-form-input-email' },
-							React.createElement(FormInput, { autofocus: true, type: 'email', placeholder: 'Enter email', name: 'basic-form-input-email' })
+							React.createElement(FormInput, { autoFocus: true, type: 'email', placeholder: 'Enter email', name: 'basic-form-input-email' })
 						),
 						React.createElement(
 							FormField,
@@ -1488,7 +1492,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button submit>Submit</Button>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Form>\n\t\t\t\t\t\t\t\t<FormField label="Email address" htmlFor="basic-form-input-email">\n\t\t\t\t\t\t\t\t\t<FormInput autoFocus type="email" placeholder="Enter email" name="basic-form-input-email" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label="Password" htmlFor="basic-form-input-password">\n\t\t\t\t\t\t\t\t\t<FormInput type="password" placeholder="Password" name="basic-form-input-password" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField>\n\t\t\t\t\t\t\t\t\t<Checkbox label="Check it" />\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<Button submit>Submit</Button>\n\t\t\t\t\t\t\t</Form>\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
@@ -3271,6 +3275,8 @@ var Col = _require.Col;
 var Container = _require.Container;
 var Row = _require.Row;
 
+var ExampleSource = require('../components/ExampleSource');
+
 var Home = React.createClass({
 	displayName: 'VIEW_Home',
 
@@ -3391,6 +3397,143 @@ var Home = React.createClass({
 					React.createElement(
 						'h2',
 						{ className: 'demo-banner__heading demo-banner__heading-2' },
+						'Getting Started'
+					),
+					React.createElement(
+						'p',
+						null,
+						'To quickly get up and running with ',
+						React.createElement(
+							'strong',
+							null,
+							'Elemental UI'
+						),
+						' follow these three simple steps.'
+					),
+					React.createElement(
+						'div',
+						{ className: 'code-example' },
+						React.createElement(
+							'div',
+							{ className: 'code-example__example' },
+							React.createElement(
+								'div',
+								{ className: 'code-example__example__heading--no-rule' },
+								React.createElement(
+									'span',
+									{ className: 'circle-number' },
+									'1'
+								),
+								'Install'
+							)
+						),
+						React.createElement(
+							ExampleSource,
+							null,
+							React.createElement(
+								'code',
+								null,
+								'npm install elemental --save \n'
+							)
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'code-example' },
+						React.createElement(
+							'div',
+							{ className: 'code-example__example' },
+							React.createElement(
+								'div',
+								{ className: 'code-example__example__heading--no-rule' },
+								React.createElement(
+									'span',
+									{ className: 'circle-number' },
+									'2'
+								),
+								'Import styles'
+							)
+						),
+						React.createElement(
+							ExampleSource,
+							null,
+							React.createElement(
+								'code',
+								null,
+								'@import \'./node_modules/elemental/less/elemental.less\''
+							)
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'code-example' },
+						React.createElement(
+							'div',
+							{ className: 'code-example__example' },
+							React.createElement(
+								'div',
+								{ className: 'code-example__example__heading--no-rule' },
+								React.createElement(
+									'span',
+									{ className: 'circle-number' },
+									'3'
+								),
+								'Import the elements'
+							)
+						),
+						React.createElement(
+							ExampleSource,
+							null,
+							React.createElement(
+								'code',
+								null,
+								'import { Button, Alert, Spinner } from \'elemental\' \n'
+							)
+						)
+					),
+					React.createElement(
+						'p',
+						{ className: 'note' },
+						'Elemental styling is currently written in LESS so you will need a LESS compiler in your build process. If you are looking to get started quickly you can compile styles from the command line.'
+					),
+					React.createElement(
+						'div',
+						{ className: 'code-example' },
+						React.createElement(
+							'div',
+							{ className: 'code-example__example' },
+							React.createElement(
+								'div',
+								{ className: 'code-example__example__heading--no-rule' },
+								'Compile less with the command line'
+							)
+						),
+						React.createElement(
+							ExampleSource,
+							null,
+							React.createElement(
+								'code',
+								null,
+								'npm install -g less \n'
+							),
+							React.createElement(
+								'code',
+								null,
+								'lessc --clean-css ./node_modules/elemental/less/elemental.less styles.min.css \n'
+							)
+						)
+					)
+				)
+			),
+			React.createElement(
+				'div',
+				{ className: 'demo-banner demo-banner--tertiary' },
+				React.createElement(
+					Container,
+					{ maxWidth: 768, className: 'demo-container' },
+					React.createElement(
+						'h2',
+						{ className: 'demo-banner__heading demo-banner__heading-2' },
 						'Why build ',
 						React.createElement(
 							'em',
@@ -3488,7 +3631,7 @@ var Home = React.createClass({
 
 module.exports = Home;
 
-},{"elemental":undefined,"react":undefined,"react-router":undefined}],12:[function(require,module,exports){
+},{"../components/ExampleSource":3,"elemental":undefined,"react":undefined,"react-router":undefined}],12:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

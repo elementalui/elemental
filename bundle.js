@@ -159,7 +159,7 @@ module.exports = React.createClass({
 		}, this.props.className);
 
 		// props
-		var props = blacklist(this.props, 'type', 'size', 'component', 'className');
+		var props = blacklist(this.props, 'type', 'size', 'component', 'className', 'submit');
 		props.className = componentClass;
 
 		if (this.props.component) {
@@ -232,7 +232,7 @@ var Checkbox = React.createClass({
 	displayName: 'Checkbox',
 
 	propTypes: {
-		autofocus: React.PropTypes.bool,
+		autoFocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
@@ -242,7 +242,7 @@ var Checkbox = React.createClass({
 		title: React.PropTypes.string
 	},
 	componentDidMount: function componentDidMount() {
-		if (this.props.autofocus) {
+		if (this.props.autoFocus) {
 			this.refs.target.focus();
 		}
 		this.setIndeterminate(this.props.indeterminate);
@@ -932,7 +932,7 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
-		var props = blacklist(this.props, 'children', 'type');
+		var props = blacklist(this.props, 'children', 'type', 'component');
 		props.className = classnames('Form', 'Form--' + this.props.type, this.props.className);
 
 		return React.createElement(this.props.component, props, this.props.children);
@@ -1071,6 +1071,8 @@ module.exports = React.createClass({
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
@@ -1078,7 +1080,7 @@ var classNames = require('classnames');
 module.exports = React.createClass({
 	displayName: 'FormInput',
 	propTypes: {
-		autofocus: React.PropTypes.bool,
+		autoFocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
 		href: React.PropTypes.string,
@@ -1099,7 +1101,7 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
-		if (this.props.autofocus) {
+		if (this.props.autoFocus) {
 			this.focus();
 		}
 	},
@@ -1109,23 +1111,31 @@ module.exports = React.createClass({
 	},
 
 	render: function render() {
+		var _props = this.props;
+		var noedit = _props.noedit;
+		var multiline = _props.multiline;
+		var size = _props.size;
+		var className = _props.className;
+
+		var rest = _objectWithoutProperties(_props, ['noedit', 'multiline', 'size', 'className']);
+
 		// classes
-		var className = classNames({
-			'FormInput-noedit': this.props.noedit,
-			'FormInput-noedit--multiline': this.props.noedit && this.props.multiline,
-			'FormInput': !this.props.noedit
-		}, this.props.size ? 'FormInput--' + this.props.size : null, this.props.className);
-		var props = _extends({}, this.props, { className: className, ref: 'input' });
+		var newClassName = classNames({
+			'FormInput-noedit': noedit,
+			'FormInput-noedit--multiline': noedit && multiline,
+			'FormInput': !noedit
+		}, size ? 'FormInput--' + size : null, className);
+		var props = _extends({}, rest, { className: newClassName, ref: 'input' });
 		var Element = 'input';
-		if (this.props.noedit && this.props.href) {
+		if (noedit && this.props.href) {
 			Element = 'a';
 			props.type = null;
 			props.children = props.children || props.value;
-		} else if (this.props.noedit) {
+		} else if (noedit) {
 			Element = 'div';
 			props.type = null;
 			props.children = props.children || props.value;
-		} else if (this.props.multiline) {
+		} else if (multiline) {
 			Element = 'textarea';
 		}
 
@@ -1428,6 +1438,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var React = require('react');
 var classNames = require('classnames');
+var blacklist = require('blacklist');
 
 module.exports = React.createClass({
 	displayName: 'InputGroup',
@@ -1440,21 +1451,23 @@ module.exports = React.createClass({
 		var className = classNames('InputGroup', {
 			'InputGroup--contiguous': this.props.contiguous
 		}, this.props.className);
+		var props = blacklist(this.props, 'contiguous');
 
-		return React.createElement('div', _extends({}, this.props, { className: className }));
+		return React.createElement('div', _extends({}, props, { className: className }));
 	}
 });
 
 // expose the child to the top level export
 module.exports.Section = require('./InputGroupSection');
 
-},{"./InputGroupSection":26,"classnames":1,"react":undefined}],26:[function(require,module,exports){
+},{"./InputGroupSection":26,"blacklist":undefined,"classnames":1,"react":undefined}],26:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
 var classNames = require('classnames');
+var blacklist = require('blacklist');
 
 module.exports = React.createClass({
 	displayName: 'InputGroupSection',
@@ -1467,12 +1480,13 @@ module.exports = React.createClass({
 		var className = classNames('InputGroup_section', {
 			'InputGroup_section--grow': this.props.grow
 		}, this.props.className);
+		var props = blacklist(this.props, 'grow');
 
-		return React.createElement('div', _extends({}, this.props, { className: className }));
+		return React.createElement('div', _extends({}, props, { className: className }));
 	}
 });
 
-},{"classnames":1,"react":undefined}],27:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":1,"react":undefined}],27:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1531,7 +1545,7 @@ var TransitionPortal = _react2['default'].createClass({
 module.exports = _react2['default'].createClass({
 	displayName: 'Modal',
 	propTypes: {
-		autofocusFirstElement: _react2['default'].PropTypes.bool,
+		autoFocusFirstElement: _react2['default'].PropTypes.bool,
 		backdropClosesModal: _react2['default'].PropTypes.bool,
 		className: _react2['default'].PropTypes.string,
 		isOpen: _react2['default'].PropTypes.bool,
@@ -1564,13 +1578,13 @@ module.exports = _react2['default'].createClass({
  	// and passing focus to it, otherwise the browser
  	// might scroll the document to reveal the element
  	// receiving focus
- 	if (this.props.autofocusFirstElement) {
+ 	if (this.props.autoFocusFirstElement) {
  		ally.when.visibleArea({
  			context: this.modalElement,
  			callback: function(context) {
  				// the modal is visible on screen, so find the first
  				// keyboard focusable element (giving any element with
- 				// autofocus attribute precendence). If the modal does
+ 				// autoFocus attribute precendence). If the modal does
  				// not contain any keyboard focusabe elements, focus will
  				// be given to the modal itself.
  				var element = ally.query.firstTabbable({
@@ -1710,6 +1724,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var classnames = require('classnames');
 var React = require('react');
+var blacklist = require('blacklist');
 
 module.exports = React.createClass({
 	displayName: 'ModalHeader',
@@ -1734,9 +1749,11 @@ module.exports = React.createClass({
 			{ className: 'Modal__header__text' },
 			this.props.text
 		) : null;
+		var props = blacklist(this.props, 'children', 'onClose', 'showCloseButton', 'text');
+
 		return React.createElement(
 			'div',
-			_extends({}, this.props, { className: className }),
+			_extends({}, props, { className: className }),
 			close,
 			text,
 			this.props.children
@@ -1744,7 +1761,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"classnames":1,"react":undefined}],31:[function(require,module,exports){
+},{"blacklist":undefined,"classnames":1,"react":undefined}],31:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -2166,7 +2183,7 @@ module.exports = React.createClass({
 		var self = this;
 
 		// props
-		var props = blacklist(this.props, 'alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value');
+		var props = blacklist(this.props, 'alwaysValidate', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'value', 'inline');
 
 		// classes
 		var componentClass = classNames('FormField', {
