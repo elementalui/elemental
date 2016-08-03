@@ -15,8 +15,9 @@
   },
   "devDependencies": {
     "babel": "^5.8.23",
-    "eslint": "^1.10.3",
-    "eslint-plugin-react": "^3.16.1",
+    "eslint": "^2.13.1",
+    "eslint-config-keystone": "^2.4.0",
+    "eslint-plugin-react": "^5.2.2",
     "glob": "^7.0.5",
     "gulp": "^3.9.1",
     "isparta": "^4.0.0",
