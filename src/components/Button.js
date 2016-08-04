@@ -53,13 +53,13 @@ module.exports = React.createClass({
 			(this.props.size ? 'Button--' + this.props.size : null),
 			{
 				'Button--block': this.props.block,
-				'is-active': this.props.isActive
+				'is-active': this.props.isActive,
 			},
 			this.props.className
 		);
 
 		// props
-		var props = blacklist(this.props, 'type', 'size', 'component', 'className', 'submit');
+		var props = blacklist(this.props, 'block', 'type', 'size', 'component', 'className', 'submit');
 		props.className = componentClass;
 
 		if (this.props.component) {
