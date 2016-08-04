@@ -389,59 +389,62 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _blacklist = require('blacklist');
-
-var _blacklist2 = _interopRequireDefault(_blacklist);
 
 var _constants = require('../constants');
 
 var _constants2 = _interopRequireDefault(_constants);
 
-module.exports = _react2['default'].createClass({
-	displayName: 'Container',
-	propTypes: {
-		children: _react2['default'].PropTypes.node.isRequired,
-		clearfix: _react2['default'].PropTypes.bool,
-		gutter: _react2['default'].PropTypes.number,
-		maxWidth: _react2['default'].PropTypes.number,
-		style: _react2['default'].PropTypes.object
-	},
-	getDefaultProps: function getDefaultProps() {
-		return {
-			gutter: _constants2['default'].width.gutter,
-			maxWidth: _constants2['default'].width.container
-		};
-	},
-	render: function render() {
-		var _props = this.props;
-		var gutter = _props.gutter;
-		var maxWidth = _props.maxWidth;
+function Container(_ref) {
+	var children = _ref.children;
+	var clearfix = _ref.clearfix;
+	var gutter = _ref.gutter;
+	var maxWidth = _ref.maxWidth;
+	var style = _ref.style;
 
-		var containerStyle = {
+	var props = _objectWithoutProperties(_ref, ['children', 'clearfix', 'gutter', 'maxWidth', 'style']);
+
+	var styles = {
+		clearfix: {
+			clear: 'both',
+			display: 'table'
+		},
+		container: {
 			marginLeft: 'auto',
 			marginRight: 'auto',
+			maxWidth: maxWidth,
 			paddingLeft: gutter,
-			paddingRight: gutter,
-			maxWidth: maxWidth
-		};
-		var clearfixStyle = { clear: 'both', display: 'table' };
-		var props = (0, _blacklist2['default'])(this.props, 'gutter', 'maxWidth', 'style');
+			paddingRight: gutter
+		}
+	};
+	props.style = _extends({}, styles.container, style);
 
-		return this.props.clearfix ? _react2['default'].createElement(
-			'div',
-			_extends({ style: _extends(containerStyle, this.props.style) }, props),
-			_react2['default'].createElement('span', { style: clearfixStyle }),
-			this.props.children,
-			_react2['default'].createElement('span', { style: clearfixStyle })
-		) : _react2['default'].createElement('div', _extends({ style: _extends(containerStyle, this.props.style) }, props));
-	}
-});
+	return _react2['default'].createElement(
+		'div',
+		props,
+		clearfix && _react2['default'].createElement('span', { style: styles.clearfix }),
+		children,
+		clearfix && _react2['default'].createElement('span', { style: styles.clearfix })
+	);
+};
 
-},{"../constants":41,"blacklist":undefined,"react":undefined}],11:[function(require,module,exports){
+Container.propTypes = {
+	clearfix: _react.PropTypes.bool,
+	gutter: _react.PropTypes.number,
+	maxWidth: _react.PropTypes.number
+};
+Container.defaultProps = {
+	gutter: _constants2['default'].width.gutter,
+	maxWidth: _constants2['default'].width.container
+};
+
+module.exports = Container;
+
+},{"../constants":41,"react":undefined}],11:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
