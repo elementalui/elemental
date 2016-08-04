@@ -10,7 +10,7 @@ function Form ({ className, component, type, ...props }) {
 
 Form.propTypes = {
 	component: PropTypes.oneOfType([
-		React.PropTypes.element,
+		React.PropTypes.string,
 		React.PropTypes.func,
 	]),
 	type: PropTypes.oneOf(['basic', 'horizontal', 'inline']),
