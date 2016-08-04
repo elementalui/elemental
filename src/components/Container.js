@@ -1,42 +1,42 @@
-import React from 'react';
-import blacklist from 'blacklist';
-import E from '../constants';
+import React, { PropTypes } from 'react';
+import theme from '../constants';
 
-module.exports = React.createClass({
-	displayName: 'Container',
-	propTypes: {
-		children: React.PropTypes.node.isRequired,
-		clearfix: React.PropTypes.bool,
-		gutter: React.PropTypes.number,
-		maxWidth: React.PropTypes.number,
-		style: React.PropTypes.object,
-	},
-	getDefaultProps () {
-		return {
-			gutter: E.width.gutter,
-			maxWidth: E.width.container,
-		};
-	},
-	render () {
-		let { gutter, maxWidth } = this.props;
-		let containerStyle = {
+function Container ({ children, clearfix, gutter, maxWidth, style, ...props }) {
+	const styles = {
+		clearfix: {
+			clear: 'both',
+			display: 'table',
+		},
+		container: {
 			marginLeft: 'auto',
 			marginRight: 'auto',
+			maxWidth: maxWidth,
 			paddingLeft: gutter,
 			paddingRight: gutter,
-			maxWidth: maxWidth,
-		};
-		let clearfixStyle = { clear: 'both', display: 'table' };
-		let props = blacklist(this.props, 'gutter', 'maxWidth', 'style');
+		},
+	};
+	props.style = {
+		...styles.container,
+		...style,
+	};
 
-		return this.props.clearfix ? (
-			<div style={Object.assign(containerStyle, this.props.style)} {...props}>
-				<span style={clearfixStyle} />
-				{this.props.children}
-				<span style={clearfixStyle} />
-			</div>
-		) : (
-			<div style={Object.assign(containerStyle, this.props.style)} {...props} />
-		);
-	},
-});
+	return (
+		<div {...props}>
+			{clearfix && <span style={styles.clearfix} />}
+			{children}
+			{clearfix && <span style={styles.clearfix} />}
+		</div>
+	);
+};
+
+Container.propTypes = {
+	clearfix: PropTypes.bool,
+	gutter: PropTypes.number,
+	maxWidth: PropTypes.number,
+};
+Container.defaultProps = {
+	gutter: theme.width.gutter,
+	maxWidth: theme.width.container,
+};
+
+module.exports = Container;
