@@ -1,5 +1,16 @@
 # Elemental
 
+## v0.6.1 / 2016-08-04
+
+* fixed; issue passing unrecognised attributes to DOM elements that was missed in 0.6.0
+
+## v0.6.0 / 2016-07-26
+
+This release fixes warnings in React 15.2.x, and includes a small breaking change to do with the calitalisation of `autoFocus`.
+
+* fixed; issues with passing unrecognised attributes to DOM elements, which caused warnings in React 15.2.x, thanks to [Monday Chen](https://github.com/mondaychen)
+* fixed; capitalisation inconsistencies with React on the `autoFocus` prop (Focus is now capitalised)
+
 ## v0.5.14 / 2016-04-10
 
 Elemental is now compatible with React 15.x.x

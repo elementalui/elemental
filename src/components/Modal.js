@@ -30,7 +30,7 @@ const TransitionPortal = React.createClass({
 module.exports = React.createClass({
 	displayName: 'Modal',
 	propTypes: {
-		autofocusFirstElement: React.PropTypes.bool,
+		autoFocusFirstElement: React.PropTypes.bool,
 		backdropClosesModal: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
@@ -67,13 +67,13 @@ module.exports = React.createClass({
 		// and passing focus to it, otherwise the browser
 		// might scroll the document to reveal the element
 		// receiving focus
-		if (this.props.autofocusFirstElement) {
+		if (this.props.autoFocusFirstElement) {
 			ally.when.visibleArea({
 				context: this.modalElement,
 				callback: function(context) {
 					// the modal is visible on screen, so find the first
 					// keyboard focusable element (giving any element with
-					// autofocus attribute precendence). If the modal does
+					// autoFocus attribute precendence). If the modal does
 					// not contain any keyboard focusabe elements, focus will
 					// be given to the modal itself.
 					var element = ally.query.firstTabbable({

@@ -4,7 +4,7 @@ const React = require('react');
 
 const Checkbox = React.createClass({
 	propTypes: {
-		autofocus: React.PropTypes.bool,
+		autoFocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
@@ -14,7 +14,7 @@ const Checkbox = React.createClass({
 		title: React.PropTypes.string,
 	},
 	componentDidMount () {
-		if (this.props.autofocus) {
+		if (this.props.autoFocus) {
 			this.refs.target.focus();
 		}
 		this.setIndeterminate(this.props.indeterminate);
