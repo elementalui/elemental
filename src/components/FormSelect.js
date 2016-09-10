@@ -18,6 +18,7 @@ module.exports = React.createClass({
 			React.PropTypes.shape({
 				label: React.PropTypes.string,
 				value: React.PropTypes.string,
+				disabled: React.PropTypes.bool,
 			})
 		).isRequired,
 		prependEmptyOption: React.PropTypes.bool,
@@ -106,7 +107,7 @@ module.exports = React.createClass({
 
 		// options
 		let options = this.props.options.map(function(opt, i) {
-			return <option key={'option-' + i} value={opt.value}>{opt.label}</option>;
+			return <option key={'option-' + i} value={opt.value} disabled={opt.disabled}>{opt.label}</option>;
 		});
 		if (this.props.prependEmptyOption || this.props.firstOption) {
 			options.unshift(
