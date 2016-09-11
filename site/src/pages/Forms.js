@@ -30,7 +30,7 @@ const controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
 	{ label: 'Chocolate',  value: 'chocolate' },
 	{ label: 'Strawberry', value: 'strawberry' },
-	{ label: 'Vanilla',    value: 'vanilla' }
+	{ label: 'Vanilla',    value: 'vanilla', disabled: true }
 ];
 const COUNTRIES = require('../data/countries');
 const COLOR_VARIANTS = [
