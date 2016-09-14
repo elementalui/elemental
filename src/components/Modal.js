@@ -117,10 +117,10 @@ module.exports = React.createClass({
 		// return focus to where it was before we opened the modal
 		this.focusedElementBeforeModalOpened && this.focusedElementBeforeModalOpened.focus();
 	},
+	*/
 	handleModalClick (event) {
 		if (event.target.dataset.modal) this.handleClose();
 	},
-	*/
 	handleClose () {
 		this.props.onCancel();
 	},
@@ -139,7 +139,7 @@ module.exports = React.createClass({
 	},
 	renderBackdrop() {
 		if (!this.props.isOpen) return;
-		return <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.handleClose : null} />;
+		return <div className="Modal-backdrop" />;
 	},
 	render() {
 		var className = classNames('Modal', {
@@ -148,7 +148,7 @@ module.exports = React.createClass({
 		var props = blacklist(this.props, 'backdropClosesModal', 'className', 'isOpen', 'onCancel');
 		return (
 			<div>
-				<TransitionPortal {...props} data-modal="true" className={className} /*onClick={this.handleModalClick}*/ transitionName="Modal-dialog" transitionEnterTimeout={260} transitionLeaveTimeout={140} component="div">
+				<TransitionPortal {...props} data-modal="true" className={className} onClick={this.props.backdropClosesModal ? this.handleModalClick : null} transitionName="Modal-dialog" transitionEnterTimeout={260} transitionLeaveTimeout={140} component="div">
 					{this.renderDialog()}
 				</TransitionPortal>
 				<TransitionPortal transitionName="Modal-background" transitionEnterTimeout={140} transitionLeaveTimeout={240} component="div">
