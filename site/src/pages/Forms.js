@@ -462,7 +462,14 @@ var Forms = React.createClass({
 						<FormSelect options={controlOptions} firstOption="Select" onChange={updateSelect} />
 					</div>
 					<ExampleSource>
-						{`<FormSelect options={[...]} firstOption="Select" onChange={this.handleSelect} />`}
+						{`
+							<FormSelect options={[
+								{ label: 'Caramel',    value: 'caramel' },
+								{ label: 'Chocolate',  value: 'chocolate' },
+								{ label: 'Strawberry', value: 'strawberry' },
+								{ label: 'Vanilla',    value: 'vanilla', disabled: true }
+							]} firstOption="Select" onChange={this.handleSelect} />
+						`}
 					</ExampleSource>
 				</div>
 				<div className="code-example">
