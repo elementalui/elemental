@@ -54,17 +54,17 @@ var Misc = React.createClass({
 
 	render() {
 		const labelFn = params => {
-      let count = '';
+			let count = '';
 			const { currentPage, pageSize, total } = params;
-      if (!total) {
-        count = '表示する項目がありません';
-      } else if (total > pageSize) {
-        const { start, end } = params;
-        count = total + ' 件中 ' + start + ' から ' + end + ' まで表示';
-      } else {
-        count = '全 ' + total + ' 件を表示';
-      }
-      return count;
+			if (!total) {
+				count = '表示する項目がありません';
+			} else if (total > pageSize) {
+				const { start, end } = params;
+				count = total + ' 件中 ' + start + ' から ' + end + ' まで表示';
+			} else {
+				count = '全 ' + total + ' 件を表示';
+			}
+			return count;
 		};
 
 		return (
