@@ -26,12 +26,24 @@ const Page = React.createClass({
 	},
 });
 
+function range(props) {
+  const { currentPage, pageSize, total } = props;
+  if (!total) {
+    return {};
+  } else {
+    const start = (pageSize * (currentPage - 1)) + 1;
+    const end = Math.min(start + pageSize - 1, total);
+    return { start, end };
+  }
+}
+
 module.exports = React.createClass({
 	displayName: 'Pagination',
 	propTypes: {
 		className: React.PropTypes.string,
 		currentPage: React.PropTypes.number.isRequired,
 		limit: React.PropTypes.number,
+    label: React.PropTypes.func,
 		onPageSelect: React.PropTypes.func,
 		pageSize: React.PropTypes.number.isRequired,
 		plural: React.PropTypes.string,
@@ -41,21 +53,25 @@ module.exports = React.createClass({
 	},
 	renderCount () {
 		let count = '';
-		let { currentPage, pageSize, plural, singular, total } = this.props;
-		if (!total) {
-			count = 'No ' + (plural || 'records');
-		} else if (total > pageSize) {
-			let start = (pageSize * (currentPage - 1)) + 1;
-			let end = Math.min(start + pageSize - 1, total);
-			count = `Showing ${start} to ${end} of ${total}`;
-		} else {
-			count = 'Showing ' + total;
-			if (total > 1 && plural) {
-				count += ' ' + plural;
-			} else if (total === 1 && singular) {
-				count += ' ' + singular;
-			}
-		}
+		let { currentPage, pageSize, plural, singular, total, label } = this.props;
+    if (typeof label === 'function') {
+      const params = Object.assign(range(this.props), { currentPage, pageSize, total });
+      count = label(params);
+    } else {
+      if (!total) {
+        count = 'No ' + (plural || 'records');
+      } else if (total > pageSize) {
+        const { start, end } = range(this.props);
+        count = `Showing ${start} to ${end} of ${total}`;
+      } else {
+        count = 'Showing ' + total;
+        if (total > 1 && plural) {
+          count += ' ' + plural;
+        } else if (total === 1 && singular) {
+          count += ' ' + singular;
+        }
+      }
+    }
 		return (
 			<div className="Pagination__count">{count}</div>
 		);
