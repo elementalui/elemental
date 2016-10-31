@@ -13,7 +13,7 @@ module.exports = React.createClass({
 		])
   },
 	propTypes: {
-		autofocus: React.PropTypes.bool,
+		autoFocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
 		disabled: React.PropTypes.bool,
 		href: React.PropTypes.string,
@@ -37,7 +37,7 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount () {
-		if (this.props.autofocus) {
+		if (this.props.autoFocus) {
 			this.focus();
 		}
 	},
@@ -63,28 +63,29 @@ module.exports = React.createClass({
 	},
 
 	render() {
+		const { noedit, multiline, size, className, ...rest } = this.props;
 		// classes
-		let className = classNames(
+		let newClassName = classNames(
 			{
-				'FormInput-noedit': this.props.noedit,
-				'FormInput-noedit--multiline': this.props.noedit && this.props.multiline,
-				'FormInput': !this.props.noedit,
+				'FormInput-noedit': noedit,
+				'FormInput-noedit--multiline': noedit && multiline,
+				'FormInput': !noedit,
 			},
-			(this.props.size ? ('FormInput--' + this.props.size) : null),
-			this.props.className,
+			(size ? ('FormInput--' + size) : null),
+			className,
 			this.setValidity(this.context.validity)
 		);
-		let props = { ...this.props, className, ref: 'input' };
+		let props = { ...rest, className: newClassName, ref: 'input' };
 		let Element = 'input';
-		if (this.props.noedit && this.props.href) {
+		if (noedit && this.props.href) {
 			Element = 'a';
 			props.type = null;
 			props.children = props.children || props.value;
-		} else if (this.props.noedit) {
+		} else if (noedit) {
 			Element = 'div';
 			props.type = null;
 			props.children = props.children || props.value;
-		} else if (this.props.multiline) {
+		} else if (multiline) {
 			Element = 'textarea';
 		}
 

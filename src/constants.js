@@ -62,7 +62,7 @@ function denominators (n) {
 }
 
 exports.fractions = {
-	"1": "100%"
+	'1': '100%',
 };
 
 for (var numerator = 1; numerator <= 19; numerator++) {

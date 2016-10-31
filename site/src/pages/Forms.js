@@ -30,7 +30,7 @@ const controlOptions = [
 	{ label: 'Caramel',    value: 'caramel' },
 	{ label: 'Chocolate',  value: 'chocolate' },
 	{ label: 'Strawberry', value: 'strawberry' },
-	{ label: 'Vanilla',    value: 'vanilla' }
+	{ label: 'Vanilla',    value: 'vanilla', disabled: true }
 ];
 const COUNTRIES = require('../data/countries');
 const COLOR_VARIANTS = [
@@ -126,9 +126,9 @@ var Forms = React.createClass({
 				<p>Individual form controls automatically receive some global styling. All textual <code className="inline-code">{`<FormInput>`}</code>, and <code className="inline-code">{`<FormSelect>`}</code> elements with are set to <code className="inline-code">width: 100%;</code> by default. Wrap controls in <code className="inline-code">{`<FormField>`}</code> for optimum spacing.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Form>
+						<Form action="javascript:;">
 							<FormField label="Email address" htmlFor="basic-form-input-email">
-								<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
+								<FormInput autoFocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 							</FormField>
 							<FormField label="Password" htmlFor="basic-form-input-password">
 								<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
@@ -136,14 +136,14 @@ var Forms = React.createClass({
 							<FormField>
 								<Checkbox label="Check it" />
 							</FormField>
-							<Button type="default">Submit</Button>
+							<Button submit>Submit</Button>
 						</Form>
 					</div>
 					<ExampleSource>
 						{`
 							<Form>
 								<FormField label="Email address" htmlFor="basic-form-input-email">
-									<FormInput autofocus type="email" placeholder="Enter email" name="basic-form-input-email" />
+									<FormInput autoFocus type="email" placeholder="Enter email" name="basic-form-input-email" />
 								</FormField>
 								<FormField label="Password" htmlFor="basic-form-input-password">
 									<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
@@ -151,7 +151,7 @@ var Forms = React.createClass({
 								<FormField>
 									<Checkbox label="Check it" />
 								</FormField>
-								<Button type="default">Submit</Button>
+								<Button submit>Submit</Button>
 							</Form>
 						`}
 					</ExampleSource>
@@ -163,7 +163,7 @@ var Forms = React.createClass({
 				<p>Adding the type <code className="inline-code">horizontal</code> to your <code className="inline-code">{`<Form />`}</code> changes the <code className="inline-code">FormField</code> component to behave like a row. The label width can be updated from inside the LESS variables file where it's defined as <code className="inline-code">@form-label-width</code>. This only applies to forms within viewports that are at least 768px wide.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Form type="horizontal">
+						<Form type="horizontal" action="javascript:;">
 							<FormField label="Email address" htmlFor="horizontal-form-input-email">
 								<FormInput type="email" placeholder="Enter email" name="horizontal-form-input-email" />
 							</FormField>
@@ -174,7 +174,7 @@ var Forms = React.createClass({
 								<Checkbox label="Check it" />
 							</FormField>
 							<FormField offsetAbsentLabel>
-								<Button type="default">Submit</Button>
+								<Button submit>Submit</Button>
 							</FormField>
 						</Form>
 					</div>
@@ -191,7 +191,7 @@ var Forms = React.createClass({
 									<Checkbox label="Check it" />
 								</FormField>
 								<FormField offsetAbsentLabel>
-									<Button type="default">Submit</Button>
+									<Button submit>Submit</Button>
 								</FormField>
 							</Form>
 						`}
@@ -205,7 +205,7 @@ var Forms = React.createClass({
 				<p>Note: you should always use labels to improve accessibility - they are only visible to screen readers. Form labels within viewports that are below 768px wide will be rendered regularly to improve usability.</p>
 				<div className="code-example">
 					<div className="code-example__example">
-						<Form type="inline">
+						<Form type="inline" action="javascript:;">
 							<FormField label="Email address" htmlFor="inline-form-input-email">
 								<FormInput type="email" placeholder="Enter email" name="inline-form-input-email" />
 							</FormField>
@@ -216,7 +216,7 @@ var Forms = React.createClass({
 								<Checkbox label="Check it" />
 							</FormField>
 							<FormField>
-								<Button type="default">Submit</Button>
+								<Button submit>Submit</Button>
 							</FormField>
 						</Form>
 					</div>
@@ -233,7 +233,7 @@ var Forms = React.createClass({
 									<Checkbox label="Check it" />
 								</FormField>
 								<FormField>
-									<Button type="default">Submit</Button>
+									<Button submit>Submit</Button>
 								</FormField>
 							</Form>
 						`}
@@ -462,7 +462,14 @@ var Forms = React.createClass({
 						<FormSelect options={controlOptions} firstOption="Select" onChange={updateSelect} />
 					</div>
 					<ExampleSource>
-						{`<FormSelect options={[...]} firstOption="Select" onChange={this.handleSelect} />`}
+						{`
+							<FormSelect options={[
+								{ label: 'Caramel',    value: 'caramel' },
+								{ label: 'Chocolate',  value: 'chocolate' },
+								{ label: 'Strawberry', value: 'strawberry' },
+								{ label: 'Vanilla',    value: 'vanilla', disabled: true }
+							]} firstOption="Select" onChange={this.handleSelect} />
+						`}
 					</ExampleSource>
 				</div>
 				<div className="code-example">
@@ -843,7 +850,7 @@ var Forms = React.createClass({
 				<h2>File Upload</h2>
 				<Form type="horizontal">
 					<FormField label="Image">
-						<FileUpload buttonLabelInitial="Upload Image" buttonLabelChange="Change Image" accept="image/jpg, image/gif, image/png" />
+						<FileUpload buttonLabelInitial="Upload Image" buttonLabelChange="Change Image" accept="image/jpg, image/gif, image/png" onChange={(e, data) => console.log(e, data)} />
 					</FormField>
 					<FormField label="Images">
 						<FileDragAndDrop files={this.state.files} onDrop={this.onDrop} />

@@ -1,5 +1,5 @@
 import { test } from 'tape';
-import Pagination from '../../lib/components/Pagination';
+import Pagination from '../../src/components/Pagination';
 import React from 'react';
 import $ from 'teaspoon';
 

@@ -107,9 +107,9 @@ module.exports = React.createClass({
 					</div>
 					<ExampleSource>
 						{`
-							<Modal ... size="small">...</Modal>
-							<Modal ... size="large">...</Modal>
-							<Modal ... size={768}>...</Modal>
+							<Modal ... width="small">...</Modal>
+							<Modal ... width="large">...</Modal>
+							<Modal ... width={768}>...</Modal>
 						`}
 					</ExampleSource>
 				</div>

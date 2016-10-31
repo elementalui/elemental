@@ -21,7 +21,7 @@ module.exports = React.createClass({
 			icons[this.props.icon].className,
 			(this.props.fill ? 'IconField__icon-fill--' + this.props.fill : null),
 			(this.props.type ? 'IconField__icon-color--' + this.props.type : null),
-			this.props.className,
+			this.props.className
 		);
 		var component = this.props.isLoading ? (
 			<Spinner size="sm" />

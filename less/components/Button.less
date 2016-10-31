@@ -153,65 +153,33 @@
 
 // Make a button look and behave like a link
 .Button--link {
-	color: @link-color;
-	font-weight: normal;
-
-	&,
-	&:active,
-	&.active,
-	&[disabled],
-	fieldset[disabled] & {
-		.box-shadow(none);
-		background-color: transparent;
-	}
-	&,
-	&:hover,
-	&:focus,
-	&:active {
-		border-color: transparent;
-		outline: none;
-	}
-	&:hover,
-	&:focus {
-		background-color: transparent;
-		color: @link-hover-color;
-		text-decoration: @link-hover-decoration;
-	}
+	.button-link-variant(@link-color; @link-hover-color; @link-hover-decoration);
 }
+
+// Make a button look and behave like text.
 .Button--link-text {
-	.Button--link();
-	color: @text-color;
-
-	&:hover,
-	&:focus {
-		color: @app-primary;
-		outline: none;
-	}
+	.button-link-variant(@text-color; @app-primary; @link-hover-decoration);
 }
-.Button--link-cancel {
-	.Button--link();
-	color: @gray-light;
 
-	&:hover,
-	&:focus {
-		color: @app-danger;
-		outline: none;
-	}
+.Button--link-primary {
+	.button-link-variant(@app-primary; @app-primary; @link-hover-decoration);
 }
 .Button--link-success {
-	.Button--link();
-	color: @app-success;
+	.button-link-variant(@app-success; @app-success; @link-hover-decoration);
+}
+.Button--link-warning {
+	.button-link-variant(@app-warning; @app-warning; @link-hover-decoration);
+}
+.Button--link-danger {
+	.button-link-variant(@app-danger; @app-danger; @link-hover-decoration);
+}
 
-	&:hover,
-	&:focus {
-		color: @app-success;
-		outline: none;
-	}
+// Some special link button styles.
+.Button--link-cancel {
+	.button-link-variant(@gray-light; @app-danger; @link-hover-decoration);
 }
 .Button--link-delete {
-	.Button--link();
-	color: @gray-light;
-
+	.button-link-variant(@gray-light; @app-danger; @link-hover-decoration);
 	&:hover,
 	&:focus {
 		#gradient .vertical(lighten(@app-danger, 4%), darken(@app-danger, 4%));

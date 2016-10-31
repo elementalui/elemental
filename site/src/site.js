@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, IndexRoute } from'react-router';
-import { createHistory, useBasename } from 'history';
+import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router';
 
 const NavItems = [
 	{ value: '/css',         label: 'CSS' },
@@ -93,10 +92,9 @@ const App = React.createClass({
 });
 
 const basepath = (window.location.pathname.slice(0, 10) === '/elemental') ? '/elemental' : '';
-const history = createHistory();
 
 ReactDOM.render(
-	<Router history={history} onUpdate={() => window.scrollTo(0, 0)}>
+	<Router history={browserHistory} onUpdate={() => window.scrollTo(0, 0)}>
 		<Route path="/" component={App}>
 			<IndexRoute component={require('./pages/Home')} />
 			<Route path="home" component={require('./pages/Home')} />

@@ -1,5 +1,38 @@
 # Elemental
 
+## v0.6.1 / 2016-08-04
+
+* fixed; issue passing unrecognised attributes to DOM elements that was missed in 0.6.0
+
+## v0.6.0 / 2016-07-26
+
+This release fixes warnings in React 15.2.x, and includes a small breaking change to do with the calitalisation of `autoFocus`.
+
+* fixed; issues with passing unrecognised attributes to DOM elements, which caused warnings in React 15.2.x, thanks to [Monday Chen](https://github.com/mondaychen)
+* fixed; capitalisation inconsistencies with React on the `autoFocus` prop (Focus is now capitalised)
+
+## v0.5.14 / 2016-04-10
+
+Elemental is now compatible with React 15.x.x
+
+* added; Card: CSS is now actual CSS
+* fixed; Pagination: First page appears correctly, thanks [Nuno Campos](https://github.com/nfcampos)
+* fixed; Button: link button variants match other buttons, thanks [Christian Legnitto](https://github.com/LegNeato)
+* fixed; FileDragAndDrop: button now always specifies `type="button"`, thanks [Jinks](https://github.com/JinksPeng)
+
+## v0.5.13 / 2016-02-22
+
+* fixed; FileInput: `onChange` prop fires when file selection is cancelled
+
+## v0.5.12 / 2016-02-16
+
+* fixed; Table className is correctly retained, thanks [Rafee Memon](https://github.com/rafeememon)
+* cleanup; Pagination is now two components (internal)
+* fixed; Pagination: reference error
+* fixed; Button: component propType is element
+* added; Col: now accepts `1` for `100%` width, thanks [Nathan Smith](https://github.com/NogsMPLS)
+* fixed; FileInput: `onChange` prop fires with data, thanks [Cameron Roe](https://github.com/cameronjroe)
+
 ## v0.5.11 / 2015-12-29
 
 Accessibility features provided by `ally.js` have been removed from the Modal component for now; they've caused several issues and need a comprehensive review and possibly a different implementation before being reintroduced to the stable version.
