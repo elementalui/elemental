@@ -24,6 +24,7 @@ module.exports = React.createClass({
 		prependEmptyOption: React.PropTypes.bool,
 		required: React.PropTypes.bool,
 		requiredMessage: React.PropTypes.string,
+		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
 		value: React.PropTypes.string,
 	},
 	getDefaultProps () {
@@ -79,14 +80,19 @@ module.exports = React.createClass({
 		this.setState(newState);
 	},
 	renderIcon (icon) {
-		let iconClassname = classNames('FormSelect__arrows', {
-			'FormSelect__arrows--disabled': this.props.disabled,
-		});
+		const { size } = this.props;
+		let iconClassname = classNames(
+			'FormSelect__arrows',
+			{
+				'FormSelect__arrows--disabled': this.props.disabled,
+			},
+			size ? ('FormSelect__arrows--' + size) : null
+		);
 		return <span dangerouslySetInnerHTML={{ __html: icon }} className={iconClassname} />;
 	},
 	render () {
 		// props
-		let props = blacklist(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'className');
+		let props = blacklist(this.props, 'prependEmptyOption', 'firstOption', 'alwaysValidate', 'htmlFor', 'id', 'label', 'onChange', 'options', 'required', 'requiredMessage', 'className', 'size');
 
 		// classes
 		let componentClass = classNames('FormField', {
@@ -115,11 +121,17 @@ module.exports = React.createClass({
 			);
 		}
 
+		const selectClasses = classNames(
+			'FormInput',
+			'FormSelect',
+			this.props.size ? ('FormInput--' + this.props.size) : null
+		);
+
 		return (
 			<div className={componentClass}>
 				{componentLabel}
 				<div className="u-pos-relative">
-					<select className="FormInput FormSelect" id={forAndID} onChange={this.handleChange} onBlur={this.handleBlur} {...props}>
+					<select className={selectClasses} id={forAndID} onChange={this.handleChange} onBlur={this.handleBlur} {...props}>
 						{options}
 					</select>
 					{this.renderIcon(icons.selectArrows)}
