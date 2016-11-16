@@ -25,3 +25,4 @@ For now that means:
 - Safari (mobile and desktop)
 - Firefox
 - Internet Explorer 10 and up
+
