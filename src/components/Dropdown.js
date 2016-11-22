@@ -15,6 +15,7 @@ module.exports = React.createClass({
 		buttonLabel: React.PropTypes.string,
 		buttonSize: React.PropTypes.string,
 		buttonType: React.PropTypes.string,
+		buttonSize: React.PropTypes.string,
 		children: React.PropTypes.element,
 		className: React.PropTypes.string,
 		isOpen: React.PropTypes.bool,
