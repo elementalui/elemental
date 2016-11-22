@@ -12,6 +12,7 @@ module.exports = React.createClass({
 		firstOption: React.PropTypes.string,
 		htmlFor: React.PropTypes.string,
 		id: React.PropTypes.string,
+		isValid: React.PropTypes.bool,
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		options: React.PropTypes.arrayOf(
@@ -90,12 +91,12 @@ module.exports = React.createClass({
 
 		// classes
 		let componentClass = classNames('FormField', {
-			'is-invalid': !this.state.isValid,
+			'is-invalid': !this.state.isValid || !this.props.isValid,
 		}, this.props.className);
 
 		// validation message
 		let validationMessage;
-		if (!this.state.isValid) {
+		if (!this.state.isValid || !this.props.isValid) {
 			validationMessage = (
 				<div className="form-validation is-invalid">{this.props.requiredMessage}</div>
 			);
