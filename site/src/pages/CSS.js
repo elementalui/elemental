@@ -7,7 +7,7 @@ const ExampleSource = require('../components/ExampleSource');
 const { Container, Table } = require('elemental');
 
 const USERS = require('../data/users');
-const TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
+const TABLE_HEADERS = ['', 'User', 'Age', 'Gender Identity'];
 
 var CSSExamples = React.createClass({
 
@@ -77,7 +77,7 @@ var CSSExamples = React.createClass({
 						<a href="javascript:;">{user.name}</a>
 					</td>
 					<td>{user.age}</td>
-					<td>{user.gender.substr(0, 1).toUpperCase()}</td>
+					<td>{user.gender}</td>
 				</tr>
 			);
 		});
@@ -150,7 +150,7 @@ var CSSExamples = React.createClass({
 										</th>
 										<th>User</th>
 										<th>Age</th>
-										<th>Gender</th>
+										<th>Gender Identity</th>
 									</tr>
 									{...}
 								</thead>
@@ -165,7 +165,7 @@ var CSSExamples = React.createClass({
 											<a href="javascript:;">Hanna Villarreal</a>
 										</td>
 										<td>39</td>
-										<td>F</td>
+										<td>Female</td>
 									</tr>
 									{...}
 								</tbody>
