@@ -159,7 +159,7 @@ module.exports = React.createClass({
 		}, this.props.className);
 
 		// props
-		var props = blacklist(this.props, 'type', 'size', 'component', 'className', 'submit');
+		var props = blacklist(this.props, 'block', 'isActive', 'type', 'size', 'component', 'className', 'submit');
 		props.className = componentClass;
 
 		if (this.props.component) {
@@ -466,6 +466,7 @@ module.exports = React.createClass({
 		alignRight: React.PropTypes.bool,
 		buttonHasDisclosureArrow: React.PropTypes.bool,
 		buttonLabel: React.PropTypes.string,
+		buttonSize: React.PropTypes.string,
 		buttonType: React.PropTypes.string,
 		children: React.PropTypes.element,
 		className: React.PropTypes.string,
@@ -518,7 +519,7 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			Button,
-			{ type: this.props.buttonType, onClick: this.state.isOpen ? this.closeDropdown : this.openDropdown, className: 'Dropdown-toggle' },
+			{ type: this.props.buttonType, size: this.props.buttonSize, onClick: this.state.isOpen ? this.closeDropdown : this.openDropdown, className: 'Dropdown-toggle' },
 			this.props.buttonLabel,
 			disclosureArrow
 		);
@@ -916,33 +917,43 @@ module.exports = React.createClass({
 },{"./Button":5,"./Spinner":39,"blacklist":undefined,"react":undefined}],15:[function(require,module,exports){
 'use strict';
 
-var blacklist = require('blacklist');
-var classnames = require('classnames');
-var React = require('react');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-module.exports = React.createClass({
-	displayName: 'Form',
-	propTypes: {
-		children: React.PropTypes.node.isRequired,
-		className: React.PropTypes.string,
-		component: React.PropTypes.oneOfType([React.PropTypes.element, React.PropTypes.string]),
-		type: React.PropTypes.oneOf(['basic', 'horizontal', 'inline'])
-	},
-	getDefaultProps: function getDefaultProps() {
-		return {
-			component: 'form',
-			type: 'basic'
-		};
-	},
-	render: function render() {
-		var props = blacklist(this.props, 'children', 'type', 'component');
-		props.className = classnames('Form', 'Form--' + this.props.type, this.props.className);
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-		return React.createElement(this.props.component, props, this.props.children);
-	}
-});
+var _classnames = require('classnames');
 
-},{"blacklist":undefined,"classnames":1,"react":undefined}],16:[function(require,module,exports){
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function Form(_ref) {
+	var className = _ref.className;
+	var component = _ref.component;
+	var type = _ref.type;
+
+	var props = _objectWithoutProperties(_ref, ['className', 'component', 'type']);
+
+	var Component = component;
+	props.className = (0, _classnames2['default'])('Form', 'Form--' + type, className);
+
+	return _react2['default'].createElement(Component, props);
+};
+
+Form.propTypes = {
+	component: _react.PropTypes.oneOfType([_react2['default'].PropTypes.string, _react2['default'].PropTypes.func]),
+	type: _react.PropTypes.oneOf(['basic', 'horizontal', 'inline'])
+};
+Form.defaultProps = {
+	component: 'form',
+	type: 'basic'
+};
+
+module.exports = Form;
+
+},{"classnames":1,"react":undefined}],16:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -1281,7 +1292,8 @@ module.exports = _react2['default'].createClass({
 		onChange: _react2['default'].PropTypes.func.isRequired,
 		options: _react2['default'].PropTypes.arrayOf(_react2['default'].PropTypes.shape({
 			label: _react2['default'].PropTypes.string,
-			value: _react2['default'].PropTypes.string
+			value: _react2['default'].PropTypes.string,
+			disabled: _react2['default'].PropTypes.bool
 		})).isRequired,
 		prependEmptyOption: _react2['default'].PropTypes.bool,
 		required: _react2['default'].PropTypes.bool,
@@ -1377,7 +1389,7 @@ module.exports = _react2['default'].createClass({
 		var options = this.props.options.map(function (opt, i) {
 			return _react2['default'].createElement(
 				'option',
-				{ key: 'option-' + i, value: opt.value },
+				{ key: 'option-' + i, value: opt.value, disabled: opt.disabled },
 				opt.label
 			);
 		});
@@ -2389,47 +2401,37 @@ module.exports = _react2['default'].createClass({
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _classnames = require('classnames');
-
-var _classnames2 = _interopRequireDefault(_classnames);
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-module.exports = _react2['default'].createClass({
-	displayName: 'SegmentedControl',
+var _classnames = require('classnames');
 
-	propTypes: {
-		className: _react2['default'].PropTypes.string,
-		equalWidthSegments: _react2['default'].PropTypes.bool,
-		onChange: _react2['default'].PropTypes.func.isRequired,
-		options: _react2['default'].PropTypes.array.isRequired,
-		type: _react2['default'].PropTypes.oneOf(['default', 'muted', 'danger', 'info', 'primary', 'success', 'warning']),
-		value: _react2['default'].PropTypes.string
-	},
+var _classnames2 = _interopRequireDefault(_classnames);
 
-	getDefaultProps: function getDefaultProps() {
-		return {
-			type: 'default'
-		};
-	},
+function SegmentedControl(_ref) {
+	var className = _ref.className;
+	var equalWidthSegments = _ref.equalWidthSegments;
+	var onChange = _ref.onChange;
+	var options = _ref.options;
+	var type = _ref.type;
+	var value = _ref.value;
 
-	onChange: function onChange(value) {
-		this.props.onChange(value);
-	},
+	var props = _objectWithoutProperties(_ref, ['className', 'equalWidthSegments', 'onChange', 'options', 'type', 'value']);
 
-	render: function render() {
-		var _this = this;
+	props.className = (0, _classnames2['default'])('SegmentedControl', 'SegmentedControl--' + type, {
+		'SegmentedControl--equal-widths': equalWidthSegments
+	}, className);
 
-		var componentClassName = (0, _classnames2['default'])('SegmentedControl', 'SegmentedControl--' + this.props.type, {
-			'SegmentedControl--equal-widths': this.props.equalWidthSegments
-		}, this.props.className);
-
-		var options = this.props.options.map(function (op) {
+	return _react2['default'].createElement(
+		'div',
+		props,
+		options.map(function (op) {
 
 			var buttonClassName = (0, _classnames2['default'])('SegmentedControl__button', {
-				'is-selected': op.value === _this.props.value
+				'is-selected': op.value === value
 			});
 
 			return _react2['default'].createElement(
@@ -2437,19 +2439,29 @@ module.exports = _react2['default'].createClass({
 				{ key: 'option-' + op.value, className: 'SegmentedControl__item' },
 				_react2['default'].createElement(
 					'button',
-					{ type: 'button', onClick: _this.onChange.bind(_this, op.value), className: buttonClassName },
+					{ type: 'button', onClick: function () {
+							return onChange(op.value);
+						}, className: buttonClassName },
 					op.label
 				)
 			);
-		});
+		})
+	);
+};
 
-		return _react2['default'].createElement(
-			'div',
-			{ className: componentClassName },
-			options
-		);
-	}
-});
+SegmentedControl.propTypes = {
+	className: _react.PropTypes.string,
+	equalWidthSegments: _react.PropTypes.bool,
+	onChange: _react.PropTypes.func.isRequired,
+	options: _react.PropTypes.array.isRequired,
+	type: _react.PropTypes.oneOf(['default', 'muted', 'danger', 'info', 'primary', 'success', 'warning']),
+	value: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.number, _react.PropTypes.string])
+};
+SegmentedControl.defaultProps = {
+	type: 'default'
+};
+
+module.exports = SegmentedControl;
 
 },{"classnames":1,"react":undefined}],39:[function(require,module,exports){
 'use strict';

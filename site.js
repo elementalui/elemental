@@ -182,7 +182,7 @@ module.exports = [{ name: 'Afghanistan', code: 'AF' }, { name: 'Åland Islands',
 },{}],5:[function(require,module,exports){
 "use strict";
 
-module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismodacfermentum.com", "password": "ZKG57ZFJ9HK", "age": 39, "gender": "female" }, { "name": "Hermione Maddox", "email": "Curabitur.massa@eu.ca", "password": "ECI38CRA9MB", "age": 55, "gender": "female" }, { "name": "Vladimir Rodgers", "email": "diam@ettristiquepellentesque.com", "password": "ESK96WFK9OD", "age": 36, "gender": "male" }, { "name": "Kelsie Ewing", "email": "rutrum.non@tellus.co.uk", "password": "KVE70PUO5TB", "age": 47, "gender": "female" }, { "name": "Yetta Higgins", "email": "quis.pede@lectusquis.com", "password": "KAE34UXU2QZ", "age": 43, "gender": "female" }, { "name": "Kadeem Montgomery", "email": "facilisis.facilisis@vitaesodalesat.edu", "password": "POX16RXV9HL", "age": 46, "gender": "male" }, { "name": "Martina Dodson", "email": "Cras.lorem@convallis.org", "password": "TIY32LRA7IU", "age": 41, "gender": "female" }, { "name": "Grady Gonzalez", "email": "posuere.cubilia@Aenean.org", "password": "VKN16PHI8PW", "age": 33, "gender": "male" }, { "name": "Lacey Hutchinson", "email": "Maecenas.iaculis@sedpede.net", "password": "LDN67DTE6CC", "age": 29, "gender": "female" }, { "name": "John Santiago", "email": "eleifend.egestas@convallis.ca", "password": "ZEY52DKW3ZZ", "age": 47, "gender": "male" }, { "name": "Philip Floyd", "email": "Proin@enimnisl.ca", "password": "RZK97GMJ7EK", "age": 63, "gender": "male" }, { "name": "Leslie Chavez", "email": "sociis.natoque.penatibus@porttitor.net", "password": "AKN50QNQ8HK", "age": 68, "gender": "female" }, { "name": "Alisa Allison", "email": "vitae@netusetmalesuada.ca", "password": "XLP00XDR9UW", "age": 60, "gender": "female" }, { "name": "Joshua Clarke", "email": "mi@quamPellentesque.net", "password": "LSN56SXD3SH", "age": 47, "gender": "male" }, { "name": "Victoria Holden", "email": "magna@pedeac.net", "password": "BUS61XTJ6KI", "age": 25, "gender": "female" }, { "name": "Kibo Goodwin", "email": "est@nec.org", "password": "GWM68BLL8LN", "age": 64, "gender": "male" }, { "name": "Marvin Justice", "email": "Integer@Quisquetincidunt.co.uk", "password": "NRQ89UJQ5FH", "age": 56, "gender": "male" }, { "name": "Justin Rowland", "email": "magna.a.neque@anequeNullam.ca", "password": "JKQ17ZVE3TE", "age": 21, "gender": "male" }, { "name": "Tiger Blevins", "email": "enim.sit@felisNulla.net", "password": "MLA03EJG4WI", "age": 34, "gender": "male" }, { "name": "Peter Bray", "email": "nascetur@Nullamutnisi.edu", "password": "BAL79WGC4II", "age": 64, "gender": "male" }];
+module.exports = [{ "name": "Hanna Villarreal", "email": "aptent.taciti@euismodacfermentum.com", "password": "ZKG57ZFJ9HK", "age": 39, "gender": "Female" }, { "name": "Hermione Maddox", "email": "Curabitur.massa@eu.ca", "password": "ECI38CRA9MB", "age": 55, "gender": "Female" }, { "name": "Vladimir Rodgers", "email": "diam@ettristiquepellentesque.com", "password": "ESK96WFK9OD", "age": 36, "gender": "Male" }, { "name": "Kelsie Ewing", "email": "rutrum.non@tellus.co.uk", "password": "KVE70PUO5TB", "age": 47, "gender": "Non-Binary" }, { "name": "Yetta Higgins", "email": "quis.pede@lectusquis.com", "password": "KAE34UXU2QZ", "age": 43, "gender": "Female" }, { "name": "Kadeem Montgomery", "email": "facilisis.facilisis@vitaesodalesat.edu", "password": "POX16RXV9HL", "age": 46, "gender": "Male" }, { "name": "Martina Dodson", "email": "Cras.lorem@convallis.org", "password": "TIY32LRA7IU", "age": 41, "gender": "Female" }, { "name": "Grady Gonzalez", "email": "posuere.cubilia@Aenean.org", "password": "VKN16PHI8PW", "age": 33, "gender": "Male" }, { "name": "Lacey Hutchinson", "email": "Maecenas.iaculis@sedpede.net", "password": "LDN67DTE6CC", "age": 29, "gender": "Female" }, { "name": "John Santiago", "email": "eleifend.egestas@convallis.ca", "password": "ZEY52DKW3ZZ", "age": 47, "gender": "Unspecified" }, { "name": "Philip Floyd", "email": "Proin@enimnisl.ca", "password": "RZK97GMJ7EK", "age": 63, "gender": "Male" }, { "name": "Leslie Chavez", "email": "sociis.natoque.penatibus@porttitor.net", "password": "AKN50QNQ8HK", "age": 68, "gender": "Female" }, { "name": "Alisa Allison", "email": "vitae@netusetmalesuada.ca", "password": "XLP00XDR9UW", "age": 60, "gender": "Female" }, { "name": "Joshua Clarke", "email": "mi@quamPellentesque.net", "password": "LSN56SXD3SH", "age": 47, "gender": "Bigender" }, { "name": "Victoria Holden", "email": "magna@pedeac.net", "password": "BUS61XTJ6KI", "age": 25, "gender": "Female" }, { "name": "Kibo Goodwin", "email": "est@nec.org", "password": "GWM68BLL8LN", "age": 64, "gender": "Male" }, { "name": "Marvin Justice", "email": "Integer@Quisquetincidunt.co.uk", "password": "NRQ89UJQ5FH", "age": 56, "gender": "Male" }, { "name": "Justin Rowland", "email": "magna.a.neque@anequeNullam.ca", "password": "JKQ17ZVE3TE", "age": 21, "gender": "Male" }, { "name": "Tiger Blevins", "email": "enim.sit@felisNulla.net", "password": "MLA03EJG4WI", "age": 34, "gender": "Agender" }, { "name": "Peter Bray", "email": "nascetur@Nullamutnisi.edu", "password": "BAL79WGC4II", "age": 64, "gender": "Male" }];
 
 },{}],6:[function(require,module,exports){
 /* eslint no-script-url: 0 */
@@ -1096,7 +1096,7 @@ var Container = _require.Container;
 var Table = _require.Table;
 
 var USERS = require('../data/users');
-var TABLE_HEADERS = ['', 'User', 'Age', 'Gender'];
+var TABLE_HEADERS = ['', 'User', 'Age', 'Gender Identity'];
 
 var CSSExamples = React.createClass({
 	displayName: 'CSSExamples',
@@ -1189,7 +1189,7 @@ var CSSExamples = React.createClass({
 				React.createElement(
 					'td',
 					null,
-					user.gender.substr(0, 1).toUpperCase()
+					user.gender
 				)
 			);
 		});
@@ -1297,7 +1297,7 @@ var CSSExamples = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'\n\t\t\t\t\t\t\t<Table>\n\t\t\t\t\t\t\t\t<colgroup>\n\t\t\t\t\t\t\t\t\t<col width="50" />\n\t\t\t\t\t\t\t\t\t<col width="" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t</colgroup>\n\t\t\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t\t<th>User</th>\n\t\t\t\t\t\t\t\t\t\t<th>Age</th>\n\t\t\t\t\t\t\t\t\t\t<th>Gender</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<a href="javascript:;">Hanna Villarreal</a>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>39</td>\n\t\t\t\t\t\t\t\t\t\t<td>F</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</Table>\n\t\t\t\t\t\t'
+					'\n\t\t\t\t\t\t\t<Table>\n\t\t\t\t\t\t\t\t<colgroup>\n\t\t\t\t\t\t\t\t\t<col width="50" />\n\t\t\t\t\t\t\t\t\t<col width="" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t\t<col width="10%" />\n\t\t\t\t\t\t\t\t</colgroup>\n\t\t\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<th>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</th>\n\t\t\t\t\t\t\t\t\t\t<th>User</th>\n\t\t\t\t\t\t\t\t\t\t<th>Age</th>\n\t\t\t\t\t\t\t\t\t\t<th>Gender Identity</th>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</thead>\n\t\t\t\t\t\t\t\t<tbody>\n\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\t\t\t\t\t<input type="checkbox" />\n\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t\t\t\t<a href="javascript:;">Hanna Villarreal</a>\n\t\t\t\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t\t<td>39</td>\n\t\t\t\t\t\t\t\t\t\t<td>Female</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t{...}\n\t\t\t\t\t\t\t\t</tbody>\n\t\t\t\t\t\t\t</Table>\n\t\t\t\t\t\t'
 				)
 			)
 		);
@@ -1336,7 +1336,7 @@ var Table = _require.Table;
 
 var ExampleSource = require('../components/ExampleSource');
 
-var controlOptions = [{ label: 'Caramel', value: 'caramel' }, { label: 'Chocolate', value: 'chocolate' }, { label: 'Strawberry', value: 'strawberry' }, { label: 'Vanilla', value: 'vanilla' }];
+var controlOptions = [{ label: 'Caramel', value: 'caramel' }, { label: 'Chocolate', value: 'chocolate' }, { label: 'Strawberry', value: 'strawberry' }, { label: 'Vanilla', value: 'vanilla', disabled: true }];
 var COUNTRIES = require('../data/countries');
 var COLOR_VARIANTS = [{ label: 'Default', icon: 'star', value: 'default' }, { label: 'Primary', icon: 'info', value: 'primary' }, { label: 'Success', icon: 'check', value: 'success' }, { label: 'Warning', icon: 'alert', value: 'warning' }, { label: 'Danger', icon: 'stop', value: 'danger' }];
 
@@ -1927,7 +1927,7 @@ var Forms = React.createClass({
 				React.createElement(
 					ExampleSource,
 					null,
-					'<FormSelect options={[...]} firstOption="Select" onChange={this.handleSelect} />'
+					'\n\t\t\t\t\t\t\t<FormSelect options={[\n\t\t\t\t\t\t\t\t{ label: \'Caramel\',    value: \'caramel\' },\n\t\t\t\t\t\t\t\t{ label: \'Chocolate\',  value: \'chocolate\' },\n\t\t\t\t\t\t\t\t{ label: \'Strawberry\', value: \'strawberry\' },\n\t\t\t\t\t\t\t\t{ label: \'Vanilla\',    value: \'vanilla\', disabled: true }\n\t\t\t\t\t\t\t]} firstOption="Select" onChange={this.handleSelect} />\n\t\t\t\t\t\t'
 				)
 			),
 			React.createElement(
