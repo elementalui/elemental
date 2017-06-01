@@ -139,7 +139,7 @@ var CSSExamples = React.createClass({
 									<col width="50" />
 									<col width="" />
 									<col width="10%" />
-									<col width="10%" />
+									<col width="20%" />
 								</colgroup>
 								<thead>
 									<tr>
