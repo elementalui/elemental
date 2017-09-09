@@ -36,24 +36,30 @@
 // Dialog
 // ------------------------------
 
-
-
 // shell div to position the modal
 .Modal-dialog {
 	max-width: 100%;
 	padding: 10px;
 	position: relative;
+	transition: all 260ms cubic-bezier(0.500, -0.550, 0.400, 1.550);
 	width: auto;
 	z-index: 2;
 }
 .Modal-dialog-enter {
-	.animation-name( modalDialogEnter );
-	.animation-duration( 260ms );
-	.animation-timing-function( cubic-bezier(0.500, -0.550, 0.400, 1.550) );
+	opacity: 0;
+	transform: scale(0.96);
+}
+.Modal-dialog-enter-active {
+	opacity: 1;
+	transform: scale(1);
 }
 .Modal-dialog-leave {
-	.animation-duration( 140ms );
-	.animation-name( modalDialogLeave );
+	opacity: 1;
+	transform: scale(1);
+}
+.Modal-dialog-leave-active {
+	opacity: 0;
+	transform: scale(0.8);
 }
 
 
@@ -164,7 +170,6 @@
 // ------------------------------
 
 .Modal-backdrop {
-	.animation-duration( 140ms );
 	background-color: @modal-backdrop-bg;
 	height: 100%;
 	left: 0;
@@ -174,9 +179,16 @@
 	z-index: @zindex-modal-backdrop;
 }
 .Modal-background-enter {
-	.animation-name( modalBackdropEnter );
+	opacity: 0;
+	transition: opacity 140ms linear;
+}
+.Modal-background-enter-active {
+	opacity: 1;
 }
 .Modal-background-leave {
-	.animation-duration( 240ms );
-	.animation-name( modalBackdropLeave );
+	opacity: 1;
+	transition: opacity 240ms;
+}
+.Modal-background-leave-active {
+	opacity: 0;
 }
