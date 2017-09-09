@@ -2,12 +2,12 @@ const React = require('react');
 const Router = require('react-router');
 
 const NavItems = [
-	{ value: 'css',     icon: 'paintcan',      label: 'CSS' },
-	{ value: 'buttons', icon: 'screen-full',   label: 'Buttons' },
-	{ value: 'forms',   icon: 'diff-modified', label: 'Forms' },
-	{ value: 'spinner', icon: 'ellipsis',      label: 'Spinner' },
-	{ value: 'modal',   icon: 'versions',      label: 'Modal' },
-	{ value: 'misc',    icon: 'code',          label: 'Misc' }
+	{ value: 'css', icon: 'paintcan', label: 'CSS' },
+	{ value: 'buttons', icon: 'screen-full', label: 'Buttons' },
+	{ value: 'forms', icon: 'diff-modified', label: 'Forms' },
+	{ value: 'spinner', icon: 'ellipsis', label: 'Spinner' },
+	{ value: 'modal', icon: 'versions', label: 'Modal' },
+	{ value: 'misc', icon: 'code', label: 'Misc' },
 	// { value: 'date-picker', icon: 'calendar', label: 'Date' }
 ];
 
@@ -18,7 +18,7 @@ var Home = React.createClass({
 	displayName: 'VIEW_Home',
 
 	render () {
-		var menuItems = NavItems.map(function(item) {
+		var menuItems = NavItems.map(function (item) {
 			return (
 				<Col xs="1/3" sm="1/6" key={item.label} className="demo-banner-nav__col col-xs-4 col-sm-2">
 					<Router.Link key={item.value} className="demo-banner-nav__item" to={'/' + item.value}>
@@ -90,10 +90,10 @@ var Home = React.createClass({
 						<p className="note">Elemental styling is currently written in LESS so you will need a LESS compiler in your build process. If you are looking to get started quickly you can compile styles from the command line.</p>
 						<div className="code-example">
 							<div className="code-example__example">
-								<div className="code-example__example__heading--no-rule">Compile less with the command line</div>
+								<div className="code-example__example__heading--no-rule">Compile less and less-plugin-clean-css with the command line</div>
 							</div>
 							<ExampleSource>
-								<code>{`npm install -g less \n`}</code>
+								<code>{`npm install -g less less-plugin-clean-css \n`}</code>
 								<code>{`lessc --clean-css ./node_modules/elemental/less/elemental.less styles.min.css \n`}</code>
 							</ExampleSource>
 						</div>
@@ -127,7 +127,7 @@ var Home = React.createClass({
 				</div>
 			</div>
 		);
-	}
+	},
 });
 
 module.exports = Home;
