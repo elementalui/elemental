@@ -47,12 +47,18 @@ module.exports = React.createClass({
 	},
 	componentWillReceiveProps: function (nextProps) {
 		if (!canUseDOM) return;
+
+		const target = document.body;
+		const scrollbarWidth = window.innerWidth - document.body.clientWidth; // 1.
+
 		if (!this.props.isOpen && nextProps.isOpen) {
 			// setTimeout(() => this.handleAccessibility());
-			document.body.style.overflow = 'hidden';
+			target.style.overflow = 'hidden';
+			target.style.paddingRight = scrollbarWidth + 'px';
 		} else if (this.props.isOpen && !nextProps.isOpen) {
 			// setTimeout(() => this.removeAccessibilityHandlers());
-			document.body.style.overflow = '';
+			target.style.overflow = '';
+			target.style.paddingRight = '';
 		}
 	},
 	/*
