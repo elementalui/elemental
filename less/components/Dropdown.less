@@ -5,6 +5,8 @@
 // Inspired by https://github.com/twbs/bootstrap
 
 
+@easing: cubic-bezier(0.77, 0, 0.175, 1);
+
 
 
 // Wrapper
@@ -25,8 +27,6 @@
 // base
 
 .Dropdown-menu {
-	.animation-duration( 100ms );
-	.animation-timing-function( cubic-bezier(0.77, 0, 0.175, 1) );
 	background-color: @dropdown-bg;
 	border-radius: @border-radius-base;
 	box-shadow: 0 0 0 1px rgba(0,0,0,.175), 0 3px 8px rgba(0,0,0,.175);
@@ -38,6 +38,7 @@
 	padding: 5px 0;
 	position: absolute;
 	text-align: left; // ensures proper alignment if parent has alternative alignment
+	transition: opacity 140ms @easing, transform 140ms @easing;
 	top: 100%;
 	z-index: @zindex-dropdown;
 
@@ -52,10 +53,20 @@
 	}
 }
 .Dropdown-menu-enter {
-	.animation-name( dropdownMenuEnter );
+	opacity: 0;
+	transform: translate3d(0, -5px, 0);
+}
+.Dropdown-menu-enter-active {
+	opacity: 1;
+	transform: translate3d(0, 0, 0);
 }
 .Dropdown-menu-leave {
-	.animation-name( dropdownMenuLeave );
+	opacity: 1;
+	transform: translate3d(0, 0, 0);
+}
+.Dropdown-menu-leave-enter {
+	opacity: 0;
+	transform: translate3d(0, -5px, 0);
 }
 
 
@@ -67,7 +78,7 @@
 }
 
 
-// list item 
+// list item
 
 .Dropdown-menu__action {
 	clear: both;
@@ -77,7 +88,7 @@
 	font-weight: normal;
 	line-height: @line-height-base;
 	padding: 3px 20px;
-	
+
 	&:hover,
 	&:focus {
 		background-color: @dropdown-link-hover-bg;
@@ -140,36 +151,3 @@
 	width: 100%;
 	z-index: @zindex-dropdown-backdrop;
 }
-
-
-
-
-// Animation
-// --------------------
-
-@-webkit-keyframes dropdownMenuEnter {
-	from { opacity: 0; -webkit-transform: translate3d(0, -5px, 0); }
-	to   { opacity: 1; -webkit-transform: translate3d(0, 0, 0); }
-}
-@keyframes dropdownMenuEnter {
-	from { opacity: 0; transform: translate3d(0, -5px, 0); }
-	to   { opacity: 1; transform: translate3d(0, 0, 0); }
-}
-
-@-webkit-keyframes dropdownMenuLeave {
-	from { opacity: 1; -webkit-transform: translate3d(0, 0, 0); }
-	to   { opacity: 0; -webkit-transform: translate3d(0, -5px, 0); }
-}
-@keyframes dropdownMenuLeave {
-	from { opacity: 1; transform: translate3d(0, 0, 0); }
-	to   { opacity: 0; transform: translate3d(0, -5px, 0); }
-}
-
-
-
-
-
-
-
-
-
