@@ -53,6 +53,20 @@ var Misc = React.createClass({
 	},
 
 	render() {
+		const labelFn = params => {
+			let count = '';
+			const { currentPage, pageSize, total } = params;
+			if (!total) {
+				count = '表示する項目がありません';
+			} else if (total > pageSize) {
+				const { start, end } = params;
+				count = total + ' 件中 ' + start + ' から ' + end + ' まで表示';
+			} else {
+				count = '全 ' + total + ' 件を表示';
+			}
+			return count;
+		};
+
 		return (
 			<Container maxWidth={800} className="demo-container">
 				<h1>Miscellaneous</h1>
@@ -278,8 +292,55 @@ var Misc = React.createClass({
 								<td className="usage-table__default">none</td>
 								<td className="usage-table__description">The number of pages to show in pagination.</td>
 							</tr>
+							<tr>
+								<td className="usage-table__prop">label</td>
+								<td className="usage-table__type">func</td>
+								<td className="usage-table__default">none</td>
+								<td className="usage-table__description">The function used to customize labels in pagination. Be aware that if you specify this prop, 'singular' and 'plural' props are ignored.</td>
+							</tr>
 						</tbody>
 					</Table>
+				</div>
+
+				<h2>Pagination with I18n</h2>
+				<div className="code-example">
+					<div className="code-example__example">
+						<Pagination
+							currentPage={2}
+							pageSize={10}
+							style={{ lineHeight: '34px', marginBottom: 0, minHeight: 34 }}
+							total={123}
+							limit={5}
+							label={labelFn}
+							/>
+					</div>
+					<ExampleSource>
+						{`
+							function labelFn(params) {
+								let count = '';
+								const { currentPage, pageSize, total } = params;
+								if (!total) {
+									count = '表示する項目がありません';
+								} else if (total > pageSize) {
+									const { start, end } = params;
+									count = total + ' 件中 ' + start + ' から ' + end + ' まで表示';
+								} else {
+									count = '全 ' + total + ' 件を表示';
+								}
+								return count;
+							}
+
+							// ...
+
+							<Pagination
+								currentPage={2}
+								pageSize={10}
+								total={30}
+								limit={5}
+								label={labelFn}
+								/>
+						`}
+					</ExampleSource>
 				</div>
 
 				<h2>Pills</h2>
