@@ -9,13 +9,13 @@ module.exports = React.createClass({
 		className: React.PropTypes.string,
 		onClose: React.PropTypes.func,
 		showCloseButton: React.PropTypes.bool,
-		text: React.PropTypes.string
+		text: React.PropTypes.string,
 	},
 	handleClose () {
-		document.body.style.overflow = null;
+		document.body.style.overflow = '';
 		this.props.onClose();
 	},
-	render() {
+	render () {
 
 		// elements
 		var className = classnames('Modal__header', this.props.className);
@@ -30,5 +30,5 @@ module.exports = React.createClass({
 				{this.props.children}
 			</div>
 		);
-	}
+	},
 });

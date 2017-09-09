@@ -52,7 +52,7 @@ module.exports = React.createClass({
 			document.body.style.overflow = 'hidden';
 		} else if (this.props.isOpen && !nextProps.isOpen) {
 			// setTimeout(() => this.removeAccessibilityHandlers());
-			document.body.style.overflow = null;
+			document.body.style.overflow = '';
 		}
 	},
 	/*
