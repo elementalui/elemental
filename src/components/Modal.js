@@ -8,18 +8,18 @@ import { canUseDOM } from '../constants';
 
 const TransitionPortal = React.createClass({
 	displayName: 'TransitionPortal',
-	componentDidMount() {
+	componentDidMount () {
 		if (!canUseDOM) return;
 		let p = document.createElement('div');
 		document.body.appendChild(p);
 		this.portalElement = p;
 		this.componentDidUpdate();
 	},
-	componentDidUpdate() {
+	componentDidUpdate () {
 		if (!canUseDOM) return;
 		ReactDOM.render(<Transition {...this.props}>{this.props.children}</Transition>, this.portalElement);
 	},
-	componentWillUnmount() {
+	componentWillUnmount () {
 		if (!canUseDOM) return;
 		document.body.removeChild(this.portalElement);
 	},
@@ -45,7 +45,7 @@ module.exports = React.createClass({
 			width: 'medium',
 		};
 	},
-	componentWillReceiveProps: function(nextProps) {
+	componentWillReceiveProps: function (nextProps) {
 		if (!canUseDOM) return;
 		if (!this.props.isOpen && nextProps.isOpen) {
 			// setTimeout(() => this.handleAccessibility());
@@ -122,36 +122,65 @@ module.exports = React.createClass({
 	},
 	*/
 	handleClose () {
-		this.props.onCancel();
+		const { backdropClosesModal, onCancel } = this.props;
+
+		console.log('handleClose', backdropClosesModal);
+
+		if (backdropClosesModal) onCancel();
 	},
-	renderDialog() {
-		if (!this.props.isOpen) return;
-		let dialogClassname = classNames('Modal-dialog', (this.props.width && isNaN(this.props.width)) ? (
-			'Modal-dialog--' + this.props.width
-		) : null);
+	handleDialogClick (event) {
+		event.stopPropagation();
+	},
+	renderDialog () {
+		const { children, isOpen, width } = this.props;
+
+		if (!isOpen) return;
+
+		const style = (width && !isNaN(width)) ? { width: width + 20 } : null;
+		const dialogClassname = classNames('Modal-dialog', (width && isNaN(width))
+			? 'Modal-dialog--' + width
+			: null);
+
 		return (
-			<div className={dialogClassname} style={(this.props.width && !isNaN(this.props.width)) ? { width: this.props.width + 20 } : null}>
-				<div ref={ref => { this.modalElement = ref; }} className="Modal-content">
-					{this.props.children}
+			<div className={dialogClassname} style={style} onClick={this.handleDialogClick}>
+				<div ref={r => (this.modalElement = r)} className="Modal-content">
+					{children}
 				</div>
 			</div>
 		);
 	},
-	renderBackdrop() {
-		if (!this.props.isOpen) return;
-		return <div className="Modal-backdrop" onClick={this.props.backdropClosesModal ? this.handleClose : null} />;
+	renderBackdrop () {
+		const { isOpen } = this.props;
+
+		if (!isOpen) return;
+
+		return <div className="Modal-backdrop" />;
 	},
-	render() {
-		var className = classNames('Modal', {
+	render () {
+		const className = classNames('Modal', {
 			'is-open': this.props.isOpen,
 		}, this.props.className);
-		var props = blacklist(this.props, 'backdropClosesModal', 'className', 'isOpen', 'onCancel');
+
+		const props = blacklist(this.props, 'backdropClosesModal', 'className', 'isOpen', 'onCancel');
+
 		return (
 			<div>
-				<TransitionPortal {...props} data-modal="true" className={className} /*onClick={this.handleModalClick}*/ transitionName="Modal-dialog" transitionEnterTimeout={260} transitionLeaveTimeout={140} component="div">
+				<TransitionPortal
+					{...props}
+					className={className}
+					data-modal="true"
+					onClick={this.handleClose}
+					transitionEnterTimeout={260}
+					transitionLeaveTimeout={140}
+					transitionName="Modal-dialog"
+				>
 					{this.renderDialog()}
 				</TransitionPortal>
-				<TransitionPortal transitionName="Modal-background" transitionEnterTimeout={140} transitionLeaveTimeout={240} component="div">
+				<TransitionPortal
+					transitionName="Modal-background"
+					transitionEnterTimeout={140}
+					transitionLeaveTimeout={240}
+				>
 					{this.renderBackdrop()}
 				</TransitionPortal>
 			</div>
