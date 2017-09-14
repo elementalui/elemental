@@ -1,3 +1,5 @@
+var exports = {};
+
 var canUseDOM = !!(
 	(typeof window !== 'undefined' &&
 	window.document && window.document.createElement)
@@ -68,3 +70,6 @@ exports.fractions = {
 for (var numerator = 1; numerator <= 19; numerator++) {
 	denominators(numerator);
 }
+
+export { canUseDOM };
+export default exports;
