@@ -30,5 +30,5 @@ var Glyph = React.createClass({
 	},
 });
 
-module.exports = Glyph;
+export default Glyph;
 module.exports.names = validNames;

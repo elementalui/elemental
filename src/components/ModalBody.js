@@ -1,7 +1,7 @@
 var classnames = require('classnames');
 var React = require('react');
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'ModalBody',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,

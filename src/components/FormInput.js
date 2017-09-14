@@ -2,7 +2,7 @@ var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'FormInput',
 	propTypes: {
 		autoFocus: React.PropTypes.bool,
@@ -37,7 +37,7 @@ module.exports = React.createClass({
 	focus() {
 		this.refs.input.focus();
 	},
-	
+
 	select() {
 		this.refs.input.select();
 	},

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 import icons from '../icons';
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'FormSelect',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,

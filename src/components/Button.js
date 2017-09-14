@@ -28,7 +28,7 @@ const BUTTON_TYPES = [
 	'link-delete',
 ];
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'Button',
 	propTypes: {
 		block: React.PropTypes.bool,

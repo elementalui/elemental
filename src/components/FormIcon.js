@@ -4,7 +4,7 @@ var Spinner = require('./Spinner');
 
 var icons = require('../Octicons').map;
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'FormIcon',
 	propTypes: {
 		className: React.PropTypes.string,

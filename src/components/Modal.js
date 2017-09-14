@@ -27,7 +27,7 @@ const TransitionPortal = React.createClass({
 	render: () => null,
 });
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'Modal',
 	propTypes: {
 		autoFocusFirstElement: React.PropTypes.bool,

@@ -1,6 +1,6 @@
 var React = require('react');
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'BlankState',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,

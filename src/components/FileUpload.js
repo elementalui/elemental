@@ -4,7 +4,7 @@ var blacklist = require('blacklist');
 var Button = require('./Button');
 var Spinner = require('./Spinner');
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'FileUpload',
 	propTypes: {
 		buttonLabelChange: React.PropTypes.string,

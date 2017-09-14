@@ -25,5 +25,5 @@ var Radio = React.createClass({
 	}
 });
 
-module.exports = Radio;
+export default Radio;
 

@@ -2,7 +2,7 @@ var React = require('react');
 var blacklist = require('blacklist');
 var classNames = require('classnames');
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'FormField',
 	propTypes: {
 		className: React.PropTypes.string,

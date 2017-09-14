@@ -49,4 +49,4 @@ SegmentedControl.defaultProps = {
 	type: 'default',
 };
 
-module.exports = SegmentedControl;
+export default SegmentedControl;
