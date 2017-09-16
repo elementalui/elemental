@@ -4,6 +4,14 @@ var classNames = require('classnames');
 
 export default React.createClass({
 	displayName: 'FormInput',
+	contextTypes: {
+    validity: React.PropTypes.oneOf([
+			'pristine',
+			'dirty',
+			'valid',
+			'invalid'
+		])
+  },
 	propTypes: {
 		autoFocus: React.PropTypes.bool,
 		className: React.PropTypes.string,
@@ -34,6 +42,22 @@ export default React.createClass({
 		}
 	},
 
+	onInputChange(e) {
+		var changeFn = this.props.onChange;
+		if (typeof changeFn === 'function') {
+			var payload = {
+				e: e,
+				validity: this.context.validity
+			};
+			changeFn(payload);
+		}
+		return;
+	},
+
+	setValidity(validity) {
+		return `FormInput--${validity}`;
+	},
+
 	focus() {
 		this.refs.input.focus();
 	},
@@ -52,7 +76,8 @@ export default React.createClass({
 				'FormInput': !noedit,
 			},
 			(size ? ('FormInput--' + size) : null),
-			className
+			className,
+			this.setValidity(this.context.validity)
 		);
 		let props = { ...rest, className: newClassName, ref: 'input' };
 		let Element = 'input';
@@ -68,6 +93,6 @@ export default React.createClass({
 			Element = 'textarea';
 		}
 
-		return <Element {...props} />;
+		return <Element onChange={this.onInputChange} {...props} />;
 	},
 });

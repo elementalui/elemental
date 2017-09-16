@@ -809,17 +809,42 @@ var Forms = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
-
-
-				<h2>Validation</h2>
-				<p>Validation is a work in progress, please use caution</p>
-				<form>
-					<RadioGroup         label="Radios"   value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />
-					<FormSelect         label="Select"   value={this.state.inputSelect}      onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
-					<EmailInputGroup    label="Email"    value={this.state.inputEmail}       onChange={updateEmail}    required />
-					<PasswordInputGroup label="Password" value={this.state.inputPassword}    onChange={updatePassword} required />
-					<PasswordInputGroup label="Confirm"  value={this.state.inputConfirm}     onChange={updateConfirm}  required validatePassword={validateConfirm} invalidMessage="Password confirmation doesn't match password" />
-				</form>
+				
+				<div className="code-example">
+					<div className="code-example__example">
+						<div className="code-example__example__heading">Validation</div>
+						<form>
+							<FormField label="Email (valid)" validity="valid">
+								<FormInput placeholder="Email" name="email" />
+							</FormField>
+							<FormField label="Email (invalid)" validity="invalid">
+								<FormInput placeholder="Email" name="email" />
+							</FormField>
+							<RadioGroup         label="Radios"   value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />
+							<FormSelect         label="Select"   value={this.state.inputSelect}      onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
+							<EmailInputGroup    label="Email"    value={this.state.inputEmail}       onChange={updateEmail}    required />
+							<PasswordInputGroup label="Password" value={this.state.inputPassword}    onChange={updatePassword} required />
+							<PasswordInputGroup label="Confirm"  value={this.state.inputConfirm}     onChange={updateConfirm}  required validatePassword={validateConfirm} invalidMessage="Password confirmation doesn't match password" />
+						</form>
+					</div>
+					<ExampleSource>
+						{`
+							<form>
+								<FormField label="Email (valid)" validity="valid">
+									<FormInput placeholder="Email" name="email" />
+								</FormField>
+								<FormField label="Email (invalid)" validity="invalid">
+									<FormInput placeholder="Email" name="email" />
+								</FormField>
+								<RadioGroup         label="Radios"   value={this.state.inlineRadioGroup} onChange={updateInlineRadios} options={controlOptions} name="inlineRadioGroup" required inline />
+								<FormSelect         label="Select"   value={this.state.inputSelect}      onChange={updateSelect} options={controlOptions} htmlFor="inputSelect" required prependEmptyOption />
+								<EmailInputGroup    label="Email"    value={this.state.inputEmail}       onChange={updateEmail}    required />
+								<PasswordInputGroup label="Password" value={this.state.inputPassword}    onChange={updatePassword} required />
+								<PasswordInputGroup label="Confirm"  value={this.state.inputConfirm}     onChange={updateConfirm}  required validatePassword={validateConfirm} invalidMessage="Password confirmation doesn't match password" />
+							</form>
+						`}
+					</ExampleSource>
+				</div>
 
 
 				<h2>File Upload</h2>
