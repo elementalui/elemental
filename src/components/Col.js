@@ -2,7 +2,7 @@ import React from 'react';
 import blacklist from 'blacklist';
 import E from '../constants';
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'Col',
 	propTypes: {
 		/* eslint-disable react/jsx-sort-prop-types */

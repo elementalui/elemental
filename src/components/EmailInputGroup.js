@@ -7,7 +7,7 @@ function validateEmail (value) {
 	return REGEXP_EMAIL.test(value);
 }
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'EmailInputGroup',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,

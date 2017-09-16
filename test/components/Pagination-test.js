@@ -3,19 +3,18 @@ import Pagination from '../../src/components/Pagination';
 import React from 'react';
 import $ from 'teaspoon';
 
-
 const getList = props => $(<Pagination {...props} />)
 	.shallowRender()
 	.children('.Pagination__list');
-
 
 const getPageNumbers = props => getList(props)
 	.children()
 	.get()
 	.map(node => node.props.children);
 
-
 test('Pagination. Basics', t => {
+
+	t.ok(Pagination.displayName, 'should have a displayName');
 
 	t.ok(
 		$(<Pagination {...{ currentPage: 1, pageSize: 10, total: 30 }} />)

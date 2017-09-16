@@ -5,7 +5,7 @@ function validatePassword(value) {
 	return value.length >= 8;
 }
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'PasswordInputGroup',
 	propTypes: {
 		alwaysValidate: React.PropTypes.bool,

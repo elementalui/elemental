@@ -7,7 +7,7 @@ const Button = require('./Button');
 const ESC_KEYCODE = 27;
 const NO_OP = () => undefined;
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'Dropdown',
 	propTypes: {
 		alignRight: React.PropTypes.bool,

@@ -37,7 +37,7 @@ function range(props) {
 	}
 }
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'Pagination',
 	propTypes: {
 		className: React.PropTypes.string,

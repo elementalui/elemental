@@ -40,4 +40,4 @@ const Checkbox = React.createClass({
 	},
 });
 
-module.exports = Checkbox;
+export default Checkbox;

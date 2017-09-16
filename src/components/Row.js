@@ -3,7 +3,7 @@ import blacklist from 'blacklist';
 import classnames from 'classnames';
 import E from '../constants';
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'Row',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,

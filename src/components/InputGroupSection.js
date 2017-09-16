@@ -2,7 +2,7 @@ var React = require('react');
 var classNames = require('classnames');
 var blacklist = require('blacklist');
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'InputGroupSection',
 	propTypes: {
 		className: React.PropTypes.string,

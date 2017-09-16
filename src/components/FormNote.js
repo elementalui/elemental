@@ -10,7 +10,7 @@ var NOTE_TYPES = [
 	'danger',
 ];
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'FormNote',
 	propTypes: {
 		className: React.PropTypes.string,

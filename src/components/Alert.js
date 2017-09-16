@@ -10,7 +10,7 @@ var ALERT_TYPES = [
 	'warning',
 ];
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'ElementalAlert',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,

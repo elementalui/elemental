@@ -71,4 +71,4 @@ var Dropzone = React.createClass({
 	},
 });
 
-module.exports = Dropzone;
+export default Dropzone;

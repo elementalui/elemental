@@ -200,7 +200,7 @@ function pluck(arr, key) {
 	return arr.map(obj => obj[key]);
 }
 
-module.exports = {
+export const Octicon = {
 	list: list,
 	keys: pluck(list, 'value'),
 	map: map

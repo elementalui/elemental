@@ -39,4 +39,4 @@ Container.defaultProps = {
 	maxWidth: theme.width.container,
 };
 
-module.exports = Container;
+export default Container;

@@ -2,7 +2,7 @@ var classnames = require('classnames');
 var React = require('react');
 var blacklist = require('blacklist');
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'ModalHeader',
 	propTypes: {
 		children: React.PropTypes.node,

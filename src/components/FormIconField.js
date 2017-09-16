@@ -9,7 +9,7 @@ const ICON_MAP = require('../Octicons').map;
 const ICON_KEYS = require('../Octicons').keys;
 const COLOR_VARIANTS = ['danger', 'default', 'primary', 'success', 'warning'];
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'FormIconField',
 	propTypes: {
 		className: React.PropTypes.string,

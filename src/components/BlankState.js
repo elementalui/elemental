@@ -1,6 +1,6 @@
 var React = require('react');
 
-module.exports = React.createClass({
+const BlankSlate = React.createClass({
 	displayName: 'BlankState',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
@@ -10,7 +10,7 @@ module.exports = React.createClass({
 	},
 });
 
-module.exports.Heading = React.createClass({
+BlankSlate.Heading = React.createClass({
 	displayName: 'BlankStateHeading',
 	propTypes: {
 		children: React.PropTypes.node.isRequired,
@@ -19,3 +19,5 @@ module.exports.Heading = React.createClass({
 		return <h2 className="BlankState__heading" {...this.props} />;
 	},
 });
+
+export default BlankSlate;

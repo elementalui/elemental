@@ -1,7 +1,7 @@
 var React = require('react');
 var classNames = require('classnames');
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'FormRow',
 	propTypes: {
 		className: React.PropTypes.string,

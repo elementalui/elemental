@@ -27,7 +27,7 @@ const TransitionPortal = React.createClass({
 	render: () => null,
 });
 
-module.exports = React.createClass({
+const Modal = React.createClass({
 	displayName: 'Modal',
 	propTypes: {
 		autoFocusFirstElement: React.PropTypes.bool,
@@ -196,6 +196,8 @@ module.exports = React.createClass({
 
 
 // expose the children to the top level export
-module.exports.Body = require('./ModalBody');
-module.exports.Footer = require('./ModalFooter');
-module.exports.Header = require('./ModalHeader');
+Modal.Body = require('./ModalBody');
+Modal.Footer = require('./ModalFooter');
+Modal.Header = require('./ModalHeader');
+
+export default Modal;

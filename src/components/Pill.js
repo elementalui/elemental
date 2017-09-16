@@ -17,7 +17,7 @@ var ALERT_TYPES = [
 	'warning-inverted'
 ];
 
-module.exports = React.createClass({
+export default React.createClass({
 	displayName: 'Pill',
 	propTypes: {
 		className: React.PropTypes.string,

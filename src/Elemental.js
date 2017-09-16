@@ -1,38 +1,79 @@
-exports.Alert = require('./components/Alert');
-exports.BlankState = require('./components/BlankState');
-exports.Button = require('./components/Button');
-exports.ButtonGroup = require('./components/ButtonGroup');
-exports.Checkbox = require('./components/Checkbox');
-exports.Card = require('./components/Card');
-exports.Col = require('./components/Col');
-exports.Container = require('./components/Container');
-exports.Dropdown = require('./components/Dropdown');
-exports.EmailInputGroup = require('./components/EmailInputGroup');
-exports.FileDragAndDrop = require('./components/FileDragAndDrop');
-exports.FileUpload = require('./components/FileUpload');
-exports.Form = require('./components/Form');
-exports.FormField = require('./components/FormField');
-exports.FormIcon = require('./components/FormIcon');
-exports.FormIconField = require('./components/FormIconField');
-exports.FormInput = require('./components/FormInput');
-exports.FormLabel = require('./components/FormLabel');
-exports.FormNote = require('./components/FormNote');
-exports.FormRow = require('./components/FormRow');
-exports.FormSelect = require('./components/FormSelect');
-exports.Glyph = require('./components/Glyph');
-exports.InputGroup = require('./components/InputGroup');
-exports.InputGroupSection = require('./components/InputGroupSection');
-exports.Modal = require('./components/Modal');
-exports.ModalBody = require('./components/ModalBody');
-exports.ModalFooter = require('./components/ModalFooter');
-exports.ModalHeader = require('./components/ModalHeader');
-exports.Pagination = require('./components/Pagination');
-exports.PasswordInputGroup = require('./components/PasswordInputGroup');
-exports.Pill = require('./components/Pill');
-exports.Radio = require('./components/Radio');
-exports.ResponsiveText = require('./components/ResponsiveText');
-exports.Row = require('./components/Row');
-exports.RadioGroup = require('./components/RadioGroup');
-exports.SegmentedControl = require('./components/SegmentedControl');
-exports.Spinner = require('./components/Spinner');
-exports.Table = require('./components/Table');
+import Alert from './components/Alert';
+import BlankState from './components/BlankState';
+import Button from './components/Button';
+import ButtonGroup from './components/ButtonGroup';
+import Checkbox from './components/Checkbox';
+import Card from './components/Card';
+import Col from './components/Col';
+import Container from './components/Container';
+import Dropdown from './components/Dropdown';
+import EmailInputGroup from './components/EmailInputGroup';
+import FileDragAndDrop from './components/FileDragAndDrop';
+import FileUpload from './components/FileUpload';
+import Form from './components/Form';
+import FormField from './components/FormField';
+import FormIcon from './components/FormIcon';
+import FormIconField from './components/FormIconField';
+import FormInput from './components/FormInput';
+import FormLabel from './components/FormLabel';
+import FormNote from './components/FormNote';
+import FormRow from './components/FormRow';
+import FormSelect from './components/FormSelect';
+import Glyph from './components/Glyph';
+import InputGroup from './components/InputGroup';
+import InputGroupSection from './components/InputGroupSection';
+import Modal from './components/Modal';
+import ModalBody from './components/ModalBody';
+import ModalFooter from './components/ModalFooter';
+import ModalHeader from './components/ModalHeader';
+import Pagination from './components/Pagination';
+import PasswordInputGroup from './components/PasswordInputGroup';
+import Pill from './components/Pill';
+import Radio from './components/Radio';
+import ResponsiveText from './components/ResponsiveText';
+import Row from './components/Row';
+import RadioGroup from './components/RadioGroup';
+import SegmentedControl from './components/SegmentedControl';
+import Spinner from './components/Spinner';
+import Table from './components/Table';
+
+export {
+  Alert,
+  BlankState,
+  Button,
+  ButtonGroup,
+  Checkbox,
+  Card,
+  Col,
+  Container,
+  Dropdown,
+  EmailInputGroup,
+  FileDragAndDrop,
+  FileUpload,
+  Form,
+  FormField,
+  FormIcon,
+  FormIconField,
+  FormInput,
+  FormLabel,
+  FormNote,
+  FormRow,
+  FormSelect,
+  Glyph,
+  InputGroup,
+  InputGroupSection,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Pagination,
+  PasswordInputGroup,
+  Pill,
+  Radio,
+  ResponsiveText,
+  Row,
+  RadioGroup,
+  SegmentedControl,
+  Spinner,
+  Table,
+}
