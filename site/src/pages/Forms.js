@@ -437,6 +437,38 @@ var Forms = React.createClass({
 						`}
 					</ExampleSource>
 				</div>
+				<div className="code-example">
+					<div className="code-example__example">
+						<FormField label="Select" htmlFor="supported-controls-select">
+							<FormSelect name="supported-controls-select" options={controlOptions} firstOption="Select" onChange={updateSelect} />
+						</FormField>
+						<FormField label="Large Select" htmlFor="supported-controls-select-lg">
+							<FormSelect name="supported-controls-select-lg" size="lg" options={controlOptions} firstOption="Select Large" onChange={updateSelect} />
+						</FormField>
+						<FormField label="Small Select" htmlFor="supported-controls-select-sm">
+							<FormSelect name="supported-controls-select-sm" size="sm" options={controlOptions} firstOption="Select Small" onChange={updateSelect} />
+						</FormField>
+						<FormField label="Extra Small Select" htmlFor="supported-controls-select-xs">
+							<FormSelect name="supported-controls-select-xs" size="xs" options={controlOptions} firstOption="Select Extra Small" onChange={updateSelect} />
+						</FormField>
+					</div>
+					<ExampleSource>
+						{`
+							<FormField label="Select" htmlFor="supported-controls-select">
+								<FormSelect name="supported-controls-select" options={controlOptions} firstOption="Select" onChange={updateSelect} />
+							</FormField>
+							<FormField label="Large Select" htmlFor="supported-controls-select-lg">
+								<FormSelect name="supported-controls-select-lg" size="lg" options={controlOptions} firstOption="Select Large" onChange={updateSelect} />
+							</FormField>
+							<FormField label="Small Select" htmlFor="supported-controls-select-sm">
+								<FormSelect name="supported-controls-select-sm" size="sm" options={controlOptions} firstOption="Select Small" onChange={updateSelect} />
+							</FormField>
+							<FormField label="Extra Small Select" htmlFor="supported-controls-select-xs">
+								<FormSelect name="supported-controls-select-xs" size="xs" options={controlOptions} firstOption="Select Extra Small" onChange={updateSelect} />
+							</FormField>
+						`}
+					</ExampleSource>
+				</div>
 
 
 
