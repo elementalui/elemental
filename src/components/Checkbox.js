@@ -9,13 +9,14 @@ const Checkbox = React.createClass({
 		disabled: React.PropTypes.bool,
 		indeterminate: React.PropTypes.bool,
 		inline: React.PropTypes.bool,
+		innerRef: React.PropTypes.func,
 		label: React.PropTypes.string,
 		style: React.PropTypes.object,
 		title: React.PropTypes.string,
 	},
 	componentDidMount () {
 		if (this.props.autoFocus) {
-			this.refs.target.focus();
+			this.target.focus();
 		}
 		this.setIndeterminate(this.props.indeterminate);
 	},
@@ -23,9 +24,16 @@ const Checkbox = React.createClass({
 		this.setIndeterminate(nextProps.indeterminate);
 	},
 	setIndeterminate (value) {
-		this.refs.target.indeterminate = value;
+		this.target.indeterminate = value;
 	},
-	render() {
+	getRef (ref) {
+		this.target = ref;
+
+		if (this.props.innerRef) {
+			this.props.innerRef(ref);
+		}
+	},
+	render () {
 		let componentClass = classNames('Checkbox', {
 			'Checkbox--disabled': this.props.disabled,
 			'Checkbox--inline': this.props.inline,
@@ -33,7 +41,7 @@ const Checkbox = React.createClass({
 		let props = blacklist(this.props, 'className', 'label', 'style', 'title');
 		return (
 			<label className={componentClass} style={this.props.style} title={this.props.title}>
-				<input ref="target" type="checkbox" className="Checkbox__input" {...props} />
+				<input ref={this.getRef} type="checkbox" className="Checkbox__input" {...props} />
 				{this.props.label && <span className="Checkbox__label">{this.props.label}</span>}
 			</label>
 		);

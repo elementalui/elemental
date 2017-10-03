@@ -1,5 +1,4 @@
 var React = require('react');
-var blacklist = require('blacklist');
 var classNames = require('classnames');
 
 export default React.createClass({
@@ -10,6 +9,7 @@ export default React.createClass({
 		disabled: React.PropTypes.bool,
 		href: React.PropTypes.string,
 		id: React.PropTypes.string,
+		innerRef: React.PropTypes.func,
 		multiline: React.PropTypes.bool,
 		name: React.PropTypes.string,
 		noedit: React.PropTypes.bool,
@@ -22,7 +22,7 @@ export default React.createClass({
 		]),
 	},
 
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
 			type: 'text',
 		};
@@ -34,15 +34,22 @@ export default React.createClass({
 		}
 	},
 
-	focus() {
-		this.refs.input.focus();
+	focus () {
+		this.input.focus();
 	},
 
-	select() {
-		this.refs.input.select();
+	select () {
+		this.input.select();
+	},
+	getRef (ref) {
+		this.target = ref;
+
+		if (this.props.innerRef) {
+			this.props.innerRef(ref);
+		}
 	},
 
-	render() {
+	render () {
 		const { noedit, multiline, size, className, ...rest } = this.props;
 		// classes
 		let newClassName = classNames(
@@ -54,7 +61,7 @@ export default React.createClass({
 			(size ? ('FormInput--' + size) : null),
 			className
 		);
-		let props = { ...rest, className: newClassName, ref: 'input' };
+		let props = { ...rest, className: newClassName };
 		let Element = 'input';
 		if (noedit && this.props.href) {
 			Element = 'a';
@@ -68,6 +75,6 @@ export default React.createClass({
 			Element = 'textarea';
 		}
 
-		return <Element {...props} />;
+		return <Element ref={this.getRef} {...props} />;
 	},
 });
