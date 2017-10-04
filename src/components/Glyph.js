@@ -1,8 +1,9 @@
 var React = require('react');
 var classNames = require('classnames');
 
-var icons = require('../Octicons').map;
-var validNames = require('../Octicons').keys;
+const Octicons = require('../Octicons').Octicon;
+const icons = Octicons.map;
+const validNames = Octicons.keys;
 
 var Glyph = React.createClass({
 	displayName: 'Glyph',

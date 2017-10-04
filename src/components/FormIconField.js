@@ -5,8 +5,9 @@ const classNames = require('classnames');
 const FormField = require('./FormField');
 const Spinner = require('./Spinner');
 
-const ICON_MAP = require('../Octicons').map;
-const ICON_KEYS = require('../Octicons').keys;
+const Octicons = require('../Octicons').Octicon;
+const ICON_MAP = Octicons.map;
+const ICON_KEYS = Octicons.keys;
 const COLOR_VARIANTS = ['danger', 'default', 'primary', 'success', 'warning'];
 
 export default React.createClass({
