@@ -1,5 +1,5 @@
 const React = require('react');
-const { TransitionGroup } = require('react-transition-group');
+const { CSSTransitionGroup } = require('react-transition-group');
 const blacklist = require('blacklist');
 const classNames = require('classnames');
 const Button = require('./Button');
@@ -120,9 +120,9 @@ export default createReactClass({
 		return (
 			<span className={dropdownClass} {...props}>
 				{React.Children.count(this.props.children) ? this.renderChildren() : this.renderButton()}
-				<TransitionGroup transitionName="Dropdown-menu" transitionEnterTimeout={100} transitionLeaveTimeout={100}>
+				<CSSTransitionGroup transitionName="Dropdown-menu" transitionEnterTimeout={100} transitionLeaveTimeout={100}>
 					{this.renderDropdownMenu()}
-				</TransitionGroup>
+				</CSSTransitionGroup>
 				{this.renderDropdownMenuBackground()}
 			</span>
 		);

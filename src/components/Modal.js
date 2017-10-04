@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import { TransitionGroup } from 'react-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 import blacklist from 'blacklist';
 import classNames from 'classnames';
 import createReactClass from 'create-react-class';
@@ -19,7 +19,7 @@ const TransitionPortal = createReactClass({
 	},
 	componentDidUpdate () {
 		if (!canUseDOM) return;
-		ReactDOM.render(<TransitionGroup {...this.props}>{this.props.children}</TransitionGroup>, this.portalElement);
+		ReactDOM.render(<CSSTransitionGroup {...this.props}>{this.props.children}</CSSTransitionGroup>, this.portalElement);
 	},
 	componentWillUnmount () {
 		if (!canUseDOM) return;
