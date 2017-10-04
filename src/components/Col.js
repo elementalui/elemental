@@ -1,22 +1,24 @@
 import React from 'react';
 import blacklist from 'blacklist';
 import E from '../constants';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Col',
 	propTypes: {
 		/* eslint-disable react/jsx-sort-prop-types */
-		basis: React.PropTypes.oneOfType([
-			React.PropTypes.number, // allow pixels
-			React.PropTypes.string, // allow percentage
+		basis: PropTypes.oneOfType([
+			PropTypes.number, // allow pixels
+			PropTypes.string, // allow percentage
 		]),
-		children: React.PropTypes.node,
-		gutter: React.PropTypes.number,
-		style: React.PropTypes.object,
-		lg: React.PropTypes.string, // width as a percentage or fraction
-		md: React.PropTypes.string, // width as a percentage or fraction
-		sm: React.PropTypes.string, // width as a percentage or fraction
-		xs: React.PropTypes.string, // width as a percentage or fraction
+		children: PropTypes.node,
+		gutter: PropTypes.number,
+		style: PropTypes.object,
+		lg: PropTypes.string, // width as a percentage or fraction
+		md: PropTypes.string, // width as a percentage or fraction
+		sm: PropTypes.string, // width as a percentage or fraction
+		xs: PropTypes.string, // width as a percentage or fraction
 		/* eslint-enable */
 	},
 	getDefaultProps () {

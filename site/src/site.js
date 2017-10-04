@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory, Router, Route, Link, IndexRoute } from 'react-router';
+import createReactClass from 'create-react-class';
+import classNames from 'classnames';
+import createHistory from 'history/createBrowserHistory';
+import { Router, Route, Link, Switch } from 'react-router-dom';
+
+const browserHistory = createHistory();
 
 const NavItems = [
 	{ value: '/css',         label: 'CSS' },
@@ -14,7 +19,7 @@ const NavItems = [
 	// { value: 'date-picker', label: 'Date Picker' }
 ];
 
-const PageNav = React.createClass({
+const PageNav = createReactClass({
 	getInitialState () {
 		return {
 			mobileMenuIsVisible: false,
@@ -45,9 +50,11 @@ const PageNav = React.createClass({
 		var menuClass = this.state.mobileMenuIsVisible ? 'primary-nav-menu is-visible' : 'primary-nav-menu is-hidden';
 		var menuItems = NavItems.map(function(item) {
 			return (
-				<Link key={item.value} className="primary-nav__item" activeClassName="active" onClick={self.toggleMenu} to={item.value}>
-					<span className="primary-nav__item-inner">{item.label}</span>
-				</Link>
+				<Route key={item.value} path={item.value} exact children={({ match }) => (
+					<Link className={classNames('primary-nav__item', { active: match })} onClick={self.toggleMenu} to={item.value}>
+						<span className="primary-nav__item-inner">{item.label}</span>
+					</Link>
+				)}/>
 			);
 		});
 		return (
@@ -73,7 +80,7 @@ const PageNav = React.createClass({
 	}
 });
 
-const App = React.createClass({
+const App = createReactClass({
 	render () {
 		return (
 			<div className="page-wrapper">
@@ -95,19 +102,20 @@ const basepath = (window.location.pathname.slice(0, 10) === '/elemental') ? '/el
 
 ReactDOM.render(
 	<Router history={browserHistory} onUpdate={() => window.scrollTo(0, 0)}>
-		<Route path="/" component={App}>
-			<IndexRoute component={require('./pages/Home')} />
-			<Route path="home" component={require('./pages/Home')} />
-			<Route path="css" component={require('./pages/CSS')} />
-			<Route path="grid" component={require('./pages/Grid')} />
-			<Route path="buttons" component={require('./pages/Buttons')} />
-			<Route path="glyphs" component={require('./pages/Glyphs')} />
-			<Route path="forms" component={require('./pages/Forms')} />
-			<Route path="spinner" component={require('./pages/Spinner')} />
-			<Route path="modal" component={require('./pages/Modal')} />
-			<Route path="misc" component={require('./pages/Misc')} />
-			<Route path="*" component={require('./pages/Home')} />
-		</Route>
+		<App>
+			<Switch>
+				<Route path="/home" component={require('./pages/Home')} />
+				<Route path="/css" component={require('./pages/CSS')} />
+				<Route path="/grid" component={require('./pages/Grid')} />
+				<Route path="/buttons" component={require('./pages/Buttons')} />
+				<Route path="/glyphs" component={require('./pages/Glyphs')} />
+				<Route path="/forms" component={require('./pages/Forms')} />
+				<Route path="/spinner" component={require('./pages/Spinner')} />
+				<Route path="/modal" component={require('./pages/Modal')} />
+				<Route path="/misc" component={require('./pages/Misc')} />
+				<Route component={require('./pages/Home')} />
+			</Switch>
+		</App>
 	</Router>,
 	document.getElementById('app')
 );

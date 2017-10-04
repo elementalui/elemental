@@ -1,16 +1,18 @@
-var React = require('react');
-var blacklist = require('blacklist');
-var classNames = require('classnames');
+const React = require('react');
+const blacklist = require('blacklist');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'FormField',
 	propTypes: {
-		className: React.PropTypes.string,
-		htmlFor: React.PropTypes.string,
-		id: React.PropTypes.string,
-		label: React.PropTypes.string,
-		offsetAbsentLabel: React.PropTypes.bool,
-		width: React.PropTypes.oneOf([
+		className: PropTypes.string,
+		htmlFor: PropTypes.string,
+		id: PropTypes.string,
+		label: PropTypes.string,
+		offsetAbsentLabel: PropTypes.bool,
+		width: PropTypes.oneOf([
 			'one-half',
 			'two-quarters',
 			'three-sixths',
@@ -31,7 +33,7 @@ export default React.createClass({
 	render () {
 		// classes
 		var componentClass = classNames('FormField', {
-			'offset-absent-label': this.props.offsetAbsentLabel
+			'offset-absent-label': this.props.offsetAbsentLabel,
 		}, this.props.width, this.props.className);
 
 		// props

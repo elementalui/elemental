@@ -1,25 +1,27 @@
 const React = require('react');
-const Transition = require('react-addons-css-transition-group');
+const { TransitionGroup } = require('react-transition-group');
 const blacklist = require('blacklist');
 const classNames = require('classnames');
 const Button = require('./Button');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
 const ESC_KEYCODE = 27;
 const NO_OP = () => undefined;
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Dropdown',
 	propTypes: {
-		alignRight: React.PropTypes.bool,
-		buttonHasDisclosureArrow: React.PropTypes.bool,
-		buttonLabel: React.PropTypes.string,
-		buttonSize: React.PropTypes.string,
-		buttonType: React.PropTypes.string,
-		children: React.PropTypes.element,
-		className: React.PropTypes.string,
-		isOpen: React.PropTypes.bool,
-		items: React.PropTypes.array.isRequired,
-		onSelect: React.PropTypes.func,
+		alignRight: PropTypes.bool,
+		buttonHasDisclosureArrow: PropTypes.bool,
+		buttonLabel: PropTypes.string,
+		buttonSize: PropTypes.string,
+		buttonType: PropTypes.string,
+		children: PropTypes.element,
+		className: PropTypes.string,
+		isOpen: PropTypes.bool,
+		items: PropTypes.array.isRequired,
+		onSelect: PropTypes.func,
 	},
 	getDefaultProps () {
 		return {
@@ -79,7 +81,7 @@ export default React.createClass({
 		var self = this;
 		if (!this.state.isOpen) return null;
 
-		var dropdownMenuItems = this.props.items.map(function(item, i) {
+		var dropdownMenuItems = this.props.items.map(function (item, i) {
 			var menuItem;
 			if (item.type === 'header') {
 				menuItem = <li key={'item-' + i} className="Dropdown-menu__header">{item.label}</li>;
@@ -118,9 +120,9 @@ export default React.createClass({
 		return (
 			<span className={dropdownClass} {...props}>
 				{React.Children.count(this.props.children) ? this.renderChildren() : this.renderButton()}
-				<Transition transitionName="Dropdown-menu" transitionEnterTimeout={100} transitionLeaveTimeout={100}>
+				<TransitionGroup transitionName="Dropdown-menu" transitionEnterTimeout={100} transitionLeaveTimeout={100}>
 					{this.renderDropdownMenu()}
-				</Transition>
+				</TransitionGroup>
 				{this.renderDropdownMenuBackground()}
 			</span>
 		);

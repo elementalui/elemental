@@ -1,8 +1,10 @@
-var React = require('react');
-var blacklist = require('blacklist');
-var classNames = require('classnames');
+const React = require('react');
+const blacklist = require('blacklist');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-var NOTE_TYPES = [
+const NOTE_TYPES = [
 	'default',
 	'primary',
 	'success',
@@ -10,12 +12,12 @@ var NOTE_TYPES = [
 	'danger',
 ];
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'FormNote',
 	propTypes: {
-		className: React.PropTypes.string,
-		note: React.PropTypes.string,
-		type: React.PropTypes.oneOf(NOTE_TYPES),
+		className: PropTypes.string,
+		note: PropTypes.string,
+		type: PropTypes.oneOf(NOTE_TYPES),
 	},
 	getDefaultProps () {
 		return {
@@ -24,14 +26,14 @@ export default React.createClass({
 	},
 	render () {
 		// classes
-		var componentClass = classNames(
+		const componentClass = classNames(
 			'FormNote',
 			this.props.type ? ('FormNote--' + this.props.type) : null,
 			this.props.className
 		);
 
 		// props
-		var props = blacklist(this.props, 'className', 'note', 'type');
+		const props = blacklist(this.props, 'className', 'note', 'type');
 
 		// allow users to pass through the note as an attribute or as children
 		return (

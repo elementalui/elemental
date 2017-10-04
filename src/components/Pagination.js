@@ -1,20 +1,22 @@
 const React = require('react');
 const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-const Page = React.createClass({
+const Page = createReactClass({
 	displayName: 'Page',
 	propTypes: {
-		children: React.PropTypes.node,
-		label: React.PropTypes.string,
-		onSelect: React.PropTypes.func,
-		page: React.PropTypes.number,
-		selected: React.PropTypes.bool,
+		children: PropTypes.node,
+		label: PropTypes.string,
+		onSelect: PropTypes.func,
+		page: PropTypes.number,
+		selected: PropTypes.bool,
 	},
 	onSelect () {
 		this.props.onSelect(this.props.page);
 	},
 	render () {
-		const { children, selected, label } = this.props;
+		const { children, selected } = this.props;
 		const className = classNames('Pagination__list__item', {
 			'is-selected': selected,
 		});
@@ -26,7 +28,7 @@ const Page = React.createClass({
 	},
 });
 
-function range(props) {
+function range (props) {
 	const { currentPage, pageSize, total } = props;
 	if (!total) {
 		return {};
@@ -37,19 +39,19 @@ function range(props) {
 	}
 }
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Pagination',
 	propTypes: {
-		className: React.PropTypes.string,
-		currentPage: React.PropTypes.number.isRequired,
-		limit: React.PropTypes.number,
-		label: React.PropTypes.func,
-		onPageSelect: React.PropTypes.func,
-		pageSize: React.PropTypes.number.isRequired,
-		plural: React.PropTypes.string,
-		singular: React.PropTypes.string,
-		style: React.PropTypes.object,
-		total: React.PropTypes.number.isRequired,
+		className: PropTypes.string,
+		currentPage: PropTypes.number.isRequired,
+		label: PropTypes.func,
+		limit: PropTypes.number,
+		onPageSelect: PropTypes.func,
+		pageSize: PropTypes.number.isRequired,
+		plural: PropTypes.string,
+		singular: PropTypes.string,
+		style: PropTypes.object,
+		total: PropTypes.number.isRequired,
 	},
 	renderCount () {
 		let count = '';
@@ -92,7 +94,7 @@ export default React.createClass({
 
 		if (limit && (limit < totalPages)) {
 			let rightLimit = Math.floor(limit / 2);
-			let leftLimit =  rightLimit + (limit % 2) - 1;
+			let leftLimit = rightLimit + (limit % 2) - 1;
 			minPage = currentPage - leftLimit;
 			maxPage = currentPage + rightLimit;
 
@@ -131,5 +133,5 @@ export default React.createClass({
 				{this.renderPages()}
 			</div>
 		);
-	}
+	},
 });

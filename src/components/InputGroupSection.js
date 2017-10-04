@@ -1,22 +1,24 @@
-var React = require('react');
-var classNames = require('classnames');
-var blacklist = require('blacklist');
+const React = require('react');
+const classNames = require('classnames');
+const blacklist = require('blacklist');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'InputGroupSection',
 	propTypes: {
-		className: React.PropTypes.string,
-		grow: React.PropTypes.bool
+		className: PropTypes.string,
+		grow: PropTypes.bool,
 	},
-	render() {
+	render () {
 		// classes
-		var className = classNames('InputGroup_section', {
-			'InputGroup_section--grow': this.props.grow
+		const className = classNames('InputGroup_section', {
+			'InputGroup_section--grow': this.props.grow,
 		}, this.props.className);
-		var props = blacklist(this.props, 'grow');
+		const props = blacklist(this.props, 'grow');
 
 		return (
 			<div {...props} className={className} />
 		);
-	}
+	},
 });

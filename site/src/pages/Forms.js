@@ -1,6 +1,7 @@
 /* eslint no-alert: 0 */
 
 const React = require('react');
+const createReactClass = require('create-react-class');
 
 const {
 	Button,
@@ -41,7 +42,7 @@ const COLOR_VARIANTS = [
 	{ label: 'Danger',  icon: 'stop', value: 'danger' }
 ];
 
-var Forms = React.createClass({
+var Forms = createReactClass({
 	displayName: 'VIEW_Forms',
 
 	getInitialState () {

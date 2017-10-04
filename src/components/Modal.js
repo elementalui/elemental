@@ -1,12 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import Transition from 'react-addons-css-transition-group';
+import { TransitionGroup } from 'react-transition-group';
 import blacklist from 'blacklist';
 import classNames from 'classnames';
+import createReactClass from 'create-react-class';
 
 import { canUseDOM } from '../constants';
 
-const TransitionPortal = React.createClass({
+const TransitionPortal = createReactClass({
 	displayName: 'TransitionPortal',
 	componentDidMount () {
 		if (!canUseDOM) return;
@@ -17,7 +19,7 @@ const TransitionPortal = React.createClass({
 	},
 	componentDidUpdate () {
 		if (!canUseDOM) return;
-		ReactDOM.render(<Transition {...this.props}>{this.props.children}</Transition>, this.portalElement);
+		ReactDOM.render(<TransitionGroup {...this.props}>{this.props.children}</TransitionGroup>, this.portalElement);
 	},
 	componentWillUnmount () {
 		if (!canUseDOM) return;
@@ -27,17 +29,17 @@ const TransitionPortal = React.createClass({
 	render: () => null,
 });
 
-const Modal = React.createClass({
+const Modal = createReactClass({
 	displayName: 'Modal',
 	propTypes: {
-		autoFocusFirstElement: React.PropTypes.bool,
-		backdropClosesModal: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		isOpen: React.PropTypes.bool,
-		onCancel: React.PropTypes.func,
-		width: React.PropTypes.oneOfType([
-			React.PropTypes.oneOf(['small', 'medium', 'large']),
-			React.PropTypes.number,
+		autoFocusFirstElement: PropTypes.bool,
+		backdropClosesModal: PropTypes.bool,
+		className: PropTypes.string,
+		isOpen: PropTypes.bool,
+		onCancel: PropTypes.func,
+		width: PropTypes.oneOfType([
+			PropTypes.oneOf(['small', 'medium', 'large']),
+			PropTypes.number,
 		]),
 	},
 	getDefaultProps () {

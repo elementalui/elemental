@@ -1,12 +1,13 @@
 /* eslint no-script-url: 0 */
 
 const React = require('react');
+const createReactClass = require('create-react-class');
 const { Col, Container, Row, ResponsiveText } = require('elemental');
 
 const DemoBox = require('../components/DemoBox');
 const ExampleSource = require('../components/ExampleSource');
 
-var GridExample = React.createClass({
+var GridExample = createReactClass({
 	render() {
 		return (
 			<Container maxWidth={800} className="demo-container">

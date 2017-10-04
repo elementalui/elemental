@@ -1,18 +1,20 @@
-var React = require('react');
-var classNames = require('classnames');
-var Spinner = require('./Spinner');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const Spinner = require('./Spinner');
+const createReactClass = require('create-react-class');
 
-var icons = require('../Octicons').map;
+const icons = require('../Octicons').map;
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'FormIcon',
 	propTypes: {
-		className: React.PropTypes.string,
-		color: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
-		fill: React.PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
-		icon: React.PropTypes.string,
-		isLoading: React.PropTypes.bool,
-		type: React.PropTypes.string,
+		className: PropTypes.string,
+		color: PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
+		fill: PropTypes.oneOf(['danger', 'default', 'muted', 'primary', 'success', 'warning']),
+		icon: PropTypes.string,
+		isLoading: PropTypes.bool,
+		type: PropTypes.string,
 	},
 	render () {
 		// classes

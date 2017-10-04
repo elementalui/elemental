@@ -1,21 +1,23 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Spinner',
 	propTypes: {
-		className: React.PropTypes.string,
-		size: React.PropTypes.oneOf(['sm', 'md', 'lg']),
-		type: React.PropTypes.oneOf(['default', 'primary', 'inverted'])
+		className: PropTypes.string,
+		size: PropTypes.oneOf(['sm', 'md', 'lg']),
+		type: PropTypes.oneOf(['default', 'primary', 'inverted']),
 	},
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
 			type: 'default',
-			size: 'sm'
+			size: 'sm',
 		};
 	},
-	render() {
-		var componentClass = classNames(
+	render () {
+		const componentClass = classNames(
 			'Spinner',
 			'Spinner--' + this.props.type,
 			'Spinner--' + this.props.size,
@@ -29,5 +31,5 @@ export default React.createClass({
 				<span className="Spinner_dot Spinner_dot--third" />
 			</div>
 		);
-	}
+	},
 });

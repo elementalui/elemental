@@ -1,7 +1,9 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const PropTypes = require('prop-types');
+const classNames = require('classnames');
+const createReactClass = require('create-react-class');
 
-var ALERT_TYPES = [
+const ALERT_TYPES = [
 	'danger',
 	'error', // alias for danger
 	'info',
@@ -10,15 +12,15 @@ var ALERT_TYPES = [
 	'warning',
 ];
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'ElementalAlert',
 	propTypes: {
-		children: React.PropTypes.node.isRequired,
-		className: React.PropTypes.string,
-		type: React.PropTypes.oneOf(ALERT_TYPES).isRequired,
+		children: PropTypes.node.isRequired,
+		className: PropTypes.string,
+		type: PropTypes.oneOf(ALERT_TYPES).isRequired,
 	},
 	render () {
-		var componentClass = classNames(
+		const componentClass = classNames(
 			'Alert',
 			'Alert--' + this.props.type,
 			this.props.className

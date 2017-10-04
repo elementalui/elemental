@@ -1,6 +1,7 @@
 /* eslint no-script-url: 0 */
 
 var React = require('react');
+var createReactClass = require('create-react-class');
 var { Glyph, Container, Table, Col, Row, Card, Button } = require('elemental');
 
 var ExampleSource = require('../components/ExampleSource');
@@ -14,7 +15,7 @@ const GLYPH_COLOR_TYPES = [
 	'warning'
 ];
 
-var Glyphs = React.createClass({
+var Glyphs = createReactClass({
 	displayName: 'VIEW_Glyphs',
 	renderGlyphColorTypes() {
 		return GLYPH_COLOR_TYPES.map(color => {

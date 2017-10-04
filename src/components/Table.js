@@ -1,15 +1,17 @@
 import classNames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Table',
 
 	propTypes: {
-		children: React.PropTypes.any,
-		className: React.PropTypes.string
+		children: PropTypes.any,
+		className: PropTypes.string,
 	},
 
-	render() {
+	render () {
 		// classes
 		var className = classNames(
 			'Table',
@@ -20,5 +22,5 @@ export default React.createClass({
 		return (
 			<table {...this.props} className={className} />
 		);
-	}
+	},
 });

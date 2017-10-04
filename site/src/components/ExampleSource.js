@@ -1,11 +1,13 @@
 /* global Prism */
 var classNames = require('classnames');
 var React = require('react');
+var createReactClass = require('create-react-class');
+var PropTypes = require('prop-types');
 
-var ExampleSource = React.createClass({
+var ExampleSource = createReactClass({
 	propTypes: {
-		children: React.PropTypes.string.isRequired,
-		language: React.PropTypes.string
+		children: PropTypes.string.isRequired,
+		language: PropTypes.string
 	},
 	getDefaultProps () {
 		return {

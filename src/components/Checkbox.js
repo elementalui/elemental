@@ -1,18 +1,20 @@
 const blacklist = require('blacklist');
 const classNames = require('classnames');
 const React = require('react');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-const Checkbox = React.createClass({
+const Checkbox = createReactClass({
 	propTypes: {
-		autoFocus: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		disabled: React.PropTypes.bool,
-		indeterminate: React.PropTypes.bool,
-		inline: React.PropTypes.bool,
-		innerRef: React.PropTypes.func,
-		label: React.PropTypes.string,
-		style: React.PropTypes.object,
-		title: React.PropTypes.string,
+		autoFocus: PropTypes.bool,
+		className: PropTypes.string,
+		disabled: PropTypes.bool,
+		indeterminate: PropTypes.bool,
+		inline: PropTypes.bool,
+		innerRef: PropTypes.func,
+		label: PropTypes.string,
+		style: PropTypes.object,
+		title: PropTypes.string,
 	},
 	componentDidMount () {
 		if (this.props.autoFocus) {

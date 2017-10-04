@@ -1,23 +1,25 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-var REGEXP_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const REGEXP_EMAIL = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 function validateEmail (value) {
 	return REGEXP_EMAIL.test(value);
 }
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'EmailInputGroup',
 	propTypes: {
-		alwaysValidate: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		invalidMessage: React.PropTypes.string,
-		label: React.PropTypes.string,
-		onChange: React.PropTypes.func,
-		required: React.PropTypes.bool,
-		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string,
+		alwaysValidate: PropTypes.bool,
+		className: PropTypes.string,
+		invalidMessage: PropTypes.string,
+		label: PropTypes.string,
+		onChange: PropTypes.func,
+		required: PropTypes.bool,
+		requiredMessage: PropTypes.string,
+		value: PropTypes.string,
 	},
 	getDefaultProps () {
 		return {
@@ -58,8 +60,8 @@ export default React.createClass({
 		}
 		this.validateInput(this.props.value);
 	},
-	validateInput(value) {
-		var newState = {
+	validateInput (value) {
+		const newState = {
 			isValid: true,
 		};
 		if ((value.length && !validateEmail(value)) || (!value.length && this.props.required)) {

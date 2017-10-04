@@ -1,6 +1,8 @@
-var React = require('react');
-var classNames = require('classnames');
-var blacklist = require('blacklist');
+const React = require('react');
+const PropTypes = require('prop-types');
+const classNames = require('classnames');
+const blacklist = require('blacklist');
+const createReactClass = require('create-react-class');
 
 const BUTTON_SIZES = ['lg', 'sm', 'xs'];
 
@@ -28,17 +30,17 @@ const BUTTON_TYPES = [
 	'link-delete',
 ];
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Button',
 	propTypes: {
-		block: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		component: React.PropTypes.element,
-		href: React.PropTypes.string,
-		isActive: React.PropTypes.bool,
-		size: React.PropTypes.oneOf(BUTTON_SIZES),
-		submit: React.PropTypes.bool,
-		type: React.PropTypes.oneOf(BUTTON_TYPES),
+		block: PropTypes.bool,
+		className: PropTypes.string,
+		component: PropTypes.element,
+		href: PropTypes.string,
+		isActive: PropTypes.bool,
+		size: PropTypes.oneOf(BUTTON_SIZES),
+		submit: PropTypes.bool,
+		type: PropTypes.oneOf(BUTTON_TYPES),
 	},
 	getDefaultProps () {
 		return {
@@ -47,7 +49,7 @@ export default React.createClass({
 	},
 	render () {
 		// classes
-		var componentClass = classNames(
+		const componentClass = classNames(
 			'Button',
 			'Button--' + this.props.type,
 			(this.props.size ? 'Button--' + this.props.size : null),
@@ -59,14 +61,14 @@ export default React.createClass({
 		);
 
 		// props
-		var props = blacklist(this.props, 'block', 'isActive', 'type', 'size', 'component', 'className', 'submit');
+		const props = blacklist(this.props, 'block', 'isActive', 'type', 'size', 'component', 'className', 'submit');
 		props.className = componentClass;
 
 		if (this.props.component) {
 			return React.cloneElement(this.props.component, props);
 		}
 
-		var tag = 'button';
+		let tag = 'button';
 		props.type = this.props.submit ? 'submit' : 'button';
 
 		if (props.href) {

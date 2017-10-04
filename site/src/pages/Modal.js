@@ -1,4 +1,5 @@
 const React = require('react');
+const createReactClass = require('create-react-class');
 
 const {
 	Button,
@@ -15,7 +16,7 @@ const {
 
 const ExampleSource = require('../components/ExampleSource');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 	displayName: 'VIEW_Modal',
 	getInitialState() {
 		return {

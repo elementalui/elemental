@@ -1,13 +1,15 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'FormRow',
 	propTypes: {
-		className: React.PropTypes.string,
+		className: PropTypes.string,
 	},
 	render () {
-		var className = classNames('FormRow', this.props.className);
+		const className = classNames('FormRow', this.props.className);
 
 		return (
 			<div className={className}>

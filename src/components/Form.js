@@ -1,5 +1,6 @@
 import classnames from 'classnames';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Form ({ className, component, type, ...props }) {
 	const Component = component;
@@ -10,8 +11,8 @@ function Form ({ className, component, type, ...props }) {
 
 Form.propTypes = {
 	component: PropTypes.oneOfType([
-		React.PropTypes.string,
-		React.PropTypes.func,
+		PropTypes.string,
+		PropTypes.func,
 	]),
 	type: PropTypes.oneOf(['basic', 'horizontal', 'inline']),
 };

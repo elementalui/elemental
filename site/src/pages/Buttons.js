@@ -2,6 +2,7 @@
 
 var React = require('react');
 var { Button, ButtonGroup, Container, Dropdown, Table } = require('elemental');
+var createReactClass = require('create-react-class');
 
 var ExampleSource = require('../components/ExampleSource');
 
@@ -53,7 +54,7 @@ const BUTTON_LINK_VARIANTS = [
 	{ label: 'Link Delete',      value: 'link-delete' }
 ];
 
-var Buttons = React.createClass({
+var Buttons = createReactClass({
 	displayName: 'VIEW_Buttons',
 	getInitialState() {
 		return {
