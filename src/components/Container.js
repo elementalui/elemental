@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import theme from '../constants';
+import PropTypes from 'prop-types';
 
 function Container ({ children, clearfix, gutter, maxWidth, style, ...props }) {
 	const styles = {

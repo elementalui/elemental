@@ -1,5 +1,6 @@
-const React = require('react');
-const Router = require('react-router');
+import React from 'react';
+import { Link } from 'react-router-dom';
+import createReactClass from 'create-react-class';
 
 const NavItems = [
 	{ value: 'css', icon: 'paintcan', label: 'CSS' },
@@ -14,19 +15,19 @@ const NavItems = [
 const { Col, Container, Row } = require('elemental');
 const ExampleSource = require('../components/ExampleSource');
 
-var Home = React.createClass({
+var Home = createReactClass({
 	displayName: 'VIEW_Home',
 
 	render () {
 		var menuItems = NavItems.map(function (item) {
 			return (
 				<Col xs="1/3" sm="1/6" key={item.label} className="demo-banner-nav__col col-xs-4 col-sm-2">
-					<Router.Link key={item.value} className="demo-banner-nav__item" to={'/' + item.value}>
+					<Link key={item.value} className="demo-banner-nav__item" to={'/' + item.value}>
 						<span className={'demo-banner-nav__icon octicon octicon-' + item.icon} />
 						<div className="demo-banner-nav__label">
 							<span className="demo-banner-nav__label-inner">{item.label}</span>
 						</div>
-					</Router.Link>
+					</Link>
 				</Col>
 			);
 		});
@@ -130,4 +131,4 @@ var Home = React.createClass({
 	},
 });
 
-module.exports = Home;
+export default Home;

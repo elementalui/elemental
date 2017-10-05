@@ -1,8 +1,9 @@
 var React = require('react');
 var Button = require('elemental').Button;
 var DateSelect = require('react-date-select');
+var createReactClass = require('create-react-class');
 
-var DateSelectExamples = React.createClass({
+var DateSelectExamples = createReactClass({
 	getInitialState() {
 		return {
 			singleDateValue: new Date(),

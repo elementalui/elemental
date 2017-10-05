@@ -1,36 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import blacklist from 'blacklist';
+import createReactClass from 'create-react-class';
 import E from '../constants';
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'ResponsiveText',
 	propTypes: {
-		hiddenLG: React.PropTypes.string,
-		hiddenMD: React.PropTypes.string,
-		hiddenSM: React.PropTypes.string,
-		hiddenXS: React.PropTypes.string,
-		visibleLG: React.PropTypes.string,
-		visibleMD: React.PropTypes.string,
-		visibleSM: React.PropTypes.string,
-		visibleXS: React.PropTypes.string,
+		hiddenLG: PropTypes.string,
+		hiddenMD: PropTypes.string,
+		hiddenSM: PropTypes.string,
+		hiddenXS: PropTypes.string,
+		visibleLG: PropTypes.string,
+		visibleMD: PropTypes.string,
+		visibleSM: PropTypes.string,
+		visibleXS: PropTypes.string,
 	},
-	getInitialState: function() {
+	getInitialState: function () {
 		return {
-			windowWidth: (typeof window !== 'undefined') ? window.innerWidth : 0
+			windowWidth: (typeof window !== 'undefined') ? window.innerWidth : 0,
 		};
 	},
-	componentDidMount: function() {
+	componentDidMount: function () {
 		if (typeof window !== 'undefined') window.addEventListener('resize', this.handleResize);
 	},
-	componentWillUnmount: function() {
+	componentWillUnmount: function () {
 		if (typeof window !== 'undefined') window.removeEventListener('resize', this.handleResize);
 	},
-	handleResize: function() {
+	handleResize: function () {
 		this.setState({
-			windowWidth: (typeof window !== 'undefined') ? window.innerWidth : 0
+			windowWidth: (typeof window !== 'undefined') ? window.innerWidth : 0,
 		});
 	},
-	render() {
+	render () {
 		let { hiddenXS, hiddenSM, hiddenMD, hiddenLG, visibleXS, visibleSM, visibleMD, visibleLG } = this.props;
 		let { windowWidth } = this.state;
 
@@ -48,16 +50,16 @@ export default React.createClass({
 		}
 
 		let props = blacklist(this.props, {
-			'hiddenXS': true,
-			'hiddenSM': true,
-			'hiddenMD': true,
-			'hiddenLG': true,
-			'visibleXS': true,
-			'visibleSM': true,
-			'visibleMD': true,
-			'visibleLG': true,
+			hiddenXS: true,
+			hiddenSM: true,
+			hiddenMD: true,
+			hiddenLG: true,
+			visibleXS: true,
+			visibleSM: true,
+			visibleMD: true,
+			visibleLG: true,
 		});
 
 		return <span {...props}>{text}</span>;
-	}
+	},
 });

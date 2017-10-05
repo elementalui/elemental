@@ -1,22 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import blacklist from 'blacklist';
 import classnames from 'classnames';
+import createReactClass from 'create-react-class';
 import E from '../constants';
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Row',
 	propTypes: {
-		children: React.PropTypes.node.isRequired,
-		className: React.PropTypes.string,
-		gutter: React.PropTypes.number,
-		style: React.PropTypes.object,
+		children: PropTypes.node.isRequired,
+		className: PropTypes.string,
+		gutter: PropTypes.number,
+		style: PropTypes.object,
 	},
 	getDefaultProps () {
 		return {
 			gutter: E.width.gutter,
 		};
 	},
-	render() {
+	render () {
 		let { gutter } = this.props;
 		let rowStyle = {
 			display: 'flex',
@@ -32,5 +34,5 @@ export default React.createClass({
 		return (
 			<div {...props} style={Object.assign(rowStyle, this.props.style)} className={className} />
 		);
-	}
+	},
 });

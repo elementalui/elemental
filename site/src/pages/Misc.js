@@ -1,4 +1,5 @@
 const React = require('react');
+const createReactClass = require('create-react-class');
 const DemoBox = require('../components/DemoBox');
 const ExampleSource = require('../components/ExampleSource');
 const { Alert, Card, Col, Container, FormField, FormInput, InputGroup, Pagination, Pill, Row, Table } = require('elemental');
@@ -6,7 +7,7 @@ const { Alert, Card, Col, Container, FormField, FormInput, InputGroup, Paginatio
 const MAX_PAGESIZE = 100;
 const MAX_RECORDS = 1000;
 
-var Misc = React.createClass({
+var Misc = createReactClass({
 	displayName: 'VIEW_Misc',
 
 	getInitialState () {

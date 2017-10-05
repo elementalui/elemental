@@ -2,6 +2,7 @@
 
 const React = require('react');
 const classNames = require('classnames');
+const createReactClass = require('create-react-class');
 
 const ExampleSource = require('../components/ExampleSource');
 const { Container, Table } = require('elemental');
@@ -9,7 +10,7 @@ const { Container, Table } = require('elemental');
 const USERS = require('../data/users');
 const TABLE_HEADERS = ['', 'User', 'Age', 'Gender Identity'];
 
-var CSSExamples = React.createClass({
+var CSSExamples = createReactClass({
 
 	getInitialState() {
 		return {

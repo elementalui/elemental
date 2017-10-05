@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 function SegmentedControl ({
@@ -8,7 +9,7 @@ function SegmentedControl ({
 	options,
 	type,
 	value,
-	...props,
+	...props
 }) {
 	props.className = classnames('SegmentedControl', ('SegmentedControl--' + type), {
 		'SegmentedControl--equal-widths': equalWidthSegments,

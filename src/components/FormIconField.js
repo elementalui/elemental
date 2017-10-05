@@ -1,6 +1,8 @@
 const React = require('react');
 const blacklist = require('blacklist');
 const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
 const FormField = require('./FormField');
 const Spinner = require('./Spinner');
@@ -9,30 +11,30 @@ const ICON_MAP = require('../Octicons').map;
 const ICON_KEYS = require('../Octicons').keys;
 const COLOR_VARIANTS = ['danger', 'default', 'primary', 'success', 'warning'];
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'FormIconField',
 	propTypes: {
-		className: React.PropTypes.string,
-		iconColor: React.PropTypes.oneOf(COLOR_VARIANTS),
-		iconFill: React.PropTypes.oneOf(COLOR_VARIANTS),
-		iconIsLoading: React.PropTypes.bool,
-		iconKey: React.PropTypes.oneOf(ICON_KEYS).isRequired,
-		iconPosition: React.PropTypes.oneOf(['left', 'right']),
+		className: PropTypes.string,
+		iconColor: PropTypes.oneOf(COLOR_VARIANTS),
+		iconFill: PropTypes.oneOf(COLOR_VARIANTS),
+		iconIsLoading: PropTypes.bool,
+		iconKey: PropTypes.oneOf(ICON_KEYS).isRequired,
+		iconPosition: PropTypes.oneOf(['left', 'right']),
 	},
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
 			iconPosition: 'left',
 		};
 	},
-	render() {
+	render () {
 		// props
 		var props = blacklist(this.props, 'children', 'iconPosition', 'iconKey', 'iconFill', 'iconColor', 'iconIsLoading');
 
 		// classes
 		var fieldClass = classNames('IconField', {
-				'has-fill-icon': this.props.iconFill,
-				'is-loading-icon': this.props.iconIsLoading
-			},
+			'has-fill-icon': this.props.iconFill,
+			'is-loading-icon': this.props.iconIsLoading,
+		},
 			(this.props.iconFill ? ('field-context-' + this.props.iconFill) : null),
 			(this.props.iconColor ? ('field-context-' + this.props.iconColor) : null),
 			this.props.iconPosition);

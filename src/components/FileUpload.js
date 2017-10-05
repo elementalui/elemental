@@ -1,22 +1,24 @@
-var React = require('react');
-var blacklist = require('blacklist');
+const React = require('react');
+const blacklist = require('blacklist');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
 var Button = require('./Button');
 var Spinner = require('./Spinner');
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'FileUpload',
 	propTypes: {
-		buttonLabelChange: React.PropTypes.string,
-		buttonLabelInitial: React.PropTypes.string,
-		disabled: React.PropTypes.bool,
-		file: React.PropTypes.object, // https://developer.mozilla.org/en/docs/Using_files_from_web_applications
-		onChange: React.PropTypes.func,
+		buttonLabelChange: PropTypes.string,
+		buttonLabelInitial: PropTypes.string,
+		disabled: PropTypes.bool,
+		file: PropTypes.object, // https://developer.mozilla.org/en/docs/Using_files_from_web_applications
+		onChange: PropTypes.func,
 	},
 	getDefaultProps () {
 		return {
 			buttonLabelInitial: 'Upload File',
-			buttonLabelChange:  'Change File',
+			buttonLabelChange: 'Change File',
 		};
 	},
 	getInitialState () {
@@ -49,12 +51,12 @@ export default React.createClass({
 			this.setState({
 				loading: false,
 				file: file,
-				dataURI: upload.target.result
+				dataURI: upload.target.result,
 			});
 			if (typeof this.props.onChange === 'function') {
 				this.props.onChange(e, {
 					file: file,
-					dataURI: upload.target.result
+					dataURI: upload.target.result,
 				});
 			}
 		};

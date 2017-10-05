@@ -1,66 +1,68 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-function validatePassword(value) {
+function validatePassword (value) {
 	return value.length >= 8;
 }
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'PasswordInputGroup',
 	propTypes: {
-		alwaysValidate: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		invalidMessage: React.PropTypes.string,
-		label: React.PropTypes.string,
-		onChange: React.PropTypes.func,
-		required: React.PropTypes.bool,
-		requiredMessage: React.PropTypes.string,
-		validatePassword: React.PropTypes.func,
-		value: React.PropTypes.string,
+		alwaysValidate: PropTypes.bool,
+		className: PropTypes.string,
+		invalidMessage: PropTypes.string,
+		label: PropTypes.string,
+		onChange: PropTypes.func,
+		required: PropTypes.bool,
+		requiredMessage: PropTypes.string,
+		validatePassword: PropTypes.func,
+		value: PropTypes.string,
 	},
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
 			validatePassword,
 			requiredMessage: 'Password is required',
-			invalidMessage: 'Password must be at least 8 characters in length'
+			invalidMessage: 'Password must be at least 8 characters in length',
 		};
 	},
-	getInitialState() {
+	getInitialState () {
 		return {
 			isValid: true,
-			validationIsActive: this.props.alwaysValidate
+			validationIsActive: this.props.alwaysValidate,
 		};
 	},
-	componentDidMount() {
+	componentDidMount () {
 		if (this.state.validationIsActive) {
 			this.validateInput(this.props.value);
 		}
 	},
-	componentWillReceiveProps(newProps) {
+	componentWillReceiveProps (newProps) {
 		if (this.state.validationIsActive) {
 			if (newProps.value !== this.props.value && newProps.value !== this._lastChangeValue && !newProps.alwaysValidate) {
 				// reset validation state if the value was changed outside the component
 				return this.setState({
 					isValid: true,
-					validationIsActive: false
+					validationIsActive: false,
 				});
 			}
 			this.validateInput(newProps.value);
 		}
 	},
-	handleChange(e) {
+	handleChange (e) {
 		this._lastChangeValue = e.target.value;
 		if (this.props.onChange) this.props.onChange(e);
 	},
-	handleBlur() {
+	handleBlur () {
 		if (!this.props.alwaysValidate) {
 			this.setState({ validationIsActive: false });
 		}
 		this.validateInput(this.props.value);
 	},
-	validateInput(value) {
-		var newState = {
-			isValid: true
+	validateInput (value) {
+		const newState = {
+			isValid: true,
 		};
 		if ((value.length && !this.props.validatePassword(value)) || (!value.length && this.props.required)) {
 			newState.isValid = false;
@@ -70,8 +72,8 @@ export default React.createClass({
 		}
 		this.setState(newState);
 	},
-	render() {
-		var validationMessage;
+	render () {
+		let validationMessage;
 		if (!this.state.isValid) {
 			validationMessage = (
 				<div className="form-validation is-invalid">
@@ -79,11 +81,11 @@ export default React.createClass({
 				</div>
 			);
 		}
-		var formGroupClass = classNames('FormField', {
-			'is-invalid': !this.state.isValid
+		const formGroupClass = classNames('FormField', {
+			'is-invalid': !this.state.isValid,
 		}, this.props.className);
 
-		var componentLabel = this.props.label ? <label className="FormLabel" htmlFor="inputPassword">{this.props.label}</label> : null;
+		const componentLabel = this.props.label ? <label className="FormLabel" htmlFor="inputPassword">{this.props.label}</label> : null;
 
 		return (
 			<div className={formGroupClass}>
@@ -92,5 +94,5 @@ export default React.createClass({
 				{validationMessage}
 			</div>
 		);
-	}
+	},
 });

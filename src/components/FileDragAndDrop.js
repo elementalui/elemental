@@ -1,16 +1,18 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
 /*
 	Based on: https://github.com/paramaggarwal/react-dropzone
 */
 
-var Dropzone = React.createClass({
+var Dropzone = createReactClass({
 	propTypes: {
-		className: React.PropTypes.string,
-		label: React.PropTypes.string,
-		labelActive: React.PropTypes.string,
-		onDrop: React.PropTypes.func.isRequired,
+		className: PropTypes.string,
+		label: PropTypes.string,
+		labelActive: PropTypes.string,
+		onDrop: PropTypes.func.isRequired,
 	},
 	getDefaultProps () {
 		return {
@@ -59,7 +61,7 @@ var Dropzone = React.createClass({
 	},
 	render () {
 		let className = classNames('FileDragAndDrop', {
-			'active': this.state.isDragActive,
+			active: this.state.isDragActive,
 		}, this.props.className);
 		return (
 			<button className={className} type="button" onClick={this.onClick} onDragLeave={this.onDragLeave} onDragOver={this.onDragOver} onDrop={this.onDrop}>

@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "blacklist": "^1.1.4",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "create-react-class": "^15.6.2"
   },
   "devDependencies": {
     "babel": "^5.8.23",
@@ -21,20 +22,21 @@
     "glob": "^7.0.5",
     "gulp": "^3.9.1",
     "isparta": "^4.0.0",
-    "react": "^15.0.0",
-    "react-addons-css-transition-group": "^15.0.0",
+    "react": "^16.0.0",
     "react-component-gulp-tasks": "^0.7.7",
-    "react-dom": "^15.0.0",
-    "react-router": "^2.6.0",
+    "react-dom": "^16.0.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-transition-group": "^1.2.1",
     "rimraf": "^2.5.4",
     "tap-xunit": "^1.4.0",
     "tape": "^4.6.0",
     "teaspoon": "^6.4.1"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0",
-    "react-dom": "^0.14.0 || ^15.0.0",
-    "react-addons-css-transition-group": "^0.14.0 || ^15.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-transition-group": "^1.2.1"
   },
   "browserify-shim": {
     "react": "global:React"

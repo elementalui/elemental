@@ -1,30 +1,32 @@
 import blacklist from 'blacklist';
 import classNames from 'classnames';
 import React from 'react';
+import PropTypes from 'prop-types';
 import icons from '../icons';
+import createReactClass from 'create-react-class';
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'FormSelect',
 	propTypes: {
-		alwaysValidate: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		disabled: React.PropTypes.bool,
-		firstOption: React.PropTypes.string,
-		htmlFor: React.PropTypes.string,
-		id: React.PropTypes.string,
-		label: React.PropTypes.string,
-		onChange: React.PropTypes.func.isRequired,
-		options: React.PropTypes.arrayOf(
-			React.PropTypes.shape({
-				label: React.PropTypes.string,
-				value: React.PropTypes.string,
-				disabled: React.PropTypes.bool,
+		alwaysValidate: PropTypes.bool,
+		className: PropTypes.string,
+		disabled: PropTypes.bool,
+		firstOption: PropTypes.string,
+		htmlFor: PropTypes.string,
+		id: PropTypes.string,
+		label: PropTypes.string,
+		onChange: PropTypes.func.isRequired,
+		options: PropTypes.arrayOf(
+			PropTypes.shape({
+				label: PropTypes.string,
+				value: PropTypes.string,
+				disabled: PropTypes.bool,
 			})
 		).isRequired,
-		prependEmptyOption: React.PropTypes.bool,
-		required: React.PropTypes.bool,
-		requiredMessage: React.PropTypes.string,
-		value: React.PropTypes.string,
+		prependEmptyOption: PropTypes.bool,
+		required: PropTypes.bool,
+		requiredMessage: PropTypes.string,
+		value: PropTypes.string,
 	},
 	getDefaultProps () {
 		return {
@@ -106,7 +108,7 @@ export default React.createClass({
 		let componentLabel = this.props.label ? <label className="FormLabel" htmlFor={forAndID}>{this.props.label}</label> : null;
 
 		// options
-		let options = this.props.options.map(function(opt, i) {
+		let options = this.props.options.map(function (opt, i) {
 			return <option key={'option-' + i} value={opt.value} disabled={opt.disabled}>{opt.label}</option>;
 		});
 		if (this.props.prependEmptyOption || this.props.firstOption) {

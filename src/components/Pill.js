@@ -1,8 +1,10 @@
-var React = require('react');
-var blacklist = require('blacklist');
-var classNames = require('classnames');
+const React = require('react');
+const blacklist = require('blacklist');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-var ALERT_TYPES = [
+const ALERT_TYPES = [
 	'danger',
 	'default',
 	'info',
@@ -14,35 +16,35 @@ var ALERT_TYPES = [
 	'info-inverted',
 	'primary-inverted',
 	'success-inverted',
-	'warning-inverted'
+	'warning-inverted',
 ];
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Pill',
 	propTypes: {
-		className: React.PropTypes.string,
-		label: React.PropTypes.string.isRequired,
-		onClear: React.PropTypes.func,
-		onClick: React.PropTypes.func,
-		type: React.PropTypes.oneOf(ALERT_TYPES)
+		className: PropTypes.string,
+		label: PropTypes.string.isRequired,
+		onClear: PropTypes.func,
+		onClick: PropTypes.func,
+		type: PropTypes.oneOf(ALERT_TYPES),
 	},
-	getDefaultProps() {
+	getDefaultProps () {
 		return {
-			type: 'default'
+			type: 'default',
 		};
 	},
-	renderClearButton() {
+	renderClearButton () {
 		if (!this.props.onClear) return null;
 		return <button type="button" onClick={this.props.onClear} className="Pill__clear">&times;</button>;
 	},
-	render() {
-		var componentClass = classNames(
+	render () {
+		const componentClass = classNames(
 			'Pill',
 			'Pill--' + this.props.type,
 			this.props.className
 		);
 
-		var props = blacklist(this.props, 'className', 'label', 'onClear', 'onClick', 'type');
+		const props = blacklist(this.props, 'className', 'label', 'onClear', 'onClick', 'type');
 		props.className = componentClass;
 
 		return (
@@ -51,5 +53,5 @@ export default React.createClass({
 				{this.renderClearButton()}
 			</div>
 		);
-	}
+	},
 });

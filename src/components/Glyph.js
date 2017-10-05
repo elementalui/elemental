@@ -1,15 +1,17 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-var icons = require('../Octicons').map;
-var validNames = require('../Octicons').keys;
+const icons = require('../Octicons').map;
+const validNames = require('../Octicons').keys;
 
-var Glyph = React.createClass({
+const Glyph = createReactClass({
 	displayName: 'Glyph',
 	propTypes: {
-		className: React.PropTypes.string,
-		icon: React.PropTypes.oneOf(validNames),
-		type: React.PropTypes.oneOf([
+		className: PropTypes.string,
+		icon: PropTypes.oneOf(validNames),
+		type: PropTypes.oneOf([
 			'danger',
 			'default',
 			'muted',
@@ -20,7 +22,7 @@ var Glyph = React.createClass({
 	},
 	render () {
 		// classes
-		var className = classNames(
+		const className = classNames(
 			'Glyph__icon',
 			icons[this.props.icon].className,
 			(this.props.type ? 'IconField__icon-color--' + this.props.type : null),

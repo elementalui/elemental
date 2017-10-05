@@ -1,9 +1,10 @@
 const React = require('react');
+const createReactClass = require('create-react-class');
 const { Button, Col, Container, Row, Spinner, Table } = require('elemental');
 const DemoBox = require('../components/DemoBox');
 const ExampleSource = require('../components/ExampleSource');
 
-var Buttons = React.createClass({
+var Buttons = createReactClass({
 	displayName: 'VIEW_Spinner',
 	render () {
 		return (

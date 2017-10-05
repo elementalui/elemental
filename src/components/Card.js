@@ -1,14 +1,16 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'Card',
 	propTypes: {
-		children: React.PropTypes.node.isRequired,
-		className: React.PropTypes.string,
+		children: PropTypes.node.isRequired,
+		className: PropTypes.string,
 	},
 	render () {
-		var className = classNames('Card', this.props.className);
+		const className = classNames('Card', this.props.className);
 
 		return <div {...this.props} className={className} />;
 	},

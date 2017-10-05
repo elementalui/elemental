@@ -1,24 +1,26 @@
-var React = require('react');
-var classNames = require('classnames');
+const React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const createReactClass = require('create-react-class');
 
-export default React.createClass({
+export default createReactClass({
 	displayName: 'FormInput',
 	propTypes: {
-		autoFocus: React.PropTypes.bool,
-		className: React.PropTypes.string,
-		disabled: React.PropTypes.bool,
-		href: React.PropTypes.string,
-		id: React.PropTypes.string,
-		innerRef: React.PropTypes.func,
-		multiline: React.PropTypes.bool,
-		name: React.PropTypes.string,
-		noedit: React.PropTypes.bool,
-		onChange: React.PropTypes.func,
-		size: React.PropTypes.oneOf(['lg', 'sm', 'xs']),
-		type: React.PropTypes.string,
-		value: React.PropTypes.oneOfType([
-			React.PropTypes.number,
-			React.PropTypes.string,
+		autoFocus: PropTypes.bool,
+		className: PropTypes.string,
+		disabled: PropTypes.bool,
+		href: PropTypes.string,
+		id: PropTypes.string,
+		innerRef: PropTypes.func,
+		multiline: PropTypes.bool,
+		name: PropTypes.string,
+		noedit: PropTypes.bool,
+		onChange: PropTypes.func,
+		size: PropTypes.oneOf(['lg', 'sm', 'xs']),
+		type: PropTypes.string,
+		value: PropTypes.oneOfType([
+			PropTypes.number,
+			PropTypes.string,
 		]),
 	},
 

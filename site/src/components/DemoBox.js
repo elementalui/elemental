@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 import classnames from 'classnames';
 import E from '../../../src/constants';
 
@@ -8,13 +10,13 @@ const ALIGN_TRANSFORM = {
 	'right': 'flex-end',
 };
 
-var DemoBox = React.createClass({
+var DemoBox = createReactClass({
 	propTypes: {
-		align: React.PropTypes.oneOf(['center', 'left', 'right']),
-		children: React.PropTypes.node.isRequired,
-		className: React.PropTypes.string,
-		inverted: React.PropTypes.bool,
-		style: React.PropTypes.object,
+		align: PropTypes.oneOf(['center', 'left', 'right']),
+		children: PropTypes.node.isRequired,
+		className: PropTypes.string,
+		inverted: PropTypes.bool,
+		style: PropTypes.object,
 	},
 	getDefaultProps () {
 		return {
