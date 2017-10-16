@@ -44,6 +44,7 @@
     "build:lib": "gulp build:lib",
     "bump": "gulp bump",
     "lint": "eslint .",
+    "install": "npm run build",
     "prepublish": "npm run build:lib",
     "publish:npm": "gulp publish:npm",
     "publish:site": "gulp publish:examples",
