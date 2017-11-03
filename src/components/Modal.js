@@ -63,6 +63,13 @@ const Modal = createReactClass({
 			target.style.paddingRight = '';
 		}
 	},
+	componentWillUnmount: function () {
+		if (!canUseDOM) return;
+
+		const target = document.body;
+		target.style.overflow = '';
+		target.style.paddingRight = '';
+	},
 	/*
 	handleAccessibility () {
 		// Remember the element that was focused before we opened the modal
